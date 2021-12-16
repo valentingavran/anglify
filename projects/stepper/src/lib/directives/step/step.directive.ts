@@ -5,7 +5,7 @@ import { map, shareReplay, takeUntil, tap } from 'rxjs/operators';
 import { Stepper } from '../../services/stepper/stepper.service';
 
 @Directive({
-  selector: 'ng-template[Step]',
+  selector: 'ng-template[anglifyStep]',
 })
 export class Step implements OnDestroy {
   private readonly _destroyAction$ = new Subject<void>();
