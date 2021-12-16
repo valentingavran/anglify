@@ -7,7 +7,7 @@
     [active]="(step.selected$ | async) ?? false"
     [visited]="(step.visited$ | async) ?? false"
   >
-    <ng-template StepperVisitedIcon>
+    <ng-template anglifyStepperVisitedIcon>
       <ng-container [ngTemplateOutlet]="visitedIcon"></ng-container>
     </ng-template>
   </anglify-stepper-header>
