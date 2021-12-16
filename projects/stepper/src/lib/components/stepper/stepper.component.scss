@@ -1,6 +1,7 @@
 :host {
   --step-connection-line-color: #e0e0e0;
   --header-height: 72px;
+  --step-container-padding: 14px 0 0 0;
 
   width: 100%;
   max-width: 100%;
@@ -30,6 +31,7 @@
 
     .content {
       flex-grow: 1;
+      padding: var(--step-container-padding);
     }
   }
 }
