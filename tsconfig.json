@@ -15,6 +15,12 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
+    "paths": {
+      "stepper": [
+        "dist/stepper/stepper",
+        "dist/stepper"
+      ]
+    },
     "module": "es2020",
     "lib": [
       "es2018",
