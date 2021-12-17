@@ -1,0 +1,21 @@
+@import "variables";
+
+.anglify-tooltip {
+  position: absolute;
+  max-width: $tooltip-max-width;
+  font-size: $tooltip-font-size;
+  text-align: $tooltip-text-alignment;
+  color: $tooltip-text-color;
+  padding: $tooltip-padding;
+  background: $tooltip-background-color;
+  border-radius: $tooltip-border-radius;
+  z-index: 1000;
+  opacity: 0;
+  transition-timing-function: $tooltip-transition-timing-function;
+  transition-duration: $tooltip-transition-duration;
+  transition-property: opacity;
+}
+
+.anglify-tooltip__show {
+  opacity: $tooltip-opacity;
+}

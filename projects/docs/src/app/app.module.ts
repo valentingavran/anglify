@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {HomeComponent} from "./pages/home/home.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TooltipComponent } from './pages/components/tooltip/tooltip.component';
+import {TooltipModule} from "../../../tooltip/src/lib/tooltip.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TooltipComponent } from './pages/components/tooltip/tooltip.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
