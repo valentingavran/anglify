@@ -105,6 +105,37 @@
           }
         }
       }
+    },
+    "anglify": {
+      "projectType": "library",
+      "root": "projects/anglify",
+      "sourceRoot": "projects/anglify/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/anglify/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/anglify/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/anglify/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/anglify/src/test.ts",
+            "tsConfig": "projects/anglify/tsconfig.spec.json",
+            "karmaConfig": "projects/anglify/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "docs"
