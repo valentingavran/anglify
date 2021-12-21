@@ -62,14 +62,12 @@ export class TooltipDirective {
     } else if (this.position === 'RIGHT') {
       top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
       left = hostPos.right + 10;
-      console.log("right")
     } else if (this.position === 'BOTTOM') {
       top = hostPos.bottom + 10;
       left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
     } else if (this.position === 'LEFT') {
       top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
       left = hostPos.left - tooltipPos.width - 10;
-      console.log("left")
     }
 
     this.renderer.setStyle(this.tooltip, 'top', `${top + scrollPos}px`);

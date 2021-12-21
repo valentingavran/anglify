@@ -14,6 +14,7 @@
   transition-timing-function: $tooltip-transition-timing-function;
   transition-duration: $tooltip-transition-duration;
   transition-property: opacity;
+  word-break: break-word;
 }
 
 .anglify-tooltip__show {
