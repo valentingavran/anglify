@@ -3,3 +3,4 @@
  */
 
 export * from './anglify.module';
+export * from './components/icon/icon.module';
