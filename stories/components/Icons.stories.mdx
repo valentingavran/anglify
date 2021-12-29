@@ -1,6 +1,6 @@
 import { ArgsTable, Canvas, Description, Meta, Story, Title } from '@storybook/addon-docs';
-import { IconComponent } from '../../../projects/anglify/src/components/icon/icon.component';
-import { IconModule } from '../../../projects/anglify/src/components/icon/icon.module';
+import { IconComponent } from '../../projects/anglify/src/modules/icon/icon.component';
+import { IconModule } from '../../projects/anglify/src/modules/icon/icon.module';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +13,7 @@ export const decorators = [
 export const args = {
   icon: 'mdi-home',
   iconSet: 'mdi',
-  size: 'normal',
+  size: 'regular',
 };
 
 export const Template = args => <anglify-icon {...args} />;
@@ -61,7 +61,7 @@ import { IconModule } from '@anglify/icon';
       defaultSet: 'mdi',
       svgIconSets: {},
       internalIcons: {},
-      defaultSize: 'normal',
+      defaultSize: 'regular',
     }),
   ],
 })
@@ -83,7 +83,7 @@ export class YourModule {
 | --icon-disabled-color | hsl(0, 0%, 0%, 38%) |
 | --icon-size-x-small   | 1rem                |
 | --icon-size-small     | 1.25rem             |
-| --icon-size-normal    | 1.5rem              |
+| --icon-size-regular   | 1.5rem              |
 | --icon-size-large     | 1.75rem             |
 | --icon-size-x-large   | 2rem                |
 

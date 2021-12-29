@@ -1,0 +1,59 @@
+@mixin notched-outline($start-width: 0, $border-radius: 4px, $transition-duration) {
+  $border-style: solid;
+  $border-color: var(--notched-outline-border-color, #000);
+  $border-width: var(--notched-outline-border-width, 1px);
+  $notch-width: var(--notched-outline-notch-width, 100%);
+  $padding: var(--notched-outline-padding, 2px);
+  $font-size: var(--notched-outline-font-size, 12px);
+  $transition-timing-function: var(--notched-outline-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
+
+  display: flex;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+
+  .start {
+    width: calc(#{$start-width} - #{$padding});
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    border-style: $border-style none $border-style $border-style;
+    border-width: $border-width;
+    border-color: $border-color;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .notch {
+    display: block;
+    border-bottom: $border-width $border-style $border-color;
+    box-sizing: border-box;
+    position: relative;
+    padding-left: $padding;
+    padding-right: $padding;
+    font-size: 12px;
+    white-space: nowrap;
+    max-width: calc(100% - #{$start-width} - #{$start-width});
+
+    /* This pseudo element is responsible for the notch border width animation*/
+    &:after {
+      content: '';
+      position: absolute;
+      width: $notch-width;
+      top: 0;
+      right: 0;
+      transition: width $transition-duration $transition-timing-function;
+      border-top: $border-width $border-style $border-color;
+    }
+  }
+  .end {
+    flex: 1;
+    min-width: $start-width;
+    box-sizing: border-box;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    border-style: $border-style $border-style $border-style none;
+    border-width: $border-width;
+    border-color: $border-color;
+  }
+}

@@ -1,6 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush"
+    }
+  },
   "newProjectRoot": "projects",
   "projects": {
     "docs": {
@@ -46,7 +52,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "15kb"
                 }
               ],
               "fileReplacements": [
@@ -110,7 +116,7 @@
       "projectType": "library",
       "root": "projects/anglify",
       "sourceRoot": "projects/anglify/src",
-      "prefix": "lib",
+      "prefix": "anglify",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

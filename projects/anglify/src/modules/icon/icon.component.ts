@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Inject, Input, Output } from '@angular/core';
 import { ICON_SETTINGS } from './icon-settings.token';
 import { IconSet, IconSettings } from './icon.interface';
-import { BooleanLike, ComponentSize } from '../../utils/interfaces';
+import { ComponentSize } from '../../utils/interfaces';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
@@ -40,10 +40,9 @@ export class IconComponent {
   @Input() public iconSet: IconSet;
 
   /**
-   *  __normal__ is the default size.
    * By providing IconSettings, this default value can be overridden globally. Otherwise, this property
    * can be set for individual icons
-   * @default "normal"
+   * @default "regular"
    */
   @Input() public size: ComponentSize;
 

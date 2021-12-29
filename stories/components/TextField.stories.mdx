@@ -1,0 +1,39 @@
+import { ArgsTable, Canvas, Description, Meta, Story, Title } from '@storybook/addon-docs';
+import { TextFieldComponent } from '../../projects/anglify/src/modules/text-field/text-field.component';
+import { CommonModule } from '@angular/common';
+import { moduleMetadata } from '@storybook/angular';
+import { TextFieldModule } from '../../projects/anglify/src/modules/text-field/text-field.module';
+
+export const decorators = [
+  moduleMetadata({
+    imports: [CommonModule, TextFieldModule],
+  }),
+];
+
+export const args = {};
+
+export const Template = args => (
+  <anglify-text-field {...args}>
+    <input value="Hello world" />
+  </anglify-text-field>
+);
+
+<Meta title="Components/TextField" component={TextFieldComponent} argTypes={{}} decorators={decorators} />
+
+<Title of={TextFieldComponent} />
+
+<Description of={TextFieldComponent} />
+
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Default" args={args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## API
+
+### Props
+
+<ArgsTable of={TextFieldComponent} story="Default" />

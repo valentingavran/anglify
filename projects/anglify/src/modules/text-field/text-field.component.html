@@ -1,0 +1,17 @@
+<div class="text-field-container">
+  <div class="text-field-border">
+    <div class="start"></div>
+    <div class="notch">
+      <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
+    </div>
+    <div class="end"></div>
+  </div>
+  <ng-content select="[anglifyInput]"></ng-content>
+</div>
+<div class="details">
+  <div class="hint">{{ hint }}</div>
+  <div class="counter"></div>
+</div>
+<ng-template #labelTemplate>
+  <ng-content select="label"></ng-content>
+</ng-template>

@@ -8,7 +8,7 @@ const DEFAULT_ICON_SETTINGS: Required<IconSettings> = {
   defaultSet: 'mdi',
   svgIconSets: {},
   internalIcons: {},
-  defaultSize: 'normal',
+  defaultSize: 'regular',
 };
 
 @NgModule({

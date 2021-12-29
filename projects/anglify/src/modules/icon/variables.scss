@@ -1,4 +1,4 @@
-:host {
+::ng-deep:root {
   --icon-letter-spacing: normal;
   --icon-line-height: 1;
   --icon-text-indent: 0;
@@ -10,7 +10,7 @@
 
   --icon-size-x-small: 1rem;
   --icon-size-small: 1.25rem;
-  --icon-size-normal: 1.5rem;
+  --icon-size-regular: 1.5rem;
   --icon-size-large: 1.75rem;
   --icon-size-x-large: 2rem;
 }

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  margin: 0;
+}
+
+body {
+  margin: 20px;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  --color-primary: #6200ee;
+  --surface-overlay: rgba(33, 33, 33, 0.06);
+}
