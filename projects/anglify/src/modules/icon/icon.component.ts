@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input } from '@angular/core';
 import { ICON_SETTINGS } from './icon-settings.token';
 import { IconSet, IconSettings } from './icon.interface';
-import { ComponentSize } from '../../utils/interfaces';
+import { BooleanLike, ComponentSize } from '../../utils/interfaces';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { isBooleanLikeTrue } from '../../utils/functions';
 
 const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
   fa4: '',
@@ -45,16 +46,8 @@ export class IconComponent {
    * @default "regular"
    */
   @Input() public size: ComponentSize;
-
-  @HostBinding('class.clickable')
-  @Input()
-  public clickable = false;
-
-  @HostBinding('class.disabled')
-  @Input()
-  public disabled = false;
-
-  @Output() public click = new EventEmitter<void>();
+  @Input() public clickable: BooleanLike = false;
+  @Input() public disabled: BooleanLike = false;
 
   public constructor(@Inject(ICON_SETTINGS) private readonly settings: Required<IconSettings>, private readonly sanitizer: DomSanitizer) {
     this.iconSet = settings.defaultSet;
@@ -62,11 +55,20 @@ export class IconComponent {
   }
 
   @HostBinding('class')
-  private get classes(): string | undefined {
+  private get classList(): string | undefined {
     if (!this.icon) return;
 
-    const iconSetClass = ICON_SET_CLASS_MAPPING[this.iconSet];
-    return `${iconSetClass} ${this.icon} icon-size-${this.size}`;
+    const classNames = [ICON_SET_CLASS_MAPPING[this.iconSet], this.icon, `icon-size-${this.size}`];
+
+    if (isBooleanLikeTrue(this.clickable)) {
+      classNames.push('clickable');
+    }
+
+    if (isBooleanLikeTrue(this.disabled)) {
+      classNames.push('disabled');
+    }
+
+    return classNames.join(' ');
   }
 
   @HostBinding('innerHTML')

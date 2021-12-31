@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { BooleanLike } from '../../utils/interfaces';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LabelDirective } from './directives/label/label.directive';
+import { isBooleanLikeTrue } from '../../utils/functions';
 
 @UntilDestroy()
 @Component({
@@ -27,10 +28,10 @@ export class TextFieldComponent implements AfterViewInit {
   @HostBinding('class')
   private get classList(): string {
     const classNames = [`text-field-type-${this.type}`];
-    if (TextFieldComponent.isBooleanLikeTrue(this.persistentHint)) {
+    if (isBooleanLikeTrue(this.persistentHint)) {
       classNames.push('persistent-hint');
     }
-    if (TextFieldComponent.isBooleanLikeTrue(this.persistentPlaceholder)) {
+    if (isBooleanLikeTrue(this.persistentPlaceholder)) {
       classNames.push('persistent-placeholder');
     }
     if (this.label) {
@@ -95,9 +96,5 @@ export class TextFieldComponent implements AfterViewInit {
     } else {
       throw new Error('An input field that has an anglifyInput directive must be added to the anglify-text-field component for it to work');
     }
-  }
-
-  private static isBooleanLikeTrue(value: BooleanLike): boolean {
-    return value === true || value === 'true' || value === '';
   }
 }
