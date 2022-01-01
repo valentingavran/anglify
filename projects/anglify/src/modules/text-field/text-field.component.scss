@@ -1,250 +1,82 @@
 @use 'details';
+@use 'filled';
+@use 'outlined';
 @use 'sass:math';
-@import 'variables', '../../styles/mixins/notched-outline';
-@import '../../styles/mixins/notched-outline';
+@import 'variables';
 
 :host {
   width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  row-gap: 4px;
+  grid-template-areas:
+    'outer-prepend text-field-container  outer-append'
+    '. details .';
 
-  .text-field-container {
+  .outer-prepend:not(:empty) {
+    grid-area: outer-prepend;
     display: flex;
+    align-items: center;
+    margin-inline-end: 14px;
+  }
+
+  .outer-append:not(:empty) {
+    grid-area: outer-append;
+    display: flex;
+    align-items: center;
+    margin-inline-start: 14px;
+  }
+
+  .text-field-container {
+    grid-area: text-field-container;
     position: relative;
-    flex-direction: column;
-    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'prepend content append';
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
 
-    ::ng-deep input {
-      border-style: none;
-      outline: none;
-      line-height: $text-field-line-height;
-      max-width: 100%;
-      min-width: 0;
-      background-color: transparent;
-      font-size: $text-field-font-size;
-      width: 100%;
-      box-sizing: border-box;
+    label {
+      grid-area: content;
+      display: grid;
+      align-items: center;
 
-      &::placeholder {
-        color: transparent;
-        transition: color $transition-duration $text-field-transition-timing-function;
-        user-select: none;
-      }
-
-      &:focus {
-        &::placeholder {
-          color: hsl(0, 0%, 0%, 54%);
-        }
-      }
-    }
-  }
-
-  &.persistent-placeholder {
-    .text-field-container {
       ::ng-deep input {
+        grid-column: 1;
+        grid-row: 1;
+        border-style: none;
+        outline: none;
+        line-height: $text-field-line-height;
+        max-width: 100%;
+        min-width: 0;
+        background-color: transparent;
+        font-size: $text-field-font-size;
+        width: 100%;
+        box-sizing: border-box;
+
         &::placeholder {
-          color: hsl(0, 0%, 0%, 54%);
+          color: transparent;
+          transition: color $transition-duration $text-field-transition-timing-function;
+          user-select: none;
         }
       }
-    }
-  }
-}
 
-:host-context(.text-field-type-outlined) {
-  .text-field-container {
-    border-radius: $text-field-outlined-border-radius-top-left $text-field-outlined-border-radius-top-right
-      $text-field-outlined-border-radius-bottom-right $text-field-outlined-border-radius-bottom-left;
-
-    ::ng-deep input {
-      padding: $text-field-outlined-padding-top $text-field-outlined-padding-start $text-field-outlined-padding-bottom
-        $text-field-outlined-padding-start;
-    }
-
-    .text-field-border {
-      @include notched-outline($text-field-outlined-padding-start, 4px, $transition-duration);
-      --notched-outline-border-color: #{$text-field-outlined-border-color-inactive};
-
-      .notch {
-        width: 100%;
-      }
-
-      ::ng-deep label {
-        display: block;
-        transition: transform $transition-duration $text-field-transition-timing-function;
-        transform-origin: left;
-        $translateY: calc(
-          (#{$text-field-line-height} + #{$text-field-outlined-padding-bottom} + #{$text-field-outlined-padding-top}) / 2 - 50%
-        );
-        transform: translateY($translateY) scale(1.3333);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: calc((100% / 1.333333));
+      .label {
+        grid-column: 1;
+        grid-row: 1;
       }
     }
-  }
 
-  &.focused {
-    .text-field-container .text-field-border {
-      --notched-outline-border-width: 2px;
-      --notched-outline-border-color: #{$text-field-outlined-border-color-focused};
-
-      ::ng-deep label {
-        color: $text-field-outlined-label-color-focused;
-        --icon-inactive-color: #{$text-field-outlined-label-color-focused};
-      }
-    }
-  }
-
-  &.focused,
-  &.persistent-placeholder,
-  &.floating {
-    .text-field-container .text-field-border {
-      --notched-outline-notch-width: 0;
-
-      .notch {
-        width: auto;
-      }
-
-      ::ng-deep label {
-        transform: translateY(-50%) scale(1);
-        width: 100%;
-      }
-    }
-  }
-
-  &:not(.focused):not(.disabled) {
-    .text-field-container:hover .text-field-border {
-      --notched-outline-border-color: #{$text-field-outlined-border-color-hovered};
-    }
-  }
-
-  &:not(.has-label) {
-    --notched-outline-padding: 0px;
-
-    .notch {
-      width: 0 !important;
-    }
-  }
-
-  &.disabled {
-    ::ng-deep input {
-      color: $text-field-outlined-input-text-color-disabled !important;
+    .prepend:not(:empty) {
+      grid-area: prepend;
+      padding-inline-end: 14px;
     }
 
-    .text-field-container {
-      color: $text-field-outlined-label-color-disabled !important;
-    }
-  }
-
-  .details {
-    padding-left: $text-field-outlined-padding-start;
-  }
-}
-
-:host-context(.text-field-type-filled) {
-  .text-field-container {
-    background-color: $text-field-filled-background-inactive;
-    border-radius: $text-field-filled-border-radius;
-
-    ::ng-deep input {
-      padding: $text-field-filled-padding-top $text-field-filled-padding-start $text-field-filled-padding-bottom
-        $text-field-filled-padding-start;
-    }
-
-    .notch {
-      position: absolute;
-      left: $text-field-filled-padding-start;
-      user-select: none;
-      pointer-events: none;
-      transition: transform $transition-duration $text-field-transition-timing-function,
-        width $transition-duration $text-field-transition-timing-function;
-      transform-origin: left;
-      line-height: $text-field-line-height;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      white-space: nowrap;
-      max-width: calc(100% - #{$text-field-filled-padding-start} - #{$text-field-filled-padding-start});
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* This pseudo element contains the inactive bottom border */
-    &:before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      align-self: center;
-      bottom: 0;
-      border-bottom: 1px solid $text-field-filled-border-color-inactive;
-    }
-
-    /* This pseudo element contains the focused bottom border. It animates on focus from the center to the edges */
-    &:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      background-color: $text-field-filled-border-color-focused;
-      align-self: center;
-      transition: width $transition-duration $text-field-transition-timing-function;
-      bottom: 0;
-      height: 2px;
-    }
-  }
-
-  .details {
-    padding-left: $text-field-filled-padding-start;
-  }
-
-  &.focused {
-    .text-field-container {
-      background-color: $text-field-filled-background-focused;
-
-      &:after {
-        width: 100%;
-        height: 2px;
-      }
-
-      .notch {
-        color: $text-field-filled-label-color-focused;
-        --icon-inactive-color: #{$text-field-filled-label-color-focused};
-      }
-    }
-  }
-
-  &:not(.focused):not(.disabled) {
-    .text-field-container:hover {
-      background-color: $text-field-filled-background-hovered;
-    }
-  }
-
-  &.focused,
-  &.persistent-placeholder,
-  &.floating {
-    .text-field-container {
-      .notch {
-        transform: translateY(calc(#{$text-field-line-height} * -1)) scale(0.75);
-        width: calc((100% / 0.75) - #{$text-field-filled-padding-start} - #{$text-field-filled-padding-start});
-        max-width: none;
-      }
-    }
-  }
-
-  &:not(.has-label) {
-    ::ng-deep input {
-      padding: 14px $text-field-filled-padding-start 14px $text-field-filled-padding-start !important;
-    }
-  }
-
-  &.disabled {
-    ::ng-deep input {
-      color: $text-field-filled-input-text-color-disabled !important;
-    }
-
-    .text-field-container {
-      color: $text-field-filled-label-color-disabled !important;
-
-      &:before {
-        border-bottom-style: dashed;
-      }
+    .append:not(:empty) {
+      grid-area: append;
+      padding-inline-start: 14px;
     }
   }
 }

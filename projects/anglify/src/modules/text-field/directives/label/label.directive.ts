@@ -1,6 +1,8 @@
-import { Directive } from '@angular/core';
+import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: 'label[anglifyLabel]',
+  selector: 'ng-template[anglifyLabel]',
 })
-export class LabelDirective {}
+export class LabelDirective {
+  public constructor(public template: TemplateRef<any>) {}
+}

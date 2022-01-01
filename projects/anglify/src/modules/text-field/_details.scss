@@ -1,13 +1,13 @@
-@import 'variables';
+@use 'variables';
 
 :host {
   .details {
+    grid-area: details;
     display: flex;
     gap: 14px;
     line-height: 16px;
     min-height: 16px;
     font-size: 12px;
-    margin-top: 4px;
     overflow: hidden;
 
     .hint {
@@ -18,20 +18,28 @@
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
-      transition: transform 0.3s $text-field-transition-timing-function;
+      transition: transform 0.3s variables.$text-field-transition-timing-function;
       transform: translateY(-100%);
     }
   }
 
-  &.persistent-hint {
-    .details .hint {
-      transform: translateY(0);
-    }
+  &.persistent-hint .details .hint {
+    transform: translateY(0);
   }
 
-  &.focus {
-    .details .hint {
-      transform: translateY(0);
-    }
+  &.focus .details .hint {
+    transform: translateY(0);
+  }
+}
+
+:host-context(.text-field-type-outlined) {
+  .details {
+    padding-left: variables.$text-field-outlined-padding-start;
+  }
+}
+
+:host-context(.text-field-type-filled) {
+  .details {
+    padding-left: variables.$text-field-filled-padding-start;
   }
 }

@@ -1,17 +1,46 @@
+<div class="outer-prepend">
+  <ng-container *ngTemplateOutlet="prependOuterIconTemplate"></ng-container>
+</div>
 <div class="text-field-container">
   <div class="text-field-border">
     <div class="start"></div>
-    <div class="notch">
-      <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
+    <div class="notch" *ngIf="label && type === 'outlined'">
+      <span>
+        <ng-container *ngTemplateOutlet="label.template"></ng-container>
+      </span>
     </div>
     <div class="end"></div>
   </div>
-  <ng-content select="[anglifyInput]"></ng-content>
+  <div class="prepend" #prependItem>
+    <ng-container *ngTemplateOutlet="prependIconTemplate"></ng-container>
+  </div>
+  <label>
+    <span class="label" *ngIf="label" [style.margin-inline-start]="outlinedLabelPrefixMargin$ | async">
+      <ng-container *ngTemplateOutlet="label.template"></ng-container>
+    </span>
+    <ng-content select="[anglifyInput]"></ng-content>
+  </label>
+  <div class="append">
+    <ng-container *ngTemplateOutlet="appendIconTemplate"></ng-container>
+  </div>
+</div>
+<div class="outer-append">
+  <ng-container *ngTemplateOutlet="appendOuterIconTemplate"></ng-container>
 </div>
 <div class="details">
   <div class="hint">{{ hint }}</div>
   <div class="counter"></div>
 </div>
-<ng-template #labelTemplate>
-  <ng-content select="label"></ng-content>
+
+<ng-template #prependIconTemplate>
+  <anglify-icon *ngIf="prependIcon" [icon]="prependIcon"></anglify-icon>
+</ng-template>
+<ng-template #prependOuterIconTemplate>
+  <anglify-icon *ngIf="prependOuterIcon" [icon]="prependOuterIcon"></anglify-icon>
+</ng-template>
+<ng-template #appendIconTemplate>
+  <anglify-icon *ngIf="appendIcon" [icon]="appendIcon"></anglify-icon>
+</ng-template>
+<ng-template #appendOuterIconTemplate>
+  <anglify-icon *ngIf="appendOuterIcon" [icon]="appendOuterIcon"></anglify-icon>
 </ng-template>

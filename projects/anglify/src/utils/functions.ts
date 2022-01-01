@@ -3,10 +3,20 @@ import { BooleanLike } from './interfaces';
 
 export function observeOnMutation(target: Node, config: MutationObserverInit | undefined): Observable<MutationRecord[]> {
   return new Observable(observer => {
-    const mutation = new MutationObserver(mutations => observer.next(mutations));
-    mutation.observe(target, config);
+    const mutationObserver = new MutationObserver(mutations => observer.next(mutations));
+    mutationObserver.observe(target, config);
     return () => {
-      mutation.disconnect();
+      mutationObserver.disconnect();
+    };
+  });
+}
+
+export function observeOnResize(target: Element): Observable<ResizeObserverEntry[]> {
+  return new Observable(observer => {
+    const resizeObserver = new ResizeObserver(entries => observer.next(entries));
+    resizeObserver.observe(target);
+    return () => {
+      resizeObserver.disconnect();
     };
   });
 }

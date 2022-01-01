@@ -43,7 +43,10 @@ export class InputDirective {
   ).pipe(
     map(event => {
       return event.type === 'focusin';
-    })
+    }),
+    startWith(false),
+    distinctUntilChanged(),
+    shareReplay(1)
   );
 
   public constructor(public readonly elementRef: ElementRef) {}

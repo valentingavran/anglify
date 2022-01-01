@@ -1,11 +1,22 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  HostBinding,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { InputDirective } from './directives/input.directive';
 import { TextFieldStyle } from './text-field.interface';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BooleanLike } from '../../utils/interfaces';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LabelDirective } from './directives/label/label.directive';
 import { isBooleanLikeTrue } from '../../utils/functions';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -15,15 +26,22 @@ import { isBooleanLikeTrue } from '../../utils/functions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFieldComponent implements AfterViewInit {
-  @ContentChild(InputDirective) private readonly input?: InputDirective;
-  @ContentChild(LabelDirective) private readonly label?: LabelDirective;
+  @ContentChild(InputDirective) public readonly input?: InputDirective;
+  @ContentChild(LabelDirective) public readonly label?: LabelDirective;
+  @ViewChild('prependItem') public readonly prependItem?: ElementRef;
 
   @Input() public type: TextFieldStyle = 'filled';
   @Input() public hint?: string;
   @Input('persistent-hint') public persistentHint: BooleanLike = false;
   @Input('persistent-placeholder') public persistentPlaceholder: BooleanLike = false;
+  @Input('prepend-icon') public prependIcon?: string;
+  @Input('prepend-outer-icon') public prependOuterIcon?: string;
+  @Input('append-icon') public appendIcon?: string;
+  @Input('append-outer-icon') public appendOuterIcon?: string;
 
-  public constructor(private readonly elementRef: ElementRef) {}
+  public readonly outlinedLabelPrefixMargin$ = new BehaviorSubject<string>('0px');
+
+  public constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
   @HostBinding('class')
   private get classList(): string {
@@ -90,6 +108,22 @@ export class TextFieldComponent implements AfterViewInit {
             } else {
               this.elementRef.nativeElement.classList.remove('disabled');
             }
+          })
+        )
+        .subscribe();
+
+      combineLatest([this.input.focused$, this.input.floating$])
+        .pipe(
+          untilDestroyed(this),
+          map(([focused, floating]) => {
+            const prependItemWidth = `-${(this.prependItem?.nativeElement as HTMLElement).offsetWidth}px`;
+            return (focused || floating || isBooleanLikeTrue(this.persistentPlaceholder)) && this.type === 'outlined'
+              ? prependItemWidth
+              : '';
+          }),
+          tap(margin => {
+            this.outlinedLabelPrefixMargin$.next(margin);
+            this.cdr.detectChanges();
           })
         )
         .subscribe();
