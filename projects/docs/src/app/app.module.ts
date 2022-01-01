@@ -8,10 +8,11 @@ import { TextFieldModule } from '../../../anglify/src/modules/text-field/text-fi
 import { FormsModule } from '@angular/forms';
 import { TextFieldPageComponent } from './pages/component-pages/text-field-page/text-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
+import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, TextFieldPageComponent, IconPageComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, TextFieldModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, TextFieldModule, FormsModule, IconModule],
   providers: [],
   bootstrap: [AppComponent],
 })
