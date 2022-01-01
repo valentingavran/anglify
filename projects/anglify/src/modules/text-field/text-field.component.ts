@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { InputDirective } from './directives/input.directive';
-import { TextFieldStyle } from './text-field.interface';
+import { TextFieldType } from './text-field.interface';
 import { map, tap } from 'rxjs/operators';
 import { BooleanLike } from '../../utils/interfaces';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -30,7 +30,7 @@ export class TextFieldComponent implements AfterViewInit {
   @ContentChild(LabelDirective) public readonly label?: LabelDirective;
   @ViewChild('prependItem') public readonly prependItem?: ElementRef;
 
-  @Input() public type: TextFieldStyle = 'filled';
+  @Input() public type: TextFieldType = 'filled';
   @Input() public hint?: string;
   @Input('persistent-hint') public persistentHint: BooleanLike = false;
   @Input('persistent-placeholder') public persistentPlaceholder: BooleanLike = false;

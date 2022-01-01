@@ -1,5 +1,77 @@
 <h1>Text Field</h1>
 
+<h2>Playground</h2>
+<div class="playground">
+  <div class="content">
+    <anglify-text-field
+      [type]="type"
+      [prepend-icon]="prependIcon ? 'mdi-home' : ''"
+      [prepend-outer-icon]="prependOuterIcon ? 'mdi-home' : ''"
+      [append-icon]="appendIcon ? 'mdi-home' : ''"
+      [append-outer-icon]="appendOuterIcon ? 'mdi-home' : ''"
+      [persistent-placeholder]="persistentPlaceholder"
+      [persistent-hint]="persistentHint"
+      [hint]="hint"
+    >
+      <ng-template anglifyLabel>{{ label }}</ng-template>
+      <input anglifyInput [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder" />
+    </anglify-text-field>
+  </div>
+  <div class="controls">
+    <anglify-text-field type="filled">
+      <ng-template anglifyLabel>Label</ng-template>
+      <input anglifyInput [(ngModel)]="label" />
+    </anglify-text-field>
+    <anglify-text-field type="filled">
+      <ng-template anglifyLabel>Placeholder</ng-template>
+      <input anglifyInput [(ngModel)]="placeholder" />
+    </anglify-text-field>
+    <anglify-text-field type="filled">
+      <ng-template anglifyLabel>Hint</ng-template>
+      <input anglifyInput [(ngModel)]="hint" />
+    </anglify-text-field>
+    <label>
+      Type:
+      <select [(ngModel)]="type">
+        <option value="filled">Filled</option>
+        <option value="outlined">Outlined</option>
+      </select>
+    </label>
+    <label>
+      Readonly:
+      <input type="checkbox" [(ngModel)]="readonly" />
+    </label>
+    <label>
+      Disabled:
+      <input type="checkbox" [(ngModel)]="disabled" />
+    </label>
+    <label>
+      Persistent placeholder:
+      <input type="checkbox" [(ngModel)]="persistentPlaceholder" />
+    </label>
+    <label>
+      Persistent hint:
+      <input type="checkbox" [(ngModel)]="persistentHint" />
+    </label>
+    <label>
+      Prepend icon:
+      <input type="checkbox" [(ngModel)]="prependIcon" />
+    </label>
+    <label>
+      Prepend outer icon:
+      <input type="checkbox" [(ngModel)]="prependOuterIcon" />
+    </label>
+    <label>
+      Append icon:
+      <input type="checkbox" [(ngModel)]="appendIcon" />
+    </label>
+    <label>
+      Append outer icon:
+      <input type="checkbox" [(ngModel)]="appendOuterIcon" />
+    </label>
+  </div>
+</div>
+
 <h2>Examples</h2>
 
 <h3>Placeholder</h3>
@@ -142,23 +214,22 @@
 </div>
 
 <h3>Readonly</h3>
-<button (click)="readonlyToggle = !readonlyToggle">Toggle readonly</button>
 <div class="example-container">
   <anglify-text-field type="filled">
     <ng-template anglifyLabel>Filled</ng-template>
-    <input anglifyInput placeholder="Placeholder" [readonly]="readonlyToggle" />
+    <input anglifyInput placeholder="Placeholder" />
   </anglify-text-field>
   <anglify-text-field type="filled">
     <ng-template anglifyLabel>Filled</ng-template>
-    <input anglifyInput placeholder="Placeholder" [readonly]="readonlyToggle" value="Some value" />
+    <input anglifyInput placeholder="Placeholder" value="Some value" />
   </anglify-text-field>
   <anglify-text-field type="outlined">
     <ng-template anglifyLabel>Outlined</ng-template>
-    <input anglifyInput placeholder="Placeholder" [readonly]="readonlyToggle" />
+    <input anglifyInput placeholder="Placeholder" />
   </anglify-text-field>
   <anglify-text-field type="outlined">
     <ng-template anglifyLabel>Outlined</ng-template>
-    <input anglifyInput placeholder="Placeholder" [readonly]="readonlyToggle" value="Some value" />
+    <input anglifyInput placeholder="Placeholder" value="Some value" />
   </anglify-text-field>
 </div>
 

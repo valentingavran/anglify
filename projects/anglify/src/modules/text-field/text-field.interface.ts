@@ -1,1 +1,1 @@
-export type TextFieldStyle = 'outlined' | 'filled';
+export type TextFieldType = 'outlined' | 'filled';

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TextFieldType } from '../../../../../../anglify/src/modules/text-field/text-field.interface';
 
 @Component({
   selector: 'app-text-field-page',
@@ -7,6 +8,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFieldPageComponent {
-  public visible = false;
-  public readonlyToggle = true;
+  public type: TextFieldType = 'filled';
+  public label = 'Label';
+  public placeholder = 'Placeholder';
+  public hint = 'Hint';
+  public readonly = true;
+  public disabled = false;
+  public persistentPlaceholder = false;
+  public persistentHint = false;
+  public prependIcon = false;
+  public prependOuterIcon = false;
+  public appendIcon = false;
+  public appendOuterIcon = false;
 }
