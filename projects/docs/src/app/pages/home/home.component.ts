@@ -5,7 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  public visible = false;
-  public readonlyToggle = true;
-}
+export class HomeComponent {}
