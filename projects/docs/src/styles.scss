@@ -14,6 +14,25 @@ html {
   --surface-overlay: rgba(33, 33, 33, 0.06);
 }
 
+.example-container {
+  border: 1px solid #e2e8f0;
+  padding: 48px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+h3:not(:first-of-type) {
+  padding-top: 36px;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
 :root {
   &.dark {
     background-color: #0a1929;

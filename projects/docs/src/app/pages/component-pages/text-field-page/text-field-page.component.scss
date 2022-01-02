@@ -28,15 +28,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-    border: 1px solid #e2e8f0;
-    padding: 48px;
   }
 
   .cols-3 {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  h3:not(:first-of-type) {
-    padding-top: 36px;
   }
 }
