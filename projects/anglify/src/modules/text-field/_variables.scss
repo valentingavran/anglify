@@ -29,7 +29,6 @@ $text-field-outlined-placeholder-color-inactive: var(--text-field-outlined-place
 $text-field-outlined-placeholder-color-focused: var(--text-field-outlined-placeholder-color-focused, rgba(0, 0, 0, 0.54));
 $text-field-outlined-placeholder-color-disabled: var(--text-field-outlined-placeholder-color-disabled, rgba(0, 0, 0, 0.38));
 
-/*Filled Text Field*/
 $text-field-filled-padding-top: var(--text-field-filled-padding-top, calc(8px + #{$text-field-label-focus-font-size}));
 $text-field-filled-padding-bottom: var(--text-field-filled-padding-bottom, 8px);
 $text-field-filled-padding-start: var(--text-field-filled-padding-start, 16px);

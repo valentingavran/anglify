@@ -9,10 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { TextFieldPageComponent } from './pages/component-pages/text-field-page/text-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
+import { StylingTableComponent } from './components/styling-table/styling-table.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, TextFieldPageComponent, IconPageComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, TextFieldModule, FormsModule, IconModule],
+  declarations: [AppComponent, HomeComponent, TextFieldPageComponent, IconPageComponent, StylingTableComponent],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, TextFieldModule, FormsModule, IconModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

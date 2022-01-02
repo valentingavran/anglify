@@ -1,0 +1,10 @@
+<table class="styling-table">
+  <tr>
+    <th>Name</th>
+    <th>Default</th>
+  </tr>
+  <tr *ngFor="let variable of cssVariables$ | async">
+    <td>{{ variable?.name }}</td>
+    <td>{{ variable?.defaultValue }}</td>
+  </tr>
+</table>
