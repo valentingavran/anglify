@@ -1,0 +1,16 @@
+$icon-letter-spacing: var(--icon-letter-spacing, normal);
+$icon-line-height: var(--icon-line-height, 1);
+$icon-text-indent: var(--icon-text-indent, 0);
+$icon-vertical-align: var(--icon-vertical-align, middle);
+
+$icon-sizes: (
+  icon-size-x-small: var(--icon-size-x-small, 1rem),
+  icon-size-small: var(--icon-size-small, 1.25rem),
+  icon-size-regular: var(--icon-size-regular, 1.5rem),
+  icon-size-large: var(--icon-size-large, 1.75rem),
+  icon-size-x-large: var(--icon-size-x-large, 2rem),
+);
+
+$icon-active-color: var(--icon-active-color, hsl(0, 0%, 0%, 87%));
+$icon-inactive-color: var(--icon-inactive-color, hsl(0, 0%, 0%, 54%));
+$icon-disabled-color: var(--icon-disabled-color, hsl(0, 0%, 0%, 38%));
