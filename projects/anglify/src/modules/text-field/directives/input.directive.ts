@@ -27,8 +27,8 @@ export class InputDirective {
   );
 
   public readonly floating$ = merge(fromEvent(this.nativeElement, 'input'), this.mutationObserver$).pipe(
-    debounceTime(100),
     startWith(true),
+    debounceTime(100),
     map(() => this.nativeElement.value),
     map(value => {
       return value.length > 0;
