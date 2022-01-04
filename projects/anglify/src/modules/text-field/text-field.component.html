@@ -29,7 +29,9 @@
 </div>
 <div class="details">
   <div class="hint">{{ hint }}</div>
-  <div class="counter"></div>
+  <div class="counter" *ngIf="_counter">
+    {{ input?.length$ | async }}<span *ngIf="input?.maxLength$ | async as maxLength">/{{ maxLength }}</span>
+  </div>
 </div>
 
 <ng-template #prependIconTemplate>

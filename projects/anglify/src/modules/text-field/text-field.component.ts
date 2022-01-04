@@ -38,6 +38,11 @@ export class TextFieldComponent implements AfterViewInit {
   @Input('prepend-outer-icon') public prependOuterIcon?: string;
   @Input('append-icon') public appendIcon?: string;
   @Input('append-outer-icon') public appendOuterIcon?: string;
+  @Input() public counter: BooleanLike = false;
+
+  public get _counter(): boolean {
+    return isBooleanLikeTrue(this.counter);
+  }
 
   public readonly outlinedLabelPrefixMargin$ = new BehaviorSubject<string>('0px');
 

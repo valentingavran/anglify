@@ -9,6 +9,15 @@ import { fromEvent, merge } from 'rxjs';
 export class InputDirective {
   private readonly nativeElement: HTMLInputElement = this.elementRef.nativeElement;
   private readonly mutationObserver$ = observeOnMutation(this.nativeElement, { attributes: true }).pipe(shareReplay(1));
+  private readonly inputEvent$ = merge(fromEvent(this.nativeElement, 'input'), this.mutationObserver$).pipe(shareReplay(1));
+
+  public readonly length$ = this.inputEvent$.pipe(
+    startWith(true),
+    debounceTime(100),
+    map(() => this.nativeElement.value.length),
+    distinctUntilChanged(),
+    shareReplay(1)
+  );
 
   public readonly readonly$ = this.mutationObserver$.pipe(
     startWith(true),
@@ -26,13 +35,9 @@ export class InputDirective {
     shareReplay(1)
   );
 
-  public readonly floating$ = merge(fromEvent(this.nativeElement, 'input'), this.mutationObserver$).pipe(
+  public readonly floating$ = this.length$.pipe(
     startWith(true),
-    debounceTime(100),
-    map(() => this.nativeElement.value),
-    map(value => {
-      return value.length > 0;
-    }),
+    map(length => length > 0),
     distinctUntilChanged(),
     shareReplay(1)
   );
@@ -46,6 +51,14 @@ export class InputDirective {
     }),
     startWith(false),
     distinctUntilChanged(),
+    shareReplay(1)
+  );
+
+  public readonly maxLength$ = this.mutationObserver$.pipe(
+    startWith(true),
+    map(() => {
+      return this.nativeElement.getAttribute('maxlength');
+    }),
     shareReplay(1)
   );
 
