@@ -28,6 +28,7 @@ $text-field-outlined-icon-color-disabled: var(--text-field-outlined-icon-color-d
 $text-field-outlined-placeholder-color-inactive: var(--text-field-outlined-placeholder-color-inactive, rgba(0, 0, 0, 0.54));
 $text-field-outlined-placeholder-color-focused: var(--text-field-outlined-placeholder-color-focused, rgba(0, 0, 0, 0.54));
 $text-field-outlined-placeholder-color-disabled: var(--text-field-outlined-placeholder-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-outlined-error-color: var(--text-field-outlined-error-color, #ff5252);
 
 $text-field-filled-padding-top: var(--text-field-filled-padding-top, calc(8px + #{$text-field-label-focus-font-size}));
 $text-field-filled-padding-bottom: var(--text-field-filled-padding-bottom, 8px);
@@ -50,3 +51,4 @@ $text-field-filled-icon-color-disabled: var(--text-field-filled-icon-color-disab
 $text-field-filled-placeholder-color-inactive: var(--text-field-filled-placeholder-color-inactive, rgba(0, 0, 0, 0.54));
 $text-field-filled-placeholder-color-focused: var(--text-field-filled-placeholder-color-focused, rgba(0, 0, 0, 0.54));
 $text-field-filled-placeholder-color-disabled: var(--text-field-filled-placeholder-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-filled-error-color: var(--text-field-filled-error-color, #ff5252);

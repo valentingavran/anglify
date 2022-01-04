@@ -28,7 +28,12 @@
   <ng-container *ngTemplateOutlet="appendOuterIconTemplate"></ng-container>
 </div>
 <div class="details">
-  <div class="hint">{{ hint }}</div>
+  <div class="hint">
+    <ng-container *ngIf="error$ | async as error; else hintTemplate">{{ error }}</ng-container>
+    <ng-template #hintTemplate>
+      {{ hint }}
+    </ng-template>
+  </div>
   <div class="counter" *ngIf="_counter">
     {{ input?.length$ | async }}<span *ngIf="input?.maxLength$ | async as maxLength">/{{ maxLength }}</span>
   </div>

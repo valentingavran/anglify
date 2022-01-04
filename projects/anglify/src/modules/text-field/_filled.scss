@@ -141,4 +141,21 @@
       }
     }
   }
+
+  &.error {
+    .label,
+    .details .hint {
+      color: $text-field-filled-error-color !important;
+    }
+
+    .text-field-container {
+      &:before {
+        border-color: $text-field-filled-error-color;
+      }
+
+      &:after {
+        background-color: $text-field-filled-error-color;
+      }
+    }
+  }
 }

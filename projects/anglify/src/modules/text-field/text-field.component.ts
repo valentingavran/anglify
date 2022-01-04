@@ -38,6 +38,12 @@ export class TextFieldComponent implements AfterViewInit {
   @Input('prepend-outer-icon') public prependOuterIcon?: string;
   @Input('append-icon') public appendIcon?: string;
   @Input('append-outer-icon') public appendOuterIcon?: string;
+
+  @Input()
+  public set error(value: string) {
+    this.errorAction.next(value);
+  }
+
   @Input() public counter: BooleanLike = false;
 
   public get _counter(): boolean {
@@ -45,6 +51,20 @@ export class TextFieldComponent implements AfterViewInit {
   }
 
   public readonly outlinedLabelPrefixMargin$ = new BehaviorSubject<string>('0px');
+  private readonly errorAction = new BehaviorSubject<string | null>(null);
+  public readonly error$ = this.errorAction.pipe(
+    tap(error => {
+      if (error && error.length > 0) {
+        this.elementRef.nativeElement.classList.add('error');
+        this.elementRef.nativeElement.classList.add('persistent-hint');
+      } else {
+        this.elementRef.nativeElement.classList.remove('error');
+        if (!this.persistentHint) {
+          this.elementRef.nativeElement.classList.remove('persistent-hint');
+        }
+      }
+    })
+  );
 
   public constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
@@ -129,6 +149,15 @@ export class TextFieldComponent implements AfterViewInit {
           tap(margin => {
             this.outlinedLabelPrefixMargin$.next(margin);
             this.cdr.detectChanges();
+          })
+        )
+        .subscribe();
+
+      this.input.nativeValidation$
+        .pipe(
+          untilDestroyed(this),
+          tap(required => {
+            this.errorAction.next(required);
           })
         )
         .subscribe();
