@@ -11,11 +11,32 @@ import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.c
 import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, TextFieldPageComponent, IconPageComponent, StylingTableComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, TextFieldModule, FormsModule, IconModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    TextFieldModule,
+    FormsModule,
+    IconModule,
+    HttpClientModule,
+    HighlightModule,
+  ],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          scss: () => import('highlight.js/lib/languages/scss'),
+        },
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -34,7 +34,11 @@ a {
 }
 
 :root {
+  &.light {
+    @import '~highlight.js/scss/github.scss';
+  }
   &.dark {
+    @import '~highlight.js/scss/github-dark.scss';
     background-color: #0a1929;
     color: #fff;
     --surface-overlay: rgba(255, 255, 255, 0.06);

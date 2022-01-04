@@ -11,11 +11,11 @@ export class AppComponent {
   }
 
   public initTheme(): void {
-    const theme = localStorage.getItem('theme');
+    const theme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     if (theme) {
-      document.documentElement.classList.add(theme);
+      this.setTheme(theme);
     } else {
-      localStorage.setItem('theme', 'light');
+      this.setTheme('light');
     }
   }
 

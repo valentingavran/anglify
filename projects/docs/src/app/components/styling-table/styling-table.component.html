@@ -1,10 +1,14 @@
-<table class="styling-table">
+<table>
   <tr>
     <th>Name</th>
-    <th>Default</th>
+    <th>Default value</th>
   </tr>
   <tr *ngFor="let variable of cssVariables$ | async">
-    <td>{{ variable?.name }}</td>
-    <td>{{ variable?.defaultValue }}</td>
+    <td>
+      <code *ngIf="variable.name" [highlight]="variable.name" [languages]="['scss']"></code>
+    </td>
+    <td>
+      <code *ngIf="variable.defaultValue" [highlight]="variable.defaultValue" [languages]="['scss']"></code>
+    </td>
   </tr>
 </table>
