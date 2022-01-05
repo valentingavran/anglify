@@ -1,15 +1,19 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, OnInit, Optional, Self } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs/operators';
 import { observeOnMutation } from '../../../utils/functions';
-import { fromEvent, merge, NEVER, of } from 'rxjs';
+import { fromEvent, merge, NEVER, Observable, of, Subject } from 'rxjs';
+import { NgControl } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Directive({
   selector: 'input[anglifyInput]',
 })
-export class InputDirective {
+export class InputDirective implements OnInit {
   private readonly nativeElement: HTMLInputElement = this.elementRef.nativeElement;
   private readonly mutationObserver$ = observeOnMutation(this.nativeElement, { attributes: true }).pipe(shareReplay(1));
   private readonly inputEvent$ = merge(fromEvent(this.nativeElement, 'input'), this.mutationObserver$).pipe(shareReplay(1));
+  private readonly statusChanged$ = new Subject();
 
   public readonly length$ = this.inputEvent$.pipe(
     startWith(false),
@@ -62,7 +66,11 @@ export class InputDirective {
     shareReplay(1)
   );
 
-  public nativeValidation$ = merge(this.inputEvent$, fromEvent(this.nativeElement as HTMLElement, 'focusout')).pipe(
+  public valid$: Observable<string | null> = merge(
+    this.statusChanged$,
+    this.inputEvent$,
+    fromEvent(this.nativeElement as HTMLElement, 'focusout')
+  ).pipe(
     startWith(false),
     switchMap((_, index) => {
       const value = this.nativeElement.value;
@@ -74,6 +82,16 @@ export class InputDirective {
 
       // these checks must be ignored on first emit, because of startWith(false)
       if (index > 0) {
+        // First validate Reactive Forms, because they have the highest priority
+        if (this.ngControl) {
+          if (this.ngControl.valid) {
+            return of(null);
+          }
+
+          return of(this.ngControl.errors?.message ?? 'This field is invalid');
+        }
+
+        // If no reactive forms or if reactive form valid, validate native validation
         if (length === 0 && required) {
           return of('This field is required');
         }
@@ -110,5 +128,12 @@ export class InputDirective {
     shareReplay(1)
   );
 
-  public constructor(public readonly elementRef: ElementRef) {}
+  public constructor(public readonly elementRef: ElementRef, @Optional() @Self() public ngControl?: NgControl) {}
+
+  public ngOnInit(): void {
+    if (this.ngControl) {
+      const abstractControl = this.ngControl.control;
+      abstractControl?.statusChanges.pipe(untilDestroyed(this)).subscribe(() => this.statusChanged$.next());
+    }
+  }
 }

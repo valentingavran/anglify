@@ -54,7 +54,7 @@ export class TextFieldComponent implements AfterViewInit {
   private readonly errorAction = new BehaviorSubject<string | null>(null);
   public readonly error$ = this.errorAction.pipe(
     tap(error => {
-      if (error && error.length > 0) {
+      if (error) {
         this.elementRef.nativeElement.classList.add('error');
         this.elementRef.nativeElement.classList.add('persistent-hint');
       } else {
@@ -153,11 +153,11 @@ export class TextFieldComponent implements AfterViewInit {
         )
         .subscribe();
 
-      this.input.nativeValidation$
+      this.input.valid$
         .pipe(
           untilDestroyed(this),
-          tap(required => {
-            this.errorAction.next(required);
+          tap(valid => {
+            this.errorAction.next(valid);
           })
         )
         .subscribe();
