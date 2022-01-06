@@ -16,6 +16,7 @@
         max-width: 300px;
       }
     }
+
     .controls {
       display: flex;
       flex-direction: column;
@@ -24,13 +25,15 @@
     }
   }
 
-  .example-container {
+  .cols-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 14px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .cols-3 {
+    display: grid;
+    gap: 14px;
     grid-template-columns: 1fr 1fr 1fr;
   }
 }

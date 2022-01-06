@@ -14,17 +14,10 @@ html {
   --surface-overlay: rgba(33, 33, 33, 0.06);
 }
 
-.example-container {
-  border: 1px solid #e2e8f0;
-  padding: 48px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
+h2 + h3 {
+  padding-top: 0;
 }
-
-h3:not(:first-of-type) {
+h3 {
   padding-top: 36px;
 }
 

@@ -1,0 +1,23 @@
+<div class="preview">
+  <ng-container #container></ng-container>
+</div>
+<div class="template" *ngIf="(selectedView$ | async) === 'template'">
+  <pre *ngIf="template$ | async as template">
+      <code [highlight]="template" [languages]="['xml']"></code>
+    </pre>
+</div>
+<div class="code" *ngIf="(selectedView$ | async) === 'code'">
+  <pre *ngIf="code$ | async as code">
+      <code [highlight]="code" [languages]="['typescript']"></code>
+    </pre>
+</div>
+<div class="style" *ngIf="(selectedView$ | async) === 'style'">
+  <pre *ngIf="style$ | async as style">
+      <code [highlight]="style" [languages]="['scss']"></code>
+    </pre>
+</div>
+<div class="controls">
+  <anglify-icon *ngIf="template$ | async" icon="mdi-xml" clickable (click)="switchView('template')"></anglify-icon>
+  <anglify-icon *ngIf="code$ | async" icon="mdi-language-typescript" clickable (click)="switchView('code')"></anglify-icon>
+  <anglify-icon *ngIf="style$ | async" icon="mdi-language-css3" clickable (click)="switchView('style')"></anglify-icon>
+</div>

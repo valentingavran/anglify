@@ -1,0 +1,11 @@
+<anglify-text-field type="filled">
+  <ng-template anglifyLabel>Username</ng-template>
+  <input anglifyInput placeholder="johndoe" value="johndoe" disabled />
+</anglify-text-field>
+
+<anglify-text-field type="filled" hint="The valid password is 12345678" persistent-hint>
+  <ng-template anglifyLabel>Password</ng-template>
+  <input anglifyInput type="password" [formControl]="passwordControl" />
+</anglify-text-field>
+
+<button (click)="submit()">Submit</button>

@@ -75,286 +75,56 @@
 <h2>Examples</h2>
 
 <h3>Placeholder</h3>
-<div class="example-container">
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>
-      Filled without placeholder
-      <anglify-icon icon="mdi-email" size="x-small"></anglify-icon>
-    </ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Filled with placeholder</ng-template>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined">
-    <ng-template anglifyLabel>
-      Outlined
-      <anglify-icon icon="mdi-email" size="x-small"></anglify-icon>
-    </ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined">
-    <ng-template anglifyLabel>Outlined with placeholder</ng-template>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="placeholder"></app-code-example>
 
 <h3>Without label</h3>
-<div class="example-container cols-3">
-  <anglify-text-field type="filled">
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="filled" hint="With placeholder that's shown on focus" persistent-hint>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="filled" hint="With persistent placeholder" persistent-hint persistent-placeholder>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined">
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" hint="With placeholder that's shown on focus" persistent-hint>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" hint="With persistent placeholder" persistent-hint persistent-placeholder>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="without-label"></app-code-example>
 
 <h3>Persistent placeholder</h3>
-<div class="example-container">
-  <anglify-text-field type="filled" persistent-placeholder>
-    <ng-template anglifyLabel>Favorite animal</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="filled" persistent-placeholder>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" persistent-placeholder>
-    <ng-template anglifyLabel>Favorite animal</ng-template>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" persistent-placeholder>
-    <input placeholder="Placeholder" anglifyInput />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="persistent-placeholder"></app-code-example>
 
 <h3>Hint</h3>
-<div class="example-container">
-  <anglify-text-field type="filled" hint="This hint is only visible when the text field is focused">
-    <ng-template anglifyLabel>Text field with automatic hiding hint</ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="filled" hint="This hint is always visible" persistent-hint>
-    <ng-template anglifyLabel>Text field with persistent hint</ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" hint="This hint is only visible when the text field is focused">
-    <ng-template anglifyLabel>Text field with automatic hiding hint</ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" hint="This hint is always visible" persistent-hint>
-    <ng-template anglifyLabel>Text field with persistent hint</ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="hint"></app-code-example>
+
 <h3>Long label and long hint</h3>
 <p>
   Long labels and hints are not recommended, as text field descriptions must be short and crisp. However, if texts become too long, which
   can quickly be the case on mobile devices, then they will be truncated and ellipsis will be added at the end.
 </p>
-<div class="example-container">
-  <anglify-text-field
-    type="filled"
-    hint="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
-  >
-    <ng-template anglifyLabel>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-    </ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-  <anglify-text-field
-    type="outlined"
-    hint="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
-  >
-    <ng-template anglifyLabel>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-    </ng-template>
-    <input anglifyInput />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="long-hint-and-long-label"></app-code-example>
 
 <h3>Disabled</h3>
-<div class="example-container cols-3">
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Filled</ng-template>
-    <input anglifyInput placeholder="Placeholder" disabled />
-  </anglify-text-field>
-  <anglify-text-field type="filled" persistent-placeholder>
-    <ng-template anglifyLabel>Filled</ng-template>
-    <input anglifyInput placeholder="Placeholder" disabled />
-  </anglify-text-field>
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Filled</ng-template>
-    <input anglifyInput placeholder="Placeholder" disabled value="Some value" />
-  </anglify-text-field>
-  <anglify-text-field type="outlined">
-    <ng-template anglifyLabel>Outlined</ng-template>
-    <input anglifyInput placeholder="Placeholder" disabled />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" persistent-placeholder>
-    <ng-template anglifyLabel>Outlined</ng-template>
-    <input anglifyInput placeholder="Placeholder" disabled />
-  </anglify-text-field>
-  <anglify-text-field type="outlined">
-    <ng-template anglifyLabel>Outlined</ng-template>
-    <input anglifyInput placeholder="Placeholder" disabled value="Some value" />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="disabled"></app-code-example>
 
 <h3>Readonly</h3>
-<div class="example-container">
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Filled</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Filled</ng-template>
-    <input anglifyInput placeholder="Placeholder" value="Some value" />
-  </anglify-text-field>
-  <anglify-text-field type="outlined">
-    <ng-template anglifyLabel>Outlined</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="outlined">
-    <ng-template anglifyLabel>Outlined</ng-template>
-    <input anglifyInput placeholder="Placeholder" value="Some value" />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="readonly"></app-code-example>
 
 <h3>Icons</h3>
+<app-code-example component="text-field" example="icons"></app-code-example>
 
-<div class="example-container">
-  <anglify-text-field type="filled" prepend-icon="mdi-email">
-    <ng-template anglifyLabel>Prepend</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" prepend-icon="mdi-email">
-    <ng-template anglifyLabel>Prepend</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-
-  <anglify-text-field type="filled" prepend-outer-icon="mdi-email">
-    <ng-template anglifyLabel>Prepend outer</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" prepend-outer-icon="mdi-email">
-    <ng-template anglifyLabel>Prepend outer</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-
-  <anglify-text-field type="filled" append-icon="mdi-email">
-    <ng-template anglifyLabel>Append</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" append-icon="mdi-email">
-    <ng-template anglifyLabel>Append</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-
-  <anglify-text-field type="filled" append-outer-icon="mdi-email">
-    <ng-template anglifyLabel>Append outer</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="outlined" append-outer-icon="mdi-email">
-    <ng-template anglifyLabel>Append outer</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-</div>
+<h3>Prefixes and Suffixes</h3>
+<app-code-example component="text-field" example="prefix-and-suffix"></app-code-example>
 
 <h3>Counter</h3>
-<div class="example-container">
-  <anglify-text-field type="filled" counter>
-    <ng-template anglifyLabel>Label</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-  <anglify-text-field type="filled" counter>
-    <ng-template anglifyLabel>Label</ng-template>
-    <input anglifyInput placeholder="Placeholder" maxlength="20" />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="counter"></app-code-example>
 
 <h3>Validation</h3>
 
 <h4>Using error property</h4>
-<div class="example-container">
-  <anglify-text-field type="filled" error="This error was set manually">
-    <ng-template anglifyLabel>Manual error state</ng-template>
-    <input anglifyInput placeholder="Placeholder" />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="manual-error"></app-code-example>
 
 <h4>Using reactive forms</h4>
-<div class="example-container">
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Email</ng-template>
-    <input anglifyInput placeholder="john.doe@example.com" [formControl]="emailControl" />
-  </anglify-text-field>
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Password</ng-template>
-    <input anglifyInput type="password" placeholder="12345678" [formControl]="passwordControl" />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="reactive-forms-validation"></app-code-example>
 
 <h4>Set the server error manually if necessary.</h4>
 <p>
   In this example, the password for the passed username is incorrect. After 2 seconds the server sends back an error message which is
   displayed below the text field.
 </p>
-<div class="example-container cols-2">
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Username</ng-template>
-    <input anglifyInput placeholder="johndoe" value="johndoe" disabled />
-  </anglify-text-field>
-  <anglify-text-field type="filled" hint="The valid password is 12345678" persistent-hint>
-    <ng-template anglifyLabel>Password</ng-template>
-    <input anglifyInput type="password" [formControl]="passwordControl2" />
-  </anglify-text-field>
-  <button style="width: fit-content" (click)="submit()">Submit</button>
-</div>
+<app-code-example component="text-field" example="server-error-handling"></app-code-example>
 
 <h4>Using native input validation</h4>
-<div class="example-container">
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Required attribute</ng-template>
-    <input anglifyInput placeholder="Placeholder" required />
-  </anglify-text-field>
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>minlength (10) attribute</ng-template>
-    <input anglifyInput placeholder="Placeholder" minlength="10" />
-  </anglify-text-field>
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Prefilled with minlength (10) attribute</ng-template>
-    <input anglifyInput placeholder="Placeholder" minlength="10" value="Value" />
-  </anglify-text-field>
-  <anglify-text-field type="filled" hint="This error will never be thrown, because the length is limited">
-    <ng-template anglifyLabel>maxlength (10) attribute</ng-template>
-    <input anglifyInput placeholder="Placeholder" maxlength="10" />
-  </anglify-text-field>
-  <anglify-text-field type="filled">
-    <ng-template anglifyLabel>Prefilled with maxlength attribute</ng-template>
-    <input anglifyInput placeholder="Placeholder" maxlength="10" value="12345678901" />
-  </anglify-text-field>
-  <anglify-text-field type="filled" hint="Only small letters from a-z allowed" persistent-hint>
-    <ng-template anglifyLabel>Check for pattern</ng-template>
-    <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" />
-  </anglify-text-field>
-  <anglify-text-field type="filled" hint="Only small letters from a-z allowed" persistent-hint>
-    <ng-template anglifyLabel>Prefilled value checked for pattern</ng-template>
-    <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" value="abcDef" />
-  </anglify-text-field>
-</div>
+<app-code-example component="text-field" example="native-input-validation"></app-code-example>
 
 <h2>API</h2>
 <h3>Styling</h3>

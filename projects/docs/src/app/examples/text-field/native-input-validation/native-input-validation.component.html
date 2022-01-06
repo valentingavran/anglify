@@ -1,0 +1,34 @@
+<anglify-text-field type="filled">
+  <ng-template anglifyLabel>Required attribute</ng-template>
+  <input anglifyInput placeholder="Placeholder" required />
+</anglify-text-field>
+
+<anglify-text-field type="filled">
+  <ng-template anglifyLabel>minlength (10) attribute</ng-template>
+  <input anglifyInput placeholder="Placeholder" minlength="10" />
+</anglify-text-field>
+
+<anglify-text-field type="filled">
+  <ng-template anglifyLabel>Prefilled with minlength (10) attribute</ng-template>
+  <input anglifyInput placeholder="Placeholder" minlength="10" value="Value" />
+</anglify-text-field>
+
+<anglify-text-field type="filled" hint="This error will never be thrown, because the length is limited">
+  <ng-template anglifyLabel>maxlength (10) attribute</ng-template>
+  <input anglifyInput placeholder="Placeholder" maxlength="10" />
+</anglify-text-field>
+
+<anglify-text-field type="filled">
+  <ng-template anglifyLabel>Prefilled with maxlength attribute</ng-template>
+  <input anglifyInput placeholder="Placeholder" maxlength="10" value="12345678901" />
+</anglify-text-field>
+
+<anglify-text-field type="filled" hint="Only small letters from a-z allowed" persistent-hint>
+  <ng-template anglifyLabel>Check for pattern</ng-template>
+  <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" />
+</anglify-text-field>
+
+<anglify-text-field type="filled" hint="Only small letters from a-z allowed" persistent-hint>
+  <ng-template anglifyLabel>Prefilled value checked for pattern</ng-template>
+  <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" value="abcDef" />
+</anglify-text-field>

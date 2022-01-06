@@ -1,6 +1,18 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 
-export class Validators {
+@Component({
+  selector: 'app-reactive-forms-validation',
+  templateUrl: './reactive-forms-validation.component.html',
+  styleUrls: ['./reactive-forms-validation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ReactiveFormsValidationComponent {
+  public emailControl = new FormControl('', [Validators.email, Validators.required]);
+  public passwordControl = new FormControl('', [Validators.password, Validators.required]);
+}
+
+class Validators {
   public static required(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
     if (value === null || value === undefined || value === '') {
@@ -31,3 +43,5 @@ export class Validators {
     };
   }
 }
+
+export default ReactiveFormsValidationComponent;

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +12,13 @@ import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
+import { CodeExampleComponent } from './components/code-example/code-example.component';
+import { MarkdownModule } from 'ngx-markdown';
+import { TextFieldExamplesModule } from './examples/text-field/text-field-examples.module';
+import { IconExamplesModule } from './examples/icon/icon-examples.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, TextFieldPageComponent, IconPageComponent, StylingTableComponent],
+  declarations: [AppComponent, HomeComponent, TextFieldPageComponent, IconPageComponent, StylingTableComponent, CodeExampleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +29,9 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
     HttpClientModule,
     HighlightModule,
     ReactiveFormsModule,
+    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
+    TextFieldExamplesModule,
+    IconExamplesModule,
   ],
   providers: [
     {
@@ -34,6 +41,7 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
         languages: {
           typescript: () => import('highlight.js/lib/languages/typescript'),
           scss: () => import('highlight.js/lib/languages/scss'),
+          xml: () => import('highlight.js/lib/languages/xml'),
         },
       },
     },
