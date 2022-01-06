@@ -1,9 +1,8 @@
 $text-field-border-radius: var(--text-field-border-radius, 4px);
 $text-field-line-height: var(--text-field-line-height, 20px);
 $text-field-font-size: var(--text-field-font-size, 16px);
-$text-field-label-focus-font-size: var(--text-field-label-focus-font-size, 12px);
-$text-field-label-focus-transform: var(--text-field-label-focus-transform, translateY(calc(-1 * #{$text-field-label-focus-font-size})));
-$transition-duration: var(--transition-duration, 0.3s);
+$text-field-label-scale-focused: var(--text-field-label-scale-focused, 0.75);
+$transition-duration: var(--text-field-transition-duration, 0.3s);
 $text-field-transition-timing-function: var(--text-field-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
 
 $text-field-outlined-padding-top: var(--text-field-outlined-padding-top, 14px);
@@ -30,7 +29,10 @@ $text-field-outlined-placeholder-color-focused: var(--text-field-outlined-placeh
 $text-field-outlined-placeholder-color-disabled: var(--text-field-outlined-placeholder-color-disabled, rgba(0, 0, 0, 0.38));
 $text-field-outlined-error-color: var(--text-field-outlined-error-color, #ff5252);
 
-$text-field-filled-padding-top: var(--text-field-filled-padding-top, calc(8px + #{$text-field-label-focus-font-size}));
+$text-field-filled-padding-top: var(
+  --text-field-filled-padding-top,
+  calc(8px + #{$text-field-label-scale-focused} * #{$text-field-font-size})
+);
 $text-field-filled-padding-bottom: var(--text-field-filled-padding-bottom, 8px);
 $text-field-filled-padding-start: var(--text-field-filled-padding-start, 16px);
 $text-field-filled-background-inactive: var(--text-field-filled-background-inactive, var(--surface-overlay));

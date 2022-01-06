@@ -59,7 +59,7 @@ export class TextFieldComponent implements AfterViewInit {
         this.elementRef.nativeElement.classList.add('persistent-hint');
       } else {
         this.elementRef.nativeElement.classList.remove('error');
-        if (!this.persistentHint) {
+        if (!isBooleanLikeTrue(this.persistentHint)) {
           this.elementRef.nativeElement.classList.remove('persistent-hint');
         }
       }

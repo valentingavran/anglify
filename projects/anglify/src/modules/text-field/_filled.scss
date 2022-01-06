@@ -2,25 +2,25 @@
 
 :host-context(.text-field-type-filled) {
   --icon-inactive-color: #{$text-field-filled-icon-color-inactive};
+  padding-top: calc((#{$text-field-font-size} * #{$text-field-label-scale-focused}) / 2);
 
   .text-field-container {
     background-color: $text-field-filled-background-inactive;
     border-radius: $text-field-filled-border-radius;
     padding-inline-start: $text-field-filled-padding-start;
     padding-inline-end: $text-field-filled-padding-start;
-    overflow-x: hidden;
 
     label {
       .label {
         transition-duration: $transition-duration;
-        transition-property: max-width, transform;
+        transition-property: max-width, transform, width;
         transition-timing-function: $text-field-transition-timing-function;
         transform-origin: left;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: fit-content;
         max-width: 100%;
+        font-size: $text-field-font-size;
       }
 
       ::ng-deep input {
@@ -104,8 +104,10 @@
   &.persistent-placeholder,
   &.floating {
     .label {
-      transform: translateY(calc((#{$text-field-line-height} - #{$text-field-filled-padding-bottom}) * -1)) scale(0.75);
-      max-width: calc(100% / 0.75) !important;
+      transform: translateY(calc((#{$text-field-line-height} - #{$text-field-filled-padding-bottom}) * -1))
+        scale($text-field-label-scale-focused);
+      max-width: calc(100% / #{$text-field-label-scale-focused}) !important;
+      width: calc(100% / #{$text-field-label-scale-focused}) !important;
     }
   }
 

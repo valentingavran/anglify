@@ -4,19 +4,14 @@ html {
 }
 
 body {
-  margin: 20px;
+  margin: 1rem;
   font-family: 'Roboto', sans-serif;
-  overflow-x: hidden;
-}
-
-html {
-  --color-primary: #007fff;
-  --surface-overlay: rgba(33, 33, 33, 0.06);
 }
 
 h2 + h3 {
   padding-top: 0;
 }
+
 h3 {
   padding-top: 36px;
 }
@@ -29,7 +24,10 @@ a {
 :root {
   &.light {
     @import '~highlight.js/scss/github.scss';
+    --color-primary: #007fff;
+    --surface-overlay: rgba(33, 33, 33, 0.06);
   }
+
   &.dark {
     @import '~highlight.js/scss/github-dark.scss';
     background-color: #0a1929;

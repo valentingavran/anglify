@@ -1,4 +1,4 @@
-@use 'variables';
+@import 'variables';
 
 :host {
   .details {
@@ -12,13 +12,13 @@
 
     .hint {
       flex: 1;
+      display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;
-      line-clamp: 2;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
-      transition: transform 0.3s variables.$text-field-transition-timing-function;
+      transition: transform $transition-duration $text-field-transition-timing-function;
       transform: translateY(-100%);
     }
   }
@@ -27,19 +27,19 @@
     transform: translateY(0);
   }
 
-  &.focus .details .hint {
+  &.focused .details .hint {
     transform: translateY(0);
   }
 }
 
 :host-context(.text-field-type-outlined) {
   .details {
-    padding-left: variables.$text-field-outlined-padding-start;
+    padding-left: $text-field-outlined-padding-start;
   }
 }
 
 :host-context(.text-field-type-filled) {
   .details {
-    padding-left: variables.$text-field-filled-padding-start;
+    padding-left: $text-field-filled-padding-start;
   }
 }

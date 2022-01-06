@@ -2,6 +2,7 @@
 
 :host-context(.text-field-type-outlined) {
   --icon-inactive-color: #{$text-field-outlined-icon-color-inactive};
+  padding-top: calc((#{$text-field-font-size} * #{$text-field-label-scale-focused}) / 2);
 
   .text-field-container {
     background-color: $text-field-outlined-background-inactive;
@@ -21,19 +22,20 @@
         display: block;
         transform: translateY(-50%);
         visibility: hidden;
+        font-size: calc(#{$text-field-font-size} * #{$text-field-label-scale-focused});
       }
     }
 
     .label {
       transition-duration: $transition-duration;
-      transition-property: transform, max-width, margin-inline-start;
+      transition-property: transform, max-width, margin-inline-start, width;
       transition-timing-function: $text-field-transition-timing-function;
       transform-origin: left;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: fit-content;
       max-width: 100%;
+      font-size: $text-field-font-size;
     }
   }
 
@@ -90,10 +92,11 @@
         $translateY: calc(
           (#{$text-field-line-height} + #{$text-field-outlined-padding-bottom} + #{$text-field-outlined-padding-top}) / 2 * -1
         );
-        transform: translateY($translateY) scale(0.75);
+        transform: translateY($translateY) scale($text-field-label-scale-focused);
         grid-column: 1 / 3;
         grid-row: 1;
-        max-width: calc(100% / 0.75);
+        max-width: calc(100% / #{$text-field-label-scale-focused});
+        width: calc(100% / #{$text-field-label-scale-focused});
       }
     }
   }

@@ -52,7 +52,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "15kb"
+                  "maximumError": "20kb"
                 }
               ],
               "fileReplacements": [
@@ -109,6 +109,12 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/docs/src/**/*.{js,ts}"]
+          }
         }
       }
     },
@@ -140,6 +146,12 @@
             "main": "projects/anglify/src/test.ts",
             "tsConfig": "projects/anglify/tsconfig.spec.json",
             "karmaConfig": "projects/anglify/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/anglify/src/**/*.{js,ts}"]
           }
         }
       }
