@@ -74,11 +74,18 @@
     .prepend:not(:empty) {
       grid-area: prepend;
       padding-inline-end: 14px;
+      cursor: default;
+      user-select: none;
     }
 
     .append:not(:empty) {
       grid-area: append;
-      padding-inline-start: 14px;
+      cursor: default;
+      user-select: none;
+
+      anglify-icon {
+        padding-inline-start: 14px;
+      }
     }
   }
 }

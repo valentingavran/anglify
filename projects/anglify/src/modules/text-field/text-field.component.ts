@@ -38,6 +38,8 @@ export class TextFieldComponent implements AfterViewInit {
   @Input('prepend-outer-icon') public prependOuterIcon?: string;
   @Input('append-icon') public appendIcon?: string;
   @Input('append-outer-icon') public appendOuterIcon?: string;
+  @Input() public prefix?: string;
+  @Input() public suffix?: string;
 
   @Input()
   public set error(value: string) {
