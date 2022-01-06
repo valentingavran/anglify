@@ -4,9 +4,9 @@
 <div class="text-field-container">
   <div class="text-field-border">
     <div class="start"></div>
-    <div class="notch" *ngIf="label && type === 'outlined'">
+    <div class="notch" *ngIf="type === 'outlined'">
       <span>
-        <ng-container *ngTemplateOutlet="label.template"></ng-container>
+        <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
       </span>
     </div>
     <div class="end"></div>
@@ -16,8 +16,8 @@
     <ng-container *ngIf="prefix">{{ prefix }}</ng-container>
   </div>
   <label>
-    <span class="label" *ngIf="label" [style.margin-inline-start]="outlinedLabelPrefixMargin$ | async">
-      <ng-container *ngTemplateOutlet="label.template"></ng-container>
+    <span class="label" *ngIf="labelDirective || label" [style.margin-inline-start]="outlinedLabelPrefixMargin$ | async">
+      <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
     </span>
     <ng-content select="[anglifyInput]"></ng-content>
   </label>
@@ -40,7 +40,12 @@
     {{ input?.length$ | async }}<span *ngIf="input?.maxLength$ | async as maxLength">/{{ maxLength }}</span>
   </div>
 </div>
-
+<ng-template #labelTemplate>
+  <ng-container *ngIf="labelDirective">
+    <ng-container *ngTemplateOutlet="labelDirective.template"></ng-container>
+  </ng-container>
+  {{ label }}
+</ng-template>
 <ng-template #prependIconTemplate>
   <anglify-icon *ngIf="prependIcon" [icon]="prependIcon"></anglify-icon>
 </ng-template>

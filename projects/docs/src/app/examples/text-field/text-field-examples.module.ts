@@ -16,9 +16,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ServerErrorHandlingComponent } from './server-error-handling/server-error-handling.component';
 import { NativeInputValidationComponent } from './native-input-validation/native-input-validation.component';
 import { PrefixAndSuffixComponent } from './prefix-and-suffix/prefix-and-suffix.component';
+import { LabelSlotComponent } from './label-slot/label-slot.component';
+import { IconModule } from '../../../../../anglify/src/modules/icon/icon.module';
 
 @NgModule({
-  imports: [CommonModule, TextFieldModule, ReactiveFormsModule],
+  imports: [CommonModule, TextFieldModule, ReactiveFormsModule, IconModule],
   declarations: [
     DisabledComponent,
     PlaceholderComponent,
@@ -34,6 +36,7 @@ import { PrefixAndSuffixComponent } from './prefix-and-suffix/prefix-and-suffix.
     ServerErrorHandlingComponent,
     NativeInputValidationComponent,
     PrefixAndSuffixComponent,
+    LabelSlotComponent,
   ],
 })
 export class TextFieldExamplesModule {}

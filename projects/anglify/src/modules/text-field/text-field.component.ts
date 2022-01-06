@@ -27,7 +27,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 })
 export class TextFieldComponent implements AfterViewInit {
   @ContentChild(InputDirective) public readonly input?: InputDirective;
-  @ContentChild(LabelDirective) public readonly label?: LabelDirective;
+  @ContentChild(LabelDirective) public readonly labelDirective?: LabelDirective;
   @ViewChild('prependItem') public readonly prependItem?: ElementRef;
 
   @Input() public type: TextFieldType = 'filled';
@@ -40,6 +40,7 @@ export class TextFieldComponent implements AfterViewInit {
   @Input('append-outer-icon') public appendOuterIcon?: string;
   @Input() public prefix?: string;
   @Input() public suffix?: string;
+  @Input() public label?: string;
 
   @Input()
   public set error(value: string) {
@@ -79,7 +80,7 @@ export class TextFieldComponent implements AfterViewInit {
     if (isBooleanLikeTrue(this.persistentPlaceholder)) {
       classNames.push('persistent-placeholder');
     }
-    if (this.label) {
+    if (this.labelDirective || this.label) {
       classNames.push('has-label');
     }
     return classNames.join(' ');
