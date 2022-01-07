@@ -1,27 +1,29 @@
 # Anglify
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
+This project is intended to provide a number of components that are easily extensible, easily customizable, and look
+good by default. The components are also intended to address the weaknesses of the Angular Material components.
 
-## Development server
+The project is only at the beginning. The already implemented components are available on their own branches and are
+published as own libraries in the meantime.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Roadmap 🚏
 
-## Code scaffolding
+The first stable version of the entire library will not be released until there are a large number of basic elements
+that are globally customizable using SCSS variables and providers.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The following components will be implemented:
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- [ ] Badge
+- [ ] Bottom Navigation
+- [ ] Button
+- [ ] Card
+- [ ] Chip
+- [ ] Dialog
+- [ ] Icons
+- [ ] Text Field
+- [ ] Toolbar
+- [x] Tooltips
+- [ ] Select
+- [ ] Slider
+- [x] Stepper
+- [ ] Radio Button

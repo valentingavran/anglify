@@ -1,0 +1,41 @@
+@use '../../styles/settings';
+@use 'sass:map';
+@import './variables';
+
+:host {
+  align-items: center;
+  display: inline-flex;
+  font-feature-settings: 'liga';
+  justify-content: center;
+  letter-spacing: $icon-letter-spacing;
+  line-height: $icon-line-height;
+  position: relative;
+  text-indent: $icon-text-indent;
+  user-select: none;
+  vertical-align: $icon-vertical-align;
+  pointer-events: none;
+  color: $icon-inactive-color;
+
+  @each $name in settings.$sizes {
+    &.icon-size-#{$name} {
+      font-size: map.get($icon-sizes, icon-size-#{$name});
+      height: map.get($icon-sizes, icon-size-#{$name});
+      width: map.get($icon-sizes, icon-size-#{$name});
+    }
+  }
+
+  &:active {
+    color: $icon-active-color;
+  }
+
+  &.clickable {
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: $icon-disabled-color;
+  }
+}

@@ -1,0 +1,65 @@
+$text-field-border-radius: var(--text-field-border-radius, 4px);
+$text-field-line-height: var(--text-field-line-height, 20px);
+$text-field-font-size: var(--text-field-font-size, 16px);
+$text-field-label-scale-focused: var(--text-field-label-scale-focused, 0.75);
+$transition-duration: var(--text-field-transition-duration, 0.3s);
+$text-field-transition-timing-function: var(--text-field-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
+
+$text-field-outlined-padding-top: var(--text-field-outlined-padding-top, 14px);
+$text-field-outlined-padding-top-dense: var(--text-field-outlined-padding-top-dense, 10px);
+$text-field-outlined-padding-bottom: var(--text-field-outlined-padding-bottom, 14px);
+$text-field-outlined-padding-bottom-dense: var(--text-field-outlined-padding-bottom-dense, 10px);
+$text-field-outlined-padding-start: var(--text-field-outlined-padding-start, 16px);
+$text-field-outlined-padding-start-dense: var(--text-field-outlined-padding-start-dense, 12px);
+$text-field-outlined-background-inactive: var(--text-field-outlined-background-inactive, transparent);
+$text-field-outlined-background-hovered: var(--text-field-outlined-background-hovered, transparent);
+$text-field-outlined-background-focused: var(--text-field-outlined-background-focused, transparent);
+$text-field-outlined-border-color-inactive: var(--text-field-outlined-border-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-outlined-border-color-hovered: var(--text-field-outlined-border-color-hovered, rgba(0, 0, 0, 0.86));
+$text-field-outlined-border-color-focused: var(--text-field-outlined-border-color-focused, var(--color-primary));
+$text-field-outlined-border-radius: var(--text-field-outlined-border-radius, $text-field-border-radius);
+$text-field-outlined-label-color-inactive: var(--text-field-outlined-label-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-outlined-label-color-focused: var(--text-field-outlined-label-color-focused, var(--color-primary));
+$text-field-outlined-label-color-disabled: var(--text-field-outlined-label-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-outlined-text-color-inactive: var(--text-field-outlined-text-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-outlined-text-color-focused: var(--text-field-outlined-text-color-focused, rgba(0, 0, 0, 0.86));
+$text-field-outlined-text-color-disabled: var(--text-field-outlined-text-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-outlined-icon-color-inactive: var(--text-field-outlined-icon-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-outlined-icon-color-focused: var(--text-field-outlined-icon-color-focused, var(--color-primary));
+$text-field-outlined-icon-color-disabled: var(--text-field-outlined-icon-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-outlined-placeholder-color-inactive: var(--text-field-outlined-placeholder-color-inactive, rgba(0, 0, 0, 0.54));
+$text-field-outlined-placeholder-color-focused: var(--text-field-outlined-placeholder-color-focused, rgba(0, 0, 0, 0.54));
+$text-field-outlined-placeholder-color-disabled: var(--text-field-outlined-placeholder-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-outlined-error-color: var(--text-field-outlined-error-color, #ff5252);
+
+$text-field-filled-padding-top: var(
+  --text-field-filled-padding-top,
+  calc(8px + #{$text-field-label-scale-focused} * #{$text-field-font-size})
+);
+$text-field-filled-padding-top-dense: var(
+  --text-field-filled-padding-top-dense,
+  calc(4px + #{$text-field-label-scale-focused} * #{$text-field-font-size})
+);
+$text-field-filled-padding-bottom: var(--text-field-filled-padding-bottom, 8px);
+$text-field-filled-padding-bottom-dense: var(--text-field-filled-padding-bottom-dense, 4px);
+$text-field-filled-padding-start: var(--text-field-filled-padding-start, 16px);
+$text-field-filled-padding-start-dense: var(--text-field-filled-padding-start-dense, 8px);
+$text-field-filled-background-inactive: var(--text-field-filled-background-inactive, var(--surface-overlay));
+$text-field-filled-background-hovered: var(--text-field-filled-background-hovered, rgba(0, 0, 0, 0.12));
+$text-field-filled-background-focused: var(--text-field-filled-background-focused, var(--surface-overlay));
+$text-field-filled-border-color-inactive: var(--text-field-filled-border-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-filled-border-color-focused: var(--text-field-filled-border-color-focused, var(--color-primary));
+$text-field-filled-border-radius: var(--text-field-filled-border-radius, $text-field-border-radius $text-field-border-radius 0 0);
+$text-field-filled-label-color-inactive: var(--text-field-filled-label-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-filled-label-color-focused: var(--text-field-filled-label-color-focused, var(--color-primary));
+$text-field-filled-label-color-disabled: var(--text-field-filled-label-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-filled-text-color-inactive: var(--text-field-filled-text-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-filled-text-color-focused: var(--text-field-filled-text-color-focused, rgba(0, 0, 0, 0.86));
+$text-field-filled-text-color-disabled: var(--text-field-filled-text-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-filled-icon-color-inactive: var(--text-field-filled-icon-color-inactive, rgba(0, 0, 0, 0.86));
+$text-field-filled-icon-color-focused: var(--text-field-filled-icon-color-focused, var(--color-primary));
+$text-field-filled-icon-color-disabled: var(--text-field-filled-icon-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-filled-placeholder-color-inactive: var(--text-field-filled-placeholder-color-inactive, rgba(0, 0, 0, 0.54));
+$text-field-filled-placeholder-color-focused: var(--text-field-filled-placeholder-color-focused, rgba(0, 0, 0, 0.54));
+$text-field-filled-placeholder-color-disabled: var(--text-field-filled-placeholder-color-disabled, rgba(0, 0, 0, 0.38));
+$text-field-filled-error-color: var(--text-field-filled-error-color, #ff5252);

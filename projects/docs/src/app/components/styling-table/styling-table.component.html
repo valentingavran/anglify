@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Default value</th>
+  </tr>
+  <tr *ngFor="let variable of cssVariables$ | async">
+    <td>
+      <code *ngIf="variable.name" [highlight]="variable.name" [languages]="['scss']"></code>
+    </td>
+    <td>
+      <code *ngIf="variable.defaultValue" [highlight]="variable.defaultValue" [languages]="['scss']"></code>
+    </td>
+  </tr>
+</table>
