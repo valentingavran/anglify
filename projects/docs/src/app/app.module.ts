@@ -16,9 +16,19 @@ import { CodeExampleComponent } from './components/code-example/code-example.com
 import { MarkdownModule } from 'ngx-markdown';
 import { TextFieldExamplesModule } from './examples/text-field/text-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
+import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
+import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, TextFieldPageComponent, IconPageComponent, StylingTableComponent, CodeExampleComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    TextFieldPageComponent,
+    IconPageComponent,
+    StylingTableComponent,
+    CodeExampleComponent,
+    TooltipPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,6 +42,7 @@ import { IconExamplesModule } from './examples/icon/icon-examples.module';
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     TextFieldExamplesModule,
     IconExamplesModule,
+    TooltipExamplesModule,
   ],
   providers: [
     {

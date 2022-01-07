@@ -113,7 +113,9 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/docs/src/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "projects/docs/src/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -151,7 +153,9 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/anglify/src/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "projects/anglify/src/**/*.{js,ts}"
+            ]
           }
         }
       }
