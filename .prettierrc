@@ -1,0 +1,24 @@
+{
+  "printWidth": 140,
+  "useTabs": false,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    },
+    {
+      "files": "*.component.html",
+      "options": {
+        "parser": "angular"
+      }
+    }
+  ]
+}

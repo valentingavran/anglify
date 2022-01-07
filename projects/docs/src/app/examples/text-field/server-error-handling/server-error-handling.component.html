@@ -1,0 +1,9 @@
+<anglify-text-field type="filled" label="Username">
+  <input anglifyInput placeholder="johndoe" value="johndoe" disabled />
+</anglify-text-field>
+
+<anglify-text-field type="filled" hint="The valid password is 12345678" persistent-hint label="Password">
+  <input anglifyInput type="password" [formControl]="passwordControl" />
+</anglify-text-field>
+
+<button (click)="submit()">Submit</button>

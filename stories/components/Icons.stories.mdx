@@ -1,0 +1,106 @@
+import { ArgsTable, Canvas, Description, Meta, Story, Title } from '@storybook/addon-docs';
+import { IconComponent } from '../../projects/anglify/src/modules/icon/icon.component';
+import { IconModule } from '../../projects/anglify/src/modules/icon/icon.module';
+import { moduleMetadata } from '@storybook/angular';
+import { CommonModule } from '@angular/common';
+
+export const decorators = [
+  moduleMetadata({
+    imports: [CommonModule, IconModule.forRoot()],
+  }),
+];
+
+export const args = {
+  icon: 'mdi-home',
+  iconSet: 'mdi',
+  size: 'regular',
+};
+
+export const Template = args => <anglify-icon {...args} />;
+
+<Meta
+  title="Components/Icons"
+  component={IconComponent}
+  argTypes={{
+    click: { action: 'clicked', control: false },
+  }}
+  decorators={decorators}
+/>
+
+<Title of={IconComponent} />
+
+<Description of={IconComponent} />
+
+> ⚡️ Below you can read how to change the default icon set or how to use multiple icon sets. ⚡️
+
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Default" args={args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## API
+
+### Props
+
+<ArgsTable of={IconComponent} story="Default" />
+
+### Providers
+
+`IconSettings`
+
+```ts
+import { NgModule } from '@angular/core';
+import { IconModule } from '@anglify/icon';
+
+@NgModule({
+  imports: [
+    IconModule.forRoot({
+      defaultSet: 'mdi',
+      svgIconSets: {},
+      internalIcons: {},
+      defaultSize: 'regular',
+    }),
+  ],
+})
+export class YourModule {
+  // ...
+}
+```
+
+### CSS Variables
+
+| Name                  | Default             |
+| --------------------- | ------------------- |
+| --icon-letter-spacing | normal              |
+| --icon-line-height    | 1                   |
+| --icon-text-indent    | 0                   |
+| --icon-vertical-align | middle              |
+| --icon-active-color   | hsl(0, 0%, 0%, 87%) |
+| --icon-inactive-color | hsl(0, 0%, 0%, 54%) |
+| --icon-disabled-color | hsl(0, 0%, 0%, 38%) |
+| --icon-size-x-small   | 1rem                |
+| --icon-size-small     | 1.25rem             |
+| --icon-size-regular   | 1.5rem              |
+| --icon-size-large     | 1.75rem             |
+| --icon-size-x-large   | 2rem                |
+
+## Examples
+
+### Clickable
+
+<Canvas>
+  <Story name="Clickable" args={{ ...args, clickable: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Story name="Disabled" args={{ ...args, clickable: true, disabled: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

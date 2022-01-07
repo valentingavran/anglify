@@ -1,0 +1,15 @@
+:host {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--surface-overlay);
+    cursor: pointer;
+    height: 150px;
+    border-radius: 4px;
+  }
+}
