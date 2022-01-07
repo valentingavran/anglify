@@ -21,7 +21,7 @@ npm install @anglify/stepper
 `app.module.ts ` (or any other module)
 
 ```typescript
-import { StepperModule } from '@anglify/stepper';
+import {StepperModule} from '@anglify/stepper';
 
 @NgModule({
   // ...
@@ -47,7 +47,7 @@ export class AppModule {
     <button (click)="stepper.next()">Continue</button>
   </ng-template>
   <ng-template anglifyStep label="Second step" [valid]="stepValid">
-    Valid:<input type="checkbox" [(ngModel)]="stepValid" /><br />
+    Valid:<input type="checkbox" [(ngModel)]="stepValid"/><br/>
     <button (click)="stepper.previous()">Back</button>
     <button anglifyStepperNext>Continue</button>
   </ng-template>

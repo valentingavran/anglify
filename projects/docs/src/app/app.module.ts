@@ -18,6 +18,8 @@ import { TextFieldExamplesModule } from './examples/text-field/text-field-exampl
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
+import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
+import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.modul
     StylingTableComponent,
     CodeExampleComponent,
     TooltipPageComponent,
+    StepperComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +43,9 @@ import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.modul
     HighlightModule,
     ReactiveFormsModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
-    TextFieldExamplesModule,
     IconExamplesModule,
+    StepperExamplesModule,
+    TextFieldExamplesModule,
     TooltipExamplesModule,
   ],
   providers: [
