@@ -113,7 +113,9 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/docs/src/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "projects/docs/src/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -151,38 +153,9 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/anglify/src/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "tooltip": {
-      "projectType": "library",
-      "root": "projects/tooltip",
-      "sourceRoot": "projects/tooltip/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/tooltip/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/tooltip/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/tooltip/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/tooltip/src/test.ts",
-            "tsConfig": "projects/tooltip/tsconfig.spec.json",
-            "karmaConfig": "projects/tooltip/karma.conf.js"
+            "lintFilePatterns": [
+              "projects/anglify/src/**/*.{js,ts}"
+            ]
           }
         }
       }
