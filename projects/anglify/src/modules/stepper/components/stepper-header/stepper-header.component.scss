@@ -1,0 +1,98 @@
+:host {
+  --header-height-internal: 72px;
+  --step-connection-line-offset: 8px;
+  --step-connection-line-color: #e0e0e0;
+  --step-indicator-size: 40%;
+  --step-indicator-color-inactive: rgba(0, 0, 0, 0.38);
+  --step-indicator-color-active: #1867c0;
+  --step-indicator-transition: background 500ms ease-out;
+  --step-indicator-font-size: 16px;
+  --label-font-size: 16px;
+  --label-color-inactive: rgba(0, 0, 0, 0.38);
+  --label-color-active: rgba(0, 0, 0, 0.87);
+  --label-transition: color 500ms ease-out;
+
+  display: flex;
+  align-items: center;
+  height: var(--header-height-internal);
+
+  &.active {
+    .prepend-item {
+      .step-indicator {
+        background: var(--step-indicator-color-active);
+        transition: var(--step-indicator-transition);
+      }
+    }
+
+    .label {
+      color: var(--label-color-active);
+      transition: var(--label-transition);
+    }
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+  }
+
+  .prepend-item {
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: var(--header-height-internal);
+    height: var(--header-height-internal);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .step-indicator {
+      height: var(--step-indicator-size);
+      width: var(--step-indicator-size);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: var(--step-indicator-font-size);
+      border-radius: 50%;
+      background: var(--step-indicator-color-inactive);
+      color: white;
+      user-select: none;
+      transition: var(--step-indicator-transition);
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        max-height: var(--step-indicator-font-size);
+        max-width: var(--step-indicator-font-size);
+      }
+    }
+
+    .step-connection-line {
+      width: 100%;
+      height: calc(((100% - var(--step-indicator-size)) / 2) - var(--step-connection-line-offset));
+      background: linear-gradient(var(--step-connection-line-color), var(--step-connection-line-color)) no-repeat center/1px 100%;
+      position: absolute;
+
+      &.top {
+        top: 0;
+      }
+
+      &.bottom {
+        bottom: 0;
+      }
+    }
+  }
+
+  .label {
+    flex-grow: 1;
+    --webkit-line-clamp: 2;
+    line-clamp: 2;
+    user-select: none;
+    font-size: var(--label-font-size);
+    color: var(--label-color-inactive);
+    transition: var(--label-transition);
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

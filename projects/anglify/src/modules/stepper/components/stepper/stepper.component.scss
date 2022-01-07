@@ -1,0 +1,63 @@
+:host {
+  --step-connection-line-color: #e0e0e0;
+  --header-height: 72px;
+  --step-container-padding: 14px 0 0 0;
+
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  position: relative;
+  overflow: hidden;
+
+  anglify-stepper-header {
+    --header-height-internal: var(--header-height);
+  }
+
+  .step-container {
+    display: flex;
+
+    .line-container {
+      width: var(--header-height);
+      flex-basis: var(--header-height);
+      flex-shrink: 0;
+      flex-grow: 0;
+
+      .line {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(var(--step-connection-line-color), var(--step-connection-line-color)) no-repeat center/1px 100%;
+      }
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: var(--step-container-padding);
+    }
+  }
+}
+
+:host-context(.horizontal) {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-flow: row dense;
+
+  anglify-stepper-header::ng-deep {
+    .prepend-item .step-connection-line {
+      display: none;
+    }
+  }
+
+  .steps {
+    display: grid;
+    grid-column: 1 /-1;
+    grid-row: 9999;
+
+    .step-container {
+      grid-row: 1;
+      grid-column: 1;
+
+      .line-container {
+        display: none;
+      }
+    }
+  }
+}
