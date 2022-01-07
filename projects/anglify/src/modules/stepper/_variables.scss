@@ -1,0 +1,15 @@
+$stepper-header-height: var(--stepper-header-height, 72px);
+
+$stepper-step-connection-line-offset: var(--stepper-step-connection-line-offset, 8px);
+$stepper-step-connection-line-color: var(--stepper-step-connection-line-color, #e0e0e0);
+$stepper-step-indicator-size: var(--stepper-step-indicator-size, 40%);
+$stepper-step-indicator-color-inactive: var(--stepper-step-indicator-color-inactive, rgba(0, 0, 0, 0.38));
+$stepper-step-indicator-color-active: var(--stepper-step-indicator-color-active, var(--color-primary));
+$stepper-step-indicator-transition: var(--stepper-step-indicator-transition, background 500ms ease-out);
+$stepper-step-indicator-font-size: var(--stepper-step-indicator-font-size, 16px);
+$stepper-step-container-padding: var(--stepper-step-container-padding, 14px 0 0 0);
+
+$stepper-label-font-size: var(--stepper-label-font-size, 16px);
+$stepper-label-color-inactive: var(--stepper-label-color-inactive, rgba(0, 0, 0, 0.38));
+$stepper-label-color-active: var(--stepper-label-color-active, rgba(0, 0, 0, 0.87));
+$stepper-label-transition: var(--stepper-label-transition, color 500ms ease-out);
