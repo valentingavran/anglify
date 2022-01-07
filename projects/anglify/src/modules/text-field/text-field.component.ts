@@ -41,6 +41,7 @@ export class TextFieldComponent implements AfterViewInit {
   @Input() public prefix?: string;
   @Input() public suffix?: string;
   @Input() public label?: string;
+  @Input() public dense: BooleanLike = false;
 
   @Input()
   public set error(value: string) {
@@ -79,6 +80,9 @@ export class TextFieldComponent implements AfterViewInit {
     }
     if (isBooleanLikeTrue(this.persistentPlaceholder)) {
       classNames.push('persistent-placeholder');
+    }
+    if (isBooleanLikeTrue(this.dense)) {
+      classNames.push('dense');
     }
     if (this.labelDirective || this.label) {
       classNames.push('has-label');

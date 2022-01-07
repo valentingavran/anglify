@@ -1,5 +1,6 @@
-@mixin notched-outline($start-width: 0, $border-radius: 4px, $transition-duration) {
+@mixin notched-outline($border-radius: 4px, $transition-duration) {
   $border-style: solid;
+  $start-width: var(--notched-outline-start-width, 0);
   $border-color: var(--notched-outline-border-color, #000);
   $border-width: var(--notched-outline-border-width, 1px);
   $notch-width: var(--notched-outline-notch-width, 100%);

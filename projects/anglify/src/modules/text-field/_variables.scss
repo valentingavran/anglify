@@ -6,8 +6,11 @@ $transition-duration: var(--text-field-transition-duration, 0.3s);
 $text-field-transition-timing-function: var(--text-field-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
 
 $text-field-outlined-padding-top: var(--text-field-outlined-padding-top, 14px);
+$text-field-outlined-padding-top-dense: var(--text-field-outlined-padding-top-dense, 10px);
 $text-field-outlined-padding-bottom: var(--text-field-outlined-padding-bottom, 14px);
+$text-field-outlined-padding-bottom-dense: var(--text-field-outlined-padding-bottom-dense, 10px);
 $text-field-outlined-padding-start: var(--text-field-outlined-padding-start, 16px);
+$text-field-outlined-padding-start-dense: var(--text-field-outlined-padding-start-dense, 12px);
 $text-field-outlined-background-inactive: var(--text-field-outlined-background-inactive, transparent);
 $text-field-outlined-background-hovered: var(--text-field-outlined-background-hovered, transparent);
 $text-field-outlined-background-focused: var(--text-field-outlined-background-focused, transparent);
@@ -33,8 +36,14 @@ $text-field-filled-padding-top: var(
   --text-field-filled-padding-top,
   calc(8px + #{$text-field-label-scale-focused} * #{$text-field-font-size})
 );
+$text-field-filled-padding-top-dense: var(
+  --text-field-filled-padding-top-dense,
+  calc(4px + #{$text-field-label-scale-focused} * #{$text-field-font-size})
+);
 $text-field-filled-padding-bottom: var(--text-field-filled-padding-bottom, 8px);
+$text-field-filled-padding-bottom-dense: var(--text-field-filled-padding-bottom-dense, 4px);
 $text-field-filled-padding-start: var(--text-field-filled-padding-start, 16px);
+$text-field-filled-padding-start-dense: var(--text-field-filled-padding-start-dense, 8px);
 $text-field-filled-background-inactive: var(--text-field-filled-background-inactive, var(--surface-overlay));
 $text-field-filled-background-hovered: var(--text-field-filled-background-hovered, rgba(0, 0, 0, 0.12));
 $text-field-filled-background-focused: var(--text-field-filled-background-focused, var(--surface-overlay));

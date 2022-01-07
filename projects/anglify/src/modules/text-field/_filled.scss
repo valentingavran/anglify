@@ -160,4 +160,20 @@
       }
     }
   }
+
+  &.dense:not(.has-label) {
+    .text-field-container {
+      padding-inline-start: $text-field-filled-padding-start-dense;
+      padding-inline-end: $text-field-filled-padding-start-dense;
+
+      .text-field-border {
+        --notched-outline-start-width: #{$text-field-filled-padding-start-dense};
+      }
+
+      ::ng-deep input {
+        padding-block-start: 10px !important;
+        padding-block-end: 10px !important;
+      }
+    }
+  }
 }

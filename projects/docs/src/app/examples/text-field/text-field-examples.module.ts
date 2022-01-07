@@ -18,6 +18,7 @@ import { NativeInputValidationComponent } from './native-input-validation/native
 import { PrefixAndSuffixComponent } from './prefix-and-suffix/prefix-and-suffix.component';
 import { LabelSlotComponent } from './label-slot/label-slot.component';
 import { IconModule } from '../../../../../anglify/src/modules/icon/icon.module';
+import { DenseComponent } from './dense/dense.component';
 
 @NgModule({
   imports: [CommonModule, TextFieldModule, ReactiveFormsModule, IconModule],
@@ -37,6 +38,7 @@ import { IconModule } from '../../../../../anglify/src/modules/icon/icon.module'
     NativeInputValidationComponent,
     PrefixAndSuffixComponent,
     LabelSlotComponent,
+    DenseComponent,
   ],
 })
 export class TextFieldExamplesModule {}

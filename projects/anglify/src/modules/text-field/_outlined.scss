@@ -15,8 +15,9 @@
     }
 
     .text-field-border {
-      @include notched-outline($text-field-outlined-padding-start, $text-field-outlined-border-radius, $transition-duration);
+      @include notched-outline($text-field-outlined-border-radius, $transition-duration);
       --notched-outline-border-color: #{$text-field-outlined-border-color-inactive};
+      --notched-outline-start-width: #{$text-field-outlined-padding-start};
 
       .notch * {
         display: block;
@@ -148,6 +149,33 @@
             color: $text-field-outlined-placeholder-color-disabled;
           }
         }
+      }
+    }
+  }
+
+  &.dense {
+    &.focused,
+    &.persistent-placeholder,
+    &.floating {
+      .text-field-container .label {
+        $translateY: calc(
+          (#{$text-field-line-height} + #{$text-field-outlined-padding-bottom-dense} + #{$text-field-outlined-padding-top-dense}) / 2 * -1
+        );
+        transform: translateY($translateY) scale($text-field-label-scale-focused);
+      }
+    }
+
+    .text-field-container {
+      padding-inline-start: $text-field-outlined-padding-start-dense;
+      padding-inline-end: $text-field-outlined-padding-start-dense;
+
+      .text-field-border {
+        --notched-outline-start-width: #{$text-field-outlined-padding-start-dense};
+      }
+
+      ::ng-deep input {
+        padding-block-start: $text-field-outlined-padding-top-dense;
+        padding-block-end: $text-field-outlined-padding-bottom-dense;
       }
     }
   }
