@@ -5,4 +5,30 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  public components = [
+    {
+      link: 'components/icon',
+      name: 'Icon',
+    },
+    {
+      link: 'components/stepper',
+      name: 'Stepper',
+    },
+    {
+      link: 'components/text-field',
+      name: 'Text Field',
+    },
+    {
+      link: 'components/tooltip',
+      name: 'Tooltip',
+    },
+  ];
+
+  public directives = [
+    {
+      link: 'components/overlay',
+      name: 'Overlay',
+    },
+  ];
+}

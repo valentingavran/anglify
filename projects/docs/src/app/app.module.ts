@@ -22,6 +22,7 @@ import { StepperComponent } from './pages/component-pages/stepper/stepper.compon
 import { TextFieldPageComponent } from './pages/component-pages/text-field-page/text-field-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
+import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HomeComponent } from './pages/home/home.component';
     StepperExamplesModule,
     TextFieldExamplesModule,
     TooltipExamplesModule,
+    OverlayModule,
   ],
   providers: [
     {

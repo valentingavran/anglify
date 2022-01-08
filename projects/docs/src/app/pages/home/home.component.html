@@ -1,5 +1,12 @@
-<div routerLink="components/icon">Icon</div>
-<div routerLink="components/overlay">Overlay</div>
-<div routerLink="components/stepper">Stepper</div>
-<div routerLink="components/text-field">Text Field</div>
-<div routerLink="components/tooltip">Tooltip</div>
+<h1>Anglify</h1>
+
+<h2>Components</h2>
+<div class="items">
+  <div *ngFor="let component of components" [routerLink]="component.link" anglifyOverlay>{{ component.name }}</div>
+</div>
+
+<h2>Directives</h2>
+
+<div class="items">
+  <div *ngFor="let directive of directives" [routerLink]="directive.link" anglifyOverlay>{{ directive.name }}</div>
+</div>

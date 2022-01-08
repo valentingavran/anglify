@@ -12,7 +12,7 @@ export class TextFieldPageComponent {
   public label = 'Label';
   public placeholder = 'Placeholder';
   public hint = 'Hint';
-  public readonly = true;
+  public readonly = false;
   public disabled = false;
   public persistentPlaceholder = false;
   public persistentHint = false;

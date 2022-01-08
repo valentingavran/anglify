@@ -81,6 +81,7 @@ export class OverlayDirective {
       inset: '0',
       pointerEvents: 'none',
       overflow: 'hidden',
+      backgroundColor: 'transparent',
     });
     return hoverContainer;
   }
@@ -104,6 +105,7 @@ export class OverlayDirective {
         transitionProperty: showRipple ? 'transform, opacity' : undefined,
         transitionTimingFunction: showRipple ? 'linear' : undefined,
         transitionDuration: showRipple ? '1000ms' : undefined,
+        transitionDelay: showRipple ? '70ms' : undefined, // Ripple is slightly delayed, to handle route changes better
         backgroundColor: 'var(--overlay-color-focused, rgba(0, 0, 0, 0.12))',
         opacity: '100%',
         transform: 'scale(0)',
