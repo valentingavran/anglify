@@ -1,25 +1,27 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { MarkdownModule } from 'ngx-markdown';
+import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
+import { TextFieldModule } from '../../../anglify/src/modules/text-field/text-field.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TextFieldModule } from '../../../anglify/src/modules/text-field/text-field.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TextFieldPageComponent } from './pages/component-pages/text-field-page/text-field-page.component';
-import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
-import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
-import { StylingTableComponent } from './components/styling-table/styling-table.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
-import { MarkdownModule } from 'ngx-markdown';
-import { TextFieldExamplesModule } from './examples/text-field/text-field-examples.module';
+import { StylingTableComponent } from './components/styling-table/styling-table.component';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
-import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
-import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
-import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
+import { OverlayExamplesModule } from './examples/overlay/overlay-examples.module';
 import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
+import { TextFieldExamplesModule } from './examples/text-field/text-field-examples.module';
+import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
+import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
+import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
+import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
+import { TextFieldPageComponent } from './pages/component-pages/text-field-page/text-field-page.component';
+import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { StepperExamplesModule } from './examples/stepper/stepper-examples.modul
     CodeExampleComponent,
     TooltipPageComponent,
     StepperComponent,
+    OverlayPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { StepperExamplesModule } from './examples/stepper/stepper-examples.modul
     ReactiveFormsModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     IconExamplesModule,
+    OverlayExamplesModule,
     StepperExamplesModule,
     TextFieldExamplesModule,
     TooltipExamplesModule,

@@ -30,9 +30,10 @@ a {
 
   &.dark {
     @import '~highlight.js/scss/github-dark.scss';
-    background-color: #0a1929;
-    color: #fff;
-    --surface-overlay: rgba(255, 255, 255, 0.06);
+    --overlay-color-hovered: rgba(255, 255, 255, 8%);
+    --overlay-color-focused: rgba(255, 255, 255, 24%);
+    --overlay-opacity-selected: 16%;
+    --overlay-opacity-activated: 24%;
 
     --color-primary: #ffd500;
 
