@@ -1,17 +1,19 @@
-import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
-import { distinctUntilChanged, map, takeUntil, tap } from 'rxjs/operators';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, HostListener, Input } from '@angular/core';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { Stepper } from '../../services/stepper/stepper.service';
 import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'anglify-stepper-header',
   templateUrl: './stepper-header.component.html',
   styleUrls: ['./stepper-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StepperHeaderComponent implements OnDestroy {
+export class StepperHeaderComponent {
   @ContentChild(StepperVisitedIconDirective) public readonly stepperVisitedIcon!: StepperVisitedIconDirective;
 
   @Input()
@@ -42,8 +44,6 @@ export class StepperHeaderComponent implements OnDestroy {
     value ? this.elementRef.nativeElement.classList.add('active') : this.elementRef.nativeElement.classList.remove('active');
   }
 
-  private readonly destroyAction$ = new Subject<void>();
-
   public readonly label$ = new BehaviorSubject<string | null>(null);
   public readonly index$ = new BehaviorSubject(0);
   public readonly active$ = new BehaviorSubject(false);
@@ -70,12 +70,7 @@ export class StepperHeaderComponent implements OnDestroy {
     private readonly stepper: Stepper,
     private readonly stepperSettings: StepperSettings
   ) {
-    this.headerNavigationEnabledHandler$.pipe(takeUntil(this.destroyAction$)).subscribe();
-  }
-
-  public ngOnDestroy(): void {
-    this.destroyAction$.next();
-    this.destroyAction$.complete();
+    this.headerNavigationEnabledHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   @HostListener('click')

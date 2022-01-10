@@ -1,10 +1,12 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { delay, map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { delay, map, switchMap, take, tap } from 'rxjs/operators';
 import { Step } from '../../directives/step/step.directive';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Injectable()
-export abstract class Stepper implements OnDestroy {
+export abstract class Stepper {
   private readonly _steps$ = new BehaviorSubject<Step[]>([]);
   public readonly steps$ = this._steps$.asObservable();
 
@@ -19,7 +21,6 @@ export abstract class Stepper implements OnDestroy {
     )
   );
 
-  private readonly _destroyAction$ = new Subject<void>();
   private readonly _previousAction = new Subject<void>();
   private readonly _nextAction = new Subject<void>();
   private readonly _navigateToAction = new Subject<number>();
@@ -138,11 +139,11 @@ export abstract class Stepper implements OnDestroy {
   );
 
   protected constructor() {
-    this._previousHandler$.pipe(takeUntil(this._destroyAction$)).subscribe();
-    this._nextHandler$.pipe(takeUntil(this._destroyAction$)).subscribe();
-    this._navigateToHandler$.pipe(takeUntil(this._destroyAction$)).subscribe();
-    this._updateStepsHandler$.pipe(takeUntil(this._destroyAction$)).subscribe();
-    this._resetHandler$.pipe(takeUntil(this._destroyAction$)).subscribe();
+    this._previousHandler$.pipe(untilDestroyed(this)).subscribe();
+    this._nextHandler$.pipe(untilDestroyed(this)).subscribe();
+    this._navigateToHandler$.pipe(untilDestroyed(this)).subscribe();
+    this._updateStepsHandler$.pipe(untilDestroyed(this)).subscribe();
+    this._resetHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public previous(): void {
@@ -163,11 +164,6 @@ export abstract class Stepper implements OnDestroy {
 
   public reset(): void {
     this._resetAction$.next();
-  }
-
-  public ngOnDestroy(): void {
-    this._destroyAction$.next();
-    this._destroyAction$.complete();
   }
 
   private static updateIndexesOfSteps(steps: Step[]): void {

@@ -7,18 +7,18 @@ import {
   ContentChildren,
   ElementRef,
   Input,
-  OnDestroy,
   Output,
   QueryList,
 } from '@angular/core';
 import { Stepper } from '../../services/stepper/stepper.service';
-import { StepperSettings, StepperOrientation } from '../../services/stepper-settings/stepper-settings.service';
-import { Subject } from 'rxjs';
-import { map, startWith, takeUntil, tap } from 'rxjs/operators';
+import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
+import { map, startWith, tap } from 'rxjs/operators';
 import { Step } from '../../directives/step/step.directive';
 import { animate, group, query, state, style, transition, trigger } from '@angular/animations';
 import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'anglify-stepper',
   templateUrl: './stepper.component.html',
@@ -56,7 +56,7 @@ import { StepperVisitedIconDirective } from '../../directives/stepper-visited-ic
     ]),
   ],
 })
-export class StepperComponent extends Stepper implements AfterContentInit, OnDestroy {
+export class StepperComponent extends Stepper implements AfterContentInit {
   @ContentChildren(Step) private readonly _steps?: QueryList<Step>;
   @ContentChild(StepperVisitedIconDirective) public readonly stepperVisitedIcon?: StepperVisitedIconDirective;
 
@@ -81,38 +81,34 @@ export class StepperComponent extends Stepper implements AfterContentInit, OnDes
   @Output() public readonly onReset = this.onReset$;
   @Output() public readonly stepChange = this.selectedStep$;
 
-  private readonly destroyAction$ = new Subject<void>();
-
   private readonly _orientationHandler$ = this.stepperSettings.orientation$.pipe(
     tap(orientation => {
       if (orientation === 'horizontal') {
-        this.elementRef.nativeElement.classList.add(orientation);
-        this.elementRef.nativeElement.classList.remove('vertical');
+        this.nativeElement.classList.add(orientation);
+        this.nativeElement.classList.remove('vertical');
       } else {
-        this.elementRef.nativeElement.classList.add(orientation);
-        this.elementRef.nativeElement.classList.remove('horizontal');
+        this.nativeElement.classList.add(orientation);
+        this.nativeElement.classList.remove('horizontal');
       }
     })
   );
 
+  private readonly nativeElement: HTMLElement;
+
   public constructor(public readonly stepperSettings: StepperSettings, private readonly elementRef: ElementRef) {
     super();
-    this._orientationHandler$.pipe(takeUntil(this.destroyAction$)).subscribe();
+    this.nativeElement = this.elementRef.nativeElement;
+    this._orientationHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public ngAfterContentInit(): void {
     this._steps!.changes.pipe(
       startWith(this._steps),
-      takeUntil(this.destroyAction$),
+      untilDestroyed(this),
       map(steps => steps.toArray() as Step[]),
       tap(steps => {
         this.updateSteps(steps);
       })
     ).subscribe();
-  }
-
-  public ngOnDestroy(): void {
-    this.destroyAction$.next();
-    this.destroyAction$.complete();
   }
 }

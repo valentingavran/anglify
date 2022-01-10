@@ -59,18 +59,21 @@ export class TextFieldComponent implements AfterViewInit {
   public readonly error$ = this.errorAction.pipe(
     tap(error => {
       if (error) {
-        this.elementRef.nativeElement.classList.add('error');
-        this.elementRef.nativeElement.classList.add('persistent-hint');
+        this.nativeElement.classList.add('error', 'persistent-hint');
       } else {
-        this.elementRef.nativeElement.classList.remove('error');
+        this.nativeElement.classList.remove('error');
         if (!isBooleanLikeTrue(this.persistentHint)) {
-          this.elementRef.nativeElement.classList.remove('persistent-hint');
+          this.nativeElement.classList.remove('persistent-hint');
         }
       }
     })
   );
 
-  public constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
+  private readonly nativeElement: HTMLElement;
+
+  public constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {
+    this.nativeElement = this.elementRef.nativeElement;
+  }
 
   @HostBinding('class')
   private get classList(): string {
@@ -97,9 +100,9 @@ export class TextFieldComponent implements AfterViewInit {
           untilDestroyed(this),
           tap(focused => {
             if (focused) {
-              this.elementRef.nativeElement.classList.add('focused');
+              this.nativeElement.classList.add('focused');
             } else {
-              this.elementRef.nativeElement.classList.remove('focused');
+              this.nativeElement.classList.remove('focused');
             }
           })
         )
@@ -110,9 +113,9 @@ export class TextFieldComponent implements AfterViewInit {
           untilDestroyed(this),
           tap(floating => {
             if (floating) {
-              this.elementRef.nativeElement.classList.add('floating');
+              this.nativeElement.classList.add('floating');
             } else {
-              this.elementRef.nativeElement.classList.remove('floating');
+              this.nativeElement.classList.remove('floating');
             }
           })
         )
@@ -123,9 +126,9 @@ export class TextFieldComponent implements AfterViewInit {
           untilDestroyed(this),
           tap(readonly => {
             if (readonly) {
-              this.elementRef.nativeElement.classList.add('readonly');
+              this.nativeElement.classList.add('readonly');
             } else {
-              this.elementRef.nativeElement.classList.remove('readonly');
+              this.nativeElement.classList.remove('readonly');
             }
           })
         )
@@ -136,9 +139,9 @@ export class TextFieldComponent implements AfterViewInit {
           untilDestroyed(this),
           tap(disabled => {
             if (disabled) {
-              this.elementRef.nativeElement.classList.add('disabled');
+              this.nativeElement.classList.add('disabled');
             } else {
-              this.elementRef.nativeElement.classList.remove('disabled');
+              this.nativeElement.classList.remove('disabled');
             }
           })
         )

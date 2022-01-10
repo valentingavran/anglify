@@ -13,8 +13,10 @@ export class OverlayDirective {
   @Input()
   public set selected(value: BooleanLike) {
     if (isBooleanLikeTrue(value)) {
-      this._selectedOrActivatedContainer.style.backgroundColor = 'var(--overlay-color-selected, var(--color-primary)';
-      this._selectedOrActivatedContainer.style.opacity = 'var(--overlay-opacity-selected, 8%)';
+      Object.assign(this._selectedOrActivatedContainer.style, {
+        backgroundColor: 'var(--overlay-color-selected, var(--color-primary)',
+        opacity: 'var(--overlay-opacity-selected, 8%)',
+      });
     } else {
       this._selectedOrActivatedContainer.style.backgroundColor = 'transparent';
     }
@@ -23,8 +25,10 @@ export class OverlayDirective {
   @Input()
   public set activated(value: BooleanLike) {
     if (isBooleanLikeTrue(value)) {
-      this._selectedOrActivatedContainer.style.backgroundColor = 'var(--overlay-color-activated, var(--color-primary)';
-      this._selectedOrActivatedContainer.style.opacity = 'var(--overlay-opacity-activated, 12%)';
+      Object.assign(this._selectedOrActivatedContainer.style, {
+        backgroundColor: 'var(--overlay-color-activated, var(--color-primary)',
+        opacity: 'var(--overlay-opacity-activated, 12%)',
+      });
     } else {
       this._selectedOrActivatedContainer.style.backgroundColor = 'transparent';
     }

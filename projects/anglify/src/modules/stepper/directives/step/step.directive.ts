@@ -1,15 +1,15 @@
 /* eslint-disable @angular-eslint/directive-class-suffix */
-import { Directive, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
-import { map, shareReplay, takeUntil, tap } from 'rxjs/operators';
+import { Directive, Input, Output, TemplateRef } from '@angular/core';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { Stepper } from '../../services/stepper/stepper.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Directive({
   selector: 'ng-template[anglifyStep]',
 })
-export class Step implements OnDestroy {
-  private readonly _destroyAction$ = new Subject<void>();
-
+export class Step {
   private readonly _isFirstStep$ = new BehaviorSubject<boolean>(false);
   public readonly isFirstStep$ = this._isFirstStep$.asObservable().pipe(shareReplay(1));
 
@@ -53,7 +53,7 @@ export class Step implements OnDestroy {
   @Output() public visitedChange = this.visited$;
 
   public constructor(protected readonly stepper: Stepper, public template: TemplateRef<any>) {
-    this.selected$.pipe(takeUntil(this._destroyAction$)).subscribe();
+    this.selected$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public setLabel(label: string): void {
@@ -94,10 +94,5 @@ export class Step implements OnDestroy {
 
   public getValidSnapshot(): boolean {
     return this._valid$.value;
-  }
-
-  public ngOnDestroy(): void {
-    this._destroyAction$.next();
-    this._destroyAction$.complete();
   }
 }
