@@ -1,0 +1,49 @@
+<ng-container *ngFor="let step of steps$ | async; let index = index">
+  <anglify-stepper-header
+    [index]="index"
+    [isFirst]="(step.isFirstStep$ | async) ?? true"
+    [isLast]="(step.isLastStep$ | async) ?? true"
+    [label]="step.label$ | async"
+    [active]="(step.selected$ | async) ?? false"
+    [visited]="(step.visited$ | async) ?? false"
+  >
+    <ng-template anglifyStepperVisitedIcon>
+      <ng-container [ngTemplateOutlet]="visitedIcon"></ng-container>
+    </ng-template>
+  </anglify-stepper-header>
+
+  <div *ngIf="(stepperSettings.orientation$ | async) === 'vertical'" class="steps">
+    <div *ngIf="step.selected$ | async" class="step-container" @fast-in-fast-out-y>
+      <ng-container [ngTemplateOutlet]="stepContainer" [ngTemplateOutletContext]="{ $implicit: step }"></ng-container>
+    </div>
+  </div>
+</ng-container>
+
+<div *ngIf="(stepperSettings.orientation$ | async) === 'horizontal'" class="steps" [@slide]="selectedIndex$ | async">
+  <ng-container *ngFor="let step of steps$ | async; let index = index">
+    <div *ngIf="step.selected$ | async" class="step-container">
+      <ng-container [ngTemplateOutlet]="stepContainer" [ngTemplateOutletContext]="{ $implicit: step }"></ng-container>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #visitedIcon>
+  <ng-container *ngIf="stepperVisitedIcon" [ngTemplateOutlet]="stepperVisitedIcon.template"></ng-container>
+  <ng-container *ngIf="!stepperVisitedIcon">
+    <svg width="100%" height="100%" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+      />
+    </svg>
+  </ng-container>
+</ng-template>
+
+<ng-template #stepContainer let-step>
+  <div *ngIf="stepperSettings.hasStepConnectionLine$ | async" class="line-container">
+    <div *ngIf="(step.isLastStep$ | async) === false" class="line"></div>
+  </div>
+  <div class="content">
+    <ng-container [ngTemplateOutlet]="step.template"></ng-container>
+  </div>
+</ng-template>

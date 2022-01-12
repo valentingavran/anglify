@@ -1,1 +1,37 @@
+@use '../../anglify/src/modules/icon/index';
+@use '../../anglify/src/modules/stepper';
+@use '../../anglify/src/modules/form-field/index';
+@use '../../anglify/src/modules/tooltip';
+@use '../../anglify/src/modules/overlay';
+
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 + h3 {
+  padding-top: 0;
+}
+
+h3 {
+  padding-top: 36px;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+:root {
+  --color-primary: green;
+
+  &.light {
+    @import '~highlight.js/scss/github.scss';
+  }
+
+  &.dark {
+    @import '~highlight.js/scss/github-dark.scss';
+  }
+}

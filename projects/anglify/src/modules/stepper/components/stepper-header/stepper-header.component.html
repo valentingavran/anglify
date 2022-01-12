@@ -1,0 +1,14 @@
+<div class="prepend-item">
+  <div *ngIf="topStepConnectionLineVisible$ | async" class="step-connection-line top"></div>
+  <div *ngIf="bottomStepConnectionLineVisible$ | async" class="step-connection-line bottom"></div>
+  <div class="step-indicator">
+    <div *ngIf="visited && (active$ | async) === false; else defaultIndicator">
+      <ng-container [ngTemplateOutlet]="stepperVisitedIcon.template"></ng-container>
+    </div>
+  </div>
+</div>
+<div class="label">{{ label$ | async }}</div>
+
+<ng-template #defaultIndicator>
+  {{ ((index$ | async) ?? -1) + 1 }}
+</ng-template>

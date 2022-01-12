@@ -1,0 +1,140 @@
+<h1>Form Field</h1>
+
+<h2>Playground</h2>
+<div class="playground">
+  <div class="content">
+    <anglify-form-field
+      [type]="type"
+      [prepend-icon]="prependIcon ? 'mdi-home' : ''"
+      [prepend-outer-icon]="prependOuterIcon ? 'mdi-home' : ''"
+      [append-icon]="appendIcon ? 'mdi-home' : ''"
+      [append-outer-icon]="appendOuterIcon ? 'mdi-home' : ''"
+      [persistent-placeholder]="persistentPlaceholder"
+      [persistent-hint]="persistentHint"
+      [hint]="hint"
+    >
+      <ng-template anglifyLabel>{{ label }}</ng-template>
+      <input anglifyInput [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder" />
+    </anglify-form-field>
+  </div>
+  <div class="controls">
+    <anglify-form-field type="filled">
+      <ng-template anglifyLabel>Label</ng-template>
+      <input anglifyInput [(ngModel)]="label" />
+    </anglify-form-field>
+    <anglify-form-field type="filled">
+      <ng-template anglifyLabel>Placeholder</ng-template>
+      <input anglifyInput [(ngModel)]="placeholder" />
+    </anglify-form-field>
+    <anglify-form-field type="filled">
+      <ng-template anglifyLabel>Hint</ng-template>
+      <input anglifyInput [(ngModel)]="hint" />
+    </anglify-form-field>
+    <label>
+      Type:
+      <select [(ngModel)]="type">
+        <option value="filled">Filled</option>
+        <option value="outlined">Outlined</option>
+      </select>
+    </label>
+    <label>
+      Readonly:
+      <input type="checkbox" [(ngModel)]="readonly" />
+    </label>
+    <label>
+      Disabled:
+      <input type="checkbox" [(ngModel)]="disabled" />
+    </label>
+    <label>
+      Persistent placeholder:
+      <input type="checkbox" [(ngModel)]="persistentPlaceholder" />
+    </label>
+    <label>
+      Persistent hint:
+      <input type="checkbox" [(ngModel)]="persistentHint" />
+    </label>
+    <label>
+      Prepend icon:
+      <input type="checkbox" [(ngModel)]="prependIcon" />
+    </label>
+    <label>
+      Prepend outer icon:
+      <input type="checkbox" [(ngModel)]="prependOuterIcon" />
+    </label>
+    <label>
+      Append icon:
+      <input type="checkbox" [(ngModel)]="appendIcon" />
+    </label>
+    <label>
+      Append outer icon:
+      <input type="checkbox" [(ngModel)]="appendOuterIcon" />
+    </label>
+  </div>
+</div>
+
+<h2>Examples</h2>
+
+<h3>Placeholder</h3>
+<app-code-example component="form-field" example="placeholder"></app-code-example>
+
+<h3>Without label</h3>
+<app-code-example component="form-field" example="without-label"></app-code-example>
+
+<h3>Using label slot</h3>
+<app-code-example component="form-field" example="label-slot"></app-code-example>
+
+<h3>Persistent placeholder</h3>
+<app-code-example component="form-field" example="persistent-placeholder"></app-code-example>
+
+<h3>Hint</h3>
+<app-code-example component="form-field" example="hint"></app-code-example>
+
+<h3>Long label and long hint</h3>
+<p>
+  Long labels and hints are not recommended, as form field descriptions must be short and crisp. However, if texts become too long, which
+  can quickly be the case on mobile devices, then they will be truncated and ellipsis will be added at the end.
+</p>
+<app-code-example component="form-field" example="long-hint-and-long-label"></app-code-example>
+
+<h3>Dense</h3>
+<app-code-example component="form-field" example="dense"></app-code-example>
+
+<h3>Disabled</h3>
+<app-code-example component="form-field" example="disabled"></app-code-example>
+
+<h3>Readonly</h3>
+<app-code-example component="form-field" example="readonly"></app-code-example>
+
+<h3>Icons</h3>
+<app-code-example component="form-field" example="icons"></app-code-example>
+
+<h3>Prefixes and Suffixes</h3>
+<app-code-example component="form-field" example="prefix-and-suffix"></app-code-example>
+
+<h3>Counter</h3>
+<app-code-example component="form-field" example="counter"></app-code-example>
+
+<h3>Validation</h3>
+
+<h4>Using error property</h4>
+<app-code-example component="form-field" example="manual-error"></app-code-example>
+
+<h4>Using reactive forms</h4>
+<app-code-example component="form-field" example="reactive-forms-validation"></app-code-example>
+
+<h4>Set the server error manually if necessary.</h4>
+<p>
+  In this example, the password for the passed username is incorrect. After 2 seconds the server sends back an error message which is
+  displayed below the form field.
+</p>
+<app-code-example component="form-field" example="server-error-handling"></app-code-example>
+
+<h4>Using native input validation</h4>
+<app-code-example component="form-field" example="native-input-validation"></app-code-example>
+
+<h3>Textarea</h3>
+<app-code-example component="form-field" example="textarea"></app-code-example>
+
+<h2>API</h2>
+<h3>Styling</h3>
+<app-styling-table forComponent="form-field"></app-styling-table>

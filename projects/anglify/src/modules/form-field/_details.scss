@@ -1,0 +1,45 @@
+@use 'variables' as *;
+
+.anglify-form-field {
+  .details {
+    grid-area: details;
+    display: flex;
+    gap: 14px;
+    line-height: 16px;
+    min-height: 16px;
+    font-size: 12px;
+    overflow: hidden;
+
+    .hint {
+      flex: 1;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      transition: transform $transition-duration $form-field-transition-timing-function;
+      transform: translateY(-100%);
+    }
+  }
+
+  &.persistent-hint .details .hint {
+    transform: translateY(0);
+  }
+
+  &.focused .details .hint {
+    transform: translateY(0);
+  }
+}
+
+.form-field-type-outlined {
+  .details {
+    padding-left: $form-field-outlined-padding-start;
+  }
+}
+
+.form-field-type-filled {
+  .details {
+    padding-left: $form-field-filled-padding-start;
+  }
+}

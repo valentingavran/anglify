@@ -1,0 +1,88 @@
+@use '../../variables' as *;
+
+.anglify-stepper-header {
+  display: flex;
+  align-items: center;
+  height: $stepper-header-height;
+
+  &.active {
+    .prepend-item {
+      .step-indicator {
+        background: $stepper-step-indicator-color-active;
+        transition: $stepper-step-indicator-transition;
+        color: $stepper-step-indicator-text-color-active;
+      }
+    }
+
+    .label {
+      color: $stepper-label-color-active;
+      transition: $stepper-label-transition;
+    }
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+  }
+
+  .prepend-item {
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: $stepper-header-height;
+    height: $stepper-header-height;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .step-indicator {
+      height: $stepper-step-indicator-size;
+      width: $stepper-step-indicator-size;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: $stepper-step-indicator-font-size;
+      border-radius: 50%;
+      background: $stepper-step-indicator-color-inactive;
+      color: $stepper-step-indicator-text-color-inactive;
+      user-select: none;
+      transition: $stepper-step-indicator-transition;
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        max-height: $stepper-step-indicator-font-size;
+        max-width: $stepper-step-indicator-font-size;
+      }
+    }
+
+    .step-connection-line {
+      width: 100%;
+      height: calc(((100% - #{$stepper-step-indicator-size}) / 2) - #{$stepper-step-connection-line-offset});
+      background: linear-gradient(#{$stepper-step-connection-line-color}, #{$stepper-step-connection-line-color}) no-repeat center/1px 100%;
+      position: absolute;
+
+      &.top {
+        top: 0;
+      }
+
+      &.bottom {
+        bottom: 0;
+      }
+    }
+  }
+
+  .label {
+    flex-grow: 1;
+    --webkit-line-clamp: 2;
+    line-clamp: 2;
+    user-select: none;
+    font-size: $stepper-label-font-size;
+    color: $stepper-label-color-inactive;
+    transition: $stepper-label-transition;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,28 @@
+@use '../../../colors';
+
+:host {
+  table {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    border-spacing: 0;
+    white-space: pre-wrap;
+    border-radius: 14px;
+    border: 1px solid colors.$color-outline-secondary;
+
+    tr:nth-child(even) {
+      background-color: colors.$color-surface-variant;
+    }
+
+    td,
+    th {
+      padding: 14px;
+      text-align: start;
+
+      code {
+        white-space: pre-wrap;
+        background-color: transparent;
+      }
+    }
+  }
+}
