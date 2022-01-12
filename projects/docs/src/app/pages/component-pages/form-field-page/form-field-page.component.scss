@@ -1,0 +1,40 @@
+:host {
+  width: 100%;
+
+  .playground {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border: 1px solid var(--color-outline-secondary);
+    border-radius: 14px;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 1px solid var(--color-outline-secondary);
+
+      anglify-form-field {
+        max-width: 300px;
+      }
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      gap: 14px;
+    }
+  }
+
+  .cols-2 {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cols-3 {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

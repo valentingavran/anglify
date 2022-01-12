@@ -1,0 +1,192 @@
+@use 'variables' as *;
+@use '../../styles/mixins/notched-outline' as *;
+
+.anglify-form-field.form-field-type-outlined {
+  --icon-inactive-color: #{$form-field-outlined-icon-color-inactive};
+  padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
+
+  .form-field-container {
+    background-color: $form-field-outlined-background-inactive;
+    padding-inline-start: $form-field-outlined-padding-start;
+    padding-inline-end: $form-field-outlined-padding-start;
+
+    input,
+    textarea {
+      padding-block-start: $form-field-outlined-padding-top;
+      padding-block-end: $form-field-outlined-padding-bottom;
+    }
+
+    .form-field-border {
+      @include notched-outline($form-field-outlined-border-radius, $transition-duration);
+      --notched-outline-border-color: #{$form-field-outlined-border-color-inactive};
+      --notched-outline-start-width: #{$form-field-outlined-padding-start};
+
+      .notch * {
+        display: block;
+        transform: translateY(-50%);
+        visibility: hidden;
+        font-size: calc(#{$form-field-font-size} * #{$form-field-label-scale-focused});
+      }
+    }
+
+    .label {
+      transition-duration: $transition-duration;
+      transition-property: transform, max-width, margin-inline-start, width;
+      transition-timing-function: $form-field-transition-timing-function;
+      transform-origin: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      font-size: $form-field-font-size;
+    }
+  }
+
+  &.focused {
+    --icon-inactive-color: #{$form-field-outlined-icon-color-focused};
+
+    .form-field-container {
+      background-color: $form-field-outlined-background-focused;
+
+      .form-field-border {
+        --notched-outline-border-width: 2px;
+        --notched-outline-border-color: #{$form-field-outlined-border-color-focused};
+      }
+
+      input,
+      textarea {
+        color: $form-field-outlined-text-color-focused;
+
+        &::placeholder {
+          color: $form-field-outlined-placeholder-color-focused;
+        }
+      }
+
+      .label {
+        color: $form-field-outlined-label-color-focused;
+        --icon-inactive-color: #{$form-field-outlined-label-color-focused};
+      }
+    }
+  }
+
+  &.persistent-placeholder,
+  &.floating {
+    &:not(.focused):not(.disabled) {
+      .form-field-container {
+        input,
+        textarea {
+          &::placeholder {
+            color: $form-field-outlined-placeholder-color-inactive;
+          }
+        }
+      }
+    }
+  }
+
+  &.focused,
+  &.persistent-placeholder,
+  &.floating {
+    .form-field-container {
+      .form-field-border {
+        --notched-outline-notch-width: 0;
+
+        .notch {
+          width: auto;
+        }
+      }
+
+      .label {
+        $translateY: calc(
+          (#{$form-field-line-height} + #{$form-field-outlined-padding-bottom} + #{$form-field-outlined-padding-top}) / 2 * -1
+        );
+        transform: translateY($translateY) scale($form-field-label-scale-focused);
+        grid-column: 1 / 3;
+        grid-row: 1;
+        max-width: calc(100% / #{$form-field-label-scale-focused});
+        width: calc(100% / #{$form-field-label-scale-focused});
+      }
+    }
+  }
+
+  &:not(.focused):not(.disabled) {
+    .form-field-container {
+      input,
+      textarea {
+        color: $form-field-outlined-text-color-inactive;
+      }
+
+      .label {
+        color: $form-field-outlined-label-color-inactive;
+        --icon-inactive-color: $form-field-outlined-label-color-inactive;
+      }
+
+      &:hover {
+        background-color: $form-field-outlined-background-hovered;
+
+        .form-field-border {
+          --notched-outline-border-color: #{$form-field-outlined-border-color-hovered};
+        }
+      }
+    }
+  }
+
+  &:not(.has-label) {
+    --notched-outline-padding: 0px;
+
+    .notch {
+      width: 0 !important;
+    }
+  }
+
+  &.disabled {
+    --icon-inactive-color: #{$form-field-outlined-icon-color-disabled};
+
+    input,
+    textarea {
+      color: $form-field-outlined-text-color-disabled;
+    }
+
+    .form-field-container {
+      color: $form-field-outlined-label-color-disabled;
+    }
+
+    &.persistent-placeholder {
+      .form-field-container {
+        input,
+        textarea {
+          &::placeholder {
+            color: $form-field-outlined-placeholder-color-disabled;
+          }
+        }
+      }
+    }
+  }
+
+  &.dense {
+    &.focused,
+    &.persistent-placeholder,
+    &.floating {
+      .form-field-container .label {
+        $translateY: calc(
+          (#{$form-field-line-height} + #{$form-field-outlined-padding-bottom-dense} + #{$form-field-outlined-padding-top-dense}) / 2 * -1
+        );
+        transform: translateY($translateY) scale($form-field-label-scale-focused);
+      }
+    }
+
+    .form-field-container {
+      padding-inline-start: $form-field-outlined-padding-start-dense;
+      padding-inline-end: $form-field-outlined-padding-start-dense;
+
+      .form-field-border {
+        --notched-outline-start-width: #{$form-field-outlined-padding-start-dense};
+      }
+
+      input,
+      textarea {
+        padding-block-start: $form-field-outlined-padding-top-dense;
+        padding-block-end: $form-field-outlined-padding-bottom-dense;
+      }
+    }
+  }
+}

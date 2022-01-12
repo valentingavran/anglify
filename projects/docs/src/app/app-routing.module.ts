@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
-import { TextFieldPageComponent } from './pages/component-pages/text-field-page/text-field-page.component';
+import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
 
@@ -25,8 +25,8 @@ const routes: Routes = [
     component: StepperComponent,
   },
   {
-    path: 'components/text-field',
-    component: TextFieldPageComponent,
+    path: 'components/form-field',
+    component: FormFieldPageComponent,
   },
   {
     path: 'components/tooltip',

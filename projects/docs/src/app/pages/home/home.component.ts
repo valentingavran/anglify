@@ -16,8 +16,8 @@ export class HomeComponent {
       name: 'Stepper',
     },
     {
-      link: 'components/text-field',
-      name: 'Text Field',
+      link: 'components/form-field',
+      name: 'Form Field',
     },
     {
       link: 'components/tooltip',

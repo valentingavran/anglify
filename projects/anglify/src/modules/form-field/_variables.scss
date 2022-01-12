@@ -1,0 +1,85 @@
+@use '../../styles/settings/colors';
+
+$form-field-border-radius: var(--form-field-border-radius, 4px);
+$form-field-line-height: var(--form-field-line-height, 20px);
+$form-field-font-size: var(--form-field-font-size, 16px);
+$form-field-label-scale-focused: var(--form-field-label-scale-focused, 0.75);
+$transition-duration: var(--form-field-transition-duration, 0.3s);
+$form-field-transition-timing-function: var(--form-field-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
+
+$form-field-outlined-padding-top: var(--form-field-outlined-padding-top, 14px);
+$form-field-outlined-padding-top-dense: var(--form-field-outlined-padding-top-dense, 10px);
+$form-field-outlined-padding-bottom: var(--form-field-outlined-padding-bottom, 14px);
+$form-field-outlined-padding-bottom-dense: var(--form-field-outlined-padding-bottom-dense, 10px);
+$form-field-outlined-padding-start: var(--form-field-outlined-padding-start, 16px);
+$form-field-outlined-padding-start-dense: var(--form-field-outlined-padding-start-dense, 12px);
+$form-field-outlined-background-inactive: var(--form-field-outlined-background-inactive, transparent);
+$form-field-outlined-background-hovered: var(--form-field-outlined-background-hovered, transparent);
+$form-field-outlined-background-focused: var(--form-field-outlined-background-focused, transparent);
+$form-field-outlined-border-color-inactive: var(--form-field-outlined-border-color-inactive, colors.$color-outline-secondary);
+$form-field-outlined-border-color-hovered: var(--form-field-outlined-border-color-hovered, colors.$color-outline-primary);
+$form-field-outlined-border-color-focused: var(--form-field-outlined-border-color-focused, colors.$color-primary);
+$form-field-outlined-border-radius: var(--form-field-outlined-border-radius, $form-field-border-radius);
+$form-field-outlined-label-color-inactive: var(--form-field-outlined-label-color-inactive, colors.$color-on-surface-medium-emphasis);
+$form-field-outlined-label-color-focused: var(--form-field-outlined-label-color-focused, colors.$color-primary);
+$form-field-outlined-label-color-disabled: var(--form-field-outlined-label-color-disabled, colors.$color-on-surface-low-emphasis);
+$form-field-outlined-text-color-inactive: var(--form-field-outlined-text-color-inactive, colors.$color-on-surface-high-emphasis);
+$form-field-outlined-text-color-focused: var(--form-field-outlined-text-color-focused, colors.$color-on-surface-high-emphasis);
+$form-field-outlined-text-color-disabled: var(--form-field-outlined-text-color-disabled, colors.$color-on-surface-low-emphasis);
+$form-field-outlined-icon-color-inactive: var(--form-field-outlined-icon-color-inactive, colors.$color-on-surface-medium-emphasis);
+$form-field-outlined-icon-color-focused: var(--form-field-outlined-icon-color-focused, colors.$color-primary);
+$form-field-outlined-icon-color-disabled: var(--form-field-outlined-icon-color-disabled, colors.$color-on-surface-low-emphasis);
+$form-field-outlined-placeholder-color-inactive: var(
+  --form-field-outlined-placeholder-color-inactive,
+  colors.$color-on-surface-medium-emphasis
+);
+$form-field-outlined-placeholder-color-focused: var(
+  --form-field-outlined-placeholder-color-focused,
+  colors.$color-on-surface-medium-emphasis
+);
+$form-field-outlined-placeholder-color-disabled: var(
+  --form-field-outlined-placeholder-color-disabled,
+  colors.$color-on-surface-low-emphasis
+);
+$form-field-outlined-error-color: var(--form-field-outlined-error-color, colors.$color-error);
+
+$form-field-filled-padding-top: var(
+  --form-field-filled-padding-top,
+  calc(8px + #{$form-field-label-scale-focused} * #{$form-field-font-size})
+);
+$form-field-filled-padding-top-dense: var(
+  --form-field-filled-padding-top-dense,
+  calc(4px + #{$form-field-label-scale-focused} * #{$form-field-font-size})
+);
+$form-field-filled-padding-bottom: var(--form-field-filled-padding-bottom, 8px);
+$form-field-filled-padding-bottom-dense: var(--form-field-filled-padding-bottom-dense, 4px);
+$form-field-filled-padding-start: var(--form-field-filled-padding-start, 16px);
+$form-field-filled-padding-start-dense: var(--form-field-filled-padding-start-dense, 8px);
+$form-field-filled-background-inactive: var(--form-field-filled-background-inactive, colors.$color-surface-variant);
+$form-field-filled-background-hovered: var(--form-field-filled-background-hovered, colors.$color-surface-variant);
+$form-field-filled-background-focused: var(--form-field-filled-background-focused, colors.$color-surface-variant);
+$form-field-filled-border-color-inactive: var(--form-field-filled-border-color-inactive, colors.$color-outline-primary);
+$form-field-filled-border-color-focused: var(--form-field-filled-border-color-focused, colors.$color-primary);
+$form-field-filled-border-radius: var(--form-field-filled-border-radius, $form-field-border-radius $form-field-border-radius 0 0);
+$form-field-filled-label-color-inactive: var(--form-field-filled-label-color-inactive, colors.$color-on-surface-variant-medium-emphasis);
+$form-field-filled-label-color-focused: var(--form-field-filled-label-color-focused, colors.$color-primary);
+$form-field-filled-label-color-disabled: var(--form-field-filled-label-color-disabled, colors.$color-on-surface-variant-low-emphasis);
+$form-field-filled-text-color-inactive: var(--form-field-filled-text-color-inactive, colors.$color-on-surface-variant-high-emphasis);
+$form-field-filled-text-color-focused: var(--form-field-filled-text-color-focused, colors.$color-on-surface-variant-high-emphasis);
+$form-field-filled-text-color-disabled: var(--form-field-filled-text-color-disabled, colors.$color-on-surface-variant-low-emphasis);
+$form-field-filled-icon-color-inactive: var(--form-field-filled-icon-color-inactive, colors.$color-on-surface-variant-medium-emphasis);
+$form-field-filled-icon-color-focused: var(--form-field-filled-icon-color-focused, colors.$color-primary);
+$form-field-filled-icon-color-disabled: var(--form-field-filled-icon-color-disabled, colors.$color-on-surface-variant-low-emphasis);
+$form-field-filled-placeholder-color-inactive: var(
+  --form-field-filled-placeholder-color-inactive,
+  colors.$color-on-surface-variant-medium-emphasis
+);
+$form-field-filled-placeholder-color-focused: var(
+  --form-field-filled-placeholder-color-focused,
+  colors.$color-on-surface-variant-medium-emphasis
+);
+$form-field-filled-placeholder-color-disabled: var(
+  --form-field-filled-placeholder-color-disabled,
+  colors.$color-on-surface-variant-low-emphasis
+);
+$form-field-filled-error-color: var(--form-field-filled-error-color, colors.$color-error);

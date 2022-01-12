@@ -1,0 +1,27 @@
+<anglify-form-field type="filled" label="Required attribute">
+  <input anglifyInput placeholder="Placeholder" required />
+</anglify-form-field>
+
+<anglify-form-field type="filled" label="minlength (10) attribute">
+  <input anglifyInput placeholder="Placeholder" minlength="10" />
+</anglify-form-field>
+
+<anglify-form-field type="filled" label="Prefilled with minlength (10) attribute">
+  <input anglifyInput placeholder="Placeholder" minlength="10" value="Value" />
+</anglify-form-field>
+
+<anglify-form-field type="filled" hint="This error will never be thrown, because the length is limited" label="maxlength (10) attribute">
+  <input anglifyInput placeholder="Placeholder" maxlength="10" />
+</anglify-form-field>
+
+<anglify-form-field type="filled" label="Prefilled with maxlength attribute">
+  <input anglifyInput placeholder="Placeholder" maxlength="10" value="12345678901" />
+</anglify-form-field>
+
+<anglify-form-field type="filled" hint="Only small letters from a-z allowed" persistent-hint label="Check for pattern">
+  <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" />
+</anglify-form-field>
+
+<anglify-form-field type="filled" hint="Only small letters from a-z allowed" persistent-hint label="Prefilled value checked for pattern">
+  <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" value="abcDef" />
+</anglify-form-field>

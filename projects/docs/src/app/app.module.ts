@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { MarkdownModule } from 'ngx-markdown';
 import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
-import { TextFieldModule } from '../../../anglify/src/modules/text-field/text-field.module';
+import { FormFieldModule } from '../../../anglify/src/modules/form-field/form-field.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
@@ -14,12 +14,12 @@ import { StylingTableComponent } from './components/styling-table/styling-table.
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
 import { OverlayExamplesModule } from './examples/overlay/overlay-examples.module';
 import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
-import { TextFieldExamplesModule } from './examples/text-field/text-field-examples.module';
+import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
-import { TextFieldPageComponent } from './pages/component-pages/text-field-page/text-field-page.component';
+import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.module';
@@ -28,7 +28,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
   declarations: [
     AppComponent,
     HomeComponent,
-    TextFieldPageComponent,
+    FormFieldPageComponent,
     IconPageComponent,
     StylingTableComponent,
     CodeExampleComponent,
@@ -40,7 +40,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    TextFieldModule,
+    FormFieldModule,
     FormsModule,
     IconModule,
     HttpClientModule,
@@ -50,7 +50,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     IconExamplesModule,
     OverlayExamplesModule,
     StepperExamplesModule,
-    TextFieldExamplesModule,
+    FormFieldExamplesModule,
     TooltipExamplesModule,
     OverlayModule,
   ],
