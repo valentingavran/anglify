@@ -8,6 +8,7 @@ import {
   HostBinding,
   Inject,
   Input,
+  Optional,
   ViewChild,
 } from '@angular/core';
 import { InputDirective } from './directives/input.directive';
@@ -73,14 +74,16 @@ export class FormFieldComponent implements AfterViewInit {
   private readonly nativeElement: HTMLElement;
 
   public constructor(
-    @Inject(FORM_FIELD_SETTINGS) private readonly settings: Required<FormFieldSettings>,
     private readonly elementRef: ElementRef,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
+    @Optional() @Inject(FORM_FIELD_SETTINGS) private readonly settings?: Required<FormFieldSettings>
   ) {
-    this.type = settings.defaultType;
-    this.dense = settings.dense;
-    this.persistentHint = settings.persistentHint;
-    this.persistentPlaceholder = settings.persistentPlaceholder;
+    if (settings) {
+      this.type = settings.defaultType;
+      this.dense = settings.dense;
+      this.persistentHint = settings.persistentHint;
+      this.persistentPlaceholder = settings.persistentPlaceholder;
+    }
     this.nativeElement = this.elementRef.nativeElement;
   }
 

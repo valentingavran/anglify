@@ -18,7 +18,6 @@ const DEFAULT_FORM_FIELD_SETTINGS: Required<FormFieldSettings> = {
   declarations: [FormFieldComponent, InputDirective, LabelDirective],
   imports: [CommonModule, IconModule.forRoot({})],
   exports: [FormFieldComponent, InputDirective, LabelDirective],
-  providers: [{ provide: FORM_FIELD_SETTINGS, useValue: DEFAULT_FORM_FIELD_SETTINGS }],
 })
 export class FormFieldModule {
   public static forRoot(settings: FormFieldSettings): ModuleWithProviders<FormFieldModule> {
