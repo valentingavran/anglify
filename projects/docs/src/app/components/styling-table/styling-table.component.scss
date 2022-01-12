@@ -1,4 +1,4 @@
-@use '../../../styles';
+@use '../../../colors';
 
 :host {
   table {
@@ -8,10 +8,10 @@
     border-spacing: 0;
     white-space: pre-wrap;
     border-radius: 14px;
-    border: 1px solid styles.$color-outline-secondary;
+    border: 1px solid colors.$color-outline-secondary;
 
     tr:nth-child(even) {
-      background-color: styles.$color-surface-variant;
+      background-color: colors.$color-surface-variant;
     }
 
     td,

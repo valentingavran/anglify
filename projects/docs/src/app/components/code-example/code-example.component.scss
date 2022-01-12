@@ -1,4 +1,4 @@
-@use '../../../styles';
+@use '../../../colors';
 
 :host {
   display: grid;
@@ -7,7 +7,7 @@
 
   .preview {
     grid-area: preview;
-    border: 1px solid styles.$color-outline-secondary;
+    border: 1px solid colors.$color-outline-secondary;
     border-radius: 14px;
     padding: 48px;
     display: flex;
@@ -28,7 +28,7 @@
     white-space: normal;
 
     code {
-      background-color: styles.$color-surface-variant;
+      background-color: colors.$color-surface-variant;
       border-radius: 14px;
       white-space: pre;
     }

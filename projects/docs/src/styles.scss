@@ -1,4 +1,3 @@
-@forward '../../anglify/src/styles/settings/colors';
 @use '../../anglify/src/modules/icon';
 @use '../../anglify/src/modules/stepper';
 @use '../../anglify/src/modules/form-field';
@@ -27,6 +26,7 @@ a {
 
 :root {
   --color-primary: green;
+
   &.light {
     @import '~highlight.js/scss/github.scss';
   }
