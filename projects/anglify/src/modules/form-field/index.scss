@@ -2,7 +2,7 @@
 @use 'filled';
 @use 'outlined';
 @use 'sass:math';
-@import 'variables';
+@use 'variables' as *;
 
 .anglify-form-field {
   width: 100%;
@@ -45,8 +45,8 @@
       display: grid;
       align-items: center;
 
-      input,
-      textarea {
+      ::ng-deep input,
+      ::ng-deep textarea {
         grid-column: 1;
         grid-row: 1;
         border-style: none;

@@ -8,7 +8,8 @@
     "build": " ng build docs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "docs:json": "compodoc -p ./tsconfig.json -e json -d ."
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
+    "build:anglify": "ng build anglify && rsync -av dist/anglify/src/ dist/anglify/ && rm -rf dist/anglify/src"
   },
   "private": true,
   "dependencies": {
