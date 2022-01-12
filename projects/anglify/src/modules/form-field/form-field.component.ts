@@ -6,17 +6,19 @@ import {
   ContentChild,
   ElementRef,
   HostBinding,
+  Inject,
   Input,
   ViewChild,
 } from '@angular/core';
 import { InputDirective } from './directives/input.directive';
-import { FormFieldType } from './form-field.interface';
+import { FormFieldSettings, FormFieldType } from './form-field.interface';
 import { map, tap } from 'rxjs/operators';
 import { BooleanLike } from '../../utils/interfaces';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LabelDirective } from './directives/label/label.directive';
 import { isBooleanLikeTrue } from '../../utils/functions';
 import { BehaviorSubject, combineLatest } from 'rxjs';
+import { FORM_FIELD_SETTINGS } from './form-field-settings.token';
 
 @UntilDestroy()
 @Component({
@@ -70,7 +72,15 @@ export class FormFieldComponent implements AfterViewInit {
 
   private readonly nativeElement: HTMLElement;
 
-  public constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {
+  public constructor(
+    @Inject(FORM_FIELD_SETTINGS) private readonly settings: Required<FormFieldSettings>,
+    private readonly elementRef: ElementRef,
+    private readonly cdr: ChangeDetectorRef
+  ) {
+    this.type = settings.defaultType;
+    this.dense = settings.dense;
+    this.persistentHint = settings.persistentHint;
+    this.persistentPlaceholder = settings.persistentPlaceholder;
     this.nativeElement = this.elementRef.nativeElement;
   }
 
