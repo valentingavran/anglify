@@ -1,6 +1,6 @@
-@import 'variables';
+@use 'variables' as *;
 
-:host-context(.text-field-type-filled) {
+.anglify-text-field.text-field-type-filled {
   --icon-inactive-color: #{$text-field-filled-icon-color-inactive};
   padding-top: calc((#{$text-field-font-size} * #{$text-field-label-scale-focused}) / 2);
 
@@ -23,7 +23,7 @@
         font-size: $text-field-font-size;
       }
 
-      ::ng-deep input {
+      input {
         padding-block-start: $text-field-filled-padding-top;
         padding-block-end: $text-field-filled-padding-bottom;
         color: $text-field-filled-text-color-inactive;
@@ -67,7 +67,7 @@
         color: $text-field-filled-label-color-focused;
       }
 
-      ::ng-deep input {
+      input {
         color: $text-field-filled-text-color-focused;
 
         &::placeholder {
@@ -92,7 +92,7 @@
   &.persistent-placeholder,
   &.floating {
     &:not(.focused):not(.disabled) {
-      .text-field-container::ng-deep input {
+      .text-field-container input {
         &::placeholder {
           color: $text-field-filled-placeholder-color-inactive;
         }
@@ -112,7 +112,7 @@
   }
 
   &:not(.has-label) {
-    .text-field-container::ng-deep input {
+    .text-field-container input {
       padding-block-start: 14px !important;
       padding-block-end: 14px !important;
     }
@@ -121,7 +121,7 @@
   &.disabled {
     --icon-inactive-color: #{$text-field-filled-icon-color-disabled};
 
-    ::ng-deep input {
+    input {
       color: $text-field-filled-text-color-disabled !important;
     }
 
@@ -135,7 +135,7 @@
 
     &.persistent-placeholder {
       .text-field-container {
-        ::ng-deep input {
+        input {
           &::placeholder {
             color: $text-field-filled-placeholder-color-disabled;
           }
@@ -170,7 +170,7 @@
         --notched-outline-start-width: #{$text-field-filled-padding-start-dense};
       }
 
-      ::ng-deep input {
+      input {
         padding-block-start: 10px !important;
         padding-block-end: 10px !important;
       }

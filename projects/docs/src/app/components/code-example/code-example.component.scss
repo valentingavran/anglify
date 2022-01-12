@@ -1,3 +1,5 @@
+@use '../../../styles';
+
 :host {
   display: grid;
   grid-template-areas: 'preview' 'controls';
@@ -5,7 +7,8 @@
 
   .preview {
     grid-area: preview;
-    background-color: var(--surface-overlay);
+    border: 1px solid styles.$color-outline-secondary;
+    border-radius: 14px;
     padding: 48px;
     display: flex;
     justify-content: center;
@@ -25,7 +28,8 @@
     white-space: normal;
 
     code {
-      background-color: var(--surface-overlay);
+      background-color: styles.$color-surface-variant;
+      border-radius: 14px;
       white-space: pre;
     }
   }

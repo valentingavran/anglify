@@ -1,6 +1,6 @@
-@import 'variables';
+@use 'variables' as *;
 
-:host {
+.anglify-text-field {
   .details {
     grid-area: details;
     display: flex;

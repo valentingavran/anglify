@@ -1,6 +1,6 @@
-@import '../../variables';
+@use '../../variables' as *;
 
-:host {
+.anglify-stepper-header {
   display: flex;
   align-items: center;
   height: $stepper-header-height;
@@ -10,6 +10,7 @@
       .step-indicator {
         background: $stepper-step-indicator-color-active;
         transition: $stepper-step-indicator-transition;
+        color: $stepper-step-indicator-text-color-active;
       }
     }
 
@@ -43,7 +44,7 @@
       font-size: $stepper-step-indicator-font-size;
       border-radius: 50%;
       background: $stepper-step-indicator-color-inactive;
-      color: white;
+      color: $stepper-step-indicator-text-color-inactive;
       user-select: none;
       transition: $stepper-step-indicator-transition;
 

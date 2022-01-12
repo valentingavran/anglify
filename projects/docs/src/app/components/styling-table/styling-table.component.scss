@@ -1,3 +1,5 @@
+@use '../../../styles';
+
 :host {
   table {
     width: 100%;
@@ -5,11 +7,11 @@
     overflow: hidden;
     border-spacing: 0;
     white-space: pre-wrap;
-    border-radius: 4px;
-    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    border: 1px solid styles.$color-outline-secondary;
 
     tr:nth-child(even) {
-      background-color: var(--surface-overlay);
+      background-color: styles.$color-surface-variant;
     }
 
     td,

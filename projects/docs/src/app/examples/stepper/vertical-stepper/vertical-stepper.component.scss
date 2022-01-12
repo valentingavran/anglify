@@ -1,3 +1,7 @@
+@use '../../../../../../anglify/src/modules/stepper/variables' with (
+  $stepper-step-indicator-color-inactive: green
+);
+
 :host {
   width: 100%;
 }

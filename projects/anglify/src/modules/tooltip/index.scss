@@ -1,4 +1,4 @@
-@import "variables";
+@use 'variables' as *;
 
 .anglify-tooltip {
   position: absolute;
@@ -15,8 +15,8 @@
   transition-duration: $tooltip-transition-duration;
   transition-property: opacity;
   word-break: break-word;
-}
 
-.anglify-tooltip__show {
-  opacity: $tooltip-opacity;
+  &__show {
+    opacity: $tooltip-opacity;
+  }
 }

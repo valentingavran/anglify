@@ -22,7 +22,6 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 @Component({
   selector: 'anglify-text-field',
   templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFieldComponent implements AfterViewInit {
@@ -77,7 +76,7 @@ export class TextFieldComponent implements AfterViewInit {
 
   @HostBinding('class')
   private get classList(): string {
-    const classNames = [`text-field-type-${this.type}`];
+    const classNames = ['anglify-text-field', `text-field-type-${this.type}`];
     if (isBooleanLikeTrue(this.persistentHint)) {
       classNames.push('persistent-hint');
     }

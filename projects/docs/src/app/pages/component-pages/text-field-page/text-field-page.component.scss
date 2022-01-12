@@ -4,13 +4,14 @@
   .playground {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-outline-secondary);
+    border-radius: 14px;
 
     .content {
       display: flex;
       justify-content: center;
       align-items: center;
-      border-right: 1px solid #e2e8f0;
+      border-right: 1px solid var(--color-outline-secondary);
 
       anglify-text-field {
         max-width: 300px;

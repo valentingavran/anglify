@@ -1,8 +1,8 @@
-@use '../../styles/settings';
 @use 'sass:map';
-@import './variables';
+@use '../../styles/settings';
+@use './variables' as *;
 
-:host {
+.anglify-icon {
   align-items: center;
   display: inline-flex;
   font-feature-settings: 'liga';

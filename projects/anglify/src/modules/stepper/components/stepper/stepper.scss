@@ -1,6 +1,6 @@
-@import '../../variables';
+@use '../../variables' as *;
 
-:host {
+.anglify-stepper {
   width: 100%;
   max-width: 100%;
   display: grid;

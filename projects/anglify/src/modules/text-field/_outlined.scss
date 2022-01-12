@@ -1,6 +1,7 @@
-@import 'variables', '../../styles/mixins/notched-outline';
+@use 'variables' as *;
+@use '../../styles/mixins/notched-outline' as *;
 
-:host-context(.text-field-type-outlined) {
+.anglify-text-field.text-field-type-outlined {
   --icon-inactive-color: #{$text-field-outlined-icon-color-inactive};
   padding-top: calc((#{$text-field-font-size} * #{$text-field-label-scale-focused}) / 2);
 
@@ -9,7 +10,7 @@
     padding-inline-start: $text-field-outlined-padding-start;
     padding-inline-end: $text-field-outlined-padding-start;
 
-    ::ng-deep input {
+    input {
       padding-block-start: $text-field-outlined-padding-top;
       padding-block-end: $text-field-outlined-padding-bottom;
     }
@@ -51,7 +52,7 @@
         --notched-outline-border-color: #{$text-field-outlined-border-color-focused};
       }
 
-      ::ng-deep input {
+      input {
         color: $text-field-outlined-text-color-focused;
 
         &::placeholder {
@@ -69,7 +70,7 @@
   &.persistent-placeholder,
   &.floating {
     &:not(.focused):not(.disabled) {
-      .text-field-container::ng-deep input {
+      .text-field-container input {
         &::placeholder {
           color: $text-field-outlined-placeholder-color-inactive;
         }
@@ -104,7 +105,7 @@
 
   &:not(.focused):not(.disabled) {
     .text-field-container {
-      ::ng-deep input {
+      input {
         color: $text-field-outlined-text-color-inactive;
       }
 
@@ -134,7 +135,7 @@
   &.disabled {
     --icon-inactive-color: #{$text-field-outlined-icon-color-disabled};
 
-    ::ng-deep input {
+    input {
       color: $text-field-outlined-text-color-disabled;
     }
 
@@ -144,7 +145,7 @@
 
     &.persistent-placeholder {
       .text-field-container {
-        ::ng-deep input {
+        input {
           &::placeholder {
             color: $text-field-outlined-placeholder-color-disabled;
           }
@@ -173,7 +174,7 @@
         --notched-outline-start-width: #{$text-field-outlined-padding-start-dense};
       }
 
-      ::ng-deep input {
+      input {
         padding-block-start: $text-field-outlined-padding-top-dense;
         padding-block-end: $text-field-outlined-padding-bottom-dense;
       }

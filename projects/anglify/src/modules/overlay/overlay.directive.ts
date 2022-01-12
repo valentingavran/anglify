@@ -13,24 +13,18 @@ export class OverlayDirective {
   @Input()
   public set selected(value: BooleanLike) {
     if (isBooleanLikeTrue(value)) {
-      Object.assign(this._selectedOrActivatedContainer.style, {
-        backgroundColor: 'var(--overlay-color-selected, var(--color-primary)',
-        opacity: 'var(--overlay-opacity-selected, 8%)',
-      });
+      this._selectedOrActivatedContainer.classList.add('anglify-overlay__selected');
     } else {
-      this._selectedOrActivatedContainer.style.backgroundColor = 'transparent';
+      this._selectedOrActivatedContainer.classList.remove('anglify-overlay__selected');
     }
   }
 
   @Input()
   public set activated(value: BooleanLike) {
     if (isBooleanLikeTrue(value)) {
-      Object.assign(this._selectedOrActivatedContainer.style, {
-        backgroundColor: 'var(--overlay-color-activated, var(--color-primary)',
-        opacity: 'var(--overlay-opacity-activated, 12%)',
-      });
+      this._selectedOrActivatedContainer.classList.add('anglify-overlay__activated');
     } else {
-      this._selectedOrActivatedContainer.style.backgroundColor = 'transparent';
+      this._selectedOrActivatedContainer.classList.remove('anglify-overlay__activated');
     }
   }
 
@@ -46,7 +40,7 @@ export class OverlayDirective {
 
   public constructor(private readonly _element: ElementRef, private readonly _renderer: Renderer2) {
     this._nativeElement = this._element.nativeElement;
-    this._nativeElement.style.position = 'relative';
+    this._nativeElement.classList.add('anglify-overlay');
     this._hoverContainer = this.createOverlayContainer();
     this._selectedOrActivatedContainer = this.createOverlayContainer();
     this._showRippleHandler$.pipe(untilDestroyed(this)).subscribe();
@@ -55,12 +49,12 @@ export class OverlayDirective {
 
   @HostListener('mouseenter')
   private onMouseEnter(): void {
-    this._hoverContainer.style.backgroundColor = 'var(--overlay-color-hovered, rgba(0, 0, 0, 0.04))';
+    this._hoverContainer.classList.add('anglify-overlay__hovered');
   }
 
   @HostListener('mouseleave')
   private onMouseLeave(): void {
-    this._hoverContainer.style.backgroundColor = 'transparent';
+    this._hoverContainer.classList.remove('anglify-overlay__hovered');
   }
 
   @HostListener('keydown.space', ['$event'])
@@ -79,14 +73,8 @@ export class OverlayDirective {
 
   private createOverlayContainer(): HTMLElement {
     const hoverContainer = this._renderer.createElement('div');
+    hoverContainer.classList.add('anglify-overlay__container');
     this._renderer.appendChild(this._nativeElement, hoverContainer);
-    Object.assign(hoverContainer.style, {
-      position: 'absolute',
-      inset: '0',
-      pointerEvents: 'none',
-      overflow: 'hidden',
-      backgroundColor: 'transparent',
-    });
     return hoverContainer;
   }
 
@@ -100,19 +88,12 @@ export class OverlayDirective {
       const height = this._hoverContainer.clientHeight;
       const diff = Math.max(width, height) - Math.min(width, height);
 
-      const showRipple = isBooleanLikeTrue(this.ripple);
-
-      const pressAndFocusContainer: HTMLElement = this._renderer.createElement('div');
-      Object.assign(pressAndFocusContainer.style, {
-        position: 'absolute',
-        borderRadius: '50%',
-        transitionProperty: showRipple ? 'transform, opacity' : undefined,
-        transitionTimingFunction: showRipple ? 'linear' : undefined,
-        transitionDuration: showRipple ? '1000ms' : undefined,
-        transitionDelay: showRipple ? '70ms' : undefined, // Ripple is slightly delayed, to handle route changes better
-        backgroundColor: 'var(--overlay-color-focused, rgba(0, 0, 0, 0.12))',
-        opacity: '100%',
-        transform: 'scale(0)',
+      const focusContainer: HTMLElement = this._renderer.createElement('div');
+      focusContainer.classList.add('anglify-overlay__focus-container');
+      if (isBooleanLikeTrue(this.ripple)) {
+        focusContainer.classList.add('anglify-overlay__ripple');
+      }
+      Object.assign(focusContainer.style, {
         width: `${Math.max(width, height)}px`,
         height: `${Math.max(width, height)}px`,
       });
@@ -120,18 +101,18 @@ export class OverlayDirective {
       if (event instanceof MouseEvent) {
         const offsetX = event.offsetX;
         const offsetY = event.offsetY;
-        pressAndFocusContainer.style.left = `${offsetX - width / 2 - (width < height ? diff / 2 : 0)}px`;
-        pressAndFocusContainer.style.top = `${offsetY - height / 2 - (width > height ? diff / 2 : 0)}px`;
+        focusContainer.style.left = `${offsetX - width / 2 - (width < height ? diff / 2 : 0)}px`;
+        focusContainer.style.top = `${offsetY - height / 2 - (width > height ? diff / 2 : 0)}px`;
       } else {
-        pressAndFocusContainer.style.left = `${0 - (width < height ? diff / 2 : 0)}px`;
-        pressAndFocusContainer.style.top = `${0 - (width > height ? diff / 2 : 0)}px`;
+        focusContainer.style.left = `${0 - (width < height ? diff / 2 : 0)}px`;
+        focusContainer.style.top = `${0 - (width > height ? diff / 2 : 0)}px`;
       }
-      this._renderer.appendChild(this._hoverContainer, pressAndFocusContainer);
+      this._renderer.appendChild(this._hoverContainer, focusContainer);
       setTimeout(() => {
-        pressAndFocusContainer.style.transform = 'scale(5)';
+        focusContainer.style.transform = 'scale(5)';
       }, 0);
 
-      this._visibleRipples.push(pressAndFocusContainer);
+      this._visibleRipples.push(focusContainer);
     })
   );
 

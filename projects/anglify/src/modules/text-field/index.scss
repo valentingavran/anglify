@@ -4,7 +4,7 @@
 @use 'sass:math';
 @import 'variables';
 
-:host {
+.anglify-text-field {
   width: 100%;
   display: grid;
   grid-template-areas:
@@ -45,7 +45,7 @@
       display: grid;
       align-items: center;
 
-      ::ng-deep input {
+      input {
         grid-column: 1;
         grid-row: 1;
         border-style: none;
