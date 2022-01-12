@@ -7,6 +7,8 @@ export * from './modules/form-field/directives/input.directive';
 export * from './modules/form-field/directives/label/label.directive';
 export * from './modules/form-field/form-field.component';
 export * from './modules/form-field/form-field.interface';
+export * from './modules/form-field/form-field.interface';
+export * from './modules/form-field/form-field-settings.token';
 
 export * from './modules/icon/icon.module';
 export * from './modules/icon/icon.component';
