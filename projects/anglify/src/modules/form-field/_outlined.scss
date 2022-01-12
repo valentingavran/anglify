@@ -189,4 +189,15 @@
       }
     }
   }
+
+  &.error {
+    .label,
+    .details .hint {
+      color: $form-field-outlined-error-color !important;
+    }
+
+    .form-field-container .form-field-border {
+      --notched-outline-border-color: #{$form-field-outlined-error-color};
+    }
+  }
 }
