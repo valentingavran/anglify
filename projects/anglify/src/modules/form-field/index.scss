@@ -45,8 +45,8 @@
       display: grid;
       align-items: center;
 
-      ::ng-deep input,
-      ::ng-deep textarea {
+      input,
+      textarea {
         grid-column: 1;
         grid-row: 1;
         border-style: none;
