@@ -80,6 +80,9 @@ export class InputDirective implements OnInit {
       const maxlength = this.nativeElement.getAttribute('maxlength');
       const pattern = this.nativeElement.getAttribute('pattern');
 
+      if (this.ngControl?.disabled) {
+        return of(null);
+      }
       // these checks must be ignored on first emit, because of startWith(false)
       if (index > 0) {
         // First validate Reactive Forms, because they have the highest priority
