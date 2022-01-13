@@ -1,7 +1,7 @@
 @use 'variables' as *;
 @use '../../styles/mixins/notched-outline' as *;
 
-.anglify-form-field.form-field-type-outlined {
+:host-context(.form-field-type-outlined) {
   --icon-inactive-color: #{$form-field-outlined-icon-color-inactive};
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
@@ -10,10 +10,12 @@
     padding-inline-start: $form-field-outlined-padding-start;
     padding-inline-end: $form-field-outlined-padding-start;
 
-    input,
-    textarea {
-      padding-block-start: $form-field-outlined-padding-top;
-      padding-block-end: $form-field-outlined-padding-bottom;
+    ::ng-deep {
+      input,
+      textarea {
+        padding-block-start: $form-field-outlined-padding-top;
+        padding-block-end: $form-field-outlined-padding-bottom;
+      }
     }
 
     .form-field-border {
@@ -53,12 +55,14 @@
         --notched-outline-border-color: #{$form-field-outlined-border-color-focused};
       }
 
-      input,
-      textarea {
-        color: $form-field-outlined-text-color-focused;
+      ::ng-deep {
+        input,
+        textarea {
+          color: $form-field-outlined-text-color-focused;
 
-        &::placeholder {
-          color: $form-field-outlined-placeholder-color-focused;
+          &::placeholder {
+            color: $form-field-outlined-placeholder-color-focused;
+          }
         }
       }
 
@@ -73,10 +77,12 @@
   &.floating {
     &:not(.focused):not(.disabled) {
       .form-field-container {
-        input,
-        textarea {
-          &::placeholder {
-            color: $form-field-outlined-placeholder-color-inactive;
+        ::ng-deep {
+          input,
+          textarea {
+            &::placeholder {
+              color: $form-field-outlined-placeholder-color-inactive;
+            }
           }
         }
       }
@@ -110,9 +116,11 @@
 
   &:not(.focused):not(.disabled) {
     .form-field-container {
-      input,
-      textarea {
-        color: $form-field-outlined-text-color-inactive;
+      ::ng-deep {
+        input,
+        textarea {
+          color: $form-field-outlined-text-color-inactive;
+        }
       }
 
       .label {
@@ -141,9 +149,11 @@
   &.disabled {
     --icon-inactive-color: #{$form-field-outlined-icon-color-disabled};
 
-    input,
-    textarea {
-      color: $form-field-outlined-text-color-disabled;
+    ::ng-deep {
+      input,
+      textarea {
+        color: $form-field-outlined-text-color-disabled;
+      }
     }
 
     .form-field-container {
@@ -152,10 +162,12 @@
 
     &.persistent-placeholder {
       .form-field-container {
-        input,
-        textarea {
-          &::placeholder {
-            color: $form-field-outlined-placeholder-color-disabled;
+        ::ng-deep {
+          input,
+          textarea {
+            &::placeholder {
+              color: $form-field-outlined-placeholder-color-disabled;
+            }
           }
         }
       }
@@ -182,10 +194,12 @@
         --notched-outline-start-width: #{$form-field-outlined-padding-start-dense};
       }
 
-      input,
-      textarea {
-        padding-block-start: $form-field-outlined-padding-top-dense;
-        padding-block-end: $form-field-outlined-padding-bottom-dense;
+      ::ng-deep {
+        input,
+        textarea {
+          padding-block-start: $form-field-outlined-padding-top-dense;
+          padding-block-end: $form-field-outlined-padding-bottom-dense;
+        }
       }
     }
   }
