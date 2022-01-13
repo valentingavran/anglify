@@ -5,7 +5,8 @@
     "entryFile": "src/public-api.ts"
   },
   "assets": [
-    "src/**/index.scss",
-    "src/styles/**/*.scss"
+    "src/styles/**/*.scss",
+    "src/modules/tooltip/*.scss",
+    "src/modules/overlay/*.scss"
   ]
 }
