@@ -23,6 +23,7 @@ const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
 @Component({
   selector: 'anglify-icon',
   template: ``,
+  styleUrls: ['./icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
@@ -57,7 +58,7 @@ export class IconComponent {
   private get classList(): string | undefined {
     if (!this.icon) return;
 
-    const classNames = ['anglify-icon', ICON_SET_CLASS_MAPPING[this.iconSet], this.icon, `icon-size-${this.size}`];
+    const classNames = [ICON_SET_CLASS_MAPPING[this.iconSet], this.icon, `icon-size-${this.size}`];
 
     if (isBooleanLikeTrue(this.clickable)) {
       classNames.push('clickable');

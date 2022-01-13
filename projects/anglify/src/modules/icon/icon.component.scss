@@ -2,7 +2,7 @@
 @use '../../styles/settings';
 @use './variables' as *;
 
-.anglify-icon {
+:host {
   align-items: center;
   display: inline-flex;
   font-feature-settings: 'liga';

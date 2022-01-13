@@ -1,6 +1,6 @@
 @use 'variables' as *;
 
-.anglify-form-field.form-field-type-filled {
+:host-context(.form-field-type-filled) {
   --icon-inactive-color: #{$form-field-filled-icon-color-inactive};
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
@@ -23,11 +23,13 @@
         font-size: $form-field-font-size;
       }
 
-      input,
-      textarea {
-        padding-block-start: $form-field-filled-padding-top;
-        padding-block-end: $form-field-filled-padding-bottom;
-        color: $form-field-filled-text-color-inactive;
+      ::ng-deep {
+        input,
+        textarea {
+          padding-block-start: $form-field-filled-padding-top;
+          padding-block-end: $form-field-filled-padding-bottom;
+          color: $form-field-filled-text-color-inactive;
+        }
       }
     }
 
@@ -68,12 +70,14 @@
         color: $form-field-filled-label-color-focused;
       }
 
-      input,
-      textarea {
-        color: $form-field-filled-text-color-focused;
+      ::ng-deep {
+        input,
+        textarea {
+          color: $form-field-filled-text-color-focused;
 
-        &::placeholder {
-          color: $form-field-filled-placeholder-color-focused;
+          &::placeholder {
+            color: $form-field-filled-placeholder-color-focused;
+          }
         }
       }
     }
@@ -95,10 +99,12 @@
   &.floating {
     &:not(.focused):not(.disabled) {
       .form-field-container {
-        input,
-        textarea {
-          &::placeholder {
-            color: $form-field-filled-placeholder-color-inactive;
+        ::ng-deep {
+          input,
+          textarea {
+            &::placeholder {
+              color: $form-field-filled-placeholder-color-inactive;
+            }
           }
         }
       }
@@ -118,10 +124,12 @@
 
   &:not(.has-label) {
     .form-field-container {
-      input,
-      textarea {
-        padding-block-start: 14px !important;
-        padding-block-end: 14px !important;
+      ::ng-deep {
+        input,
+        textarea {
+          padding-block-start: 14px !important;
+          padding-block-end: 14px !important;
+        }
       }
     }
   }
@@ -129,9 +137,11 @@
   &.disabled {
     --icon-inactive-color: #{$form-field-filled-icon-color-disabled};
 
-    input,
-    textarea {
-      color: $form-field-filled-text-color-disabled !important;
+    ::ng-deep {
+      input,
+      textarea {
+        color: $form-field-filled-text-color-disabled !important;
+      }
     }
 
     .form-field-container {
@@ -144,10 +154,12 @@
 
     &.persistent-placeholder {
       .form-field-container {
-        input,
-        textarea {
-          &::placeholder {
-            color: $form-field-filled-placeholder-color-disabled;
+        ::ng-deep {
+          input,
+          textarea {
+            &::placeholder {
+              color: $form-field-filled-placeholder-color-disabled;
+            }
           }
         }
       }
@@ -179,11 +191,12 @@
       .form-field-border {
         --notched-outline-start-width: #{$form-field-filled-padding-start-dense};
       }
-
-      input,
-      textarea {
-        padding-block-start: 10px !important;
-        padding-block-end: 10px !important;
+      ::ng-deep {
+        input,
+        textarea {
+          padding-block-start: 10px !important;
+          padding-block-end: 10px !important;
+        }
       }
     }
   }

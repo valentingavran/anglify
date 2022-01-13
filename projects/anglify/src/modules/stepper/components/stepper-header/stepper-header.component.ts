@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, HostListener, Input } from '@angular/core';
 import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
@@ -19,8 +10,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'anglify-stepper-header',
   templateUrl: './stepper-header.component.html',
+  styleUrls: ['./stepper-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
 })
 export class StepperHeaderComponent {
   @ContentChild(StepperVisitedIconDirective) public readonly stepperVisitedIcon!: StepperVisitedIconDirective;
@@ -80,11 +71,6 @@ export class StepperHeaderComponent {
     private readonly stepperSettings: StepperSettings
   ) {
     this.headerNavigationEnabledHandler$.pipe(untilDestroyed(this)).subscribe();
-  }
-
-  @HostBinding('class')
-  public get classList(): string {
-    return 'anglify-stepper-header';
   }
 
   @HostListener('click')

@@ -25,6 +25,7 @@ import { FORM_FIELD_SETTINGS } from './form-field-settings.token';
 @Component({
   selector: 'anglify-form-field',
   templateUrl: './form-field.component.html',
+  styleUrls: ['./form-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormFieldComponent implements AfterViewInit {
@@ -89,7 +90,7 @@ export class FormFieldComponent implements AfterViewInit {
 
   @HostBinding('class')
   private get classList(): string {
-    const classNames = ['anglify-form-field', `form-field-type-${this.type}`];
+    const classNames = [`form-field-type-${this.type}`];
     if (isBooleanLikeTrue(this.persistentHint)) {
       classNames.push('persistent-hint');
     }

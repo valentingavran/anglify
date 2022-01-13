@@ -6,11 +6,9 @@ import {
   ContentChild,
   ContentChildren,
   ElementRef,
-  HostBinding,
   Input,
   Output,
   QueryList,
-  ViewEncapsulation,
 } from '@angular/core';
 import { Stepper } from '../../services/stepper/stepper.service';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
@@ -24,7 +22,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'anglify-stepper',
   templateUrl: './stepper.component.html',
-  styleUrls: ['./stepper.scss'],
+  styleUrls: ['./stepper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: Stepper, useExisting: StepperComponent }, StepperSettings],
   animations: [
@@ -57,7 +55,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
       ]),
     ]),
   ],
-  encapsulation: ViewEncapsulation.None,
 })
 export class StepperComponent extends Stepper implements AfterContentInit {
   @ContentChildren(Step) private readonly _steps?: QueryList<Step>;
@@ -102,11 +99,6 @@ export class StepperComponent extends Stepper implements AfterContentInit {
     super();
     this.nativeElement = this.elementRef.nativeElement;
     this._orientationHandler$.pipe(untilDestroyed(this)).subscribe();
-  }
-
-  @HostBinding('class')
-  public get classList(): string {
-    return 'anglify-stepper';
   }
 
   public ngAfterContentInit(): void {

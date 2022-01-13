@@ -4,7 +4,7 @@
 @use 'sass:math';
 @use 'variables' as *;
 
-.anglify-form-field {
+:host {
   width: 100%;
   display: grid;
   grid-template-areas:
@@ -45,25 +45,27 @@
       display: grid;
       align-items: center;
 
-      input,
-      textarea {
-        grid-column: 1;
-        grid-row: 1;
-        border-style: none;
-        outline: none;
-        line-height: $form-field-line-height;
-        max-width: 100%;
-        min-width: 0;
-        background-color: transparent;
-        font-size: $form-field-font-size;
-        width: 100%;
-        box-sizing: border-box;
-        resize: vertical;
+      ::ng-deep {
+        input,
+        textarea {
+          grid-column: 1;
+          grid-row: 1;
+          border-style: none;
+          outline: none;
+          line-height: $form-field-line-height;
+          max-width: 100%;
+          min-width: 0;
+          background-color: transparent;
+          font-size: $form-field-font-size;
+          width: 100%;
+          box-sizing: border-box;
+          resize: vertical;
 
-        &::placeholder {
-          color: transparent;
-          transition: color $transition-duration $form-field-transition-timing-function;
-          user-select: none;
+          &::placeholder {
+            color: transparent;
+            transition: color $transition-duration $form-field-transition-timing-function;
+            user-select: none;
+          }
         }
       }
 

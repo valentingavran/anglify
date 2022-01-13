@@ -1,6 +1,6 @@
 @use '../../variables' as *;
 
-.anglify-stepper-header {
+:host {
   display: flex;
   align-items: center;
   height: $stepper-header-height;

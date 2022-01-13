@@ -1,6 +1,6 @@
 @use 'variables' as *;
 
-.anglify-form-field {
+:host {
   .details {
     grid-area: details;
     display: flex;
