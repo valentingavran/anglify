@@ -20,4 +20,5 @@ export class FormFieldPageComponent {
   public prependOuterIcon = false;
   public appendIcon = false;
   public appendOuterIcon = false;
+  public hideDetails = false;
 }

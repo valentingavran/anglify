@@ -12,8 +12,11 @@
     '. details .';
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 1fr;
-  row-gap: 4px;
   overflow-x: hidden;
+
+  &:not(.hide-details) {
+    row-gap: 4px;
+  }
 
   .outer-prepend:not(:empty) {
     grid-area: outer-prepend;

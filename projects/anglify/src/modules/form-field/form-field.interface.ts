@@ -5,4 +5,5 @@ export interface FormFieldSettings {
   dense?: boolean;
   persistentHint?: boolean;
   persistentPlaceholder?: boolean;
+  hideDetails?: boolean;
 }
