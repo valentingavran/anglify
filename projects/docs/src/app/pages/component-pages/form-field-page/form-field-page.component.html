@@ -11,6 +11,7 @@
       [append-outer-icon]="appendOuterIcon ? 'mdi-home' : ''"
       [persistent-placeholder]="persistentPlaceholder"
       [persistent-hint]="persistentHint"
+      [hide-details]="hideDetails"
       [hint]="hint"
     >
       <ng-template anglifyLabel>{{ label }}</ng-template>
@@ -68,6 +69,10 @@
     <label>
       Append outer icon:
       <input type="checkbox" [(ngModel)]="appendOuterIcon" />
+    </label>
+    <label>
+      Hide details:
+      <input type="checkbox" [(ngModel)]="hideDetails" />
     </label>
   </div>
 </div>

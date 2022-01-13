@@ -12,6 +12,7 @@ const DEFAULT_FORM_FIELD_SETTINGS: Required<FormFieldSettings> = {
   dense: false,
   persistentHint: false,
   persistentPlaceholder: false,
+  hideDetails: false,
 };
 
 @NgModule({

@@ -23,6 +23,10 @@
     }
   }
 
+  &.hide-details .details {
+    display: none;
+  }
+
   &.persistent-hint .details .hint {
     transform: translateY(0);
   }

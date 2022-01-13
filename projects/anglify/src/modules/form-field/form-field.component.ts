@@ -45,6 +45,7 @@ export class FormFieldComponent implements AfterViewInit {
   @Input() public suffix?: string;
   @Input() public label?: string;
   @Input() public dense: BooleanLike = false;
+  @Input('hide-details') public hideDetails: BooleanLike = false;
 
   @Input()
   public set error(value: string) {
@@ -84,6 +85,7 @@ export class FormFieldComponent implements AfterViewInit {
       this.dense = settings.dense;
       this.persistentHint = settings.persistentHint;
       this.persistentPlaceholder = settings.persistentPlaceholder;
+      this.hideDetails = settings.hideDetails;
     }
     this.nativeElement = this.elementRef.nativeElement;
   }
@@ -102,6 +104,9 @@ export class FormFieldComponent implements AfterViewInit {
     }
     if (this.labelDirective || this.label) {
       classNames.push('has-label');
+    }
+    if (isBooleanLikeTrue(this.hideDetails)) {
+      classNames.push('hide-details');
     }
     return classNames.join(' ');
   }
