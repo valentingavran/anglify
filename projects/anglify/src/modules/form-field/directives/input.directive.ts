@@ -1,5 +1,5 @@
 import { Directive, ElementRef, OnInit, Optional, Self } from '@angular/core';
-import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 import { observeOnMutation } from '../../../utils/functions';
 import { fromEvent, merge, NEVER, Observable, of, Subject } from 'rxjs';
 import { NgControl } from '@angular/forms';
@@ -35,6 +35,11 @@ export class InputDirective implements OnInit {
     startWith(false),
     map(() => {
       return this.nativeElement.hasAttribute('disabled');
+    }),
+    tap(disabled => {
+      if (disabled) {
+        this.ngControl?.control?.setErrors(null);
+      }
     }),
     shareReplay(1)
   );
