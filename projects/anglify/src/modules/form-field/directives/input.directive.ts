@@ -36,11 +36,6 @@ export class InputDirective implements OnInit {
     map(() => {
       return this.nativeElement.hasAttribute('disabled');
     }),
-    tap(disabled => {
-      if (disabled) {
-        this.ngControl?.control?.setErrors(null);
-      }
-    }),
     shareReplay(1)
   );
 

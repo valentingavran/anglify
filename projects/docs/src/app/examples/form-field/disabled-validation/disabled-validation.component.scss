@@ -1,0 +1,22 @@
+@import '../../../helpers/breakpoints';
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+
+  @include sm {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    button {
+      width: fit-content;
+    }
+  }
+}

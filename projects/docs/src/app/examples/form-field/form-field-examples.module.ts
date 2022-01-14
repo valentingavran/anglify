@@ -20,6 +20,7 @@ import { LabelSlotComponent } from './label-slot/label-slot.component';
 import { IconModule } from '../../../../../anglify/src/modules/icon/icon.module';
 import { DenseComponent } from './dense/dense.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { DisabledValidationComponent } from './disabled-validation/disabled-validation.component';
 
 @NgModule({
   imports: [CommonModule, FormFieldModule, ReactiveFormsModule, IconModule],
@@ -41,6 +42,7 @@ import { TextareaComponent } from './textarea/textarea.component';
     LabelSlotComponent,
     DenseComponent,
     TextareaComponent,
+    DisabledValidationComponent,
   ],
 })
 export class FormFieldExamplesModule {}
