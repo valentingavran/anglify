@@ -1,5 +1,5 @@
 import { Directive, ElementRef, OnInit, Optional, Self } from '@angular/core';
-import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 import { observeOnMutation } from '../../../utils/functions';
 import { fromEvent, merge, NEVER, Observable, of, Subject } from 'rxjs';
 import { NgControl } from '@angular/forms';
@@ -80,6 +80,9 @@ export class InputDirective implements OnInit {
       const maxlength = this.nativeElement.getAttribute('maxlength');
       const pattern = this.nativeElement.getAttribute('pattern');
 
+      if (this.ngControl?.disabled) {
+        return of(null);
+      }
       // these checks must be ignored on first emit, because of startWith(false)
       if (index > 0) {
         // First validate Reactive Forms, because they have the highest priority
