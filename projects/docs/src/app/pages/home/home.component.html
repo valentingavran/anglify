@@ -2,11 +2,11 @@
 
 <h2>Components</h2>
 <div class="items">
-  <div *ngFor="let component of components" [routerLink]="component.link" anglifyOverlay>{{ component.name }}</div>
+  <div class="item" *ngFor="let component of components" [routerLink]="component.link" anglifyOverlay>{{ component.name }}</div>
 </div>
 
 <h2>Directives</h2>
 
 <div class="items">
-  <div *ngFor="let directive of directives" [routerLink]="directive.link" anglifyOverlay>{{ directive.name }}</div>
+  <div class="item" *ngFor="let directive of directives" [routerLink]="directive.link" anglifyOverlay>{{ directive.name }}</div>
 </div>
