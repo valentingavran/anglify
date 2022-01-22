@@ -2,12 +2,12 @@
 
 .anglify-overlay {
   position: relative;
+  overflow: hidden;
 
   .anglify-overlay__container {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    overflow: hidden;
     background: transparent;
   }
 
