@@ -7,7 +7,7 @@ import { isBooleanLikeTrue } from '../../utils/functions';
 
 @UntilDestroy(this)
 @Directive({
-  selector: '[anglifyOverlay]',
+  selector: '[anglifyOverlay], [anglifyButton]',
 })
 export class OverlayDirective {
   @Input()

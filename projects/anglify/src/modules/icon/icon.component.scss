@@ -38,4 +38,15 @@
     cursor: default;
     color: $icon-disabled-color;
   }
+
+  &.left {
+    margin-inline-end: 8px;
+  }
+
+  &.right {
+    margin-inline-start: 8px;
+  }
+}
+:host-context(button) {
+  color: inherit;
 }
