@@ -1,5 +1,7 @@
 <div>
-  <anglify-icon icon="mdi-theme-light-dark" clickable (click)="toggleTheme()"></anglify-icon>
+  <button anglifyButton appearance="icon" (click)="toggleTheme()">
+    <anglify-icon icon="mdi-theme-light-dark"></anglify-icon>
+  </button>
 </div>
 <main>
   <router-outlet></router-outlet>
