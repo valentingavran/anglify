@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-areas: 'preview' 'controls';
-  gap: 1rem;
+  gap: 0.5rem;
 
   .preview {
     grid-area: preview;
