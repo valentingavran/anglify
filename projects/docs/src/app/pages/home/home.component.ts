@@ -8,6 +8,10 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   public components = [
     {
+      link: 'components/button',
+      name: 'Button',
+    },
+    {
       link: 'components/icon',
       name: 'Icon',
     },

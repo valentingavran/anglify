@@ -1,5 +1,6 @@
 @use '../../anglify/src/modules/tooltip';
 @use '../../anglify/src/modules/overlay';
+@use '../../anglify/src/modules/button';
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -26,6 +27,7 @@ a {
 :root {
   &.light {
     @import '~highlight.js/scss/github.scss';
+    --color-primary: #007fff;
     --color-surface: #fffbfe;
     --color-on-surface-high-emphasis: rgb(0, 0, 0, 0.87);
     --color-on-surface-medium-emphasis: rgb(0, 0, 0, 0.6);

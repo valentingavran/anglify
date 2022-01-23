@@ -6,11 +6,16 @@ import { StepperComponent } from './pages/component-pages/stepper/stepper.compon
 import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'components/button',
+    component: ButtonPageComponent,
   },
   {
     path: 'components/icon',
