@@ -67,6 +67,7 @@ export class OverlayDirective {
   @HostListener('keyup.space')
   @HostListener('keyup.enter')
   @HostListener('mouseup')
+  @HostListener('mouseout')
   private onKeyup(): void {
     this._hideRippleAction.next();
   }
