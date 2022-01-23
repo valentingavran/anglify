@@ -14,7 +14,7 @@ $color-background: var(--color-background, #ffffff) !default;
 $color-on-background-high-emphasis: var(--color-on-background-high-emphasis, rgb(0, 0, 0, 0.87)) !default;
 $color-on-background-medium-emphasis: var(--color-on-background-medium-emphasis, rgb(0, 0, 0, 0.6)) !default;
 $color-on-background-low-emphasis: var(--color-on-background-low-emphasis, rgb(0, 0, 0, 0.38)) !default;
-$color-surface: var(--color-surface, #fffbfe) !default;
+$color-surface: var(--color-surface, #fdfbff) !default;
 $color-on-surface-high-emphasis: var(--color-on-surface-high-emphasis, rgb(0, 0, 0, 0.87)) !default;
 $color-on-surface-medium-emphasis: var(--color-on-surface-medium-emphasis, rgb(0, 0, 0, 0.6)) !default;
 $color-on-surface-low-emphasis: var(--color-on-surface-low-emphasis, rgb(0, 0, 0, 0.38)) !default;
@@ -32,3 +32,13 @@ $color-inverse-surface: var(--color-inverse-surface, #313033) !default;
 $color-inverse-on-surface-high-emphasis: var(--color-inverse-on-surface-high-emphasis, rgb(244, 239, 244, 0.87)) !default;
 $color-inverse-on-surface-medium-emphasis: var(--color-inverse-on-surface-medium-emphasis, rgb(244, 239, 244, 0.6)) !default;
 $color-inverse-on-surface-low-emphasis: var(--color-inverse-on-surface-low-emphasis, rgb(244, 239, 244, 0.38)) !default;
+
+$color-secondary-container: var(--color-secondary-container, #dae2f9) !default;
+$color-on-secondary-container-high-emphasis: var(--color-on-secondary-container-high-emphasis, rgb(0, 0, 0, 0.87)) !default;
+$color-on-secondary-container-medium-emphasis: var(--color-on-secondary-container-medium-emphasis, rgb(0, 0, 0, 0.6)) !default;
+$color-on-secondary-container-low-emphasis: var(--color-on-secondary-container-low-emphasis, rgb(0, 0, 0, 0.38)) !default;
+
+$color-primary-container: var(--color-primary-container, #004492) !default;
+$color-on-primary-container-high-emphasis: var(--color-on-primary-container-high-emphasis, rgb(255, 255, 255, 0.87)) !default;
+$color-on-primary-container-medium-emphasis: var(--color-on-primary-container-medium-emphasis, rgb(255, 255, 255, 0.6)) !default;
+$color-on-primary-container-low-emphasis: var(--color-on-primary-container-low-emphasis, rgb(255, 255, 255, 0.38)) !default;
