@@ -1,4 +1,14 @@
-import { Directive, ElementRef, HostListener, Input, OnDestroy, Renderer2 } from '@angular/core';
+import {
+  ContentChild,
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  Renderer2,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 
 export type Position = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
 
@@ -6,14 +16,20 @@ export type Position = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
   selector: '[anglifyTooltip]',
 })
 export class TooltipDirective implements OnDestroy {
+  @ContentChild('tooltipContent') public template?: TemplateRef<any>;
+
   @Input('anglifyTooltip') public text?: string;
   @Input() public position: Position = 'BOTTOM';
 
   private readonly nativeElement: HTMLElement;
   private tooltip: HTMLElement | null = null;
 
-  public constructor(private readonly el: ElementRef, private readonly renderer: Renderer2) {
-    this.nativeElement = this.el.nativeElement;
+  public constructor(
+    private readonly elementRef: ElementRef,
+    private readonly renderer: Renderer2,
+    private readonly viewContainerRef: ViewContainerRef
+  ) {
+    this.nativeElement = this.elementRef.nativeElement;
   }
 
   @HostListener('mouseenter')
@@ -27,8 +43,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   private show(): void {
-    if (!this.text) return;
-    this.tooltip = this.create(this.text, this.position);
+    this.tooltip = this.create();
     this.setPosition();
     this.renderer.addClass(this.tooltip, 'anglify-tooltip__show');
   }
@@ -36,16 +51,20 @@ export class TooltipDirective implements OnDestroy {
   private hide(): void {
     if (!this.tooltip) return;
     this.renderer.removeClass(this.tooltip, 'anglify-tooltip__show');
-    this.renderer.removeChild(document.body, this.tooltip);
+    this.renderer.removeChild(this.nativeElement, this.tooltip);
     this.tooltip = null;
   }
 
-  private create(text: string, position: Position): HTMLSpanElement {
+  private create(): HTMLSpanElement {
     const tooltip = this.renderer.createElement('span');
-    this.renderer.appendChild(tooltip, this.renderer.createText(text));
+    if (this.template) {
+      const view = this.viewContainerRef.createEmbeddedView(this.template);
+      view.rootNodes.forEach(node => this.renderer.appendChild(tooltip, node));
+    } else if (this.text) {
+      this.renderer.appendChild(tooltip, this.renderer.createText(this.text));
+    }
     this.renderer.appendChild(document.body, tooltip);
     this.renderer.addClass(tooltip, 'anglify-tooltip');
-    this.renderer.addClass(tooltip, `anglify-tooltip__${position}`);
     return tooltip;
   }
 
