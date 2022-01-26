@@ -20,6 +20,7 @@ export class TooltipDirective implements OnDestroy {
 
   @Input('anglifyTooltip') public text?: string;
   @Input() public position: Position = 'BOTTOM';
+  @Input('content-class') public contentClass?: string;
 
   private readonly nativeElement: HTMLElement;
   private tooltip: HTMLElement | null = null;
@@ -64,7 +65,10 @@ export class TooltipDirective implements OnDestroy {
       this.renderer.appendChild(tooltip, this.renderer.createText(this.text));
     }
     this.renderer.appendChild(document.body, tooltip);
+
     this.renderer.addClass(tooltip, 'anglify-tooltip');
+    if (this.contentClass) this.renderer.addClass(tooltip, this.contentClass);
+
     return tooltip;
   }
 
