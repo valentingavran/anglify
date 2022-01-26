@@ -6,6 +6,7 @@
   },
   "assets": [
     "src/styles/**/*.scss",
+    "src/modules/button/*.scss",
     "src/modules/tooltip/*.scss",
     "src/modules/overlay/*.scss"
   ]
