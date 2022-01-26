@@ -23,15 +23,19 @@ import { FormFieldPageComponent } from './pages/component-pages/form-field-page/
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.module';
+import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
+import { ButtonExamplesModule } from './examples/button/button-examples.module';
+import { ButtonModule } from '../../../anglify/src/modules/button/button.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FormFieldPageComponent,
-    IconPageComponent,
     StylingTableComponent,
     CodeExampleComponent,
+    ButtonPageComponent,
+    FormFieldPageComponent,
+    IconPageComponent,
     TooltipPageComponent,
     StepperComponent,
     OverlayPageComponent,
@@ -47,12 +51,14 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     HighlightModule,
     ReactiveFormsModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
+    ButtonExamplesModule,
     IconExamplesModule,
     OverlayExamplesModule,
     StepperExamplesModule,
     FormFieldExamplesModule,
     TooltipExamplesModule,
     OverlayModule,
+    ButtonModule,
   ],
   providers: [
     {

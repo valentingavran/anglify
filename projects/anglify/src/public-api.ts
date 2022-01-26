@@ -2,6 +2,10 @@
  * Public API Surface of anglify
  */
 
+export * from './modules/button/button.module';
+export * from './modules/button/button.directive';
+export * from './modules/button/button.interface';
+
 export * from './modules/form-field/form-field.module';
 export * from './modules/form-field/directives/input.directive';
 export * from './modules/form-field/directives/label/label.directive';

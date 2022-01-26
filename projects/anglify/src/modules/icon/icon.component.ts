@@ -48,6 +48,8 @@ export class IconComponent {
   @Input() public size: ComponentSize;
   @Input() public clickable: BooleanLike = false;
   @Input() public disabled: BooleanLike = false;
+  @Input() public left: BooleanLike = false;
+  @Input() public right: BooleanLike = false;
 
   public constructor(@Inject(ICON_SETTINGS) private readonly settings: Required<IconSettings>, private readonly sanitizer: DomSanitizer) {
     this.iconSet = settings.defaultSet;
@@ -66,6 +68,14 @@ export class IconComponent {
 
     if (isBooleanLikeTrue(this.disabled)) {
       classNames.push('disabled');
+    }
+
+    if (isBooleanLikeTrue(this.left)) {
+      classNames.push('left');
+    }
+
+    if (isBooleanLikeTrue(this.right)) {
+      classNames.push('right');
     }
 
     return classNames.join(' ');

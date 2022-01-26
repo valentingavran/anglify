@@ -1,11 +1,14 @@
 @use '../../anglify/src/modules/tooltip';
 @use '../../anglify/src/modules/overlay';
+@use '../../anglify/src/modules/button';
 
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-background-high-emphasis);
 }
 
 h2 + h3 {
@@ -22,13 +25,40 @@ a {
 }
 
 :root {
-  --color-primary: green;
-
   &.light {
     @import '~highlight.js/scss/github.scss';
+    --color-primary: #007fff;
+    --color-surface: #fffbfe;
+    --color-on-surface-high-emphasis: rgb(0, 0, 0, 0.87);
+    --color-on-surface-medium-emphasis: rgb(0, 0, 0, 0.6);
+    --color-on-surface-low-emphasis: rgb(0, 0, 0, 0.38);
   }
 
   &.dark {
     @import '~highlight.js/scss/github-dark.scss';
+    --color-primary: #ffd500;
+    --color-on-primary-high-emphasis: rgb(0, 0, 0, 0.87);
+    --color-on-primary-medium-emphasis: rgb(0, 0, 0, 0.6);
+    --color-on-primary-low-emphasis: rgb(0, 0, 0, 0.38);
+    --color-background: #0a1929;
+    --color-on-background-high-emphasis: rgb(255, 255, 255, 0.87);
+    --color-on-background-medium-emphasis: rgb(255, 255, 255, 0.6);
+    --color-on-background-low-emphasis: rgb(255, 255, 255, 0.38);
+    --color-surface: rgba(255, 255, 255, 0.06);
+    --color-on-surface-high-emphasis: rgb(255, 255, 255, 0.87);
+    --color-on-surface-medium-emphasis: rgb(255, 255, 255, 0.6);
+    --color-on-surface-low-emphasis: rgb(255, 255, 255, 0.38);
+    --color-surface-variant: rgba(255, 255, 255, 0.1);
+    --color-on-surface-variant-high-emphasis: rgb(255, 255, 255, 0.87);
+    --color-on-surface-variant-medium-emphasis: rgb(255, 255, 255, 0.6);
+    --color-on-surface-variant-low-emphasis: rgb(255, 255, 255, 0.38);
+    --color-surface-variant-darker: rgba(255, 255, 255, 0.38);
+    --color-on-surface-variant-darker-high-emphasis: rgb(0, 0, 0, 0.87);
+    --color-on-surface-variant-darker-medium-emphasis: rgb(0, 0, 0, 0.6);
+    --color-on-surface-variant-darker-low-emphasis: rgb(0, 0, 0, 0.38);
+    --color-outline-primary: rgba(255, 255, 255, 0.54);
+    --color-outline-secondary: rgba(255, 255, 255, 0.12);
+    --overlay-color-hovered: rgba(255, 255, 255, 0.04);
+    --overlay-color-focused: rgba(255, 255, 255, 0.12);
   }
 }

@@ -17,7 +17,13 @@
     </pre>
 </div>
 <div class="controls">
-  <anglify-icon *ngIf="template$ | async" icon="mdi-xml" clickable (click)="switchView('template')"></anglify-icon>
-  <anglify-icon *ngIf="code$ | async" icon="mdi-language-typescript" clickable (click)="switchView('code')"></anglify-icon>
-  <anglify-icon *ngIf="style$ | async" icon="mdi-language-css3" clickable (click)="switchView('style')"></anglify-icon>
+  <button *ngIf="template$ | async" anglifyButton appearance="icon" (click)="switchView('template')">
+    <anglify-icon icon="mdi-xml"></anglify-icon>
+  </button>
+  <button *ngIf="code$ | async" anglifyButton appearance="icon" (click)="switchView('code')">
+    <anglify-icon icon="mdi-language-typescript"></anglify-icon>
+  </button>
+  <button *ngIf="style$ | async" anglifyButton appearance="icon" (click)="switchView('style')">
+    <anglify-icon icon="mdi-language-css3"></anglify-icon>
+  </button>
 </div>

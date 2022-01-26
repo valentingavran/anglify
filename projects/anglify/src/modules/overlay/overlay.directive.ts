@@ -7,7 +7,7 @@ import { isBooleanLikeTrue } from '../../utils/functions';
 
 @UntilDestroy(this)
 @Directive({
-  selector: '[anglifyOverlay]',
+  selector: '[anglifyOverlay], [anglifyButton]',
 })
 export class OverlayDirective {
   @Input()
@@ -67,6 +67,7 @@ export class OverlayDirective {
   @HostListener('keyup.space')
   @HostListener('keyup.enter')
   @HostListener('mouseup')
+  @HostListener('mouseout')
   private onKeyup(): void {
     this._hideRippleAction.next();
   }

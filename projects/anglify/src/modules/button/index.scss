@@ -1,0 +1,169 @@
+@use 'sass:map';
+@use 'variables' as *;
+@use '../../styles/mixins/elevation' as *;
+@use '../../styles/settings';
+
+.anglify-button {
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  outline: 0;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  @include elevationTransition();
+
+  &.elevated,
+  &.filled,
+  &.filled-tonal,
+  &.outlined,
+  &.text,
+  &.extended-fab {
+    padding-inline-start: $button-inline-padding-start;
+    padding-inline-end: $button-inline-padding-end;
+  }
+
+  @each $name in settings.$sizes {
+    &.button-size-#{$name} {
+      height: map.get($button-sizes, $name);
+      width: map.get($button-sizes, $name);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.elevated {
+    background: $button-elevated-background;
+    color: $button-elevated-label-color;
+    font: $button-elevated-label-font;
+    border-radius: $button-elevated-border-radius;
+    width: auto !important;
+
+    @include elevation(1);
+
+    &:hover:not(:disabled):not(:active) {
+      @include elevation(2);
+    }
+  }
+
+  &.filled {
+    background: $button-filled-background;
+    color: $button-filled-label-color;
+    font: $button-filled-label-font;
+    border-radius: $button-filled-border-radius;
+    width: auto !important;
+
+    &:hover:not(:disabled):not(:active) {
+      @include elevation(1);
+    }
+
+    &:disabled {
+      background: $button-filled-background-disabled;
+      color: $button-filled-label-color-disabled;
+    }
+  }
+
+  &.filled-tonal {
+    background: $button-filled-tonal-background;
+    color: $button-filled-tonal-label-color;
+    font: $button-filled-tonal-label-font;
+    border-radius: $button-filled-tonal-border-radius;
+    width: auto !important;
+
+    &:hover:not(:disabled):not(:active) {
+      @include elevation(1);
+    }
+
+    &:disabled {
+      background: $button-filled-tonal-background-disabled;
+      color: $button-filled-tonal-label-color-disabled;
+    }
+  }
+
+  &.outlined {
+    background: $button-outlined-background;
+    color: $button-outlined-label-color;
+    font: $button-outlined-label-font;
+    border-radius: $button-outlined-border-radius;
+    border: $button-outline-border;
+    width: auto !important;
+
+    &:disabled {
+      background: $button-outlined-background-disabled;
+      color: $button-outlined-label-color-disabled;
+    }
+  }
+
+  &.text {
+    background: transparent;
+    color: $button-text-label-color;
+    font: $button-text-label-font;
+    border-radius: $button-text-border-radius;
+    width: auto !important;
+
+    &:disabled {
+      color: $button-outlined-label-color-disabled;
+    }
+  }
+
+  &.icon {
+    background: transparent;
+    border-radius: $button-icon-border-radius;
+    color: $button-icon-label-color;
+
+    &:disabled {
+      color: $button-icon-label-color-disabled;
+    }
+  }
+
+  &.fab {
+    background: $button-fab-background;
+    border-radius: $button-fab-border-radius;
+    color: $button-fab-label-color;
+    height: 56px !important;
+    width: 56px !important;
+
+    &.button-size-small {
+      height: 40px !important;
+      width: 40px !important;
+    }
+
+    &.button-size-large {
+      height: 96px !important;
+      width: 96px !important;
+      --icon-size: 36px;
+    }
+
+    @include elevation(3);
+  }
+
+  &.extended-fab {
+    background: $button-fab-background;
+    border-radius: $button-fab-border-radius;
+    color: $button-fab-label-color;
+    min-width: 80px;
+    width: auto !important;
+    height: 56px !important;
+
+    @include elevation(3);
+  }
+
+  &.block {
+    display: block;
+    width: 100% !important;
+  }
+
+  &.has-left-icon {
+    padding-inline-start: $button-inline-padding-start-dense;
+  }
+
+  &.has-right-icon {
+    padding-inline-end: $button-inline-padding-end-dense;
+  }
+}

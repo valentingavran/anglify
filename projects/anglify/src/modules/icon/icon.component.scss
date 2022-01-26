@@ -18,9 +18,9 @@
 
   @each $name in settings.$sizes {
     &.icon-size-#{$name} {
-      font-size: map.get($icon-sizes, icon-size-#{$name});
-      height: map.get($icon-sizes, icon-size-#{$name});
-      width: map.get($icon-sizes, icon-size-#{$name});
+      font-size: var(--icon-size, map.get($icon-sizes, icon-size-#{$name}));
+      height: var(--icon-size, map.get($icon-sizes, icon-size-#{$name}));
+      width: var(--icon-size, map.get($icon-sizes, icon-size-#{$name}));
     }
   }
 
@@ -38,4 +38,15 @@
     cursor: default;
     color: $icon-disabled-color;
   }
+
+  &.left {
+    margin-inline-end: 8px;
+  }
+
+  &.right {
+    margin-inline-start: 8px;
+  }
+}
+:host-context(button) {
+  color: inherit;
 }
