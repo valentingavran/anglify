@@ -22,6 +22,7 @@ export class TooltipDirective implements OnDestroy {
   @Input() public position: Position = 'BOTTOM';
   @Input('content-class') public contentClass?: string;
 
+  private static readonly DEFAULT_OFFSET = 10;
   private readonly nativeElement: HTMLElement;
   private tooltip: HTMLElement | null = null;
 
@@ -83,17 +84,21 @@ export class TooltipDirective implements OnDestroy {
     let left;
 
     if (this.position === 'TOP') {
-      top = hostPos.top - tooltipPos.height - 10;
-      left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
-    } else if (this.position === 'RIGHT') {
-      top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
-      left = hostPos.right + 10;
+      top = hostPos.top - tooltipPos.height - TooltipDirective.DEFAULT_OFFSET;
+      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, TooltipDirective.DEFAULT_OFFSET);
     } else if (this.position === 'BOTTOM') {
-      top = hostPos.bottom + 10;
-      left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
+      top = hostPos.bottom + TooltipDirective.DEFAULT_OFFSET;
+      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, TooltipDirective.DEFAULT_OFFSET);
     } else {
       top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
-      left = hostPos.left - tooltipPos.width - 10;
+      if (this.position === 'LEFT') {
+        left = Math.max(hostPos.left - tooltipPos.width - TooltipDirective.DEFAULT_OFFSET, TooltipDirective.DEFAULT_OFFSET);
+      } else {
+        left = Math.min(
+          hostPos.right + TooltipDirective.DEFAULT_OFFSET,
+          window.innerWidth - tooltipPos.width - TooltipDirective.DEFAULT_OFFSET
+        );
+      }
     }
 
     this.renderer.setStyle(this.tooltip, 'top', `${top + scrollPos}px`);
