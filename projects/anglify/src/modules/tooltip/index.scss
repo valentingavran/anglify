@@ -17,6 +17,8 @@
   word-break: break-word;
   display: flex;
   align-items: center;
+  pointer-events: none;
+  user-select: none;
 
   &__show {
     opacity: $tooltip-opacity;
