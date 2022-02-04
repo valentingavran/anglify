@@ -9,9 +9,13 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
+import { merge, of, Subject } from 'rxjs';
+import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export type Position = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
 
+@UntilDestroy()
 @Directive({
   selector: '[anglifyTooltip]',
 })
@@ -21,10 +25,46 @@ export class TooltipDirective implements OnDestroy {
   @Input('anglifyTooltip') public text?: string;
   @Input() public position: Position = 'BOTTOM';
   @Input('content-class') public contentClass?: string;
+  @Input() public tooltipOpenDelay = 1000;
 
   private static readonly DEFAULT_OFFSET = 10;
   private readonly nativeElement: HTMLElement;
   private tooltip: HTMLElement | null = null;
+
+  private readonly _showAction = new Subject();
+  private readonly _hideAction = new Subject();
+
+  private readonly _visibleHandler$ = merge(
+    this._showAction.pipe(
+      mergeMap(event =>
+        of(event).pipe(
+          delay(this.tooltipOpenDelay),
+          takeUntil(this._hideAction),
+          tap(() => {
+            if (this.tooltip) return;
+            this.tooltip = this.create();
+            this.setPosition();
+            this.renderer.addClass(this.tooltip, 'anglify-tooltip__show');
+          })
+        )
+      ),
+      repeat()
+    ),
+    this._hideAction.pipe(
+      mergeMap(event =>
+        of(event).pipe(
+          takeUntil(this._showAction),
+          tap(() => {
+            if (!this.tooltip) return;
+            this.renderer.removeClass(this.tooltip, 'anglify-tooltip__show');
+            this.renderer.removeChild(this.nativeElement, this.tooltip);
+            this.tooltip = null;
+          })
+        )
+      ),
+      repeat()
+    )
+  );
 
   public constructor(
     private readonly elementRef: ElementRef,
@@ -32,29 +72,17 @@ export class TooltipDirective implements OnDestroy {
     private readonly viewContainerRef: ViewContainerRef
   ) {
     this.nativeElement = this.elementRef.nativeElement;
+    this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   @HostListener('mouseenter')
   private onMouseEnter(): void {
-    this.show();
+    this._showAction.next();
   }
 
   @HostListener('mouseleave')
   private onMouseLeave(): void {
-    this.hide();
-  }
-
-  private show(): void {
-    this.tooltip = this.create();
-    this.setPosition();
-    this.renderer.addClass(this.tooltip, 'anglify-tooltip__show');
-  }
-
-  private hide(): void {
-    if (!this.tooltip) return;
-    this.renderer.removeClass(this.tooltip, 'anglify-tooltip__show');
-    this.renderer.removeChild(this.nativeElement, this.tooltip);
-    this.tooltip = null;
+    this._hideAction.next();
   }
 
   private create(): HTMLSpanElement {
@@ -106,6 +134,6 @@ export class TooltipDirective implements OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.hide();
+    this._hideAction.next();
   }
 }
