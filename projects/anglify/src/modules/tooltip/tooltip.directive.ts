@@ -91,11 +91,13 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseenter')
+  @HostListener('focus')
   private onMouseEnter(): void {
     this._openAction.next(this.tooltipOpenDelay);
   }
 
   @HostListener('mouseleave')
+  @HostListener('blur')
   private onMouseLeave(): void {
     this._closeAction.next(this.tooltipCloseDelay);
   }
@@ -108,7 +110,8 @@ export class TooltipDirective implements OnDestroy {
     } else if (this.text) {
       this.renderer.appendChild(tooltip, this.renderer.createText(this.text));
     }
-    this.renderer.appendChild(document.body, tooltip);
+    // this.renderer.appendChild(document.body, tooltip);
+    this.renderer.appendChild(this.nativeElement.parentElement, tooltip);
 
     this.renderer.addClass(tooltip, 'anglify-tooltip');
     if (this.contentClass) this.renderer.addClass(tooltip, this.contentClass);
