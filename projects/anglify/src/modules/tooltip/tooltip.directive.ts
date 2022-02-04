@@ -28,6 +28,7 @@ export class TooltipDirective implements OnDestroy {
   @Input('content-class') public contentClass?: string;
   @Input() public tooltipOpenDelay = 0;
   @Input() public tooltipCloseDelay = 0;
+  @Input('tooltipMountingPoint') public mountingPoint: HTMLElement;
 
   private static readonly DEFAULT_OFFSET = 10;
   private readonly nativeElement: HTMLElement;
@@ -75,6 +76,7 @@ export class TooltipDirective implements OnDestroy {
     private readonly viewContainerRef: ViewContainerRef
   ) {
     this.nativeElement = this.elementRef.nativeElement;
+    this.mountingPoint = this.nativeElement.parentElement ?? document.body;
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
@@ -110,9 +112,7 @@ export class TooltipDirective implements OnDestroy {
     } else if (this.text) {
       this.renderer.appendChild(tooltip, this.renderer.createText(this.text));
     }
-    // this.renderer.appendChild(document.body, tooltip);
-    this.renderer.appendChild(this.nativeElement.parentElement, tooltip);
-
+    this.renderer.appendChild(this.mountingPoint, tooltip);
     this.renderer.addClass(tooltip, 'anglify-tooltip');
     if (this.contentClass) this.renderer.addClass(tooltip, this.contentClass);
 
