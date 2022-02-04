@@ -7,9 +7,10 @@ import { ButtonModule } from '../../../../../anglify/src/modules/button/button.m
 import CustomContentComponent from './custom-content/custom-content.component';
 import { IconModule } from '../../../../../anglify/src/modules/icon/icon.module';
 import { ShowHideManuallyComponent } from './show-hide-manually/show-hide-manually.component';
+import { CustomMountingPointComponent } from './custom-mounting-point/custom-mounting-point.component';
 
 @NgModule({
   imports: [CommonModule, TooltipModule, ButtonModule, IconModule, ButtonModule, TooltipModule],
-  declarations: [LongTextComponent, DifferentPositionsComponent, CustomContentComponent, ShowHideManuallyComponent],
+  declarations: [LongTextComponent, DifferentPositionsComponent, CustomContentComponent, ShowHideManuallyComponent, CustomMountingPointComponent],
 })
 export class TooltipExamplesModule {}
