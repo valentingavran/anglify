@@ -1,0 +1,7 @@
+<button anglifyButton anglifyTooltip="Tooltip" #myButton="anglifyTooltip">Button with tooltip</button>
+<div class="controls">
+  Controls:
+  <button anglifyButton appearance="text" (click)="myButton.open()">Show</button>
+  <button anglifyButton appearance="text" (click)="myButton.close()">Hide</button>
+  <button anglifyButton appearance="text" (click)="myButton.toggle()">Toggle</button>
+</div>
