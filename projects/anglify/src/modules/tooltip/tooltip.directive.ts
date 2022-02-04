@@ -26,6 +26,7 @@ export class TooltipDirective implements OnDestroy {
   @Input() public position: Position = 'BOTTOM';
   @Input('content-class') public contentClass?: string;
   @Input() public tooltipOpenDelay = 1000;
+  @Input() public tooltipCloseDelay = 0;
 
   private static readonly DEFAULT_OFFSET = 10;
   private readonly nativeElement: HTMLElement;
@@ -53,6 +54,7 @@ export class TooltipDirective implements OnDestroy {
     this._hideAction.pipe(
       mergeMap(event =>
         of(event).pipe(
+          delay(this.tooltipCloseDelay),
           takeUntil(this._showAction),
           tap(() => {
             if (!this.tooltip) return;
