@@ -1,16 +1,28 @@
 <anglify-stepper>
   <ng-template anglifyStep label="First step">
-    First step content
-    <button anglifyStepperNext>Continue</button>
+    <div class="container">
+      First step content
+      <div class="actions">
+        <button anglifyButton anglifyStepperNext>Continue</button>
+      </div>
+    </div>
   </ng-template>
   <ng-template anglifyStep label="Second step">
-    Second step content
-    <button anglifyStepperPrevious>Back</button>
-    <button anglifyStepperNext>Continue</button>
+    <div class="container">
+      Second step content
+      <div class="actions">
+        <button anglifyButton anglifyStepperPrevious>Back</button>
+        <button anglifyButton anglifyStepperNext>Continue</button>
+      </div>
+    </div>
   </ng-template>
   <ng-template anglifyStep label="Third step">
-    Third step content
-    <button anglifyStepperPrevious>Back</button>
-    <button anglifyStepperNext>Continue</button>
+    <div class="container">
+      Third step content
+      <div class="actions">
+        <button anglifyButton anglifyStepperPrevious>Back</button>
+        <button anglifyButton anglifyStepperNext>Continue</button>
+      </div>
+    </div>
   </ng-template>
 </anglify-stepper>
