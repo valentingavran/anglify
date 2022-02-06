@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   ContentChild,
   Directive,
   ElementRef,
@@ -12,7 +13,7 @@ import {
 import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
+import { isBooleanLikeTrue, isTouchDevice, observeOnResize } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { TooltipTouchTrigger } from './tooltip.interface';
 
@@ -33,14 +34,10 @@ export class TooltipDirective implements OnDestroy {
   @Input() public tooltipCloseDelay = 0;
   @Input('tooltipMountingPoint') public mountingPoint: HTMLElement;
 
-  /**
-   * Prevents the context menu from opening when the host is long pressed.
-   */
+  /** Prevents the context menu from opening when the host is long pressed. */
   @Input() public preventContextMenuOnTouchDevice: BooleanLike = false;
 
-  /**
-   * Allows you to define whether the tooltip is opened with a quick press or with a long press.
-   */
+  /** Allows you to define whether the tooltip is opened with a quick press or with a long press. */
   @Input() public tooltipMobileTrigger: TooltipTouchTrigger = 'long';
 
   private static readonly DEFAULT_OFFSET = 10;
@@ -49,6 +46,7 @@ export class TooltipDirective implements OnDestroy {
 
   private readonly _openAction = new Subject<number>();
   private readonly _closeAction = new Subject<number>();
+  private readonly _repositionAction = new Subject();
 
   private readonly _visibleHandler$ = merge(
     this._openAction.pipe(
@@ -59,7 +57,7 @@ export class TooltipDirective implements OnDestroy {
           tap(() => {
             if (this.tooltip) return;
             this.tooltip = this.create();
-            this.setPosition();
+            this._repositionAction.next();
             this.renderer.addClass(this.tooltip, 'anglify-tooltip__open');
           })
         )
@@ -83,14 +81,23 @@ export class TooltipDirective implements OnDestroy {
     )
   );
 
+  private readonly _repositionHandler$ = this._repositionAction.pipe(
+    tap(() => {
+      if (!this.tooltip) return;
+      this.setPosition();
+    })
+  );
+
   public constructor(
     private readonly elementRef: ElementRef,
     private readonly renderer: Renderer2,
-    private readonly viewContainerRef: ViewContainerRef
+    private readonly viewContainerRef: ViewContainerRef,
+    private readonly changeDetectorRef: ChangeDetectorRef
   ) {
     this.nativeElement = this.elementRef.nativeElement;
     this.mountingPoint = this.nativeElement.parentElement ?? document.body;
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
+    this._repositionHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public open(delay = 0): void {
@@ -139,7 +146,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   private create(): HTMLSpanElement {
-    const tooltip = this.renderer.createElement('span');
+    const tooltip: HTMLSpanElement = this.renderer.createElement('span');
     if (this.template) {
       const view = this.viewContainerRef.createEmbeddedView(this.template);
       view.rootNodes.forEach(node => this.renderer.appendChild(tooltip, node));
@@ -149,6 +156,12 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.appendChild(this.mountingPoint, tooltip);
     this.renderer.addClass(tooltip, 'anglify-tooltip');
     if (this.contentClass) this.renderer.addClass(tooltip, this.contentClass);
+
+    // https://github.com/valentingavran/anglify/issues/19#issuecomment-1030809020
+    this.changeDetectorRef.markForCheck();
+    observeOnResize(tooltip)
+      .pipe(takeUntil(this._closeAction))
+      .subscribe(() => this.setPosition());
 
     return tooltip;
   }
