@@ -3,7 +3,7 @@ import { NgModule, SecurityContext } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { MarkdownModule } from 'ngx-markdown';
 import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
 import { FormFieldModule } from '../../../anglify/src/modules/form-field/form-field.module';
