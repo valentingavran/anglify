@@ -12,6 +12,9 @@ import {
 import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
+import { BooleanLike } from '../../utils/interfaces';
+import { TooltipTouchTrigger } from './tooltip.interface';
 
 export type Position = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
 
@@ -29,6 +32,16 @@ export class TooltipDirective implements OnDestroy {
   @Input() public tooltipOpenDelay = 0;
   @Input() public tooltipCloseDelay = 0;
   @Input('tooltipMountingPoint') public mountingPoint: HTMLElement;
+
+  /**
+   * Prevents the context menu from opening when the host is long pressed.
+   */
+  @Input() public preventContextMenuOnTouchDevice: BooleanLike = false;
+
+  /**
+   * Allows you to define whether the tooltip is opened with a quick press or with a long press.
+   */
+  @Input() public tooltipMobileTrigger: TooltipTouchTrigger = 'long';
 
   private static readonly DEFAULT_OFFSET = 10;
   private readonly nativeElement: HTMLElement;
@@ -93,15 +106,36 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseenter')
-  @HostListener('focus')
-  private onMouseEnter(): void {
-    this._openAction.next(this.tooltipOpenDelay);
+  @HostListener('focus') // Open tooltip when host gets focused (with keyboard for example)
+  private onOpenEventDesktop(): void {
+    if (isTouchDevice()) return;
+    this.open(this.tooltipOpenDelay);
   }
 
   @HostListener('mouseleave')
-  @HostListener('blur')
-  private onMouseLeave(): void {
-    this._closeAction.next(this.tooltipCloseDelay);
+  @HostListener('blur') // Close tooltip when host gets blurred (with keyboard for example)
+  private onCloseEventDesktop(): void {
+    if (isTouchDevice()) return;
+    this.close(this.tooltipCloseDelay);
+  }
+
+  @HostListener('click', ['$event'])
+  @HostListener('contextmenu', ['$event'])
+  private onOpenEventMobile(event: Event): void {
+    if (this.tooltipMobileTrigger === 'long' && event.type !== 'contextmenu') return;
+    if (this.tooltipMobileTrigger === 'short' && event.type !== 'click') return;
+
+    if (isTouchDevice()) {
+      if (isBooleanLikeTrue(this.preventContextMenuOnTouchDevice)) event.preventDefault();
+
+      setTimeout(() => this.open(), 0); // Open tooltip after other context menus are closed
+    }
+  }
+
+  @HostListener('document:click')
+  @HostListener('document:contextmenu') // Close tooltip when other tooltips are opened
+  private onCloseEventMobile(): void {
+    if (isTouchDevice()) this.close();
   }
 
   private create(): HTMLSpanElement {
@@ -152,6 +186,6 @@ export class TooltipDirective implements OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._closeAction.next();
+    this._closeAction.next(0);
   }
 }
