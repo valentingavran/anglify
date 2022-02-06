@@ -10,7 +10,13 @@ import { ShowHideManuallyComponent } from './show-hide-manually/show-hide-manual
 import { CustomMountingPointComponent } from './custom-mounting-point/custom-mounting-point.component';
 
 @NgModule({
-  imports: [CommonModule, TooltipModule, ButtonModule, IconModule, ButtonModule, TooltipModule],
-  declarations: [LongTextComponent, DifferentPositionsComponent, CustomContentComponent, ShowHideManuallyComponent, CustomMountingPointComponent],
+  imports: [CommonModule, TooltipModule, ButtonModule, IconModule, ButtonModule],
+  declarations: [
+    LongTextComponent,
+    DifferentPositionsComponent,
+    CustomContentComponent,
+    ShowHideManuallyComponent,
+    CustomMountingPointComponent,
+  ],
 })
 export class TooltipExamplesModule {}
