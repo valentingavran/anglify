@@ -4,8 +4,10 @@ import {
   Directive,
   ElementRef,
   HostListener,
+  Inject,
   Input,
   OnDestroy,
+  Optional,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
@@ -15,9 +17,8 @@ import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { isBooleanLikeTrue, isTouchDevice, observeOnResize } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
-import { TooltipTouchTrigger } from './tooltip.interface';
-
-export type Position = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
+import { TooltipPosition, TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
+import { TOOLTIP_SETTINGS } from './tooltip-settings.token';
 
 @UntilDestroy()
 @Directive({
@@ -28,7 +29,7 @@ export class TooltipDirective implements OnDestroy {
   @ContentChild('tooltipContent') public template?: TemplateRef<any>;
 
   @Input('anglifyTooltip') public text?: string;
-  @Input() public position: Position = 'BOTTOM';
+  @Input() public position: TooltipPosition = 'BOTTOM';
   @Input('content-class') public contentClass?: string;
   @Input() public tooltipOpenDelay = 0;
   @Input() public tooltipCloseDelay = 0;
@@ -40,7 +41,7 @@ export class TooltipDirective implements OnDestroy {
   /** Allows you to define whether the tooltip is opened with a quick press or with a long press. */
   @Input() public tooltipMobileTrigger: TooltipTouchTrigger = 'long';
 
-  private static readonly DEFAULT_OFFSET = 10;
+  private readonly defaultOffset: number = 10;
   private readonly nativeElement: HTMLElement;
   private tooltip: HTMLElement | null = null;
 
@@ -92,8 +93,18 @@ export class TooltipDirective implements OnDestroy {
     private readonly elementRef: ElementRef,
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
-    private readonly changeDetectorRef: ChangeDetectorRef
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Inject(TOOLTIP_SETTINGS) private readonly settings?: Required<TooltipSettings>
   ) {
+    if (settings) {
+      this.position = settings.position;
+      this.tooltipOpenDelay = settings.openDelay;
+      this.tooltipCloseDelay = settings.closeDelay;
+      this.preventContextMenuOnTouchDevice = settings.preventContextMenuOnTouchDevice;
+      this.tooltipMobileTrigger = settings.mobileTrigger;
+      this.defaultOffset = settings.defaultOffset;
+    }
+
     this.nativeElement = this.elementRef.nativeElement;
     this.mountingPoint = this.nativeElement.parentElement ?? document.body;
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
@@ -177,20 +188,17 @@ export class TooltipDirective implements OnDestroy {
     let left;
 
     if (this.position === 'TOP') {
-      top = hostPos.top - tooltipPos.height - TooltipDirective.DEFAULT_OFFSET;
-      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, TooltipDirective.DEFAULT_OFFSET);
+      top = hostPos.top - tooltipPos.height - this.defaultOffset;
+      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, this.defaultOffset);
     } else if (this.position === 'BOTTOM') {
-      top = hostPos.bottom + TooltipDirective.DEFAULT_OFFSET;
-      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, TooltipDirective.DEFAULT_OFFSET);
+      top = hostPos.bottom + this.defaultOffset;
+      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, this.defaultOffset);
     } else {
       top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
       if (this.position === 'LEFT') {
-        left = Math.max(hostPos.left - tooltipPos.width - TooltipDirective.DEFAULT_OFFSET, TooltipDirective.DEFAULT_OFFSET);
+        left = Math.max(hostPos.left - tooltipPos.width - this.defaultOffset, this.defaultOffset);
       } else {
-        left = Math.min(
-          hostPos.right + TooltipDirective.DEFAULT_OFFSET,
-          window.innerWidth - tooltipPos.width - TooltipDirective.DEFAULT_OFFSET
-        );
+        left = Math.min(hostPos.right + this.defaultOffset, window.innerWidth - tooltipPos.width - this.defaultOffset);
       }
     }
 
