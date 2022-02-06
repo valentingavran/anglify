@@ -18,7 +18,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { isBooleanLikeTrue, isTouchDevice, observeOnResize } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { TooltipPosition, TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
-import { TOOLTIP_SETTINGS } from './tooltip-settings.token';
+import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
 
 @UntilDestroy()
 @Directive({
@@ -94,16 +94,15 @@ export class TooltipDirective implements OnDestroy {
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
     private readonly changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Inject(TOOLTIP_SETTINGS) private readonly settings?: Required<TooltipSettings>
+    @Optional() @Inject(TOOLTIP_SETTINGS) private readonly settings?: TooltipSettings
   ) {
-    if (settings) {
-      this.position = settings.position;
-      this.tooltipOpenDelay = settings.openDelay;
-      this.tooltipCloseDelay = settings.closeDelay;
-      this.preventContextMenuOnTouchDevice = settings.preventContextMenuOnTouchDevice;
-      this.tooltipMobileTrigger = settings.mobileTrigger;
-      this.defaultOffset = settings.defaultOffset;
-    }
+    if (!settings) this.settings = DEFAULT_TOOLTIP_SETTINGS;
+    if (settings?.position) this.position = settings.position;
+    if (settings?.openDelay) this.tooltipOpenDelay = settings.openDelay;
+    if (settings?.closeDelay) this.tooltipCloseDelay = settings.closeDelay;
+    if (settings?.preventContextMenuOnTouchDevice) this.preventContextMenuOnTouchDevice = settings.preventContextMenuOnTouchDevice;
+    if (settings?.mobileTrigger) this.tooltipMobileTrigger = settings.mobileTrigger;
+    if (settings?.defaultOffset) this.defaultOffset = settings.defaultOffset;
 
     this.nativeElement = this.elementRef.nativeElement;
     this.mountingPoint = this.nativeElement.parentElement ?? document.body;
