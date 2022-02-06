@@ -35,3 +35,5 @@ export * from './modules/stepper/services/stepper-settings/stepper-settings.serv
 
 export * from './modules/tooltip/tooltip.module';
 export * from './modules/tooltip/tooltip.directive';
+export * from './modules/tooltip/tooltip.interface';
+export * from './modules/tooltip/tooltip-settings.token';

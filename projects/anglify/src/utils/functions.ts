@@ -24,3 +24,7 @@ export function observeOnResize(target: Element): Observable<ResizeObserverEntry
 export function isBooleanLikeTrue(value: BooleanLike): boolean {
   return value === true || value === 'true' || value === '';
 }
+
+export function isTouchDevice(): boolean {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}

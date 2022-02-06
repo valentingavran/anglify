@@ -1,10 +1,13 @@
 import {
+  ChangeDetectorRef,
   ContentChild,
   Directive,
   ElementRef,
   HostListener,
+  Inject,
   Input,
   OnDestroy,
+  Optional,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
@@ -12,8 +15,10 @@ import {
 import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-
-export type Position = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
+import { isBooleanLikeTrue, isTouchDevice, observeOnResize } from '../../utils/functions';
+import { BooleanLike } from '../../utils/interfaces';
+import { TooltipPosition, TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
+import { TOOLTIP_SETTINGS } from './tooltip-settings.token';
 
 @UntilDestroy()
 @Directive({
@@ -24,18 +29,25 @@ export class TooltipDirective implements OnDestroy {
   @ContentChild('tooltipContent') public template?: TemplateRef<any>;
 
   @Input('anglifyTooltip') public text?: string;
-  @Input() public position: Position = 'BOTTOM';
+  @Input() public position: TooltipPosition = 'BOTTOM';
   @Input('content-class') public contentClass?: string;
   @Input() public tooltipOpenDelay = 0;
   @Input() public tooltipCloseDelay = 0;
   @Input('tooltipMountingPoint') public mountingPoint: HTMLElement;
 
-  private static readonly DEFAULT_OFFSET = 10;
+  /** Prevents the context menu from opening when the host is long pressed. */
+  @Input() public preventContextMenuOnTouchDevice: BooleanLike = false;
+
+  /** Allows you to define whether the tooltip is opened with a quick press or with a long press. */
+  @Input() public tooltipMobileTrigger: TooltipTouchTrigger = 'long';
+
+  private readonly defaultOffset: number = 10;
   private readonly nativeElement: HTMLElement;
   private tooltip: HTMLElement | null = null;
 
   private readonly _openAction = new Subject<number>();
   private readonly _closeAction = new Subject<number>();
+  private readonly _repositionAction = new Subject();
 
   private readonly _visibleHandler$ = merge(
     this._openAction.pipe(
@@ -46,7 +58,7 @@ export class TooltipDirective implements OnDestroy {
           tap(() => {
             if (this.tooltip) return;
             this.tooltip = this.create();
-            this.setPosition();
+            this._repositionAction.next();
             this.renderer.addClass(this.tooltip, 'anglify-tooltip__open');
           })
         )
@@ -70,14 +82,33 @@ export class TooltipDirective implements OnDestroy {
     )
   );
 
+  private readonly _repositionHandler$ = this._repositionAction.pipe(
+    tap(() => {
+      if (!this.tooltip) return;
+      this.setPosition();
+    })
+  );
+
   public constructor(
     private readonly elementRef: ElementRef,
     private readonly renderer: Renderer2,
-    private readonly viewContainerRef: ViewContainerRef
+    private readonly viewContainerRef: ViewContainerRef,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Inject(TOOLTIP_SETTINGS) private readonly settings?: Required<TooltipSettings>
   ) {
+    if (settings) {
+      this.position = settings.position;
+      this.tooltipOpenDelay = settings.openDelay;
+      this.tooltipCloseDelay = settings.closeDelay;
+      this.preventContextMenuOnTouchDevice = settings.preventContextMenuOnTouchDevice;
+      this.tooltipMobileTrigger = settings.mobileTrigger;
+      this.defaultOffset = settings.defaultOffset;
+    }
+
     this.nativeElement = this.elementRef.nativeElement;
     this.mountingPoint = this.nativeElement.parentElement ?? document.body;
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
+    this._repositionHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public open(delay = 0): void {
@@ -93,19 +124,40 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseenter')
-  @HostListener('focus')
-  private onMouseEnter(): void {
-    this._openAction.next(this.tooltipOpenDelay);
+  @HostListener('focus') // Open tooltip when host gets focused (with keyboard for example)
+  private onOpenEventDesktop(): void {
+    if (isTouchDevice()) return;
+    this.open(this.tooltipOpenDelay);
   }
 
   @HostListener('mouseleave')
-  @HostListener('blur')
-  private onMouseLeave(): void {
-    this._closeAction.next(this.tooltipCloseDelay);
+  @HostListener('blur') // Close tooltip when host gets blurred (with keyboard for example)
+  private onCloseEventDesktop(): void {
+    if (isTouchDevice()) return;
+    this.close(this.tooltipCloseDelay);
+  }
+
+  @HostListener('click', ['$event'])
+  @HostListener('contextmenu', ['$event'])
+  private onOpenEventMobile(event: Event): void {
+    if (this.tooltipMobileTrigger === 'long' && event.type !== 'contextmenu') return;
+    if (this.tooltipMobileTrigger === 'short' && event.type !== 'click') return;
+
+    if (isTouchDevice()) {
+      if (isBooleanLikeTrue(this.preventContextMenuOnTouchDevice)) event.preventDefault();
+
+      setTimeout(() => this.open(), 0); // Open tooltip after other context menus are closed
+    }
+  }
+
+  @HostListener('document:click')
+  @HostListener('document:contextmenu') // Close tooltip when other tooltips are opened
+  private onCloseEventMobile(): void {
+    if (isTouchDevice()) this.close();
   }
 
   private create(): HTMLSpanElement {
-    const tooltip = this.renderer.createElement('span');
+    const tooltip: HTMLSpanElement = this.renderer.createElement('span');
     if (this.template) {
       const view = this.viewContainerRef.createEmbeddedView(this.template);
       view.rootNodes.forEach(node => this.renderer.appendChild(tooltip, node));
@@ -115,6 +167,12 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.appendChild(this.mountingPoint, tooltip);
     this.renderer.addClass(tooltip, 'anglify-tooltip');
     if (this.contentClass) this.renderer.addClass(tooltip, this.contentClass);
+
+    // https://github.com/valentingavran/anglify/issues/19#issuecomment-1030809020
+    this.changeDetectorRef.markForCheck();
+    observeOnResize(tooltip)
+      .pipe(takeUntil(this._closeAction))
+      .subscribe(() => this.setPosition());
 
     return tooltip;
   }
@@ -130,20 +188,17 @@ export class TooltipDirective implements OnDestroy {
     let left;
 
     if (this.position === 'TOP') {
-      top = hostPos.top - tooltipPos.height - TooltipDirective.DEFAULT_OFFSET;
-      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, TooltipDirective.DEFAULT_OFFSET);
+      top = hostPos.top - tooltipPos.height - this.defaultOffset;
+      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, this.defaultOffset);
     } else if (this.position === 'BOTTOM') {
-      top = hostPos.bottom + TooltipDirective.DEFAULT_OFFSET;
-      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, TooltipDirective.DEFAULT_OFFSET);
+      top = hostPos.bottom + this.defaultOffset;
+      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, this.defaultOffset);
     } else {
       top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
       if (this.position === 'LEFT') {
-        left = Math.max(hostPos.left - tooltipPos.width - TooltipDirective.DEFAULT_OFFSET, TooltipDirective.DEFAULT_OFFSET);
+        left = Math.max(hostPos.left - tooltipPos.width - this.defaultOffset, this.defaultOffset);
       } else {
-        left = Math.min(
-          hostPos.right + TooltipDirective.DEFAULT_OFFSET,
-          window.innerWidth - tooltipPos.width - TooltipDirective.DEFAULT_OFFSET
-        );
+        left = Math.min(hostPos.right + this.defaultOffset, window.innerWidth - tooltipPos.width - this.defaultOffset);
       }
     }
 
@@ -152,6 +207,6 @@ export class TooltipDirective implements OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._closeAction.next();
+    this._closeAction.next(0);
   }
 }
