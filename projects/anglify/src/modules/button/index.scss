@@ -67,6 +67,11 @@
       background: $button-filled-background-disabled;
       color: $button-filled-label-color-disabled;
     }
+
+    &:focus-visible {
+      background: $button-filled-background-focus;
+      color: $button-filled-label-color-focus;
+    }
   }
 
   &.filled-tonal {
@@ -84,6 +89,11 @@
       background: $button-filled-tonal-background-disabled;
       color: $button-filled-tonal-label-color-disabled;
     }
+
+    &:focus-visible {
+      background: $button-filled-tonal-background-focus;
+      color: $button-filled-tonal-label-color-focus;
+    }
   }
 
   &.outlined {
@@ -98,6 +108,11 @@
       background: $button-outlined-background-disabled;
       color: $button-outlined-label-color-disabled;
     }
+
+    &:focus-visible {
+      background: $button-outlined-background-focus;
+      color: $button-outlined-label-color-focus;
+    }
   }
 
   &.text {
@@ -110,6 +125,12 @@
     &:disabled {
       color: $button-outlined-label-color-disabled;
     }
+
+
+    &:focus-visible {
+      background: $button-text-background-focus;
+      color: $button-text-label-color-focus;
+    }
   }
 
   &.icon {
@@ -119,6 +140,11 @@
 
     &:disabled {
       color: $button-icon-label-color-disabled;
+    }
+
+    &:focus-visible {
+      background: $button-icon-background-focus;
+      color: $button-icon-label-color-focus;
     }
   }
 
@@ -140,6 +166,12 @@
       --icon-size: 36px;
     }
 
+
+    &:focus-visible {
+      background: $button-fab-background-focus;
+      color: $button-fab-label-color-focus;
+    }
+
     @include elevation(3);
   }
 
@@ -150,6 +182,11 @@
     min-width: 80px;
     width: auto !important;
     height: 56px !important;
+
+    &:focus-visible {
+      background: $button-fab-background-focus;
+      color: $button-fab-label-color-focus;
+    }
 
     @include elevation(3);
   }

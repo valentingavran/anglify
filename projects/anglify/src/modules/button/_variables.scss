@@ -18,6 +18,8 @@ $button-filled-label-color-disabled: var(--button-filled-label-color, colors.$co
 $button-filled-label-font: var(--button-filled-label-font, medium 14px/20px Roboto sans-serif);
 $button-filled-height: var(--button-filled-height, 40px);
 $button-filled-border-radius: var(--button-filled-border-radius, 20px);
+$button-filled-background-focus: var(--button-filled-background-focus, colors.$color-primary);
+$button-filled-label-color-focus: var(--button-filled-label-color-focus, colors.$color-on-surface-high-emphasis);
 
 $button-filled-tonal-background: var(--button-filled-tonal-background, colors.$color-secondary-container);
 $button-filled-tonal-background-disabled: var(--button-filled-tonal-background, colors.$color-surface);
@@ -26,6 +28,8 @@ $button-filled-tonal-label-color-disabled: var(--button-filled-tonal-label-color
 $button-filled-tonal-label-font: var(--button-filled-tonal-label-font, medium 14px/20px Roboto sans-serif);
 $button-filled-tonal-height: var(--button-filled-tonal-height, 40px);
 $button-filled-tonal-border-radius: var(--button-filled-tonal-border-radius, 20px);
+$button-filled-tonal-background-focus: var(--button-filled-tonal-background-focus, colors.$color-primary);
+$button-filled-tonal-label-color-focus: var(--button-filled-tonal-label-color-focus, colors.$color-on-surface-high-emphasis);
 
 $button-outlined-background: var(--button-outlined-background, colors.$color-surface);
 $button-outlined-background-disabled: var(--button-outlined-background, colors.$color-surface);
@@ -35,20 +39,30 @@ $button-outlined-label-font: var(--button-outlined-label-font, medium 14px/20px 
 $button-outlined-height: var(--button-outlined-height, 40px);
 $button-outlined-border-radius: var(--button-outlined-border-radius, 20px);
 $button-outline-border: var(--button-outline-border, 1px solid colors.$color-outline-primary);
+$button-outlined-background-focus: var(--button-outlined-background-focus, colors.$color-primary);
+$button-outlined-label-color-focus: var(--button-outlined-label-color-focus, colors.$color-primary);
+
 
 $button-text-label-color: var(--button-text-label-color, colors.$color-primary);
 $button-text-label-color-disabled: var(--button-text-label-color, colors.$color-on-surface-low-emphasis);
 $button-text-label-font: var(--button-text-label-font, medium 14px/20px Roboto sans-serif);
 $button-text-height: var(--button-text-height, 40px);
 $button-text-border-radius: var(--button-text-border-radius, 20px);
+$button-text-background-focus: var(--button-text-background-focus, colors.$color-primary);
+$button-text-label-color-focus: var(--button-text-label-color-focus, colors.$color-primary);
 
 $button-icon-label-color: var(--button-icon-label-color, colors.$color-on-surface-medium-emphasis);
 $button-icon-label-color-disabled: var(--button-icon-label-color, colors.$color-on-surface-low-emphasis);
 $button-icon-border-radius: var(--button-icon-border-radius, 20px);
+$button-icon-background-focus: var(--button-icon-background-focus, colors.$color-primary);
+$button-icon-label-color-focus: var(--button-icon-label-color-focus, colors.$color-primary);
 
 $button-fab-background: var(--button-fab-background, colors.$color-primary-container);
 $button-fab-label-color: var(--button-icon-label-color, colors.$color-on-primary-container-high-emphasis);
 $button-fab-border-radius: var(--button-fab-border-radius, 12px);
+$button-fab-background-focus: var(--button-fab-background-focus, colors.$color-primary);
+$button-fab-label-color-focus: var(--button-fab-label-color-focus, colors.$color-primary);
+
 
 $button-sizes: (
   x-small: var(--button-size-x-small, 24px),
