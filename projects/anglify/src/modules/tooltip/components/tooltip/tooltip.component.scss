@@ -1,0 +1,19 @@
+@use '../../variables' as *;
+
+.anglify-tooltip {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  user-select: none;
+  max-width: $tooltip-max-width;
+  font-size: $tooltip-font-size;
+  text-align: $tooltip-text-alignment;
+  color: $tooltip-text-color;
+  padding: $tooltip-padding;
+  background: $tooltip-background-color;
+  border-radius: $tooltip-border-radius;
+  z-index: $tooltip-z-index;
+  word-break: $tooltip-word-break;
+  opacity: $tooltip-opacity;
+}

@@ -1,24 +1,30 @@
 import {
+  ApplicationRef,
   ChangeDetectorRef,
-  ContentChild,
+  ComponentFactoryResolver,
+  ComponentRef,
   Directive,
   ElementRef,
+  EmbeddedViewRef,
   HostListener,
   Inject,
+  Injector,
   Input,
   OnDestroy,
   Optional,
   Renderer2,
   TemplateRef,
+  Type,
   ViewContainerRef,
 } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { isBooleanLikeTrue, isTouchDevice, observeOnResize } from '../../utils/functions';
+import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
-import { TooltipPosition, TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
+import { TooltipPosition, TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
 
 @UntilDestroy()
 @Directive({
@@ -26,29 +32,64 @@ import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.t
   exportAs: 'anglifyTooltip',
 })
 export class TooltipDirective implements OnDestroy {
-  @ContentChild('tooltipContent') public template?: TemplateRef<any>;
-
-  @Input('anglifyTooltip') public text?: string;
-  @Input() public position: TooltipPosition = 'BOTTOM';
-  @Input('content-class') public contentClass?: string;
-  @Input() public tooltipOpenDelay = 0;
-  @Input() public tooltipCloseDelay = 0;
-  @Input('tooltipMountingPoint') public mountingPoint: HTMLElement;
-
+  @Input('anglifyTooltip') public content!: string | TemplateRef<any> | Type<any>;
+  @Input('tooltipMountingPoint') public mountingPoint: 'body' | 'parent' | HTMLElement = 'parent';
+  @Input('tooltipHoverOpenDelay') public hoverOpenDelay;
+  @Input('tooltipHoverCloseDelay') public hoverCloseDelay;
+  @Input('tooltipTouchOpenDelay') public touchOpenDelay;
+  @Input('tooltipTouchCloseDelay') public touchCloseDelay;
   /** Prevents the context menu from opening when the host is long pressed. */
-  @Input() public preventContextMenuOnTouchDevice: BooleanLike = false;
-
+  @Input() public preventContextMenuOnTouchDevice: BooleanLike;
   /** Allows you to define whether the tooltip is opened with a quick press or with a long press. */
-  @Input() public tooltipMobileTrigger: TooltipTouchTrigger = 'long';
+  @Input() public tooltipMobileTrigger: TooltipTouchTrigger;
+  @Input() public autoCloseOnTouchDevicesAfterDelay: BooleanLike;
 
-  private readonly defaultOffset: number = 10;
-  private readonly nativeElement: HTMLElement;
-  private tooltip: HTMLElement | null = null;
+  /** Distance between the tooltip and the host element */
+  @Input()
+  public set offset(value: number) {
+    this._offset = value;
+    if (this.componentRef) {
+      this.componentRef.instance.offset = value;
+    }
+  }
+
+  public get offset(): number {
+    return this._offset;
+  }
+
+  @Input()
+  public set position(value: TooltipPosition) {
+    this._position = value;
+    if (this.componentRef) {
+      this.componentRef.instance.position = value;
+    }
+  }
+
+  public get position(): TooltipPosition {
+    return this._position;
+  }
+
+  @Input()
+  public set contentClass(value: string | undefined) {
+    this._contentClass = value;
+    if (this.componentRef) {
+      this.componentRef.instance.contentClass = value;
+    }
+  }
+
+  public get contentClass(): string | undefined {
+    return this._contentClass;
+  }
+
+  private _position: TooltipPosition = DEFAULT_TOOLTIP_SETTINGS.position;
+  private _offset = DEFAULT_TOOLTIP_SETTINGS.defaultOffset;
+  private _contentClass?: string;
+
+  private componentRef: ComponentRef<TooltipComponent> | undefined; // Tooltip Component Reference
+  private embeddedView: EmbeddedViewRef<any> | undefined; // Tooltip Content Template Reference
 
   private readonly _openAction = new Subject<number>();
   private readonly _closeAction = new Subject<number>();
-  private readonly _repositionAction = new Subject();
-
   private readonly _visibleHandler$ = merge(
     this._openAction.pipe(
       mergeMap(openDelay =>
@@ -56,10 +97,7 @@ export class TooltipDirective implements OnDestroy {
           delay(openDelay),
           takeUntil(this._closeAction),
           tap(() => {
-            if (this.tooltip) return;
-            this.tooltip = this.create();
-            this._repositionAction.next();
-            this.renderer.addClass(this.tooltip, 'anglify-tooltip__open');
+            this.create();
           })
         )
       ),
@@ -70,44 +108,39 @@ export class TooltipDirective implements OnDestroy {
         of(closeDelay).pipe(
           delay(closeDelay),
           takeUntil(this._openAction),
-          tap(() => {
-            if (!this.tooltip) return;
-            this.renderer.removeClass(this.tooltip, 'anglify-tooltip__open');
-            this.renderer.removeChild(this.nativeElement, this.tooltip);
-            this.tooltip = null;
-          })
+          tap(() => this._detach())
         )
       ),
       repeat()
     )
   );
 
-  private readonly _repositionHandler$ = this._repositionAction.pipe(
-    tap(() => {
-      if (!this.tooltip) return;
-      this.setPosition();
-    })
-  );
-
   public constructor(
-    private readonly elementRef: ElementRef,
+    private readonly element: ElementRef,
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
-    private readonly changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Inject(TOOLTIP_SETTINGS) private readonly settings?: TooltipSettings
+    private readonly injector: Injector,
+    private readonly resolver: ComponentFactoryResolver,
+    private readonly applicationRef: ApplicationRef,
+    private readonly cdRef: ChangeDetectorRef,
+    @Optional() @Inject(TOOLTIP_SETTINGS) private readonly settings?: Required<TooltipSettings>
   ) {
-    if (!settings) this.settings = DEFAULT_TOOLTIP_SETTINGS;
-    if (settings?.position) this.position = settings.position;
-    if (settings?.openDelay) this.tooltipOpenDelay = settings.openDelay;
-    if (settings?.closeDelay) this.tooltipCloseDelay = settings.closeDelay;
-    if (settings?.preventContextMenuOnTouchDevice) this.preventContextMenuOnTouchDevice = settings.preventContextMenuOnTouchDevice;
-    if (settings?.mobileTrigger) this.tooltipMobileTrigger = settings.mobileTrigger;
-    if (settings?.defaultOffset) this.defaultOffset = settings.defaultOffset;
+    const mergedSettings: Required<TooltipSettings> = Object.assign({}, DEFAULT_TOOLTIP_SETTINGS, this.settings);
+    this.position = mergedSettings.position;
+    this.hoverOpenDelay = mergedSettings.hoverOpenDelay;
+    this.hoverCloseDelay = mergedSettings.hoverCloseDelay;
+    this.touchOpenDelay = mergedSettings.touchOpenDelay;
+    this.touchCloseDelay = mergedSettings.touchCloseDelay;
+    this.preventContextMenuOnTouchDevice = mergedSettings.preventContextMenuOnTouchDevice;
+    this.tooltipMobileTrigger = mergedSettings.mobileTrigger;
+    this.offset = mergedSettings.defaultOffset;
+    this.autoCloseOnTouchDevicesAfterDelay = mergedSettings.autoCloseOnTouchDevicesAfterDelay;
 
-    this.nativeElement = this.elementRef.nativeElement;
-    this.mountingPoint = this.nativeElement.parentElement ?? document.body;
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
-    this._repositionHandler$.pipe(untilDestroyed(this)).subscribe();
+  }
+
+  public ngOnDestroy(): void {
+    this._detach();
   }
 
   public open(delay = 0): void {
@@ -119,93 +152,89 @@ export class TooltipDirective implements OnDestroy {
   }
 
   public toggle(delay = 0): void {
-    this.tooltip ? this._closeAction.next(delay) : this._openAction.next(delay);
+    this.componentRef ? this._closeAction.next(delay) : this._openAction.next(delay);
+  }
+
+  private _detach(): void {
+    this.componentRef?.destroy();
+    this.componentRef = undefined;
+    this.embeddedView?.destroy();
+    this.embeddedView = undefined;
   }
 
   @HostListener('mouseenter')
-  @HostListener('focus') // Open tooltip when host gets focused (with keyboard for example)
   private onOpenEventDesktop(): void {
     if (isTouchDevice()) return;
-    this.open(this.tooltipOpenDelay);
+    this.open(this.hoverOpenDelay);
+  }
+
+  @HostListener('touchstart', ['$event'])
+  @HostListener('contextmenu', ['$event'])
+  private onOpenEventMobile(event: Event): void {
+    if (!isTouchDevice()) return;
+    if (this.tooltipMobileTrigger === 'long' && event.type === 'touchstart') return;
+    if (this.tooltipMobileTrigger === 'short' && event.type === 'contextmenu') return;
+    if (isBooleanLikeTrue(this.preventContextMenuOnTouchDevice) || isBooleanLikeTrue(this.autoCloseOnTouchDevicesAfterDelay)) {
+      event.preventDefault();
+    }
+    this.open(this.touchOpenDelay);
+  }
+
+  @HostListener('touchend')
+  private autoCloseOnMobile(): void {
+    if (!isBooleanLikeTrue(this.autoCloseOnTouchDevicesAfterDelay)) return;
+    if (!isTouchDevice()) return;
+    this.close(this.touchCloseDelay);
+  }
+
+  @HostListener('document:click', ['$event', '$event.target'])
+  @HostListener('document:contextmenu', ['$event', '$event.target'])
+  public onClickOutside(event: MouseEvent, targetElement: HTMLElement): void {
+    if (!this.componentRef) return;
+    if (!Boolean(targetElement)) return;
+    const clickedInside = this.element.nativeElement.contains(targetElement);
+    if (!clickedInside) this.close(0);
   }
 
   @HostListener('mouseleave')
-  @HostListener('blur') // Close tooltip when host gets blurred (with keyboard for example)
-  private onCloseEventDesktop(): void {
-    if (isTouchDevice()) return;
-    this.close(this.tooltipCloseDelay);
+  private onCloseEvent(): void {
+    this.close(isTouchDevice() ? this.touchCloseDelay : this.hoverCloseDelay);
   }
 
-  @HostListener('click', ['$event'])
-  @HostListener('contextmenu', ['$event'])
-  private onOpenEventMobile(event: Event): void {
-    if (this.tooltipMobileTrigger === 'long' && event.type !== 'contextmenu') return;
-    if (this.tooltipMobileTrigger === 'short' && event.type !== 'click') return;
+  private create(): void {
+    if (this.componentRef) return;
+    const factory = this.resolver.resolveComponentFactory(TooltipComponent);
+    const injector = Injector.create({
+      providers: [{ provide: 'tooltipConfig', useValue: { host: this.element.nativeElement } }],
+    });
+    this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector, this.generateNgContent());
+    this.componentRef.instance.position = this.position;
+    this.componentRef.instance.offset = this.offset;
+    this.componentRef.instance.contentClass = this.contentClass;
 
-    if (isTouchDevice()) {
-      if (isBooleanLikeTrue(this.preventContextMenuOnTouchDevice)) event.preventDefault();
+    this.changeMountingPoint();
+    this.cdRef.markForCheck();
+  }
 
-      setTimeout(() => this.open(), 0); // Open tooltip after other context menus are closed
+  private generateNgContent(): any[][] {
+    if (typeof this.content === 'string') {
+      return [[this.renderer.createText(this.content)]];
     }
-  }
-
-  @HostListener('document:click')
-  @HostListener('document:contextmenu') // Close tooltip when other tooltips are opened
-  private onCloseEventMobile(): void {
-    if (isTouchDevice()) this.close();
-  }
-
-  private create(): HTMLSpanElement {
-    const tooltip: HTMLSpanElement = this.renderer.createElement('span');
-    if (this.template) {
-      const view = this.viewContainerRef.createEmbeddedView(this.template);
-      view.rootNodes.forEach(node => this.renderer.appendChild(tooltip, node));
-    } else if (this.text) {
-      this.renderer.appendChild(tooltip, this.renderer.createText(this.text));
+    if (this.content instanceof TemplateRef) {
+      this.embeddedView = this.content.createEmbeddedView({});
+      this.applicationRef.attachView(this.embeddedView);
+      return [this.embeddedView.rootNodes];
     }
-    this.renderer.appendChild(this.mountingPoint, tooltip);
-    this.renderer.addClass(tooltip, 'anglify-tooltip');
-    if (this.contentClass) this.renderer.addClass(tooltip, this.contentClass);
-
-    // https://github.com/valentingavran/anglify/issues/19#issuecomment-1030809020
-    this.changeDetectorRef.markForCheck();
-    observeOnResize(tooltip)
-      .pipe(takeUntil(this._closeAction))
-      .subscribe(() => this.setPosition());
-
-    return tooltip;
+    return [[this.resolver.resolveComponentFactory(this.content).create(this.injector)]];
   }
 
-  private setPosition(): void {
-    if (!this.tooltip) return;
-    const hostPos = this.nativeElement.getBoundingClientRect();
-    const tooltipPos = this.tooltip.getBoundingClientRect();
-
-    const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-    let top;
-    let left;
-
-    if (this.position === 'TOP') {
-      top = hostPos.top - tooltipPos.height - this.defaultOffset;
-      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, this.defaultOffset);
-    } else if (this.position === 'BOTTOM') {
-      top = hostPos.bottom + this.defaultOffset;
-      left = Math.max(hostPos.left + (hostPos.width - tooltipPos.width) / 2, this.defaultOffset);
+  private changeMountingPoint(): void {
+    if (!this.componentRef) return;
+    if (this.mountingPoint === 'parent') {
+    } else if (this.mountingPoint === 'body') {
+      this.renderer.appendChild(document.body, this.componentRef.location.nativeElement);
     } else {
-      top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
-      if (this.position === 'LEFT') {
-        left = Math.max(hostPos.left - tooltipPos.width - this.defaultOffset, this.defaultOffset);
-      } else {
-        left = Math.min(hostPos.right + this.defaultOffset, window.innerWidth - tooltipPos.width - this.defaultOffset);
-      }
+      this.renderer.appendChild(this.mountingPoint, this.componentRef.location.nativeElement);
     }
-
-    this.renderer.setStyle(this.tooltip, 'top', `${top + scrollPos}px`);
-    this.renderer.setStyle(this.tooltip, 'left', `${left}px`);
-  }
-
-  public ngOnDestroy(): void {
-    this._closeAction.next(0);
   }
 }
