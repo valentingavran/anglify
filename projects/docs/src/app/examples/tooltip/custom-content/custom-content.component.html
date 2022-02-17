@@ -1,9 +1,5 @@
-<button anglifyButton anglifyTooltip="">
-  <ng-template #tooltipContent><anglify-icon icon="mdi-apple-keyboard-command"></anglify-icon> + C</ng-template>
-  Copy
-</button>
+<button anglifyButton [anglifyTooltip]="copyContent">Copy</button>
+<ng-template #copyContent><anglify-icon icon="mdi-apple-keyboard-command"></anglify-icon> + C</ng-template>
 
-<button anglifyButton anglifyTooltip="">
-  <ng-template #tooltipContent><anglify-icon icon="mdi-apple-keyboard-command"></anglify-icon> + V</ng-template>
-  Paste
-</button>
+<button anglifyButton [anglifyTooltip]="pasteContent">Paste</button>
+<ng-template #pasteContent><anglify-icon icon="mdi-apple-keyboard-command"></anglify-icon> + V</ng-template>

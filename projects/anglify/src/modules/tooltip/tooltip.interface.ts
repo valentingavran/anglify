@@ -1,12 +1,17 @@
 export type TooltipTouchTrigger = 'short' | 'long';
 
-export type TooltipPosition = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
+export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';
+
+export type TooltipMountingPoint = HTMLElement | 'body' | 'parent';
 
 export interface TooltipSettings {
   position?: TooltipPosition;
-  openDelay?: number;
-  closeDelay?: number;
+  hoverOpenDelay?: number;
+  touchOpenDelay?: number;
+  hoverCloseDelay?: number;
+  touchCloseDelay?: number;
   preventContextMenuOnTouchDevice?: boolean;
   mobileTrigger?: TooltipTouchTrigger;
   defaultOffset?: number;
+  autoCloseOnTouchDevicesAfterDelay?: boolean;
 }
