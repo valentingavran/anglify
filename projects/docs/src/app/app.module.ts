@@ -28,6 +28,8 @@ import { ButtonExamplesModule } from './examples/button/button-examples.module';
 import { ButtonModule } from '../../../anglify/src/modules/button/button.module';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 import { ListModule } from '../../../anglify/src/modules/list/list.module';
+import { MenuModule } from '../../../anglify/src/modules/menu/menu.module';
+import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { ListModule } from '../../../anglify/src/modules/list/list.module';
     StepperComponent,
     OverlayPageComponent,
     ListPageComponent,
+    MenuPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { ListModule } from '../../../anglify/src/modules/list/list.module';
     OverlayModule,
     ButtonModule,
     ListModule,
+    MenuModule,
   ],
   providers: [
     {
