@@ -23,8 +23,10 @@ import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
-import { TooltipPosition, TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
+import { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { Position } from '../../composables/position/position.interface';
+import { POSITION_SETTINGS } from '../../composables/position/position.token';
 
 @UntilDestroy()
 @Directive({
@@ -58,14 +60,14 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @Input()
-  public set position(value: TooltipPosition) {
+  public set position(value: Position) {
     this._position = value;
     if (this.componentRef) {
       this.componentRef.instance.position = value;
     }
   }
 
-  public get position(): TooltipPosition {
+  public get position(): Position {
     return this._position;
   }
 
@@ -81,7 +83,7 @@ export class TooltipDirective implements OnDestroy {
     return this._contentClass;
   }
 
-  private _position: TooltipPosition = DEFAULT_TOOLTIP_SETTINGS.position;
+  private _position: Position = DEFAULT_TOOLTIP_SETTINGS.position;
   private _offset = DEFAULT_TOOLTIP_SETTINGS.defaultOffset;
   private _contentClass?: string;
 
@@ -205,7 +207,7 @@ export class TooltipDirective implements OnDestroy {
     if (this.componentRef) return;
     const factory = this.resolver.resolveComponentFactory(TooltipComponent);
     const injector = Injector.create({
-      providers: [{ provide: 'tooltipConfig', useValue: { host: this.element.nativeElement } }],
+      providers: [{ provide: POSITION_SETTINGS, useValue: { host: this.element.nativeElement } }],
     });
     this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector, this.generateNgContent());
     this.componentRef.instance.position = this.position;
