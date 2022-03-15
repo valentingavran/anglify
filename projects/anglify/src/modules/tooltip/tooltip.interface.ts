@@ -1,11 +1,11 @@
-export type TooltipTouchTrigger = 'short' | 'long';
+import { Position } from '../../composables/position/position.interface';
 
-export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';
+export type TooltipTouchTrigger = 'short' | 'long';
 
 export type TooltipMountingPoint = HTMLElement | 'body' | 'parent';
 
 export interface TooltipSettings {
-  position?: TooltipPosition;
+  position?: Position;
   hoverOpenDelay?: number;
   touchOpenDelay?: number;
   hoverCloseDelay?: number;
