@@ -7,6 +7,7 @@ import { FormFieldPageComponent } from './pages/component-pages/form-field-page/
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
+import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'components/icon',
     component: IconPageComponent,
+  },
+  {
+    path: 'components/list',
+    component: ListPageComponent,
   },
   {
     path: 'components/overlay',
