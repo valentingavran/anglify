@@ -1,0 +1,9 @@
+<div *ngIf="prependDirective" class="prepend">
+  <ng-container *ngTemplateOutlet="prependDirective.template"></ng-container>
+</div>
+<div class="content">
+  <ng-content></ng-content>
+</div>
+<div *ngIf="appendDirective" class="append">
+  <ng-container *ngTemplateOutlet="appendDirective.template"></ng-container>
+</div>
