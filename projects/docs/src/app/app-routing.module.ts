@@ -8,6 +8,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
 import { HomeComponent } from './pages/home/home.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
+import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'components/list',
     component: ListPageComponent,
+  },
+  {
+    path: 'components/menu',
+    component: MenuPageComponent,
   },
   {
     path: 'components/overlay',

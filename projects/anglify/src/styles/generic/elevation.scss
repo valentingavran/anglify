@@ -1,0 +1,9 @@
+@import '../mixins/elevation';
+
+$z: 24;
+@while $z >= 0 {
+  .anglify-elevation-#{$z} {
+    @include elevation($z, $important: true);
+  }
+  $z: $z - 1;
+}

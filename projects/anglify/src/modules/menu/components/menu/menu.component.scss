@@ -1,0 +1,10 @@
+@use '../../variables' as *;
+
+:host {
+  display: block;
+  position: fixed;
+  max-width: $menu-max-width;
+  border-radius: $menu-border-radius;
+  z-index: $menu-z-index;
+  background: $menu-background;
+}
