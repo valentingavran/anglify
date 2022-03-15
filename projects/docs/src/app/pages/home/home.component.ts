@@ -16,6 +16,10 @@ export class HomeComponent {
       name: 'Icon',
     },
     {
+      link: 'components/list',
+      name: 'List',
+    },
+    {
       link: 'components/stepper',
       name: 'Stepper',
     },

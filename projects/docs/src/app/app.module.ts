@@ -26,6 +26,8 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { ButtonExamplesModule } from './examples/button/button-examples.module';
 import { ButtonModule } from '../../../anglify/src/modules/button/button.module';
+import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
+import { ListModule } from '../../../anglify/src/modules/list/list.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { ButtonModule } from '../../../anglify/src/modules/button/button.module'
     TooltipPageComponent,
     StepperComponent,
     OverlayPageComponent,
+    ListPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { ButtonModule } from '../../../anglify/src/modules/button/button.module'
     TooltipExamplesModule,
     OverlayModule,
     ButtonModule,
+    ListModule,
   ],
   providers: [
     {
