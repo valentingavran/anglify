@@ -20,6 +20,10 @@ export class HomeComponent {
       name: 'List',
     },
     {
+      link: 'components/menu',
+      name: 'Menu',
+    },
+    {
       link: 'components/stepper',
       name: 'Stepper',
     },

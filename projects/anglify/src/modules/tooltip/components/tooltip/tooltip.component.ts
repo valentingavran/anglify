@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Position } from '../../../../composables/position/position.interface';
-import { MENUABLE } from '../../../../composables/position/position.provider';
+import { POSITION } from '../../../../composables/position/position.provider';
 import { PositionService } from '../../../../composables/position/position.service';
 
 @UntilDestroy()
@@ -11,7 +11,7 @@ import { PositionService } from '../../../../composables/position/position.servi
   styleUrls: ['./tooltip.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [MENUABLE],
+  providers: [POSITION],
 })
 export class TooltipComponent {
   @Input()
