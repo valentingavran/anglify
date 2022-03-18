@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
+import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'components/button',
     component: ButtonPageComponent,
+  },
+  {
+    path: 'components/card',
+    component: CardPageComponent,
   },
   {
     path: 'components/icon',
