@@ -27,3 +27,13 @@ export interface IconSettings {
   internalIcons?: InternalIconsMappingOverrides;
   defaultSize?: ComponentSize;
 }
+
+export const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
+  fa4: '',
+  md: 'material-icons',
+  custom: '',
+  fa5: '',
+  mdiSVG: '',
+  mdi: 'mdi',
+  faSVG: '',
+};
