@@ -30,6 +30,8 @@ import { ListPageComponent } from './pages/component-pages/list-page/list-page.c
 import { ListModule } from '../../../anglify/src/modules/list/list.module';
 import { MenuModule } from '../../../anglify/src/modules/menu/menu.module';
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
+import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
+import { CardModule } from '../../../anglify/src/modules/card/card.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.c
     OverlayPageComponent,
     ListPageComponent,
     MenuPageComponent,
+    CardPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.c
     ButtonModule,
     ListModule,
     MenuModule,
+    CardModule,
   ],
   providers: [
     {

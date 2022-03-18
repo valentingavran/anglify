@@ -12,6 +12,10 @@ export class HomeComponent {
       name: 'Button',
     },
     {
+      link: 'components/card',
+      name: 'Card',
+    },
+    {
       link: 'components/icon',
       name: 'Icon',
     },
