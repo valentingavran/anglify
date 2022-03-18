@@ -8,7 +8,7 @@ import {
   HostBinding,
   Inject,
   Input,
-  Optional,
+  Self,
   ViewChild,
 } from '@angular/core';
 import { InputDirective } from './directives/input.directive';
@@ -19,7 +19,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LabelDirective } from './directives/label/label.directive';
 import { isBooleanLikeTrue } from '../../utils/functions';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { FORM_FIELD_SETTINGS } from './form-field-settings.token';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
 
 @UntilDestroy()
 @Component({
@@ -27,16 +28,17 @@ import { FORM_FIELD_SETTINGS } from './form-field-settings.token';
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [createSettingsProvider<FormFieldSettings>(DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS)],
 })
 export class FormFieldComponent implements AfterViewInit {
   @ContentChild(InputDirective) public readonly input?: InputDirective;
   @ContentChild(LabelDirective) public readonly labelDirective?: LabelDirective;
   @ViewChild('prependItem') public readonly prependItem?: ElementRef;
 
-  @Input() public type: FormFieldType = 'filled';
+  @Input() public type: FormFieldType = this.settings.defaultType;
   @Input() public hint?: string;
-  @Input('persistent-hint') public persistentHint: BooleanLike = false;
-  @Input('persistent-placeholder') public persistentPlaceholder: BooleanLike = false;
+  @Input('persistent-hint') public persistentHint: BooleanLike = this.settings.persistentHint;
+  @Input('persistent-placeholder') public persistentPlaceholder: BooleanLike = this.settings.persistentPlaceholder;
   @Input('prepend-icon') public prependIcon?: string;
   @Input('prepend-outer-icon') public prependOuterIcon?: string;
   @Input('append-icon') public appendIcon?: string;
@@ -44,8 +46,8 @@ export class FormFieldComponent implements AfterViewInit {
   @Input() public prefix?: string;
   @Input() public suffix?: string;
   @Input() public label?: string;
-  @Input() public dense: BooleanLike = false;
-  @Input('hide-details') public hideDetails: BooleanLike = false;
+  @Input() public dense: BooleanLike = this.settings.dense;
+  @Input('hide-details') public hideDetails: BooleanLike = this.settings.hideDetails;
 
   @Input()
   public set error(value: string) {
@@ -78,15 +80,8 @@ export class FormFieldComponent implements AfterViewInit {
   public constructor(
     private readonly elementRef: ElementRef,
     private readonly cdr: ChangeDetectorRef,
-    @Optional() @Inject(FORM_FIELD_SETTINGS) private readonly settings?: Required<FormFieldSettings>
+    @Self() @Inject(SETTINGS) private readonly settings: Required<FormFieldSettings>
   ) {
-    if (settings) {
-      this.type = settings.defaultType;
-      this.dense = settings.dense;
-      this.persistentHint = settings.persistentHint;
-      this.persistentPlaceholder = settings.persistentPlaceholder;
-      this.hideDetails = settings.hideDetails;
-    }
     this.nativeElement = this.elementRef.nativeElement;
   }
 

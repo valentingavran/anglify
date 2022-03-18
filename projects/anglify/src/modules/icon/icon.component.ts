@@ -1,19 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input } from '@angular/core';
-import { ICON_SETTINGS } from './icon-settings.token';
-import { IconSet, IconSettings } from './icon.interface';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
+import { ICON_SET_CLASS_MAPPING, IconSet, IconSettings } from './icon.interface';
 import { BooleanLike, ComponentSize } from '../../utils/interfaces';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { isBooleanLikeTrue } from '../../utils/functions';
-
-const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
-  fa4: '',
-  md: 'material-icons',
-  custom: '',
-  fa5: '',
-  mdiSVG: '',
-  mdi: 'mdi',
-  faSVG: '',
-};
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { DEFAULT_ICON_SETTINGS, ICON_SETTINGS } from './icon-settings.token';
 
 /**
  * Anglify comes bootstrapped with support for Material Design Icons, Material Icons, Font Awesome 4, Font Awesome 5 and Custom Icons.
@@ -25,6 +16,7 @@ const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
   template: ``,
   styleUrls: ['./icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [createSettingsProvider<IconSettings>(DEFAULT_ICON_SETTINGS, ICON_SETTINGS)],
 })
 export class IconComponent {
   /**
@@ -38,23 +30,23 @@ export class IconComponent {
    * specified, the icon will be searched for in the defaultSet and then displayed
    * @default "mdi"
    */
-  @Input() public iconSet: IconSet;
+  @Input() public iconSet: IconSet = this.settings.defaultSet;
 
   /**
    * By providing IconSettings, this default value can be overridden globally. Otherwise, this property
    * can be set for individual icons
    * @default "regular"
    */
-  @Input() public size: ComponentSize;
+  @Input() public size: ComponentSize = this.settings.defaultSize;
   @Input() public clickable: BooleanLike = false;
   @Input() public disabled: BooleanLike = false;
   @Input() public left: BooleanLike = false;
   @Input() public right: BooleanLike = false;
 
-  public constructor(@Inject(ICON_SETTINGS) private readonly settings: Required<IconSettings>, private readonly sanitizer: DomSanitizer) {
-    this.iconSet = settings.defaultSet;
-    this.size = settings.defaultSize;
-  }
+  public constructor(
+    @Self() @Inject(SETTINGS) private readonly settings: Required<IconSettings>,
+    private readonly sanitizer: DomSanitizer
+  ) {}
 
   @HostBinding('class')
   private get classList(): string | undefined {
