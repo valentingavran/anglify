@@ -11,8 +11,8 @@ import {
   Injector,
   Input,
   OnDestroy,
-  Optional,
   Renderer2,
+  Self,
   TemplateRef,
   Type,
   ViewContainerRef,
@@ -27,24 +27,26 @@ import { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
 
 @UntilDestroy()
 @Directive({
   selector: '[anglifyTooltip]',
   exportAs: 'anglifyTooltip',
+  providers: [createSettingsProvider<TooltipSettings>(DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
 })
 export class TooltipDirective implements OnDestroy {
   @Input('anglifyTooltip') public content!: string | TemplateRef<any> | Type<any>;
   @Input('tooltipMountingPoint') public mountingPoint: 'body' | 'parent' | HTMLElement = 'parent';
-  @Input('tooltipHoverOpenDelay') public hoverOpenDelay;
-  @Input('tooltipHoverCloseDelay') public hoverCloseDelay;
-  @Input('tooltipTouchOpenDelay') public touchOpenDelay;
-  @Input('tooltipTouchCloseDelay') public touchCloseDelay;
+  @Input('tooltipHoverOpenDelay') public hoverOpenDelay = this.settings.hoverOpenDelay;
+  @Input('tooltipHoverCloseDelay') public hoverCloseDelay = this.settings.hoverCloseDelay;
+  @Input('tooltipTouchOpenDelay') public touchOpenDelay = this.settings.touchOpenDelay;
+  @Input('tooltipTouchCloseDelay') public touchCloseDelay = this.settings.touchCloseDelay;
   /** Prevents the context menu from opening when the host is long pressed. */
-  @Input() public preventContextMenuOnTouchDevice: BooleanLike;
+  @Input() public preventContextMenuOnTouchDevice: BooleanLike = this.settings.preventContextMenuOnTouchDevice;
   /** Allows you to define whether the tooltip is opened with a quick press or with a long press. */
-  @Input() public tooltipMobileTrigger: TooltipTouchTrigger;
-  @Input() public autoCloseOnTouchDevicesAfterDelay: BooleanLike;
+  @Input() public tooltipMobileTrigger: TooltipTouchTrigger = this.settings.mobileTrigger;
+  @Input() public autoCloseOnTouchDevicesAfterDelay: BooleanLike = this.settings.autoCloseOnTouchDevicesAfterDelay;
 
   /** Distance between the tooltip and the host element */
   @Input()
@@ -125,19 +127,8 @@ export class TooltipDirective implements OnDestroy {
     private readonly resolver: ComponentFactoryResolver,
     private readonly applicationRef: ApplicationRef,
     private readonly cdRef: ChangeDetectorRef,
-    @Optional() @Inject(TOOLTIP_SETTINGS) private readonly settings?: Required<TooltipSettings>
+    @Self() @Inject(SETTINGS) private readonly settings: Required<TooltipSettings>
   ) {
-    const mergedSettings: Required<TooltipSettings> = Object.assign({}, DEFAULT_TOOLTIP_SETTINGS, this.settings);
-    this.position = mergedSettings.position;
-    this.hoverOpenDelay = mergedSettings.hoverOpenDelay;
-    this.hoverCloseDelay = mergedSettings.hoverCloseDelay;
-    this.touchOpenDelay = mergedSettings.touchOpenDelay;
-    this.touchCloseDelay = mergedSettings.touchCloseDelay;
-    this.preventContextMenuOnTouchDevice = mergedSettings.preventContextMenuOnTouchDevice;
-    this.tooltipMobileTrigger = mergedSettings.mobileTrigger;
-    this.offset = mergedSettings.defaultOffset;
-    this.autoCloseOnTouchDevicesAfterDelay = mergedSettings.autoCloseOnTouchDevicesAfterDelay;
-
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 

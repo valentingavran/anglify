@@ -7,7 +7,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Directive({
-  selector: 'input[anglifyInput],textarea[anglifyInput]',
+  selector: 'input[anglifyInput], textarea[anglifyInput]',
 })
 export class InputDirective implements OnInit {
   private readonly nativeElement: HTMLInputElement = this.elementRef.nativeElement;

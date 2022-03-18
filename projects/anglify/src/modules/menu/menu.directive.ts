@@ -11,22 +11,24 @@ import {
   Injector,
   Input,
   OnDestroy,
-  Optional,
   Renderer2,
+  Self,
   TemplateRef,
   Type,
   ViewContainerRef,
 } from '@angular/core';
 import { MenuComponent } from './components/menu/menu.component';
-import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
 import { MenuSettings } from './menu.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { Position } from '../../composables/position/position.interface';
 import { Elevation } from '../../composables/elevation/elevation';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
 
 @Directive({
   selector: '[anglifyMenuTriggerFor]',
   exportAs: 'anglifyMenu',
+  providers: [createSettingsProvider(DEFAULT_MENU_SETTINGS, MENU_SETTINGS)],
 })
 export class MenuDirective implements OnDestroy {
   @Input('anglifyMenuTriggerFor') public content!: TemplateRef<any> | Type<any>;
@@ -69,9 +71,9 @@ export class MenuDirective implements OnDestroy {
     return this._elevation;
   }
 
-  private _position = DEFAULT_MENU_SETTINGS.position;
-  private _offset = DEFAULT_MENU_SETTINGS.offset;
-  private _elevation = DEFAULT_MENU_SETTINGS.elevation;
+  private _position = this.settings.position;
+  private _offset = this.settings.offset;
+  private _elevation = this.settings.elevation;
 
   private componentRef: ComponentRef<MenuComponent> | undefined; // Menu Component Reference
   private embeddedView: EmbeddedViewRef<any> | undefined; // Menu Content Template Reference
@@ -84,13 +86,8 @@ export class MenuDirective implements OnDestroy {
     private readonly resolver: ComponentFactoryResolver,
     private readonly applicationRef: ApplicationRef,
     private readonly cdRef: ChangeDetectorRef,
-    @Optional() @Inject(MENU_SETTINGS) private readonly settings?: Required<MenuSettings>
-  ) {
-    const mergedSettings: Required<MenuSettings> = Object.assign({}, DEFAULT_MENU_SETTINGS, this.settings);
-    this.offset = mergedSettings.offset;
-    this.position = mergedSettings.position;
-    this.elevation = mergedSettings.elevation;
-  }
+    @Self() @Inject(SETTINGS) private readonly settings: Required<MenuSettings>
+  ) {}
 
   public ngOnDestroy(): void {
     this._detach();
