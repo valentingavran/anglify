@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  exampleFolderURL: 'https://raw.githubusercontent.com/valentingavran/anglify/develop/projects/docs/src/app/examples/',
 };
 
 /*

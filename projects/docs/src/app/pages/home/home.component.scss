@@ -4,15 +4,12 @@
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 
-    .item {
+    anglify-card {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: var(--color-surface);
-      color: var(--color-on-surface-high-emphasis);
       cursor: pointer;
-      height: 150px;
-      border-radius: 4px;
+      height: 144px;
     }
   }
 }

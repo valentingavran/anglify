@@ -1,0 +1,9 @@
+@use '../../../../styles/settings/typography';
+
+:host {
+  @extend .body-m;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}

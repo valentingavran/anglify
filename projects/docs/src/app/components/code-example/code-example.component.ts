@@ -12,8 +12,9 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
-const EXAMPLE_FOLDER_URL = 'https://raw.githubusercontent.com/valentingavran/anglify/next/projects/docs/src/app/examples/';
+const EXAMPLE_FOLDER_URL = environment.exampleFolderURL;
 
 @Component({
   selector: 'app-code-example[component][example]',

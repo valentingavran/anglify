@@ -12,8 +12,20 @@ export class HomeComponent {
       name: 'Button',
     },
     {
+      link: 'components/card',
+      name: 'Card',
+    },
+    {
       link: 'components/icon',
       name: 'Icon',
+    },
+    {
+      link: 'components/list',
+      name: 'List',
+    },
+    {
+      link: 'components/menu',
+      name: 'Menu',
     },
     {
       link: 'components/stepper',
