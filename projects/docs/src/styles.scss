@@ -1,6 +1,7 @@
 @use '../../anglify/src/modules/overlay';
 @use '../../anglify/src/modules/button';
 @use '../../anglify/src/styles';
+@use './colors';
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -61,4 +62,24 @@ a {
     --overlay-color-hovered: rgba(255, 255, 255, 0.04);
     --overlay-color-focused: rgba(255, 255, 255, 0.12);
   }
+}
+
+pre {
+  margin: 0;
+  white-space: normal;
+
+  code {
+    padding: 0;
+  }
+}
+
+code {
+  background-color: colors.$color-surface-variant !important;
+  border-radius: 14px;
+  white-space: pre;
+  padding: 4px;
+}
+
+td code {
+  background: transparent !important;
 }
