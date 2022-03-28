@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { FormFieldSettings } from './form-field.interface';
+import type { FormFieldSettings } from './form-field.interface';
 
 export const DEFAULT_FORM_FIELD_SETTINGS: Required<FormFieldSettings> = {
   defaultType: 'filled',

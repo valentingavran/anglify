@@ -11,16 +11,16 @@ import {
   Self,
   ViewChild,
 } from '@angular/core';
-import { InputDirective } from './directives/input.directive';
-import { FormFieldSettings, FormFieldType } from './form-field.interface';
-import { map, tap } from 'rxjs/operators';
-import { BooleanLike } from '../../utils/interfaces';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { LabelDirective } from './directives/label/label.directive';
-import { isBooleanLikeTrue } from '../../utils/functions';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { map, tap } from 'rxjs/operators';
+import { InputDirective } from './directives/input.directive';
+import { LabelDirective } from './directives/label/label.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
+import type { FormFieldSettings, FormFieldType } from './form-field.interface';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { isBooleanLikeTrue } from '../../utils/functions';
+import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Component({
@@ -56,7 +56,7 @@ export class FormFieldComponent implements AfterViewInit {
 
   @Input() public counter: BooleanLike = false;
 
-  public get _counter(): boolean {
+  public get _counter() {
     return isBooleanLikeTrue(this.counter);
   }
 
@@ -75,18 +75,16 @@ export class FormFieldComponent implements AfterViewInit {
     })
   );
 
-  private readonly nativeElement: HTMLElement;
+  private readonly nativeElement = this.elementRef.nativeElement;
 
   public constructor(
-    private readonly elementRef: ElementRef,
+    private readonly elementRef: ElementRef<HTMLElement>,
     private readonly cdr: ChangeDetectorRef,
     @Self() @Inject(SETTINGS) private readonly settings: Required<FormFieldSettings>
-  ) {
-    this.nativeElement = this.elementRef.nativeElement;
-  }
+  ) {}
 
   @HostBinding('class')
-  private get classList(): string {
+  protected get classList() {
     const classNames = [`form-field-type-${this.type}`];
     if (isBooleanLikeTrue(this.persistentHint)) {
       classNames.push('persistent-hint');
@@ -106,7 +104,7 @@ export class FormFieldComponent implements AfterViewInit {
     return classNames.join(' ');
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     if (this.input) {
       this.input.focused$
         .pipe(

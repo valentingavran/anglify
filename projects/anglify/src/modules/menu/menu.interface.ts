@@ -1,5 +1,5 @@
-import { Position } from '../../composables/position/position.interface';
-import { Elevation } from '../../composables/elevation/elevation';
+import type { Elevation } from '../../composables/elevation/elevation';
+import type { Position } from '../../composables/position/position.interface';
 
 export interface MenuSettings {
   offset?: number;

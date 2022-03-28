@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -9,7 +10,6 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -74,7 +74,7 @@ export class CodeExampleComponent implements OnInit {
     })
   );
 
-  public switchView(view: 'code' | 'template' | 'style'): void {
+  public switchView(view: 'code' | 'template' | 'style') {
     if (this.selectedView$.value === view) {
       this.selectedView$.next(null);
     } else {
@@ -88,14 +88,14 @@ export class CodeExampleComponent implements OnInit {
     private readonly cdr: ChangeDetectorRef
   ) {}
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     void this.loadComponent(this.container);
   }
 
-  private async loadComponent(vcr: ViewContainerRef): Promise<void> {
+  private async loadComponent(vcr: ViewContainerRef) {
     const example = this.example$.value;
     if (example) {
-      const component: { default: Type<any> } = await import(`../../examples/${this.component}/${example}/${example}.component`);
+      const component = (await import(`../../examples/${this.component}/${example}/${example}.component`)) as { default: Type<any> };
       vcr.createComponent(this.componentFactoryResolver.resolveComponentFactory(component.default));
       this.cdr.markForCheck();
     }

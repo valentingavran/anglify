@@ -10,7 +10,7 @@ export class AppComponent {
     this.initTheme();
   }
 
-  public initTheme(): void {
+  public initTheme() {
     const theme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     if (theme) {
       this.setTheme(theme);
@@ -19,12 +19,12 @@ export class AppComponent {
     }
   }
 
-  public setTheme(theme: 'light' | 'dark'): void {
+  public setTheme(theme: 'light' | 'dark') {
     localStorage.setItem('theme', theme);
     document.documentElement.className = theme;
   }
 
-  public toggleTheme(): void {
+  public toggleTheme() {
     if (localStorage.getItem('theme') === 'dark') {
       this.setTheme('light');
     } else {

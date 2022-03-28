@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { IconSettings } from './icon.interface';
+import type { IconSettings } from './icon.interface';
 
 export const DEFAULT_ICON_SETTINGS: Required<IconSettings> = {
   defaultSet: 'mdi',

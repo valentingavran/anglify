@@ -1,8 +1,8 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { POSITION_SETTINGS } from './position.token';
-import { PositionSettings, Position } from './position.interface';
 import { fromEvent, merge } from 'rxjs';
+import type { PositionSettings, Position } from './position.interface';
+import { POSITION_SETTINGS } from './position.token';
 import { observeOnResize } from '../../utils/functions';
 
 @UntilDestroy()
@@ -30,7 +30,7 @@ export class PositionService {
       .subscribe(() => this.updatePosition());
   }
 
-  private updatePosition(): void {
+  private updatePosition() {
     const hostPos = this.settings.host.getBoundingClientRect();
     const menuPos = this._elementRef.nativeElement.getBoundingClientRect();
     let top;

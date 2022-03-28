@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { take } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 interface Style {
   name: string;

@@ -1,4 +1,4 @@
-/* eslint-disable @angular-eslint/no-output-on-prefix */
+import { animate, group, query, state, style, transition, trigger } from '@angular/animations';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -10,13 +10,12 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
-import { Stepper } from '../../services/stepper/stepper.service';
-import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
 import { Step } from '../../directives/step/step.directive';
-import { animate, group, query, state, style, transition, trigger } from '@angular/animations';
 import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
+import { Stepper } from '../../services/stepper/stepper.service';
 
 @UntilDestroy()
 @Component({
@@ -93,22 +92,19 @@ export class StepperComponent extends Stepper implements AfterContentInit {
     })
   );
 
-  private readonly nativeElement: HTMLElement;
+  private readonly nativeElement = this.elementRef.nativeElement;
 
-  public constructor(public readonly stepperSettings: StepperSettings, private readonly elementRef: ElementRef) {
+  public constructor(public readonly stepperSettings: StepperSettings, private readonly elementRef: ElementRef<HTMLElement>) {
     super();
-    this.nativeElement = this.elementRef.nativeElement;
     this._orientationHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
-  public ngAfterContentInit(): void {
+  public ngAfterContentInit() {
     this._steps!.changes.pipe(
       startWith(this._steps),
       untilDestroyed(this),
-      map(steps => steps.toArray() as Step[]),
-      tap(steps => {
-        this.updateSteps(steps);
-      })
+      map((steps: QueryList<Step>) => steps.toArray()),
+      tap(steps => this.updateSteps(steps))
     ).subscribe();
   }
 }

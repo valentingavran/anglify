@@ -1,16 +1,16 @@
 import { Directive, ElementRef, OnInit, Optional, Self } from '@angular/core';
-import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
-import { observeOnMutation } from '../../../utils/functions';
-import { fromEvent, merge, NEVER, Observable, of, Subject } from 'rxjs';
 import { NgControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { fromEvent, merge, NEVER, Observable, of, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs/operators';
+import { observeOnMutation } from '../../../utils/functions';
 
 @UntilDestroy()
 @Directive({
   selector: 'input[anglifyInput], textarea[anglifyInput]',
 })
 export class InputDirective implements OnInit {
-  private readonly nativeElement: HTMLInputElement = this.elementRef.nativeElement;
+  private readonly nativeElement = this.elementRef.nativeElement;
   private readonly mutationObserver$ = observeOnMutation(this.nativeElement, { attributes: true }).pipe(shareReplay(1));
   private readonly inputEvent$ = merge(fromEvent(this.nativeElement, 'input'), this.mutationObserver$).pipe(shareReplay(1));
   private readonly statusChanged$ = new Subject();
@@ -25,17 +25,13 @@ export class InputDirective implements OnInit {
 
   public readonly readonly$ = this.mutationObserver$.pipe(
     startWith(false),
-    map(() => {
-      return this.nativeElement.hasAttribute('readonly');
-    }),
+    map(() => this.nativeElement.hasAttribute('readonly')),
     shareReplay(1)
   );
 
   public readonly disabled$ = this.mutationObserver$.pipe(
     startWith(false),
-    map(() => {
-      return this.nativeElement.hasAttribute('disabled');
-    }),
+    map(() => this.nativeElement.hasAttribute('disabled')),
     shareReplay(1)
   );
 
@@ -50,9 +46,7 @@ export class InputDirective implements OnInit {
     fromEvent(this.nativeElement as HTMLElement, 'focusin'),
     fromEvent(this.nativeElement as HTMLElement, 'focusout')
   ).pipe(
-    map(event => {
-      return event.type === 'focusin';
-    }),
+    map(event => event.type === 'focusin'),
     startWith(false),
     distinctUntilChanged(),
     shareReplay(1)
@@ -60,17 +54,11 @@ export class InputDirective implements OnInit {
 
   public readonly maxLength$ = this.mutationObserver$.pipe(
     startWith(false),
-    map(() => {
-      return this.nativeElement.getAttribute('maxlength');
-    }),
+    map(() => this.nativeElement.getAttribute('maxlength')),
     shareReplay(1)
   );
 
-  public valid$: Observable<string | null> = merge(
-    this.statusChanged$,
-    this.inputEvent$,
-    fromEvent(this.nativeElement as HTMLElement, 'focusout')
-  ).pipe(
+  public valid$: Observable<string | null> = merge(this.statusChanged$, this.inputEvent$, fromEvent(this.nativeElement, 'focusout')).pipe(
     startWith(false),
     switchMap((_, index) => {
       const value = this.nativeElement.value;
@@ -131,12 +119,12 @@ export class InputDirective implements OnInit {
     shareReplay(1)
   );
 
-  public constructor(public readonly elementRef: ElementRef, @Optional() @Self() public ngControl?: NgControl) {}
+  public constructor(public readonly elementRef: ElementRef<HTMLInputElement>, @Optional() @Self() public ngControl?: NgControl) {}
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     if (this.ngControl) {
       const abstractControl = this.ngControl.control;
-      abstractControl?.statusChanges.pipe(untilDestroyed(this)).subscribe(() => this.statusChanged$.next());
+      abstractControl?.statusChanges.pipe(untilDestroyed(this)).subscribe(() => this.statusChanged$.next(true));
     }
   }
 }

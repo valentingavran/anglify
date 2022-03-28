@@ -6,6 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./different-states.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DifferentStates {}
+export class DifferentStatesComponent {}
 
-export default DifferentStates;
+export default DifferentStatesComponent;

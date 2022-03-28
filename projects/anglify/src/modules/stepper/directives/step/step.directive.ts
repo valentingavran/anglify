@@ -1,9 +1,9 @@
 /* eslint-disable @angular-eslint/directive-class-suffix */
 import { Directive, Input, Output, TemplateRef } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { Stepper } from '../../services/stepper/stepper.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Directive({
@@ -56,43 +56,43 @@ export class Step {
     this.selected$.pipe(untilDestroyed(this)).subscribe();
   }
 
-  public setLabel(label: string): void {
+  public setLabel(label: string) {
     this._label$.next(label);
   }
 
-  public getLabelSnapshot(): string {
+  public getLabelSnapshot() {
     return this._label$.value;
   }
 
-  public setVisited(visited: boolean): void {
+  public setVisited(visited: boolean) {
     this._visited$.next(visited);
   }
 
-  public getVisitedSnapshot(): boolean {
+  public getVisitedSnapshot() {
     return this._visited$.value;
   }
 
-  public setIsFirstStep(value: boolean): void {
+  public setIsFirstStep(value: boolean) {
     this._isFirstStep$.next(value);
   }
 
-  public setISLastStep(value: boolean): void {
+  public setISLastStep(value: boolean) {
     this._isLastStep$.next(value);
   }
 
-  public setIndex(index: number): void {
+  public setIndex(index: number) {
     this._index$.next(index);
   }
 
-  public getIndexSnapshot(): number {
+  public getIndexSnapshot() {
     return this._index$.value;
   }
 
-  public setValid(valid: boolean): void {
+  public setValid(valid: boolean) {
     this._valid$.next(valid);
   }
 
-  public getValidSnapshot(): boolean {
+  public getValidSnapshot() {
     return this._valid$.value;
   }
 }

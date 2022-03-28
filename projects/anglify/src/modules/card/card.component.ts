@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
-import { Elevation } from '../../composables/elevation/elevation';
-import { CardSettings } from './card.interface';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
 import { CARD_SETTINGS, DEFAULT_CARD_SETTINGS } from './card-settings.token';
+import type { CardSettings } from './card.interface';
+import type { Elevation } from '../../composables/elevation/elevation';
 import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
 
 @Component({
   selector: 'anglify-card',

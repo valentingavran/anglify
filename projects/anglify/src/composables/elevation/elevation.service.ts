@@ -1,5 +1,5 @@
 import { ElementRef, Injectable } from '@angular/core';
-import { Elevation } from './elevation';
+import type { Elevation } from './elevation';
 
 @Injectable()
 export class ElevationService {

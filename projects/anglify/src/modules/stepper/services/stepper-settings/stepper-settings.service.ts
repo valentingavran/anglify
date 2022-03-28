@@ -14,19 +14,19 @@ export class StepperSettings {
   private readonly _orientation$ = new BehaviorSubject<StepperOrientation>('vertical');
   public readonly orientation$ = this._orientation$.asObservable();
 
-  public setHasStepConnectionLine(hasStepConnectionLine: boolean): void {
+  public setHasStepConnectionLine(hasStepConnectionLine: boolean) {
     this._hasStepConnectionLine$.next(hasStepConnectionLine);
   }
 
-  public setHeaderNavigationEnabled(headerNavigationEnabled: boolean): void {
+  public setHeaderNavigationEnabled(headerNavigationEnabled: boolean) {
     this._headerNavigationEnabled$.next(headerNavigationEnabled);
   }
 
-  public getHeaderNavigationEnabledSnapshot(): boolean {
+  public getHeaderNavigationEnabledSnapshot() {
     return this._headerNavigationEnabled$.value;
   }
 
-  public setOrientation(orientation: StepperOrientation): void {
+  public setOrientation(orientation: StepperOrientation) {
     this._orientation$.next(orientation);
   }
 }

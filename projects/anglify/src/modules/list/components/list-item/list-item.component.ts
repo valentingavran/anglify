@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ContentChild, Input } from '@angular/core';
-import { BooleanLike } from '../../../../utils/interfaces';
+import type { BooleanLike } from '../../../../utils/interfaces';
 import { AppendDirective } from '../../directives/append/append.directive';
 import { PrependDirective } from '../../directives/prepend/prepend.directive';
 

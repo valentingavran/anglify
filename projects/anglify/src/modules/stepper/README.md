@@ -8,9 +8,9 @@ available services (similar to the Angular Material Stepper).
 
 ## Table of contents
 
-* [Installation](#installation)
-* [Usage](#usage)
-* [API](#api)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
 
 ## Installation
 
@@ -21,7 +21,7 @@ npm install @anglify/stepper
 `app.module.ts ` (or any other module)
 
 ```typescript
-import {StepperModule} from '@anglify/stepper';
+import { StepperModule } from '@anglify/stepper';
 
 @NgModule({
   // ...
@@ -31,8 +31,7 @@ import {StepperModule} from '@anglify/stepper';
     StepperModule, // Module that contains the stepper
   ],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 ## Usage
@@ -40,14 +39,13 @@ export class AppModule {
 `app.component.html`
 
 ```html
-
 <anglify-stepper #stepper>
   <ng-template anglifyStep label="First step">
     First step content
     <button (click)="stepper.next()">Continue</button>
   </ng-template>
   <ng-template anglifyStep label="Second step" [valid]="stepValid">
-    Valid:<input type="checkbox" [(ngModel)]="stepValid"/><br/>
+    Valid:<input type="checkbox" [(ngModel)]="stepValid" /><br />
     <button (click)="stepper.previous()">Back</button>
     <button anglifyStepperNext>Continue</button>
   </ng-template>
@@ -57,7 +55,6 @@ export class AppModule {
     <button anglifyStepperNext>Continue</button>
   </ng-template>
 </anglify-stepper>
-
 ```
 
 `app.component.ts`
@@ -80,7 +77,7 @@ export class AppComponent {
 #### Props
 
 | Name               | Type                       | Default  | Description                                                                                    |
-|--------------------|----------------------------|----------|------------------------------------------------------------------------------------------------|
+| ------------------ | -------------------------- | -------- | ---------------------------------------------------------------------------------------------- |
 | stepConnectionLine | `boolean`                  | true     | Activates or deactivates the connection line of the stepper, which is visible at the left edge |
 | headerNavigation   | `boolean`                  | true     | Activates or deactivates the navigation via the step headers                                   |
 | orientation        | `vertical` or `horizontal` | vertical | Sets the orientation of the stepper                                                            |
@@ -88,7 +85,7 @@ export class AppComponent {
 #### Events
 
 | Name              | Description                                 | Emits                          |
-|-------------------|---------------------------------------------|--------------------------------|
+| ----------------- | ------------------------------------------- | ------------------------------ |
 | onPrevious        | Emitted when the previous step is opened    |                                |
 | onNext            | Emitted when the next step is opened        | `"horizontal"` or `"vertical"` |
 | orientationChange | Emitted when the orientation changes        |                                |
@@ -100,14 +97,14 @@ export class AppComponent {
 #### Props
 
 | Name  | Type    | Default | Description                                                                                                                                     |
-|-------|---------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | label | string  | -       | Label of the step, that is displayed in the stepper header                                                                                      |
 | valid | boolean | true    | With this field you can validate the current step. If the step is valid, you can navigate to the following steps. Otherwise it is not possible. |
 
 #### Events
 
 | Name           | Description                                        | Emits     |
-|----------------|----------------------------------------------------|-----------|
+| -------------- | -------------------------------------------------- | --------- |
 | selectedChange | Emitted when the step gets selected or unselected  | `boolean` |
 | validChange    | Emitted when the valid state of the step changes   | `boolean` |
 | visitedChange  | Emitted when the visited state of the step changes | `boolean` |
@@ -117,7 +114,6 @@ export class AppComponent {
 This directive can be placed on a button, for example. After a click the stepper automatically goes to the previous step
 
 ```html
-
 <anglify-stepper>
   ...
   <ng-template anglifyStep label="Step 2">
@@ -130,7 +126,6 @@ This directive can be placed on a button, for example. After a click the stepper
 Alternatively you can call the previous method of a stepper reference:
 
 ```html
-
 <anglify-stepper #stepper>
   ...
   <ng-template anglifyStep label="Step label">
@@ -147,7 +142,6 @@ In this case you can place the button also outside the stepper.
 This directive can be placed on a button, for example. After a click the stepper automatically goes to the next step
 
 ```html
-
 <anglify-stepper>
   <ng-template anglifyStep label="Step label">
     Content x
@@ -160,7 +154,6 @@ This directive can be placed on a button, for example. After a click the stepper
 Alternatively you can call the next method of a stepper reference:
 
 ```html
-
 <anglify-stepper #stepper>
   <ng-template anglifyStep label="Step label">
     Content x
