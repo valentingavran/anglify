@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
-import { BooleanLike } from '../../../../utils/interfaces';
 import { isBooleanLikeTrue } from '../../../../utils/functions';
+import type { BooleanLike } from '../../../../utils/interfaces';
 
 @Component({
   selector: 'anglify-list',
@@ -12,7 +12,7 @@ export class ListComponent {
   @Input() public dense: BooleanLike = false;
 
   @HostBinding('class')
-  private get classList(): string {
+  protected get classList() {
     const classNames = [];
 
     if (isBooleanLikeTrue(this.dense)) {

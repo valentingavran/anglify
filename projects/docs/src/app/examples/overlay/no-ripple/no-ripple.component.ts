@@ -6,6 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./no-ripple.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NoRipple {}
+export class NoRippleComponent {}
 
-export default NoRipple;
+export default NoRippleComponent;

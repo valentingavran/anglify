@@ -7,4 +7,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LongHintAndLongLabelComponent {}
+
 export default LongHintAndLongLabelComponent;

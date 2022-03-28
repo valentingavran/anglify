@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import { BooleanLike, ComponentSize } from '../../utils/interfaces';
-import { ButtonAppearance } from './button.interface';
+import type { ButtonAppearance } from './button.interface';
 import { isBooleanLikeTrue } from '../../utils/functions';
+import type { BooleanLike, ComponentSize } from '../../utils/interfaces';
 
 @Directive({
   selector: '[anglifyButton]',
@@ -20,10 +20,10 @@ export class ButtonDirective implements OnInit {
    */
   @Input() public size: ComponentSize = 'regular';
 
-  public constructor(private readonly elementRef: ElementRef) {}
+  public constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
 
-  public ngOnInit(): void {
-    const children = Array.from((this.elementRef.nativeElement as HTMLButtonElement).children);
+  public ngOnInit() {
+    const children = Array.from(this.elementRef.nativeElement.children);
     const hasLeftIcon = children.some(child => {
       if (child.tagName === 'ANGLIFY-ICON') {
         const right = Array.from(child.attributes).some(attribute => attribute.name === 'left');
@@ -49,7 +49,7 @@ export class ButtonDirective implements OnInit {
   }
 
   @HostBinding('class')
-  private get classList(): string {
+  protected get classList() {
     const classNames = ['anglify-button', this.appearance, `button-size-${this.size}`];
 
     if (isBooleanLikeTrue(this.block)) {

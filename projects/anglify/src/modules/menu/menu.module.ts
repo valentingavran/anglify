@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuDirective } from './menu.directive';
+import { NgModule } from '@angular/core';
 import { MenuComponent } from './components/menu/menu.component';
+import { MenuDirective } from './menu.directive';
 
 @NgModule({
   declarations: [MenuDirective, MenuComponent],

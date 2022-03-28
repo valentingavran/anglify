@@ -20,14 +20,14 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
-import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
-import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
-import { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
-import { Position } from '../../composables/position/position.interface';
+import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
+import type { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
+import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
+import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Directive({
@@ -87,7 +87,7 @@ export class TooltipDirective implements OnDestroy {
 
   private _position: Position = DEFAULT_TOOLTIP_SETTINGS.position;
   private _offset = DEFAULT_TOOLTIP_SETTINGS.defaultOffset;
-  private _contentClass?: string;
+  private _contentClass?: string | undefined;
 
   private componentRef: ComponentRef<TooltipComponent> | undefined; // Tooltip Component Reference
   private embeddedView: EmbeddedViewRef<any> | undefined; // Tooltip Content Template Reference
@@ -120,7 +120,7 @@ export class TooltipDirective implements OnDestroy {
   );
 
   public constructor(
-    private readonly element: ElementRef,
+    private readonly element: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
     private readonly injector: Injector,
@@ -132,23 +132,23 @@ export class TooltipDirective implements OnDestroy {
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
-  public ngOnDestroy(): void {
+  public ngOnDestroy() {
     this._detach();
   }
 
-  public open(delay = 0): void {
+  public open(delay = 0) {
     this._openAction.next(delay);
   }
 
-  public close(delay = 0): void {
+  public close(delay = 0) {
     this._closeAction.next(delay);
   }
 
-  public toggle(delay = 0): void {
+  public toggle(delay = 0) {
     this.componentRef ? this._closeAction.next(delay) : this._openAction.next(delay);
   }
 
-  private _detach(): void {
+  private _detach() {
     this.componentRef?.destroy();
     this.componentRef = undefined;
     this.embeddedView?.destroy();
@@ -156,14 +156,14 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseenter')
-  private onOpenEventDesktop(): void {
+  protected onOpenEventDesktop() {
     if (isTouchDevice()) return;
     this.open(this.hoverOpenDelay);
   }
 
   @HostListener('touchstart', ['$event'])
   @HostListener('contextmenu', ['$event'])
-  private onOpenEventMobile(event: Event): void {
+  protected onOpenEventMobile(event: Event) {
     if (!isTouchDevice()) return;
     if (this.tooltipMobileTrigger === 'long' && event.type === 'touchstart') return;
     if (this.tooltipMobileTrigger === 'short' && event.type === 'contextmenu') return;
@@ -174,7 +174,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('touchend')
-  private autoCloseOnMobile(): void {
+  protected autoCloseOnMobile() {
     if (!isBooleanLikeTrue(this.autoCloseOnTouchDevicesAfterDelay)) return;
     if (!isTouchDevice()) return;
     this.close(this.touchCloseDelay);
@@ -182,7 +182,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('document:click', ['$event', '$event.target'])
   @HostListener('document:contextmenu', ['$event', '$event.target'])
-  public onClickOutside(event: MouseEvent, targetElement: HTMLElement): void {
+  public onClickOutside(_: MouseEvent, targetElement: HTMLElement) {
     if (!this.componentRef) return;
     if (!Boolean(targetElement)) return;
     const clickedInside = this.element.nativeElement.contains(targetElement);
@@ -190,11 +190,11 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseleave')
-  private onCloseEvent(): void {
+  protected onCloseEvent() {
     this.close(isTouchDevice() ? this.touchCloseDelay : this.hoverCloseDelay);
   }
 
-  private create(): void {
+  private create() {
     if (this.componentRef) return;
     const factory = this.resolver.resolveComponentFactory(TooltipComponent);
     const injector = Injector.create({
@@ -209,7 +209,7 @@ export class TooltipDirective implements OnDestroy {
     this.cdRef.markForCheck();
   }
 
-  private generateNgContent(): any[][] {
+  private generateNgContent() {
     if (typeof this.content === 'string') {
       return [[this.renderer.createText(this.content)]];
     }
@@ -221,7 +221,7 @@ export class TooltipDirective implements OnDestroy {
     return [[this.resolver.resolveComponentFactory(this.content).create(this.injector)]];
   }
 
-  private changeMountingPoint(): void {
+  private changeMountingPoint() {
     if (!this.componentRef) return;
     if (this.mountingPoint === 'parent') {
     } else if (this.mountingPoint === 'body') {

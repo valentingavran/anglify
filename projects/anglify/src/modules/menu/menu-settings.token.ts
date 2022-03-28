@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { MenuSettings } from './menu.interface';
+import type { MenuSettings } from './menu.interface';
 
 export const DEFAULT_MENU_SETTINGS: Required<MenuSettings> = {
   offset: 0,

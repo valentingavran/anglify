@@ -32,13 +32,8 @@
             "polyfills": "projects/docs/src/polyfills.ts",
             "tsConfig": "projects/docs/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/docs/src/favicon.ico",
-              "projects/docs/src/assets"
-            ],
-            "styles": [
-              "projects/docs/src/styles.scss"
-            ],
+            "assets": ["projects/docs/src/favicon.ico", "projects/docs/src/assets"],
+            "styles": ["projects/docs/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -124,22 +119,15 @@
             "tsConfig": "projects/docs/tsconfig.spec.json",
             "karmaConfig": "projects/docs/karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/docs/src/favicon.ico",
-              "projects/docs/src/assets"
-            ],
-            "styles": [
-              "projects/docs/src/styles.scss"
-            ],
+            "assets": ["projects/docs/src/favicon.ico", "projects/docs/src/assets"],
+            "styles": ["projects/docs/src/styles.scss"],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/docs/src/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["projects/docs/src/**/*.{js,ts}"]
           }
         }
       }
@@ -177,9 +165,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/anglify/src/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["projects/anglify/src/**/*.{js,ts}"]
           }
         }
       }

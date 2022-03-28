@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormFieldType } from '../../../../../../anglify/src/modules/form-field/form-field.interface';
+import type { FormFieldType } from '../../../../../../anglify/src/modules/form-field/form-field.interface';
 
 @Component({
   selector: 'app-form-field-page',

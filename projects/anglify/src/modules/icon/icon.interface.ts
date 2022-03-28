@@ -1,4 +1,4 @@
-import { ComponentSize } from '../../utils/interfaces';
+import type { ComponentSize } from '../../utils/interfaces';
 
 // TODO This type must always be up-to-date (add new required internal icons here)
 export type InternalIcons = 'add' | 'edit';

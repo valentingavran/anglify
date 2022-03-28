@@ -5,13 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { MarkdownModule } from 'ngx-markdown';
-import { ButtonModule } from '../../../anglify/src/modules/button/button.module';
-import { CardModule } from '../../../anglify/src/modules/card/card.module';
-import { FormFieldModule } from '../../../anglify/src/modules/form-field/form-field.module';
-import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
-import { ListModule } from '../../../anglify/src/modules/list/list.module';
-import { MenuModule } from '../../../anglify/src/modules/menu/menu.module';
-import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
@@ -33,6 +26,13 @@ import { StepperComponent } from './pages/component-pages/stepper/stepper.compon
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InstallationComponent } from './pages/installation/installation.component';
+import { ButtonModule } from '../../../anglify/src/modules/button/button.module';
+import { CardModule } from '../../../anglify/src/modules/card/card.module';
+import { FormFieldModule } from '../../../anglify/src/modules/form-field/form-field.module';
+import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
+import { ListModule } from '../../../anglify/src/modules/list/list.module';
+import { MenuModule } from '../../../anglify/src/modules/menu/menu.module';
+import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.module';
 
 @NgModule({
   declarations: [

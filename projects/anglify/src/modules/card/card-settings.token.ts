@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { CardSettings } from './card.interface';
+import type { CardSettings } from './card.interface';
 
 export const DEFAULT_CARD_SETTINGS: Required<CardSettings> = {
   elevation: 1,

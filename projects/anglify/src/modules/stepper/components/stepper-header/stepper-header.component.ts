@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, HostListener, Input } from '@angular/core';
-import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { Stepper } from '../../services/stepper/stepper.service';
-import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
@@ -66,7 +66,7 @@ export class StepperHeaderComponent {
   );
 
   public constructor(
-    private readonly elementRef: ElementRef,
+    private readonly elementRef: ElementRef<HTMLElement>,
     private readonly stepper: Stepper,
     private readonly stepperSettings: StepperSettings
   ) {
@@ -74,7 +74,7 @@ export class StepperHeaderComponent {
   }
 
   @HostListener('click')
-  private navigate(): void {
+  protected navigate() {
     if (this.stepperSettings.getHeaderNavigationEnabledSnapshot()) {
       this.stepper.navigateTo(this.index$.value);
     }

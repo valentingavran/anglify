@@ -18,12 +18,12 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { MenuComponent } from './components/menu/menu.component';
-import { MenuSettings } from './menu.interface';
-import { POSITION_SETTINGS } from '../../composables/position/position.token';
-import { Position } from '../../composables/position/position.interface';
-import { Elevation } from '../../composables/elevation/elevation';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
 import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
+import type { MenuSettings } from './menu.interface';
+import type { Elevation } from '../../composables/elevation/elevation';
+import type { Position } from '../../composables/position/position.interface';
+import { POSITION_SETTINGS } from '../../composables/position/position.token';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
 
 @Directive({
   selector: '[anglifyMenuTriggerFor]',
@@ -79,7 +79,7 @@ export class MenuDirective implements OnDestroy {
   private embeddedView: EmbeddedViewRef<any> | undefined; // Menu Content Template Reference
 
   public constructor(
-    private readonly element: ElementRef,
+    private readonly element: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
     private readonly injector: Injector,
@@ -89,11 +89,11 @@ export class MenuDirective implements OnDestroy {
     @Self() @Inject(SETTINGS) private readonly settings: Required<MenuSettings>
   ) {}
 
-  public ngOnDestroy(): void {
+  public ngOnDestroy() {
     this._detach();
   }
 
-  private _detach(): void {
+  private _detach() {
     this.componentRef?.destroy();
     this.componentRef = undefined;
     this.embeddedView?.destroy();
@@ -101,7 +101,7 @@ export class MenuDirective implements OnDestroy {
   }
 
   @HostListener('document:click', ['$event', '$event.target'])
-  public onClick(event: MouseEvent, targetElement: HTMLElement): void {
+  public onClick(_: MouseEvent, targetElement: HTMLElement) {
     if (!Boolean(targetElement)) return;
     const clickedInside = this.element.nativeElement.contains(targetElement);
     if (clickedInside && !this.componentRef) {
@@ -111,7 +111,7 @@ export class MenuDirective implements OnDestroy {
     }
   }
 
-  private create(): void {
+  private create() {
     if (this.componentRef) return;
     const factory = this.resolver.resolveComponentFactory(MenuComponent);
     const injector = Injector.create({
@@ -135,7 +135,7 @@ export class MenuDirective implements OnDestroy {
     return [[this.resolver.resolveComponentFactory(this.content).create(this.injector)]];
   }
 
-  private changeMountingPoint(): void {
+  private changeMountingPoint() {
     if (!this.componentRef) return;
     if (this.mountingPoint === 'parent') {
     } else if (this.mountingPoint === 'body') {

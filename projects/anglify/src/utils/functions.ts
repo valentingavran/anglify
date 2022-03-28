@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { BooleanLike } from './interfaces';
+import type { BooleanLike } from './interfaces';
 
 export function observeOnMutation(target: Node, config: MutationObserverInit | undefined): Observable<MutationRecord[]> {
   return new Observable(observer => {
@@ -21,10 +21,10 @@ export function observeOnResize(target: Element): Observable<ResizeObserverEntry
   });
 }
 
-export function isBooleanLikeTrue(value: BooleanLike): boolean {
+export function isBooleanLikeTrue(value: BooleanLike) {
   return value === true || value === 'true' || value === '';
 }
 
-export function isTouchDevice(): boolean {
+export function isTouchDevice() {
   return window.matchMedia('(pointer: coarse)').matches;
 }

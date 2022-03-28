@@ -1,33 +1,7 @@
 {
-  "extends": [
-    "../../.eslintrc.json"
-  ],
-  "ignorePatterns": [
-    "!**/*"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ],
-      "parserOptions": {
-        "project": [
-          "./tsconfig(.*)?.json"
-        ]
-      },
-      "rules": {
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "anglify",
-            "style": "kebab-case"
-          }
-        ]
-      }
-    }
-  ]
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "parserOptions": {
+    "project": ["./tsconfig(.*)?.json"]
+  }
 }
