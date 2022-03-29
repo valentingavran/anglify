@@ -40,6 +40,11 @@ export * from './modules/menu/menu.module';
 // Overlay
 export * from './modules/overlay/overlay.directive';
 export * from './modules/overlay/overlay.module';
+// Progress Circular
+export * from './modules/progress-circular/progress-circular-settings.token';
+export * from './modules/progress-circular/progress-circular.component';
+export * from './modules/progress-circular/progress-circular.interface';
+export * from './modules/progress-circular/progress-circular.module';
 // Stepper
 export * from './modules/stepper/components/stepper-header/stepper-header.component';
 export * from './modules/stepper/components/stepper/stepper.component';

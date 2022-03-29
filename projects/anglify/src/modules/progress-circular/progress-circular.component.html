@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="25 25 50 50" [style]="style">
+  <circle *ngIf="indeterminate === false" class="track" cx="50" cy="50" r="20"></circle>
+  <circle
+    class="overlay"
+    cx="50"
+    cy="50"
+    [attr.r]="radius"
+    [attr.stroke-dasharray]="strokeDashArray"
+    [attr.stroke-dashoffset]="strokeDashOffset"
+  ></circle>
+</svg>
+<div class="info">
+  <ng-content></ng-content>
+</div>
