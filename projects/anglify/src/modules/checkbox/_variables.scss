@@ -1,0 +1,19 @@
+@use '../../styles/settings/colors';
+
+/* coloring */
+$checkbox-border-color: var(--checkbox-border-color, #dcdcdc);
+$checkbox-lable-disabled-color: var(--checkbox-label-disabled-color, #00000061);
+$checkbox-icon-color: var(--checkbox-icon-color, #626262);
+$checkbox-checked-icon-color: var(--checkbox-checked-icon-color, white);
+$checkbox-checked-color: var(--checkbox-checked-color, red);
+$checkbox-checked-hover-color: var(--checkbox-checked-hover-color, darkred);
+$checkbox-checked-hover-border-color: var(--checkbox-checked-hover-border-color, darkred);
+$checkbox-checked-border-color: var(--checkbox-checked-border-color, red);
+$checkbox-border-radius: var(--checkbox-border-radius, 3px);
+
+/* theming */
+$checkbox-label-gap: var(--checkbox-label-gap, 5px);
+$checkbox-border-width: var(--checkbox-border-width, 2px);
+$checkbox-height: var(--checkbox-height, 14px);
+$checkbox-width: var(--checkbox-width, 14px);
+$checkbox-label-padding: var(--checkbox-label-padding, 1px 0 0 0);

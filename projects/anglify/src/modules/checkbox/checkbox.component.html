@@ -1,0 +1,7 @@
+<label [class.before]="labelPosition === 'before'">
+    <input type="checkbox" [disabled]="disabled" [ngModel]="checked" (ngModelChange)="onModelChange($event)"/>
+    <span class="check-box-effect"></span>
+    <span class="checkbox-label" [class.disabled]="disabled">
+        <ng-content></ng-content>
+    </span>
+</label>
