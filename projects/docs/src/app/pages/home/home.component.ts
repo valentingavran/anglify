@@ -31,6 +31,10 @@ export class HomeComponent {
       name: 'Menu',
     },
     {
+      link: 'components/progress-circular',
+      name: 'Progress Circular',
+    },
+    {
       link: 'components/stepper',
       name: 'Stepper',
     },
