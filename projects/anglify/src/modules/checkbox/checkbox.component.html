@@ -1,6 +1,8 @@
 <label [class.before]="labelPosition === 'before'">
     <input type="checkbox" [disabled]="disabled" [ngModel]="checked" (ngModelChange)="onModelChange($event)"/>
-    <span class="check-box-effect"></span>
+    <div anglifyOverlay [ripple]="ripple" class="overlay-container">
+        <span class="check-box-effect"></span>
+    </div>
     <span class="checkbox-label" [class.disabled]="disabled">
         <ng-content></ng-content>
     </span>

@@ -2,7 +2,7 @@
 
 /* coloring */
 $checkbox-border-color: var(--checkbox-border-color, #dcdcdc);
-$checkbox-lable-disabled-color: var(--checkbox-label-disabled-color, #00000061);
+$checkbox-disabled-color: var(--checkbox-disabled-color, #00000061);
 $checkbox-icon-color: var(--checkbox-icon-color, #626262);
 $checkbox-checked-icon-color: var(--checkbox-checked-icon-color, white);
 $checkbox-checked-color: var(--checkbox-checked-color, red);
@@ -12,8 +12,15 @@ $checkbox-checked-border-color: var(--checkbox-checked-border-color, red);
 $checkbox-border-radius: var(--checkbox-border-radius, 3px);
 
 /* theming */
-$checkbox-label-gap: var(--checkbox-label-gap, 5px);
+$checkbox-label-gap: var(--checkbox-label-gap, 7px);
+$checkbox-label-font-size: var(--checkbox-label-font-size, 14px);
 $checkbox-border-width: var(--checkbox-border-width, 2px);
 $checkbox-height: var(--checkbox-height, 14px);
 $checkbox-width: var(--checkbox-width, 14px);
-$checkbox-label-padding: var(--checkbox-label-padding, 1px 0 0 0);
+$checkbox-label-padding: var(--checkbox-label-padding, 2px 0 0 0);
+$checkbox-icon-before-width: var(--checkbox-icon-before-width, 6px);
+$checkbox-icon-after-width: var(--checkbox-icon-after-width, 11px);
+$checkbox-icon-before-top-position: var(--checkbox-icon-before-top-position, 7px);
+$checkbox-icon-before-left-position: var(--checkbox-icon-before-left-position, 3px);
+$checkbox-icon-after-top-position: var(--checkbox-icon-after-top-position, 11px);
+$checkbox-icon-after-left-position: var(--checkbox-icon-after-left-position, 5px);
