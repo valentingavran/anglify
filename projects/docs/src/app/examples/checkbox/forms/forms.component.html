@@ -1,20 +1,8 @@
-<div>
-    <anglify-checkbox [(ngModel)]="inputOne">Checkbox 1</anglify-checkbox>
-    <hr>
-    <span>NgModel value: {{ inputOne }}</span>
-</div>
+<anglify-checkbox [(ngModel)]="inputOne">Checkbox 1</anglify-checkbox>
 
-<div>
-    <anglify-checkbox [formControl]="inputTwo">Checkbox 2</anglify-checkbox>
-    <hr>
-    <span>Control value: {{ inputTwo?.value }}</span>
-</div>
+<anglify-checkbox [formControl]="inputTwo">Checkbox 2</anglify-checkbox>
 
-<div>
-    <form [formGroup]="form">
-        <anglify-checkbox formControlName="myFormControl">Checkbox 3</anglify-checkbox>
-    </form>
-    <hr>
-    <span>Form value: {{ form.get('myFormControl')?.value }}</span>
-</div>
+<form [formGroup]="form">
+    <anglify-checkbox formControlName="myFormControl">Checkbox 3</anglify-checkbox>
+</form>
 
