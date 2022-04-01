@@ -33,7 +33,7 @@ import type { BooleanLike } from '../../utils/interfaces';
 export class FormFieldComponent implements AfterViewInit {
   @ContentChild(InputDirective) public readonly input?: InputDirective;
   @ContentChild(LabelDirective) public readonly labelDirective?: LabelDirective;
-  @ViewChild('prependItem') public readonly prependItem?: ElementRef;
+  @ViewChild('prependItem') public readonly prependItem?: ElementRef<HTMLElement>;
 
   @Input() public type: FormFieldType = this.settings.defaultType;
   @Input() public hint?: string;
@@ -162,7 +162,7 @@ export class FormFieldComponent implements AfterViewInit {
         .pipe(
           untilDestroyed(this),
           map(([focused, floating]) => {
-            const prependItemWidth = `-${(this.prependItem?.nativeElement as HTMLElement).offsetWidth}px`;
+            const prependItemWidth = `-${this.prependItem!.nativeElement.offsetWidth}px`;
             return (focused || floating || isBooleanLikeTrue(this.persistentPlaceholder)) && this.type === 'outlined'
               ? prependItemWidth
               : '';
