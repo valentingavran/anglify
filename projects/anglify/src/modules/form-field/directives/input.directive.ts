@@ -42,10 +42,7 @@ export class InputDirective implements OnInit {
     shareReplay(1)
   );
 
-  public readonly focused$ = merge(
-    fromEvent(this.nativeElement as HTMLElement, 'focusin'),
-    fromEvent(this.nativeElement as HTMLElement, 'focusout')
-  ).pipe(
+  public readonly focused$ = merge(fromEvent(this.nativeElement, 'focusin'), fromEvent(this.nativeElement, 'focusout')).pipe(
     map(event => event.type === 'focusin'),
     startWith(false),
     distinctUntilChanged(),
