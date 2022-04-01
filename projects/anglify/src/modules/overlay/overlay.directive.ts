@@ -30,6 +30,12 @@ export class OverlayDirective {
 
   @Input() public ripple: BooleanLike = true;
 
+  @Input() public rippleOrigin: 'center' | undefined;
+
+  @Input() public hover: BooleanLike = true;
+
+  @Input() public focus: BooleanLike = true;
+
   private readonly _nativeElement = this._element.nativeElement;
   private readonly _hoverContainer = this.createOverlayContainer();
   private readonly _selectedOrActivatedContainer = this.createOverlayContainer();
@@ -46,12 +52,16 @@ export class OverlayDirective {
 
   @HostListener('mouseenter')
   protected onMouseEnter() {
-    this._hoverContainer.classList.add('anglify-overlay__hovered');
+    if (isBooleanLikeTrue(this.hover)) {
+      this._hoverContainer.classList.add('anglify-overlay__hovered');
+    }
   }
 
   @HostListener('mouseleave')
   protected onMouseLeave() {
-    this._hoverContainer.classList.remove('anglify-overlay__hovered');
+    if (isBooleanLikeTrue(this.hover)) {
+      this._hoverContainer.classList.remove('anglify-overlay__hovered');
+    }
   }
 
   @HostListener('keydown.space', ['$event'])
@@ -87,16 +97,21 @@ export class OverlayDirective {
       const diff = Math.max(width, height) - Math.min(width, height);
 
       const focusContainer = this._renderer.createElement('div') as HTMLDivElement;
-      focusContainer.classList.add('anglify-overlay__focus-container');
+
+      if (isBooleanLikeTrue(this.focus)) {
+        focusContainer.classList.add('anglify-overlay__focus-container');
+      }
+
       if (isBooleanLikeTrue(this.ripple)) {
         focusContainer.classList.add('anglify-overlay__ripple');
       }
+
       Object.assign(focusContainer.style, {
         width: `${Math.max(width, height)}px`,
         height: `${Math.max(width, height)}px`,
       });
 
-      if (event instanceof MouseEvent) {
+      if (event instanceof MouseEvent && this.rippleOrigin !== 'center') {
         const offsetX = event.offsetX;
         const offsetY = event.offsetY;
         focusContainer.style.left = `${offsetX - width / 2 - (width < height ? diff / 2 : 0)}px`;
