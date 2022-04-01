@@ -42,6 +42,10 @@ export class HomeComponent {
       link: 'components/tooltip',
       name: 'Tooltip',
     },
+    {
+      link: 'components/checkbox',
+      name: 'Checkbox',
+    },
   ];
 
   public directives = [
