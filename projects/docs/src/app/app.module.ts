@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
 import { ButtonExamplesModule } from './examples/button/button-examples.module';
+import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
 import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
 import { OverlayExamplesModule } from './examples/overlay/overlay-examples.module';
@@ -19,6 +20,7 @@ import { StepperExamplesModule } from './examples/stepper/stepper-examples.modul
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
+import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
 import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
@@ -31,6 +33,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { InstallationComponent } from './pages/installation/installation.component';
 import { ButtonModule } from '../../../anglify/src/modules/button/button.module';
 import { CardModule } from '../../../anglify/src/modules/card/card.module';
+import { CheckboxModule } from '../../../anglify/src/modules/checkbox/checkbox.module';
 import { FormFieldModule } from '../../../anglify/src/modules/form-field/form-field.module';
 import { IconModule } from '../../../anglify/src/modules/icon/icon.module';
 import { ListModule } from '../../../anglify/src/modules/list/list.module';
@@ -54,6 +57,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     CardPageComponent,
     InstallationComponent,
     ProgressCircularPageComponent,
+    CheckBoxPageComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +76,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     StepperExamplesModule,
     FormFieldExamplesModule,
     TooltipExamplesModule,
+    CheckBoxExamplesModule,
     OverlayModule,
     ButtonModule,
     ListModule,
@@ -79,6 +84,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     CardModule,
     ProgressCircularModule,
     ProgressCircularExamplesModule,
+    CheckboxModule
   ],
   providers: [
     {
