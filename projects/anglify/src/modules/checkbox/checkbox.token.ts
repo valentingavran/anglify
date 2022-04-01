@@ -6,6 +6,7 @@ export const DEFAULT_CHECKBOX_SETTINGS: Required<CheckboxSettings> = {
   checked: false,
   labelPosition: 'after',
   ripple: true,
+  rippleOrigin: 'center'
 };
 
 export const CHECKBOX_SETTINGS = new InjectionToken<CheckboxSettings>('Checkbox Settings');

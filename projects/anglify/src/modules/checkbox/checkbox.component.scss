@@ -1,7 +1,15 @@
 @use 'variables' as *;
 
+
 :host {
   display: block;
+
+  .anglify-overlay__container {
+    height: $checkbox-ripple-height !important;
+    width: $checkbox-ripple-width !important;
+    margin: $checkbox-ripple-margin !important;
+    border-radius: $checkbox-ripple-border-radius !important;
+  }
 
   .before {
     flex-flow: row-reverse;
@@ -14,9 +22,10 @@
   }
 
   label .overlay-container {
-    width: 24px;
-    height: 24px;
+    width: $checkbox-ripple-inner-width;
+    height: $checkbox-ripple-inner-height;
     display: flex;
+    overflow: visible !important;
   }
   
   label .overlay-container .check-box-effect {
@@ -37,7 +46,7 @@
     display: flex;
     font-size: $checkbox-label-font-size;
     align-items: center;
-    margin: 0 8px;
+    margin: $checkbox-label-margin;
   }
   
   label .overlay-container .check-box-effect:before {
@@ -80,7 +89,7 @@
   
   label:hover .overlay-container .check-box-effect:after {
     width: $checkbox-icon-after-width;
-    transition: width 125ms ease 75ms;
+    transition: $checkbox-checked-icon-transition-speed;
   }
   
   input[type="checkbox"] {
@@ -104,13 +113,13 @@
   input[type="checkbox"]:checked + .overlay-container .check-box-effect:after {
     width: $checkbox-icon-after-width;
     background: $checkbox-checked-icon-color;
-    transition: width 125ms ease 75ms;
+    transition: $checkbox-checked-icon-transition-speed;
   }
   
   input[type="checkbox"]:checked + .overlay-container .check-box-effect:before {
     width: $checkbox-icon-before-width;
     background: $checkbox-checked-icon-color;
-    transition: width 125ms ease 75ms;
+    transition: $checkbox-checked-icon-transition-speed;
   }
   
   input[type="checkbox"]:checked:hover:not([disabled]) + .overlay-container .check-box-effect {
@@ -123,12 +132,12 @@
   input[type="checkbox"]:checked:hover + .overlay-container .check-box-effect:after {
     width: $checkbox-icon-after-width;
     background: $checkbox-checked-icon-color;
-    transition: width 125ms ease 75ms;
+    transition: $checkbox-checked-icon-transition-speed;
   }
   
   input[type="checkbox"]:checked:hover + .check-box-effect:before {
     width: $checkbox-icon-before-width;
     background: $checkbox-checked-icon-color;
-    transition: width 125ms ease 75ms;
+    transition: $checkbox-checked-icon-transition-speed;
   }
 }

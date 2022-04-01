@@ -4,5 +4,6 @@ export interface CheckboxSettings {
   disabled?: BooleanLike,
   checked?: BooleanLike,
   labelPosition?: 'before' | 'after',
-  ripple?: BooleanLike
+  ripple?: BooleanLike,
+  rippleOrigin?: 'center' | undefined
 }

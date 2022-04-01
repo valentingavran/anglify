@@ -27,6 +27,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() public checked: BooleanLike = isBooleanLikeTrue(this.settings.checked);
   @Input() public ripple: BooleanLike = isBooleanLikeTrue(this.settings.ripple);
   @Input() public labelPosition: 'before' | 'after' = this.settings.labelPosition;
+  @Input() public rippleOrigin: 'center' | undefined = this.settings.rippleOrigin;
 
   public onChange: any = () => {};
   public onTouch: any = () => {};
