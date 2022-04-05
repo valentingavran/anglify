@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": " node ./scripts/css-variable-extractor.js && ng build docs",
+    "build": "node ./scripts/css-variable-extractor.js && ng build docs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "prettier --check . && eslint projects --ext .js,.ts",

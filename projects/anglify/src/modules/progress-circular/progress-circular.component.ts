@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
-import { isBooleanLikeTrue } from 'projects/anglify/src/utils/functions';
-import type { BooleanLike } from 'projects/anglify/src/utils/interfaces';
 import { DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS } from './progress-circular-settings.token';
 import type { ProgressCircularSettings } from './progress-circular.interface';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { isBooleanLikeTrue } from '../../utils/functions';
+import type { BooleanLike } from '../../utils/interfaces';
 
 @Component({
   selector: 'anglify-progress-circular',

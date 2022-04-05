@@ -60,7 +60,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     CardPageComponent,
     InstallationComponent,
     ProgressCircularPageComponent,
-    CheckBoxPageComponent
+    CheckBoxPageComponent,
     TablePageComponent,
   ],
   imports: [
@@ -88,7 +88,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     CardModule,
     ProgressCircularModule,
     ProgressCircularExamplesModule,
-    CheckboxModule
+    CheckboxModule,
     TableModule,
     TableExamplesModule,
   ],
