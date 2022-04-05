@@ -1,19 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 
-@Component({
-  selector: 'app-reactive-forms-validation',
-  templateUrl: './reactive-forms-validation.component.html',
-  styleUrls: ['./reactive-forms-validation.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class ReactiveFormsValidationComponent {
-  public emailControl = new FormControl('', [Validators.email, Validators.required]);
-  public passwordControl = new FormControl('', [Validators.password, Validators.required]);
-}
-
 class Validators {
   public static required(control: AbstractControl): ValidationErrors | null {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const value = control.value;
     if (value === null || value === undefined || value === '') {
       return {
@@ -24,7 +14,7 @@ class Validators {
   }
 
   public static password(control: AbstractControl): ValidationErrors | null {
-    const value: string = control.value;
+    const value = control.value as string;
     if (new RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/).test(value)) {
       return null;
     }
@@ -34,7 +24,7 @@ class Validators {
   }
 
   public static email(control: AbstractControl): ValidationErrors | null {
-    const value: string = control.value;
+    const value = control.value as string;
     if (new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(value)) {
       return null;
     }
@@ -42,6 +32,17 @@ class Validators {
       message: 'Please provide a valid email address',
     };
   }
+}
+
+@Component({
+  selector: 'app-reactive-forms-validation',
+  templateUrl: './reactive-forms-validation.component.html',
+  styleUrls: ['./reactive-forms-validation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ReactiveFormsValidationComponent {
+  public emailControl = new FormControl('', [Validators.email, Validators.required]);
+  public passwordControl = new FormControl('', [Validators.password, Validators.required]);
 }
 
 export default ReactiveFormsValidationComponent;

@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.12.0] - 2022-04-05
+
+### Added
+
+- Progress Circular Component including `PROGRESS_CIRCULAR_SETTINGS` token that can be provided
+- Checkbox Component including `CHECKBOX_SETTINGS` token that can be provided
+- Data Table component
+
+### Docs
+
+- Opening component pages by pressing the Space key when the card is focused is now possible
+- Added installation guide
+- Progress Circular documentation page was added
+
 ## [0.11.0] - 2022-03-25
 
 ### Added

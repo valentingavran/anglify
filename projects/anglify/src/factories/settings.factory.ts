@@ -6,7 +6,7 @@ export function createSettingsProvider<T>(defaultValues: T, settingsToken: Injec
   return {
     provide: SETTINGS,
     useFactory: () => {
-      const overwrittenSettings = inject(settingsToken, InjectFlags.Optional);
+      const overwrittenSettings = inject<typeof SETTINGS>(settingsToken, InjectFlags.Optional);
       return { ...defaultValues, ...overwrittenSettings };
     },
   };

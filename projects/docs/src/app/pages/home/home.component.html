@@ -1,12 +1,34 @@
 <h1>Anglify</h1>
 
+<h2>Getting Started</h2>
+
+<div class="items">
+  <anglify-card anglifyOverlay routerLink="getting-started/installation" (keyup.Space)="router.navigate(['getting-started/installation'])">
+    Installation
+  </anglify-card>
+</div>
+
 <h2>Components</h2>
 <div class="items">
-  <anglify-card *ngFor="let component of components" [routerLink]="component.link" anglifyOverlay>{{ component.name }}</anglify-card>
+  <anglify-card
+    *ngFor="let component of components"
+    anglifyOverlay
+    [routerLink]="component.link"
+    (keyup.Space)="router.navigate([component.link])"
+  >
+    {{ component.name }}
+  </anglify-card>
 </div>
 
 <h2>Directives</h2>
 
 <div class="items">
-  <anglify-card *ngFor="let directive of directives" [routerLink]="directive.link" anglifyOverlay>{{ directive.name }}</anglify-card>
+  <anglify-card
+    *ngFor="let directive of directives"
+    anglifyOverlay
+    [routerLink]="directive.link"
+    (keyup.Space)="router.navigate([directive.link])"
+  >
+    {{ directive.name }}
+  </anglify-card>
 </div>

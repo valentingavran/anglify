@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Step } from './directives/step/step.directive';
-import { Stepper } from './services/stepper/stepper.service';
-import { StepperComponent } from './components/stepper/stepper.component';
 import { BehaviorSubject } from 'rxjs';
+import { StepperComponent } from './components/stepper/stepper.component';
+import { Step } from './directives/step/step.directive';
 import { StepperSettings } from './services/stepper-settings/stepper-settings.service';
+import { Stepper } from './services/stepper/stepper.service';
 
 @NgModule({
   providers: [
@@ -18,23 +18,15 @@ import { StepperSettings } from './services/stepper-settings/stepper-settings.se
         index$: new BehaviorSubject(true),
         selected$: new BehaviorSubject(true),
         setLabel: () => {},
-        getLabelSnapshot: () => {
-          return '';
-        },
+        getLabelSnapshot: () => '',
         setVisited: () => {},
-        getVisitedSnapshot: () => {
-          return true;
-        },
+        getVisitedSnapshot: () => true,
         setIsFirstStep: () => {},
         setISLastStep: () => {},
         setIndex: () => {},
-        getIndexSnapshot: () => {
-          return 0;
-        },
+        getIndexSnapshot: () => 0,
         setValid: () => {},
-        getValidSnapshot: () => {
-          return true;
-        },
+        getValidSnapshot: () => true,
       },
     },
     { provide: Stepper, useClass: StepperComponent },

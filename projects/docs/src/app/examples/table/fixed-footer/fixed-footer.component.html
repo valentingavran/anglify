@@ -1,0 +1,20 @@
+<anglify-table [fixedFooter]="true">
+  <thead>
+    <tr>
+      <th class="text-left">Name</th>
+      <th class="text-left">Calories Very Long Column Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of desserts">
+      <td>{{ item.name }}</td>
+      <td>{{ item.calories }}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Sum</td>
+      <td>Total</td>
+    </tr>
+  </tfoot>
+</anglify-table>

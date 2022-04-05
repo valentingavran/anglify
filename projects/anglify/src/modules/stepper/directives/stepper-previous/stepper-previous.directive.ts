@@ -8,7 +8,7 @@ export class StepperPreviousDirective {
   public constructor(private readonly stepper: Stepper) {}
 
   @HostListener('click')
-  public onClick(): void {
+  public onClick() {
     this.stepper.previous();
   }
 }

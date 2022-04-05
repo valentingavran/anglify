@@ -1,0 +1,44 @@
+<h1>Installation</h1>
+
+<p>If you have not already created a new Angular project, you can do so by typing:</p>
+
+<pre>
+    <code [highlight]="angularInstallation" [languages]="['shell']"></code>
+</pre>
+<p>
+  If you need more information on this topic, you can visit the official
+  <a href="https://angular.io/cli" target="_blank" rel="noopener noreferrer">Angular CLI</a> documentation or read through
+  <a href="https://angular.io/start" target="_blank" rel="noopener noreferrer">Angular's Getting Started Guide</a>.
+</p>
+
+<p>Now that you have an instantiated project, you can install the Anglify package.</p>
+
+<pre>
+    <code [highlight]="anglifyInstallation" [languages]="['shell']"></code>
+</pre>
+
+<p>After that you only have to import the common Anglify styles into your <code>styles.scss</code> file:</p>
+
+<pre>
+  <code [highlight]="addCommonStyles" [languages]="['scss']"></code>
+</pre>
+
+<p>Now you are ready to use the numerous Anglify components.</p>
+
+<h2>Using components</h2>
+
+<p>
+  In order to use a Anglify component, you first need to import the respective component module. To do this, open the module in which your
+  component is defined and in which you want to use an Anglify component.
+</p>
+<p>After that you import the desired Anglify module and add it to the <code>imports</code> array:</p>
+
+<pre>
+  <code [highlight]="importingModules" [languages]="['typescript']"></code>
+</pre>
+
+<p>Finally, you can start using the component in the template:</p>
+
+<pre>
+  <code [highlight]="usingComponents" [languages]="['xml']"></code>
+</pre>

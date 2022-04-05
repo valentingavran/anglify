@@ -1,4 +1,4 @@
-import { Position } from '../../composables/position/position.interface';
+import type { Position } from '../../composables/position/position.interface';
 
 export type TooltipTouchTrigger = 'short' | 'long';
 

@@ -1,0 +1,18 @@
+@use '../../styles/settings/colors';
+
+$table-width: var(--anglify-table-width, 100%) !default;
+$table-layout: var(--anglify-table-layout, fixed) !default;
+$table-background: var(--anglify-table-background, colors.$color-surface) !default;
+$table-border-width: var(--anglify-table-border-width, 1px) !default;
+$table-border-style: var(--anglify-table-border-style, solid) !default;
+$table-border-radius: var(--anglify-table-border-radius, 4px) !default;
+$table-border-color: var(--anglify-table-border-color, colors.$color-outline-secondary) !default;
+$table-fixed-height: var(--anglify-table-fixed-height, false) !default;
+$table-header-cell-padding-left: var(--anglify-table-header-cell-padding-left, 16px) !default;
+$table-header-cell-padding-right: var(--anglify-table-header-cell-padding-right, 16px) !default;
+$table-header-cell-height: var(--anglify-table-header-cell-height, 56px) !default;
+$table-header-cell-background: var(--anglify-table-header-cell-background, colors.$color-surface) !default;
+$table-cell-padding-left: var(--anglify-table-cell-padding-left, 16px) !default;
+$table-cell-padding-right: var(--anglify-table-cell-padding-right, 16px) !default;
+$table-cell-height: var(--anglify-table-cell-height, 52px) !default;
+$table-cell-background: var(--anglify-table-cell-background, colors.$color-surface) !default;

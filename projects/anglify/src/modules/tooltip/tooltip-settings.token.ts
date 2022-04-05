@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { TooltipSettings } from './tooltip.interface';
+import type { TooltipSettings } from './tooltip.interface';
 
 export const TOOLTIP_SETTINGS = new InjectionToken<Required<TooltipSettings>>('Tooltip Settings');
 

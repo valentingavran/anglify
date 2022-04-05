@@ -1,10 +1,10 @@
 import { ElementRef } from '@angular/core';
+import type { PositionSettings } from './position.interface';
 import { PositionService } from './position.service';
 import { POSITION_SETTINGS } from './position.token';
-import { PositionSettings } from './position.interface';
 
 export const POSITION = {
   provide: PositionService,
-  useFactory: (el: ElementRef, settings: PositionSettings) => new PositionService(el as ElementRef<HTMLElement>, settings),
+  useFactory: (el: ElementRef<HTMLElement>, settings: PositionSettings) => new PositionService(el, settings),
   deps: [ElementRef, POSITION_SETTINGS],
 };

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { delay, map, switchMap, take, tap } from 'rxjs/operators';
-import { Step } from '../../directives/step/step.directive';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import type { Step } from '../../directives/step/step.directive';
 
 @UntilDestroy()
 @Injectable()
@@ -71,8 +71,8 @@ export abstract class Stepper {
   );
 
   private readonly _navigateToHandler$ = this._navigateToAction.pipe(
-    switchMap(targetIndex => {
-      return this._steps$.pipe(
+    switchMap(targetIndex =>
+      this._steps$.pipe(
         take(1),
         tap(steps => {
           const currentlyActiveStepIndex = this._selectedIndex$.value;
@@ -100,13 +100,13 @@ export abstract class Stepper {
             }
           }
         })
-      );
-    })
+      )
+    )
   );
 
   private readonly _updateStepsHandler$ = this._updateStepsAction.pipe(
-    switchMap(steps => {
-      return this._steps$.pipe(
+    switchMap(steps =>
+      this._steps$.pipe(
         take(1),
         tap(currentSteps => {
           Stepper.updateIndexesOfSteps(steps);
@@ -120,13 +120,13 @@ export abstract class Stepper {
           }
           this._steps$.next(steps);
         })
-      );
-    })
+      )
+    )
   );
 
   private readonly _resetHandler$ = this._resetAction$.pipe(
-    switchMap(() => {
-      return this._steps$.pipe(
+    switchMap(() =>
+      this._steps$.pipe(
         take(1),
         tap(steps => {
           this._selectedIndex$.next(0);
@@ -134,8 +134,8 @@ export abstract class Stepper {
             if (i > 0) step.setVisited(false);
           });
         })
-      );
-    })
+      )
+    )
   );
 
   protected constructor() {
@@ -146,33 +146,33 @@ export abstract class Stepper {
     this._resetHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
-  public previous(): void {
+  public previous() {
     this._previousAction.next();
   }
 
-  public next(): void {
+  public next() {
     this._nextAction.next();
   }
 
-  public navigateTo(index: number): void {
+  public navigateTo(index: number) {
     this._navigateToAction.next(index);
   }
 
-  public updateSteps(steps: Step[]): void {
+  public updateSteps(steps: Step[]) {
     this._updateStepsAction.next(steps);
   }
 
-  public reset(): void {
+  public reset() {
     this._resetAction$.next();
   }
 
-  private static updateIndexesOfSteps(steps: Step[]): void {
+  private static updateIndexesOfSteps(steps: Step[]) {
     steps.forEach((s, i) => {
       s.setIndex(i);
     });
   }
 
-  private static updateFirstAndLastSteps(steps: Step[]): void {
+  private static updateFirstAndLastSteps(steps: Step[]) {
     steps.forEach((s, i) => {
       s.setIsFirstStep(i === 0);
       s.setISLastStep(i === steps.length - 1);

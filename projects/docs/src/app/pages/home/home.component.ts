@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  public constructor(public readonly router: Router) {}
+
   public components = [
     {
       link: 'components/button',
@@ -28,6 +31,10 @@ export class HomeComponent {
       name: 'Menu',
     },
     {
+      link: 'components/progress-circular',
+      name: 'Progress Circular',
+    },
+    {
       link: 'components/stepper',
       name: 'Stepper',
     },
@@ -36,8 +43,16 @@ export class HomeComponent {
       name: 'Form Field',
     },
     {
+      link: 'components/table',
+      name: 'Table',
+    },
+    {
       link: 'components/tooltip',
       name: 'Tooltip',
+    },
+    {
+      link: 'components/checkbox',
+      name: 'Checkbox',
     },
   ];
 

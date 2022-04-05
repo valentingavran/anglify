@@ -11,6 +11,10 @@ export * from './modules/card/card-settings.token';
 export * from './modules/card/card.component';
 export * from './modules/card/card.interface';
 export * from './modules/card/card.module';
+// Checkbox
+export * from './modules/checkbox/checkbox.component';
+export * from './modules/checkbox/checkbox.interface';
+export * from './modules/checkbox/checkbox.module';
 // Form Field
 export * from './modules/form-field/directives/input.directive';
 export * from './modules/form-field/directives/label/label.directive';
@@ -40,6 +44,11 @@ export * from './modules/menu/menu.module';
 // Overlay
 export * from './modules/overlay/overlay.directive';
 export * from './modules/overlay/overlay.module';
+// Progress Circular
+export * from './modules/progress-circular/progress-circular-settings.token';
+export * from './modules/progress-circular/progress-circular.component';
+export * from './modules/progress-circular/progress-circular.interface';
+export * from './modules/progress-circular/progress-circular.module';
 // Stepper
 export * from './modules/stepper/components/stepper-header/stepper-header.component';
 export * from './modules/stepper/components/stepper/stepper.component';
@@ -51,9 +60,11 @@ export * from './modules/stepper/services/stepper-settings/stepper-settings.serv
 export * from './modules/stepper/services/stepper/stepper.service';
 export * from './modules/stepper/stepper-testing.module';
 export * from './modules/stepper/stepper.module';
+// Table
+export * from './modules/table/components/table/table.component';
+export * from './modules/table/table.module';
 // Tooltip
 export * from './modules/tooltip/tooltip-settings.token';
 export * from './modules/tooltip/tooltip.directive';
 export * from './modules/tooltip/tooltip.interface';
 export * from './modules/tooltip/tooltip.module';
-

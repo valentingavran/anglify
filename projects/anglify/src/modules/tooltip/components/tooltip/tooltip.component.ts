@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { Position } from '../../../../composables/position/position.interface';
+import type { Position } from '../../../../composables/position/position.interface';
 import { POSITION } from '../../../../composables/position/position.provider';
 import { PositionService } from '../../../../composables/position/position.service';
 
@@ -26,9 +26,9 @@ export class TooltipComponent {
 
   @HostBinding('class')
   @Input()
-  public contentClass?: string;
+  public contentClass?: string | undefined;
 
-  public constructor(private readonly positionService: PositionService, private readonly element: ElementRef) {
+  public constructor(private readonly positionService: PositionService, private readonly element: ElementRef<HTMLElement>) {
     this.element.nativeElement.classList.add('anglify-tooltip');
   }
 }

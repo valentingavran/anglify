@@ -1,9 +1,9 @@
 import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
-import { Subject } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Subject } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
-import { BooleanLike } from '../../utils/interfaces';
 import { isBooleanLikeTrue } from '../../utils/functions';
+import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy(this)
 @Directive({
@@ -30,37 +30,44 @@ export class OverlayDirective {
 
   @Input() public ripple: BooleanLike = true;
 
-  private readonly _nativeElement: HTMLElement;
-  private readonly _hoverContainer: HTMLElement;
-  private readonly _selectedOrActivatedContainer: HTMLElement;
+  @Input() public rippleOrigin: 'center' | undefined;
+
+  @Input() public hover: BooleanLike = true;
+
+  @Input() public focus: BooleanLike = true;
+
+  private readonly _nativeElement = this._element.nativeElement;
+  private readonly _hoverContainer = this.createOverlayContainer();
+  private readonly _selectedOrActivatedContainer = this.createOverlayContainer();
 
   private readonly _visibleRipples: HTMLElement[] = [];
   private readonly _showRippleAction = new Subject<Event>();
   private readonly _hideRippleAction = new Subject();
 
-  public constructor(private readonly _element: ElementRef, private readonly _renderer: Renderer2) {
-    this._nativeElement = this._element.nativeElement;
+  public constructor(private readonly _element: ElementRef<HTMLElement>, private readonly _renderer: Renderer2) {
     this._nativeElement.classList.add('anglify-overlay');
-    this._hoverContainer = this.createOverlayContainer();
-    this._selectedOrActivatedContainer = this.createOverlayContainer();
     this._showRippleHandler$.pipe(untilDestroyed(this)).subscribe();
     this._hideRippleHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   @HostListener('mouseenter')
-  private onMouseEnter(): void {
-    this._hoverContainer.classList.add('anglify-overlay__hovered');
+  protected onMouseEnter() {
+    if (isBooleanLikeTrue(this.hover)) {
+      this._hoverContainer.classList.add('anglify-overlay__hovered');
+    }
   }
 
   @HostListener('mouseleave')
-  private onMouseLeave(): void {
-    this._hoverContainer.classList.remove('anglify-overlay__hovered');
+  protected onMouseLeave() {
+    if (isBooleanLikeTrue(this.hover)) {
+      this._hoverContainer.classList.remove('anglify-overlay__hovered');
+    }
   }
 
   @HostListener('keydown.space', ['$event'])
   @HostListener('keydown.enter', ['$event'])
   @HostListener('mousedown', ['$event'])
-  private onShow(event: KeyboardEvent | MouseEvent): void {
+  protected onShow(event: KeyboardEvent | MouseEvent) {
     this._showRippleAction.next(event);
   }
 
@@ -68,12 +75,12 @@ export class OverlayDirective {
   @HostListener('keyup.enter')
   @HostListener('mouseup')
   @HostListener('mouseout')
-  private onKeyup(): void {
-    this._hideRippleAction.next();
+  protected onKeyup() {
+    this._hideRippleAction.next(true);
   }
 
-  private createOverlayContainer(): HTMLElement {
-    const hoverContainer = this._renderer.createElement('div');
+  private createOverlayContainer() {
+    const hoverContainer = this._renderer.createElement('div') as HTMLDivElement;
     hoverContainer.classList.add('anglify-overlay__container');
     this._renderer.appendChild(this._nativeElement, hoverContainer);
     return hoverContainer;
@@ -89,17 +96,22 @@ export class OverlayDirective {
       const height = this._hoverContainer.clientHeight;
       const diff = Math.max(width, height) - Math.min(width, height);
 
-      const focusContainer: HTMLElement = this._renderer.createElement('div');
-      focusContainer.classList.add('anglify-overlay__focus-container');
+      const focusContainer = this._renderer.createElement('div') as HTMLDivElement;
+
+      if (isBooleanLikeTrue(this.focus)) {
+        focusContainer.classList.add('anglify-overlay__focus-container');
+      }
+
       if (isBooleanLikeTrue(this.ripple)) {
         focusContainer.classList.add('anglify-overlay__ripple');
       }
+
       Object.assign(focusContainer.style, {
         width: `${Math.max(width, height)}px`,
         height: `${Math.max(width, height)}px`,
       });
 
-      if (event instanceof MouseEvent) {
+      if (event instanceof MouseEvent && this.rippleOrigin !== 'center') {
         const offsetX = event.offsetX;
         const offsetY = event.offsetY;
         focusContainer.style.left = `${offsetX - width / 2 - (width < height ? diff / 2 : 0)}px`;

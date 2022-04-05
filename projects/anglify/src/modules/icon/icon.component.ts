@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
-import { ICON_SET_CLASS_MAPPING, IconSet, IconSettings } from './icon.interface';
-import { BooleanLike, ComponentSize } from '../../utils/interfaces';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { isBooleanLikeTrue } from '../../utils/functions';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { DomSanitizer } from '@angular/platform-browser';
 import { DEFAULT_ICON_SETTINGS, ICON_SETTINGS } from './icon-settings.token';
+import { ICON_SET_CLASS_MAPPING, IconSet, IconSettings } from './icon.interface';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { isBooleanLikeTrue } from '../../utils/functions';
+import type { BooleanLike, ComponentSize } from '../../utils/interfaces';
 
 /**
  * Anglify comes bootstrapped with support for Material Design Icons, Material Icons, Font Awesome 4, Font Awesome 5 and Custom Icons.
@@ -49,7 +49,7 @@ export class IconComponent {
   ) {}
 
   @HostBinding('class')
-  private get classList(): string | undefined {
+  protected get classList() {
     if (!this.icon) return;
 
     const classNames = [ICON_SET_CLASS_MAPPING[this.iconSet], this.icon, `icon-size-${this.size}`];
@@ -74,7 +74,7 @@ export class IconComponent {
   }
 
   @HostBinding('innerHTML')
-  private get content(): SafeHtml | undefined {
+  protected get content() {
     if (!this.icon) return undefined;
     if (this.iconSet === 'md') {
       return this.sanitizer.bypassSecurityTrustHtml(this.icon);
@@ -96,7 +96,7 @@ export class IconComponent {
     return undefined;
   }
 
-  private static createSVGElement(svgPath: string): string {
+  private static createSVGElement(svgPath: string) {
     return `<svg viewBox="0 0 24 24"><path d='${svgPath}' fill="currentColor"></path></svg>`;
   }
 }

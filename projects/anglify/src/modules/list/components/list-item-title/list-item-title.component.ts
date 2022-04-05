@@ -12,7 +12,7 @@ export class ListItemTitleComponent {
   public lineClamp = 1;
 
   @HostBinding('class')
-  private get classList(): string {
+  protected get classList() {
     return 'anglify-list-item-title';
   }
 }

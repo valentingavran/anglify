@@ -8,12 +8,15 @@
     "src/styles/**/*.scss",
     "src/modules/button/*.scss",
     "src/modules/card/*.scss",
+    "src/modules/checkbox/*.scss",
     "src/modules/form-field/*.scss",
     "src/modules/icon/*.scss",
     "src/modules/list/*.scss",
     "src/modules/menu/*.scss",
     "src/modules/overlay/*.scss",
+    "src/modules/progress-circular/*.scss",
     "src/modules/stepper/*.scss",
+    "src/modules/table/*.scss",
     "src/modules/tooltip/*.scss"
   ]
 }
