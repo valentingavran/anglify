@@ -1,0 +1,39 @@
+{
+  "projectType": "library",
+  "root": "libs/anglify",
+  "sourceRoot": "libs/anglify/src",
+  "prefix": "anglify",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/anglify"],
+      "options": {
+        "project": "libs/anglify/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/anglify/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/anglify/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/anglify"],
+      "options": {
+        "jestConfig": "libs/anglify/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/anglify/src/**/*.ts", "libs/anglify/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
