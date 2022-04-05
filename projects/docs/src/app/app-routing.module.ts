@@ -10,6 +10,7 @@ import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.c
 import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
+import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InstallationComponent } from './pages/installation/installation.component';
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path: 'components/form-field',
     component: FormFieldPageComponent,
+  },
+  {
+    path: 'components/table',
+    component: TablePageComponent,
   },
   {
     path: 'components/tooltip',

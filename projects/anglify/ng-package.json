@@ -15,6 +15,7 @@
     "src/modules/overlay/*.scss",
     "src/modules/progress-circular/*.scss",
     "src/modules/stepper/*.scss",
+    "src/modules/table/*.scss",
     "src/modules/tooltip/*.scss"
   ]
 }

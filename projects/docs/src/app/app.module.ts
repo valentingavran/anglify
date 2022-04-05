@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { MarkdownModule } from 'ngx-markdown';
 import { ProgressCircularModule } from 'projects/anglify/src/modules/progress-circular/progress-circular.module';
+import { TableModule } from 'projects/anglify/src/modules/table/table.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
@@ -17,6 +18,7 @@ import { IconExamplesModule } from './examples/icon/icon-examples.module';
 import { OverlayExamplesModule } from './examples/overlay/overlay-examples.module';
 import { ProgressCircularExamplesModule } from './examples/progress-circular/progress-circular-examples.module';
 import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
+import { TableExamplesModule } from './examples/table/table-examples.module';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
@@ -28,6 +30,7 @@ import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.c
 import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
+import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InstallationComponent } from './pages/installation/installation.component';
@@ -58,6 +61,7 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     InstallationComponent,
     ProgressCircularPageComponent,
     CheckBoxPageComponent
+    TablePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +89,8 @@ import { OverlayModule } from '../../../anglify/src/modules/overlay/overlay.modu
     ProgressCircularModule,
     ProgressCircularExamplesModule,
     CheckboxModule
+    TableModule,
+    TableExamplesModule,
   ],
   providers: [
     {
