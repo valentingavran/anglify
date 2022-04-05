@@ -1,5 +1,6 @@
 @use '../../anglify/src/modules/overlay';
 @use '../../anglify/src/modules/button';
+@use '../../anglify/src/modules/table';
 @use '../../anglify/src/styles';
 @use './colors';
 
@@ -82,4 +83,30 @@ code {
 
 td code {
   background: transparent !important;
+}
+
+.playground {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  border: 1px solid colors.$color-outline-secondary;
+  border-radius: 14px;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid colors.$color-outline-secondary;
+    padding: 24px;
+
+    anglify-form-field {
+      max-width: 300px;
+    }
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 14px;
+  }
 }

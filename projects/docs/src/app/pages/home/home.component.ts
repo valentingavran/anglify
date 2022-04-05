@@ -43,6 +43,10 @@ export class HomeComponent {
       name: 'Form Field',
     },
     {
+      link: 'components/table',
+      name: 'Table',
+    },
+    {
       link: 'components/tooltip',
       name: 'Tooltip',
     },

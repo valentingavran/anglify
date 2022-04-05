@@ -1,0 +1,55 @@
+<h1>Table</h1>
+
+<h2>Playground</h2>
+<div class="playground">
+  <div class="content">
+    <anglify-table [fixedHeader]="fixedHeader" [fixedFooter]="fixedFooter" [fixedHeight]="fixedHeight">
+      <thead>
+        <tr>
+          <th class="text-left">Name</th>
+          <th class="text-left">Calories Very Long Column Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of desserts">
+          <td>{{ item.name }}</td>
+          <td>{{ item.calories }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Sum</td>
+          <td>Total</td>
+        </tr>
+      </tfoot>
+    </anglify-table>
+  </div>
+  <div class="controls">
+    <label>
+      Fixed header:
+      <input type="checkbox" [(ngModel)]="fixedHeader" />
+    </label>
+    <label>
+      Fixed footer:
+      <input type="checkbox" [(ngModel)]="fixedFooter" />
+    </label>
+    <anglify-form-field>
+      <ng-template anglifyLabel>Fixed height</ng-template>
+      <input anglifyInput [(ngModel)]="_fixedHeight" />
+    </anglify-form-field>
+  </div>
+</div>
+
+<h2>Examples</h2>
+
+<h3>Normal</h3>
+<app-code-example component="table" example="normal"></app-code-example>
+
+<h3>With fixed header</h3>
+<app-code-example component="table" example="fixed-header"></app-code-example>
+
+<h3>With fixed footer</h3>
+<app-code-example component="table" example="fixed-footer"></app-code-example>
+
+<h3>With fixed height</h3>
+<app-code-example component="table" example="fixed-height"></app-code-example>

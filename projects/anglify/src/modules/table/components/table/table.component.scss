@@ -1,0 +1,11 @@
+@use '../../variables' as *;
+
+:host {
+  display: block;
+  width: $table-width;
+  background: $table-background;
+  border-width: $table-border-width;
+  border-style: $table-border-style;
+  border-radius: $table-border-radius;
+  border-color: $table-border-color;
+}
