@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning].
 - Checkbox Component including `CHECKBOX_SETTINGS` token that can be provided
 - Data Table component
 
+### Changed
+
+- Anglify now uses Angular 13
+
 ### Docs
 
 - Opening component pages by pressing the Space key when the card is focused is now possible
