@@ -1,0 +1,111 @@
+@use '../../../libs/anglify/src/lib/modules/overlay';
+@use '../../../libs/anglify/src/lib/modules/button';
+@use '../../../libs/anglify/src/lib/modules/table';
+@use './colors';
+
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-background-high-emphasis);
+}
+
+h2 + h3 {
+  padding-top: 0;
+}
+
+h3 {
+  padding-top: 36px;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+:root {
+  &.light {
+    @import '~highlight.js/scss/github.scss';
+    --color-primary: #007fff;
+    --color-surface: #fffbfe;
+    --color-on-surface-high-emphasis: rgb(0, 0, 0, 0.87);
+    --color-on-surface-medium-emphasis: rgb(0, 0, 0, 0.6);
+    --color-on-surface-low-emphasis: rgb(0, 0, 0, 0.38);
+  }
+
+  &.dark {
+    @import '~highlight.js/scss/github-dark.scss';
+    --color-primary: #ffd500;
+    --color-on-primary-high-emphasis: rgb(0, 0, 0, 0.87);
+    --color-on-primary-medium-emphasis: rgb(0, 0, 0, 0.6);
+    --color-on-primary-low-emphasis: rgb(0, 0, 0, 0.38);
+    --color-background: #0a1929;
+    --color-on-background-high-emphasis: rgb(255, 255, 255, 0.87);
+    --color-on-background-medium-emphasis: rgb(255, 255, 255, 0.6);
+    --color-on-background-low-emphasis: rgb(255, 255, 255, 0.38);
+    --color-surface: rgba(255, 255, 255, 0.06);
+    --color-on-surface-high-emphasis: rgb(255, 255, 255, 0.87);
+    --color-on-surface-medium-emphasis: rgb(255, 255, 255, 0.6);
+    --color-on-surface-low-emphasis: rgb(255, 255, 255, 0.38);
+    --color-surface-variant: rgba(255, 255, 255, 0.1);
+    --color-on-surface-variant-high-emphasis: rgb(255, 255, 255, 0.87);
+    --color-on-surface-variant-medium-emphasis: rgb(255, 255, 255, 0.6);
+    --color-on-surface-variant-low-emphasis: rgb(255, 255, 255, 0.38);
+    --color-surface-variant-darker: rgba(255, 255, 255, 0.38);
+    --color-on-surface-variant-darker-high-emphasis: rgb(0, 0, 0, 0.87);
+    --color-on-surface-variant-darker-medium-emphasis: rgb(0, 0, 0, 0.6);
+    --color-on-surface-variant-darker-low-emphasis: rgb(0, 0, 0, 0.38);
+    --color-outline-primary: rgba(255, 255, 255, 0.54);
+    --color-outline-secondary: rgba(255, 255, 255, 0.12);
+    --overlay-color-hovered: rgba(255, 255, 255, 0.04);
+    --overlay-color-focused: rgba(255, 255, 255, 0.12);
+  }
+}
+
+pre {
+  margin: 0;
+  white-space: normal;
+
+  code {
+    padding: 0;
+  }
+}
+
+code {
+  background-color: colors.$color-surface-variant !important;
+  border-radius: 14px;
+  white-space: pre;
+  padding: 4px;
+}
+
+td code {
+  background: transparent !important;
+}
+
+.playground {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  border: 1px solid colors.$color-outline-secondary;
+  border-radius: 14px;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid colors.$color-outline-secondary;
+    padding: 24px;
+
+    anglify-form-field {
+      max-width: 300px;
+    }
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 14px;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/anglify",
+  "lib": {
+    "entryFile": "src/index.ts"
+  },
+  "assets": [
+    "src/lib/styles/**/*.scss",
+    "src/lib/modules/button/*.scss",
+    "src/lib/modules/card/*.scss",
+    "src/lib/modules/checkbox/*.scss",
+    "src/lib/modules/form-field/*.scss",
+    "src/lib/modules/icon/*.scss",
+    "src/lib/modules/list/*.scss",
+    "src/lib/modules/menu/*.scss",
+    "src/lib/modules/overlay/*.scss",
+    "src/lib/modules/progress-circular/*.scss",
+    "src/lib/modules/stepper/*.scss",
+    "src/lib/modules/table/*.scss",
+    "src/lib/modules/tooltip/*.scss"
+  ]
+}

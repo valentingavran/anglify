@@ -3,12 +3,9 @@
     "angular.ng-template",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "tamasfe.even-better-toml",
-    "github.vscode-pull-request-github",
     "codezombiech.gitignore",
-    "eamodio.gitlens",
     "christian-kohler.npm-intellisense",
-    "nrwl.angular-console",
-    "christian-kohler.path-intellisense"
+    "christian-kohler.path-intellisense",
+    "firsttris.vscode-jest-runner"
   ]
 }
