@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { ChangeDetectionStrategy, Component, forwardRef, Inject, Input, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, Inject, Input, OnInit, Self } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import type { CheckboxSettings } from './checkbox.interface';
+import type { CheckboxSettings, LabelPosition, RippleOrigin } from './checkbox.interface';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './checkbox.token';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
 import { isBooleanLikeTrue } from '../../utils/functions';
@@ -16,29 +14,35 @@ import type { BooleanLike } from '../../utils/interfaces';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxComponent),
-      multi: true
+      multi: true,
     },
-    createSettingsProvider<CheckboxSettings>(DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS)
+    createSettingsProvider<CheckboxSettings>(DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckboxComponent implements ControlValueAccessor {
+export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @Input() public disabled: BooleanLike = isBooleanLikeTrue(this.settings.disabled);
   @Input() public checked: BooleanLike = isBooleanLikeTrue(this.settings.checked);
   @Input() public ripple: BooleanLike = isBooleanLikeTrue(this.settings.ripple);
-  @Input() public labelPosition: 'before' | 'after' = this.settings.labelPosition;
-  @Input() public rippleOrigin: 'center' | undefined = this.settings.rippleOrigin;
+  @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
+  @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
 
-  public onChange: any = () => {};
-  public onTouch: any = () => {};
+  public onChange: (...args: any[]) => void = () => {};
+  public onTouch: (...args: any[]) => void = () => {};
 
   public constructor(@Self() @Inject(SETTINGS) private readonly settings: Required<CheckboxSettings>) {}
 
-  public registerOnChange(fn: any): void {
+  public ngOnInit(): void {
+    if (this.disabled) {
+      this.ripple = false;
+    }
+  }
+
+  public registerOnChange(fn: (...args: any[]) => void): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: any): void {
+  public registerOnTouched(fn: (...args: any[]) => void): void {
     this.onTouch = fn;
   }
 

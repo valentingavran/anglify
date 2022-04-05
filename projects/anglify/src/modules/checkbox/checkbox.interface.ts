@@ -1,9 +1,13 @@
-import type { BooleanLike } from "../../utils/interfaces";
+import type { BooleanLike } from '../../utils/interfaces';
 
 export interface CheckboxSettings {
-  disabled?: BooleanLike,
-  checked?: BooleanLike,
-  labelPosition?: 'before' | 'after',
-  ripple?: BooleanLike,
-  rippleOrigin?: 'center' | undefined
+  disabled?: BooleanLike;
+  checked?: BooleanLike;
+  ripple?: BooleanLike;
+  labelPosition?: LabelPosition;
+  rippleOrigin?: RippleOrigin;
 }
+
+export type LabelPosition = 'before' | 'after';
+
+export type RippleOrigin = 'center' | undefined;
