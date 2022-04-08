@@ -45,5 +45,5 @@ testem.log
 Thumbs.db
 
 documentation.json
-projects/docs/src/assets/style-definitions
 .angular
+/apps/docs/src/assets/style-definitions
