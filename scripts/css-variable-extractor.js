@@ -2,7 +2,7 @@ const glob = require('glob');
 const { readFile, writeFile, mkdir } = require('fs');
 
 async function main() {
-  const filePaths = await getFileNames('./projects/**/_variables.scss');
+  const filePaths = await getFileNames('./libs/anglify/**/_variables.scss');
   const files = await Promise.all(
     filePaths.map(async path => {
       return { component: parseComponentNameFromPath(path), content: await readFileByPath(path) };
@@ -12,7 +12,7 @@ async function main() {
     return { component: file.component, variables: extractCssVariables(file.content) };
   });
   for (const item of componentsWithVariables) {
-    const dir = './projects/docs/src/assets/style-definitions/';
+    const dir = './apps/docs/src/assets/style-definitions/';
     await mkdir(dir, { recursive: true }, async err => {
       if (err) return;
       await writeFile(`${dir}${item.component}.json`, JSON.stringify(item.variables), 'utf8', () => {});
