@@ -1,0 +1,113 @@
+@use 'variables' as *;
+
+:host {
+  display: block;
+  overflow: hidden;
+  height: $progress-linear-height;
+  position: relative;
+  background: transparent;
+
+  .anglify-progress-linear__background {
+    background: $progress-linear-background-color;
+    bottom: 0;
+    left: 0;
+    opacity: $progress-linear-background-opacity;
+    position: absolute;
+    top: 0;
+    transition-property: width, left, right;
+    transition: inherit;
+  }
+
+  .anglify-progress-linear__determinate,
+  .anglify-progress-linear__indeterminate {
+    background: $progress-linear-indicator-color;
+  }
+
+  .anglify-progress-linear__determinate {
+    height: inherit;
+    left: 0;
+    position: absolute;
+    transition: inherit;
+    transition-property: width, left, right;
+  }
+
+  .anglify-progress-linear__indeterminate {
+    animation-play-state: paused;
+    animation-duration: $progress-linear-indeterminate-animation-duration;
+    animation-iteration-count: infinite;
+    bottom: 0;
+    height: inherit;
+    left: 0;
+    position: absolute;
+    right: auto;
+    top: 0;
+    width: auto;
+    will-change: left, right;
+
+    &.long {
+      animation-name: indeterminate-ltr;
+    }
+    &.short {
+      animation-name: indeterminate-short-ltr;
+    }
+  }
+
+  .anglify-progress-linear__stream {
+    animation-play-state: paused;
+    animation-duration: $progress-linear-stream-animation-duration;
+    animation-name: stream-ltr;
+    animation-iteration-count: infinite;
+    left: auto;
+    opacity: $progress-linear-stream-opacity;
+    pointer-events: none;
+    position: absolute;
+    transition: inherit;
+    right: calc(-2 *#{$progress-linear-height});
+    top: 0;
+    border-top: dotted $progress-linear-height $progress-linear-stream-color;
+  }
+
+  &.anglify-progress-linear--active {
+    .anglify-progress-linear__indeterminate,
+    .anglify-progress-linear__stream {
+      animation-play-state: running;
+    }
+  }
+
+  @keyframes indeterminate-ltr {
+    0% {
+      left: -90%;
+      right: 100%;
+    }
+
+    60% {
+      left: -90%;
+      right: 100%;
+    }
+    100% {
+      left: 100%;
+      right: -35%;
+    }
+  }
+
+  @keyframes indeterminate-short-ltr {
+    0% {
+      left: -200%;
+      right: 100%;
+    }
+    60% {
+      left: 107%;
+      right: -8%;
+    }
+    100% {
+      left: 107%;
+      right: -8%;
+    }
+  }
+
+  @keyframes stream-ltr {
+    to {
+      transform: translateX(calc(-2 * #{$progress-linear-height}));
+    }
+  }
+}

@@ -45,6 +45,9 @@ export * from './lib/modules/progress-circular/progress-circular-settings.token'
 export * from './lib/modules/progress-circular/progress-circular.component';
 export * from './lib/modules/progress-circular/progress-circular.interface';
 export * from './lib/modules/progress-circular/progress-circular.module';
+// Progress Linear
+export * from './lib/modules/progress-linear/progress-linear.component';
+export * from './lib/modules/progress-linear/progress-linear.module';
 // Stepper
 export * from './lib/modules/stepper/components/stepper-header/stepper-header.component';
 export * from './lib/modules/stepper/components/stepper/stepper.component';
