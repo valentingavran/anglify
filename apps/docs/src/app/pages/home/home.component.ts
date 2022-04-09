@@ -43,6 +43,10 @@ export class HomeComponent {
       name: 'Progress Circular',
     },
     {
+      link: 'components/progress-linear',
+      name: 'Progress Linear',
+    },
+    {
       link: 'components/stepper',
       name: 'Stepper',
     },

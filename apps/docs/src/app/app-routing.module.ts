@@ -9,6 +9,7 @@ import { ListPageComponent } from './pages/component-pages/list-page/list-page.c
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
 import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
+import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: 'components/progress-circular',
     component: ProgressCircularPageComponent,
+  },
+  {
+    path: 'components/progress-linear',
+    component: ProgressLinearPageComponent,
   },
   {
     path: 'components/stepper',

@@ -1,0 +1,44 @@
+<h1>Progress linear</h1>
+
+<h2>Playground</h2>
+<div class="playground">
+  <div class="content">
+    <anglify-progress-linear
+      [indeterminate]="isIndeterminate"
+      [value]="progress"
+      [bufferValue]="buffer"
+      [stream]="stream"
+    ></anglify-progress-linear>
+  </div>
+  <div class="controls">
+    <label><input type="radio" name="mode" value="indeterminate" [(ngModel)]="mode" /> Indeterminate </label>
+    <label>
+      <input type="radio" name="mode" value="regular" [(ngModel)]="mode" />
+      Regular
+    </label>
+    <ng-container *ngIf="!isIndeterminate">
+      <input type="range" min="0" max="100" [(ngModel)]="progress" />
+      <input type="range" min="0" max="100" [(ngModel)]="buffer" />
+      <anglify-checkbox type="checkbox" [(ngModel)]="stream">Stream</anglify-checkbox>
+    </ng-container>
+    <input type="range" min="0" max="100" [(ngModel)]="size" />
+  </div>
+</div>
+
+<h2>Examples</h2>
+
+<h3>Regular</h3>
+<app-code-example component="progress-linear" example="regular"></app-code-example>
+
+<h3>Indeterminate</h3>
+<app-code-example component="progress-linear" example="indeterminate"></app-code-example>
+
+<h3>Buffer</h3>
+<app-code-example component="progress-linear" example="buffer"></app-code-example>
+
+<h3>Stream</h3>
+<app-code-example component="progress-linear" example="stream"></app-code-example>
+
+<h2>API</h2>
+<h3>Styling</h3>
+<app-styling-table forComponent="progress-linear"></app-styling-table>

@@ -13,6 +13,7 @@ import {
   MenuModule,
   OverlayModule,
   ProgressCircularModule,
+  ProgressLinearModule,
   TableModule,
 } from '@anglify/components';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
@@ -44,6 +45,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { InstallationComponent } from './pages/installation/installation.component';
 import { TableExamplesModule } from './examples/table/table-examples.module';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
+import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
+import { ProgressLinearExamplesModule } from './examples/progress-linear/progress-linear-examples.module';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import { TablePageComponent } from './pages/component-pages/table-page/table-pag
     ProgressCircularPageComponent,
     CheckBoxPageComponent,
     TablePageComponent,
+    ProgressLinearPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +97,8 @@ import { TablePageComponent } from './pages/component-pages/table-page/table-pag
     CheckboxModule,
     TableModule,
     TableExamplesModule,
+    ProgressLinearModule,
+    ProgressLinearExamplesModule,
   ],
   providers: [
     {
