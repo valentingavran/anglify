@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, forwardRef, Inject, Input, OnInit, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Inject, Input, OnInit, Output, Self } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { CheckboxSettings, LabelPosition, RippleOrigin } from './checkbox.interface';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './checkbox.token';
@@ -27,6 +27,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
 
+  @Output() checkedChange = new EventEmitter<boolean>();
+
   public onChange: (...args: any[]) => void = () => {};
   public onTouch: (...args: any[]) => void = () => {};
 
@@ -51,7 +53,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   }
 
   public onModelChange(e: boolean) {
-    this.checked = e;
+    this.checkedChange.next(e);
     this.onChange(e);
   }
 }
