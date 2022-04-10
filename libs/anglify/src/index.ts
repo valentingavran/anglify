@@ -1,5 +1,5 @@
 // Button
-export * from './lib/modules/button/button.directive';
+export * from './lib/modules/button/button.component';
 export * from './lib/modules/button/button.interface';
 export * from './lib/modules/button/button.module';
 // Card

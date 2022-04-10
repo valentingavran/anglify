@@ -1,12 +1,15 @@
-import { Directive, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import type { ButtonAppearance } from './button.interface';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { isBooleanLikeTrue } from '../../utils/functions';
-import type { BooleanLike, ComponentSize } from '../../utils/interfaces';
+import { BooleanLike, ComponentSize } from '../../utils/interfaces';
+import { ButtonAppearance } from './button.interface';
 
-@Directive({
-  selector: '[anglifyButton]',
+@Component({
+  selector: 'button[anglifyButton]',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonDirective implements OnInit {
+export class ButtonComponent implements OnInit {
   @Input() public appearance: ButtonAppearance = 'filled';
 
   /**
@@ -50,7 +53,7 @@ export class ButtonDirective implements OnInit {
 
   @HostBinding('class')
   protected get classList() {
-    const classNames = ['anglify-button', this.appearance, `button-size-${this.size}`];
+    const classNames = [this.appearance, `button-size-${this.size}`];
 
     if (isBooleanLikeTrue(this.block)) {
       classNames.push('block');

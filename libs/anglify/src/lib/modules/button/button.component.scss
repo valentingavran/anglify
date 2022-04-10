@@ -3,7 +3,7 @@
 @use '../../styles/mixins/elevation' as *;
 @use '../../styles/settings';
 
-.anglify-button {
+:host {
   border: none;
   cursor: pointer;
   white-space: nowrap;
