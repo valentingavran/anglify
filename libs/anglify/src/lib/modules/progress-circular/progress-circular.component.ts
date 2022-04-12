@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } 
 import { DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS } from './progress-circular-settings.token';
 import type { ProgressCircularSettings } from './progress-circular.interface';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { BooleanLike } from '../../utils/interfaces';
 import { isBooleanLikeTrue } from '../../utils/functions';
+import { BooleanLike } from '../../utils/interfaces';
 
 @Component({
   selector: 'anglify-progress-circular',

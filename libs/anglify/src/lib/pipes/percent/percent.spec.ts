@@ -1,8 +1,8 @@
-import { ToUnitPipe } from './to-unit.pipe';
+import { PercentPipe } from './percent.pipe';
 
-describe('ToUnitPipe', () => {
+describe('PercentPipe', () => {
   it('create an instance', () => {
-    const pipe = new ToUnitPipe();
+    const pipe = new PercentPipe();
     expect(pipe).toBeTruthy();
   });
 });

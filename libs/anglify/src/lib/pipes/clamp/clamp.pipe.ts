@@ -5,7 +5,7 @@ import { clamp } from '../../utils/functions';
   name: 'clamp',
 })
 export class ClampPipe implements PipeTransform {
-  transform(value: number, min: number = 0, max: number = 100): number {
+  public transform(value: number, min = 0, max = 100): number {
     return clamp(value, min, max);
   }
 }

@@ -27,7 +27,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
 
-  @Output() checkedChange = new EventEmitter<boolean>();
+  @Output() public checkedChange = new EventEmitter<boolean>();
 
   public onChange: (...args: any[]) => void = () => {};
   public onTouch: (...args: any[]) => void = () => {};

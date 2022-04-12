@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import { ButtonAppearance } from './button.interface';
 import { isBooleanLikeTrue } from '../../utils/functions';
 import { BooleanLike, ComponentSize } from '../../utils/interfaces';
-import { ButtonAppearance } from './button.interface';
 
 @Component({
   selector: 'button[anglifyButton]',

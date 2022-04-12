@@ -14,9 +14,9 @@ describe('BooleanLikeToBooleanPipe', () => {
     expect(pipe.transform(false)).toBeFalsy();
     expect(pipe.transform('false')).toBeFalsy();
 
-    //@ts-ignore
+    // @ts-expect-error
     expect(pipe.transform(' ')).toBeFalsy();
-    //@ts-ignore
+    // @ts-expect-error
     expect(pipe.transform('a')).toBeFalsy();
   });
 });
