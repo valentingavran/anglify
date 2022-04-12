@@ -8,8 +8,12 @@ export * from './lib/modules/card/card.component';
 export * from './lib/modules/card/card.interface';
 export * from './lib/modules/card/card.module';
 // Checkbox
+export * from './lib/modules/checkbox/interfaces/checkbox.interface';
+export * from './lib/modules/checkbox/interfaces/checkbox-icons.interface';
+export * from './lib/modules/checkbox/tokens/checkbox-icons.token';
+export * from './lib/modules/checkbox/tokens/checkbox.token';
 export * from './lib/modules/checkbox/checkbox.component';
-export * from './lib/modules/checkbox/checkbox.interface';
+export * from './lib/modules/checkbox/functions/register-icons.function';
 export * from './lib/modules/checkbox/checkbox.module';
 // Dialog
 export * from './lib/modules/dialog/dialog-context.interface';
