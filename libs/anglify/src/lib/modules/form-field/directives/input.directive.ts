@@ -76,7 +76,8 @@ export class InputDirective implements OnInit {
             return of(null);
           }
 
-          return of(this.ngControl.errors?.["message"] ?? 'This field is invalid');
+          // eslint-disable-next-line @typescript-eslint/dot-notation
+          return of(this.ngControl.errors?.['message'] ?? 'This field is invalid');
         }
 
         // If no reactive forms or if reactive form valid, validate native validation

@@ -14,7 +14,7 @@ export class FormsComponent {
 
   public constructor(private readonly formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      myFormControl: true
+      myFormControl: true,
     });
   }
 }

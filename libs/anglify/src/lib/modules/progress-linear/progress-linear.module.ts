@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ProgressLinearComponent } from './progress-linear.component';
 import { PipeModule } from '../../pipes/pipe.module';
 

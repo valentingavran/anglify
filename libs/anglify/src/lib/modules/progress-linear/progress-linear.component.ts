@@ -10,10 +10,10 @@ import { BooleanLike } from '../../utils/interfaces';
 })
 export class ProgressLinearComponent {
   @Input() public active: BooleanLike = true;
-  @Input() public bufferValue: number = 100;
+  @Input() public bufferValue = 100;
   @Input() public indeterminate: BooleanLike = false;
   @Input() public stream: BooleanLike = false;
-  @Input() public value: number = 0;
+  @Input() public value = 0;
 
   @HostBinding('class')
   protected get classList() {
