@@ -1,0 +1,23 @@
+@use '../../styles/settings/colors';
+
+$radio-button-border-color: var(--anglify-radio-button-border-color, colors.$color-outline-secondary);
+$radio-button-disabled-color: var(--anglify-radio-button-disabled-color, colors.$color-on-background-low-emphasis);
+$radio-button-checked-dot-color: var(--anglify-radio-button-checked-icon-color, colors.$color-primary);
+$radio-button-checked-color: var(--anglify-radio-button-checked-color, colors.$color-primary);
+$radio-button-checked-hover-color: var(--anglify-radio-button-checked-hover-color, colors.$color-primary);
+$radio-button-checked-hover-border-color: var(--anglify-radio-button-checked-hover-border-color, colors.$color-primary);
+$radio-button-checked-border-color: var(--anglify-radio-button-checked-border-color, colors.$color-primary);
+$radio-button-label-font-size: var(--anglify-radio-button-label-font-size, 14px);
+$radio-button-label-margin: var(--anglify-radio-button-label-margin, 0 5px);
+$radio-button-border-width: var(--anglify-radio-button-border-width, 2px);
+$radio-button-border-radius: var(--anglify-radio-button-border-radius, 50%);
+$radio-button-height: var(--anglify-radio-button-height, 20px);
+$radio-button-width: var(--anglify-radio-button-width, 20px);
+$radio-button-dot-height: var(--anglify-radio-button-dot-height, 10px);
+$radio-button-dot-width: var(--anglify-radio-button-dot-width, 10px);
+$radio-button-ripple-border-radius: var(--anglify-radio-button-ripple-border-radius, 50%);
+$radio-button-ripple-margin: var(--anglify-radio-button-ripple-margin, -8px 0 0 -8px);
+$radio-button-ripple-height: var(--anglify-radio-button-ripple-height, 40px);
+$radio-button-ripple-width: var(--anglify-radio-button-ripple-width, 40px);
+$radio-button-ripple-inner-width: var(--anglify-radio-button-ripple-inner-width, 24px);
+$radio-button-ripple-inner-height: var(--anglify-radio-button-ripple-inner-height, 24px);
