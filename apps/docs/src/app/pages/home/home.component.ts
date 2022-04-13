@@ -47,6 +47,10 @@ export class HomeComponent {
       name: 'Progress Linear',
     },
     {
+      link: 'components/radio-button',
+      name: 'Radio Button',
+    },
+    {
       link: 'components/stepper',
       name: 'Stepper',
     },
