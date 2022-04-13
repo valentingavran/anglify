@@ -15,6 +15,7 @@
     "src/lib/modules/menu/*.scss",
     "src/lib/modules/overlay/*.scss",
     "src/lib/modules/progress-circular/*.scss",
+    "src/lib/modules/radio-button/*.scss",
     "src/lib/modules/stepper/*.scss",
     "src/lib/modules/table/*.scss",
     "src/lib/modules/tooltip/*.scss"
