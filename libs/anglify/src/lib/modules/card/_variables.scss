@@ -1,5 +1,5 @@
 @use '../../styles/settings/colors';
 
-$card-border-radius: var(--card-border-radius, 12px) !default;
-$card-background: var(--card-background, colors.$color-surface);
-$card-padding: var(--card-padding, 16px);
+$card-border-radius: var(--anglify-card-border-radius, 12px) !default;
+$card-background: var(--anglify-card-background, colors.$color-surface);
+$card-padding: var(--anglify-card-padding, 16px);

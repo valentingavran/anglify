@@ -14,7 +14,7 @@ export class ProgressLinearPageComponent {
 
   public size = 4;
 
-  @HostBinding('style.--progress-linear-playground-size')
+  @HostBinding('style.--docs-progress-linear-playground-size')
   public get getSizeInPx() {
     return `${this.size}px`;
   }

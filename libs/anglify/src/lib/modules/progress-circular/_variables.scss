@@ -1,13 +1,19 @@
 @use '../../styles/settings/colors.scss' as *;
 
-$progress-circular-overlay-color: var(--progress-circular-overlay-color, $color-primary);
-$progress-circular-track-color: var(--progress-circular-track-color, $color-outline-secondary);
-$progress-circular-stroke-width: var(--progress-circular-stroke-width, 4px);
-$progress-circular-stroke-start-dasharray: var(--progress-circular-stroke-start-dasharray, 1, 200);
-$progress-circular-stroke-end-dasharray: var(--progress-circular-stroke-end-dasharray, 89, 200);
+$progress-circular-overlay-color: var(--anglify-progress-circular-overlay-color, $color-primary);
+$progress-circular-track-color: var(--anglify-progress-circular-track-color, $color-outline-secondary);
+$progress-circular-stroke-width: var(--anglify-progress-circular-stroke-width, 4px);
+$progress-circular-stroke-start-dasharray: var(--anglify-progress-circular-stroke-start-dasharray, 1, 200);
+$progress-circular-stroke-end-dasharray: var(--anglify-progress-circular-stroke-end-dasharray, 89, 200);
 $progress-circular-overlay-transition: stroke-dasharray 0.6s ease-in-out, stroke-dashoffset 0.6s ease-in-out;
-$progress-circular-indeterminate-rotation-animation-speed: var(--progress-circular-indeterminate-rotation-animation-speed, 1.4s);
-$progress-circular-indeterminate-rotation-animation-easing: var(--progress-circular-indeterminate-rotation-animation-easing, linear);
-$progress-circular-indeterminate-stroke-animation-speed: var(--progress-circular-indeterminate-stroke-animation-speed, 1.4s);
-$progress-circular-indeterminate-stroke-animation-easing: var(--progress-circular-indeterminate-stroke-animation-easing, ease-in-out);
-$progress-circular-intermediate-svg-transition: var(--progress-circular-intermediate-svg-transition, all 0.2s ease-in-out);
+$progress-circular-indeterminate-rotation-animation-speed: var(--anglify-progress-circular-indeterminate-rotation-animation-speed, 1.4s);
+$progress-circular-indeterminate-rotation-animation-easing: var(
+  --anglify-progress-circular-indeterminate-rotation-animation-easing,
+  linear
+);
+$progress-circular-indeterminate-stroke-animation-speed: var(--anglify-progress-circular-indeterminate-stroke-animation-speed, 1.4s);
+$progress-circular-indeterminate-stroke-animation-easing: var(
+  --anglify-progress-circular-indeterminate-stroke-animation-easing,
+  ease-in-out
+);
+$progress-circular-intermediate-svg-transition: var(--anglify-progress-circular-intermediate-svg-transition, all 0.2s ease-in-out);

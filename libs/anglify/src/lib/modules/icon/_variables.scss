@@ -1,19 +1,19 @@
 @use '../../styles/settings/colors';
 
-$icon-letter-spacing: var(--icon-letter-spacing, normal) !default;
-$icon-line-height: var(--icon-line-height, 1) !default;
-$icon-text-indent: var(--icon-text-indent, 0) !default;
-$icon-vertical-align: var(--icon-vertical-align, middle) !default;
-$icon-size: var(--icon-size, 1.5rem) !default;
+$icon-letter-spacing: var(--anglify-icon-letter-spacing, normal) !default;
+$icon-line-height: var(--anglify-icon-line-height, 1) !default;
+$icon-text-indent: var(--anglify-icon-text-indent, 0) !default;
+$icon-vertical-align: var(--anglify-icon-vertical-align, middle) !default;
+$icon-size: var(--anglify-icon-size, 1.5rem) !default;
 
 $icon-sizes: (
-  icon-size-x-small: var(--icon-size-x-small, 1rem),
-  icon-size-small: var(--icon-size-small, 1.25rem),
-  icon-size-regular: var(--icon-size-regular, 1.5rem),
-  icon-size-large: var(--icon-size-large, 1.75rem),
-  icon-size-x-large: var(--icon-size-x-large, 2rem),
+  icon-size-x-small: var(--anglify-icon-size-x-small, 1rem),
+  icon-size-small: var(--anglify-icon-size-small, 1.25rem),
+  icon-size-regular: var(--anglify-icon-size-regular, 1.5rem),
+  icon-size-large: var(--anglify-icon-size-large, 1.75rem),
+  icon-size-x-large: var(--anglify-icon-size-x-large, 2rem),
 ) !default;
 
-$icon-active-color: var(--icon-active-color, colors.$color-on-surface-high-emphasis) !default;
-$icon-inactive-color: var(--icon-inactive-color, colors.$color-on-surface-medium-emphasis) !default;
-$icon-disabled-color: var(--icon-disabled-color, colors.$color-on-surface-low-emphasis) !default;
+$icon-active-color: var(--anglify-icon-active-color, colors.$color-on-surface-high-emphasis) !default;
+$icon-inactive-color: var(--anglify-icon-inactive-color, colors.$color-on-surface-medium-emphasis) !default;
+$icon-disabled-color: var(--anglify-icon-disabled-color, colors.$color-on-surface-low-emphasis) !default;
