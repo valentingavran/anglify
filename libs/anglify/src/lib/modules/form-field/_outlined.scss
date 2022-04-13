@@ -2,7 +2,7 @@
 @use '../../styles/mixins/notched-outline' as *;
 
 :host-context(.form-field-type-outlined) {
-  --icon-inactive-color: #{$form-field-outlined-icon-color-inactive};
+  --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-inactive};
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
   .form-field-container {
@@ -20,8 +20,8 @@
 
     .form-field-border {
       @include notched-outline($form-field-outlined-border-radius, $transition-duration);
-      --notched-outline-border-color: #{$form-field-outlined-border-color-inactive};
-      --notched-outline-start-width: #{$form-field-outlined-padding-start};
+      --anglify-notched-outline-border-color: #{$form-field-outlined-border-color-inactive};
+      --anglify-notched-outline-start-width: #{$form-field-outlined-padding-start};
 
       .notch * {
         display: block;
@@ -45,14 +45,14 @@
   }
 
   &.focused {
-    --icon-inactive-color: #{$form-field-outlined-icon-color-focused};
+    --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-focused};
 
     .form-field-container {
       background-color: $form-field-outlined-background-focused;
 
       .form-field-border {
-        --notched-outline-border-width: 2px;
-        --notched-outline-border-color: #{$form-field-outlined-border-color-focused};
+        --anglify-notched-outline-border-width: 2px;
+        --anglify-notched-outline-border-color: #{$form-field-outlined-border-color-focused};
       }
 
       ::ng-deep {
@@ -68,7 +68,7 @@
 
       .label {
         color: $form-field-outlined-label-color-focused;
-        --icon-inactive-color: #{$form-field-outlined-label-color-focused};
+        --anglify-icon-inactive-color: #{$form-field-outlined-label-color-focused};
       }
     }
   }
@@ -94,7 +94,7 @@
   &.floating {
     .form-field-container {
       .form-field-border {
-        --notched-outline-notch-width: 0;
+        --anglify-notched-outline-notch-width: 0;
 
         .notch {
           width: auto;
@@ -125,21 +125,21 @@
 
       .label {
         color: $form-field-outlined-label-color-inactive;
-        --icon-inactive-color: $form-field-outlined-label-color-inactive;
+        --anglify-icon-inactive-color: $form-field-outlined-label-color-inactive;
       }
 
       &:hover {
         background-color: $form-field-outlined-background-hovered;
 
         .form-field-border {
-          --notched-outline-border-color: #{$form-field-outlined-border-color-hovered};
+          --anglify-notched-outline-border-color: #{$form-field-outlined-border-color-hovered};
         }
       }
     }
   }
 
   &:not(.has-label) {
-    --notched-outline-padding: 0px;
+    --anglify-notched-outline-padding: 0px;
 
     .notch {
       width: 0 !important;
@@ -147,7 +147,7 @@
   }
 
   &.disabled {
-    --icon-inactive-color: #{$form-field-outlined-icon-color-disabled};
+    --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-disabled};
 
     ::ng-deep {
       input,
@@ -191,7 +191,7 @@
       padding-inline-end: $form-field-outlined-padding-start-dense;
 
       .form-field-border {
-        --notched-outline-start-width: #{$form-field-outlined-padding-start-dense};
+        --anglify-notched-outline-start-width: #{$form-field-outlined-padding-start-dense};
       }
 
       ::ng-deep {
@@ -211,7 +211,7 @@
     }
 
     .form-field-container .form-field-border {
-      --notched-outline-border-color: #{$form-field-outlined-error-color};
+      --anglify-notched-outline-border-color: #{$form-field-outlined-error-color};
     }
   }
 }

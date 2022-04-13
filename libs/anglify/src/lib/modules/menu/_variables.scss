@@ -1,6 +1,6 @@
 @use '../../styles/settings/colors';
 
-$menu-border-radius: var(--menu-border-radius, 4px) !default;
-$menu-max-width: var(--menu-max-width, 150px) !default;
-$menu-z-index: var(--menu-z-index, 1) !default;
-$menu-background: var(--menu-background, colors.$color-surface);
+$menu-border-radius: var(--anglify-menu-border-radius, 4px) !default;
+$menu-max-width: var(--anglify-menu-max-width, 150px) !default;
+$menu-z-index: var(--anglify-menu-z-index, 1) !default;
+$menu-background: var(--anglify-menu-background, colors.$color-surface);
