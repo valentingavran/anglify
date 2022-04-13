@@ -9,6 +9,7 @@ import {
   OverlayModule,
   ProgressCircularModule,
   ProgressLinearModule,
+  RadioButtonModule,
   TableModule,
 } from '@anglify/components';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +30,7 @@ import { IconExamplesModule } from './examples/icon/icon-examples.module';
 import { OverlayExamplesModule } from './examples/overlay/overlay-examples.module';
 import { ProgressCircularExamplesModule } from './examples/progress-circular/progress-circular-examples.module';
 import { ProgressLinearExamplesModule } from './examples/progress-linear/progress-linear-examples.module';
+import { RadioButtonExamplesModule } from './examples/radio-button/radio-button-examples.module';
 import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
 import { TableExamplesModule } from './examples/table/table-examples.module';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
@@ -42,6 +44,7 @@ import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.c
 import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
+import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
@@ -68,6 +71,7 @@ import { InstallationComponent } from './pages/installation/installation.compone
     CheckBoxPageComponent,
     TablePageComponent,
     ProgressLinearPageComponent,
+    RadioButtonPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +103,8 @@ import { InstallationComponent } from './pages/installation/installation.compone
     TableExamplesModule,
     ProgressLinearModule,
     ProgressLinearExamplesModule,
+    RadioButtonModule,
+    RadioButtonExamplesModule,
   ],
   providers: [
     {
