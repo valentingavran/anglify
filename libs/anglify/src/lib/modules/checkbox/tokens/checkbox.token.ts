@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import type { CheckboxSettings } from './checkbox.interface';
+import { CheckboxSettings } from '../interfaces/checkbox.interface';
 
 export const DEFAULT_CHECKBOX_SETTINGS: Required<CheckboxSettings> = {
   disabled: false,
