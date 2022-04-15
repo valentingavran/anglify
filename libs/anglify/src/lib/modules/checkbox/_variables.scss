@@ -1,6 +1,5 @@
 @use '../../styles/settings/colors';
 
-/* coloring */
 $checkbox-border-color: var(--anglify-checkbox-border-color, colors.$color-outline-secondary);
 $checkbox-disabled-color: var(--anglify-checkbox-disabled-color, colors.$color-on-background-low-emphasis);
 $checkbox-icon-color: var(--anglify-checkbox-icon-color, colors.$color-on-primary-low-emphasis);
@@ -9,8 +8,6 @@ $checkbox-checked-color: var(--anglify-checkbox-checked-color, colors.$color-pri
 $checkbox-checked-hover-color: var(--anglify-checkbox-checked-hover-color, colors.$color-primary);
 $checkbox-checked-hover-border-color: var(--anglify-checkbox-checked-hover-border-color, colors.$color-primary);
 $checkbox-checked-border-color: var(--anglify-checkbox-checked-border-color, colors.$color-primary);
-
-/* theming */
 $checkbox-label-font-size: var(--anglify-checkbox-label-font-size, 14px);
 $checkbox-label-margin: var(--anglify-checkbox-label-margin, 0 5px);
 $checkbox-border-width: var(--anglify-checkbox-border-width, 2px);
@@ -18,16 +15,25 @@ $checkbox-border-radius: var(--anglify-checkbox-border-radius, 3px);
 $checkbox-height: var(--anglify-checkbox-height, 14px);
 $checkbox-width: var(--anglify-checkbox-width, 14px);
 $checkbox-label-padding: var(--anglify-checkbox-label-padding, 2px 0 0 0);
-$checkbox-icon-before-width: var(--anglify-checkbox-icon-before-width, 6px);
-$checkbox-icon-after-width: var(--anglify-checkbox-icon-after-width, 11px);
-$checkbox-icon-before-top-position: var(--anglify-checkbox-icon-before-top-position, 7px);
-$checkbox-icon-before-left-position: var(--anglify-checkbox-icon-before-left-position, 3px);
-$checkbox-icon-after-top-position: var(--anglify-checkbox-icon-after-top-position, 11px);
-$checkbox-icon-after-left-position: var(--anglify-checkbox-icon-after-left-position, 5px);
-$checkbox-checked-icon-transition-speed: var(--anglify-checkbox-checked-icon-transition-speed, width 125ms ease 75ms);
 $checkbox-ripple-border-radius: var(--anglify-checkbox-ripple-border-radius, 50%);
-$checkbox-ripple-margin: var(--anglify-checkbox-ripple-margin, -8px 0 0 -8px);
-$checkbox-ripple-height: var(--anglify-checkbox-ripple-height, 40px);
-$checkbox-ripple-width: var(--anglify-checkbox-ripple-width, 40px);
-$checkbox-ripple-inner-width: var(--anglify-checkbox-ripple-inner-width, 24px);
-$checkbox-ripple-inner-height: var(--anglify-checkbox-ripple-inner-height, 24px);
+$checkbox-ripple-margin: var(
+  --anglify-checkbox-ripple-margin,
+  calc((($checkbox-height + $checkbox-border-width) / 2) * -1) 0 0 calc((($checkbox-width + $checkbox-border-width) / 2) * -1)
+);
+$checkbox-ripple-inner-width: var(--anglify-checkbox-ripple-inner-width, calc(($checkbox-width - $checkbox-border-width) * 2));
+$checkbox-ripple-inner-height: var(--anglify-checkbox-ripple-inner-height, calc(($checkbox-height - $checkbox-border-width) * 2));
+$checkbox-ripple-height: var(
+  --anglify-checkbox-ripple-height,
+  calc($checkbox-height + $checkbox-border-width + $checkbox-ripple-inner-height)
+);
+$checkbox-ripple-width: var(--anglify-checkbox-ripple-width, calc($checkbox-width + $checkbox-border-width + $checkbox-ripple-inner-width));
+$checkbox-icon-before-width: var(--anglify-checkbox-icon-before-width, calc(5 * $checkbox-width / 14));
+$checkbox-icon-after-width: var(--anglify-checkbox-icon-after-width, calc(12 * $checkbox-height / 14));
+$checkbox-icon-before-top-position: var(--anglify-checkbox-icon-before-top-position, calc(7 * $checkbox-height / 14));
+$checkbox-icon-before-left-position: var(--anglify-checkbox-icon-before-left-position, calc(3 * $checkbox-width / 14));
+$checkbox-icon-before-height: var(--anglify-checkbox-icon-before-height, calc(2 * $checkbox-height / 14));
+$checkbox-icon-after-top-position: var(--anglify-checkbox-icon-after-top-position, calc(11 * $checkbox-height / 14));
+$checkbox-icon-after-left-position: var(--anglify-checkbox-icon-after-left-position, calc(4.5 * $checkbox-width / 14));
+$checkbox-icon-after-height: var(--anglify-checkbox-icon-after-height, calc(2 * $checkbox-height / 14));
+$checkbox-checked-icon-transition-speed: var(--anglify-checkbox-checked-icon-transition-speed, width 125ms ease 75ms);
+$checkbox-custom-icon-size: var(--anglify-checkbox-custom-icon-size, $checkbox-ripple-inner-width);

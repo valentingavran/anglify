@@ -7,6 +7,7 @@ import type { BooleanLike } from '../../utils/interfaces';
 
 @Directive({
   selector: '[anglifyOverlay], [anglifyButton], anglify-stepper-header, anglify-list-item[click]',
+  providers: [AnglifyDestroyService],
 })
 export class OverlayDirective {
   @Input()

@@ -1,9 +1,27 @@
 <label [class.before]="labelPosition === 'before'">
-  <input type="checkbox" [disabled]="disabled" [ngModel]="checked" (ngModelChange)="onModelChange($event)" />
-  <div anglifyOverlay [ripple]="ripple" [hover]="ripple" [focus]="ripple" [rippleOrigin]="rippleOrigin" class="overlay-container">
-    <span class="check-box-effect"></span>
+  <input type="checkbox" [disabled]="_disabled" [ngModel]="_checked" (ngModelChange)="onModelChange($event)" />
+  <div
+    #overlayContainer
+    anglifyOverlay
+    [ripple]="_ripple && !_disabled"
+    [hover]="_ripple && !_disabled"
+    [focus]="_ripple && !_disabled"
+    [rippleOrigin]="rippleOrigin"
+    class="overlay-container"
+  >
+    <span #reflectOffIcon [style.display]="!_checked ? 'block' : 'none'" class="checkbox-custom-icons">
+      <ng-content select="[offIcon]"></ng-content>
+    </span>
+    <span #reflectOnIcon [style.display]="_checked ? 'block' : 'none'" class="checkbox-custom-icons">
+      <ng-content select="[onIcon]"></ng-content>
+    </span>
+    <span #offIcon [style.display]="!_checked ? 'block' : 'none'" class="checkbox-custom-icons"></span>
+    <span #onIcon [style.display]="_checked ? 'block' : 'none'" class="checkbox-custom-icons"></span>
+    <span #defaultIcon class="check-box-effect"></span>
   </div>
-  <span class="checkbox-label" [class.disabled]="disabled">
+  <span class="checkbox-label" [class.disabled]="_disabled">
     <ng-content></ng-content>
   </span>
 </label>
+
+<ng-template #default> </ng-template>
