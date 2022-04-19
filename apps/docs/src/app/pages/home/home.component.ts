@@ -23,6 +23,10 @@ export class HomeComponent {
       name: 'Checkbox',
     },
     {
+      link: 'components/dialog',
+      name: 'Dialog',
+    },
+    {
       link: 'components/form-field',
       name: 'Form Field',
     },

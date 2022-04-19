@@ -1,0 +1,33 @@
+@use 'variables' as *;
+
+.anglify-dialog-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  pointer-events: $dialog-pointer-events;
+  overflow-y: auto;
+  box-shadow: $dialog-box-shadow;
+  background: $dialog-background;
+  border-radius: $dialog-border-radius;
+  padding: $dialog-padding;
+}
+
+.anglify-dialog-backdrop {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: $dialog-backdrop-z-index;
+  background: $dialog-backdrop-background;
+}
