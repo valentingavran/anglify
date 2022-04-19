@@ -11,6 +11,12 @@ export * from './lib/modules/card/card.module';
 export * from './lib/modules/checkbox/checkbox.component';
 export * from './lib/modules/checkbox/checkbox.interface';
 export * from './lib/modules/checkbox/checkbox.module';
+// Dialog
+export * from './lib/modules/dialog/dialog-context.interface';
+export * from './lib/modules/dialog/dialog-options.interface';
+export * from './lib/modules/dialog/dialog.component';
+export * from './lib/modules/dialog/dialog.service';
+export * from './lib/modules/dialog/dialog.module';
 // Form Field
 export * from './lib/modules/form-field/directives/input.directive';
 export * from './lib/modules/form-field/directives/label/label.directive';

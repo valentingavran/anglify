@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
+import { DialogPageComponent } from './pages/component-pages/dialog-page/dialog-page.component';
 import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'components/checkbox',
     component: CheckBoxPageComponent,
+  },
+  {
+    path: 'components/dialog',
+    component: DialogPageComponent,
   },
   {
     path: 'components/form-field',

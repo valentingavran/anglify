@@ -2,6 +2,7 @@ import {
   ButtonModule,
   CardModule,
   CheckboxModule,
+  DialogModule,
   FormFieldModule,
   IconModule,
   ListModule,
@@ -37,6 +38,7 @@ import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.modul
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
+import { DialogPageComponent } from './pages/component-pages/dialog-page/dialog-page.component';
 import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
@@ -72,6 +74,7 @@ import { InstallationComponent } from './pages/installation/installation.compone
     TablePageComponent,
     ProgressLinearPageComponent,
     RadioButtonPageComponent,
+    DialogPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +108,7 @@ import { InstallationComponent } from './pages/installation/installation.compone
     ProgressLinearExamplesModule,
     RadioButtonModule,
     RadioButtonExamplesModule,
+    DialogModule,
   ],
   providers: [
     {
