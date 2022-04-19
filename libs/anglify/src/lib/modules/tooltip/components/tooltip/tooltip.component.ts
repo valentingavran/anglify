@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import type { Position } from '../../../../composables/position/position.interface';
 import { POSITION } from '../../../../composables/position/position.provider';
 import { PositionService } from '../../../../composables/position/position.service';
 
-@UntilDestroy()
 @Component({
   selector: 'anglify-tooltip',
   templateUrl: './tooltip.component.html',

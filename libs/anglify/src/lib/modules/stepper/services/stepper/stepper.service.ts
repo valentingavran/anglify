@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { delay, map, switchMap, take, tap } from 'rxjs/operators';
+import { delay, map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { AnglifyDestroyService } from '../../../../services/destroy/destroy.service';
 import type { Step } from '../../directives/step/step.directive';
 
-@UntilDestroy()
 @Injectable()
 export abstract class Stepper {
   private readonly _steps$ = new BehaviorSubject<Step[]>([]);
@@ -138,12 +137,12 @@ export abstract class Stepper {
     )
   );
 
-  protected constructor() {
-    this._previousHandler$.pipe(untilDestroyed(this)).subscribe();
-    this._nextHandler$.pipe(untilDestroyed(this)).subscribe();
-    this._navigateToHandler$.pipe(untilDestroyed(this)).subscribe();
-    this._updateStepsHandler$.pipe(untilDestroyed(this)).subscribe();
-    this._resetHandler$.pipe(untilDestroyed(this)).subscribe();
+  protected constructor(protected readonly destroy$: AnglifyDestroyService) {
+    this._previousHandler$.pipe(takeUntil(this.destroy$)).subscribe();
+    this._nextHandler$.pipe(takeUntil(this.destroy$)).subscribe();
+    this._navigateToHandler$.pipe(takeUntil(this.destroy$)).subscribe();
+    this._updateStepsHandler$.pipe(takeUntil(this.destroy$)).subscribe();
+    this._resetHandler$.pipe(takeUntil(this.destroy$)).subscribe();
   }
 
   public previous() {

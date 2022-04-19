@@ -1,11 +1,10 @@
 import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subject } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
+import { filter, takeUntil, tap } from 'rxjs/operators';
+import { AnglifyDestroyService } from '../../services/destroy/destroy.service';
 import { isBooleanLikeTrue } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
-@UntilDestroy(this)
 @Directive({
   selector: '[anglifyOverlay], [anglifyButton], anglify-stepper-header, anglify-list-item[click]',
 })
@@ -44,10 +43,14 @@ export class OverlayDirective {
   private readonly _showRippleAction = new Subject<Event>();
   private readonly _hideRippleAction = new Subject();
 
-  public constructor(private readonly _element: ElementRef<HTMLElement>, private readonly _renderer: Renderer2) {
+  public constructor(
+    private readonly _element: ElementRef<HTMLElement>,
+    private readonly _renderer: Renderer2,
+    private readonly destroy$: AnglifyDestroyService
+  ) {
     this._nativeElement.classList.add('anglify-overlay');
-    this._showRippleHandler$.pipe(untilDestroyed(this)).subscribe();
-    this._hideRippleHandler$.pipe(untilDestroyed(this)).subscribe();
+    this._showRippleHandler$.pipe(takeUntil(this.destroy$)).subscribe();
+    this._hideRippleHandler$.pipe(takeUntil(this.destroy$)).subscribe();
   }
 
   @HostListener('mouseenter')

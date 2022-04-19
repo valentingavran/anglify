@@ -1,11 +1,10 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { fromEvent, merge } from 'rxjs';
+import { fromEvent, merge, takeUntil } from 'rxjs';
 import type { PositionSettings, Position } from './position.interface';
 import { POSITION_SETTINGS } from './position.token';
+import { AnglifyDestroyService } from '../../services/destroy/destroy.service';
 import { observeOnResize } from '../../utils/functions';
 
-@UntilDestroy()
 @Injectable()
 export class PositionService {
   private _position: Position = 'top';
@@ -23,10 +22,11 @@ export class PositionService {
 
   public constructor(
     private readonly _elementRef: ElementRef<HTMLElement>,
-    @Inject(POSITION_SETTINGS) private readonly settings: PositionSettings
+    @Inject(POSITION_SETTINGS) private readonly settings: PositionSettings,
+    private readonly destroy$: AnglifyDestroyService
   ) {
     merge(observeOnResize(this._elementRef.nativeElement), fromEvent(window, 'scroll', { capture: true }))
-      .pipe(untilDestroyed(this))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(() => this.updatePosition());
   }
 

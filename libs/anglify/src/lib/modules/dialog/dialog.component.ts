@@ -1,11 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, fromEvent, merge } from 'rxjs';
+import { filter, fromEvent, merge, takeUntil } from 'rxjs';
 import { DialogContext } from './dialog-context.interface';
 import { DIALOG_CONTEXT, DIALOG_NODES } from './dialog.service';
+import { AnglifyDestroyService } from '../../services/destroy/destroy.service';
 
-@UntilDestroy()
 @Component({
   selector: 'anglify-dialog',
   templateUrl: './dialog.component.html',
@@ -27,7 +26,8 @@ export class DialogComponent implements OnInit {
     @Inject(DIALOG_CONTEXT)
     private readonly context: DialogContext,
     @Inject(DIALOG_NODES)
-    private readonly nodes: HTMLElement[]
+    private readonly nodes: HTMLElement[],
+    private readonly destroy$: AnglifyDestroyService
   ) {
     this.nodes.forEach(node => elementRef.nativeElement.appendChild(node));
   }
@@ -39,7 +39,7 @@ export class DialogComponent implements OnInit {
     const escapeKey$ = fromEvent<KeyboardEvent>(this.document.body, 'keyup').pipe(filter(({ key }) => key === 'Escape'));
 
     merge(escapeKey$, backdropClick$)
-      .pipe(untilDestroyed(this))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(() => this.context.completeWith());
 
     this.nodes.forEach(node => this.dialogElement.nativeElement.appendChild(node));

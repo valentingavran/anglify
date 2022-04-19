@@ -11,18 +11,17 @@ import {
   Self,
   ViewChild,
 } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { InputDirective } from './directives/input.directive';
 import { LabelDirective } from './directives/label/label.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
 import type { FormFieldSettings, FormFieldType } from './form-field.interface';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { AnglifyDestroyService } from '../../services/destroy/destroy.service';
 import { isBooleanLikeTrue } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
-@UntilDestroy()
 @Component({
   selector: 'anglify-form-field',
   templateUrl: './form-field.component.html',
@@ -80,7 +79,8 @@ export class FormFieldComponent implements AfterViewInit {
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly cdr: ChangeDetectorRef,
-    @Self() @Inject(SETTINGS) private readonly settings: Required<FormFieldSettings>
+    @Self() @Inject(SETTINGS) private readonly settings: Required<FormFieldSettings>,
+    private readonly destroy$: AnglifyDestroyService
   ) {}
 
   @HostBinding('class')
@@ -108,7 +108,7 @@ export class FormFieldComponent implements AfterViewInit {
     if (this.input) {
       this.input.focused$
         .pipe(
-          untilDestroyed(this),
+          takeUntil(this.destroy$),
           tap(focused => {
             if (focused) {
               this.nativeElement.classList.add('focused');
@@ -121,7 +121,7 @@ export class FormFieldComponent implements AfterViewInit {
 
       this.input.floating$
         .pipe(
-          untilDestroyed(this),
+          takeUntil(this.destroy$),
           tap(floating => {
             if (floating) {
               this.nativeElement.classList.add('floating');
@@ -134,7 +134,7 @@ export class FormFieldComponent implements AfterViewInit {
 
       this.input.readonly$
         .pipe(
-          untilDestroyed(this),
+          takeUntil(this.destroy$),
           tap(readonly => {
             if (readonly) {
               this.nativeElement.classList.add('readonly');
@@ -147,7 +147,7 @@ export class FormFieldComponent implements AfterViewInit {
 
       this.input.disabled$
         .pipe(
-          untilDestroyed(this),
+          takeUntil(this.destroy$),
           tap(disabled => {
             if (disabled) {
               this.nativeElement.classList.add('disabled');
@@ -160,7 +160,7 @@ export class FormFieldComponent implements AfterViewInit {
 
       combineLatest([this.input.focused$, this.input.floating$])
         .pipe(
-          untilDestroyed(this),
+          takeUntil(this.destroy$),
           map(([focused, floating]) => {
             const prependItemWidth = `-${this.prependItem!.nativeElement.offsetWidth}px`;
             return (focused || floating || isBooleanLikeTrue(this.persistentPlaceholder)) && this.type === 'outlined'
@@ -176,7 +176,7 @@ export class FormFieldComponent implements AfterViewInit {
 
       this.input.valid$
         .pipe(
-          untilDestroyed(this),
+          takeUntil(this.destroy$),
           tap(valid => {
             this.errorAction.next(valid);
           })
