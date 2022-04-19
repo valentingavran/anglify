@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import type { Elevation } from '../../../../composables/elevation/elevation';
 import { ELEVATION } from '../../../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../../../composables/elevation/elevation.service';
@@ -7,7 +6,6 @@ import type { Position } from '../../../../composables/position/position.interfa
 import { POSITION } from '../../../../composables/position/position.provider';
 import { PositionService } from '../../../../composables/position/position.service';
 
-@UntilDestroy()
 @Component({
   selector: 'anglify-menu',
   templateUrl: './menu.component.html',
