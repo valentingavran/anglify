@@ -1,0 +1,10 @@
+:host {
+  .playground {
+    height: 200px;
+
+    anglify-progress-linear {
+      --anglify-progress-linear-height: var(--docs-progress-linear-playground-size);
+      width: 100%;
+    }
+  }
+}

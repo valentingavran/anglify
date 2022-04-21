@@ -1,0 +1,11 @@
+<label [class.before]="labelPosition === 'before'">
+  <input type="radio" [disabled]="disabled" [ngModel]="checked" (ngModelChange)="onModelChange($event)" [value]="value" [name]="name" />
+  <div anglifyOverlay [ripple]="ripple" [hover]="ripple" [focus]="ripple" [rippleOrigin]="rippleOrigin" class="overlay-container">
+    <div class="radio-button-effect">
+      <div class="radio-button-effect-dot"></div>
+    </div>
+  </div>
+  <span class="radio-button-label" [class.disabled]="disabled">
+    <ng-content></ng-content>
+  </span>
+</label>

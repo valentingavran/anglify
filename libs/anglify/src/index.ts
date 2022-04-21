@@ -1,5 +1,5 @@
 // Button
-export * from './lib/modules/button/button.directive';
+export * from './lib/modules/button/button.component';
 export * from './lib/modules/button/button.interface';
 export * from './lib/modules/button/button.module';
 // Card
@@ -8,9 +8,19 @@ export * from './lib/modules/card/card.component';
 export * from './lib/modules/card/card.interface';
 export * from './lib/modules/card/card.module';
 // Checkbox
+export * from './lib/modules/checkbox/interfaces/checkbox.interface';
+export * from './lib/modules/checkbox/interfaces/checkbox-icons.interface';
+export * from './lib/modules/checkbox/tokens/checkbox-icons.token';
+export * from './lib/modules/checkbox/tokens/checkbox.token';
 export * from './lib/modules/checkbox/checkbox.component';
-export * from './lib/modules/checkbox/checkbox.interface';
+export * from './lib/modules/checkbox/functions/register-icons.function';
 export * from './lib/modules/checkbox/checkbox.module';
+// Dialog
+export * from './lib/modules/dialog/dialog-context.interface';
+export * from './lib/modules/dialog/dialog-options.interface';
+export * from './lib/modules/dialog/dialog.component';
+export * from './lib/modules/dialog/dialog.service';
+export * from './lib/modules/dialog/dialog.module';
 // Form Field
 export * from './lib/modules/form-field/directives/input.directive';
 export * from './lib/modules/form-field/directives/label/label.directive';
@@ -45,6 +55,13 @@ export * from './lib/modules/progress-circular/progress-circular-settings.token'
 export * from './lib/modules/progress-circular/progress-circular.component';
 export * from './lib/modules/progress-circular/progress-circular.interface';
 export * from './lib/modules/progress-circular/progress-circular.module';
+// Progress Linear
+export * from './lib/modules/progress-linear/progress-linear.component';
+export * from './lib/modules/progress-linear/progress-linear.module';
+// Radio Button
+export * from './lib/modules/radio-button/radio-button.component';
+export * from './lib/modules/radio-button/radio-button.interface';
+export * from './lib/modules/radio-button/radio-button.module';
 // Stepper
 export * from './lib/modules/stepper/components/stepper-header/stepper-header.component';
 export * from './lib/modules/stepper/components/stepper/stepper.component';

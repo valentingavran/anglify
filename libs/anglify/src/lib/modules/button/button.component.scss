@@ -3,7 +3,7 @@
 @use '../../styles/mixins/elevation' as *;
 @use '../../styles/settings';
 
-.anglify-button {
+:host {
   border: none;
   cursor: pointer;
   white-space: nowrap;
@@ -137,7 +137,7 @@
     &.button-size-large {
       height: 96px !important;
       width: 96px !important;
-      --icon-size: 36px;
+      --anglify-icon-size: 36px;
     }
 
     @include elevation(3);

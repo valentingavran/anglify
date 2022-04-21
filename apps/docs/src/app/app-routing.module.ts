@@ -3,12 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
+import { DialogPageComponent } from './pages/component-pages/dialog-page/dialog-page.component';
 import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
 import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
+import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
+import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
@@ -37,6 +40,10 @@ const routes: Routes = [
     component: CheckBoxPageComponent,
   },
   {
+    path: 'components/dialog',
+    component: DialogPageComponent,
+  },
+  {
     path: 'components/form-field',
     component: FormFieldPageComponent,
   },
@@ -59,6 +66,14 @@ const routes: Routes = [
   {
     path: 'components/progress-circular',
     component: ProgressCircularPageComponent,
+  },
+  {
+    path: 'components/progress-linear',
+    component: ProgressLinearPageComponent,
+  },
+  {
+    path: 'components/radio-button',
+    component: RadioButtonPageComponent,
   },
   {
     path: 'components/stepper',

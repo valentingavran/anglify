@@ -1,11 +1,10 @@
 import { Directive, ElementRef, OnInit, Optional, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, merge, NEVER, Observable, of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, shareReplay, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { AnglifyDestroyService } from '../../../services/destroy/destroy.service';
 import { observeOnMutation } from '../../../utils/functions';
 
-@UntilDestroy()
 @Directive({
   selector: 'input[anglifyInput], textarea[anglifyInput]',
 })
@@ -76,7 +75,8 @@ export class InputDirective implements OnInit {
             return of(null);
           }
 
-          return of(this.ngControl.errors?.["message"] ?? 'This field is invalid');
+          // eslint-disable-next-line @typescript-eslint/dot-notation
+          return of(this.ngControl.errors?.['message'] ?? 'This field is invalid');
         }
 
         // If no reactive forms or if reactive form valid, validate native validation
@@ -116,12 +116,16 @@ export class InputDirective implements OnInit {
     shareReplay(1)
   );
 
-  public constructor(public readonly elementRef: ElementRef<HTMLInputElement>, @Optional() @Self() public ngControl?: NgControl) {}
+  public constructor(
+    private readonly destroy$: AnglifyDestroyService,
+    public readonly elementRef: ElementRef<HTMLInputElement>,
+    @Optional() @Self() public ngControl?: NgControl
+  ) {}
 
   public ngOnInit() {
     if (this.ngControl) {
       const abstractControl = this.ngControl.control;
-      abstractControl?.statusChanges.pipe(untilDestroyed(this)).subscribe(() => this.statusChanged$.next(true));
+      abstractControl?.statusChanges.pipe(takeUntil(this.destroy$)).subscribe(() => this.statusChanged$.next(true));
     }
   }
 }

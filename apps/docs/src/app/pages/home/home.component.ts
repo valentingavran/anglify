@@ -23,6 +23,10 @@ export class HomeComponent {
       name: 'Checkbox',
     },
     {
+      link: 'components/dialog',
+      name: 'Dialog',
+    },
+    {
       link: 'components/form-field',
       name: 'Form Field',
     },
@@ -41,6 +45,14 @@ export class HomeComponent {
     {
       link: 'components/progress-circular',
       name: 'Progress Circular',
+    },
+    {
+      link: 'components/progress-linear',
+      name: 'Progress Linear',
+    },
+    {
+      link: 'components/radio-button',
+      name: 'Radio Button',
     },
     {
       link: 'components/stepper',

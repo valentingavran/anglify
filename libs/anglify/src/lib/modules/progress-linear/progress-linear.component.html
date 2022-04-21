@@ -1,0 +1,18 @@
+<div
+  *ngIf="(stream | booleanLikeToBoolean) && !(indeterminate | booleanLikeToBoolean)"
+  class="anglify-progress-linear__stream"
+  [style.width]="100 - (bufferValue | clamp) | percentUnit"
+></div>
+<div
+  class="anglify-progress-linear__background"
+  [style.width]="((indeterminate | booleanLikeToBoolean) ? 100 : (bufferValue | clamp)) | percentUnit"
+></div>
+<div
+  *ngIf="!(indeterminate | booleanLikeToBoolean)"
+  class="anglify-progress-linear__determinate"
+  [style.width]="value | clamp | percentUnit"
+></div>
+<ng-container *ngIf="indeterminate | booleanLikeToBoolean">
+  <div class="anglify-progress-linear__indeterminate long"></div>
+  <div class="anglify-progress-linear__indeterminate short"></div>
+</ng-container>

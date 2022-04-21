@@ -1,0 +1,7 @@
+<anglify-radio-button [(ngModel)]="inputOne" name="radio-input" value="1">Radio Button 1</anglify-radio-button>
+
+<anglify-radio-button [formControl]="inputTwo" name="radio-input" value="2">Radio Button 2</anglify-radio-button>
+
+<form [formGroup]="form">
+  <anglify-radio-button formControlName="myFormControl" name="radio-input" value="3">Radio Button 3</anglify-radio-button>
+</form>

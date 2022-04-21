@@ -1,0 +1,10 @@
+@use '../../styles/settings/colors.scss';
+
+$progress-linear-height: var(--anglify-progress-linear-height, 4px) !default;
+$progress-linear-indicator-color: var(--anglify-progress-linear-indicator-color, colors.$color-primary) !default;
+$progress-linear-background-color: var(--anglify-progress-linear-background-color, colors.$color-primary) !default;
+$progress-linear-background-opacity: var(--anglify-progress-linear-background-opacity, 0.3) !default;
+$progress-linear-indeterminate-animation-duration: var(--anglify-progress-linear-indeterminate-animation-duration, 2.2s) !default;
+$progress-linear-stream-animation-duration: var(--anglify-progress-linear-stream-animation-duration, 0.25s) !default;
+$progress-linear-stream-opacity: var(--anglify-progress-linear-stream-opacity, 0.3) !default;
+$progress-linear-stream-color: var(--anglify-progress-linear-stream-color, colors.$color-outline-primary) !default;

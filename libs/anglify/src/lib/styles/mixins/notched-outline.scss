@@ -1,12 +1,12 @@
 @mixin notched-outline($border-radius: 4px, $transition-duration) {
   $border-style: solid;
-  $start-width: var(--notched-outline-start-width, 0);
-  $border-color: var(--notched-outline-border-color, #000);
-  $border-width: var(--notched-outline-border-width, 1px);
-  $notch-width: var(--notched-outline-notch-width, 100%);
-  $padding: var(--notched-outline-padding, 4px);
-  $font-size: var(--notched-outline-font-size, 12px);
-  $transition-timing-function: var(--notched-outline-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
+  $start-width: var(--anglify-notched-outline-start-width, 0);
+  $border-color: var(--anglify-notched-outline-border-color, #000);
+  $border-width: var(--anglify-notched-outline-border-width, 1px);
+  $notch-width: var(--anglify-notched-outline-notch-width, 100%);
+  $padding: var(--anglify-notched-outline-padding, 4px);
+  $font-size: var(--anglify-notched-outline-font-size, 12px);
+  $transition-timing-function: var(--anglify-notched-outline-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
 
   display: flex;
   width: 100%;

@@ -1,0 +1,100 @@
+@use 'variables' as *;
+
+:host {
+  display: block;
+
+  .anglify-overlay__container {
+    height: $radio-button-ripple-height;
+    width: $radio-button-ripple-width;
+    margin: $radio-button-ripple-margin;
+    border-radius: $radio-button-ripple-border-radius;
+  }
+
+  .before {
+    flex-flow: row-reverse;
+  }
+
+  label {
+    display: flex;
+    position: relative;
+  }
+
+  input:not([disabled]) + .overlay-container {
+    cursor: pointer;
+  }
+
+  label .overlay-container {
+    width: $radio-button-ripple-inner-width;
+    height: $radio-button-ripple-inner-height;
+    display: flex;
+    overflow: visible !important;
+  }
+
+  label .overlay-container .radio-button-effect {
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    width: $radio-button-width;
+    height: $radio-button-height;
+    border-width: $radio-button-border-width;
+    border-style: solid;
+    border-color: $radio-button-border-color;
+    border-radius: $radio-button-border-radius;
+    margin: auto;
+    align-content: center;
+    box-sizing: border-box;
+  }
+
+  label .disabled {
+    color: $radio-button-disabled-color;
+  }
+
+  label .radio-button-label {
+    display: flex;
+    font-size: $radio-button-label-font-size;
+    align-items: center;
+    padding: $radio-button-label-margin;
+  }
+
+  label .radio-button-label:not(.disabled) {
+    cursor: pointer;
+  }
+
+  label .overlay-container .radio-button-effect-dot {
+    height: $radio-button-dot-height;
+    width: $radio-button-dot-width;
+    background-color: #bbb;
+    border-radius: 50%;
+    visibility: hidden;
+    position: relative;
+    margin: auto;
+    transition: transform 0.2s linear;
+    transform: scale(0);
+    display: inline-block;
+  }
+
+  input {
+    display: none;
+  }
+
+  input:checked + .overlay-container .radio-button-effect {
+    border-color: $radio-button-checked-border-color !important;
+  }
+
+  input:checked:disabled + .overlay-container .radio-button-effect {
+    border-color: $radio-button-disabled-color !important;
+    border-style: solid;
+    border-width: $radio-button-border-width;
+  }
+
+  input:checked + .overlay-container .radio-button-effect-dot {
+    visibility: visible;
+    transform: scale(1);
+    background: $radio-button-checked-dot-color;
+  }
+
+  input:checked:disabled + .overlay-container .radio-button-effect-dot {
+    transform: scale(1);
+    background-color: $radio-button-disabled-color !important;
+  }
+}

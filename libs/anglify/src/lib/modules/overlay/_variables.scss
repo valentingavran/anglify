@@ -1,6 +1,6 @@
-$overlay-color-selected: var(--overlay-color-selected, var(--color-primary));
-$overlay-opacity-selected: var(--overlay-opacity-selected, 8%);
-$overlay-color-activated: var(--overlay-color-activated, var(--color-primary));
-$overlay-opacity-activated: var(--overlay-opacity-activated, 12%);
-$overlay-color-focused: var(--overlay-color-focused, rgba(0, 0, 0, 0.12));
-$overlay-color-hovered: var(--overlay-color-hovered, rgba(0, 0, 0, 0.04));
+$overlay-color-selected: var(--anglify-overlay-color-selected, var(--color-primary));
+$overlay-opacity-selected: var(--anglify-overlay-opacity-selected, 8%);
+$overlay-color-activated: var(--anglify-overlay-color-activated, var(--color-primary));
+$overlay-opacity-activated: var(--anglify-overlay-opacity-activated, 12%);
+$overlay-color-focused: var(--anglify-overlay-color-focused, rgba(0, 0, 0, 0.12));
+$overlay-color-hovered: var(--anglify-overlay-color-hovered, rgba(0, 0, 0, 0.04));

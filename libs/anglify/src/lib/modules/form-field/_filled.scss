@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 :host-context(.form-field-type-filled) {
-  --icon-inactive-color: #{$form-field-filled-icon-color-inactive};
+  --anglify-icon-inactive-color: #{$form-field-filled-icon-color-inactive};
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
   .form-field-container {
@@ -56,7 +56,7 @@
   }
 
   &.focused {
-    --icon-inactive-color: #{$form-field-filled-icon-color-focused};
+    --anglify-icon-inactive-color: #{$form-field-filled-icon-color-focused};
 
     .form-field-container {
       background-color: $form-field-filled-background-focused;
@@ -135,7 +135,7 @@
   }
 
   &.disabled {
-    --icon-inactive-color: #{$form-field-filled-icon-color-disabled};
+    --anglify-icon-inactive-color: #{$form-field-filled-icon-color-disabled};
 
     ::ng-deep {
       input,
@@ -189,7 +189,7 @@
       padding-inline-end: $form-field-filled-padding-start-dense;
 
       .form-field-border {
-        --notched-outline-start-width: #{$form-field-filled-padding-start-dense};
+        --anglify-notched-outline-start-width: #{$form-field-filled-padding-start-dense};
       }
       ::ng-deep {
         input,

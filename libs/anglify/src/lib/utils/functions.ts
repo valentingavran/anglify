@@ -28,3 +28,7 @@ export function isBooleanLikeTrue(value: BooleanLike) {
 export function isTouchDevice() {
   return window.matchMedia('(pointer: coarse)').matches;
 }
+
+export function clamp(value: number, min: number, max: number): number {
+  return value > max ? max : value < min ? min : value;
+}

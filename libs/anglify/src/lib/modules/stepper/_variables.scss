@@ -1,21 +1,24 @@
 @use '../../styles/settings/colors';
 
-$stepper-header-height: var(--stepper-header-height, 72px) !default;
-$stepper-step-container-padding: var(--stepper-step-container-padding, 14px 0 0 0) !default;
-$stepper-step-connection-line-offset: var(--stepper-step-connection-line-offset, 8px) !default;
-$stepper-step-connection-line-color: var(--stepper-step-connection-line-color, colors.$color-outline-secondary) !default;
-$stepper-step-indicator-size: var(--stepper-step-indicator-size, 40%) !default;
-$stepper-step-indicator-color-inactive: var(--stepper-step-indicator-color-inactive, colors.$color-surface-variant-darker) !default;
+$stepper-header-height: var(--anglify-stepper-header-height, 72px) !default;
+$stepper-step-container-padding: var(--anglify-stepper-step-container-padding, 14px 0 0 0) !default;
+$stepper-step-connection-line-offset: var(--anglify-stepper-step-connection-line-offset, 8px) !default;
+$stepper-step-connection-line-color: var(--anglify-stepper-step-connection-line-color, colors.$color-outline-secondary) !default;
+$stepper-step-indicator-size: var(--anglify-stepper-step-indicator-size, 40%) !default;
+$stepper-step-indicator-color-inactive: var(--anglify-stepper-step-indicator-color-inactive, colors.$color-surface-variant-darker) !default;
 $stepper-step-indicator-color-active: colors.$color-primary !default;
-$stepper-step-indicator-transition: var(--stepper-step-indicator-transition, none) !default;
-$stepper-step-indicator-font-size: var(--stepper-step-indicator-font-size, 16px) !default;
+$stepper-step-indicator-transition: var(--anglify-stepper-step-indicator-transition, none) !default;
+$stepper-step-indicator-font-size: var(--anglify-stepper-step-indicator-font-size, 16px) !default;
 $stepper-step-indicator-text-color-inactive: var(
-  --stepper-step-indicator-text-color-inactive,
+  --anglify-stepper-step-indicator-text-color-inactive,
   colors.$color-on-surface-variant-darker-high-emphasis
 ) !default;
-$stepper-step-indicator-text-color-active: var(--stepper-step-indicator-text-color-active, colors.$color-on-primary-high-emphasis) !default;
+$stepper-step-indicator-text-color-active: var(
+  --anglify-stepper-step-indicator-text-color-active,
+  colors.$color-on-primary-high-emphasis
+) !default;
 
-$stepper-label-font-size: var(--stepper-label-font-size, 16px) !default;
-$stepper-label-color-inactive: var(--stepper-label-color-inactive, rgba(colors.$color-on-surface-high-emphasis, 0.6)) !default;
-$stepper-label-color-active: var(--stepper-label-color-active, colors.$color-primary) !default;
-$stepper-label-transition: var(--stepper-label-transition, color 500ms ease-out) !default;
+$stepper-label-font-size: var(--anglify-stepper-label-font-size, 16px) !default;
+$stepper-label-color-inactive: var(--anglify-stepper-label-color-inactive, rgba(colors.$color-on-surface-high-emphasis, 0.6)) !default;
+$stepper-label-color-active: var(--anglify-stepper-label-color-active, colors.$color-primary) !default;
+$stepper-label-transition: var(--anglify-stepper-label-transition, color 500ms ease-out) !default;
