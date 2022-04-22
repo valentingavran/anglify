@@ -10,13 +10,14 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
-import { map, startWith, takeUntil, tap } from 'rxjs/operators';
-import { AnglifyDestroyService } from '../../../../services/destroy/destroy.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { map, startWith, tap } from 'rxjs/operators';
 import { Step } from '../../directives/step/step.directive';
 import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { Stepper } from '../../services/stepper/stepper.service';
 
+@UntilDestroy()
 @Component({
   selector: 'anglify-stepper',
   templateUrl: './stepper.component.html',
@@ -93,19 +94,15 @@ export class StepperComponent extends Stepper implements AfterContentInit {
 
   private readonly nativeElement = this.elementRef.nativeElement;
 
-  public constructor(
-    public readonly stepperSettings: StepperSettings,
-    private readonly elementRef: ElementRef<HTMLElement>,
-    protected override readonly destroy$: AnglifyDestroyService
-  ) {
-    super(destroy$);
-    this._orientationHandler$.pipe(takeUntil(this.destroy$)).subscribe();
+  public constructor(public readonly stepperSettings: StepperSettings, private readonly elementRef: ElementRef<HTMLElement>) {
+    super();
+    this._orientationHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public ngAfterContentInit() {
     this._steps!.changes.pipe(
       startWith(this._steps),
-      takeUntil(this.destroy$),
+      untilDestroyed(this),
       map((steps: QueryList<Step>) => steps.toArray()),
       tap(steps => this.updateSteps(steps))
     ).subscribe();

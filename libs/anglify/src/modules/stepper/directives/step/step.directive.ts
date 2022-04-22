@@ -1,10 +1,11 @@
 /* eslint-disable @angular-eslint/directive-class-suffix */
 import { Directive, Input, Output, TemplateRef } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { map, shareReplay, takeUntil, tap } from 'rxjs/operators';
-import { AnglifyDestroyService } from '../../../../services/destroy/destroy.service';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { Stepper } from '../../services/stepper/stepper.service';
 
+@UntilDestroy()
 @Directive({
   selector: 'ng-template[anglifyStep]',
 })
@@ -51,12 +52,8 @@ export class Step {
   @Output() public validChange = this.valid$;
   @Output() public visitedChange = this.visited$;
 
-  public constructor(
-    protected readonly stepper: Stepper,
-    public template: TemplateRef<any>,
-    private readonly destroy$: AnglifyDestroyService
-  ) {
-    this.selected$.pipe(takeUntil(this.destroy$)).subscribe();
+  public constructor(protected readonly stepper: Stepper, public template: TemplateRef<any>) {
+    this.selected$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public setLabel(label: string) {
