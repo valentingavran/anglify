@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
-import { isBooleanLikeTrue } from '../../../../utils/functions';
+import { toBoolean } from '../../../../utils/functions';
 import type { BooleanLike } from '../../../../utils/interfaces';
 
 @Component({
@@ -15,7 +15,7 @@ export class ListComponent {
   protected get classList() {
     const classNames = [];
 
-    if (isBooleanLikeTrue(this.dense)) {
+    if (toBoolean(this.dense)) {
       classNames.push('dense');
     }
 

@@ -1,13 +1,11 @@
-@use '../../styles/settings/colors';
-
-$checkbox-border-color: var(--anglify-checkbox-border-color, colors.$color-outline-secondary);
-$checkbox-disabled-color: var(--anglify-checkbox-disabled-color, colors.$color-on-background-low-emphasis);
-$checkbox-icon-color: var(--anglify-checkbox-icon-color, colors.$color-on-primary-low-emphasis);
-$checkbox-checked-icon-color: var(--anglify-checkbox-checked-icon-color, colors.$color-on-primary-high-emphasis);
-$checkbox-checked-color: var(--anglify-checkbox-checked-color, colors.$color-primary);
-$checkbox-checked-hover-color: var(--anglify-checkbox-checked-hover-color, colors.$color-primary);
-$checkbox-checked-hover-border-color: var(--anglify-checkbox-checked-hover-border-color, colors.$color-primary);
-$checkbox-checked-border-color: var(--anglify-checkbox-checked-border-color, colors.$color-primary);
+$checkbox-border-color: var(--anglify-checkbox-border-color, var(--color-outline-secondary));
+$checkbox-disabled-color: var(--anglify-checkbox-disabled-color, var(--color-on-background-low-emphasis));
+$checkbox-icon-color: var(--anglify-checkbox-icon-color, var(--color-on-primary-low-emphasis));
+$checkbox-checked-icon-color: var(--anglify-checkbox-checked-icon-color, var(--color-on-primary-high-emphasis));
+$checkbox-checked-color: var(--anglify-checkbox-checked-color, var(--color-primary));
+$checkbox-checked-hover-color: var(--anglify-checkbox-checked-hover-color, var(--color-primary));
+$checkbox-checked-hover-border-color: var(--anglify-checkbox-checked-hover-border-color, var(--color-primary));
+$checkbox-checked-border-color: var(--anglify-checkbox-checked-border-color, var(--color-primary));
 $checkbox-label-font-size: var(--anglify-checkbox-label-font-size, 14px);
 $checkbox-label-margin: var(--anglify-checkbox-label-margin, 0 5px);
 $checkbox-border-width: var(--anglify-checkbox-border-width, 2px);

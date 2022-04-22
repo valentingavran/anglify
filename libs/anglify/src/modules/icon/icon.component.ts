@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DEFAULT_ICON_SETTINGS, ICON_SETTINGS } from './icon-settings.token';
 import { ICON_SET_CLASS_MAPPING, IconSet, IconSettings } from './icon.interface';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import type { BooleanLike, ComponentSize } from '../../utils/interfaces';
 
 /**
@@ -54,19 +54,19 @@ export class IconComponent {
 
     const classNames = [ICON_SET_CLASS_MAPPING[this.iconSet], this.icon, `icon-size-${this.size}`];
 
-    if (isBooleanLikeTrue(this.clickable)) {
+    if (toBoolean(this.clickable)) {
       classNames.push('clickable');
     }
 
-    if (isBooleanLikeTrue(this.disabled)) {
+    if (toBoolean(this.disabled)) {
       classNames.push('disabled');
     }
 
-    if (isBooleanLikeTrue(this.left)) {
+    if (toBoolean(this.left)) {
       classNames.push('left');
     }
 
-    if (isBooleanLikeTrue(this.right)) {
+    if (toBoolean(this.right)) {
       classNames.push('right');
     }
 

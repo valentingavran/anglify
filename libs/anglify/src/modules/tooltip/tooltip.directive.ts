@@ -26,7 +26,7 @@ import type { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
+import { toBoolean, isTouchDevice } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
@@ -167,7 +167,7 @@ export class TooltipDirective implements OnDestroy {
     if (!isTouchDevice()) return;
     if (this.tooltipMobileTrigger === 'long' && event.type === 'touchstart') return;
     if (this.tooltipMobileTrigger === 'short' && event.type === 'contextmenu') return;
-    if (isBooleanLikeTrue(this.preventContextMenuOnTouchDevice) || isBooleanLikeTrue(this.autoCloseOnTouchDevicesAfterDelay)) {
+    if (toBoolean(this.preventContextMenuOnTouchDevice) || toBoolean(this.autoCloseOnTouchDevicesAfterDelay)) {
       event.preventDefault();
     }
     this.open(this.touchOpenDelay);
@@ -175,7 +175,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('touchend')
   protected autoCloseOnMobile() {
-    if (!isBooleanLikeTrue(this.autoCloseOnTouchDevicesAfterDelay)) return;
+    if (!toBoolean(this.autoCloseOnTouchDevicesAfterDelay)) return;
     if (!isTouchDevice()) return;
     this.close(this.touchCloseDelay);
   }

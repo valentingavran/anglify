@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 
 @Component({
@@ -19,7 +19,7 @@ export class ProgressLinearComponent {
   protected get classList() {
     const classNames = [];
 
-    if (isBooleanLikeTrue(this.active)) {
+    if (toBoolean(this.active)) {
       classNames.push('anglify-progress-linear--active');
     }
 

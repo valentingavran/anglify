@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButtonSettings, RadioLabelPosition } from './radio-button.interface';
 import { DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS } from './radio-button.token';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { OverlayRippleOrigin } from '../overlay/overlay.interface';
 
@@ -24,9 +24,9 @@ import { OverlayRippleOrigin } from '../overlay/overlay.interface';
 export class RadioButtonComponent implements ControlValueAccessor, OnInit {
   @Input() public value: any;
   @Input() public name = '';
-  @Input() public disabled: BooleanLike = isBooleanLikeTrue(this.settings.disabled);
-  @Input() public checked: BooleanLike = isBooleanLikeTrue(this.settings.checked);
-  @Input() public ripple: BooleanLike = isBooleanLikeTrue(this.settings.ripple);
+  @Input() public disabled: BooleanLike = toBoolean(this.settings.disabled);
+  @Input() public checked: BooleanLike = toBoolean(this.settings.checked);
+  @Input() public ripple: BooleanLike = toBoolean(this.settings.ripple);
   @Input() public labelPosition: RadioLabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: OverlayRippleOrigin = this.settings.rippleOrigin;
 

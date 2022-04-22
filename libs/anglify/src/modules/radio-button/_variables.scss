@@ -1,12 +1,10 @@
-@use '../../styles/settings/colors';
-
-$radio-button-border-color: var(--anglify-radio-button-border-color, colors.$color-outline-secondary);
-$radio-button-disabled-color: var(--anglify-radio-button-disabled-color, colors.$color-on-background-low-emphasis);
-$radio-button-checked-dot-color: var(--anglify-radio-button-checked-icon-color, colors.$color-primary);
-$radio-button-checked-color: var(--anglify-radio-button-checked-color, colors.$color-primary);
-$radio-button-checked-hover-color: var(--anglify-radio-button-checked-hover-color, colors.$color-primary);
-$radio-button-checked-hover-border-color: var(--anglify-radio-button-checked-hover-border-color, colors.$color-primary);
-$radio-button-checked-border-color: var(--anglify-radio-button-checked-border-color, colors.$color-primary);
+$radio-button-border-color: var(--anglify-radio-button-border-color, var(--color-outline-secondary));
+$radio-button-disabled-color: var(--anglify-radio-button-disabled-color, var(--color-on-background-low-emphasis));
+$radio-button-checked-dot-color: var(--anglify-radio-button-checked-icon-color, var(--color-primary));
+$radio-button-checked-color: var(--anglify-radio-button-checked-color, var(--color-primary));
+$radio-button-checked-hover-color: var(--anglify-radio-button-checked-hover-color, var(--color-primary));
+$radio-button-checked-hover-border-color: var(--anglify-radio-button-checked-hover-border-color, var(--color-primary));
+$radio-button-checked-border-color: var(--anglify-radio-button-checked-border-color, var(--color-primary));
 $radio-button-label-font-size: var(--anglify-radio-button-label-font-size, 14px);
 $radio-button-label-margin: var(--anglify-radio-button-label-margin, 0 5px);
 $radio-button-border-width: var(--anglify-radio-button-border-width, 2px);
