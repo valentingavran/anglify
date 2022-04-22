@@ -5,21 +5,21 @@
     "entryFile": "src/index.ts"
   },
   "assets": [
-    "src/lib/styles/**/*.scss",
-    "src/lib/modules/button/*.scss",
-    "src/lib/modules/card/*.scss",
-    "src/lib/modules/checkbox/*.scss",
-    "src/lib/modules/dialog/*.scss",
-    "src/lib/modules/form-field/*.scss",
-    "src/lib/modules/icon/*.scss",
-    "src/lib/modules/list/*.scss",
-    "src/lib/modules/menu/*.scss",
-    "src/lib/modules/overlay/*.scss",
-    "src/lib/modules/progress-circular/*.scss",
-    "src/lib/modules/progress-linear/*.scss",
-    "src/lib/modules/radio-button/*.scss",
-    "src/lib/modules/stepper/*.scss",
-    "src/lib/modules/table/*.scss",
-    "src/lib/modules/tooltip/*.scss"
+    "src/styles/**/*.scss",
+    "src/modules/button/*.scss",
+    "src/modules/card/*.scss",
+    "src/modules/checkbox/*.scss",
+    "src/modules/dialog/*.scss",
+    "src/modules/form-field/*.scss",
+    "src/modules/icon/*.scss",
+    "src/modules/list/*.scss",
+    "src/modules/menu/*.scss",
+    "src/modules/overlay/*.scss",
+    "src/modules/progress-circular/*.scss",
+    "src/modules/progress-linear/*.scss",
+    "src/modules/radio-button/*.scss",
+    "src/modules/stepper/*.scss",
+    "src/modules/table/*.scss",
+    "src/modules/tooltip/*.scss"
   ]
 }
