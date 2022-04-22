@@ -2,7 +2,7 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subject } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
@@ -12,7 +12,7 @@ import type { BooleanLike } from '../../utils/interfaces';
 export class OverlayDirective {
   @Input()
   public set selected(value: BooleanLike) {
-    if (isBooleanLikeTrue(value)) {
+    if (toBoolean(value)) {
       this._selectedOrActivatedContainer.classList.add('anglify-overlay__selected');
     } else {
       this._selectedOrActivatedContainer.classList.remove('anglify-overlay__selected');
@@ -21,7 +21,7 @@ export class OverlayDirective {
 
   @Input()
   public set activated(value: BooleanLike) {
-    if (isBooleanLikeTrue(value)) {
+    if (toBoolean(value)) {
       this._selectedOrActivatedContainer.classList.add('anglify-overlay__activated');
     } else {
       this._selectedOrActivatedContainer.classList.remove('anglify-overlay__activated');
@@ -52,14 +52,14 @@ export class OverlayDirective {
 
   @HostListener('mouseenter')
   protected onMouseEnter() {
-    if (isBooleanLikeTrue(this.hover)) {
+    if (toBoolean(this.hover)) {
       this._hoverContainer.classList.add('anglify-overlay__hovered');
     }
   }
 
   @HostListener('mouseleave')
   protected onMouseLeave() {
-    if (isBooleanLikeTrue(this.hover)) {
+    if (toBoolean(this.hover)) {
       this._hoverContainer.classList.remove('anglify-overlay__hovered');
     }
   }
@@ -98,11 +98,11 @@ export class OverlayDirective {
 
       const focusContainer = this._renderer.createElement('div') as HTMLDivElement;
 
-      if (isBooleanLikeTrue(this.focus)) {
+      if (toBoolean(this.focus)) {
         focusContainer.classList.add('anglify-overlay__focus-container');
       }
 
-      if (isBooleanLikeTrue(this.ripple)) {
+      if (toBoolean(this.ripple)) {
         focusContainer.classList.add('anglify-overlay__ripple');
       }
 

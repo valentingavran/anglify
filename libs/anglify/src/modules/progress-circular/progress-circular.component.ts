@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } 
 import { DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS } from './progress-circular-settings.token';
 import type { ProgressCircularSettings } from './progress-circular.interface';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 
 @Component({
@@ -48,7 +48,7 @@ export class ProgressCircularComponent {
   @HostBinding('class')
   protected get classList() {
     const classNames = [];
-    if (isBooleanLikeTrue(this.indeterminate)) {
+    if (toBoolean(this.indeterminate)) {
       classNames.push('indeterminate');
     }
 

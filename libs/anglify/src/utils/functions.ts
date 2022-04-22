@@ -21,7 +21,7 @@ export function observeOnResize(target: Element): Observable<ResizeObserverEntry
   });
 }
 
-export function isBooleanLikeTrue(value: BooleanLike) {
+export function toBoolean(value: BooleanLike) {
   return value === true || value === 'true' || value === '';
 }
 

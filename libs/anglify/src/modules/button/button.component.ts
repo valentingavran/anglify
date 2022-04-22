@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { ButtonAppearance } from './button.interface';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import { BooleanLike, ComponentSize } from '../../utils/interfaces';
 
 @Component({
@@ -55,7 +55,7 @@ export class ButtonComponent implements OnInit {
   protected get classList() {
     const classNames = [this.appearance, `button-size-${this.size}`];
 
-    if (isBooleanLikeTrue(this.block)) {
+    if (toBoolean(this.block)) {
       classNames.push('block');
     }
 

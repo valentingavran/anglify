@@ -19,7 +19,7 @@ import { LabelDirective } from './directives/label/label.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
 import type { FormFieldSettings, FormFieldType } from './form-field.interface';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
@@ -57,7 +57,7 @@ export class FormFieldComponent implements AfterViewInit {
   @Input() public counter: BooleanLike = false;
 
   public get _counter() {
-    return isBooleanLikeTrue(this.counter);
+    return toBoolean(this.counter);
   }
 
   public readonly outlinedLabelPrefixMargin$ = new BehaviorSubject<string>('0px');
@@ -68,7 +68,7 @@ export class FormFieldComponent implements AfterViewInit {
         this.nativeElement.classList.add('error', 'persistent-hint');
       } else {
         this.nativeElement.classList.remove('error');
-        if (!isBooleanLikeTrue(this.persistentHint)) {
+        if (!toBoolean(this.persistentHint)) {
           this.nativeElement.classList.remove('persistent-hint');
         }
       }
@@ -86,19 +86,19 @@ export class FormFieldComponent implements AfterViewInit {
   @HostBinding('class')
   protected get classList() {
     const classNames = [`form-field-type-${this.type}`];
-    if (isBooleanLikeTrue(this.persistentHint)) {
+    if (toBoolean(this.persistentHint)) {
       classNames.push('persistent-hint');
     }
-    if (isBooleanLikeTrue(this.persistentPlaceholder)) {
+    if (toBoolean(this.persistentPlaceholder)) {
       classNames.push('persistent-placeholder');
     }
-    if (isBooleanLikeTrue(this.dense)) {
+    if (toBoolean(this.dense)) {
       classNames.push('dense');
     }
     if (this.labelDirective || this.label) {
       classNames.push('has-label');
     }
-    if (isBooleanLikeTrue(this.hideDetails)) {
+    if (toBoolean(this.hideDetails)) {
       classNames.push('hide-details');
     }
     return classNames.join(' ');
@@ -163,9 +163,7 @@ export class FormFieldComponent implements AfterViewInit {
           untilDestroyed(this),
           map(([focused, floating]) => {
             const prependItemWidth = `-${this.prependItem!.nativeElement.offsetWidth}px`;
-            return (focused || floating || isBooleanLikeTrue(this.persistentPlaceholder)) && this.type === 'outlined'
-              ? prependItemWidth
-              : '';
+            return (focused || floating || toBoolean(this.persistentPlaceholder)) && this.type === 'outlined' ? prependItemWidth : '';
           }),
           tap(margin => {
             this.outlinedLabelPrefixMargin$.next(margin);

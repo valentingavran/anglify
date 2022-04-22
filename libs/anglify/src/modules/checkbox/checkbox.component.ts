@@ -20,7 +20,7 @@ import type { CheckboxSettings, LabelPosition } from './interfaces/checkbox.inte
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { isBooleanLikeTrue } from '../../utils/functions';
+import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 import { OverlayRippleOrigin } from '../overlay/overlay.interface';
 
@@ -50,21 +50,21 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit, AfterVie
   @Input() public rippleOrigin: OverlayRippleOrigin = this.settings.rippleOrigin;
 
   @Input() public set disabled(value: BooleanLike) {
-    this._disabled = isBooleanLikeTrue(value);
+    this._disabled = toBoolean(value);
   }
 
   @Input() public set checked(value: BooleanLike) {
-    this._checked = isBooleanLikeTrue(value);
+    this._checked = toBoolean(value);
   }
 
   @Input() public set ripple(value: BooleanLike) {
-    this._ripple = isBooleanLikeTrue(value);
+    this._ripple = toBoolean(value);
   }
 
   public iconProvider!: null | CheckboxIconRef;
-  public _checked: boolean = isBooleanLikeTrue(this.settings.checked);
-  public _disabled: boolean = isBooleanLikeTrue(this.settings.disabled);
-  public _ripple: boolean = isBooleanLikeTrue(this.settings.ripple);
+  public _checked: boolean = toBoolean(this.settings.checked);
+  public _disabled: boolean = toBoolean(this.settings.disabled);
+  public _ripple: boolean = toBoolean(this.settings.ripple);
 
   public constructor(
     private readonly render: Renderer2,
