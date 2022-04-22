@@ -17,6 +17,7 @@ import {
   Type,
   ViewContainerRef,
 } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
@@ -25,10 +26,10 @@ import type { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { AnglifyDestroyService } from '../../services/destroy/destroy.service';
 import { isBooleanLikeTrue, isTouchDevice } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
+@UntilDestroy()
 @Directive({
   selector: '[anglifyTooltip]',
   exportAs: 'anglifyTooltip',
@@ -126,10 +127,9 @@ export class TooltipDirective implements OnDestroy {
     private readonly resolver: ComponentFactoryResolver,
     private readonly applicationRef: ApplicationRef,
     private readonly cdRef: ChangeDetectorRef,
-    @Self() @Inject(SETTINGS) private readonly settings: Required<TooltipSettings>,
-    private readonly destroy$: AnglifyDestroyService
+    @Self() @Inject(SETTINGS) private readonly settings: Required<TooltipSettings>
   ) {
-    this._visibleHandler$.pipe(takeUntil(this.destroy$)).subscribe();
+    this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public ngOnDestroy() {
