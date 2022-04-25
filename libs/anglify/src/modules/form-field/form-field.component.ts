@@ -14,6 +14,10 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { AppendIconDirective } from './directives/icon/append-icon.directive';
+import { AppendOuterIconDirective } from './directives/icon/append-outer-icon.directive';
+import { PrependIconDirective } from './directives/icon/prepend-icon.directive';
+import { PrependOuterIconDirective } from './directives/icon/prepend-outer-icon.directive';
 import { InputDirective } from './directives/input.directive';
 import { LabelDirective } from './directives/label/label.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
@@ -34,15 +38,15 @@ export class FormFieldComponent implements AfterViewInit {
   @ContentChild(InputDirective) public readonly input?: InputDirective;
   @ContentChild(LabelDirective) public readonly labelDirective?: LabelDirective;
   @ViewChild('prependItem') public readonly prependItem?: ElementRef<HTMLElement>;
+  @ContentChild(PrependIconDirective) public prependIconDirective?: PrependIconDirective;
+  @ContentChild(PrependOuterIconDirective) public prependOuterIconDirective?: PrependOuterIconDirective;
+  @ContentChild(AppendIconDirective) public appendIconDirective?: AppendIconDirective;
+  @ContentChild(AppendOuterIconDirective) public appendOuterIconDirective?: AppendOuterIconDirective;
 
   @Input() public type: FormFieldType = this.settings.defaultType;
   @Input() public hint?: string;
   @Input('persistent-hint') public persistentHint: BooleanLike = this.settings.persistentHint;
   @Input('persistent-placeholder') public persistentPlaceholder: BooleanLike = this.settings.persistentPlaceholder;
-  @Input('prepend-icon') public prependIcon?: string;
-  @Input('prepend-outer-icon') public prependOuterIcon?: string;
-  @Input('append-icon') public appendIcon?: string;
-  @Input('append-outer-icon') public appendOuterIcon?: string;
   @Input() public prefix?: string;
   @Input() public suffix?: string;
   @Input() public label?: string;
