@@ -52,8 +52,8 @@ export * from './modules/menu/menu.directive';
 export * from './modules/menu/menu.interface';
 export * from './modules/menu/menu.module';
 // Overlay
-export * from './modules/overlay/overlay.directive';
-export * from './modules/overlay/overlay.module';
+export * from './modules/interaction-state/interaction-state.directive';
+export * from './modules/interaction-state/interaction-state.module';
 // Progress Circular
 export * from './modules/progress-circular/progress-circular-settings.token';
 export * from './modules/progress-circular/progress-circular.component';

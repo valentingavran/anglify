@@ -55,3 +55,6 @@ $button-sizes: (
   large: var(--anglify-button-size-large, 48px),
   x-large: var(--anglify-button-size-x-large, 56px),
 ) !default;
+
+$button-hover-state-color: var(--anglify-hover-state-color, var(--color-state-hover-inactive));
+$button-focus-state-color: var(--anglify-focus-state-color, var(--color-state-focus-inactive));

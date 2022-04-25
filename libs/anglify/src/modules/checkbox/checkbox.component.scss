@@ -1,19 +1,19 @@
 @use 'variables' as *;
 
 ::ng-deep {
-  input:checked:not([disabled]) + .overlay-container .checkbox-custom-icons {
+  input:checked:not([disabled]) + .container .checkbox-custom-icons {
     anglify-icon {
       color: $checkbox-checked-color;
     }
   }
 
-  input:disabled + .overlay-container .checkbox-custom-icons {
+  input:disabled + .container .checkbox-custom-icons {
     anglify-icon {
       color: $checkbox-disabled-color;
     }
   }
 
-  label .overlay-container .checkbox-custom-icons {
+  label .container .checkbox-custom-icons {
     anglify-icon {
       width: 100%;
       height: 100%;
@@ -24,14 +24,7 @@
 
 :host {
   display: block;
-
-  .anglify-overlay__container {
-    height: $checkbox-ripple-height;
-    width: $checkbox-ripple-width;
-    margin: $checkbox-ripple-margin;
-    border-radius: $checkbox-ripple-border-radius;
-    position: absolute;
-  }
+  user-select: none;
 
   .before {
     flex-flow: row-reverse;
@@ -41,8 +34,66 @@
     display: flex;
     position: relative;
 
-    .disabled {
-      color: $checkbox-disabled-color;
+    .container {
+      width: $checkbox-ripple-inner-width;
+      height: $checkbox-ripple-inner-height;
+      display: flex;
+      overflow: visible;
+      position: relative;
+
+      .state-container {
+        height: $checkbox-ripple-height;
+        width: $checkbox-ripple-width;
+        margin: $checkbox-ripple-margin;
+        border-radius: $checkbox-ripple-border-radius;
+        position: absolute;
+      }
+
+      .check-box-effect {
+        display: inline-flex;
+        position: relative;
+        pointer-events: none;
+        width: $checkbox-width;
+        height: $checkbox-height;
+        border-width: $checkbox-border-width;
+        border-style: solid;
+        border-color: $checkbox-border-color;
+        margin: auto;
+        border-radius: $checkbox-border-radius;
+
+        &:after {
+          content: '';
+          width: 0;
+          height: $checkbox-icon-after-height;
+          border-radius: 3px;
+          background: $checkbox-icon-color;
+          position: absolute;
+          transform: rotate(305deg);
+          top: $checkbox-icon-after-top-position;
+          left: $checkbox-icon-after-left-position;
+          transition: width 50ms ease;
+          transform-origin: 0% 0%;
+        }
+
+        &:before {
+          content: '';
+          width: 0px;
+          height: $checkbox-icon-before-height;
+          border-radius: 3px;
+          background: $checkbox-icon-color;
+          position: absolute;
+          transform: rotate(45deg);
+          top: $checkbox-icon-before-top-position;
+          left: $checkbox-icon-before-left-position;
+          transition: width 50ms ease 50ms;
+          transform-origin: 0% 0%;
+        }
+      }
+
+      .checkbox-custom-icons {
+        height: $checkbox-custom-icon-size;
+        width: $checkbox-custom-icon-size;
+      }
     }
 
     .checkbox-label {
@@ -51,114 +102,104 @@
       align-items: center;
       padding: $checkbox-label-margin;
     }
-
-    .checkbox-label:not(.disabled) {
-      cursor: pointer;
-    }
-
-    .overlay-container {
-      width: $checkbox-ripple-inner-width;
-      height: $checkbox-ripple-inner-height;
-      display: flex;
-      overflow: visible;
-
-      .check-box-effect {
-        display: inline-flex;
-        position: relative;
-        width: $checkbox-width;
-        height: $checkbox-height;
-        border-width: $checkbox-border-width;
-        border-style: solid;
-        border-color: $checkbox-border-color;
-        margin: auto;
-        border-radius: $checkbox-border-radius;
-      }
-
-      .check-box-effect:after {
-        content: '';
-        width: 0;
-        height: $checkbox-icon-after-height;
-        border-radius: 3px;
-        background: $checkbox-icon-color;
-        position: absolute;
-        transform: rotate(305deg);
-        top: $checkbox-icon-after-top-position;
-        left: $checkbox-icon-after-left-position;
-        transition: width 50ms ease;
-        transform-origin: 0% 0%;
-      }
-
-      .check-box-effect:before {
-        content: '';
-        width: 0px;
-        height: $checkbox-icon-before-height;
-        border-radius: 3px;
-        background: $checkbox-icon-color;
-        position: absolute;
-        transform: rotate(45deg);
-        top: $checkbox-icon-before-top-position;
-        left: $checkbox-icon-before-left-position;
-        transition: width 50ms ease 50ms;
-        transform-origin: 0% 0%;
-      }
-
-      .checkbox-custom-icons {
-        height: $checkbox-custom-icon-size;
-        width: $checkbox-custom-icon-size;
-      }
-    }
   }
 
   input {
-    display: none;
+    // Input should be hidden but we still want it to be focusable
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
   }
 
-  input:not([disabled]) + .overlay-container {
-    cursor: pointer;
+  // Unchecked styles for both enabled and disabled state
+  input:not(:checked) {
+    &:focus-visible {
+      & ~ .container {
+        --state-container-color: #{$checkbox-focus-state-inactive-color};
+      }
+    }
   }
 
-  input:checked + .overlay-container .check-box-effect {
-    background-color: $checkbox-checked-color !important;
-    border-color: $checkbox-checked-border-color;
-    border-style: solid;
-    border-width: $checkbox-border-width;
+  // Checked styles for both enabled and disabled state
+  input:checked {
+    & ~ .container {
+      .check-box-effect {
+        background-color: $checkbox-checked-color !important;
+        border-color: $checkbox-checked-border-color;
+        border-style: solid;
+        border-width: $checkbox-border-width;
+
+        &:before {
+          width: $checkbox-icon-before-width;
+          background: $checkbox-checked-icon-color;
+          transition: $checkbox-checked-icon-transition-speed;
+        }
+
+        &:after {
+          width: $checkbox-icon-after-width;
+          background: $checkbox-checked-icon-color;
+          transition: $checkbox-checked-icon-transition-speed;
+        }
+      }
+    }
+
+    &:focus-visible {
+      & ~ .container {
+        --state-container-color: #{$checkbox-focus-state-active-color};
+      }
+    }
   }
 
-  input:checked:disabled + .overlay-container .check-box-effect {
+  // Unchecked styles for only disabled state
+  input:disabled {
+    & ~ .checkbox-label {
+      color: $checkbox-disabled-color;
+    }
+  }
+
+  // Checked styles for only disabled state
+  input:checked:disabled + .container .check-box-effect {
     background-color: $checkbox-disabled-color !important;
     border-color: transparent;
     border-style: solid;
     border-width: $checkbox-border-width;
   }
 
-  input:checked:hover:not([disabled]) + .overlay-container .check-box-effect {
-    background: $checkbox-checked-hover-color !important;
-    border-color: $checkbox-checked-hover-border-color !important;
-    border-style: solid;
-    border-width: $checkbox-border-width;
+  // Unchecked styles for only enabled state
+  input:not(:disabled) {
+    &:hover {
+      & ~ .container {
+        .state-container {
+          --state-container-color: #{$checkbox-hover-state-inactive-color};
+        }
+      }
+    }
+    & ~ .container .state-container {
+      cursor: pointer;
+    }
   }
 
-  input:checked + .overlay-container .check-box-effect:after {
-    width: $checkbox-icon-after-width;
-    background: $checkbox-checked-icon-color;
-    transition: $checkbox-checked-icon-transition-speed;
-  }
+  // Checked styles for only enabled state
+  input:checked:not(:disabled) {
+    &:hover {
+      & ~ .container {
+        .check-box-effect {
+          background: $checkbox-checked-hover-color !important;
+          border-color: $checkbox-checked-hover-border-color !important;
+          border-style: solid;
+          border-width: $checkbox-border-width;
+        }
 
-  input:checked + .overlay-container .check-box-effect:before {
-    width: $checkbox-icon-before-width;
-    background: $checkbox-checked-icon-color;
-    transition: $checkbox-checked-icon-transition-speed;
-  }
+        .state-container {
+          --state-container-color: #{$checkbox-hover-state-active-color};
+        }
+      }
+    }
 
-  input:checked:hover + .overlay-container .check-box-effect:after {
-    width: $checkbox-icon-after-width;
-    background: $checkbox-checked-icon-color;
-    transition: $checkbox-checked-icon-transition-speed;
-  }
-
-  input:checked:hover + .check-box-effect:before {
-    width: $checkbox-icon-before-width;
-    background: $checkbox-checked-icon-color;
-    transition: $checkbox-checked-icon-transition-speed;
+    & ~ .checkbox-label,
+    & ~ .container .state-container {
+      cursor: pointer;
+    }
   }
 }

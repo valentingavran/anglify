@@ -1,25 +1,28 @@
 <label [class.before]="labelPosition === 'before'">
-  <input type="checkbox" [disabled]="_disabled" [ngModel]="_checked" (ngModelChange)="onModelChange($event)" />
-  <div
-    #overlayContainer
-    anglifyOverlay
-    [ripple]="_ripple && !_disabled"
-    [hover]="_ripple && !_disabled"
-    [focus]="_ripple && !_disabled"
-    [rippleOrigin]="rippleOrigin"
-    class="overlay-container"
-  >
-    <span #reflectOffIcon [style.display]="!_checked ? 'block' : 'none'" class="checkbox-custom-icons">
+  <input
+    type="checkbox"
+    [disabled]="disabled | booleanLikeToBoolean"
+    [ngModel]="checked | booleanLikeToBoolean"
+    (ngModelChange)="onModelChange($event)"
+  />
+  <div #overlayContainer class="container">
+    <div
+      class="state-container"
+      anglifyInteractionState
+      [active]="(ripple | booleanLikeToBoolean) && !(disabled | booleanLikeToBoolean)"
+      [rippleOrigin]="rippleOrigin"
+    ></div>
+    <span #reflectOffIcon [style.display]="!(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons">
       <ng-content select="[offIcon]"></ng-content>
     </span>
-    <span #reflectOnIcon [style.display]="_checked ? 'block' : 'none'" class="checkbox-custom-icons">
+    <span #reflectOnIcon [style.display]="(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons">
       <ng-content select="[onIcon]"></ng-content>
     </span>
-    <span #offIcon [style.display]="!_checked ? 'block' : 'none'" class="checkbox-custom-icons"></span>
-    <span #onIcon [style.display]="_checked ? 'block' : 'none'" class="checkbox-custom-icons"></span>
+    <span #offIcon [style.display]="!(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons"></span>
+    <span #onIcon [style.display]="(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons"></span>
     <span #defaultIcon class="check-box-effect"></span>
   </div>
-  <span class="checkbox-label" [class.disabled]="_disabled">
+  <span class="checkbox-label">
     <ng-content></ng-content>
   </span>
 </label>

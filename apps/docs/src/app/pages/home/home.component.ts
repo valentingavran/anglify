@@ -73,11 +73,4 @@ export class HomeComponent {
       name: 'Tooltip',
     },
   ];
-
-  public directives = [
-    {
-      link: 'components/overlay',
-      name: 'Overlay',
-    },
-  ];
 }

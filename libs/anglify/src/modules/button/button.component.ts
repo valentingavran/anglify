@@ -1,5 +1,9 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import { ButtonAppearance } from './button.interface';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject, Input, OnInit } from '@angular/core';
+import { BUTTON_SETTINGS, DEFAULT_BUTTON_SETTINGS } from './button-settings.token';
+import { ButtonAppearance, ButtonSettings } from './button.interface';
+import { RIPPLE } from '../../composables/ripple/ripple.provider';
+import { RippleService } from '../../composables/ripple/ripple.service';
+import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import { BooleanLike, ComponentSize } from '../../utils/interfaces';
 
@@ -8,9 +12,10 @@ import { BooleanLike, ComponentSize } from '../../utils/interfaces';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [createSettingsProvider<ButtonSettings>(DEFAULT_BUTTON_SETTINGS, BUTTON_SETTINGS), RIPPLE],
 })
 export class ButtonComponent implements OnInit {
-  @Input() public appearance: ButtonAppearance = 'filled';
+  @Input() public appearance: ButtonAppearance = this.settings.appearance;
 
   /**
    * Expands the button to 100% of available space.
@@ -23,7 +28,18 @@ export class ButtonComponent implements OnInit {
    */
   @Input() public size: ComponentSize = 'regular';
 
-  public constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
+  @Input()
+  public set ripple(value: BooleanLike) {
+    this.rippleService.active = toBoolean(value);
+  }
+
+  public constructor(
+    private readonly elementRef: ElementRef<HTMLElement>,
+    @Inject(SETTINGS) public settings: Required<ButtonSettings>,
+    private readonly rippleService: RippleService
+  ) {
+    this.ripple = this.settings.ripple;
+  }
 
   public ngOnInit() {
     const children = Array.from(this.elementRef.nativeElement.children);

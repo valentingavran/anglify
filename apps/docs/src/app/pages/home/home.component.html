@@ -3,37 +3,14 @@
 <h2>Getting Started</h2>
 
 <div class="items">
-  <anglify-card
-    *ngFor="let article of gettingStarted"
-    anglifyOverlay
-    [routerLink]="article.link"
-    (keyup.Space)="router.navigate([article.link])"
-  >
+  <anglify-card *ngFor="let article of gettingStarted" [routerLink]="article.link" ripple (keyup.Space)="router.navigate([article.link])">
     {{ article.name }}
   </anglify-card>
 </div>
 
 <h2>Components</h2>
 <div class="items">
-  <anglify-card
-    *ngFor="let component of components"
-    anglifyOverlay
-    [routerLink]="component.link"
-    (keyup.Space)="router.navigate([component.link])"
-  >
+  <anglify-card *ngFor="let component of components" [routerLink]="component.link" ripple (keyup.Space)="router.navigate([component.link])">
     {{ component.name }}
-  </anglify-card>
-</div>
-
-<h2>Directives</h2>
-
-<div class="items">
-  <anglify-card
-    *ngFor="let directive of directives"
-    anglifyOverlay
-    [routerLink]="directive.link"
-    (keyup.Space)="router.navigate([directive.link])"
-  >
-    {{ directive.name }}
   </anglify-card>
 </div>
