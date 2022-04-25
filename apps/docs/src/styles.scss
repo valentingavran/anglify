@@ -2,7 +2,7 @@
 @use '../../../libs/anglify/src/styles/themes/light';
 @use '../../../libs/anglify/src/modules/overlay';
 @use '../../../libs/anglify/src/modules/table';
-
+@use '../../../libs/anglify/src/styles/settings/typography.scss';
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
@@ -12,17 +12,24 @@ body {
   color: var(--color-on-background-high-emphasis);
 }
 
-h2 + h3 {
-  padding-top: 0;
+h1 {
+  @extend .display-s;
+}
+
+h2 {
+  @extend .headline-m;
 }
 
 h3 {
-  padding-top: 36px;
+  @extend .headline-s;
 }
 
 a {
   color: var(--color-primary);
-  text-decoration: none;
+}
+
+p {
+  @extend .body-l;
 }
 
 :root {
@@ -60,11 +67,12 @@ a {
 }
 
 pre {
-  margin: 0;
   white-space: normal;
+  padding: 0 !important;
 
   code {
-    padding: 0;
+    padding: 1rem !important;
+    @extend .body-s;
   }
 }
 
@@ -72,7 +80,14 @@ code {
   background-color: var(--color-surface-variant) !important;
   border-radius: 14px;
   white-space: pre;
-  padding: 4px;
+  padding: 0 0.5rem !important;
+  @extend .body-l;
+}
+
+table {
+  code {
+    @extend .body-s;
+  }
 }
 
 td code {
