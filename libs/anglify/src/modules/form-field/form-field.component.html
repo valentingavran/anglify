@@ -47,14 +47,22 @@
   {{ label }}
 </ng-template>
 <ng-template #prependIconTemplate>
-  <anglify-icon *ngIf="prependIcon" [icon]="prependIcon"></anglify-icon>
+  <ng-container *ngIf="prependIconDirective">
+    <ng-container *ngTemplateOutlet="prependIconDirective.template"></ng-container>
+  </ng-container>
 </ng-template>
 <ng-template #prependOuterIconTemplate>
-  <anglify-icon *ngIf="prependOuterIcon" [icon]="prependOuterIcon"></anglify-icon>
+  <ng-container *ngIf="prependOuterIconDirective">
+    <ng-container *ngTemplateOutlet="prependOuterIconDirective.template"></ng-container>
+  </ng-container>
 </ng-template>
 <ng-template #appendIconTemplate>
-  <anglify-icon *ngIf="appendIcon" [icon]="appendIcon"></anglify-icon>
+  <ng-container *ngIf="appendIconDirective">
+    <ng-container *ngTemplateOutlet="appendIconDirective.template"></ng-container>
+  </ng-container>
 </ng-template>
 <ng-template #appendOuterIconTemplate>
-  <anglify-icon *ngIf="appendOuterIcon" [icon]="appendOuterIcon"></anglify-icon>
+  <ng-container *ngIf="appendOuterIconDirective">
+    <ng-container *ngTemplateOutlet="appendOuterIconDirective.template"></ng-container>
+  </ng-container>
 </ng-template>

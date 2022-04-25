@@ -5,17 +5,25 @@
   <div class="content">
     <anglify-form-field
       [type]="type"
-      [prepend-icon]="prependIcon ? 'mdi-home' : ''"
-      [prepend-outer-icon]="prependOuterIcon ? 'mdi-home' : ''"
-      [append-icon]="appendIcon ? 'mdi-home' : ''"
-      [append-outer-icon]="appendOuterIcon ? 'mdi-home' : ''"
       [persistent-placeholder]="persistentPlaceholder"
       [persistent-hint]="persistentHint"
       [hide-details]="hideDetails"
       [hint]="hint"
     >
+      <ng-template anglifyPrependIcon>
+        <anglify-icon [icon]="prependIcon ? 'mdi-home' : ''"></anglify-icon>
+      </ng-template>
+      <ng-template anglifyPrependOuterIcon>
+        <anglify-icon [icon]="prependOuterIcon ? 'mdi-home' : ''"></anglify-icon>
+      </ng-template>
       <ng-template anglifyLabel>{{ label }}</ng-template>
       <input anglifyInput [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder" />
+      <ng-template anglifyAppendIcon>
+        <anglify-icon [icon]="appendIcon ? 'mdi-home' : ''"></anglify-icon>
+      </ng-template>
+      <ng-template anglifyAppendOuterIcon>
+        <anglify-icon [icon]="appendOuterIcon ? 'mdi-home' : ''"></anglify-icon>
+      </ng-template>
     </anglify-form-field>
   </div>
   <div class="controls">

@@ -24,6 +24,10 @@ export * from './modules/dialog/dialog.module';
 // Form Field
 export * from './modules/form-field/directives/input.directive';
 export * from './modules/form-field/directives/label/label.directive';
+export * from './modules/form-field/directives/icon/prepend-icon.directive';
+export * from './modules/form-field/directives/icon/prepend-outer-icon.directive';
+export * from './modules/form-field/directives/icon/append-icon.directive';
+export * from './modules/form-field/directives/icon/append-outer-icon.directive';
 export * from './modules/form-field/form-field-settings.token';
 export * from './modules/form-field/form-field.component';
 export * from './modules/form-field/form-field.interface';
