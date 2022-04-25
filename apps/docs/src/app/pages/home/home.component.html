@@ -3,8 +3,13 @@
 <h2>Getting Started</h2>
 
 <div class="items">
-  <anglify-card anglifyOverlay routerLink="getting-started/installation" (keyup.Space)="router.navigate(['getting-started/installation'])">
-    Installation
+  <anglify-card
+    *ngFor="let article of gettingStarted"
+    anglifyOverlay
+    [routerLink]="article.link"
+    (keyup.Space)="router.navigate([article.link])"
+  >
+    {{ article.name }}
   </anglify-card>
 </div>
 
