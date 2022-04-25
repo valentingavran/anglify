@@ -1,0 +1,43 @@
+<h1>Theming</h1>
+
+<p>
+  With Anglify, you can customize the entire look of your application with just a few CSS custom properties. You can also customize
+  individual components separately.
+</p>
+
+<h2>Using prebuilt themes</h2>
+
+<p>
+  If you don't want to define all the CSS custom properties yourself or just want to get started quickly with Anglify, you can use one of
+  the pre-built themes.
+</p>
+<p>
+  All predefined themes of the library are located in the <code>@anglify/components/styles/themes</code> folder. Afterwards you can import
+  the desired theme in your <code>styles.scss</code>:
+</p>
+
+<pre>
+    <code [highlight]="importingTheme" [languages]="['scss']"></code>
+</pre>
+
+<h2>Creating your own theme</h2>
+
+<p>
+  CSS Custom Properties are scoped. This means that you can override the properties used by Anglify at any point in every stylesheet.
+  Afterwards, these properties apply to all child elements, assuming they are not overwritten again.
+</p>
+<p>
+  In order to apply the styling to the whole application, it is best to define the properties in the root element. Prebuild themes do this
+  automatically. But if you want to create your own theme, you have to do it yourself.
+</p>
+
+<pre>
+    <code [highlight]="ownTheme" [languages]="['scss']"></code>
+</pre>
+
+<h2>Customizing components</h2>
+
+<p>
+  Each Anglify component has several CSS custom properties that allow customization beyond their colors. This way you don't need to know the
+  internal structure and all the relations. All custom properties of each component are documented on the respective component pages
+</p>

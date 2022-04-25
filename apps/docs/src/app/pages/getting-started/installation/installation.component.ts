@@ -9,10 +9,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class InstallationComponent {
   public angularInstallation = `$ npm install -g @angular/cli\n$ ng new my-app\n$ cd my-app`;
   public anglifyInstallation = `$ npm install @anglify/components`;
-  public addCommonStyles = `// styles.scss\n@use '~@anglify/components/styles';\n// ...`;
+  public addCommonStyles = `// styles.scss\n@use 'node_modules/@anglify/components/styles' as *;\n@use 'node_modules/@anglify/components/styles/themes/light' as *;\n// ...`;
 
-  public importingModules = `
-import { CardModule } from '@anglify/components';
+  public importingModules = `import { CardModule } from '@anglify/components';
 
 @NgModule({
   declarations: [

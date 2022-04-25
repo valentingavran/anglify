@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   public constructor(public readonly router: Router) {}
 
+  public gettingStarted = [
+    { link: 'getting-started/installation', name: 'Installation' },
+    { link: 'getting-started/theming', name: 'Theming' },
+    { link: 'getting-started/icon-fonts', name: 'Icon Fonts' },
+  ];
+
   public components = [
     {
       link: 'components/button',

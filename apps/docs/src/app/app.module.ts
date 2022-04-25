@@ -51,7 +51,6 @@ import { StepperComponent } from './pages/component-pages/stepper/stepper.compon
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 import { HomeComponent } from './pages/home/home.component';
-import { InstallationComponent } from './pages/installation/installation.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +67,6 @@ import { InstallationComponent } from './pages/installation/installation.compone
     ListPageComponent,
     MenuPageComponent,
     CardPageComponent,
-    InstallationComponent,
     ProgressCircularPageComponent,
     CheckBoxPageComponent,
     TablePageComponent,
