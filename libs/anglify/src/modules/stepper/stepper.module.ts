@@ -6,10 +6,9 @@ import { Step } from './directives/step/step.directive';
 import { StepperNextDirective } from './directives/stepper-next/stepper-next.directive';
 import { StepperPreviousDirective } from './directives/stepper-previous/stepper-previous.directive';
 import { StepperVisitedIconDirective } from './directives/stepper-visited-icon/stepper-visited-icon.directive';
-import { OverlayModule } from '../overlay/overlay.module';
 
 @NgModule({
-  imports: [CommonModule, OverlayModule],
+  imports: [CommonModule],
   declarations: [
     StepperComponent,
     StepperHeaderComponent,
@@ -18,6 +17,6 @@ import { OverlayModule } from '../overlay/overlay.module';
     StepperPreviousDirective,
     StepperVisitedIconDirective,
   ],
-  exports: [StepperComponent, Step, StepperNextDirective, StepperPreviousDirective, StepperVisitedIconDirective, OverlayModule],
+  exports: [StepperComponent, Step, StepperNextDirective, StepperPreviousDirective, StepperVisitedIconDirective],
 })
 export class StepperModule {}

@@ -6,19 +6,10 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 import { ListComponent } from './components/list/list.component';
 import { AppendDirective } from './directives/append/append.directive';
 import { PrependDirective } from './directives/prepend/prepend.directive';
-import { OverlayModule } from '../overlay/overlay.module';
 
 @NgModule({
   declarations: [ListComponent, ListItemComponent, PrependDirective, AppendDirective, ListItemTitleComponent, ListItemDescriptionComponent],
-  imports: [CommonModule, OverlayModule],
-  exports: [
-    ListComponent,
-    ListItemComponent,
-    PrependDirective,
-    AppendDirective,
-    ListItemTitleComponent,
-    ListItemDescriptionComponent,
-    OverlayModule,
-  ],
+  imports: [CommonModule],
+  exports: [ListComponent, ListItemComponent, PrependDirective, AppendDirective, ListItemTitleComponent, ListItemDescriptionComponent],
 })
 export class ListModule {}

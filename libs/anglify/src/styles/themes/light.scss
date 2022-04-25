@@ -3,6 +3,10 @@
   --color-on-primary-high-emphasis: rgb(255, 255, 255, 0.87);
   --color-on-primary-medium-emphasis: rgb(255, 255, 255, 0.6);
   --color-on-primary-low-emphasis: rgb(255, 255, 255, 0.38);
+  --color-state-hover-inactive: rgba(0, 0, 0, 0.08);
+  --color-state-focus-inactive: rgba(0, 0, 0, 0.12);
+  --color-state-hover-active: #007fff14; // 8% Primary
+  --color-state-focus-active: #007fff1f; // 12% Primary
   --color-secondary: #534179;
   --color-on-secondary-high-emphasis: rgb(255, 255, 255, 0.87);
   --color-on-secondary-medium-emphasis: rgb(255, 255, 255, 0.6);

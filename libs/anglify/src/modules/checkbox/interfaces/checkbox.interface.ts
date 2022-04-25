@@ -1,12 +1,12 @@
+import { RippleOrigin } from 'libs/anglify/src/composables/ripple/ripple.interface';
 import { BooleanLike } from '../../../utils/interfaces';
-import { OverlayRippleOrigin } from '../../overlay/overlay.interface';
 
 export interface CheckboxSettings {
   disabled?: BooleanLike;
   checked?: BooleanLike;
   ripple?: BooleanLike;
   labelPosition?: LabelPosition;
-  rippleOrigin?: OverlayRippleOrigin;
+  rippleOrigin?: RippleOrigin;
 }
 
 export type LabelPosition = 'before' | 'after';

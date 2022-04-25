@@ -22,6 +22,11 @@
 
   &:hover {
     cursor: pointer;
+    --state-container-color: #{$stepper-hover-state-color};
+  }
+
+  &:focus-visible {
+    --state-container-color: #{$stepper-focus-state-color};
   }
 
   .prepend-item {
