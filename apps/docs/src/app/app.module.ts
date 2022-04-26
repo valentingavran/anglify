@@ -28,6 +28,7 @@ import { ButtonExamplesModule } from './examples/button/button-examples.module';
 import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
 import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
+import { MenuExamplesModule } from './examples/menu/menu-examples.module';
 import { OverlayExamplesModule } from './examples/overlay/overlay-examples.module';
 import { ProgressCircularExamplesModule } from './examples/progress-circular/progress-circular-examples.module';
 import { ProgressLinearExamplesModule } from './examples/progress-linear/progress-linear-examples.module';
@@ -96,6 +97,7 @@ import { HomeComponent } from './pages/home/home.component';
     ButtonModule,
     ListModule,
     MenuModule,
+    MenuExamplesModule,
     CardModule,
     ProgressCircularModule,
     ProgressCircularExamplesModule,

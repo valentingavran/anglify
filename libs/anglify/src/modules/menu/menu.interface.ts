@@ -6,3 +6,5 @@ export interface MenuSettings {
   position?: Position;
   elevation?: Elevation;
 }
+
+export type MenuMountingPoint = HTMLElement | 'body' | 'parent';
