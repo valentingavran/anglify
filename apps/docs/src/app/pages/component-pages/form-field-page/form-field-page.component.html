@@ -27,61 +27,32 @@
     </anglify-form-field>
   </div>
   <div class="controls">
-    <anglify-form-field>
+    <anglify-form-field hide-details>
       <ng-template anglifyLabel>Label</ng-template>
       <input anglifyInput [(ngModel)]="label" />
     </anglify-form-field>
-    <anglify-form-field>
+    <anglify-form-field hide-details>
       <ng-template anglifyLabel>Placeholder</ng-template>
       <input anglifyInput [(ngModel)]="placeholder" />
     </anglify-form-field>
-    <anglify-form-field>
+    <anglify-form-field hide-details>
       <ng-template anglifyLabel>Hint</ng-template>
       <input anglifyInput [(ngModel)]="hint" />
     </anglify-form-field>
-    <label>
-      Type:
-      <select [(ngModel)]="type">
-        <option value="filled">Filled</option>
-        <option value="outlined">Outlined</option>
-      </select>
-    </label>
-    <label>
-      Readonly:
-      <input type="checkbox" [(ngModel)]="readonly" />
-    </label>
-    <label>
-      Disabled:
-      <input type="checkbox" [(ngModel)]="disabled" />
-    </label>
-    <label>
-      Persistent placeholder:
-      <input type="checkbox" [(ngModel)]="persistentPlaceholder" />
-    </label>
-    <label>
-      Persistent hint:
-      <input type="checkbox" [(ngModel)]="persistentHint" />
-    </label>
-    <label>
-      Prepend icon:
-      <input type="checkbox" [(ngModel)]="prependIcon" />
-    </label>
-    <label>
-      Prepend outer icon:
-      <input type="checkbox" [(ngModel)]="prependOuterIcon" />
-    </label>
-    <label>
-      Append icon:
-      <input type="checkbox" [(ngModel)]="appendIcon" />
-    </label>
-    <label>
-      Append outer icon:
-      <input type="checkbox" [(ngModel)]="appendOuterIcon" />
-    </label>
-    <label>
-      Hide details:
-      <input type="checkbox" [(ngModel)]="hideDetails" />
-    </label>
+    <div class="cols-3">
+      <span class="body-l">Type:</span>
+      <anglify-radio-button [(ngModel)]="type" name="type" value="filled">Filled</anglify-radio-button>
+      <anglify-radio-button [(ngModel)]="type" name="type" value="outlined">Outlined</anglify-radio-button>
+    </div>
+    <anglify-checkbox [(ngModel)]="readonly">Readonly</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="disabled">Disabled</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="persistentPlaceholder">Persistent placeholder</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="persistentHint">Persistent hint</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="prependIcon">Prepend icon</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="prependOuterIcon">Prepend outer icon</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="appendIcon">Append icon</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="appendOuterIcon">Append outer icon</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="hideDetails">Hide details</anglify-checkbox>
   </div>
 </div>
 

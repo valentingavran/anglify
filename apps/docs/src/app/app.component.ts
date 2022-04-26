@@ -31,4 +31,8 @@ export class AppComponent {
       this.setTheme('dark');
     }
   }
+
+  public openGithubRepo() {
+    window.open('https://github.com/valentingavran/anglify', '_blank')!.focus();
+  }
 }

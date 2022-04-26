@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
 import { ButtonExamplesModule } from './examples/button/button-examples.module';
+import { CardExamplesModule } from './examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
 import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
@@ -93,6 +94,7 @@ import { HomeComponent } from './pages/home/home.component';
     MenuModule,
     MenuExamplesModule,
     CardModule,
+    CardExamplesModule,
     ProgressCircularModule,
     ProgressCircularExamplesModule,
     CheckboxModule,

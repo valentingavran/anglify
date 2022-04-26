@@ -25,16 +25,9 @@
     </anglify-table>
   </div>
   <div class="controls">
-    <label>
-      Fixed header:
-      <input type="checkbox" [(ngModel)]="fixedHeader" />
-    </label>
-    <label>
-      Fixed footer:
-      <input type="checkbox" [(ngModel)]="fixedFooter" />
-    </label>
-    <anglify-form-field>
-      <ng-template anglifyLabel>Fixed height</ng-template>
+    <anglify-checkbox [(ngModel)]="fixedHeader">Fixed header</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="fixedFooter">Fixed footer</anglify-checkbox>
+    <anglify-form-field label="Fixed height">
       <input anglifyInput [(ngModel)]="_fixedHeight" />
     </anglify-form-field>
   </div>
