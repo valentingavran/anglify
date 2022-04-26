@@ -26,6 +26,8 @@ import type { Elevation } from '../../composables/elevation/elevation';
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { toBoolean } from '../../utils/functions';
+import { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Directive({
@@ -62,6 +64,9 @@ export class MenuDirective implements OnDestroy {
     }
   }
 
+  @Input() public openOnClick: BooleanLike = this.settings.openOnClick;
+  @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
+
   private readonly offset$ = new BehaviorSubject<number>(this.settings.offset);
   private readonly elevation$ = new BehaviorSubject<Elevation>(this.settings.elevation);
   private readonly position$ = new BehaviorSubject<Position>(this.settings.position);
@@ -94,6 +99,12 @@ export class MenuDirective implements OnDestroy {
   }
 
   @HostListener('click')
+  // @ts-expect-error
+  private onClick() {
+    if (!toBoolean(this.openOnClick)) return;
+    this.openAction.next();
+  }
+
   public open() {
     this.openAction.next();
   }
@@ -162,6 +173,7 @@ export class MenuDirective implements OnDestroy {
         skip(1),
         untilDestroyed(this),
         takeUntil(this.closeAction),
+        filter(() => toBoolean(this.closeOnOutsideClick)),
         map(event => event.target as HTMLElement),
         map(target => !this.element.nativeElement.contains(target)),
         filter(clickedOutside => Boolean(clickedOutside)),
