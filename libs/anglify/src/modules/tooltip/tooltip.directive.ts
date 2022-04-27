@@ -25,15 +25,15 @@ import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.t
 import type { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { toBoolean, isTouchDevice } from '../../utils/functions';
+import { createSettingsProvider } from '../../factories/settings.factory';
+import { isTouchDevice, toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Directive({
   selector: '[anglifyTooltip]',
   exportAs: 'anglifyTooltip',
-  providers: [createSettingsProvider<TooltipSettings>(DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
+  providers: [createSettingsProvider<TooltipSettings>('anglifyTooltipSettings', DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
 })
 export class TooltipDirective implements OnDestroy {
   @Input('anglifyTooltip') public content!: string | TemplateRef<any> | Type<any>;
@@ -127,7 +127,7 @@ export class TooltipDirective implements OnDestroy {
     private readonly resolver: ComponentFactoryResolver,
     private readonly applicationRef: ApplicationRef,
     private readonly cdRef: ChangeDetectorRef,
-    @Self() @Inject(SETTINGS) private readonly settings: Required<TooltipSettings>
+    @Self() @Inject('anglifyTooltipSettings') private readonly settings: Required<TooltipSettings>
   ) {
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
   }

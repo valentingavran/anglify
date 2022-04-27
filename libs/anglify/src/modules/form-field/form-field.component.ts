@@ -22,7 +22,7 @@ import { InputDirective } from './directives/input.directive';
 import { LabelDirective } from './directives/label/label.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
 import type { FormFieldSettings, FormFieldType } from './form-field.interface';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
@@ -32,7 +32,7 @@ import type { BooleanLike } from '../../utils/interfaces';
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<FormFieldSettings>(DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS)],
+  providers: [createSettingsProvider<FormFieldSettings>('anglifyFormFieldSettings', DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS)],
 })
 export class FormFieldComponent implements AfterViewInit {
   @ContentChild(InputDirective) public readonly input?: InputDirective;
@@ -84,7 +84,7 @@ export class FormFieldComponent implements AfterViewInit {
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly cdr: ChangeDetectorRef,
-    @Self() @Inject(SETTINGS) private readonly settings: Required<FormFieldSettings>
+    @Self() @Inject('anglifyFormFieldSettings') private readonly settings: Required<FormFieldSettings>
   ) {}
 
   @HostBinding('class')

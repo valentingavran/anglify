@@ -19,7 +19,7 @@ import type { CheckboxSettings, LabelPosition } from './interfaces/checkbox.inte
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
@@ -33,7 +33,7 @@ import type { BooleanLike } from '../../utils/interfaces';
       useExisting: forwardRef(() => CheckboxComponent),
       multi: true,
     },
-    createSettingsProvider<CheckboxSettings>(DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
+    createSettingsProvider<CheckboxSettings>('anglifyCheckboxSettings', DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -57,7 +57,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
   public constructor(
     private readonly render: Renderer2,
-    @Self() @Inject(SETTINGS) private readonly settings: Required<CheckboxSettings>,
+    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: Required<CheckboxSettings>,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: null | (() => CheckboxIconRef)
   ) {
     if (this.iconProviderFactory) {

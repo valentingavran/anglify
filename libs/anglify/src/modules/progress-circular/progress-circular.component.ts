@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS } from './progress-circular-settings.token';
 import type { ProgressCircularSettings } from './progress-circular.interface';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
+import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 
@@ -10,7 +10,7 @@ import { BooleanLike } from '../../utils/interfaces';
   templateUrl: './progress-circular.component.html',
   styleUrls: ['./progress-circular.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider(DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS)],
+  providers: [createSettingsProvider('anglifyProgressCircularSettings', DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS)],
 })
 export class ProgressCircularComponent {
   @Input() public indeterminate: BooleanLike = this.settings.indeterminate;
@@ -19,7 +19,7 @@ export class ProgressCircularComponent {
 
   public readonly radius = 20;
 
-  public constructor(@Self() @Inject(SETTINGS) private readonly settings: Required<ProgressCircularSettings>) {}
+  public constructor(@Self() @Inject('anglifyProgressCircularSettings') private readonly settings: Required<ProgressCircularSettings>) {}
 
   private get circumference(): number {
     return 2 * Math.PI * this.radius;
