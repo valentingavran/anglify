@@ -20,17 +20,21 @@ export class ButtonComponent implements OnInit {
   /**
    * Expands the button to 100% of available space.
    */
-  @Input() public block: BooleanLike = false;
+  @Input() public block: BooleanLike = this.settings.block;
 
   /**
    * The Size property works with all buttons except the extended-fab,because this button type has only one size.
    * FAB buttons also have only the sizes `small`, `regular` and `large`.
    */
-  @Input() public size: ComponentSize = 'regular';
+  @Input() public size: ComponentSize = this.settings.size;
 
   @Input()
   public set ripple(value: BooleanLike) {
     this.rippleService.active = toBoolean(value);
+  }
+
+  public get ripple(): boolean {
+    return this.rippleService.active;
   }
 
   public constructor(

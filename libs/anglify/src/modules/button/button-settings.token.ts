@@ -3,6 +3,8 @@ import { ButtonSettings } from './button.interface';
 
 export const DEFAULT_BUTTON_SETTINGS: Required<ButtonSettings> = {
   appearance: 'filled',
+  block: false,
+  size: 'regular',
   ripple: true,
 };
 

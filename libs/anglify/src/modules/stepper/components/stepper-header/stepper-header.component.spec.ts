@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 import { StepperHeaderComponent } from './stepper-header.component';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
+import { Stepper } from '../../services/stepper/stepper.service';
 
 describe('StepperHeaderComponent', () => {
   let component: StepperHeaderComponent;
@@ -17,6 +18,10 @@ describe('StepperHeaderComponent', () => {
             hasStepConnectionLine$: new BehaviorSubject(true),
             headerNavigationEnabled$: new BehaviorSubject(true),
           },
+        },
+        {
+          provide: Stepper,
+          useClass: Stepper,
         },
       ],
     }).compileComponents();

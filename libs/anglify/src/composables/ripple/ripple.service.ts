@@ -40,52 +40,49 @@ export class RippleService {
       return true;
     }),
     filter(() => this.active),
-    tap(event => {
-      const width = this.stateContainer.clientWidth;
-      const height = this.stateContainer.clientHeight;
-      const diff = Math.max(width, height) - Math.min(width, height);
-
-      const focusContainer = this.renderer.createElement('div') as HTMLDivElement;
-      focusContainer.classList.add('anglify-state__ripple');
-
-      Object.assign(focusContainer.style, {
-        width: `${Math.max(width, height)}px`,
-        height: `${Math.max(width, height)}px`,
-      });
-
-      if (event instanceof MouseEvent && this.rippleOrigin !== 'center') {
-        const offsetX = event.offsetX;
-        const offsetY = event.offsetY;
-        focusContainer.style.left = `${offsetX - width / 2 - (width < height ? diff / 2 : 0)}px`;
-        focusContainer.style.top = `${offsetY - height / 2 - (width > height ? diff / 2 : 0)}px`;
-      } else {
-        focusContainer.style.left = `${0 - (width < height ? diff / 2 : 0)}px`;
-        focusContainer.style.top = `${0 - (width > height ? diff / 2 : 0)}px`;
-      }
-      this.renderer.appendChild(this.stateContainer, focusContainer);
-      setTimeout(() => {
-        focusContainer.style.transform = 'scale(5)';
-      }, 0);
-
-      this.visibleRipples.push(focusContainer);
-    })
+    tap(event => this.createRipple(event))
   );
 
-  private readonly hideRippleHandler$ = this.hideRippleAction.pipe(
-    tap(() => {
-      const ripple = this.visibleRipples.pop();
+  private readonly hideRippleHandler$ = this.hideRippleAction.pipe(tap(() => this.destroyLastRipple()));
 
-      if (ripple) {
-        Object.assign(ripple.style, {
-          opacity: 0,
-          transitionDuration: '500ms',
-        });
-        setTimeout(() => {
-          this.renderer.removeChild(this.stateContainer, ripple);
-        }, 1000);
-      }
-    })
-  );
+  private createRipple(event: KeyboardEvent | Event) {
+    const width = this.stateContainer.clientWidth;
+    const height = this.stateContainer.clientHeight;
+    const diff = Math.max(width, height) - Math.min(width, height);
+
+    const focusContainer = this.renderer.createElement('div') as HTMLDivElement;
+    focusContainer.classList.add('anglify-state__ripple');
+
+    Object.assign(focusContainer.style, {
+      width: `${Math.max(width, height)}px`,
+      height: `${Math.max(width, height)}px`,
+    });
+
+    if (event instanceof MouseEvent && this.rippleOrigin !== 'center') {
+      const offsetX = event.offsetX;
+      const offsetY = event.offsetY;
+      focusContainer.style.left = `${offsetX - width / 2 - (width < height ? diff / 2 : 0)}px`;
+      focusContainer.style.top = `${offsetY - height / 2 - (width > height ? diff / 2 : 0)}px`;
+    } else {
+      focusContainer.style.left = `${0 - (width < height ? diff / 2 : 0)}px`;
+      focusContainer.style.top = `${0 - (width > height ? diff / 2 : 0)}px`;
+    }
+    this.renderer.appendChild(this.stateContainer, focusContainer);
+    setTimeout(() => {
+      focusContainer.style.transform = 'scale(5)';
+    }, 0);
+
+    this.visibleRipples.push(focusContainer);
+  }
+
+  private destroyLastRipple() {
+    const ripple = this.visibleRipples.pop();
+
+    if (ripple) {
+      Object.assign(ripple.style, { opacity: 0, transitionDuration: '500ms' });
+      setTimeout(() => this.renderer.removeChild(this.stateContainer, ripple), 1000);
+    }
+  }
 
   private createStateContainer() {
     const container = this.renderer.createElement('div') as HTMLDivElement;

@@ -20,7 +20,11 @@ import { BooleanLike } from '../../utils/interfaces';
 export class CardComponent {
   @Input()
   public set elevation(value: Elevation) {
-    this._elevationService.elevation = value;
+    this.elevationService.elevation = value;
+  }
+
+  public get elevation(): Elevation {
+    return this.elevationService.elevation;
   }
 
   @Input()
@@ -28,9 +32,13 @@ export class CardComponent {
     this.rippleService.active = toBoolean(value);
   }
 
+  public get ripple(): boolean {
+    return this.rippleService.active;
+  }
+
   public constructor(
     @Self() @Inject('anglifyCardSettings') public settings: Required<CardSettings>,
-    private readonly _elevationService: ElevationService,
+    private readonly elevationService: ElevationService,
     private readonly rippleService: RippleService
   ) {
     this.elevation = this.settings.elevation;

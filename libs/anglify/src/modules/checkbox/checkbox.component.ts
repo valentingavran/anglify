@@ -20,7 +20,6 @@ import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
 @Component({
@@ -47,9 +46,9 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
-  @Input() public checked: BooleanLike = toBoolean(this.settings.checked);
-  @Input() public disabled: BooleanLike = toBoolean(this.settings.disabled);
-  @Input() public ripple: BooleanLike = toBoolean(this.settings.ripple);
+  @Input() public checked: BooleanLike = this.settings.checked;
+  @Input() public disabled: BooleanLike = this.settings.disabled;
+  @Input() public ripple: BooleanLike = this.settings.ripple;
 
   @Output() public checkedChange = new EventEmitter<boolean>();
 
