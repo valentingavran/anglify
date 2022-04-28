@@ -49,6 +49,10 @@ export class HomeComponent {
       name: 'Menu',
     },
     {
+      link: 'components/nav-drawer',
+      name: 'Navigation Drawer',
+    },
+    {
       link: 'components/progress-circular',
       name: 'Progress Circular',
     },
@@ -71,13 +75,6 @@ export class HomeComponent {
     {
       link: 'components/tooltip',
       name: 'Tooltip',
-    },
-  ];
-
-  public directives = [
-    {
-      link: 'components/overlay',
-      name: 'Overlay',
     },
   ];
 }

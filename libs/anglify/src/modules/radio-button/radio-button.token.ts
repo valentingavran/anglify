@@ -3,7 +3,6 @@ import { RadioButtonSettings } from './radio-button.interface';
 
 export const DEFAULT_RADIO_BUTTON_SETTINGS: Required<RadioButtonSettings> = {
   disabled: false,
-  checked: false,
   labelPosition: 'after',
   ripple: true,
   rippleOrigin: 'center',

@@ -1,6 +1,5 @@
 @use '../../../libs/anglify/src/styles/index';
 @use '../../../libs/anglify/src/styles/themes/light';
-@use '../../../libs/anglify/src/modules/overlay';
 @use '../../../libs/anglify/src/modules/table';
 @use '../../../libs/anglify/src/styles/settings/typography.scss';
 /* You can add global styles to this file, and also import other style files */
@@ -47,7 +46,7 @@ p {
     --color-on-background-high-emphasis: rgb(255, 255, 255, 0.87);
     --color-on-background-medium-emphasis: rgb(255, 255, 255, 0.6);
     --color-on-background-low-emphasis: rgb(255, 255, 255, 0.38);
-    --color-surface: rgba(255, 255, 255, 0.06);
+    --color-surface: #0e233a;
     --color-on-surface-high-emphasis: rgb(255, 255, 255, 0.87);
     --color-on-surface-medium-emphasis: rgb(255, 255, 255, 0.6);
     --color-on-surface-low-emphasis: rgb(255, 255, 255, 0.38);
@@ -61,8 +60,10 @@ p {
     --color-on-surface-variant-darker-low-emphasis: rgb(0, 0, 0, 0.38);
     --color-outline-primary: rgba(255, 255, 255, 0.54);
     --color-outline-secondary: rgba(255, 255, 255, 0.12);
-    --overlay-color-hovered: rgba(255, 255, 255, 0.04);
-    --overlay-color-focused: rgba(255, 255, 255, 0.12);
+    --color-state-hover-inactive: rgba(255, 255, 255, 0.08);
+    --color-state-focus-inactive: rgba(255, 255, 255, 0.12);
+    --color-state-hover-active: #ffd50014; // 8% Primary
+    --color-state-focus-active: #ffd5001f; // 12% Primary
   }
 }
 

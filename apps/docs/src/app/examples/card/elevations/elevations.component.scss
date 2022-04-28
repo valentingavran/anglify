@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  gap: 100px;
+  grid-template-columns: repeat(4, 100px);
+
+  anglify-card {
+    aspect-ratio: 1;
+  }
+}

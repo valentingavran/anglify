@@ -7,7 +7,6 @@ import {
   forwardRef,
   Inject,
   Input,
-  OnInit,
   Optional,
   Output,
   Renderer2,
@@ -19,10 +18,9 @@ import { CheckboxIconRef } from './functions/register-icons.function';
 import type { CheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
-import { createSettingsProvider, SETTINGS } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
+import { RippleOrigin } from '../../composables/ripple/ripple.interface';
+import { createSettingsProvider } from '../../factories/settings.factory';
 import type { BooleanLike } from '../../utils/interfaces';
-import { OverlayRippleOrigin } from '../overlay/overlay.interface';
 
 @Component({
   selector: 'anglify-checkbox',
@@ -34,51 +32,35 @@ import { OverlayRippleOrigin } from '../overlay/overlay.interface';
       useExisting: forwardRef(() => CheckboxComponent),
       multi: true,
     },
-    createSettingsProvider<CheckboxSettings>(DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
+    createSettingsProvider<CheckboxSettings>('anglifyCheckboxSettings', DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckboxComponent implements ControlValueAccessor, OnInit, AfterViewInit {
+export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('offIcon', { read: ElementRef }) public offIcon!: ElementRef<HTMLElement>;
   @ViewChild('onIcon', { read: ElementRef }) public onIcon!: ElementRef<HTMLElement>;
   @ViewChild('defaultIcon') public defaultIcon!: ElementRef<HTMLElement>;
   @ViewChild('overlayContainer') public overlayContainer!: ElementRef<HTMLElement>;
   @ViewChild('reflectOffIcon') public reflectOffIcon!: ElementRef<HTMLElement>;
   @ViewChild('reflectOnIcon') public reflectOnIcon!: ElementRef<HTMLElement>;
-  @Output() public checkedChange = new EventEmitter<boolean>();
+
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
-  @Input() public rippleOrigin: OverlayRippleOrigin = this.settings.rippleOrigin;
+  @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
+  @Input() public checked: BooleanLike = this.settings.checked;
+  @Input() public disabled: BooleanLike = this.settings.disabled;
+  @Input() public ripple: BooleanLike = this.settings.ripple;
 
-  @Input() public set disabled(value: BooleanLike) {
-    this._disabled = toBoolean(value);
-  }
-
-  @Input() public set checked(value: BooleanLike) {
-    this._checked = toBoolean(value);
-  }
-
-  @Input() public set ripple(value: BooleanLike) {
-    this._ripple = toBoolean(value);
-  }
+  @Output() public checkedChange = new EventEmitter<boolean>();
 
   public iconProvider!: null | CheckboxIconRef;
-  public _checked: boolean = toBoolean(this.settings.checked);
-  public _disabled: boolean = toBoolean(this.settings.disabled);
-  public _ripple: boolean = toBoolean(this.settings.ripple);
 
   public constructor(
     private readonly render: Renderer2,
-    @Self() @Inject(SETTINGS) private readonly settings: Required<CheckboxSettings>,
+    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: Required<CheckboxSettings>,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: null | (() => CheckboxIconRef)
   ) {
     if (this.iconProviderFactory) {
       this.iconProvider = this.iconProviderFactory();
-    }
-  }
-
-  public ngOnInit(): void {
-    if (this.disabled) {
-      this.ripple = false;
     }
   }
 

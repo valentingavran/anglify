@@ -8,7 +8,7 @@ import { FormFieldPageComponent } from './pages/component-pages/form-field-page/
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
-import { OverlayPageComponent } from './pages/component-pages/overlay-page/overlay-page.component';
+import { NavDrawerPageComponent } from './pages/component-pages/nav-drawer-page/nav-drawer-page.component';
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
@@ -55,8 +55,8 @@ const routes: Routes = [
     component: MenuPageComponent,
   },
   {
-    path: 'components/overlay',
-    component: OverlayPageComponent,
+    path: 'components/nav-drawer',
+    component: NavDrawerPageComponent,
   },
   {
     path: 'components/progress-circular',

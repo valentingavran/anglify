@@ -24,6 +24,10 @@ export * from './modules/dialog/dialog.module';
 // Form Field
 export * from './modules/form-field/directives/input.directive';
 export * from './modules/form-field/directives/label/label.directive';
+export * from './modules/form-field/directives/icon/prepend-icon.directive';
+export * from './modules/form-field/directives/icon/prepend-outer-icon.directive';
+export * from './modules/form-field/directives/icon/append-icon.directive';
+export * from './modules/form-field/directives/icon/append-outer-icon.directive';
 export * from './modules/form-field/form-field-settings.token';
 export * from './modules/form-field/form-field.component';
 export * from './modules/form-field/form-field.interface';
@@ -47,9 +51,14 @@ export * from './modules/menu/menu-settings.token';
 export * from './modules/menu/menu.directive';
 export * from './modules/menu/menu.interface';
 export * from './modules/menu/menu.module';
+// Nav Drawer
+export * from './modules/nav-drawer/nav-drawer.component';
+export * from './modules/nav-drawer/nav-drawer.token';
+export * from './modules/nav-drawer/nav-drawer.interface';
+export * from './modules/nav-drawer/nav-drawer.module';
 // Overlay
-export * from './modules/overlay/overlay.directive';
-export * from './modules/overlay/overlay.module';
+export * from './modules/interaction-state/interaction-state.directive';
+export * from './modules/interaction-state/interaction-state.module';
 // Progress Circular
 export * from './modules/progress-circular/progress-circular-settings.token';
 export * from './modules/progress-circular/progress-circular.component';
