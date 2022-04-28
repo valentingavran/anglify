@@ -49,6 +49,10 @@ export class HomeComponent {
       name: 'Menu',
     },
     {
+      link: 'components/nav-drawer',
+      name: 'Navigation Drawer',
+    },
+    {
       link: 'components/progress-circular',
       name: 'Progress Circular',
     },

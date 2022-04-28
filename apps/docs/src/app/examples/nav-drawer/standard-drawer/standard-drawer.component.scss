@@ -1,0 +1,16 @@
+:host {
+  .drawer-container {
+    height: 200px;
+    width: 600px;
+    margin: auto;
+    border: 1px solid;
+    position: relative;
+    display: flex;
+    margin-bottom: 10px;
+    contain: content;
+  }
+
+  .page-content {
+    padding: 10px;
+  }
+}
