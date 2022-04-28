@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ContentChild, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { RIPPLE } from 'libs/anglify/src/composables/ripple/ripple.provider';
 import { RippleService } from 'libs/anglify/src/composables/ripple/ripple.service';
 import { toBoolean } from 'libs/anglify/src/utils/functions';
@@ -24,5 +24,13 @@ export class ListItemComponent {
     this.rippleService.active = toBoolean(value);
   }
 
+  @Output() public readonly onClick = new EventEmitter<void>();
+
   public constructor(private readonly rippleService: RippleService) {}
+
+  @HostListener('click')
+  // @ts-expect-error
+  private click() {
+    this.onClick.next();
+  }
 }

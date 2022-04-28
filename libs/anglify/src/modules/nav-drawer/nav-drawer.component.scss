@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+:host {
+  height: 100%;
+
+  &.standard {
+    .anglify-drawer {
+      position: relative;
+      left: 0;
+      border-right: solid;
+      border-color: $drawer-standard-border-color;
+      border-width: 1px;
+    }
+  }
+
+  &.modal {
+    .anglify-drawer {
+      position: absolute;
+      left: calc(-1 * $drawer-width - $drawer-padding * 2);
+      transition: left 250ms;
+    }
+  }
+
+  .anglify-drawer {
+    z-index: 1;
+    display: block;
+    top: $drawer-top;
+    height: 100%;
+    width: $drawer-width;
+    background: $drawer-background-color;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: $drawer-padding;
+  }
+
+  .anglify-drawer-backdrop {
+    z-index: 1;
+    opacity: 0;
+    position: absolute;
+    background-color: $drawer-backdrop-color;
+    height: 100%;
+    width: 0%;
+    left: 0;
+    transition: opacity 250ms linear;
+  }
+
+  &.anglify-drawer-sticky {
+    position: sticky;
+    top: 0;
+  }
+
+  &.anglify-drawer-opened {
+    .anglify-drawer {
+      left: 0px;
+    }
+
+    .anglify-drawer-backdrop {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}

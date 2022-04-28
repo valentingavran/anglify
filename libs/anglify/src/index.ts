@@ -51,6 +51,11 @@ export * from './modules/menu/menu-settings.token';
 export * from './modules/menu/menu.directive';
 export * from './modules/menu/menu.interface';
 export * from './modules/menu/menu.module';
+// Nav Drawer
+export * from './modules/nav-drawer/nav-drawer.component';
+export * from './modules/nav-drawer/nav-drawer.token';
+export * from './modules/nav-drawer/nav-drawer.interface';
+export * from './modules/nav-drawer/nav-drawer.module';
 // Overlay
 export * from './modules/interaction-state/interaction-state.directive';
 export * from './modules/interaction-state/interaction-state.module';
