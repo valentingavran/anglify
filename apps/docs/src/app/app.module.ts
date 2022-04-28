@@ -7,6 +7,7 @@ import {
   IconModule,
   ListModule,
   MenuModule,
+  NavDrawerModule,
   ProgressCircularModule,
   ProgressLinearModule,
   RadioButtonModule,
@@ -29,6 +30,7 @@ import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.mo
 import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
 import { MenuExamplesModule } from './examples/menu/menu-examples.module';
+import { NavDrawerExamplesModule } from './examples/nav-drawer/nav-drawer-examples.module';
 import { ProgressCircularExamplesModule } from './examples/progress-circular/progress-circular-examples.module';
 import { ProgressLinearExamplesModule } from './examples/progress-linear/progress-linear-examples.module';
 import { RadioButtonExamplesModule } from './examples/radio-button/radio-button-examples.module';
@@ -43,6 +45,7 @@ import { FormFieldPageComponent } from './pages/component-pages/form-field-page/
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
+import { NavDrawerPageComponent } from './pages/component-pages/nav-drawer-page/nav-drawer-page.component';
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
@@ -71,6 +74,7 @@ import { HomeComponent } from './pages/home/home.component';
     ProgressLinearPageComponent,
     RadioButtonPageComponent,
     DialogPageComponent,
+    NavDrawerPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +109,8 @@ import { HomeComponent } from './pages/home/home.component';
     RadioButtonModule,
     RadioButtonExamplesModule,
     DialogModule,
+    NavDrawerModule,
+    NavDrawerExamplesModule,
   ],
   providers: [
     {
