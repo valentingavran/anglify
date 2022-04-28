@@ -5,6 +5,7 @@
     "start": "nx serve",
     "build": "node ./scripts/css-variable-extractor.js && nx build",
     "test": "nx test",
+    "test:coverage": "nx test --coverage --project=anglify",
     "lint": "prettier --check . && nx run-many --all --target=lint",
     "format": "prettier --write . && nx run-many --all --target=lint --fix",
     "build:anglify": "nx build anglify && rsync -av dist/libs/anglify/src/ dist/libs/anglify/ && rm -rf dist/libs/anglify/src"
