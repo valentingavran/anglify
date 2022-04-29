@@ -2,7 +2,7 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "nx serve",
+    "start": "node ./scripts/css-variable-extractor.js && nx serve",
     "build": "node ./scripts/css-variable-extractor.js && nx build",
     "test": "nx test",
     "test:coverage": "nx test --coverage --project=anglify",
