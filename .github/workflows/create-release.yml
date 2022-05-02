@@ -23,4 +23,4 @@ jobs:
           cd dist/libs/anglify
           npm publish --access public
         env:
-          NPM_TOKEN: ${{ secrets.TOKEN_FOR_NPM }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
