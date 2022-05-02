@@ -1,10 +1,9 @@
 import { RippleOrigin } from 'libs/anglify/src/composables/ripple/ripple.interface';
-import { BooleanLike } from '../../../utils/interfaces';
 
 export interface CheckboxSettings {
-  disabled?: BooleanLike;
-  checked?: BooleanLike;
-  ripple?: BooleanLike;
+  disabled?: boolean;
+  checked?: boolean;
+  ripple?: boolean;
   labelPosition?: LabelPosition;
   rippleOrigin?: RippleOrigin;
   state?: boolean;

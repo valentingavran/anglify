@@ -1,9 +1,8 @@
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
-import type { BooleanLike } from '../../utils/interfaces';
 
 export interface RadioButtonSettings {
-  disabled?: BooleanLike;
-  ripple?: BooleanLike;
+  disabled?: boolean;
+  ripple?: boolean;
   labelPosition?: RadioLabelPosition;
   rippleOrigin?: RippleOrigin;
   state?: boolean;
