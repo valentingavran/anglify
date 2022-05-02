@@ -1,0 +1,67 @@
+{
+  "skip": {
+    "tag": true
+  },
+  "types": [
+    {
+      "type": "feat",
+      "section": "🚀  Features"
+    },
+    {
+      "type": "fix",
+      "section": "🐛  Bug Fixes"
+    },
+    {
+      "type": "style",
+      "section": "✨  Styles"
+    },
+    {
+      "type": "perf",
+      "section": "🐎  Performance"
+    },
+    {
+      "type": "reverts",
+      "section": "🔄  Reverts"
+    },
+    {
+      "type": "refactor",
+      "section": "🔬  Code Refactoring"
+    },
+    {
+      "type": "docs",
+      "section": "🛠  Other Commmits"
+    },
+    {
+      "type": "chore",
+      "section": "🛠  Other Commmits"
+    },
+    {
+      "type": "build",
+      "section": "🛠  Other Commmits"
+    },
+    {
+      "type": "ci",
+      "section": "🛠  Other Commmits"
+    },
+    {
+      "type": "test",
+      "section": "🛠  Other Commmits"
+    }
+  ],
+  "packageFiles": [
+    {
+      "filename": "libs/anglify/package.json",
+      "type": "json"
+    }
+  ],
+  "bumpFiles": [
+    {
+      "filename": "libs/anglify/package.json",
+      "type": "json"
+    },
+    {
+      "filename": "libs/anglify/package-lock.json",
+      "type": "json"
+    }
+  ]
+}
