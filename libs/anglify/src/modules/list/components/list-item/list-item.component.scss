@@ -10,10 +10,19 @@
     flex: 1;
     min-width: 0;
   }
+
+  .prepend,
+  .append {
+    --state-container-color: transparent;
+  }
 }
 
 :host-context(.dense) {
   min-height: 40px;
+}
+
+:host-context(.active) {
+  --state-container-color: var(--color-state-focus-active);
 }
 
 :host-context(.selectable) {
