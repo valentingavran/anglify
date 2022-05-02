@@ -1,14 +1,24 @@
 import { ElementRef, Injectable, Renderer2 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, fromEvent, merge, tap } from 'rxjs';
+import { BehaviorSubject, filter, fromEvent, merge, tap } from 'rxjs';
 import { RippleOrigin } from './ripple.interface';
+import { bindStyleToNativeElement } from '../../utils/functions';
 
 @UntilDestroy()
 @Injectable()
 export class RippleService {
   public active = true;
-
   public rippleOrigin: RippleOrigin;
+
+  public set state(value: boolean) {
+    this.stateFull$.next(value);
+  }
+
+  public get state() {
+    return this.stateFull$.value;
+  }
+
+  private readonly stateFull$ = new BehaviorSubject<boolean>(true);
 
   private readonly showRippleAction = merge(
     fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown').pipe(
@@ -32,6 +42,7 @@ export class RippleService {
     this.elementRef.nativeElement.classList.add('anglify-state');
     this.showRippleHandler$.pipe(untilDestroyed(this)).subscribe();
     this.hideRippleHandler$.pipe(untilDestroyed(this)).subscribe();
+    bindStyleToNativeElement(this, this.stateFull$, this.stateContainer, 'backgroundColor', 'var(--state-container-color, transparent)');
   }
 
   private readonly showRippleHandler$ = this.showRippleAction.pipe(

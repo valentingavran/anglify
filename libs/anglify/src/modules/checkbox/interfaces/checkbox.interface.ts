@@ -7,6 +7,7 @@ export interface CheckboxSettings {
   ripple?: BooleanLike;
   labelPosition?: LabelPosition;
   rippleOrigin?: RippleOrigin;
+  state?: boolean;
 }
 
 export type LabelPosition = 'before' | 'after';

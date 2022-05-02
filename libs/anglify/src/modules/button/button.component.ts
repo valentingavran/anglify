@@ -37,12 +37,22 @@ export class ButtonComponent implements OnInit {
     return this.rippleService.active;
   }
 
+  @Input()
+  public set state(value: BooleanLike) {
+    this.rippleService.state = toBoolean(value);
+  }
+
+  public get state(): boolean {
+    return this.rippleService.state;
+  }
+
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     @Self() @Inject('anglifyButtonSettings') public settings: Required<ButtonSettings>,
     private readonly rippleService: RippleService
   ) {
     this.ripple = this.settings.ripple;
+    this.state = this.settings.state;
   }
 
   public ngOnInit() {

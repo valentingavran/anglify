@@ -49,6 +49,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @Input() public checked: BooleanLike = this.settings.checked;
   @Input() public disabled: BooleanLike = this.settings.disabled;
   @Input() public ripple: BooleanLike = this.settings.ripple;
+  @Input() public state: BooleanLike = this.settings.state;
 
   @Output() public checkedChange = new EventEmitter<boolean>();
 

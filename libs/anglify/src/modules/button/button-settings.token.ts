@@ -6,6 +6,7 @@ export const DEFAULT_BUTTON_SETTINGS: Required<ButtonSettings> = {
   block: false,
   size: 'regular',
   ripple: true,
+  state: true,
 };
 
 export const BUTTON_SETTINGS = new InjectionToken<Required<ButtonSettings>>('Button Settings');

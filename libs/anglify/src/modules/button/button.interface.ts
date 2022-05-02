@@ -7,4 +7,5 @@ export interface ButtonSettings {
   block?: boolean;
   ripple?: boolean;
   size?: ComponentSize;
+  state?: boolean;
 }

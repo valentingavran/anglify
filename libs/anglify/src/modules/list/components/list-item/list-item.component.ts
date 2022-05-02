@@ -24,6 +24,14 @@ export class ListItemComponent {
     this.rippleService.active = toBoolean(value);
   }
 
+  @Input() public set state(value: BooleanLike) {
+    this.rippleService.state = toBoolean(value);
+  }
+
+  public get state() {
+    return this.rippleService.state;
+  }
+
   @Output() public readonly onClick = new EventEmitter<void>();
 
   public constructor(private readonly rippleService: RippleService) {}

@@ -6,6 +6,7 @@ export interface RadioButtonSettings {
   ripple?: BooleanLike;
   labelPosition?: RadioLabelPosition;
   rippleOrigin?: RippleOrigin;
+  state?: boolean;
 }
 
 export type RadioLabelPosition = 'before' | 'after';
