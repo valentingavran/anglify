@@ -35,6 +35,12 @@ import { ListComponent } from '../list/components/list/list.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavDrawerComponent implements AfterViewInit {
+  @Input() public mode: DrawerMode = this.settings.mode;
+  @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
+  @Input() public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
+  @Input() public open = false;
+  @Input() public fixed: BooleanLike = this.settings.fixed;
+
   @HostBinding('class.anglify-drawer-opened')
   public get opened() {
     return this.open;
@@ -53,21 +59,6 @@ export class NavDrawerComponent implements AfterViewInit {
   }
 
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
-
-  @Input()
-  public mode: DrawerMode = this.settings.mode;
-
-  @Input()
-  public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
-
-  @Input()
-  public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
-
-  @Input()
-  public open = false;
-
-  @Input()
-  public fixed: BooleanLike = this.settings.fixed;
 
   public constructor(@Self() @Inject('anglifyNavDrawerSettings') private readonly settings: Required<NavDrawerSettings>) {}
 
