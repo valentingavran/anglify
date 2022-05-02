@@ -15,6 +15,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import type { DrawerMode, NavDrawerSettings } from './nav-drawer.interface';
 import { DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS } from './nav-drawer.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { ListComponent } from '../list/components/list/list.component';
 
@@ -41,7 +42,7 @@ export class NavDrawerComponent implements AfterViewInit {
 
   @HostBinding('class.anglify-drawer-sticky')
   public get sticky() {
-    return this.fixed;
+    return toBoolean(this.fixed);
   }
 
   @HostBinding('class')
