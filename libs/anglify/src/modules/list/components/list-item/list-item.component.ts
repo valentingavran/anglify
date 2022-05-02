@@ -20,6 +20,15 @@ export class ListItemComponent {
   @ContentChild(AppendDirective) public readonly appendDirective?: AppendDirective;
   @ContentChild(PrependDirective) public readonly prependDirective?: PrependDirective;
 
+  @Input()
+  public set active(value: BooleanLike) {
+    this.active$.next(toBoolean(value));
+  }
+
+  public get active() {
+    return this.active$.value;
+  }
+
   @Input() public dense: BooleanLike = false;
   @Input() public disabled: BooleanLike = false;
 
@@ -48,9 +57,11 @@ export class ListItemComponent {
 
   @Output() public readonly onClick = new EventEmitter<void>();
 
+  public readonly active$ = new BehaviorSubject<boolean>(false);
   public readonly selectable$ = new BehaviorSubject<boolean>(false);
 
   public constructor(private readonly elementRef: ElementRef<HTMLElement>, private readonly rippleService: RippleService) {
+    bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');
     bindClassToNativeElement(this, this.selectable$, this.elementRef.nativeElement, 'selectable');
   }
 
