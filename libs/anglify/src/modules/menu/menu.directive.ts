@@ -39,6 +39,15 @@ export class MenuDirective implements OnDestroy {
   @Input('anglifyMenuTriggerFor') public content!: TemplateRef<any> | Type<any>;
   @Input('anglifyMenuMountingPoint') public mountingPoint: MenuMountingPoint = 'parent';
 
+  @Input()
+  public set parentWidth(value: BooleanLike) {
+    const bool = toBoolean(value);
+    this.parentWidth$.next(bool);
+    if (this.componentRef) {
+      this.componentRef.instance.parentWidth = bool;
+    }
+  }
+
   /** Distance between the menu and the activator */
   @Input()
   public set offset(value: number) {
@@ -67,6 +76,7 @@ export class MenuDirective implements OnDestroy {
   @Input() public openOnClick: BooleanLike = this.settings.openOnClick;
   @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
 
+  private readonly parentWidth$ = new BehaviorSubject<boolean>(this.settings.parentWidth);
   private readonly offset$ = new BehaviorSubject<number>(this.settings.offset);
   private readonly elevation$ = new BehaviorSubject<Elevation>(this.settings.elevation);
   private readonly position$ = new BehaviorSubject<Position>(this.settings.position);
@@ -128,6 +138,7 @@ export class MenuDirective implements OnDestroy {
       providers: [{ provide: POSITION_SETTINGS, useValue: { host: this.element.nativeElement } }],
     });
     this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector, this.generateNgContent());
+    this.componentRef.instance.parentWidth = this.parentWidth$.value;
     this.componentRef.instance.offset = this.offset$.value;
     this.componentRef.instance.position = this.position$.value;
     this.componentRef.instance.elevation = this.elevation$.value;

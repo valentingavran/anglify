@@ -7,6 +7,7 @@ export interface MenuSettings {
   elevation?: Elevation;
   openOnClick?: boolean;
   closeOnOutsideClick?: boolean;
+  parentWidth?: boolean;
 }
 
 export type MenuMountingPoint = HTMLElement | 'body' | 'parent';
