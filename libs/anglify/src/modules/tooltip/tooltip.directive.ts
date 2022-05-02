@@ -48,6 +48,19 @@ export class TooltipDirective implements OnDestroy {
   @Input() public tooltipMobileTrigger: TooltipTouchTrigger = this.settings.mobileTrigger;
   @Input() public autoCloseOnTouchDevicesAfterDelay: BooleanLike = this.settings.autoCloseOnTouchDevicesAfterDelay;
 
+  @Input()
+  public set parentWidth(value: BooleanLike) {
+    const bool = toBoolean(value);
+    this._parentWidth = bool;
+    if (this.componentRef) {
+      this.componentRef.instance.parentWidth = bool;
+    }
+  }
+
+  public get parentWidth(): boolean {
+    return this._parentWidth;
+  }
+
   /** Distance between the tooltip and the host element */
   @Input()
   public set offset(value: number) {
@@ -87,6 +100,7 @@ export class TooltipDirective implements OnDestroy {
 
   private _position: Position = DEFAULT_TOOLTIP_SETTINGS.position;
   private _offset = DEFAULT_TOOLTIP_SETTINGS.defaultOffset;
+  private _parentWidth = DEFAULT_TOOLTIP_SETTINGS.parentWidth;
   private _contentClass?: string | undefined;
 
   private componentRef: ComponentRef<TooltipComponent> | undefined; // Tooltip Component Reference
@@ -203,6 +217,7 @@ export class TooltipDirective implements OnDestroy {
     this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector, this.generateNgContent());
     this.componentRef.instance.position = this.position;
     this.componentRef.instance.offset = this.offset;
+    this.componentRef.instance.parentWidth = this.parentWidth;
     this.componentRef.instance.contentClass = this.contentClass;
 
     this.changeMountingPoint();

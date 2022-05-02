@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { RIPPLE } from 'libs/anglify/src/composables/ripple/ripple.provider';
-import { RippleService } from 'libs/anglify/src/composables/ripple/ripple.service';
-import { bindClassToNativeElement, toBoolean } from 'libs/anglify/src/utils/functions';
 import { BehaviorSubject } from 'rxjs';
+import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
+import { RippleService } from '../../../../composables/ripple/ripple.service';
+import { bindClassToNativeElement, toBoolean } from '../../../../utils/functions';
 import type { BooleanLike } from '../../../../utils/interfaces';
 import { AppendDirective } from '../../directives/append/append.directive';
 import { PrependDirective } from '../../directives/prepend/prepend.directive';

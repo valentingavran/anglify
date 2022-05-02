@@ -1,24 +1,32 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
+import { computePosition, offset, flip, shift } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, merge } from 'rxjs';
 import type { Position, PositionSettings } from './position.interface';
 import { POSITION_SETTINGS } from './position.token';
-import { observeOnResize } from '../../utils/functions';
+import { observeOnResize, toBoolean } from '../../utils/functions';
+import { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Injectable()
 export class PositionService {
   private _position: Position = 'top';
   private _offset = 10;
+  private _parentWidth = false;
 
   public set position(value: Position) {
     this._position = value;
-    this.updatePosition();
+    void this.updatePosition();
   }
 
   public set offset(value: number) {
     this._offset = value;
-    this.updatePosition();
+    void this.updatePosition();
+  }
+
+  public set parentWidth(value: BooleanLike) {
+    this._parentWidth = toBoolean(value);
+    void this.updatePosition();
   }
 
   public constructor(
@@ -27,30 +35,22 @@ export class PositionService {
   ) {
     merge(observeOnResize(this._elementRef.nativeElement), fromEvent(window, 'scroll', { capture: true }))
       .pipe(untilDestroyed(this))
-      .subscribe(() => this.updatePosition());
+      .subscribe(() => {
+        void this.updatePosition();
+      });
   }
 
-  private updatePosition() {
-    const hostPos = this.settings.host.getBoundingClientRect();
-    const menuPos = this._elementRef.nativeElement.getBoundingClientRect();
-    let top;
-    let left;
+  private async updatePosition() {
+    const { x, y } = await computePosition(this.settings.host, this._elementRef.nativeElement, {
+      placement: this._position,
+      middleware: [offset(this._offset), flip(), shift({ padding: 5 })],
+      strategy: 'fixed',
+    });
 
-    if (this._position === 'top') {
-      top = hostPos.top - menuPos.height - this._offset;
-      left = Math.max(Number(hostPos.left) + (hostPos.width - menuPos.width) / 2, this._offset);
-    } else if (this._position === 'bottom') {
-      top = Number(hostPos.bottom) + this._offset;
-      left = Math.max(Number(hostPos.left) + (hostPos.width - menuPos.width) / 2, this._offset);
-    } else {
-      top = Number(hostPos.top) + (hostPos.height - menuPos.height) / 2;
-      if (this._position === 'left') {
-        left = Math.max(hostPos.left - menuPos.width - this._offset, this._offset);
-      } else {
-        left = Math.min(Number(hostPos.right) + this._offset, window.innerWidth - menuPos.width - this._offset);
-      }
+    this._elementRef.nativeElement.style.left = `${x}px`;
+    this._elementRef.nativeElement.style.top = `${y}px`;
+    if (this._parentWidth) {
+      this._elementRef.nativeElement.style.width = `${this.settings.host.getBoundingClientRect().width}px`;
     }
-    this._elementRef.nativeElement.style.top = `${top}px`;
-    this._elementRef.nativeElement.style.left = `${left}px`;
   }
 }

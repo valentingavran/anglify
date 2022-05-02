@@ -1,4 +1,4 @@
-import { RippleOrigin } from 'libs/anglify/src/composables/ripple/ripple.interface';
+import { RippleOrigin } from '../../../composables/ripple/ripple.interface';
 
 export interface CheckboxSettings {
   disabled?: boolean;

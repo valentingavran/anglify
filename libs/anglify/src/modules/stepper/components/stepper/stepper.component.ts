@@ -12,6 +12,8 @@ import {
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { Step } from '../../directives/step/step.directive';
 import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
@@ -60,13 +62,13 @@ export class StepperComponent extends Stepper implements AfterContentInit {
   @ContentChild(StepperVisitedIconDirective) public readonly stepperVisitedIcon?: StepperVisitedIconDirective;
 
   @Input()
-  public set stepConnectionLine(value: boolean) {
-    this.stepperSettings.setHasStepConnectionLine(value);
+  public set stepConnectionLine(value: BooleanLike) {
+    this.stepperSettings.setHasStepConnectionLine(toBoolean(value));
   }
 
   @Input()
-  public set headerNavigation(value: boolean) {
-    this.stepperSettings.setHeaderNavigationEnabled(value);
+  public set headerNavigation(value: BooleanLike) {
+    this.stepperSettings.setHeaderNavigationEnabled(toBoolean(value));
   }
 
   @Input()

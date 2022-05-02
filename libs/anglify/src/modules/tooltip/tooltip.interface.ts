@@ -14,4 +14,5 @@ export interface TooltipSettings {
   mobileTrigger?: TooltipTouchTrigger;
   defaultOffset?: number;
   autoCloseOnTouchDevicesAfterDelay?: boolean;
+  parentWidth?: boolean;
 }
