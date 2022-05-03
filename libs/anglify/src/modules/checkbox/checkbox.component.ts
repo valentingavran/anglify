@@ -20,6 +20,7 @@ import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 
 @Component({
@@ -51,12 +52,22 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @Input() public ripple: BooleanLike = this.settings.ripple;
   @Input() public state: BooleanLike = this.settings.state;
 
+  @Input('readonly')
+  public set isReadonly(value: BooleanLike) {
+    if (toBoolean(value)) {
+      this.renderer.setStyle(this.elementRef.nativeElement, 'pointer-events', 'none');
+    } else {
+      this.renderer.removeStyle(this.elementRef.nativeElement, 'pointer-events');
+    }
+  }
+
   @Output() public checkedChange = new EventEmitter<boolean>();
 
   public iconProvider!: null | CheckboxIconRef;
 
   public constructor(
-    private readonly render: Renderer2,
+    private readonly elementRef: ElementRef<HTMLElement>,
+    private readonly renderer: Renderer2,
     @Self() @Inject('anglifyCheckboxSettings') private readonly settings: Required<CheckboxSettings>,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: null | (() => CheckboxIconRef)
   ) {
@@ -99,7 +110,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
       if (reflectOnChildren === 0) {
         const onIcon = this.iconProvider.iconOnCompRef.location.nativeElement as HTMLElement;
-        this.render.appendChild(this.onIcon.nativeElement, onIcon);
+        this.renderer.appendChild(this.onIcon.nativeElement, onIcon);
       } else {
         this.iconProvider.removeCompRef('ONICON');
         this.removeChildren([this.onIcon]);
@@ -107,7 +118,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
       if (reflectOffChildren === 0) {
         const offIcon = this.iconProvider.iconOffCompRef.location.nativeElement as HTMLElement;
-        this.render.appendChild(this.offIcon.nativeElement, offIcon);
+        this.renderer.appendChild(this.offIcon.nativeElement, offIcon);
       } else {
         this.iconProvider.removeCompRef('OFFICON');
         this.removeChildren([this.offIcon]);
@@ -118,7 +129,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   public removeChildren(children: ElementRef[]): void {
-    children.forEach(child => this.render.removeChild(this.overlayContainer.nativeElement, child.nativeElement));
+    children.forEach(child => this.renderer.removeChild(this.overlayContainer.nativeElement, child.nativeElement));
   }
 
   public registerOnChange(fn: (...args: any[]) => void): void {
