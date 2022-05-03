@@ -27,6 +27,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input() public ripple: BooleanLike = this.settings.ripple;
   @Input() public labelPosition: RadioLabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
+  @Input() public state: BooleanLike = this.settings.state;
 
   @Output() public checkedChange = new EventEmitter<boolean>();
   public checked: any;

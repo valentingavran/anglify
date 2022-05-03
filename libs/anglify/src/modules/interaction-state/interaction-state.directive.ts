@@ -18,6 +18,10 @@ export class InteractionStateDirective {
     this.rippleService.rippleOrigin = value;
   }
 
+  @Input() public set state(value: BooleanLike) {
+    this.rippleService.state = toBoolean(value);
+  }
+
   public constructor(private readonly rippleService: RippleService) {
     this.rippleService.active = true;
   }

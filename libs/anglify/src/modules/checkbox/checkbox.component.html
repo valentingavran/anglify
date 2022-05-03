@@ -11,6 +11,7 @@
       anglifyInteractionState
       [active]="(ripple | booleanLikeToBoolean) && !(disabled | booleanLikeToBoolean)"
       [rippleOrigin]="rippleOrigin"
+      [state]="state | booleanLikeToBoolean"
     ></div>
     <span #reflectOffIcon [style.display]="!(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons">
       <ng-content select="[offIcon]"></ng-content>

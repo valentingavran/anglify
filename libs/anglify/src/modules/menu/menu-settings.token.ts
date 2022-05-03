@@ -7,6 +7,7 @@ export const DEFAULT_MENU_SETTINGS: Required<MenuSettings> = {
   elevation: 1,
   openOnClick: true,
   closeOnOutsideClick: true,
+  parentWidth: false,
 };
 
 export const MENU_SETTINGS = new InjectionToken<MenuSettings>('Menu Settings');

@@ -15,6 +15,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import type { DrawerMode, NavDrawerSettings } from './nav-drawer.interface';
 import { DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS } from './nav-drawer.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { ListComponent } from '../list/components/list/list.component';
 
@@ -34,6 +35,12 @@ import { ListComponent } from '../list/components/list/list.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavDrawerComponent implements AfterViewInit {
+  @Input() public mode: DrawerMode = this.settings.mode;
+  @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
+  @Input() public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
+  @Input() public open = false;
+  @Input() public fixed: BooleanLike = this.settings.fixed;
+
   @HostBinding('class.anglify-drawer-opened')
   public get opened() {
     return this.open;
@@ -41,7 +48,7 @@ export class NavDrawerComponent implements AfterViewInit {
 
   @HostBinding('class.anglify-drawer-sticky')
   public get sticky() {
-    return this.fixed;
+    return toBoolean(this.fixed);
   }
 
   @HostBinding('class')
@@ -52,21 +59,6 @@ export class NavDrawerComponent implements AfterViewInit {
   }
 
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
-
-  @Input()
-  public mode: DrawerMode = this.settings.mode;
-
-  @Input()
-  public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
-
-  @Input()
-  public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
-
-  @Input()
-  public open = false;
-
-  @Input()
-  public fixed: BooleanLike = this.settings.fixed;
 
   public constructor(@Self() @Inject('anglifyNavDrawerSettings') private readonly settings: Required<NavDrawerSettings>) {}
 

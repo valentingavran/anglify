@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, HostListener, Input } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { RIPPLE } from 'libs/anglify/src/composables/ripple/ripple.provider';
-import { RippleService } from 'libs/anglify/src/composables/ripple/ripple.service';
-import { toBoolean } from 'libs/anglify/src/utils/functions';
-import { BooleanLike } from 'libs/anglify/src/utils/interfaces';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
+import { RippleService } from '../../../../composables/ripple/ripple.service';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { Stepper } from '../../services/stepper/stepper.service';
@@ -34,18 +34,18 @@ export class StepperHeaderComponent {
   }
 
   @Input()
-  public set isFirst(value: boolean) {
-    this.isFirst$.next(value);
+  public set isFirst(value: BooleanLike) {
+    this.isFirst$.next(toBoolean(value));
   }
 
   @Input()
-  public set isLast(value: boolean) {
-    this.isLast$.next(value);
+  public set isLast(value: BooleanLike) {
+    this.isLast$.next(toBoolean(value));
   }
 
   @Input()
-  public set active(value: boolean) {
-    this.active$.next(value);
+  public set active(value: BooleanLike) {
+    this.active$.next(toBoolean(value));
     value ? this.elementRef.nativeElement.classList.add('active') : this.elementRef.nativeElement.classList.remove('active');
   }
 

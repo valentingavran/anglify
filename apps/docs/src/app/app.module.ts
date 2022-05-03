@@ -2,7 +2,6 @@ import {
   ButtonModule,
   CardModule,
   CheckboxModule,
-  DialogModule,
   FormFieldModule,
   IconModule,
   ListModule,
@@ -29,6 +28,7 @@ import { CardExamplesModule } from './examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
 import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
+import { ListExamplesModule } from './examples/list/list-examples.module';
 import { MenuExamplesModule } from './examples/menu/menu-examples.module';
 import { NavDrawerExamplesModule } from './examples/nav-drawer/nav-drawer-examples.module';
 import { ProgressCircularExamplesModule } from './examples/progress-circular/progress-circular-examples.module';
@@ -80,21 +80,21 @@ import { HomeComponent } from './pages/home/home.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormFieldModule,
     FormsModule,
-    IconModule,
     HttpClientModule,
     HighlightModule,
     ReactiveFormsModule,
     MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
+    ButtonModule,
     ButtonExamplesModule,
+    FormFieldModule,
+    FormFieldExamplesModule,
+    IconModule,
     IconExamplesModule,
     StepperExamplesModule,
-    FormFieldExamplesModule,
     TooltipExamplesModule,
-    CheckBoxExamplesModule,
-    ButtonModule,
     ListModule,
+    ListExamplesModule,
     MenuModule,
     MenuExamplesModule,
     CardModule,
@@ -102,13 +102,13 @@ import { HomeComponent } from './pages/home/home.component';
     ProgressCircularModule,
     ProgressCircularExamplesModule,
     CheckboxModule,
+    CheckBoxExamplesModule,
     TableModule,
     TableExamplesModule,
     ProgressLinearModule,
     ProgressLinearExamplesModule,
     RadioButtonModule,
     RadioButtonExamplesModule,
-    DialogModule,
     NavDrawerModule,
     NavDrawerExamplesModule,
   ],

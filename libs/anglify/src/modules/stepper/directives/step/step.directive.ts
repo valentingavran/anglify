@@ -3,6 +3,8 @@ import { Directive, Input, Output, TemplateRef } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { Stepper } from '../../services/stepper/stepper.service';
 
 @UntilDestroy()
@@ -44,8 +46,8 @@ export class Step {
   }
 
   @Input()
-  public set valid(valid: boolean) {
-    this._valid$.next(valid);
+  public set valid(valid: BooleanLike) {
+    this._valid$.next(toBoolean(valid));
   }
 
   @Output() public selectedChange = this.selected$;

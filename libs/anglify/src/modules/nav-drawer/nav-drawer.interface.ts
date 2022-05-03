@@ -1,10 +1,8 @@
-import type { BooleanLike } from '../../utils/interfaces';
-
 export interface NavDrawerSettings {
   mode?: DrawerMode;
-  fixed?: BooleanLike;
-  closeOnOutsideClick?: BooleanLike;
-  closeOnItemClick?: BooleanLike;
+  fixed?: boolean;
+  closeOnOutsideClick?: boolean;
+  closeOnItemClick?: boolean;
 }
 
 export type DrawerMode = 'standard' | 'modal';

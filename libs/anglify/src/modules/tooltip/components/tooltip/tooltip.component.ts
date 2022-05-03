@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, Vie
 import type { Position } from '../../../../composables/position/position.interface';
 import { POSITION } from '../../../../composables/position/position.provider';
 import { PositionService } from '../../../../composables/position/position.service';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 
 @Component({
   selector: 'anglify-tooltip',
@@ -20,6 +22,11 @@ export class TooltipComponent {
   @Input()
   public set offset(value: number) {
     this.positionService.offset = value;
+  }
+
+  @Input()
+  public set parentWidth(value: BooleanLike) {
+    this.positionService.parentWidth = toBoolean(value);
   }
 
   @HostBinding('class')

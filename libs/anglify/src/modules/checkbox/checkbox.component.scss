@@ -127,8 +127,6 @@
       .check-box-effect {
         background-color: $checkbox-checked-color !important;
         border-color: $checkbox-checked-border-color;
-        border-style: solid;
-        border-width: $checkbox-border-width;
 
         &:before {
           width: $checkbox-icon-before-width;
@@ -162,19 +160,17 @@
   input:checked:disabled + .container .check-box-effect {
     background-color: $checkbox-disabled-color !important;
     border-color: transparent;
-    border-style: solid;
-    border-width: $checkbox-border-width;
   }
 
   // Unchecked styles for only enabled state
   input:not(:disabled) {
-    &:hover {
-      & ~ .container {
-        .state-container {
-          --state-container-color: #{$checkbox-hover-state-inactive-color};
-        }
+    & ~ .container {
+      .state-container:hover {
+        --state-container-color: #{$checkbox-hover-state-inactive-color};
       }
     }
+
+    & ~ .checkbox-label,
     & ~ .container .state-container {
       cursor: pointer;
     }
@@ -182,18 +178,9 @@
 
   // Checked styles for only enabled state
   input:checked:not(:disabled) {
-    &:hover {
-      & ~ .container {
-        .check-box-effect {
-          background: $checkbox-checked-hover-color !important;
-          border-color: $checkbox-checked-hover-border-color !important;
-          border-style: solid;
-          border-width: $checkbox-border-width;
-        }
-
-        .state-container {
-          --state-container-color: #{$checkbox-hover-state-active-color};
-        }
+    & ~ .container {
+      .state-container:hover {
+        --state-container-color: #{$checkbox-hover-state-active-color};
       }
     }
 

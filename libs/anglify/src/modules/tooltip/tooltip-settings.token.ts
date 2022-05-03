@@ -13,4 +13,5 @@ export const DEFAULT_TOOLTIP_SETTINGS: Required<TooltipSettings> = {
   preventContextMenuOnTouchDevice: false,
   defaultOffset: 10,
   autoCloseOnTouchDevicesAfterDelay: true,
+  parentWidth: false,
 };

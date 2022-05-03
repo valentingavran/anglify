@@ -6,6 +6,7 @@ export const DEFAULT_RADIO_BUTTON_SETTINGS: Required<RadioButtonSettings> = {
   labelPosition: 'after',
   ripple: true,
   rippleOrigin: 'center',
+  state: true,
 };
 
 export const RADIO_BUTTON_SETTINGS = new InjectionToken<RadioButtonSettings>('Radio Button Settings');
