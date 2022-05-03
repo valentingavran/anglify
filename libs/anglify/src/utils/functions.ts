@@ -34,6 +34,47 @@ export function clamp(value: number, min: number, max: number): number {
   return value > max ? max : value < min ? min : value;
 }
 
+export function diff(o: number[], n: number[]) {
+  o.sort((a, b) => (a < b ? a : b));
+  n.sort((a, b) => (a < b ? a : b));
+
+  // don't compare if either list is empty
+  if (o.length === 0 || n.length === 0) return { added: n, removed: o };
+
+  // declare temporary variables
+  let op = 0;
+  let np = 0;
+  let a = [];
+  let r = [];
+
+  // compare arrays and add to add or remove lists
+  while (op < o.length && np < n.length) {
+    if (o[op] < n[np]) {
+      // push to diff?
+      r.push(o[op]);
+      op++;
+    } else if (o[op] > n[np]) {
+      // push to diff?
+      a.push(n[np]);
+      np++;
+    } else {
+      op++;
+      np++;
+    }
+  }
+
+  // add remaining items
+  if (np < n.length) a = a.concat(n.slice(np, n.length));
+  if (op < o.length) r = r.concat(o.slice(op, o.length));
+
+  return { added: a, removed: r };
+}
+
+export function pull<T>(sourceArray: T[], ...removeList: T[]): T[] {
+  const removeSet = new Set(removeList);
+  return sourceArray.filter(el => !removeSet.has(el));
+}
+
 /**
  * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
  */

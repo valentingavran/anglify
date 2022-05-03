@@ -22,7 +22,7 @@ import { ListItemComponent } from '../list-item/list-item.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements AfterViewInit {
-  @ContentChildren(ListItemComponent) public listItems?: QueryList<ListItemComponent>;
+  @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
 
   @Input() public dense: BooleanLike = false;
   @Output() public readonly onItemClick = new EventEmitter<void>();

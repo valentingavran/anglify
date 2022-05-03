@@ -38,10 +38,11 @@ export * from './modules/icon/icon.component';
 export * from './modules/icon/icon.interface';
 export * from './modules/icon/icon.module';
 // List
-export * from './modules/list/components/list-item-description/list-item-description.component';
-export * from './modules/list/components/list-item-title/list-item-title.component';
-export * from './modules/list/components/list-item/list-item.component';
 export * from './modules/list/components/list/list.component';
+export * from './modules/list/components/list-item/list-item.component';
+export * from './modules/list/components/list-item-description/list-item-description.component';
+export * from './modules/list/components/list-item-group/list-item-group.component';
+export * from './modules/list/components/list-item-title/list-item-title.component';
 export * from './modules/list/directives/append/append.directive';
 export * from './modules/list/directives/prepend/prepend.directive';
 export * from './modules/list/list.module';
