@@ -19,7 +19,7 @@ Please read and follow our [Code of Conduct](https://github.com/valentingavran/a
 ## <a name="question"></a> Got a Question or Problem?
 
 Do not open issues for general support questions as we want to keep GitHub issues for bug reports and feature requests.
-Instead, we recommend using [Stack Overflow](https://stackoverflow.com/questions/tagged/anglify) to ask support-related questions. When creating a new question on Stack Overflow, make sure to add the `anglify` tag.
+Instead, we recommend using [Stack Overflow](https://stackoverflow.com/questions/tagged/anglify) to ask support-related questions. When creating a new question on Stack Overflow, add the `anglify` tag.
 
 Stack Overflow is a much better place to ask questions since:
 
@@ -27,22 +27,22 @@ Stack Overflow is a much better place to ask questions since:
 - questions and answers stay available for public viewing so your question/answer might help someone else
 - Stack Overflow's voting system assures that the best answers are prominently visible.
 
-To save your and our time, we will systematically close all issues that are requests for general support and redirect people to Stack Overflow.
+To save your time and ours, we will systematically close all issues that are requests for general support and redirect people to Stack Overflow.
 
 ## <a name="issue"></a> Found a Bug?
 
 If you find a bug in the source code, you can help us by [submitting an issue](#submit-issue) to our [GitHub Repository](https://github.com/valentingavran/anglify).
-Even better, you can [submit a Pull Request](#submit-pr) with a fix.
+You can also [submit a Pull Request](#submit-pr) with a fix.
 
 ## <a name="feature"></a> Missing a Feature?
 
 You can _request_ a new feature by [submitting an issue](#submit-issue) to our GitHub Repository.
-If you would like to _implement_ a new feature, please consider the size of the change in order to determine the right steps to proceed:
+If you would like to _implement_ a new feature, please consider the size of the change to determine the proper steps to proceed:
 
-- For a **Major Feature**, first open an issue and outline your proposal so that it can be discussed.
-  This process allows us to better coordinate our efforts, prevent duplication of work, and help you to craft the change so that it is successfully accepted into the project.
+- For a **major feature**, first open a topic and outline your proposal so it can be discussed.
+  This process allows us to coordinate our efforts better, prevent duplication of work, and help you craft the change to the project.
 
-  **Note**: Adding a new topic to the documentation, or significantly re-writing a topic, counts as a major feature.
+  **Note**: Adding a new topic to the documentation or significantly re-writing a topic counts as a major feature.
 
 - **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
 
@@ -56,13 +56,12 @@ We want to fix all the issues as soon as possible, but before fixing a bug, we n
 In order to reproduce bugs, we require that you provide a minimal reproduction.
 Having a minimal reproducible scenario gives us a wealth of important information without going back and forth to you with additional questions.
 
-A minimal reproduction allows us to quickly confirm a bug (or point out a coding problem) as well as confirm that we are fixing the right problem.
+A minimal reproduction allows us to quickly confirm a bug (or point out a coding problem) and ensures that we are fixing the right problem.
 
-We require a minimal reproduction to save maintainers time and ultimately be able to fix more bugs.
 Often, developers find coding problems themselves while preparing a minimal reproduction.
-We understand that sometimes it might be hard to extract essential bits of code from a larger codebase but we really need to isolate the problem before we can fix it.
+We understand that sometimes it might be hard to extract essential bits of code from a larger codebase, but we need to isolate the problem before we can fix it.
 
-Unfortunately, we are not able to investigate / fix bugs without a minimal reproduction, so if we don't hear back from you, we are going to close an issue that doesn't have enough info to be reproduced.
+Unfortunately, we cannot investigate / fix bugs without a minimal reproduction, so if we don't hear back from you, we are going to close an issue that doesn't have enough info to be reproduced.
 
 You can file new issues by selecting from our [new issue templates](https://github.com/valentingavran/anglify/issues/new/choose) and filling out the issue template.
 
@@ -73,8 +72,8 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 1. Search [GitHub](https://github.com/valentingavran/anglify/pulls) for an open or closed PR that relates to your submission.
    You don't want to duplicate existing efforts.
 
-2. Be sure that an issue describes the problem you're fixing, or documents the design for the feature you'd like to add.
-   Discussing the design upfront helps to ensure that we're ready to accept your work.
+2. Be sure that an issue describes the problem you're fixing or documents the design for the feature you'd like to add.
+   By discussing the design up front, we can ensure that we are ready to accept your work.
 
 3. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the valentingavran/anglify repo.
 
@@ -97,7 +96,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
    git commit --all
    ```
 
-   Note: the optional commit `-a` command line option will automatically "add" and "rm" edited files.
+   Note: the optional commit `-a` command-line option will automatically "add" and "rm" edited files.
 
 9. Push your branch to GitHub:
 
@@ -109,17 +108,17 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 
 ### Reviewing a Pull Request
 
-The Anglify team reserves the right not to accept pull requests from community members who haven't been good citizens of the community. Such behavior includes not following the [Anglify code of conduct](https://github.com/valentingavran/anglify/code-of-conduct) and applies within or outside of Anglify managed channels.
+The Anglify team reserves the right to reject pull requests from community members who haven't been good community citizens. Such behavior includes not following the [Anglify code of conduct](https://github.com/valentingavran/anglify/code-of-conduct) and applies within or outside of Anglify managed channels.
 
 #### Addressing review feedback
 
-If we ask for changes via code reviews then:
+If we ask for changes via code reviews, then:
 
 1. Make the required updates to the code.
 
 2. Re-run the Anglify test suites to ensure tests are still passing.
 
-3. Create a fixup commit and push to your GitHub repository (this will update your Pull Request):
+3. Create a fixup commit and push it to your GitHub repository (this will update your Pull Request):
 
    ```shell
    git commit --all --fixup HEAD
@@ -131,7 +130,7 @@ That's it! Thank you for your contribution!
 ##### Updating the commit message
 
 A reviewer might often suggest changes to a commit message (for example, to add more context for a change or adhere to our [commit message guidelines](<(#commit)>).
-In order to update the commit message of the last commit on your branch:
+To update the commit message of the last commit on your branch:
 
 1. Check out your branch:
 
@@ -157,7 +156,7 @@ In order to update the commit message of the last commit on your branch:
 
 #### After your pull request is merged
 
-After your pull request is merged, you can safely delete your branch and pull the changes from the main (upstream) repository:
+You can safely delete your branch after your pull request was merged and pull the changes from the main (upstream) repository::
 
 - Delete the remote branch on GitHub either through the GitHub web UI or your local shell as follows:
 
@@ -193,9 +192,8 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 
 ## <a name="commit"></a> Commit Message Format
 
-We have very precise rules over how our git commit messages can be formatted. This leads to **more
-readable messages** that are easy to follow when looking through the **project history**. But also,
-we use the git commit messages to **generate the Anglify change log**.
+We have very precise rules over how our git commit messages can be formatted. These rules lead to **more
+readable messages** that are easy to follow when looking through the **project history**. But also use the git commit messages to **generate the Anglify change log**.
 
 ### Commit Message Format
 
@@ -210,10 +208,9 @@ format that includes a **type**, a **scope** and a **subject**:
 <footer>
 ```
 
-The **header** is mandatory. The `scope` field can be omitted if the change does not affect a specific
-module and is not displayed in the changelog (e.g. build changes or refactorings).
+The **header** is mandatory. However, you can omit the 'scope' field if the change does not affect a specific module scope.
 
-Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
+Any line of the commit message cannot be longer than 100 characters! This allows the message to be easier
 to read on GitHub as well as in various git tools.
 
 Example:
@@ -221,7 +218,7 @@ Example:
 ```
 fix(button): unable to disable button through binding
 
-Fixes a bug in the `button` component where buttons cannot be disabled through an binding. This is
+Fixes a bug in the `button` component where buttons cannot be disabled through a binding. This is
 because the `disabled` input did not set the `disabled` class on the host element.
 
 Fixes #1234
@@ -240,7 +237,7 @@ Must be one of the following:
 - **feat**: A new feature
 - **fix**: 'A bug fix
 - **docs**: Documentation only changes
-- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **style**: Changes that do not affect the meaning of the code (whitespace, formatting, missing semi-colons, etc.)
 - **refactor**: A code change that neither fixes a bug nor adds a feature
 - **perf**: A code change that improves performance
 - **test**: Adding missing tests or correcting existing tests
@@ -251,15 +248,15 @@ Must be one of the following:
 
 ### Scope
 
-The scope specifies place of the commit change. For example
+The scope specifies the place of the commit change. For example
 `stepper`, `button`, etc.
 
 ### Subject
 
-The subject contains succinct description of the change:
+The subject contains a succinct description of the change:
 
 - use the imperative, present tense: "change" not "changed" nor "changes"
-- don't capitalize first letter
+- don't capitalize the first letter
 - no dot (.) at the end
 
 ### Body
