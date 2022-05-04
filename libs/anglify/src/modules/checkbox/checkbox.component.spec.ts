@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { CheckboxComponent } from './checkbox.component';
 import { DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
-import { PipeModule } from '../../pipes/pipe.module';
+import { AnglifyCommonModule } from '../common/anglify-common.module';
 import { InteractionStateModule } from '../interaction-state/interaction-state.module';
-
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
@@ -12,7 +11,7 @@ describe('CheckboxComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CheckboxComponent],
-      imports: [FormsModule, PipeModule, InteractionStateModule],
+      imports: [FormsModule, AnglifyCommonModule, InteractionStateModule],
     }).compileComponents();
   });
 

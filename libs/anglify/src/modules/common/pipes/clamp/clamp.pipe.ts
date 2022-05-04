@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { clamp } from '../../utils/functions';
+import { clamp } from 'libs/anglify/src/utils/functions';
 
 @Pipe({
   name: 'clamp',

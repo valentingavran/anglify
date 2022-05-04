@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { toBoolean } from 'libs/anglify/src/utils/functions';
+import { BooleanLike } from 'libs/anglify/src/utils/interfaces';
 
 @Pipe({
   name: 'booleanLikeToBoolean',
