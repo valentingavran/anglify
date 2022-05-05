@@ -1,9 +1,9 @@
-<div *ngIf="prependDirective" class="prepend">
-  <ng-container [ngTemplateOutlet]="prependDirective.template" [ngTemplateOutletContext]="{ active: active$ | async }"></ng-container>
+<div class="prepend">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'; context: { active: active$ | async }"></ng-container>
 </div>
 <div class="content">
   <ng-content></ng-content>
 </div>
-<div *ngIf="appendDirective" class="append">
-  <ng-container [ngTemplateOutlet]="appendDirective.template" [ngTemplateOutletContext]="{ active: active$ | async }"></ng-container>
+<div class="append">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'append'; context: { active: active$ | async }"></ng-container>
 </div>

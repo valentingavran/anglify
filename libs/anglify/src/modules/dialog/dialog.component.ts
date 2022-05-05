@@ -21,13 +21,10 @@ export class DialogComponent implements OnInit {
   private readonly dialogElement!: ElementRef<HTMLElement>;
 
   public constructor(
-    @Inject(DOCUMENT)
-    private readonly document: Document,
+    @Inject(DOCUMENT) private readonly document: Document,
     elementRef: ElementRef<HTMLElement>,
-    @Inject(DIALOG_CONTEXT)
-    private readonly context: DialogContext,
-    @Inject(DIALOG_NODES)
-    private readonly nodes: HTMLElement[]
+    @Inject(DIALOG_CONTEXT) private readonly context: DialogContext,
+    @Inject(DIALOG_NODES) private readonly nodes: HTMLElement[]
   ) {
     this.nodes.forEach(node => elementRef.nativeElement.appendChild(node));
   }

@@ -4,27 +4,25 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
+  ContentChildren,
   ElementRef,
   HostBinding,
   Inject,
   Input,
+  QueryList,
   Self,
   ViewChild,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { AppendIconDirective } from './directives/icon/append-icon.directive';
-import { AppendOuterIconDirective } from './directives/icon/append-outer-icon.directive';
-import { PrependIconDirective } from './directives/icon/prepend-icon.directive';
-import { PrependOuterIconDirective } from './directives/icon/prepend-outer-icon.directive';
 import { InputDirective } from './directives/input.directive';
-import { LabelDirective } from './directives/label/label.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
 import type { FormFieldSettings, FormFieldType } from './form-field.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
+import { SlotDirective } from '../common/directives/slot/slot.directive';
 
 @UntilDestroy()
 @Component({
@@ -35,13 +33,10 @@ import type { BooleanLike } from '../../utils/interfaces';
   providers: [createSettingsProvider<FormFieldSettings>('anglifyFormFieldSettings', DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS)],
 })
 export class FormFieldComponent implements AfterViewInit {
+  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
   @ContentChild(InputDirective) public readonly input?: InputDirective;
-  @ContentChild(LabelDirective) public readonly labelDirective?: LabelDirective;
+
   @ViewChild('prependItem') public readonly prependItem?: ElementRef<HTMLElement>;
-  @ContentChild(PrependIconDirective) public prependIconDirective?: PrependIconDirective;
-  @ContentChild(PrependOuterIconDirective) public prependOuterIconDirective?: PrependOuterIconDirective;
-  @ContentChild(AppendIconDirective) public appendIconDirective?: AppendIconDirective;
-  @ContentChild(AppendOuterIconDirective) public appendOuterIconDirective?: AppendOuterIconDirective;
 
   @Input() public type: FormFieldType = this.settings.defaultType;
   @Input() public hint?: string;
@@ -99,7 +94,7 @@ export class FormFieldComponent implements AfterViewInit {
     if (toBoolean(this.dense)) {
       classNames.push('dense');
     }
-    if (this.labelDirective || this.label) {
+    if (SlotDirective.getSlot(this.slots, 'label') || this.label) {
       classNames.push('has-label');
     }
     if (toBoolean(this.hideDetails)) {
