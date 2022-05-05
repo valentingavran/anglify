@@ -8,7 +8,7 @@ import { InteractionStateModule } from '../interaction-state/interaction-state.m
 
 @NgModule({
   declarations: [CheckboxComponent],
-  imports: [CommonModule, FormsModule, IconModule, InteractionStateModule, AnglifyCommonModule],
-  exports: [CheckboxComponent, InteractionStateModule],
+  imports: [AnglifyCommonModule, CommonModule, FormsModule, IconModule, InteractionStateModule],
+  exports: [AnglifyCommonModule, CheckboxComponent, InteractionStateModule],
 })
 export class CheckboxModule {}

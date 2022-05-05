@@ -2,7 +2,11 @@
 <anglify-checkbox checked class="checkbox-medium">Check me!</anglify-checkbox>
 <anglify-checkbox checked class="checkbox-large"> Check me! </anglify-checkbox>
 <anglify-checkbox checked class="checkbox-x-large" ripple="false">
-  <anglify-icon onIcon icon="mdi-cards-heart"></anglify-icon>
-  <anglify-icon offIcon icon="mdi-cards-heart-outline"></anglify-icon>
+  <ng-template slot="onIcon">
+    <anglify-icon icon="mdi-cards-heart"></anglify-icon>
+  </ng-template>
+  <ng-template slot="offIcon">
+    <anglify-icon icon="mdi-cards-heart-outline"></anglify-icon>
+  </ng-template>
   No ripple!
 </anglify-checkbox>

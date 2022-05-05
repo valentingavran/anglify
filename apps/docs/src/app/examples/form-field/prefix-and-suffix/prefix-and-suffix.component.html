@@ -6,16 +6,19 @@
   <input anglifyInput />
 </anglify-form-field>
 
-<anglify-form-field type="outlined" suffix="kg" prepend-icon="mdi-scale-bathroom" label="Weight">
+<anglify-form-field type="outlined" suffix="kg" label="Weight">
+  <ng-template slot="prepend-inner">
+    <anglify-icon icon="mdi-scale-bathroom"></anglify-icon>
+  </ng-template>
   <input anglifyInput />
 </anglify-form-field>
 
-<anglify-form-field
-  type="outlined"
-  prepend-icon="mdi-email"
-  suffix="@example.com"
-  append-icon="mdi-dots-horizontal-circle-outline"
-  persistent-placeholder
->
+<anglify-form-field type="outlined" suffix="@example.com" persistent-placeholder>
+  <ng-template slot="prepend-inner">
+    <anglify-icon icon="mdi-email"></anglify-icon>
+  </ng-template>
+  <ng-template slot="append-inner">
+    <anglify-icon icon="mdi-dots-horizontal-circle-outline"></anglify-icon>
+  </ng-template>
   <input anglifyInput placeholder="john.doe" style="text-align: end" />
 </anglify-form-field>

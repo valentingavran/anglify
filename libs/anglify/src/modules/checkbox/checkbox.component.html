@@ -14,10 +14,10 @@
       [state]="state | booleanLikeToBoolean"
     ></div>
     <span #reflectOffIcon [style.display]="!(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons">
-      <ng-content select="[offIcon]"></ng-content>
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'offIcon'"></ng-container>
     </span>
     <span #reflectOnIcon [style.display]="(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons">
-      <ng-content select="[onIcon]"></ng-content>
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'onIcon'"></ng-container>
     </span>
     <span #offIcon [style.display]="!(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons"></span>
     <span #onIcon [style.display]="(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons"></span>
@@ -27,5 +27,3 @@
     <ng-content></ng-content>
   </span>
 </label>
-
-<ng-template #default> </ng-template>

@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, switchMap, tap } from 'rxjs';
@@ -7,8 +17,7 @@ import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { bindClassToNativeElement, toBoolean } from '../../../../utils/functions';
 import type { BooleanLike } from '../../../../utils/interfaces';
 import { filterEmpty } from '../../../../utils/operator-functions';
-import { AppendDirective } from '../../directives/append/append.directive';
-import { PrependDirective } from '../../directives/prepend/prepend.directive';
+import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 
 @UntilDestroy()
 @Component({
@@ -19,8 +28,7 @@ import { PrependDirective } from '../../directives/prepend/prepend.directive';
   providers: [RIPPLE],
 })
 export class ListItemComponent {
-  @ContentChild(AppendDirective) public readonly appendDirective?: AppendDirective;
-  @ContentChild(PrependDirective) public readonly prependDirective?: PrependDirective;
+  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @Input()
   public set active(value: BooleanLike) {

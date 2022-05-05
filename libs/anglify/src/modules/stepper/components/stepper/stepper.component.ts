@@ -1,21 +1,11 @@
 import { animate, group, query, state, style, transition, trigger } from '@angular/animations';
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  ContentChildren,
-  ElementRef,
-  Input,
-  Output,
-  QueryList,
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, ElementRef, Input, Output, QueryList } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
+import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { Step } from '../../directives/step/step.directive';
-import { StepperVisitedIconDirective } from '../../directives/stepper-visited-icon/stepper-visited-icon.directive';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { Stepper } from '../../services/stepper/stepper.service';
 
@@ -59,7 +49,7 @@ import { Stepper } from '../../services/stepper/stepper.service';
 })
 export class StepperComponent extends Stepper implements AfterContentInit {
   @ContentChildren(Step) private readonly _steps?: QueryList<Step>;
-  @ContentChild(StepperVisitedIconDirective) public readonly stepperVisitedIcon?: StepperVisitedIconDirective;
+  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @Input()
   public set stepConnectionLine(value: BooleanLike) {

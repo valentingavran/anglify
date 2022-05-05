@@ -7,7 +7,7 @@ import { InteractionStateModule } from '../interaction-state/interaction-state.m
 
 @NgModule({
   declarations: [RadioButtonComponent],
-  imports: [CommonModule, FormsModule, InteractionStateModule, AnglifyCommonModule],
-  exports: [RadioButtonComponent, InteractionStateModule],
+  imports: [AnglifyCommonModule, CommonModule, FormsModule, InteractionStateModule],
+  exports: [AnglifyCommonModule, RadioButtonComponent, InteractionStateModule],
 })
 export class RadioButtonModule {}

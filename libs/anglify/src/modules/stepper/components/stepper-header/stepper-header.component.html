@@ -3,7 +3,7 @@
   <div *ngIf="bottomStepConnectionLineVisible$ | async" class="step-connection-line bottom"></div>
   <div class="step-indicator">
     <div *ngIf="visited && (active$ | async) === false; else defaultIndicator">
-      <ng-container [ngTemplateOutlet]="stepperVisitedIcon.template"></ng-container>
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'visitedIcon'"></ng-container>
     </div>
   </div>
 </div>
