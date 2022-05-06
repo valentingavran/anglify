@@ -3,7 +3,7 @@
   <anglify-list>
     <anglify-list-item-group multiple>
       <anglify-list-item state="false">
-        <ng-template anglifyPrepend let-active="active">
+        <ng-template slot="prepend" let-active="active">
           <anglify-checkbox [checked]="active" readonly></anglify-checkbox>
         </ng-template>
         <anglify-list-item-title>Notifications</anglify-list-item-title>
@@ -12,14 +12,14 @@
         </anglify-list-item-description>
       </anglify-list-item>
       <anglify-list-item state="false">
-        <ng-template anglifyPrepend let-active="active">
+        <ng-template slot="prepend" let-active="active">
           <anglify-checkbox [checked]="active" readonly></anglify-checkbox>
         </ng-template>
         <anglify-list-item-title>Updates</anglify-list-item-title>
         <anglify-list-item-description [lineClamp]="2">Auto-update apps at any time. Data charges may apply </anglify-list-item-description>
       </anglify-list-item>
       <anglify-list-item state="false">
-        <ng-template anglifyPrepend let-active="active">
+        <ng-template slot="prepend" let-active="active">
           <anglify-checkbox [checked]="active" readonly></anglify-checkbox>
         </ng-template>
         <anglify-list-item-title>Auto-add widgets</anglify-list-item-title>

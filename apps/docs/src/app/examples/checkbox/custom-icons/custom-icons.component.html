@@ -1,11 +1,17 @@
 <anglify-checkbox checked>Check me!</anglify-checkbox>
 <anglify-checkbox checked ripple="false">No ripple!</anglify-checkbox>
 <anglify-checkbox checked>
-  <anglify-icon onIcon icon="mdi-cards-heart"></anglify-icon>
+  <ng-template slot="onIcon">
+    <anglify-icon icon="mdi-cards-heart"></anglify-icon>
+  </ng-template>
   Custom On, Global Off Icon
 </anglify-checkbox>
 <anglify-checkbox checked>
-  <anglify-icon onIcon icon="mdi-bookmark"></anglify-icon>
-  <anglify-icon offIcon icon="mdi-bookmark-outline"></anglify-icon>
+  <ng-template slot="onIcon">
+    <anglify-icon icon="mdi-bookmark"></anglify-icon>
+  </ng-template>
+  <ng-template slot="offIcon">
+    <anglify-icon icon="mdi-bookmark-outline"></anglify-icon>
+  </ng-template>
   Custom Icon!
 </anglify-checkbox>

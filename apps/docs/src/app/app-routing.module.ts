@@ -15,12 +15,12 @@ import { RadioButtonPageComponent } from './pages/component-pages/radio-button-p
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
-import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    redirectTo: 'getting-started/installation',
+    pathMatch: 'full',
   },
   {
     path: 'components/button',

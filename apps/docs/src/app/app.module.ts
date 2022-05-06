@@ -52,12 +52,10 @@ import { RadioButtonPageComponent } from './pages/component-pages/radio-button-p
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
-import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     StylingTableComponent,
     CodeExampleComponent,
     ButtonPageComponent,

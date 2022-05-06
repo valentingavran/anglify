@@ -1,11 +1,40 @@
-<div>
-  <button anglifyButton appearance="icon" (click)="openGithubRepo()">
-    <anglify-icon icon="mdi-github"></anglify-icon>
-  </button>
-  <button anglifyButton appearance="icon" (click)="toggleTheme()">
-    <anglify-icon icon="mdi-theme-light-dark"></anglify-icon>
-  </button>
-</div>
+<anglify-nav-drawer fixed>
+  <div class="headline-m">Anglify</div>
+  <anglify-list dense>
+    <anglify-list-item-group mandatory>
+      <anglify-list-group active>
+        <ng-template slot="activator:prepend">
+          <anglify-icon icon="mdi-text-box"></anglify-icon>
+        </ng-template>
+        <ng-template slot="activator">
+          <anglify-list-item-title>Introduction</anglify-list-item-title>
+        </ng-template>
+        <anglify-list-item *ngFor="let article of gettingStarted" [routerLink]="article.link">
+          <anglify-list-item-title>{{ article.name }}</anglify-list-item-title>
+        </anglify-list-item>
+      </anglify-list-group>
+      <anglify-list-group active>
+        <ng-template slot="activator:prepend">
+          <anglify-icon icon="mdi-toggle-switch-outline"></anglify-icon>
+        </ng-template>
+        <ng-template slot="activator">
+          <anglify-list-item-title>Components</anglify-list-item-title>
+        </ng-template>
+        <anglify-list-item *ngFor="let component of components" [routerLink]="component.link">
+          <anglify-list-item-title>{{ component.name }}</anglify-list-item-title>
+        </anglify-list-item>
+      </anglify-list-group>
+    </anglify-list-item-group>
+  </anglify-list>
+</anglify-nav-drawer>
 <main>
+  <div class="toolbar">
+    <button anglifyButton appearance="icon" (click)="openGithubRepo()">
+      <anglify-icon icon="mdi-github"></anglify-icon>
+    </button>
+    <button anglifyButton appearance="icon" (click)="toggleTheme()">
+      <anglify-icon icon="mdi-theme-light-dark"></anglify-icon>
+    </button>
+  </div>
   <router-outlet></router-outlet>
 </main>

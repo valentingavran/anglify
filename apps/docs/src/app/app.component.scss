@@ -1,11 +1,17 @@
 :host {
-  div {
+  display: flex;
+
+  .toolbar {
     display: flex;
     justify-content: flex-end;
-    padding: 14px;
+  }
+
+  .headline-m {
+    margin: 1rem;
   }
 
   main {
     margin: 1rem;
+    flex-grow: 1;
   }
 }

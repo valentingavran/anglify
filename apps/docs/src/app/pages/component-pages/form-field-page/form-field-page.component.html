@@ -10,18 +10,18 @@
       [hide-details]="hideDetails"
       [hint]="hint"
     >
-      <ng-template anglifyPrependIcon>
+      <ng-template slot="prepend-inner">
         <anglify-icon [icon]="prependIcon ? 'mdi-home' : ''"></anglify-icon>
       </ng-template>
-      <ng-template anglifyPrependOuterIcon>
+      <ng-template slot="prepend">
         <anglify-icon [icon]="prependOuterIcon ? 'mdi-home' : ''"></anglify-icon>
       </ng-template>
-      <ng-template anglifyLabel>{{ label }}</ng-template>
+      <ng-template slot="label">{{ label }}</ng-template>
       <input anglifyInput [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder" />
-      <ng-template anglifyAppendIcon>
+      <ng-template slot="append-inner">
         <anglify-icon [icon]="appendIcon ? 'mdi-home' : ''"></anglify-icon>
       </ng-template>
-      <ng-template anglifyAppendOuterIcon>
+      <ng-template slot="append">
         <anglify-icon [icon]="appendOuterIcon ? 'mdi-home' : ''"></anglify-icon>
       </ng-template>
     </anglify-form-field>

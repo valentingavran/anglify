@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -9,6 +10,7 @@ import {
   Input,
   Optional,
   Output,
+  QueryList,
   Renderer2,
   Self,
   ViewChild,
@@ -22,6 +24,7 @@ import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
+import { SlotDirective } from '../common/directives/slot/slot.directive';
 
 @Component({
   selector: 'anglify-checkbox',
@@ -38,6 +41,8 @@ import type { BooleanLike } from '../../utils/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
+  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+
   @ViewChild('offIcon', { read: ElementRef }) public offIcon!: ElementRef<HTMLElement>;
   @ViewChild('onIcon', { read: ElementRef }) public onIcon!: ElementRef<HTMLElement>;
   @ViewChild('defaultIcon') public defaultIcon!: ElementRef<HTMLElement>;

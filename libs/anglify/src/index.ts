@@ -15,6 +15,14 @@ export * from './modules/checkbox/tokens/checkbox.token';
 export * from './modules/checkbox/checkbox.component';
 export * from './modules/checkbox/functions/register-icons.function';
 export * from './modules/checkbox/checkbox.module';
+// Common
+export * from './modules/common/directives/slot/slot.directive';
+export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
+export * from './modules/common/pipes/boolean-like-to-boolean/boolean-like-to-boolean.pipe';
+export * from './modules/common/pipes/clamp/clamp.pipe';
+export * from './modules/common/pipes/find-slot/find-slot.pipe';
+export * from './modules/common/pipes/percent/percent.pipe';
+export * from './modules/common/anglify-common.module';
 // Dialog
 export * from './modules/dialog/dialog-context.interface';
 export * from './modules/dialog/dialog-options.interface';
@@ -23,11 +31,6 @@ export * from './modules/dialog/dialog.service';
 export * from './modules/dialog/dialog.module';
 // Form Field
 export * from './modules/form-field/directives/input.directive';
-export * from './modules/form-field/directives/label/label.directive';
-export * from './modules/form-field/directives/icon/prepend-icon.directive';
-export * from './modules/form-field/directives/icon/prepend-outer-icon.directive';
-export * from './modules/form-field/directives/icon/append-icon.directive';
-export * from './modules/form-field/directives/icon/append-outer-icon.directive';
 export * from './modules/form-field/form-field-settings.token';
 export * from './modules/form-field/form-field.component';
 export * from './modules/form-field/form-field.interface';
@@ -39,12 +42,11 @@ export * from './modules/icon/icon.interface';
 export * from './modules/icon/icon.module';
 // List
 export * from './modules/list/components/list/list.component';
+export * from './modules/list/components/list-group/list-group.component';
 export * from './modules/list/components/list-item/list-item.component';
 export * from './modules/list/components/list-item-description/list-item-description.component';
 export * from './modules/list/components/list-item-group/list-item-group.component';
 export * from './modules/list/components/list-item-title/list-item-title.component';
-export * from './modules/list/directives/append/append.directive';
-export * from './modules/list/directives/prepend/prepend.directive';
 export * from './modules/list/list.module';
 // Menu
 export * from './modules/menu/components/menu/menu.component';
@@ -78,7 +80,6 @@ export * from './modules/stepper/components/stepper/stepper.component';
 export * from './modules/stepper/directives/step/step.directive';
 export * from './modules/stepper/directives/stepper-next/stepper-next.directive';
 export * from './modules/stepper/directives/stepper-previous/stepper-previous.directive';
-export * from './modules/stepper/directives/stepper-visited-icon/stepper-visited-icon.directive';
 export * from './modules/stepper/services/stepper-settings/stepper-settings.service';
 export * from './modules/stepper/services/stepper/stepper.service';
 export * from './modules/stepper/stepper-testing.module';
