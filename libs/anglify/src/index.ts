@@ -92,7 +92,3 @@ export * from './modules/tooltip/tooltip-settings.token';
 export * from './modules/tooltip/tooltip.directive';
 export * from './modules/tooltip/tooltip.interface';
 export * from './modules/tooltip/tooltip.module';
-// Utils
-export * from './utils/functions';
-export * from './utils/interfaces';
-export * from './utils/operator-functions';
