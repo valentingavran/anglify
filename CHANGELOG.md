@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.17.1](https://github.com/valentingavran/anglify/compare/v0.17.0...v0.17.1) (2022-05-06)
+
+
+### 🐛  Bug Fixes
+
+* export missing util functions ([c3d6046](https://github.com/valentingavran/anglify/commit/c3d6046fe868ef69ce314429653ba036caaeb19f))
+
 ## [0.17.0](https://github.com/valentingavran/anglify/compare/v0.16.0...v0.17.0) (2022-05-06)
 
 
