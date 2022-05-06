@@ -1,8 +1,8 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, forwardRef, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { toBoolean } from 'libs/anglify/src/utils/functions';
-import { BooleanLike } from 'libs/anglify/src/utils/interfaces';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { ListItemComponent } from '../list-item/list-item.component';
 
 @UntilDestroy()
