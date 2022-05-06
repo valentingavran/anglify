@@ -1,9 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { toBoolean } from 'libs/anglify/src/utils/functions';
-import { BooleanLike } from 'libs/anglify/src/utils/interfaces';
 import { BehaviorSubject, filter, tap } from 'rxjs';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { ListItemComponent } from '../list-item/list-item.component';
 
