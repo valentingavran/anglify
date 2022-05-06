@@ -20,7 +20,7 @@
       "section": "🐎  Performance"
     },
     {
-      "type": "reverts",
+      "type": "revert",
       "section": "🔄  Reverts"
     },
     {
