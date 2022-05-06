@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.17.2](https://github.com/valentingavran/anglify/compare/v0.17.1...v0.17.2) (2022-05-06)
+
+
+### 🔄  Reverts
+
+* export missing util functions ([9f02644](https://github.com/valentingavran/anglify/commit/9f026441573fe977125b39157ef856249149de83))
+
+
+### 🐛  Bug Fixes
+
+* change absolute import paths to relative ones in some places ([f733ed3](https://github.com/valentingavran/anglify/commit/f733ed3ac66bb302ce487b5e425d31b8978e7ef3))
+
+
+### 🛠  Other Commmits
+
+* **release:** 0.17.2 ([53e996e](https://github.com/valentingavran/anglify/commit/53e996ebf24566932a3f1321b3cd13e32039955d))
+* **release:** 0.17.2 ([debf753](https://github.com/valentingavran/anglify/commit/debf753f8537e81515b150150fccaf0a540589ca))
+
 ### [0.17.1](https://github.com/valentingavran/anglify/compare/v0.17.0...v0.17.1) (2022-05-06)
 
 
