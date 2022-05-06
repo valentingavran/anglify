@@ -1,0 +1,16 @@
+<anglify-list-item (click)="toggle()">
+  <ng-container *ngIf="slots | findSlot: 'activator:prepend'">
+    <ng-template slot="prepend">
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'activator:prepend'"></ng-container>
+    </ng-template>
+  </ng-container>
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'activator'"></ng-container>
+  <ng-template slot="append">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'activator:append'">
+      <anglify-icon icon="mdi-chevron-down" [@rotatedState]="active$ | async"></anglify-icon>
+    </ng-container>
+  </ng-template>
+</anglify-list-item>
+<div *ngIf="active$ | async" class="anglify-list-group-items" @fast-in-fast-out-y>
+  <ng-content></ng-content>
+</div>

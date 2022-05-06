@@ -42,6 +42,7 @@ export * from './modules/icon/icon.interface';
 export * from './modules/icon/icon.module';
 // List
 export * from './modules/list/components/list/list.component';
+export * from './modules/list/components/list-group/list-group.component';
 export * from './modules/list/components/list-item/list-item.component';
 export * from './modules/list/components/list-item-description/list-item-description.component';
 export * from './modules/list/components/list-item-group/list-item-group.component';

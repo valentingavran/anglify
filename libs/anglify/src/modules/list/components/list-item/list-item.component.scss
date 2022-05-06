@@ -28,3 +28,15 @@
 :host-context(.selectable) {
   user-select: auto;
 }
+
+:host-context(.anglify-list-group-items) {
+  padding-inline-start: 56px;
+}
+
+:host-context(.anglify-list-group-items .anglify-list-group-items) {
+  padding-inline-start: 96px;
+}
+
+:host-context(.anglify-list-group-items .anglify-list-group-items .anglify-list-group-items) {
+  padding-inline-start: 136px;
+}
