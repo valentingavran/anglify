@@ -7,11 +7,11 @@
   position: relative;
   background: transparent;
 
-  .anglify-progress-linear__background {
-    background: $progress-linear-background-color;
+  .anglify-progress-linear__track {
+    background: $progress-linear-track-color;
     bottom: 0;
     left: 0;
-    opacity: $progress-linear-background-opacity;
+    opacity: 0.24;
     position: absolute;
     top: 0;
     transition-property: width, left, right;
@@ -20,7 +20,7 @@
 
   .anglify-progress-linear__determinate,
   .anglify-progress-linear__indeterminate {
-    background: $progress-linear-indicator-color;
+    background: $progress-linear-overlay-color;
   }
 
   .anglify-progress-linear__determinate {
@@ -58,7 +58,7 @@
     animation-name: stream-ltr;
     animation-iteration-count: infinite;
     left: auto;
-    opacity: $progress-linear-stream-opacity;
+    opacity: 0.24;
     pointer-events: none;
     position: absolute;
     transition: inherit;

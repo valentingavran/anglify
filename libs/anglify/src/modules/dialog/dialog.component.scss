@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use '../../styles/mixins/elevation' as *;
 
 .anglify-dialog-container {
   display: flex;
@@ -13,10 +14,11 @@
   max-height: 100%;
   pointer-events: $dialog-pointer-events;
   overflow-y: auto;
-  box-shadow: $dialog-box-shadow;
   background: $dialog-background;
   border-radius: $dialog-border-radius;
   padding: $dialog-padding;
+  @include elevationTransition();
+  @include elevation(24);
 }
 
 .anglify-dialog-backdrop {

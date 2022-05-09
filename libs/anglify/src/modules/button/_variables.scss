@@ -1,60 +1,43 @@
-$button-inline-padding-start: var(--anglify-button-inline-padding-start, 24px);
-$button-inline-padding-start-dense: var(--anglify-button-inline-padding-start-dense, 16px);
-$button-inline-padding-end: var(--anglify-button-inline-padding-end, 24px);
-$button-inline-padding-end-dense: var(--anglify-button-inline-padding-end-dense, 16px);
+$button-height: var(--anglify-button-height, 36px) !default;
+$button-inline-padding-start: var(--anglify-button-inline-padding-start, 16px) !default;
+$button-inline-padding-start-icon: var(--anglify-button-inline-padding-start-icon, 12px) !default;
+$button-inline-padding-start-text: var(--anglify-button-inline-padding-start-text, 8px) !default;
+$button-inline-padding-start-extended-fab: var(--anglify-button-inline-padding-start-extended-fab, 12px) !default;
+$button-inline-padding-end: var(--anglify-button-inline-padding-end, 16px) !default;
+$button-inline-padding-end-icon: var(--anglify-button-inline-padding-end-icon, 16px) !default;
+$button-inline-padding-end-text: var(--anglify-button-inline-padding-end-text, 8px) !default;
+$button-inline-padding-end-extended-fab: var(--anglify-button-inline-padding-end-extended-fab, 20px) !default;
 
-$button-elevated-background: var(--anglify-button-elevated-background, var(--color-surface));
-$button-elevated-label-color: var(--anglify-button-elevated-label-color, var(--color-primary));
-$button-elevated-label-font: var(--anglify-button-elevated-label-font, medium 14px/20px Roboto sans-serif);
-$button-elevated-height: var(--anglify-button-elevated-height, 40px);
-$button-elevated-border-radius: var(--anglify-button-elevated-border-radius, 20px);
+$button-contained-background: var(--anglify-button-contained-background, var(--color-primary)) !default;
+$button-contained-background-disabled: var(--anglify-button-contained-background, var(--color-surface)) !default;
+$button-contained-label-color: var(--anglify-button-contained-label-color, var(--color-on-primary)) !default;
+$button-contained-label-color-disabled: var(--anglify-button-contained-label-color, var(--color-on-surface-low-emphasis)) !default;
+$button-contained-label-font: var(--anglify-button-contained-label-font, medium 14px/16px Roboto sans-serif) !default;
+$button-contained-border-radius: var(--anglify-button-contained-border-radius, 4px) !default;
 
-$button-filled-background: var(--anglify-button-filled-background, var(--color-primary));
-$button-filled-background-disabled: var(--anglify-button-filled-background, var(--color-surface));
-$button-filled-label-color: var(--anglify-button-filled-label-color, var(--color-on-primary-high-emphasis));
-$button-filled-label-color-disabled: var(--anglify-button-filled-label-color, var(--color-on-surface-low-emphasis));
-$button-filled-label-font: var(--anglify-button-filled-label-font, medium 14px/20px Roboto sans-serif);
-$button-filled-height: var(--anglify-button-filled-height, 40px);
-$button-filled-border-radius: var(--anglify-button-filled-border-radius, 20px);
+$button-outlined-background: var(--anglify-button-outlined-background, var(--color-surface)) !default;
+$button-outlined-background-disabled: var(--anglify-button-outlined-background, var(--color-surface)) !default;
+$button-outlined-label-color: var(--anglify-button-outlined-label-color, var(--color-on-surface-high-emphasis)) !default;
+$button-outlined-label-color-disabled: var(--anglify-button-outlined-label-color, var(--color-on-surface-low-emphasis)) !default;
+$button-outlined-label-font: var(--anglify-button-outlined-label-font, medium 14px/16px Roboto sans-serif) !default;
+$button-outlined-border-radius: var(--anglify-button-outlined-border-radius, 4px) !default;
+$button-outline-border: var(--anglify-button-outline-border, 1px solid var(--border-color-on-surface-low-emphasis)) !default;
 
-$button-filled-tonal-background: var(--anglify-button-filled-tonal-background, var(--color-secondary-container));
-$button-filled-tonal-background-disabled: var(--anglify-button-filled-tonal-background, var(--color-surface));
-$button-filled-tonal-label-color: var(--anglify-button-filled-tonal-label-color, var(--color-on-secondary-container-high-emphasis));
-$button-filled-tonal-label-color-disabled: var(--anglify-button-filled-tonal-label-color, var(--color-on-surface-low-emphasis));
-$button-filled-tonal-label-font: var(--anglify-button-filled-tonal-label-font, medium 14px/20px Roboto sans-serif);
-$button-filled-tonal-height: var(--anglify-button-filled-tonal-height, 40px);
-$button-filled-tonal-border-radius: var(--anglify-button-filled-tonal-border-radius, 20px);
+$button-text-label-color: var(--anglify-button-text-label-color, var(--color-primary)) !default;
+$button-text-label-color-disabled: var(--anglify-button-text-label-color, var(--color-on-surface-low-emphasis)) !default;
+$button-text-label-font: var(--anglify-button-text-label-font, medium 14px/16px Roboto sans-serif) !default;
+$button-text-border-radius: var(--anglify-button-text-border-radius, 4px) !default;
 
-$button-outlined-background: var(--anglify-button-outlined-background, var(--color-surface));
-$button-outlined-background-disabled: var(--anglify-button-outlined-background, var(--color-surface));
-$button-outlined-label-color: var(--anglify-button-outlined-label-color, var(--color-on-surface-high-emphasis));
-$button-outlined-label-color-disabled: var(--anglify-button-outlined-label-color, var(--color-on-surface-low-emphasis));
-$button-outlined-label-font: var(--anglify-button-outlined-label-font, medium 14px/20px Roboto sans-serif);
-$button-outlined-height: var(--anglify-button-outlined-height, 40px);
-$button-outlined-border-radius: var(--anglify-button-outlined-border-radius, 20px);
-$button-outline-border: var(--anglify-button-outline-border, 1px solid var(--color-outline-primary));
+$button-icon-label-color: var(--anglify-button-icon-label-color, var(--color-on-surface-medium-emphasis)) !default;
+$button-icon-label-color-disabled: var(--anglify-button-icon-label-color, var(--color-on-surface-low-emphasis)) !default;
+$button-icon-border-radius: var(--anglify-button-icon-border-radius, 50%) !default;
+$button-icon-size: var(--anglify-button-icon-size, 40px) !default;
 
-$button-text-label-color: var(--anglify-button-text-label-color, var(--color-primary));
-$button-text-label-color-disabled: var(--anglify-button-text-label-color, var(--color-on-surface-low-emphasis));
-$button-text-label-font: var(--anglify-button-text-label-font, medium 14px/20px Roboto sans-serif);
-$button-text-height: var(--anglify-button-text-height, 40px);
-$button-text-border-radius: var(--anglify-button-text-border-radius, 20px);
+$button-fab-background: var(--anglify-button-fab-background, var(--color-secondary)) !default;
+$button-fab-label-color: var(--anglify-button-icon-label-color, var(--color-on-secondary-high-emphasis)) !default;
+$button-fab-border-radius: var(--anglify-button-fab-border-radius, 50px) !default;
+$button-fab-label-font: var(--anglify-button-fab-label-font, medium 14px/16px Roboto sans-serif) !default;
+$button-fab-size: var(--anglify-button-fab-size, 56px) !default;
 
-$button-icon-label-color: var(--anglify-button-icon-label-color, var(--color-on-surface-medium-emphasis));
-$button-icon-label-color-disabled: var(--anglify-button-icon-label-color, var(--color-on-surface-low-emphasis));
-$button-icon-border-radius: var(--anglify-button-icon-border-radius, 20px);
-
-$button-fab-background: var(--anglify-button-fab-background, var(--color-primary-container));
-$button-fab-label-color: var(--anglify-button-icon-label-color, var(--color-on-primary-container-high-emphasis));
-$button-fab-border-radius: var(--anglify-button-fab-border-radius, 12px);
-
-$button-sizes: (
-  x-small: var(--anglify-button-size-x-small, 24px),
-  small: var(--anglify-button-size-small, 32px),
-  regular: var(--anglify-button-size-regular, 40px),
-  large: var(--anglify-button-size-large, 48px),
-  x-large: var(--anglify-button-size-x-large, 56px),
-) !default;
-
-$button-hover-state-color: var(--anglify-hover-state-color, var(--color-state-hover-inactive));
-$button-focus-state-color: var(--anglify-focus-state-color, var(--color-state-focus-inactive));
+$button-hover-state-color: var(--anglify-hover-state-color, var(--color-primary-state-hover)) !default;
+$button-focus-state-color: var(--anglify-focus-state-color, var(--color-primary-state-focus)) !default;
