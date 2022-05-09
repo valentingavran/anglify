@@ -12,7 +12,7 @@ $stepper-step-indicator-transition: var(--anglify-stepper-step-indicator-transit
 $stepper-step-indicator-font-size: var(--anglify-stepper-step-indicator-font-size, 16px) !default;
 $stepper-step-indicator-text-color-inactive: var(
   --anglify-stepper-step-indicator-text-color-inactive,
-  var(--color-on-surface-overlay-high-emphasis)
+  var(--color-on-surface-high-emphasis)
 ) !default;
 $stepper-step-indicator-text-color-active: var(
   --anglify-stepper-step-indicator-text-color-active,

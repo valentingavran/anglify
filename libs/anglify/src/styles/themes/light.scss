@@ -1,4 +1,4 @@
-:root {
+@mixin light-theme {
   --color-primary: #6e00ee;
   --color-on-primary: #ffffff;
   --color-on-primary-high-emphasis: rgb(255, 255, 255, 0.87);
@@ -33,5 +33,7 @@
   --color-on-surface-overlay-high-emphasis: rgb(0, 0, 0, 0.87);
   --color-on-surface-overlay-medium-emphasis: rgb(0, 0, 0, 0.6);
   --color-on-surface-overlay-low-emphasis: rgb(0, 0, 0, 0.38);
+  --color-elevated: var(--color-surface);
   --color-backdrop: rgb(0, 0, 0, 0.12);
+  --color-ripple: rgb(0, 0, 0, 0.12);
 }
