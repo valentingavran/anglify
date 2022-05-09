@@ -1,15 +1,18 @@
 $stepper-header-height: var(--anglify-stepper-header-height, 72px) !default;
 $stepper-step-container-padding: var(--anglify-stepper-step-container-padding, 14px 0 0 0) !default;
 $stepper-step-connection-line-offset: var(--anglify-stepper-step-connection-line-offset, 8px) !default;
-$stepper-step-connection-line-color: var(--anglify-stepper-step-connection-line-color, var(--color-outline-secondary)) !default;
+$stepper-step-connection-line-color: var(
+  --anglify-stepper-step-connection-line-color,
+  var(--border-color-on-surface-low-emphasis)
+) !default;
 $stepper-step-indicator-size: var(--anglify-stepper-step-indicator-size, 40%) !default;
-$stepper-step-indicator-color-inactive: var(--anglify-stepper-step-indicator-color-inactive, var(--color-surface-variant-darker)) !default;
+$stepper-step-indicator-color-inactive: var(--anglify-stepper-step-indicator-color-inactive, var(--color-surface-overlay)) !default;
 $stepper-step-indicator-color-active: var(--color-primary) !default;
 $stepper-step-indicator-transition: var(--anglify-stepper-step-indicator-transition, none) !default;
 $stepper-step-indicator-font-size: var(--anglify-stepper-step-indicator-font-size, 16px) !default;
 $stepper-step-indicator-text-color-inactive: var(
   --anglify-stepper-step-indicator-text-color-inactive,
-  var(--color-on-surface-variant-darker-high-emphasis)
+  var(--color-on-surface-overlay-high-emphasis)
 ) !default;
 $stepper-step-indicator-text-color-active: var(
   --anglify-stepper-step-indicator-text-color-active,
@@ -21,5 +24,5 @@ $stepper-label-color-inactive: var(--anglify-stepper-label-color-inactive, rgba(
 $stepper-label-color-active: var(--anglify-stepper-label-color-active, var(--color-primary)) !default;
 $stepper-label-transition: var(--anglify-stepper-label-transition, color 500ms ease-out) !default;
 
-$stepper-hover-state-color: var(--anglify-stepper-hover-state-color, var(--color-state-hover-inactive));
-$stepper-focus-state-color: var(--anglify-stepper-focus-state-color, var(--color-state-focus-inactive));
+$stepper-hover-state-color: var(--anglify-stepper-hover-state-color, var(--color-primary-state-hover));
+$stepper-focus-state-color: var(--anglify-stepper-focus-state-color, var(--color-primary-state-focus));

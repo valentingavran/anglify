@@ -6,10 +6,10 @@
     border-spacing: 0;
     white-space: pre-wrap;
     border-radius: 14px;
-    border: 1px solid var(--color-outline-secondary);
+    border: 1px solid var(--border-color-on-surface-low-emphasis);
 
     tr:nth-child(even) {
-      background-color: var(--color-surface-variant);
+      background-color: var(--color-surface-overlay);
     }
 
     td,

@@ -2,9 +2,8 @@ import { InjectionToken } from '@angular/core';
 import { ButtonSettings } from './button.interface';
 
 export const DEFAULT_BUTTON_SETTINGS: Required<ButtonSettings> = {
-  appearance: 'filled',
+  appearance: 'contained',
   block: false,
-  size: 'regular',
   ripple: true,
   state: true,
 };

@@ -1,7 +1,7 @@
 @mixin notched-outline($border-radius: 4px, $transition-duration) {
   $border-style: solid;
   $start-width: var(--anglify-notched-outline-start-width, 0);
-  $border-color: var(--anglify-notched-outline-border-color, #000);
+  $border-color: var(--anglify-notched-outline-border-color, #000000);
   $border-width: var(--anglify-notched-outline-border-width, 1px);
   $notch-width: var(--anglify-notched-outline-notch-width, 100%);
   $padding: var(--anglify-notched-outline-padding, 4px);

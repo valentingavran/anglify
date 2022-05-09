@@ -4,7 +4,7 @@ $table-background: var(--anglify-table-background, var(--color-surface)) !defaul
 $table-border-width: var(--anglify-table-border-width, 1px) !default;
 $table-border-style: var(--anglify-table-border-style, solid) !default;
 $table-border-radius: var(--anglify-table-border-radius, 4px) !default;
-$table-border-color: var(--anglify-table-border-color, var(--color-outline-secondary)) !default;
+$table-border-color: var(--anglify-table-border-color, var(--border-color-on-surface-low-emphasis)) !default;
 $table-fixed-height: var(--anglify-table-fixed-height, false) !default;
 $table-header-cell-padding-left: var(--anglify-table-header-cell-padding-left, 16px) !default;
 $table-header-cell-padding-right: var(--anglify-table-header-cell-padding-right, 16px) !default;

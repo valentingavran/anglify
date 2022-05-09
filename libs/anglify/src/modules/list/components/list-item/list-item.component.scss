@@ -22,7 +22,7 @@
 }
 
 :host-context(.active) {
-  --state-container-color: var(--color-state-focus-active);
+  --state-container-color: var(--color-primary-state-focus);
 }
 
 :host-context(.selectable) {
