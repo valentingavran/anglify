@@ -1,37 +1,11 @@
 @use '../../../libs/anglify/src/styles/index';
-@use '../../../libs/anglify/src/styles/themes/light';
+@use '../../../libs/anglify/src/styles/themes/light' as *;
 @use '../../../libs/anglify/src/modules/table';
 @use '../../../libs/anglify/src/styles/settings/typography.scss';
-/* You can add global styles to this file, and also import other style files */
-html,
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--color-background);
-  color: var(--color-on-background-high-emphasis);
-}
-
-h1 {
-  @extend .display-s;
-}
-
-h2 {
-  @extend .headline-m;
-}
-
-h3 {
-  @extend .headline-s;
-}
-
-a {
-  color: var(--color-primary);
-}
-
-p {
-  @extend .body-l;
-}
 
 :root {
+  @include light-theme;
+
   &.light {
     @import '~highlight.js/scss/github.scss';
   }
@@ -64,6 +38,34 @@ p {
     --color-primary-state-hover: rgba(255, 255, 255, 0.08);
     --color-primary-state-focus: rgba(255, 255, 255, 0.12);
   }
+}
+
+html,
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-background-high-emphasis);
+}
+
+h1 {
+  @extend .display-s;
+}
+
+h2 {
+  @extend .headline-m;
+}
+
+h3 {
+  @extend .headline-s;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+p {
+  @extend .body-l;
 }
 
 pre {

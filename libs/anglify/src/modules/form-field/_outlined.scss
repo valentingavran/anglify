@@ -2,11 +2,11 @@
 @use '../../styles/mixins/notched-outline' as *;
 
 :host-context(.form-field-type-outlined) {
-  --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-inactive};
+  --anglify-icon-inactive-color: #{$form-field-outlined-icon-color};
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
   .form-field-container {
-    background-color: $form-field-outlined-background-inactive;
+    background-color: $form-field-outlined-background;
     padding-inline-start: $form-field-outlined-padding-start;
     padding-inline-end: $form-field-outlined-padding-start;
 
@@ -20,7 +20,7 @@
 
     .form-field-border {
       @include notched-outline($form-field-outlined-border-radius, $transition-duration);
-      --anglify-notched-outline-border-color: #{$form-field-outlined-border-color-inactive};
+      --anglify-notched-outline-border-color: #{$form-field-outlined-border-color};
       --anglify-notched-outline-start-width: #{$form-field-outlined-padding-start};
 
       .notch * {
@@ -81,7 +81,7 @@
           input,
           textarea {
             &::placeholder {
-              color: $form-field-outlined-placeholder-color-inactive;
+              color: $form-field-outlined-placeholder-color;
             }
           }
         }
@@ -119,13 +119,13 @@
       ::ng-deep {
         input,
         textarea {
-          color: $form-field-outlined-text-color-inactive;
+          color: $form-field-outlined-text-color;
         }
       }
 
       .label {
-        color: $form-field-outlined-label-color-inactive;
-        --anglify-icon-inactive-color: $form-field-outlined-label-color-inactive;
+        color: $form-field-outlined-label-color;
+        --anglify-icon-inactive-color: $form-field-outlined-label-color;
       }
 
       &:hover {
