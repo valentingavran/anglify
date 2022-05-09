@@ -1,5 +1,6 @@
 @use '../../../libs/anglify/src/styles/index';
 @use '../../../libs/anglify/src/styles/themes/light' as *;
+@use '../../../libs/anglify/src/styles/themes/dark' as *;
 @use '../../../libs/anglify/src/modules/table';
 @use '../../../libs/anglify/src/styles/settings/typography.scss';
 
@@ -12,31 +13,7 @@
 
   &.dark {
     @import '~highlight.js/scss/github-dark.scss';
-
-    --color-primary: #ffd500;
-    --color-on-primary-high-emphasis: rgb(0, 0, 0, 0.87);
-    --color-on-primary-medium-emphasis: rgb(0, 0, 0, 0.6);
-    --color-on-primary-low-emphasis: rgb(0, 0, 0, 0.38);
-    --color-background: #0a1929;
-    --color-on-background-high-emphasis: rgb(255, 255, 255, 0.87);
-    --color-on-background-medium-emphasis: rgb(255, 255, 255, 0.6);
-    --color-on-background-low-emphasis: rgb(255, 255, 255, 0.38);
-    --color-surface: #0e233a;
-    --color-on-surface-high-emphasis: rgb(255, 255, 255, 0.87);
-    --color-on-surface-medium-emphasis: rgb(255, 255, 255, 0.6);
-    --color-on-surface-low-emphasis: rgb(255, 255, 255, 0.38);
-    --color-surface-overlay: rgba(255, 255, 255, 0.1);
-    --color-on-surface-overlay-high-emphasis: rgb(255, 255, 255, 0.87);
-    --color-on-surface-overlay-medium-emphasis: rgb(255, 255, 255, 0.6);
-    --color-on-surface-overlay-low-emphasis: rgb(255, 255, 255, 0.38);
-    --color-surface-overlay-darker: rgba(255, 255, 255, 0.38);
-    --color-on-surface-overlay-darker-high-emphasis: rgb(0, 0, 0, 0.87);
-    --color-on-surface-overlay-darker-medium-emphasis: rgb(0, 0, 0, 0.6);
-    --color-on-surface-overlay-darker-low-emphasis: rgb(0, 0, 0, 0.38);
-    --border-color-on-surface-medium-emphasis: rgba(255, 255, 255, 0.54);
-    --border-color-on-surface-low-emphasis: rgba(255, 255, 255, 0.12);
-    --color-primary-state-hover: rgba(255, 255, 255, 0.08);
-    --color-primary-state-focus: rgba(255, 255, 255, 0.12);
+    @include dark-theme;
   }
 }
 
