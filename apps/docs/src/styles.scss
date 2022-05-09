@@ -38,6 +38,7 @@ p {
 
   &.dark {
     @import '~highlight.js/scss/github-dark.scss';
+
     --color-primary: #ffd500;
     --color-on-primary-high-emphasis: rgb(0, 0, 0, 0.87);
     --color-on-primary-medium-emphasis: rgb(0, 0, 0, 0.6);
@@ -50,20 +51,18 @@ p {
     --color-on-surface-high-emphasis: rgb(255, 255, 255, 0.87);
     --color-on-surface-medium-emphasis: rgb(255, 255, 255, 0.6);
     --color-on-surface-low-emphasis: rgb(255, 255, 255, 0.38);
-    --color-surface-variant: rgba(255, 255, 255, 0.1);
-    --color-on-surface-variant-high-emphasis: rgb(255, 255, 255, 0.87);
-    --color-on-surface-variant-medium-emphasis: rgb(255, 255, 255, 0.6);
-    --color-on-surface-variant-low-emphasis: rgb(255, 255, 255, 0.38);
-    --color-surface-variant-darker: rgba(255, 255, 255, 0.38);
-    --color-on-surface-variant-darker-high-emphasis: rgb(0, 0, 0, 0.87);
-    --color-on-surface-variant-darker-medium-emphasis: rgb(0, 0, 0, 0.6);
-    --color-on-surface-variant-darker-low-emphasis: rgb(0, 0, 0, 0.38);
-    --color-outline-primary: rgba(255, 255, 255, 0.54);
-    --color-outline-secondary: rgba(255, 255, 255, 0.12);
-    --color-state-hover-inactive: rgba(255, 255, 255, 0.08);
-    --color-state-focus-inactive: rgba(255, 255, 255, 0.12);
-    --color-state-hover-active: #ffd50014; // 8% Primary
-    --color-state-focus-active: #ffd5001f; // 12% Primary
+    --color-surface-overlay: rgba(255, 255, 255, 0.1);
+    --color-on-surface-overlay-high-emphasis: rgb(255, 255, 255, 0.87);
+    --color-on-surface-overlay-medium-emphasis: rgb(255, 255, 255, 0.6);
+    --color-on-surface-overlay-low-emphasis: rgb(255, 255, 255, 0.38);
+    --color-surface-overlay-darker: rgba(255, 255, 255, 0.38);
+    --color-on-surface-overlay-darker-high-emphasis: rgb(0, 0, 0, 0.87);
+    --color-on-surface-overlay-darker-medium-emphasis: rgb(0, 0, 0, 0.6);
+    --color-on-surface-overlay-darker-low-emphasis: rgb(0, 0, 0, 0.38);
+    --border-color-on-surface-medium-emphasis: rgba(255, 255, 255, 0.54);
+    --border-color-on-surface-low-emphasis: rgba(255, 255, 255, 0.12);
+    --color-primary-state-hover: rgba(255, 255, 255, 0.08);
+    --color-primary-state-focus: rgba(255, 255, 255, 0.12);
   }
 }
 
@@ -78,7 +77,7 @@ pre {
 }
 
 code {
-  background-color: var(--color-surface-variant) !important;
+  background-color: var(--color-surface-overlay) !important;
   border-radius: 14px;
   white-space: pre;
   padding: 0 0.5rem !important;
@@ -98,14 +97,14 @@ td code {
 .playground {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  border: 1px solid var(--color-outline-secondary);
+  border: 1px solid var(--border-color-on-surface-low-emphasis);
   border-radius: 14px;
 
   .content {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: 1px solid var(--color-outline-secondary);
+    border-right: 1px solid var(--border-color-on-surface-low-emphasis);
     padding: 24px;
 
     anglify-form-field {

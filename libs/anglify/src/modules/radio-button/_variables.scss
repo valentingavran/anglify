@@ -1,4 +1,4 @@
-$radio-button-border-color: var(--anglify-radio-button-border-color, var(--color-outline-primary));
+$radio-button-border-color: var(--anglify-radio-button-border-color, var(--border-color-on-surface-medium-emphasis));
 $radio-button-disabled-color: var(--anglify-radio-button-disabled-color, var(--color-on-background-low-emphasis));
 $radio-button-checked-dot-color: var(--anglify-radio-button-checked-icon-color, var(--color-primary));
 $radio-button-checked-color: var(--anglify-radio-button-checked-color, var(--color-primary));
@@ -20,7 +20,7 @@ $radio-button-ripple-width: var(--anglify-radio-button-ripple-width, 40px);
 $radio-button-ripple-inner-width: var(--anglify-radio-button-ripple-inner-width, 24px);
 $radio-button-ripple-inner-height: var(--anglify-radio-button-ripple-inner-height, 24px);
 
-$radio-button-hover-state-inactive-color: var(--anglify-radio-button-hover-state-inactive-color, var(--color-state-hover-inactive));
-$radio-button-hover-state-active-color: var(--anglify-radio-button-hover-state-active-color, var(--color-state-hover-active));
-$radio-button-focus-state-inactive-color: var(--anglify-radio-button-focus-state-inactive-color, var(--color-state-focus-inactive));
-$radio-button-focus-state-active-color: var(--anglify-radio-button-focus-state-active-color, var(--color-state-focus-active));
+$radio-button-hover-state-inactive-color: var(--anglify-radio-button-hover-state-inactive-color, var(--color-primary-state-hover));
+$radio-button-hover-state-active-color: var(--anglify-radio-button-hover-state-active-color, var(--color-primary-state-hover));
+$radio-button-focus-state-inactive-color: var(--anglify-radio-button-focus-state-inactive-color, var(--color-primary-state-focus));
+$radio-button-focus-state-active-color: var(--anglify-radio-button-focus-state-active-color, var(--color-primary-state-focus));
