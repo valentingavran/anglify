@@ -57,7 +57,7 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  public get parentWidth(): boolean {
+  public get parentWidth() {
     return this._parentWidth;
   }
 
@@ -70,7 +70,7 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  public get offset(): number {
+  public get offset() {
     return this._offset;
   }
 
@@ -82,7 +82,7 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  public get position(): Position {
+  public get position() {
     return this._position;
   }
 
@@ -94,7 +94,7 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  public get contentClass(): string | undefined {
+  public get contentClass() {
     return this._contentClass;
   }
 

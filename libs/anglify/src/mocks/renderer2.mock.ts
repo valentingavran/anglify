@@ -1,5 +1,5 @@
 export class Renderer2Mock {
-  public createElement(element: string): HTMLElement {
+  public createElement(element: string) {
     return document.createElement(element);
   }
 

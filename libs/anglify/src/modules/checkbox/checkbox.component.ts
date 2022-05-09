@@ -81,7 +81,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     }
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     this.prepareIconDOM();
   }
 
@@ -94,7 +94,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
    * case 3: No Icons are delivered so default checkbox should be used
    * case 4: Combination of case 1 and case 2, in this case ViewContainerRef of iconProvider needs to remove overridden Icons from DOM
    */
-  public prepareIconDOM(): void {
+  public prepareIconDOM() {
     const reflectOnChildren = this.reflectOnIcon.nativeElement.children.length;
     const reflectOffChildren = this.reflectOffIcon.nativeElement.children.length;
 
@@ -133,15 +133,15 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     }
   }
 
-  public removeChildren(children: ElementRef[]): void {
+  public removeChildren(children: ElementRef[]) {
     children.forEach(child => this.renderer.removeChild(this.overlayContainer.nativeElement, child.nativeElement));
   }
 
-  public registerOnChange(fn: (...args: any[]) => void): void {
+  public registerOnChange(fn: (...args: any[]) => void) {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: (...args: any[]) => void): void {
+  public registerOnTouched(fn: (...args: any[]) => void) {
     this.onTouch = fn;
   }
 

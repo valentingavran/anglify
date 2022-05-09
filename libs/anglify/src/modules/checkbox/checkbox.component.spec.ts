@@ -4,6 +4,7 @@ import { CheckboxComponent } from './checkbox.component';
 import { DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
 import { AnglifyCommonModule } from '../common/anglify-common.module';
 import { InteractionStateModule } from '../interaction-state/interaction-state.module';
+
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
