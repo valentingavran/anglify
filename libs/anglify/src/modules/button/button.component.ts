@@ -27,7 +27,7 @@ export class ButtonComponent implements OnInit {
     this.rippleService.active = toBoolean(value);
   }
 
-  public get ripple(): boolean {
+  public get ripple() {
     return this.rippleService.active;
   }
 
@@ -36,7 +36,7 @@ export class ButtonComponent implements OnInit {
     this.rippleService.state = toBoolean(value);
   }
 
-  public get state(): boolean {
+  public get state() {
     return this.rippleService.state;
   }
 

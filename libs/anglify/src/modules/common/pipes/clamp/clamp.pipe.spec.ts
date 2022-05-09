@@ -5,6 +5,7 @@ describe('ClampPipe', () => {
     const pipe = new ClampPipe();
     expect(pipe).toBeTruthy();
   });
+
   it('should work as expected', () => {
     const pipe = new ClampPipe();
     expect(pipe.transform(-100, 0, 100)).toBe(0);

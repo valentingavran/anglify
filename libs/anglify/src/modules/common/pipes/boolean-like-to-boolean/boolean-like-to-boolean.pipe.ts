@@ -6,7 +6,7 @@ import { BooleanLike } from '../../../../utils/interfaces';
   name: 'booleanLikeToBoolean',
 })
 export class BooleanLikeToBooleanPipe implements PipeTransform {
-  public transform(value: BooleanLike): boolean {
+  public transform(value: BooleanLike) {
     return toBoolean(value);
   }
 }

@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 export class ModalDrawerComponent {
   @ViewChild('drawer') public drawer!: NavDrawerComponent;
 
-  public doSomething(): void {}
+  public doSomething() {}
 }
 
 export default ModalDrawerComponent;

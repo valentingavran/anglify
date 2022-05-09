@@ -38,7 +38,7 @@ export class ListComponent implements AfterViewInit {
     return classNames.join(' ');
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     this.listItems?.forEach(item => {
       item.onClick
         .asObservable()

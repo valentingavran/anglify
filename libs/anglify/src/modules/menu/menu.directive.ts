@@ -156,7 +156,7 @@ export class MenuDirective implements OnDestroy {
     this.embeddedView = undefined;
   }
 
-  private generateNgContent(): any[][] {
+  private generateNgContent() {
     if (this.content instanceof TemplateRef) {
       this.embeddedView = this.content.createEmbeddedView({});
       this.applicationRef.attachView(this.embeddedView);

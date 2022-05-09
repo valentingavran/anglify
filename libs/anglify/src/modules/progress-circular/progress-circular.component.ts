@@ -21,11 +21,11 @@ export class ProgressCircularComponent {
 
   public constructor(@Self() @Inject('anglifyProgressCircularSettings') private readonly settings: Required<ProgressCircularSettings>) {}
 
-  private get circumference(): number {
+  private get circumference() {
     return 2 * Math.PI * this.radius;
   }
 
-  private get normalizedValue(): number {
+  private get normalizedValue() {
     if (this.value < 0) {
       return 0;
     }
@@ -37,11 +37,11 @@ export class ProgressCircularComponent {
     return this.value;
   }
 
-  public get strokeDashArray(): number {
+  public get strokeDashArray() {
     return Math.round(this.circumference * 1000) / 1000;
   }
 
-  public get strokeDashOffset(): string {
+  public get strokeDashOffset() {
     return `${((100 - this.normalizedValue) / 100) * this.circumference}px`;
   }
 

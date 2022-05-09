@@ -62,7 +62,7 @@ export class NavDrawerComponent implements AfterViewInit {
 
   public constructor(@Self() @Inject('anglifyNavDrawerSettings') private readonly settings: Required<NavDrawerSettings>) {}
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     if (this.closeOnItemClick) {
       this.lists?.forEach(list => {
         list.onItemClick
@@ -75,15 +75,15 @@ export class NavDrawerComponent implements AfterViewInit {
     }
   }
 
-  public toggle(isOpen = !this.open): void {
+  public toggle(isOpen = !this.open) {
     this.setOpen(isOpen);
   }
 
-  private setOpen(isOpen: boolean): void {
+  private setOpen(isOpen: boolean) {
     this.open = isOpen;
   }
 
-  public onBackdropClick(): void {
+  public onBackdropClick() {
     if (this.closeOnOutsideClick) {
       this.setOpen(false);
     }
