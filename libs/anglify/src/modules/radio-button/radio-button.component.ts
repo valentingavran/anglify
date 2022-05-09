@@ -37,11 +37,11 @@ export class RadioButtonComponent implements ControlValueAccessor {
 
   public constructor(@Self() @Inject('anglifyRadioButtonSettings') private readonly settings: Required<RadioButtonSettings>) {}
 
-  public registerOnChange(fn: (...args: any[]) => void): void {
+  public registerOnChange(fn: (...args: any[]) => void) {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: (...args: any[]) => void): void {
+  public registerOnTouched(fn: (...args: any[]) => void) {
     this.onTouch = fn;
   }
 

@@ -13,7 +13,7 @@ export class ElevationService {
     this.currentElevation = elevation;
   }
 
-  public get elevation(): Elevation {
+  public get elevation() {
     return this.currentElevation;
   }
 }

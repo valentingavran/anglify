@@ -23,7 +23,7 @@ export class CardComponent {
     this.elevationService.elevation = value;
   }
 
-  public get elevation(): Elevation {
+  public get elevation() {
     return this.elevationService.elevation;
   }
 
@@ -32,7 +32,7 @@ export class CardComponent {
     this.rippleService.active = toBoolean(value);
   }
 
-  public get ripple(): boolean {
+  public get ripple() {
     return this.rippleService.active;
   }
 

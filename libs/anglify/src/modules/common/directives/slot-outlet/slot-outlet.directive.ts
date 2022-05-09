@@ -11,7 +11,7 @@ export class SlotOutletDirective implements OnChanges {
 
   public constructor(private readonly viewContainerRef: ViewContainerRef, private readonly templateRef: TemplateRef<any>) {}
 
-  public ngOnChanges(changes: { anglifySlotOutlet?: SimpleChange; anglifySlotOutletContext?: SimpleChange }): void {
+  public ngOnChanges(changes: { anglifySlotOutlet?: SimpleChange; anglifySlotOutletContext?: SimpleChange }) {
     if (changes.anglifySlotOutlet) {
       if (this.viewRef) {
         this.viewContainerRef.remove(this.viewContainerRef.indexOf(this.viewRef));
