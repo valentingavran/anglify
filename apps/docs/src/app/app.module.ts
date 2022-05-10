@@ -11,6 +11,7 @@ import {
   ProgressLinearModule,
   RadioButtonModule,
   TableModule,
+  ToolbarModule,
 } from '@anglify/components';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
@@ -36,6 +37,7 @@ import { ProgressLinearExamplesModule } from './examples/progress-linear/progres
 import { RadioButtonExamplesModule } from './examples/radio-button/radio-button-examples.module';
 import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
 import { TableExamplesModule } from './examples/table/table-examples.module';
+import { ToolbarExampleModule } from './examples/toolbar/toolbar-example.module';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
@@ -51,6 +53,7 @@ import { ProgressLinearPageComponent } from './pages/component-pages/progress-li
 import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
+import { ToolbarPageComponent } from './pages/component-pages/toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 
 @NgModule({
@@ -73,6 +76,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     RadioButtonPageComponent,
     DialogPageComponent,
     NavDrawerPageComponent,
+    ToolbarPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +113,8 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     RadioButtonExamplesModule,
     NavDrawerModule,
     NavDrawerExamplesModule,
+    ToolbarModule,
+    ToolbarExampleModule,
   ],
   providers: [
     {

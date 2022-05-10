@@ -1,0 +1,15 @@
+<div class="toolbar-container" [class.prominent]="prominent | booleanLikeToBoolean" [class.collapse]="collapse | booleanLikeToBoolean">
+  <div class="left" *ngIf="!(collapse | booleanLikeToBoolean)">
+    <div class="navigation" *ngIf="slots | findSlot: 'navigation'">
+      <ng-template *anglifySlotOutlet="slots | findSlot: 'navigation'"></ng-template>
+    </div>
+    <div class="title" *ngIf="slots | findSlot: 'title'">
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'title'"></ng-container>
+    </div>
+  </div>
+  <div class="right">
+    <div class="actions" *ngIf="slots | findSlot: 'actions'">
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'actions'"></ng-container>
+    </div>
+  </div>
+</div>
