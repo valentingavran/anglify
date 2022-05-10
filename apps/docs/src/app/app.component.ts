@@ -104,5 +104,9 @@ export class AppComponent {
       link: 'components/tooltip',
       name: 'Tooltip',
     },
+    {
+      link: 'components/toolbar',
+      name: 'Toolbar',
+    },
   ];
 }
