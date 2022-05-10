@@ -13,7 +13,9 @@
   </div>
   <div class="prepend" #prependItem>
     <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
-    <ng-container *ngIf="prefix">{{ prefix }}</ng-container>
+    <ng-container *ngIf="prefix">
+      <span>{{ prefix }}</span>
+    </ng-container>
   </div>
   <label>
     <span class="label" *ngIf="(slots | findSlot: 'label') || label" [style.margin-inline-start]="outlinedLabelPrefixMargin$ | async">
@@ -24,7 +26,9 @@
     <ng-content select="[anglifyInput]"></ng-content>
   </label>
   <div class="append">
-    <ng-container *ngIf="suffix">{{ suffix }}</ng-container>
+    <ng-container *ngIf="suffix">
+      <span>{{ suffix }}</span>
+    </ng-container>
     <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'"></ng-container>
   </div>
 </div>
