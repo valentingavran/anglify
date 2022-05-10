@@ -51,7 +51,7 @@
       ::ng-deep {
         input,
         textarea {
-          grid-column: 1;
+          grid-column: 1 / -1;
           grid-row: 1;
           border-style: none;
           outline: none;
@@ -80,9 +80,14 @@
 
     .prepend:not(:empty) {
       grid-area: prepend;
-      padding-inline-end: 14px;
       cursor: default;
       user-select: none;
+
+      ::ng-deep {
+        > * {
+          padding-inline-end: 4px;
+        }
+      }
     }
 
     .append:not(:empty) {
@@ -90,8 +95,10 @@
       cursor: default;
       user-select: none;
 
-      anglify-icon {
-        padding-inline-start: 14px;
+      ::ng-deep {
+        > * {
+          padding-inline-start: 4px;
+        }
       }
     }
   }
