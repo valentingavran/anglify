@@ -6,6 +6,7 @@
     "codezombiech.gitignore",
     "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
-    "firsttris.vscode-jest-runner"
+    "firsttris.vscode-jest-runner",
+    "stylelint.vscode-stylelint"
   ]
 }

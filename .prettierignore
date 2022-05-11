@@ -5,3 +5,4 @@ dist
 coverage
 package-lock.json
 CHANGELOG.md
+apps/docs/src/assets/style-definitions
