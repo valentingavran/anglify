@@ -14,7 +14,7 @@
   text-decoration: none;
   user-select: none;
   vertical-align: middle;
-  @include elevationTransition();
+  @include elevation-transition;
 
   &.contained,
   &.contained-tonal,
@@ -29,12 +29,12 @@
     cursor: not-allowed;
   }
 
-  &:hover:not(:disabled) {
-    --state-container-color: #{$button-hover-state-color};
-  }
-
   &:focus-visible {
     --state-container-color: #{$button-focus-state-color};
+  }
+
+  &:hover:not(:disabled) {
+    --state-container-color: #{$button-hover-state-color};
   }
 
   &.contained {
@@ -43,13 +43,13 @@
     font: $button-contained-label-font;
     border-radius: $button-contained-border-radius;
 
-    &:active:not(:disabled) {
-      @include elevation(16);
-    }
-
     &:disabled {
       background: $button-contained-background-disabled;
       color: $button-contained-label-color-disabled;
+    }
+
+    &:active:not(:disabled) {
+      @include elevation(16);
     }
   }
 

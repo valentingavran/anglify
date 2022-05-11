@@ -1,9 +1,11 @@
 @use 'variables' as *;
 
 ::ng-deep {
-  input:checked:not([disabled]) + .container .checkbox-custom-icons {
+  label .container .checkbox-custom-icons {
     anglify-icon {
-      color: $checkbox-checked-color;
+      width: 100%;
+      height: 100%;
+      font-size: $checkbox-custom-icon-size;
     }
   }
 
@@ -13,11 +15,9 @@
     }
   }
 
-  label .container .checkbox-custom-icons {
+  input:checked:not([disabled]) + .container .checkbox-custom-icons {
     anglify-icon {
-      width: 100%;
-      height: 100%;
-      font-size: $checkbox-custom-icon-size;
+      color: $checkbox-checked-color;
     }
   }
 }
@@ -61,7 +61,7 @@
         margin: auto;
         border-radius: $checkbox-border-radius;
 
-        &:after {
+        &::after {
           content: '';
           width: 0;
           height: $checkbox-icon-after-height;
@@ -75,9 +75,9 @@
           transform-origin: 0% 0%;
         }
 
-        &:before {
+        &::before {
           content: '';
-          width: 0px;
+          width: 0;
           height: $checkbox-icon-before-height;
           border-radius: 3px;
           background: $checkbox-icon-color;
@@ -90,6 +90,7 @@
         }
       }
 
+      /* stylelint-disable-next-line no-descending-specificity */
       .checkbox-custom-icons {
         height: $checkbox-custom-icon-size;
         width: $checkbox-custom-icon-size;
@@ -112,6 +113,27 @@
     user-select: none;
   }
 
+  // Unchecked styles for only enabled state
+  input:not(:disabled) {
+    & ~ .checkbox-label,
+    & ~ .container .state-container {
+      cursor: pointer;
+    }
+
+    & ~ .container {
+      .state-container:hover {
+        --state-container-color: #{$checkbox-hover-state-inactive-color};
+      }
+    }
+  }
+
+  // Unchecked styles for only disabled state
+  input:disabled {
+    & ~ .checkbox-label {
+      color: $checkbox-disabled-color;
+    }
+  }
+
   // Unchecked styles for both enabled and disabled state
   input:not(:checked) {
     &:focus-visible {
@@ -122,19 +144,21 @@
   }
 
   // Checked styles for both enabled and disabled state
+  /* stylelint-disable-next-line no-descending-specificity */
   input:checked {
+    /* stylelint-disable-next-line no-descending-specificity */
     & ~ .container {
       .check-box-effect {
         background-color: $checkbox-checked-color !important;
         border-color: $checkbox-checked-border-color;
 
-        &:before {
+        &::before {
           width: $checkbox-icon-before-width;
           background: $checkbox-checked-icon-color;
           transition: $checkbox-checked-icon-transition-speed;
         }
 
-        &:after {
+        &::after {
           width: $checkbox-icon-after-width;
           background: $checkbox-checked-icon-color;
           transition: $checkbox-checked-icon-transition-speed;
@@ -149,44 +173,23 @@
     }
   }
 
-  // Unchecked styles for only disabled state
-  input:disabled {
-    & ~ .checkbox-label {
-      color: $checkbox-disabled-color;
-    }
-  }
-
   // Checked styles for only disabled state
   input:checked:disabled + .container .check-box-effect {
     background-color: $checkbox-disabled-color !important;
     border-color: transparent;
   }
 
-  // Unchecked styles for only enabled state
-  input:not(:disabled) {
-    & ~ .container {
-      .state-container:hover {
-        --state-container-color: #{$checkbox-hover-state-inactive-color};
-      }
-    }
-
+  // Checked styles for only enabled state
+  input:checked:not(:disabled) {
     & ~ .checkbox-label,
     & ~ .container .state-container {
       cursor: pointer;
     }
-  }
 
-  // Checked styles for only enabled state
-  input:checked:not(:disabled) {
     & ~ .container {
       .state-container:hover {
         --state-container-color: #{$checkbox-hover-state-active-color};
       }
-    }
-
-    & ~ .checkbox-label,
-    & ~ .container .state-container {
-      cursor: pointer;
     }
   }
 }

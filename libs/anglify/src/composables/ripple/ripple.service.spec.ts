@@ -34,7 +34,7 @@ describe('RippleService', () => {
     // @ts-expect-error
     const container = service.createStateContainer();
 
-    expect(container.classList.value).toBe('anglify-state__container');
+    expect(container.classList.value).toBe('anglify-state-container');
     expect(nativeElement.contains(container)).toBeTruthy();
   });
 

@@ -1,7 +1,9 @@
 @use '../../../../styles/settings/typography';
 
 :host {
-  @extend .body-m;
+  @extend %body-m;
+
+  /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;

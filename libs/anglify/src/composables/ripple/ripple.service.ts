@@ -62,7 +62,7 @@ export class RippleService {
     const diff = Math.max(width, height) - Math.min(width, height);
 
     const focusContainer = this.renderer.createElement('div') as HTMLDivElement;
-    focusContainer.classList.add('anglify-state__ripple');
+    focusContainer.classList.add('anglify-state-ripple');
 
     Object.assign(focusContainer.style, {
       width: `${Math.max(width, height)}px`,
@@ -97,7 +97,7 @@ export class RippleService {
 
   private createStateContainer() {
     const container = this.renderer.createElement('div') as HTMLDivElement;
-    container.classList.add('anglify-state__container');
+    container.classList.add('anglify-state-container');
     this.renderer.appendChild(this.elementRef.nativeElement, container);
     return container;
   }
