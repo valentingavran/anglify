@@ -54,10 +54,12 @@
       stroke-dasharray: $progress-circular-stroke-start-dasharray;
       stroke-dashoffset: 0;
     }
+
     50% {
       stroke-dasharray: $progress-circular-stroke-end-dasharray;
       stroke-dashoffset: -35;
     }
+
     100% {
       stroke-dasharray: $progress-circular-stroke-end-dasharray;
       stroke-dashoffset: -124;

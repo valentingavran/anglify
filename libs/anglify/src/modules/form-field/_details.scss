@@ -12,6 +12,7 @@
 
     .hint {
       flex: 1;
+      /* stylelint-disable-next-line value-no-vendor-prefix */
       display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;

@@ -3,7 +3,7 @@
   overflow: hidden;
   outline: none;
 
-  .anglify-state__container {
+  .anglify-state-container {
     position: absolute;
     inset: 0;
     pointer-events: none;
@@ -13,7 +13,7 @@
     contain: strict;
   }
 
-  .anglify-state__ripple {
+  .anglify-state-ripple {
     background-color: var(--anglify-ripple-color, var(--color-ripple));
     transform: scale(0);
     position: absolute;

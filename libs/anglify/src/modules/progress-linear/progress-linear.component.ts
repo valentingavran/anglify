@@ -20,7 +20,7 @@ export class ProgressLinearComponent {
     const classNames = [];
 
     if (toBoolean(this.active)) {
-      classNames.push('anglify-progress-linear--active');
+      classNames.push('anglify-progress-linear-active');
     }
 
     return classNames.join(' ');

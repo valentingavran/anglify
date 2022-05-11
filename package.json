@@ -6,8 +6,8 @@
     "build": "node ./scripts/css-variable-extractor.js && nx build",
     "test": "nx test --project=anglify",
     "test:coverage": "nx test --coverage --project=anglify",
-    "lint": "prettier --check . && nx run-many --all --target=lint",
-    "format": "prettier --write . && nx run-many --all --target=lint --fix",
+    "lint": "prettier --check . && stylelint '**/*.scss' && nx run-many --all --target=lint",
+    "format": "prettier --write . && stylelint '**/*.scss' --fix && nx run-many --all --target=lint --fix",
     "build:anglify": "nx build anglify && rsync -av dist/libs/anglify/src/ dist/libs/anglify/ && rm -rf dist/libs/anglify/src",
     "release": "standard-version"
   },
@@ -71,6 +71,9 @@
     "postcss-url": "^10.1.3",
     "prettier": "^2.6.2",
     "standard-version": "^9.3.2",
+    "stylelint": "^14.8.2",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard-scss": "^3.0.0",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
   },

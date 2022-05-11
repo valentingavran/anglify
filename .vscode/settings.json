@@ -5,5 +5,7 @@
     "source.fixAll": true,
     "source.organizeImports": false
   },
+  "stylelint.snippet": ["css", "less", "postcss", "scss"],
+  "stylelint.validate": ["css", "less", "postcss", "scss"],
   "cSpell.words": ["anexia", "Anglify", "devkit", "highlightjs", "ngneat", "nrwl", "packagr"]
 }
