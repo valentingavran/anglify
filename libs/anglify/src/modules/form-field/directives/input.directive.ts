@@ -55,7 +55,7 @@ export class InputDirective implements OnInit {
     shareReplay(1)
   );
 
-  public valid$: Observable<string | null> = merge(this.statusChanged$, this.inputEvent$, fromEvent(this.nativeElement, 'focusout')).pipe(
+  public invalid$: Observable<string | null> = merge(this.statusChanged$, this.inputEvent$, fromEvent(this.nativeElement, 'focusout')).pipe(
     startWith(false),
     switchMap((_, index) => {
       const value = this.nativeElement.value;
@@ -68,6 +68,9 @@ export class InputDirective implements OnInit {
       if (this.ngControl?.disabled) {
         return of(null);
       }
+      if (this.ngControl?.untouched && this.ngControl.pristine) {
+        return of(null);
+      }
       // these checks must be ignored on first emit, because of startWith(false)
       if (index > 0) {
         // First validate Reactive Forms, because they have the highest priority
@@ -77,7 +80,7 @@ export class InputDirective implements OnInit {
           }
 
           // eslint-disable-next-line @typescript-eslint/dot-notation
-          return of(this.ngControl.errors?.['message'] ?? 'This field is invalid');
+          return of(this.ngControl.errors?.['message'] ?? null);
         }
 
         // If no reactive forms or if reactive form valid, validate native validation
@@ -122,7 +125,7 @@ export class InputDirective implements OnInit {
   public ngOnInit() {
     if (this.ngControl) {
       const abstractControl = this.ngControl.control;
-      abstractControl?.statusChanges.pipe(untilDestroyed(this)).subscribe(() => this.statusChanged$.next(true));
+      abstractControl?.statusChanges.pipe(untilDestroyed(this), distinctUntilChanged()).subscribe(() => this.statusChanged$.next(true));
     }
   }
 }

@@ -1,4 +1,4 @@
-import { FormFieldModule, IconModule } from '@anglify/components';
+import { ButtonModule, FormFieldModule, IconModule } from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import WithoutLabelComponent from './without-label/without-label.component';
 
 @NgModule({
-  imports: [CommonModule, FormFieldModule, ReactiveFormsModule, IconModule],
+  imports: [CommonModule, FormFieldModule, ReactiveFormsModule, IconModule, ButtonModule],
   declarations: [
     DisabledComponent,
     PlaceholderComponent,
