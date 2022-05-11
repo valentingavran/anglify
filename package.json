@@ -9,7 +9,8 @@
     "lint": "prettier --check . && stylelint '**/*.scss' && nx run-many --all --target=lint",
     "format": "prettier --write . && stylelint '**/*.scss' --fix && nx run-many --all --target=lint --fix",
     "build:anglify": "nx build anglify && rsync -av dist/libs/anglify/src/ dist/libs/anglify/ && rm -rf dist/libs/anglify/src",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepare": "is-ci || husky install"
   },
   "private": true,
   "dependencies": {
@@ -61,6 +62,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.1",
+    "is-ci": "^3.0.1",
     "jest": "^27.5.1",
     "jest-preset-angular": "^11.1.1",
     "ng-packagr": "^13.3.1",
