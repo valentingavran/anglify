@@ -17,7 +17,7 @@
   background: $dialog-background;
   border-radius: $dialog-border-radius;
   padding: $dialog-padding;
-  @include elevationTransition();
+  @include elevation-transition;
   @include elevation(24);
 }
 

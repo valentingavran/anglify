@@ -2,17 +2,19 @@
 @use '../../../libs/anglify/src/styles/themes/light' as *;
 @use '../../../libs/anglify/src/styles/themes/dark' as *;
 @use '../../../libs/anglify/src/modules/table';
-@use '../../../libs/anglify/src/styles/settings/typography.scss';
+@use '../../../libs/anglify/src/styles/settings/typography';
 
 :root {
   @include light-theme;
 
   &.light {
-    @import '~highlight.js/scss/github.scss';
+    /* stylelint-disable-next-line no-invalid-position-at-import-rule */
+    @import '~highlight.js/scss/github';
   }
 
   &.dark {
-    @import '~highlight.js/scss/github-dark.scss';
+    /* stylelint-disable-next-line no-invalid-position-at-import-rule */
+    @import '~highlight.js/scss/github-dark';
     @include dark-theme;
   }
 }
@@ -20,21 +22,21 @@
 html,
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
   background-color: var(--color-background);
   color: var(--color-on-background-high-emphasis);
 }
 
 h1 {
-  @extend .display-s;
+  @extend %display-s;
 }
 
 h2 {
-  @extend .headline-m;
+  @extend %headline-m;
 }
 
 h3 {
-  @extend .headline-s;
+  @extend %headline-s;
 }
 
 a {
@@ -42,7 +44,15 @@ a {
 }
 
 p {
-  @extend .body-l;
+  @extend %body-l;
+}
+
+code {
+  background-color: var(--color-surface-overlay) !important;
+  border-radius: 14px;
+  white-space: pre;
+  padding: 0 0.5rem !important;
+  @extend %body-l;
 }
 
 pre {
@@ -51,21 +61,13 @@ pre {
 
   code {
     padding: 1rem !important;
-    @extend .body-s;
+    @extend %body-s;
   }
-}
-
-code {
-  background-color: var(--color-surface-overlay) !important;
-  border-radius: 14px;
-  white-space: pre;
-  padding: 0 0.5rem !important;
-  @extend .body-l;
 }
 
 table {
   code {
-    @extend .body-s;
+    @extend %body-s;
   }
 }
 

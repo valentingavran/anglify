@@ -6,6 +6,10 @@
   display: flex;
   justify-content: space-between;
 
+  .title {
+    @extend %title-m;
+  }
+
   .toolbar-container {
     height: $toolbar-regular-height;
     background-color: $toolbar-background;
@@ -91,9 +95,5 @@
         margin-left: $toolbar-collapse-actions-margin-left;
       }
     }
-  }
-
-  .title {
-    @extend .title-m;
   }
 }

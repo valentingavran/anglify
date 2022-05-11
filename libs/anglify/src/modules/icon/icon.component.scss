@@ -47,6 +47,8 @@
     margin-inline-start: 8px;
   }
 }
+
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(button) {
   color: inherit;
 }

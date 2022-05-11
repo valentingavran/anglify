@@ -38,7 +38,6 @@
         border-radius: $radio-button-border-radius;
         margin: auto;
         align-content: center;
-        box-sizing: border-box;
         pointer-events: none;
 
         .radio-button-effect-dot {
@@ -78,6 +77,25 @@
     }
   }
 
+  input:disabled {
+    & ~ .container {
+      .radio-button-effect {
+        border-color: $radio-button-disabled-color;
+        border-style: solid;
+        border-width: $radio-button-border-width;
+      }
+
+      .radio-button-effect-dot {
+        transform: scale(1);
+        background-color: $radio-button-disabled-color;
+      }
+    }
+
+    & ~ .label {
+      color: $radio-button-disabled-color;
+    }
+  }
+
   input:checked:not(:disabled) {
     & ~ .container {
       .radio-button-effect {
@@ -96,6 +114,7 @@
         --state-container-color: #{$radio-button-hover-state-active-color};
       }
     }
+
     &:focus-visible {
       ~ .container {
         --state-container-color: #{$radio-button-focus-state-active-color};
@@ -103,35 +122,18 @@
     }
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   input:not(:checked):not(:disabled) {
     &:hover {
       & ~ .container {
         --state-container-color: #{$radio-button-hover-state-inactive-color};
       }
     }
+
     &:focus-visible {
       & ~ .container {
         --state-container-color: #{$radio-button-focus-state-inactive-color};
       }
-    }
-  }
-
-  input:disabled {
-    & ~ .container {
-      .radio-button-effect {
-        border-color: $radio-button-disabled-color;
-        border-style: solid;
-        border-width: $radio-button-border-width;
-      }
-
-      .radio-button-effect-dot {
-        transform: scale(1);
-        background-color: $radio-button-disabled-color;
-      }
-    }
-
-    & ~ .label {
-      color: $radio-button-disabled-color;
     }
   }
 }

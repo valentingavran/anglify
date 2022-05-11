@@ -39,6 +39,7 @@
   }
 
   tfoot {
+    /* stylelint-disable-next-line no-descending-specificity */
     tr {
       &:first-child {
         border-top-width: $table-border-width;
@@ -59,11 +60,13 @@
 
   &-fixed-footer {
     tfoot {
+      /* stylelint-disable-next-line no-descending-specificity */
       tr {
         &:first-child {
           border-top-width: 0;
         }
 
+        /* stylelint-disable-next-line no-descending-specificity */
         td {
           position: sticky;
           bottom: 0;

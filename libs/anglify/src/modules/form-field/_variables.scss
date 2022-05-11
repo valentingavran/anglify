@@ -39,7 +39,6 @@ $form-field-outlined-placeholder-color-disabled: var(
   var(--color-on-surface-low-emphasis)
 );
 $form-field-outlined-error-color: var(--anglify-form-field-outlined-error-color, var(--color-error));
-
 $form-field-filled-padding-top: var(
   --anglify-form-field-filled-padding-top,
   calc(8px + #{$form-field-label-scale-focused} * #{$form-field-font-size})

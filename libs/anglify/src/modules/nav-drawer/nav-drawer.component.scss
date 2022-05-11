@@ -3,7 +3,18 @@
 
 :host {
   height: 100vh;
-  @include elevationTransition();
+  @include elevation-transition;
+
+  .anglify-drawer {
+    z-index: 1;
+    display: block;
+    top: $drawer-top;
+    height: 100%;
+    width: $drawer-width;
+    background: $drawer-background-color;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
   &.standard {
     .anglify-drawer {
@@ -19,17 +30,6 @@
       left: calc(-1 * $drawer-width);
       transition: left 250ms;
     }
-  }
-
-  .anglify-drawer {
-    z-index: 1;
-    display: block;
-    top: $drawer-top;
-    height: 100%;
-    width: $drawer-width;
-    background: $drawer-background-color;
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 
   .anglify-drawer-backdrop {
@@ -50,7 +50,7 @@
 
   &.anglify-drawer-opened {
     .anglify-drawer {
-      left: 0px;
+      left: 0;
       @include elevation(24);
     }
 
