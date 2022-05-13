@@ -30,7 +30,7 @@ export function isTouchDevice() {
   return window.matchMedia('(pointer: coarse)').matches;
 }
 
-export function clamp(value: number, min: number, max: number): number {
+export function clamp(value: number, min: number, max: number) {
   return value > max ? max : value < min ? min : value;
 }
 

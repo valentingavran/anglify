@@ -20,6 +20,8 @@
     "src/modules/radio-button/*.scss",
     "src/modules/stepper/*.scss",
     "src/modules/table/*.scss",
-    "src/modules/tooltip/*.scss"
+    "src/modules/tooltip/*.scss",
+    "src/modules/toolbar/*.scss",
+    "src/modules/bottom-navigation/*.scss"
   ]
 }

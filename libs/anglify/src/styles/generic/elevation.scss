@@ -3,7 +3,8 @@
 $z: 24;
 @while $z >= 0 {
   .anglify-elevation-#{$z} {
-    @include elevation($z, $important: true);
+    @include elevation($z, $z, $z, $important: true);
   }
+
   $z: $z - 1;
 }

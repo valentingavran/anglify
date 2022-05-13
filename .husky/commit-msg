@@ -6,4 +6,5 @@ echo "The message must be formatted according to the Conventional Commits specif
 echo "https://www.conventionalcommits.org/en/v1.0.0/#summary"
 echo "https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines"
 echo ""
-npx --no -- commitlint --edit "${1}"
+
+npx --no-install commitlint --edit $1

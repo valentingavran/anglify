@@ -30,11 +30,11 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
 
   private activeCount = 0;
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     this.items?.forEach(item => this.createItemClickHandler(item));
   }
 
-  public writeValue(value: number | number[] | null): void {
+  public writeValue(value: number | number[] | null) {
     let indicesToBeActive: number[] = [];
     if (Array.isArray(value)) {
       indicesToBeActive = value;
@@ -51,11 +51,11 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
     });
   }
 
-  public registerOnChange(fn: (...args: any[]) => void): void {
+  public registerOnChange(fn: (...args: any[]) => void) {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: (...args: any[]) => void): void {
+  public registerOnTouched(fn: (...args: any[]) => void) {
     this.onTouch = fn;
   }
 

@@ -1,6 +1,7 @@
 import { QueryList, TemplateRef } from '@angular/core';
 import { SlotDirective } from './slot.directive';
 import { MockElementRef } from '../../../../mocks/element-ref.mock';
+
 describe('SlotDirective', () => {
   const directive = SlotDirective;
   it('should create an instance', () => {

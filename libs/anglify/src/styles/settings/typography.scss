@@ -1,119 +1,119 @@
-.display-l {
+.display-l,
+%display-l {
   font-weight: 400;
   font-size: 57px;
   line-height: 64px;
   letter-spacing: 0;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.display-m {
+.display-m,
+%display-m {
   font-weight: 400;
   font-size: 45px;
   line-height: 52px;
   letter-spacing: 0;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.display-s {
+.display-s,
+%display-s {
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;
   letter-spacing: 0;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.headline-l {
+.headline-l,
+%headline-l {
   font-weight: 400;
   font-size: 32px;
   line-height: 40px;
   letter-spacing: 0;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.headline-m {
+.headline-m,
+%headline-m {
   font-weight: 400;
   font-size: 28px;
   line-height: 36px;
   letter-spacing: 0;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.headline-s {
+.headline-s,
+%headline-s {
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;
   letter-spacing: 0;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.title-l {
+.title-l,
+%title-l {
   font-weight: 400;
   font-size: 22px;
   line-height: 28px;
   letter-spacing: 0;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.title-m {
+.title-m,
+%title-m {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.15px;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.title-s {
+.title-s,
+%title-s {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.1px;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.label-l {
+.label-l,
+%label-l {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.1px;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.label-m {
+.label-m,
+%label-m {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.5px;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.label-s {
+.label-s,
+%label-s {
   font-weight: 500;
   font-size: 11px;
   line-height: 16px;
   letter-spacing: 0.5px;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.body-l {
+.body-l,
+%body-l {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.15px;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.body-m {
+.body-m,
+%body-m {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
-  color: var(--color-on-surface-high-emphasis);
 }
 
-.body-s {
+.body-s,
+%body-s {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.4px;
-  color: var(--color-on-surface-high-emphasis);
 }

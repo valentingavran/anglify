@@ -5,30 +5,6 @@
   align-items: center;
   height: $stepper-header-height;
 
-  &.active {
-    .prepend-item {
-      .step-indicator {
-        background: $stepper-step-indicator-color-active;
-        transition: $stepper-step-indicator-transition;
-        color: $stepper-step-indicator-text-color-active;
-      }
-    }
-
-    .label {
-      color: $stepper-label-color-active;
-      transition: $stepper-label-transition;
-    }
-  }
-
-  &:hover {
-    cursor: pointer;
-    --state-container-color: #{$stepper-hover-state-color};
-  }
-
-  &:focus-visible {
-    --state-container-color: #{$stepper-focus-state-color};
-  }
-
   .prepend-item {
     display: flex;
     flex-shrink: 0;
@@ -56,9 +32,47 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 5px;
-        max-height: $stepper-step-indicator-font-size;
-        max-width: $stepper-step-indicator-font-size;
+
+        --anglify-icon-size: $stepper-step-indicator-font-size;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      --state-container-color: #{$stepper-hover-state-color};
+    }
+
+    &:focus-visible {
+      --state-container-color: #{$stepper-focus-state-color};
+    }
+
+    .label {
+      flex-grow: 1;
+
+      --webkit-line-clamp: 2;
+
+      line-clamp: 2;
+      user-select: none;
+      font-size: $stepper-label-font-size;
+      color: $stepper-label-color-inactive;
+      transition: $stepper-label-transition;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    &.active {
+      .prepend-item {
+        .step-indicator {
+          background: $stepper-step-indicator-color-active;
+          transition: $stepper-step-indicator-transition;
+          color: $stepper-step-indicator-text-color-active;
+        }
+      }
+
+      .label {
+        color: $stepper-label-color-active;
+        transition: $stepper-label-transition;
       }
     }
 
@@ -76,17 +90,5 @@
         bottom: 0;
       }
     }
-  }
-
-  .label {
-    flex-grow: 1;
-    --webkit-line-clamp: 2;
-    line-clamp: 2;
-    user-select: none;
-    font-size: $stepper-label-font-size;
-    color: $stepper-label-color-inactive;
-    transition: $stepper-label-transition;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BottomNavigationPageComponent } from './pages/component-pages/bottom-navigation-page/bottom-navigation-page.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
@@ -14,6 +15,7 @@ import { ProgressLinearPageComponent } from './pages/component-pages/progress-li
 import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
+import { ToolbarPageComponent } from './pages/component-pages/toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 
 const routes: Routes = [
@@ -81,6 +83,14 @@ const routes: Routes = [
   {
     path: 'components/tooltip',
     component: TooltipPageComponent,
+  },
+  {
+    path: 'components/toolbar',
+    component: ToolbarPageComponent,
+  },
+  {
+    path: 'components/bottom-navigation',
+    component: BottomNavigationPageComponent,
   },
   {
     path: 'getting-started',

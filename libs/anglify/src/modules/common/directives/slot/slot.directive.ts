@@ -8,8 +8,7 @@ export class SlotDirective {
 
   public constructor(public readonly template: TemplateRef<any>) {}
 
-  public static getSlot(slots: QueryList<SlotDirective> | undefined, name: string): TemplateRef<any> | undefined {
-    const slot = slots?.find(s => s.slot === name);
-    return slot ? slot.template : undefined;
+  public static getSlot(slots: QueryList<SlotDirective> | undefined, name: string) {
+    return slots?.find(s => s.slot === name)?.template;
   }
 }

@@ -1,13 +1,7 @@
-$dialog-backdrop-background: var(--anglify-dialog-backdrop-background, rgba(0, 0, 0, 0.32));
-$dialog-backdrop-pointer-events: var(--anglify-dialog-backdrop-pointer-events, none);
-$dialog-backdrop-z-index: var(--anglify-dialog-backdrop-z-index, 1000);
-$dialog-pointer-events: var(--anglify-dialog-pointer-events, auto);
-$dialog-box-shadow: var(
-  --anglify-dialog-box-shadow,
-  0px 11px 15px -7px rgba(0, 0, 0, 0.2),
-  0px 24px 38px 3px rgba(0, 0, 0, 0.14),
-  0px 9px 46px 8px rgba(0, 0, 0, 0.12)
-);
-$dialog-background: var(--anglify-dialog-background, var(--color-background));
-$dialog-border-radius: var(--anglify-dialog-border-radius, 4px);
-$dialog-padding: var(--anglify-dialog-padding, 15px 24px);
+$dialog-backdrop-background: var(--anglify-dialog-backdrop-background, var(--color-backdrop)) !default;
+$dialog-backdrop-pointer-events: var(--anglify-dialog-backdrop-pointer-events, none) !default;
+$dialog-backdrop-z-index: var(--anglify-dialog-backdrop-z-index, 1000) !default;
+$dialog-pointer-events: var(--anglify-dialog-pointer-events, auto) !default;
+$dialog-background: var(--anglify-dialog-background, var(--color-background)) !default;
+$dialog-border-radius: var(--anglify-dialog-border-radius, 4px) !default;
+$dialog-padding: var(--anglify-dialog-padding, 15px 24px) !default;

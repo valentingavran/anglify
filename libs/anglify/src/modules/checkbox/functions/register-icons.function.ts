@@ -17,7 +17,7 @@ export class CheckboxIconRef {
     this.iconOffCompRef.instance.iconSet = checkboxIcons.iconPack ?? 'mdi';
   }
 
-  public removeCompRef(comp: 'ONICON' | 'OFFICON'): void {
+  public removeCompRef(comp: 'ONICON' | 'OFFICON') {
     const compToRemove = comp === 'ONICON' ? this.iconOnCompRef.hostView : this.iconOffCompRef.hostView;
     const index = this.vcr.indexOf(compToRemove);
     this.vcr.remove(index);

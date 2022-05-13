@@ -1,11 +1,23 @@
 @use 'variables' as *;
 
 :host-context(.form-field-type-filled) {
-  --anglify-icon-inactive-color: #{$form-field-filled-icon-color-inactive};
+  --anglify-icon-inactive-color: #{$form-field-filled-icon-color};
+
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
+  &.focused,
+  &.persistent-placeholder,
+  &.floating {
+    .label {
+      transform: translateY(calc((#{$form-field-line-height} - #{$form-field-filled-padding-bottom}) * -1))
+        scale($form-field-label-scale-focused);
+      max-width: calc(100% / #{$form-field-label-scale-focused}) !important;
+      width: calc(100% / #{$form-field-label-scale-focused}) !important;
+    }
+  }
+
   .form-field-container {
-    background-color: $form-field-filled-background-inactive;
+    background-color: $form-field-filled-background;
     border-radius: $form-field-filled-border-radius;
     padding-inline-start: $form-field-filled-padding-start;
     padding-inline-end: $form-field-filled-padding-start;
@@ -28,22 +40,22 @@
         textarea {
           padding-block-start: $form-field-filled-padding-top;
           padding-block-end: $form-field-filled-padding-bottom;
-          color: $form-field-filled-text-color-inactive;
+          color: $form-field-filled-text-color;
         }
       }
     }
 
     /* This pseudo element contains the inactive bottom border */
-    &:before {
+    &::before {
       content: '';
       position: absolute;
-      width: 100%;
+      width: 0;
       bottom: 0;
-      border-bottom: 1px solid $form-field-filled-border-color-inactive;
+      border-bottom: 1px solid $form-field-filled-border-color;
     }
 
     /* This pseudo element contains the focused bottom border. It animates on focus from the center to the edges */
-    &:after {
+    &::after {
       content: '';
       position: absolute;
       width: 0;
@@ -59,9 +71,11 @@
     --anglify-icon-inactive-color: #{$form-field-filled-icon-color-focused};
 
     .form-field-container {
-      background-color: $form-field-filled-background-focused;
+      &::before {
+        width: 100%;
+      }
 
-      &:after {
+      &::after {
         width: 100%;
         height: 2px;
       }
@@ -83,42 +97,21 @@
     }
   }
 
-  &:not(.focused):not(.disabled) {
+  &.error {
+    /* stylelint-disable-next-line no-descending-specificity */
+    .label,
+    .details .hint {
+      color: $form-field-filled-error-color !important;
+    }
+
     .form-field-container {
-      &:hover {
-        background-color: $form-field-filled-background-hovered;
+      &::before {
+        border-color: $form-field-filled-error-color;
       }
 
-      .label {
-        color: $form-field-filled-label-color-inactive;
+      &::after {
+        background-color: $form-field-filled-error-color;
       }
-    }
-  }
-
-  &.persistent-placeholder,
-  &.floating {
-    &:not(.focused):not(.disabled) {
-      .form-field-container {
-        ::ng-deep {
-          input,
-          textarea {
-            &::placeholder {
-              color: $form-field-filled-placeholder-color-inactive;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &.focused,
-  &.persistent-placeholder,
-  &.floating {
-    .label {
-      transform: translateY(calc((#{$form-field-line-height} - #{$form-field-filled-padding-bottom}) * -1))
-        scale($form-field-label-scale-focused);
-      max-width: calc(100% / #{$form-field-label-scale-focused}) !important;
-      width: calc(100% / #{$form-field-label-scale-focused}) !important;
     }
   }
 
@@ -137,17 +130,19 @@
   &.disabled {
     --anglify-icon-inactive-color: #{$form-field-filled-icon-color-disabled};
 
+    /* stylelint-disable no-descending-specificity */
     ::ng-deep {
       input,
       textarea {
         color: $form-field-filled-text-color-disabled !important;
       }
     }
+    /* stylelint-enable no-descending-specificity */
 
     .form-field-container {
       color: $form-field-filled-label-color-disabled !important;
 
-      &:before {
+      &::before {
         border-bottom-style: dashed;
       }
     }
@@ -166,23 +161,6 @@
     }
   }
 
-  &.error {
-    .label,
-    .details .hint {
-      color: $form-field-filled-error-color !important;
-    }
-
-    .form-field-container {
-      &:before {
-        border-color: $form-field-filled-error-color;
-      }
-
-      &:after {
-        background-color: $form-field-filled-error-color;
-      }
-    }
-  }
-
   &.dense:not(.has-label) {
     .form-field-container {
       padding-inline-start: $form-field-filled-padding-start-dense;
@@ -191,11 +169,51 @@
       .form-field-border {
         --anglify-notched-outline-start-width: #{$form-field-filled-padding-start-dense};
       }
+
       ::ng-deep {
         input,
         textarea {
           padding-block-start: 10px !important;
           padding-block-end: 10px !important;
+        }
+      }
+    }
+  }
+
+  &:not(.focused):not(.disabled) {
+    .form-field-container {
+      &::after {
+        background-color: $form-field-filled-border-color;
+      }
+
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+
+        &::after {
+          width: 100%;
+          height: 2px;
+        }
+      }
+
+      .label {
+        color: $form-field-filled-label-color;
+      }
+    }
+  }
+
+  &.persistent-placeholder,
+  &.floating {
+    &:not(.focused):not(.disabled) {
+      .form-field-container {
+        ::ng-deep {
+          input,
+          textarea {
+            &::placeholder {
+              color: $form-field-filled-placeholder-color;
+            }
+          }
         }
       }
     }

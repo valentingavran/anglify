@@ -1,0 +1,9 @@
+<div class="icon" *ngIf="slots | findSlot: 'icon'">
+  <ng-template *anglifySlotOutlet="slots | findSlot: 'icon'"></ng-template>
+</div>
+<div class="label" *ngIf="(slots | findSlot: 'label') && (shift$ | async) && (active$ | async)">
+  <ng-template *anglifySlotOutlet="slots | findSlot: 'label'"></ng-template>
+</div>
+<div class="label" *ngIf="(slots | findSlot: 'label') && (shift$ | async) === false">
+  <ng-template *anglifySlotOutlet="slots | findSlot: 'label'"></ng-template>
+</div>

@@ -5,6 +5,7 @@ describe('PercentPipe', () => {
     const pipe = new PercentPipe();
     expect(pipe).toBeTruthy();
   });
+
   it('should return value with percent at the end', () => {
     const pipe = new PercentPipe();
     expect(pipe.transform(-10)).toBe('-10%');

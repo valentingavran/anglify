@@ -1,4 +1,4 @@
-$checkbox-border-color: var(--anglify-checkbox-border-color, var(--color-outline-secondary));
+$checkbox-border-color: var(--anglify-checkbox-border-color, var(--border-color-on-surface-medium-emphasis));
 $checkbox-disabled-color: var(--anglify-checkbox-disabled-color, var(--color-on-background-low-emphasis));
 $checkbox-icon-color: var(--anglify-checkbox-icon-color, var(--color-on-primary-low-emphasis));
 $checkbox-checked-icon-color: var(--anglify-checkbox-checked-icon-color, var(--color-on-primary-high-emphasis));
@@ -33,8 +33,7 @@ $checkbox-icon-after-left-position: var(--anglify-checkbox-icon-after-left-posit
 $checkbox-icon-after-height: var(--anglify-checkbox-icon-after-height, calc(2 * $checkbox-height / 14));
 $checkbox-checked-icon-transition-speed: var(--anglify-checkbox-checked-icon-transition-speed, width 125ms ease 75ms);
 $checkbox-custom-icon-size: var(--anglify-checkbox-custom-icon-size, $checkbox-ripple-inner-width);
-
-$checkbox-hover-state-inactive-color: var(--anglify-checkbox-hover-state-inactive-color, var(--color-state-hover-inactive));
-$checkbox-hover-state-active-color: var(--anglify-checkbox-hover-state-active-color, var(--color-state-hover-active));
-$checkbox-focus-state-inactive-color: var(--anglify-checkbox-focus-state-inactive-color, var(--color-state-focus-inactive));
-$checkbox-focus-state-active-color: var(--anglify-checkbox-focus-state-active-color, var(--color-state-focus-active));
+$checkbox-hover-state-inactive-color: var(--anglify-checkbox-hover-state-inactive-color, var(--color-primary-state-hover));
+$checkbox-hover-state-active-color: var(--anglify-checkbox-hover-state-active-color, var(--color-primary-state-hover));
+$checkbox-focus-state-inactive-color: var(--anglify-checkbox-focus-state-inactive-color, var(--color-primary-state-focus));
+$checkbox-focus-state-active-color: var(--anglify-checkbox-focus-state-active-color, var(--color-primary-state-focus));

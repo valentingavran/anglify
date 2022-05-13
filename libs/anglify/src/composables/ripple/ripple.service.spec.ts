@@ -27,15 +27,17 @@ describe('RippleService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
   it('should create state container with css class', () => {
     const elementRef = TestBed.inject(ElementRef);
     const nativeElement = elementRef.nativeElement as HTMLElement;
     // @ts-expect-error
     const container = service.createStateContainer();
 
-    expect(container.classList.value).toBe('anglify-state__container');
+    expect(container.classList.value).toBe('anglify-state-container');
     expect(nativeElement.contains(container)).toBeTruthy();
   });
+
   it('should add transition and destroy ripple after 500ms', done => {
     // create mock ripple container
     const container = document.createElement('div');

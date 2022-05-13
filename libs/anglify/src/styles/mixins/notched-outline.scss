@@ -25,6 +25,7 @@
     box-sizing: border-box;
     flex-shrink: 0;
   }
+
   .notch {
     display: block;
     border-bottom: $border-width $border-style $border-color;
@@ -36,8 +37,8 @@
     white-space: nowrap;
     max-width: calc(100% - #{$start-width} - #{$start-width});
 
-    /* This pseudo element is responsible for the notch border width animation*/
-    &:after {
+    /* This pseudo element is responsible for the notch border width animation */
+    &::after {
       content: '';
       position: absolute;
       width: $notch-width;
@@ -47,6 +48,7 @@
       border-top: $border-width $border-style $border-color;
     }
   }
+
   .end {
     flex: 1;
     min-width: $start-width;

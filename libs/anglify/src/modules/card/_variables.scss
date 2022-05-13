@@ -1,3 +1,2 @@
-$card-border-radius: var(--anglify-card-border-radius, 12px) !default;
-$card-background: var(--anglify-card-background, var(--color-surface));
-$card-padding: var(--anglify-card-padding, 16px);
+$card-background: var(--anglify-card-background, var(--color-elevated)) !default;
+$card-border-radius: var(--anglify-card-border-radius, 4px) !default;

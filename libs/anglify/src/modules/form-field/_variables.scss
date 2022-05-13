@@ -10,26 +10,26 @@ $form-field-outlined-padding-bottom: var(--anglify-form-field-outlined-padding-b
 $form-field-outlined-padding-bottom-dense: var(--anglify-form-field-outlined-padding-bottom-dense, 10px);
 $form-field-outlined-padding-start: var(--anglify-form-field-outlined-padding-start, 16px);
 $form-field-outlined-padding-start-dense: var(--anglify-form-field-outlined-padding-start-dense, 12px);
-$form-field-outlined-background-inactive: var(--anglify-form-field-outlined-background-inactive, transparent);
+$form-field-outlined-background: var(--anglify-form-field-outlined-background, transparent);
 $form-field-outlined-background-hovered: var(--anglify-form-field-outlined-background-hovered, transparent);
 $form-field-outlined-background-focused: var(--anglify-form-field-outlined-background-focused, transparent);
-$form-field-outlined-border-color-inactive: var(--anglify-form-field-outlined-border-color-inactive, var(--color-outline-secondary));
-$form-field-outlined-border-color-hovered: var(--anglify-form-field-outlined-border-color-hovered, var(--color-outline-primary));
+$form-field-outlined-border-color: var(--anglify-form-field-outlined-border-color, var(--border-color-on-surface-low-emphasis));
+$form-field-outlined-border-color-hovered: var(
+  --anglify-form-field-outlined-border-color-hovered,
+  var(--border-color-on-surface-low-emphasis)
+);
 $form-field-outlined-border-color-focused: var(--anglify-form-field-outlined-border-color-focused, var(--color-primary));
 $form-field-outlined-border-radius: var(--anglify-form-field-outlined-border-radius, $form-field-border-radius);
-$form-field-outlined-label-color-inactive: var(--anglify-form-field-outlined-label-color-inactive, var(--color-on-surface-medium-emphasis));
+$form-field-outlined-label-color: var(--anglify-form-field-outlined-label-color, var(--color-on-surface-medium-emphasis));
 $form-field-outlined-label-color-focused: var(--anglify-form-field-outlined-label-color-focused, var(--color-primary));
 $form-field-outlined-label-color-disabled: var(--anglify-form-field-outlined-label-color-disabled, var(--color-on-surface-low-emphasis));
-$form-field-outlined-text-color-inactive: var(--anglify-form-field-outlined-text-color-inactive, var(--color-on-surface-high-emphasis));
-$form-field-outlined-text-color-focused: var(--anglify-form-field-outlined-text-color-focused, var(--color-on-surface-high-emphasis));
+$form-field-outlined-text-color: var(--anglify-form-field-outlined-text-color, var(--color-on-surface-medium-emphasis));
+$form-field-outlined-text-color-focused: var(--anglify-form-field-outlined-text-color-focused, var(--color-on-surface-medium-emphasis));
 $form-field-outlined-text-color-disabled: var(--anglify-form-field-outlined-text-color-disabled, var(--color-on-surface-low-emphasis));
-$form-field-outlined-icon-color-inactive: var(--anglify-form-field-outlined-icon-color-inactive, var(--color-on-surface-medium-emphasis));
+$form-field-outlined-icon-color: var(--anglify-form-field-outlined-icon-color, var(--color-on-surface-medium-emphasis));
 $form-field-outlined-icon-color-focused: var(--anglify-form-field-outlined-icon-color-focused, var(--color-primary));
 $form-field-outlined-icon-color-disabled: var(--anglify-form-field-outlined-icon-color-disabled, var(--color-on-surface-low-emphasis));
-$form-field-outlined-placeholder-color-inactive: var(
-  --anglify-form-field-outlined-placeholder-color-inactive,
-  var(--color-on-surface-medium-emphasis)
-);
+$form-field-outlined-placeholder-color: var(--anglify-form-field-outlined-placeholder-color, var(--color-on-surface-medium-emphasis));
 $form-field-outlined-placeholder-color-focused: var(
   --anglify-form-field-outlined-placeholder-color-focused,
   var(--color-on-surface-medium-emphasis)
@@ -39,7 +39,6 @@ $form-field-outlined-placeholder-color-disabled: var(
   var(--color-on-surface-low-emphasis)
 );
 $form-field-outlined-error-color: var(--anglify-form-field-outlined-error-color, var(--color-error));
-
 $form-field-filled-padding-top: var(
   --anglify-form-field-filled-padding-top,
   calc(8px + #{$form-field-label-scale-focused} * #{$form-field-font-size})
@@ -52,40 +51,26 @@ $form-field-filled-padding-bottom: var(--anglify-form-field-filled-padding-botto
 $form-field-filled-padding-bottom-dense: var(--anglify-form-field-filled-padding-bottom-dense, 4px);
 $form-field-filled-padding-start: var(--anglify-form-field-filled-padding-start, 16px);
 $form-field-filled-padding-start-dense: var(--anglify-form-field-filled-padding-start-dense, 8px);
-$form-field-filled-background-inactive: var(--anglify-form-field-filled-background-inactive, var(--color-surface-variant));
-$form-field-filled-background-hovered: var(--anglify-form-field-filled-background-hovered, var(--color-surface-variant));
-$form-field-filled-background-focused: var(--anglify-form-field-filled-background-focused, var(--color-surface-variant));
-$form-field-filled-border-color-inactive: var(--anglify-form-field-filled-border-color-inactive, var(--color-outline-primary));
+$form-field-filled-background: var(--anglify-form-field-filled-background, var(--color-surface-overlay));
+$form-field-filled-border-color: var(--anglify-form-field-filled-border-color, var(--border-color-on-surface-medium-emphasis));
 $form-field-filled-border-color-focused: var(--anglify-form-field-filled-border-color-focused, var(--color-primary));
 $form-field-filled-border-radius: var(--anglify-form-field-filled-border-radius, $form-field-border-radius $form-field-border-radius 0 0);
-$form-field-filled-label-color-inactive: var(
-  --anglify-form-field-filled-label-color-inactive,
-  var(--color-on-surface-variant-medium-emphasis)
-);
+$form-field-filled-label-color: var(--anglify-form-field-filled-label-color, var(--color-on-surface-medium-emphasis));
 $form-field-filled-label-color-focused: var(--anglify-form-field-filled-label-color-focused, var(--color-primary));
-$form-field-filled-label-color-disabled: var(
-  --anglify-form-field-filled-label-color-disabled,
-  var(--color-on-surface-variant-low-emphasis)
-);
-$form-field-filled-text-color-inactive: var(--anglify-form-field-filled-text-color-inactive, var(--color-on-surface-variant-high-emphasis));
-$form-field-filled-text-color-focused: var(--anglify-form-field-filled-text-color-focused, var(--color-on-surface-variant-high-emphasis));
-$form-field-filled-text-color-disabled: var(--anglify-form-field-filled-text-color-disabled, var(--color-on-surface-variant-low-emphasis));
-$form-field-filled-icon-color-inactive: var(
-  --anglify-form-field-filled-icon-color-inactive,
-  var(--color-on-surface-variant-medium-emphasis)
-);
+$form-field-filled-label-color-disabled: var(--anglify-form-field-filled-label-color-disabled, var(--color-on-surface-low-emphasis));
+$form-field-filled-text-color: var(--anglify-form-field-filled-text-color, var(--color-on-surface-medium-emphasis));
+$form-field-filled-text-color-focused: var(--anglify-form-field-filled-text-color-focused, var(--color-on-surface-medium-emphasis));
+$form-field-filled-text-color-disabled: var(--anglify-form-field-filled-text-color-disabled, var(--color-on-surface-low-emphasis));
+$form-field-filled-icon-color: var(--anglify-form-field-filled-icon-color, var(--color-on-surface-medium-emphasis));
 $form-field-filled-icon-color-focused: var(--anglify-form-field-filled-icon-color-focused, var(--color-primary));
-$form-field-filled-icon-color-disabled: var(--anglify-form-field-filled-icon-color-disabled, var(--color-on-surface-variant-low-emphasis));
-$form-field-filled-placeholder-color-inactive: var(
-  --anglify-form-field-filled-placeholder-color-inactive,
-  var(--color-on-surface-variant-medium-emphasis)
-);
+$form-field-filled-icon-color-disabled: var(--anglify-form-field-filled-icon-color-disabled, var(--color-on-surface-low-emphasis));
+$form-field-filled-placeholder-color: var(--anglify-form-field-filled-placeholder-color, var(--color-on-surface-medium-emphasis));
 $form-field-filled-placeholder-color-focused: var(
   --anglify-form-field-filled-placeholder-color-focused,
-  var(--color-on-surface-variant-medium-emphasis)
+  var(--color-on-surface-medium-emphasis)
 );
 $form-field-filled-placeholder-color-disabled: var(
   --anglify-form-field-filled-placeholder-color-disabled,
-  var(--color-on-surface-variant-low-emphasis)
+  var(--color-on-surface-low-emphasis)
 );
 $form-field-filled-error-color: var(--anglify-form-field-filled-error-color, var(--color-error));

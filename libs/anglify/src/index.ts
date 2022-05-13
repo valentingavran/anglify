@@ -92,3 +92,14 @@ export * from './modules/tooltip/tooltip-settings.token';
 export * from './modules/tooltip/tooltip.directive';
 export * from './modules/tooltip/tooltip.interface';
 export * from './modules/tooltip/tooltip.module';
+// Toolbar
+export * from './modules/toolbar/toolbar.module';
+export * from './modules/toolbar/toolbar-settings.token';
+export * from './modules/toolbar/toolbar.interface';
+export * from './modules/toolbar/toolbar.component';
+// Bottom-Navigation
+export * from './modules/bottom-navigation/bottom-navigation.module';
+export * from './modules/bottom-navigation/bottom-navigation.component';
+export * from './modules/bottom-navigation/bottom-navigation-settings.token';
+export * from './modules/bottom-navigation/bottom-navigation.interface';
+export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';

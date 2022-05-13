@@ -1,4 +1,5 @@
 import {
+  BottomNavigationModule,
   ButtonModule,
   CardModule,
   CheckboxModule,
@@ -11,6 +12,7 @@ import {
   ProgressLinearModule,
   RadioButtonModule,
   TableModule,
+  ToolbarModule,
 } from '@anglify/components';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
@@ -23,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
+import { BottomNavigationExampleModule } from './examples/bottom-navigation/bottom-navigation-example.module';
 import { ButtonExamplesModule } from './examples/button/button-examples.module';
 import { CardExamplesModule } from './examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
@@ -36,7 +39,9 @@ import { ProgressLinearExamplesModule } from './examples/progress-linear/progres
 import { RadioButtonExamplesModule } from './examples/radio-button/radio-button-examples.module';
 import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
 import { TableExamplesModule } from './examples/table/table-examples.module';
+import { ToolbarExampleModule } from './examples/toolbar/toolbar-example.module';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
+import { BottomNavigationPageComponent } from './pages/component-pages/bottom-navigation-page/bottom-navigation-page.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
@@ -51,6 +56,7 @@ import { ProgressLinearPageComponent } from './pages/component-pages/progress-li
 import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
+import { ToolbarPageComponent } from './pages/component-pages/toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 
 @NgModule({
@@ -73,6 +79,8 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     RadioButtonPageComponent,
     DialogPageComponent,
     NavDrawerPageComponent,
+    ToolbarPageComponent,
+    BottomNavigationPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +117,10 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     RadioButtonExamplesModule,
     NavDrawerModule,
     NavDrawerExamplesModule,
+    ToolbarModule,
+    ToolbarExampleModule,
+    BottomNavigationModule,
+    BottomNavigationExampleModule,
   ],
   providers: [
     {

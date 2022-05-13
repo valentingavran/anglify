@@ -1,0 +1,99 @@
+@use 'variables' as *;
+@use 'sass:map';
+@use '../../styles/settings/typography.scss' as *;
+
+:host {
+  display: flex;
+  justify-content: space-between;
+
+  .title {
+    @extend %title-m;
+  }
+
+  .toolbar-container {
+    height: $toolbar-regular-height;
+    background-color: $toolbar-background;
+    color: $toolbar-text-color;
+    width: $toolbar-width;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left {
+      display: flex;
+      height: 100%;
+      align-items: center;
+
+      .navigation {
+        margin-left: $toolbar-navigation-margin-left;
+
+        ::ng-deep {
+          * {
+            color: $toolbar-text-color;
+          }
+        }
+      }
+
+      .title {
+        margin-left: $toolbar-title-margin-left;
+      }
+    }
+
+    .right {
+      display: flex;
+      height: 100%;
+      margin-right: $toolbar-right-actions-margin-right;
+      align-items: center;
+
+      .actions {
+        margin-left: $toolbar-actions-margin-left;
+
+        ::ng-deep {
+          * {
+            color: $toolbar-text-color;
+          }
+        }
+      }
+    }
+  }
+
+  .prominent {
+    height: $toolbar-prominent-height;
+    padding-top: $toolbar-prominent-padding-top;
+
+    .left {
+      align-items: flex-start;
+
+      .title {
+        align-self: end;
+        margin-bottom: $toolbar-prominent-title-margin-bottom;
+      }
+    }
+
+    .right {
+      align-items: flex-start;
+
+      .actions {
+        margin-left: $toolbar-actions-margin-left;
+
+        ::ng-deep {
+          * {
+            color: $toolbar-text-color;
+          }
+        }
+      }
+    }
+  }
+
+  .collapse {
+    width: $toolbar-collapse-width;
+
+    .right {
+      margin-left: $toolbar-collapse-right-actions-margin-left;
+
+      .actions {
+        margin-left: $toolbar-collapse-actions-margin-left;
+      }
+    }
+  }
+}

@@ -2,11 +2,12 @@
 @use '../../styles/mixins/notched-outline' as *;
 
 :host-context(.form-field-type-outlined) {
-  --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-inactive};
+  --anglify-icon-inactive-color: #{$form-field-outlined-icon-color};
+
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
   .form-field-container {
-    background-color: $form-field-outlined-background-inactive;
+    background-color: $form-field-outlined-background;
     padding-inline-start: $form-field-outlined-padding-start;
     padding-inline-end: $form-field-outlined-padding-start;
 
@@ -20,7 +21,8 @@
 
     .form-field-border {
       @include notched-outline($form-field-outlined-border-radius, $transition-duration);
-      --anglify-notched-outline-border-color: #{$form-field-outlined-border-color-inactive};
+
+      --anglify-notched-outline-border-color: #{$form-field-outlined-border-color};
       --anglify-notched-outline-start-width: #{$form-field-outlined-padding-start};
 
       .notch * {
@@ -41,6 +43,17 @@
       text-overflow: ellipsis;
       max-width: 100%;
       font-size: $form-field-font-size;
+    }
+  }
+
+  &.error {
+    .label,
+    .details .hint {
+      color: $form-field-outlined-error-color !important;
+    }
+
+    .form-field-container .form-field-border {
+      --anglify-notched-outline-border-color: #{$form-field-outlined-error-color};
     }
   }
 
@@ -68,24 +81,17 @@
 
       .label {
         color: $form-field-outlined-label-color-focused;
+
         --anglify-icon-inactive-color: #{$form-field-outlined-label-color-focused};
       }
     }
   }
 
-  &.persistent-placeholder,
-  &.floating {
-    &:not(.focused):not(.disabled) {
-      .form-field-container {
-        ::ng-deep {
-          input,
-          textarea {
-            &::placeholder {
-              color: $form-field-outlined-placeholder-color-inactive;
-            }
-          }
-        }
-      }
+  &:not(.has-label) {
+    --anglify-notched-outline-padding: 0;
+
+    .notch {
+      width: 0 !important;
     }
   }
 
@@ -102,14 +108,46 @@
       }
 
       .label {
-        $translateY: calc(
+        $translate-y: calc(
           (#{$form-field-line-height} + #{$form-field-outlined-padding-bottom} + #{$form-field-outlined-padding-top}) / 2 * -1
         );
-        transform: translateY($translateY) scale($form-field-label-scale-focused);
+
+        transform: translateY($translate-y) scale($form-field-label-scale-focused);
         grid-column: 1 / 3;
         grid-row: 1;
         max-width: calc(100% / #{$form-field-label-scale-focused});
         width: calc(100% / #{$form-field-label-scale-focused});
+      }
+    }
+  }
+
+  &.dense {
+    &.focused,
+    &.persistent-placeholder,
+    &.floating {
+      .form-field-container .label {
+        $translate-y: calc(
+          (#{$form-field-line-height} + #{$form-field-outlined-padding-bottom-dense} + #{$form-field-outlined-padding-top-dense}) / 2 * -1
+        );
+
+        transform: translateY($translate-y) scale($form-field-label-scale-focused);
+      }
+    }
+
+    .form-field-container {
+      padding-inline-start: $form-field-outlined-padding-start-dense;
+      padding-inline-end: $form-field-outlined-padding-start-dense;
+
+      .form-field-border {
+        --anglify-notched-outline-start-width: #{$form-field-outlined-padding-start-dense};
+      }
+
+      ::ng-deep {
+        input,
+        textarea {
+          padding-block-start: $form-field-outlined-padding-top-dense;
+          padding-block-end: $form-field-outlined-padding-bottom-dense;
+        }
       }
     }
   }
@@ -119,13 +157,14 @@
       ::ng-deep {
         input,
         textarea {
-          color: $form-field-outlined-text-color-inactive;
+          color: $form-field-outlined-text-color;
         }
       }
 
       .label {
-        color: $form-field-outlined-label-color-inactive;
-        --anglify-icon-inactive-color: $form-field-outlined-label-color-inactive;
+        color: $form-field-outlined-label-color;
+
+        --anglify-icon-inactive-color: $form-field-outlined-label-color;
       }
 
       &:hover {
@@ -138,14 +177,23 @@
     }
   }
 
-  &:not(.has-label) {
-    --anglify-notched-outline-padding: 0px;
-
-    .notch {
-      width: 0 !important;
+  &.persistent-placeholder,
+  &.floating {
+    &:not(.focused):not(.disabled) {
+      .form-field-container {
+        ::ng-deep {
+          input,
+          textarea {
+            &::placeholder {
+              color: $form-field-outlined-placeholder-color;
+            }
+          }
+        }
+      }
     }
   }
 
+  /* stylelint-disable no-descending-specificity */
   &.disabled {
     --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-disabled};
 
@@ -173,45 +221,5 @@
       }
     }
   }
-
-  &.dense {
-    &.focused,
-    &.persistent-placeholder,
-    &.floating {
-      .form-field-container .label {
-        $translateY: calc(
-          (#{$form-field-line-height} + #{$form-field-outlined-padding-bottom-dense} + #{$form-field-outlined-padding-top-dense}) / 2 * -1
-        );
-        transform: translateY($translateY) scale($form-field-label-scale-focused);
-      }
-    }
-
-    .form-field-container {
-      padding-inline-start: $form-field-outlined-padding-start-dense;
-      padding-inline-end: $form-field-outlined-padding-start-dense;
-
-      .form-field-border {
-        --anglify-notched-outline-start-width: #{$form-field-outlined-padding-start-dense};
-      }
-
-      ::ng-deep {
-        input,
-        textarea {
-          padding-block-start: $form-field-outlined-padding-top-dense;
-          padding-block-end: $form-field-outlined-padding-bottom-dense;
-        }
-      }
-    }
-  }
-
-  &.error {
-    .label,
-    .details .hint {
-      color: $form-field-outlined-error-color !important;
-    }
-
-    .form-field-container .form-field-border {
-      --anglify-notched-outline-border-color: #{$form-field-outlined-error-color};
-    }
-  }
+  /* stylelint-enable no-descending-specificity */
 }

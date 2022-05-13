@@ -5,7 +5,7 @@ import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
-import { BooleanLike, ComponentSize } from '../../utils/interfaces';
+import { BooleanLike } from '../../utils/interfaces';
 
 @Component({
   selector: 'button[anglifyButton]',
@@ -22,18 +22,12 @@ export class ButtonComponent implements OnInit {
    */
   @Input() public block: BooleanLike = this.settings.block;
 
-  /**
-   * The Size property works with all buttons except the extended-fab,because this button type has only one size.
-   * FAB buttons also have only the sizes `small`, `regular` and `large`.
-   */
-  @Input() public size: ComponentSize = this.settings.size;
-
   @Input()
   public set ripple(value: BooleanLike) {
     this.rippleService.active = toBoolean(value);
   }
 
-  public get ripple(): boolean {
+  public get ripple() {
     return this.rippleService.active;
   }
 
@@ -42,7 +36,7 @@ export class ButtonComponent implements OnInit {
     this.rippleService.state = toBoolean(value);
   }
 
-  public get state(): boolean {
+  public get state() {
     return this.rippleService.state;
   }
 
@@ -83,7 +77,7 @@ export class ButtonComponent implements OnInit {
 
   @HostBinding('class')
   protected get classList() {
-    const classNames = [this.appearance, `button-size-${this.size}`];
+    const classNames: string[] = [this.appearance];
 
     if (toBoolean(this.block)) {
       classNames.push('block');

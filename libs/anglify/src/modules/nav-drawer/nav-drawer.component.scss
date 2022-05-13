@@ -1,25 +1,9 @@
 @use 'variables' as *;
+@use '../../styles/mixins/elevation' as *;
 
 :host {
   height: 100vh;
-
-  &.standard {
-    .anglify-drawer {
-      position: relative;
-      left: 0;
-      border-right: solid;
-      border-color: $drawer-standard-border-color;
-      border-width: 1px;
-    }
-  }
-
-  &.modal {
-    .anglify-drawer {
-      position: absolute;
-      left: calc(-1 * $drawer-width);
-      transition: left 250ms;
-    }
-  }
+  @include elevation-transition;
 
   .anglify-drawer {
     z-index: 1;
@@ -30,6 +14,22 @@
     background: $drawer-background-color;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+
+  &.standard {
+    .anglify-drawer {
+      position: relative;
+      left: 0;
+      @include elevation(24);
+    }
+  }
+
+  &.modal {
+    .anglify-drawer {
+      position: absolute;
+      left: calc(-1 * $drawer-width);
+      transition: left 250ms;
+    }
   }
 
   .anglify-drawer-backdrop {
@@ -50,7 +50,8 @@
 
   &.anglify-drawer-opened {
     .anglify-drawer {
-      left: 0px;
+      left: 0;
+      @include elevation(24);
     }
 
     .anglify-drawer-backdrop {

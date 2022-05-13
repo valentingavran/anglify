@@ -1,4 +1,3 @@
-@use 'sass:map';
 @use 'variables' as *;
 @use '../../styles/mixins/elevation' as *;
 @use '../../styles/settings';
@@ -15,82 +14,42 @@
   text-decoration: none;
   user-select: none;
   vertical-align: middle;
-  @include elevationTransition();
+  @include elevation-transition;
 
-  &.elevated,
-  &.filled,
-  &.filled-tonal,
+  &.contained,
+  &.contained-tonal,
   &.outlined,
-  &.text,
-  &.extended-fab {
+  &.text {
+    height: $button-height;
     padding-inline-start: $button-inline-padding-start;
     padding-inline-end: $button-inline-padding-end;
-  }
-
-  @each $name in settings.$sizes {
-    &.button-size-#{$name} {
-      height: map.get($button-sizes, $name);
-      width: map.get($button-sizes, $name);
-    }
   }
 
   &:disabled {
     cursor: not-allowed;
   }
 
-  &:hover:not(:disabled) {
-    --state-container-color: #{$button-hover-state-color};
-  }
-
   &:focus-visible {
     --state-container-color: #{$button-focus-state-color};
   }
 
-  &.elevated {
-    background: $button-elevated-background;
-    color: $button-elevated-label-color;
-    font: $button-elevated-label-font;
-    border-radius: $button-elevated-border-radius;
-    width: auto !important;
-
-    @include elevation(1);
-
-    &:hover:not(:disabled):not(:active) {
-      @include elevation(2);
-    }
+  &:hover:not(:disabled) {
+    --state-container-color: #{$button-hover-state-color};
   }
 
-  &.filled {
-    background: $button-filled-background;
-    color: $button-filled-label-color;
-    font: $button-filled-label-font;
-    border-radius: $button-filled-border-radius;
-    width: auto !important;
-
-    &:hover:not(:disabled):not(:active) {
-      @include elevation(1);
-    }
+  &.contained {
+    background: $button-contained-background;
+    color: $button-contained-label-color;
+    font: $button-contained-label-font;
+    border-radius: $button-contained-border-radius;
 
     &:disabled {
-      background: $button-filled-background-disabled;
-      color: $button-filled-label-color-disabled;
-    }
-  }
-
-  &.filled-tonal {
-    background: $button-filled-tonal-background;
-    color: $button-filled-tonal-label-color;
-    font: $button-filled-tonal-label-font;
-    border-radius: $button-filled-tonal-border-radius;
-    width: auto !important;
-
-    &:hover:not(:disabled):not(:active) {
-      @include elevation(1);
+      background: $button-contained-background-disabled;
+      color: $button-contained-label-color-disabled;
     }
 
-    &:disabled {
-      background: $button-filled-tonal-background-disabled;
-      color: $button-filled-tonal-label-color-disabled;
+    &:active:not(:disabled) {
+      @include elevation(16);
     }
   }
 
@@ -100,7 +59,6 @@
     font: $button-outlined-label-font;
     border-radius: $button-outlined-border-radius;
     border: $button-outline-border;
-    width: auto !important;
 
     &:disabled {
       background: $button-outlined-background-disabled;
@@ -113,7 +71,8 @@
     color: $button-text-label-color;
     font: $button-text-label-font;
     border-radius: $button-text-border-radius;
-    width: auto !important;
+    padding-inline-start: $button-inline-padding-start-text;
+    padding-inline-end: $button-inline-padding-end-text;
 
     &:disabled {
       color: $button-outlined-label-color-disabled;
@@ -124,6 +83,8 @@
     background: transparent;
     border-radius: $button-icon-border-radius;
     color: $button-icon-label-color;
+    height: $button-icon-size;
+    width: $button-icon-size;
 
     &:disabled {
       color: $button-icon-label-color-disabled;
@@ -131,35 +92,26 @@
   }
 
   &.fab {
+    padding-inline-start: $button-inline-padding-start;
+    padding-inline-end: $button-inline-padding-end;
     background: $button-fab-background;
     border-radius: $button-fab-border-radius;
     color: $button-fab-label-color;
-    height: 56px !important;
-    width: 56px !important;
+    height: $button-fab-size;
 
-    &.button-size-small {
-      height: 40px !important;
-      width: 40px !important;
-    }
-
-    &.button-size-large {
-      height: 96px !important;
-      width: 96px !important;
-      --anglify-icon-size: 36px;
-    }
-
-    @include elevation(3);
+    @include elevation(7);
   }
 
   &.extended-fab {
+    padding-inline-start: $button-inline-padding-start-extended-fab;
+    padding-inline-end: $button-inline-padding-end-extended-fab;
     background: $button-fab-background;
+    font: $button-fab-label-font;
     border-radius: $button-fab-border-radius;
     color: $button-fab-label-color;
-    min-width: 80px;
-    width: auto !important;
-    height: 56px !important;
+    height: $button-fab-size;
 
-    @include elevation(3);
+    @include elevation(7);
   }
 
   &.block {
@@ -168,10 +120,10 @@
   }
 
   &.has-left-icon {
-    padding-inline-start: $button-inline-padding-start-dense;
+    padding-inline-start: $button-inline-padding-start-icon;
   }
 
   &.has-right-icon {
-    padding-inline-end: $button-inline-padding-end-dense;
+    padding-inline-end: $button-inline-padding-end-icon;
   }
 }
