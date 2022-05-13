@@ -2,6 +2,70 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.18.0](https://github.com/valentingavran/anglify/compare/v0.17.2...v0.18.0) (2022-05-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* Themes are now mixins and do not manipulate the root element directly. At the point where you want
+to add the theme variables, you must now call the mixin with `@include light-theme;`
+
+    ```scss
+    @use 'node_modules/@anglify/components/styles/themes/light' as *;
+
+    :root {
+        @include light-theme;
+    }
+    ```
+- Removal of `elevated` button style.
+  - There is no reason for us to do this, we can already use the elevation utility for this.
+- Rename of `filled` button style to `contained` as per material spec.
+- Removal of `filled-tonal` button style.
+  - We can already handle changing the button color and text color within just a certain button
+    really easily, no need to do this.
+- Removal of `sizing` property on buttons.
+  - We can handle changing the button size with CSS rather easily too, no need to do all out here
+    and change it weirdly with props to have 5 fixed sizes.
+- Removal of `sizing` property on fab buttons.
+  - See above.
+
+### ✨  Styles
+
+* cleanup return types, add missing spacing ([0d48b9b](https://github.com/valentingavran/anglify/commit/0d48b9b5262ce3684ba889b5b070392910ca88b7))
+
+
+### 🔬  Code Refactoring
+
+* material spec 2 ([bf2cfc2](https://github.com/valentingavran/anglify/commit/bf2cfc2098b334485ba5d9cec05d7b76d08c48af))
+* themes to be mixins ([bafeb7f](https://github.com/valentingavran/anglify/commit/bafeb7f9005974067a9ff8fe6947081183dd0ace))
+
+
+### 🐛  Bug Fixes
+
+* improve spacing in form fields ([f11a971](https://github.com/valentingavran/anglify/commit/f11a971d634ad0145a2abfa9a94413fefc77df2b))
+* typographies should not have predefined colors ([813ea7d](https://github.com/valentingavran/anglify/commit/813ea7d173692325bf058786aaf275a2d44fbf39))
+
+
+### 🛠  Other Commmits
+
+* add husky pre-commit checks ([3f3ed9c](https://github.com/valentingavran/anglify/commit/3f3ed9cdd02507c73df47b10d915bf3032af41f4))
+* add stylelint ([c36fc84](https://github.com/valentingavran/anglify/commit/c36fc840351deec8c1d821297eedf2b294e15467))
+* upgrade deps ([1066138](https://github.com/valentingavran/anglify/commit/10661382104948452f2c6f81e1b7f063194f02c8))
+
+
+### 🚀  Features
+
+* bottom navigation ([3515ce9](https://github.com/valentingavran/anglify/commit/3515ce9297f75cfb121c302d68acfa8114682344))
+* dark theme ([5e6c87d](https://github.com/valentingavran/anglify/commit/5e6c87df3ed4e792a72e52d820af6cb8ea1b0317))
+* **Stepper:** use anglify icon internally by default ([77409c1](https://github.com/valentingavran/anglify/commit/77409c16cf5625d9691e23b3ca9943ff72d6d2bb)), closes [#119](https://github.com/valentingavran/anglify/issues/119)
+* toolbar ([65e9d28](https://github.com/valentingavran/anglify/commit/65e9d28f2945e3a122485f7f7e66a75422e30a06))
+
+
+### 📝  Docs
+
+* add common-tags for easier insertion of values ([9198bcb](https://github.com/valentingavran/anglify/commit/9198bcb04e45ed13bdb14e94f83692106a710b35))
+* fix form field readonly example ([2e3f815](https://github.com/valentingavran/anglify/commit/2e3f8151e3ce65982f8c721d2bb58e3e596638f6))
+
 ### [0.17.2](https://github.com/valentingavran/anglify/compare/v0.17.1...v0.17.2) (2022-05-06)
 
 
