@@ -45,6 +45,10 @@ export class AppComponent {
 
   public components = [
     {
+      link: 'components/bottom-navigation',
+      name: 'Bottom Navigation',
+    },
+    {
       link: 'components/button',
       name: 'Button',
     },

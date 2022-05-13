@@ -1,4 +1,5 @@
 import {
+  BottomNavigationModule,
   ButtonModule,
   CardModule,
   CheckboxModule,
@@ -24,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
+import { BottomNavigationExampleModule } from './examples/bottom-navigation/bottom-navigation-example.module';
 import { ButtonExamplesModule } from './examples/button/button-examples.module';
 import { CardExamplesModule } from './examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
@@ -39,6 +41,7 @@ import { StepperExamplesModule } from './examples/stepper/stepper-examples.modul
 import { TableExamplesModule } from './examples/table/table-examples.module';
 import { ToolbarExampleModule } from './examples/toolbar/toolbar-example.module';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
+import { BottomNavigationPageComponent } from './pages/component-pages/bottom-navigation-page/bottom-navigation-page.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
@@ -77,6 +80,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     DialogPageComponent,
     NavDrawerPageComponent,
     ToolbarPageComponent,
+    BottomNavigationPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +119,8 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     NavDrawerExamplesModule,
     ToolbarModule,
     ToolbarExampleModule,
+    BottomNavigationModule,
+    BottomNavigationExampleModule,
   ],
   providers: [
     {

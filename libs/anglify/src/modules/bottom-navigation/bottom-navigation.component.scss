@@ -1,0 +1,16 @@
+@use 'variables' as *;
+
+:host {
+  display: flex;
+  height: $bottom-navigation-height;
+  background-color: $bottom-navigation-background;
+  width: $bottom-navigation-width;
+  justify-content: center;
+  align-items: center;
+}
+
+:host(.grow) {
+  ::ng-deep anglify-bottom-navigation-item {
+    flex: 1;
+  }
+}
