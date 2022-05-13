@@ -1,0 +1,40 @@
+@use '../../variables' as *;
+@use '../../../../styles/settings/typography.scss' as *;
+
+:host {
+  height: 100%;
+  min-width: $bottom-navigation-item-min-width;
+  max-width: $bottom-navigation-item-max-width;
+  cursor: pointer;
+
+  ::ng-deep {
+    * {
+      color: $bottom-navigation-text-color-default;
+    }
+  }
+
+  .icon {
+    margin-top: $bottom-navigation-item-icon-margin-top;
+  }
+
+  .icon,
+  .label {
+    display: flex;
+    justify-content: center;
+    @extend %label-m;
+  }
+}
+
+:host(.active) {
+  ::ng-deep {
+    * {
+      color: $bottom-navigation-text-color-active;
+    }
+  }
+}
+
+:host(.shift) {
+  .icon {
+    margin-top: $bottom-navigation-item-shift-icon-margin-top;
+  }
+}

@@ -6,8 +6,8 @@
     "build": "node ./scripts/css-variable-extractor.js && nx build",
     "test": "nx test --project=anglify",
     "test:coverage": "nx test --coverage --project=anglify",
-    "lint": "prettier --check . && stylelint '**/*.scss' && nx run-many --all --target=lint",
-    "format": "prettier --write . && stylelint '**/*.scss' --fix && nx run-many --all --target=lint --fix",
+    "lint": "prettier --check . && stylelint \"**/*.scss\" && nx run-many --all --target=lint",
+    "format": "prettier --write . && stylelint \"**/*.scss\" --fix && nx run-many --all --target=lint --fix",
     "build:anglify": "nx build anglify && rsync -av dist/libs/anglify/src/ dist/libs/anglify/ && rm -rf dist/libs/anglify/src",
     "release": "standard-version",
     "prepare": "is-ci || husky install"

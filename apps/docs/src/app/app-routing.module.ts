@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BottomNavigationPageComponent } from './pages/component-pages/bottom-navigation-page/bottom-navigation-page.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
 import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
@@ -86,6 +87,10 @@ const routes: Routes = [
   {
     path: 'components/toolbar',
     component: ToolbarPageComponent,
+  },
+  {
+    path: 'components/bottom-navigation',
+    component: BottomNavigationPageComponent,
   },
   {
     path: 'getting-started',
