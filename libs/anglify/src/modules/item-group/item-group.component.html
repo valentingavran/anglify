@@ -1,0 +1,3 @@
+<ng-container *ngFor="let item of itemGroupItems$ | async">
+  <ng-container *anglifySlotOutlet="item.template; context: { active: item.data, $implicit: handleItemClick(item) }"></ng-container>
+</ng-container>

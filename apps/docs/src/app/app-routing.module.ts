@@ -7,6 +7,7 @@ import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/che
 import { DialogPageComponent } from './pages/component-pages/dialog-page/dialog-page.component';
 import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
+import { ItemGroupPageComponent } from './pages/component-pages/item-group-page/item-group-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
 import { NavDrawerPageComponent } from './pages/component-pages/nav-drawer-page/nav-drawer-page.component';
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'components/icon',
     component: IconPageComponent,
+  },
+  {
+    path: 'components/item-group',
+    component: ItemGroupPageComponent,
   },
   {
     path: 'components/list',

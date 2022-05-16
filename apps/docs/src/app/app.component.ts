@@ -73,6 +73,10 @@ export class AppComponent {
       name: 'Icon',
     },
     {
+      link: 'components/item-group',
+      name: 'Item Group',
+    },
+    {
       link: 'components/list',
       name: 'List',
     },
