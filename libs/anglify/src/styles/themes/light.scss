@@ -6,13 +6,13 @@
   --color-on-primary-low-emphasis: rgb(255 255 255 / 38%);
   --color-primary-state-hover: rgb(98 0 238 / 4%);
   --color-primary-state-focus: rgb(98 0 238 / 12%);
-  --color-primary-variant: #3700b3;
-  --color-secondary: #03dac5;
+  --color-primary-variant: #bb86fc;
+  --color-secondary: #01a299;
   --color-on-secondary: #000;
   --color-on-secondary-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-secondary-medium-emphasis: rgb(0 0 0 / 60%);
   --color-on-secondary-low-emphasis: rgb(0 0 0 / 38%);
-  --color-secondary-variant: #018786;
+  --color-secondary-variant: #03dac5;
   --color-error: #b00020;
   --color-on-error-high-emphasis: rgb(255 255 255 / 87%);
   --color-on-error-medium-emphasis: rgb(255 255 255 / 60%);
@@ -36,4 +36,8 @@
   --color-elevated: var(--color-surface);
   --color-backdrop: rgb(0 0 0 / 12%);
   --color-ripple: rgb(0 0 0 / 12%);
+  --color-bar: var(--color-primary);
+  --color-on-bar: var(--color-on-primary-high-emphasis);
+  --color-on-bar-high-emphasis: var(--color-on-primary-high-emphasis);
+  --color-on-bar-medium-emphasis: var(--color-on-primary-medium-emphasis);
 }
