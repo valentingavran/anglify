@@ -74,6 +74,11 @@ export * from './modules/progress-linear/progress-linear.module';
 export * from './modules/radio-button/radio-button.component';
 export * from './modules/radio-button/radio-button.interface';
 export * from './modules/radio-button/radio-button.module';
+// Snackbar
+export * from './modules/snackbar/snackbar.component';
+export * from './modules/snackbar/snackbar.interface';
+export * from './modules/snackbar/snackbar.service';
+export * from './modules/snackbar/snackbar.module';
 // Stepper
 export * from './modules/stepper/components/stepper-header/stepper-header.component';
 export * from './modules/stepper/components/stepper/stepper.component';
