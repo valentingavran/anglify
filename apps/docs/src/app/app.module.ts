@@ -11,6 +11,7 @@ import {
   ProgressCircularModule,
   ProgressLinearModule,
   RadioButtonModule,
+  SnackbarModule,
   TableModule,
   ToolbarModule,
 } from '@anglify/components';
@@ -37,6 +38,7 @@ import { NavDrawerExamplesModule } from './examples/nav-drawer/nav-drawer-exampl
 import { ProgressCircularExamplesModule } from './examples/progress-circular/progress-circular-examples.module';
 import { ProgressLinearExamplesModule } from './examples/progress-linear/progress-linear-examples.module';
 import { RadioButtonExamplesModule } from './examples/radio-button/radio-button-examples.module';
+import { SnackbarExamplesModule } from './examples/snackbar/snackbar-examples.module';
 import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
 import { TableExamplesModule } from './examples/table/table-examples.module';
 import { ToolbarExampleModule } from './examples/toolbar/toolbar-example.module';
@@ -54,6 +56,7 @@ import { NavDrawerPageComponent } from './pages/component-pages/nav-drawer-page/
 import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
+import { SnackbarPageComponent } from './pages/component-pages/snackbar-page/snackbar-page.component';
 import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
 import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
 import { ToolbarPageComponent } from './pages/component-pages/toolbar-page/toolbar-page.component';
@@ -81,6 +84,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     NavDrawerPageComponent,
     ToolbarPageComponent,
     BottomNavigationPageComponent,
+    SnackbarPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +125,8 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     ToolbarExampleModule,
     BottomNavigationModule,
     BottomNavigationExampleModule,
+    SnackbarModule,
+    SnackbarExamplesModule,
   ],
   providers: [
     {

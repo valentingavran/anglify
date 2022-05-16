@@ -97,6 +97,10 @@ export class AppComponent {
       name: 'Radio Button',
     },
     {
+      link: 'components/snackbar',
+      name: 'Snackbar',
+    },
+    {
       link: 'components/stepper',
       name: 'Stepper',
     },
