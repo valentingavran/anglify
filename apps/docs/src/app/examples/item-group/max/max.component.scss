@@ -1,0 +1,25 @@
+:host {
+  anglify-item-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  anglify-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+
+    &.active {
+      background-color: var(--color-primary);
+      color: var(--color-on-primary-high-emphasis);
+    }
+  }
+
+  button:first-of-type {
+    margin-right: 1rem;
+  }
+}

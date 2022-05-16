@@ -32,6 +32,7 @@ import { CardExamplesModule } from './examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
 import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
+import { ItemGroupExamplesModule } from './examples/item-group/item-group-examples.module';
 import { ListExamplesModule } from './examples/list/list-examples.module';
 import { MenuExamplesModule } from './examples/menu/menu-examples.module';
 import { NavDrawerExamplesModule } from './examples/nav-drawer/nav-drawer-examples.module';
@@ -50,6 +51,7 @@ import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/che
 import { DialogPageComponent } from './pages/component-pages/dialog-page/dialog-page.component';
 import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
 import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
+import { ItemGroupPageComponent } from './pages/component-pages/item-group-page/item-group-page.component';
 import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
 import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
 import { NavDrawerPageComponent } from './pages/component-pages/nav-drawer-page/nav-drawer-page.component';
@@ -85,6 +87,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     ToolbarPageComponent,
     BottomNavigationPageComponent,
     SnackbarPageComponent,
+    ItemGroupPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,6 +130,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     BottomNavigationExampleModule,
     SnackbarModule,
     SnackbarExamplesModule,
+    ItemGroupExamplesModule,
   ],
   providers: [
     {

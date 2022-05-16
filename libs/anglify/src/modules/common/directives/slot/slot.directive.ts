@@ -3,8 +3,10 @@ import { Directive, Input, QueryList, TemplateRef } from '@angular/core';
 @Directive({
   selector: 'ng-template[slot]',
 })
-export class SlotDirective {
+export class SlotDirective<T = any> {
   @Input() public slot: string | undefined;
+
+  public data!: T;
 
   public constructor(public readonly template: TemplateRef<any>) {}
 

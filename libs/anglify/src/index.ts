@@ -40,6 +40,9 @@ export * from './modules/icon/icon-settings.token';
 export * from './modules/icon/icon.component';
 export * from './modules/icon/icon.interface';
 export * from './modules/icon/icon.module';
+// Item Group
+export * from './modules/item-group/item-group.component';
+export * from './modules/item-group/item-group.module';
 // List
 export * from './modules/list/components/list/list.component';
 export * from './modules/list/components/list-group/list-group.component';
