@@ -1,0 +1,10 @@
+<div *ngIf="!(slots | findSlot: 'prepend') && filter | booleanLikeToBoolean" class="prepend">
+  <anglify-icon icon="mdi-check"></anglify-icon>
+</div>
+<div *ngIf="slots | findSlot: 'prepend'" class="prepend">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
+</div>
+<ng-content></ng-content>
+<div *ngIf="slots | findSlot: 'append'" class="append">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'append'"></ng-container>
+</div>
