@@ -87,6 +87,30 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @Input()
+  public set flip(value: BooleanLike) {
+    this._flip = toBoolean(value);
+    if (this.componentRef) {
+      this.componentRef.instance.flip = this._flip;
+    }
+  }
+
+  public get flip() {
+    return this._flip;
+  }
+
+  @Input()
+  public set shift(value: BooleanLike) {
+    this._shift = toBoolean(value);
+    if (this.componentRef) {
+      this.componentRef.instance.shift = this._shift;
+    }
+  }
+
+  public get shift() {
+    return this._shift;
+  }
+
+  @Input()
   public set contentClass(value: string | undefined) {
     this._contentClass = value;
     if (this.componentRef) {
@@ -102,6 +126,8 @@ export class TooltipDirective implements OnDestroy {
   private _offset = DEFAULT_TOOLTIP_SETTINGS.defaultOffset;
   private _parentWidth = DEFAULT_TOOLTIP_SETTINGS.parentWidth;
   private _contentClass?: string | undefined;
+  private _flip: boolean = DEFAULT_TOOLTIP_SETTINGS.flip;
+  private _shift: boolean = DEFAULT_TOOLTIP_SETTINGS.shift;
 
   private componentRef: ComponentRef<TooltipComponent> | undefined; // Tooltip Component Reference
   private embeddedView: EmbeddedViewRef<any> | undefined; // Tooltip Content Template Reference
@@ -219,6 +245,8 @@ export class TooltipDirective implements OnDestroy {
     this.componentRef.instance.offset = this.offset;
     this.componentRef.instance.parentWidth = this.parentWidth;
     this.componentRef.instance.contentClass = this.contentClass;
+    this.componentRef.instance.flip = this.flip;
+    this.componentRef.instance.shift = this.shift;
 
     this.changeMountingPoint();
     this.cdRef.markForCheck();

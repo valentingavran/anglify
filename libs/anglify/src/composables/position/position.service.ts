@@ -1,4 +1,5 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
+import { Options } from '@floating-ui/core/src/middleware/offset';
 import { computePosition, offset, flip, shift } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, merge } from 'rxjs';
@@ -11,22 +12,54 @@ import { BooleanLike } from '../../utils/interfaces';
 @Injectable()
 export class PositionService {
   private _position: Position = 'top';
-  private _offset = 10;
+  private _offset: Options = 10;
   private _parentWidth = false;
+  private _flip = false;
+  private _shift = false;
 
   public set position(value: Position) {
     this._position = value;
     void this.updatePosition();
   }
 
-  public set offset(value: number) {
+  public get position() {
+    return this._position;
+  }
+
+  public set offset(value: Options) {
     this._offset = value;
     void this.updatePosition();
+  }
+
+  public get offset() {
+    return this._offset;
   }
 
   public set parentWidth(value: BooleanLike) {
     this._parentWidth = toBoolean(value);
     void this.updatePosition();
+  }
+
+  public get parentWidth() {
+    return this._parentWidth;
+  }
+
+  public set flip(value: BooleanLike) {
+    this._flip = toBoolean(value);
+    void this.updatePosition();
+  }
+
+  public get flip() {
+    return this._flip;
+  }
+
+  public set shift(value: BooleanLike) {
+    this._shift = toBoolean(value);
+    void this.updatePosition();
+  }
+
+  public get shift() {
+    return this._shift;
   }
 
   public constructor(
@@ -41,9 +74,13 @@ export class PositionService {
   }
 
   private async updatePosition() {
+    const middleware = [offset(this._offset)];
+    if (this._flip) middleware.push(flip());
+    if (this._shift) middleware.push(shift({ padding: 5 }));
+
     const { x, y } = await computePosition(this.settings.host, this._elementRef.nativeElement, {
       placement: this._position,
-      middleware: [offset(this._offset), flip(), shift({ padding: 5 })],
+      middleware: middleware,
       strategy: 'fixed',
     });
 

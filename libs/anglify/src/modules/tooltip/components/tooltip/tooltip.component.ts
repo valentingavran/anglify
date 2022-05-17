@@ -29,6 +29,16 @@ export class TooltipComponent {
     this.positionService.parentWidth = toBoolean(value);
   }
 
+  @Input()
+  public set flip(value: BooleanLike) {
+    this.positionService.flip = toBoolean(value);
+  }
+
+  @Input()
+  public set shift(value: BooleanLike) {
+    this.positionService.shift = toBoolean(value);
+  }
+
   @HostBinding('class')
   @Input()
   public contentClass?: string | undefined;
