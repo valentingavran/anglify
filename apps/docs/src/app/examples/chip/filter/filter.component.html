@@ -1,0 +1,24 @@
+<anglify-item-group multiple>
+  <ng-template slot="item-group-item" let-active="active" let-toggle>
+    <anglify-chip [active]="active" (click)="toggle()" filter>
+      <ng-template slot="prepend">
+        <anglify-icon icon="mdi-home" left></anglify-icon>
+      </ng-template>
+      Filled
+    </anglify-chip>
+  </ng-template>
+  <ng-template slot="item-group-item" let-active="active" let-toggle>
+    <anglify-chip [active]="active" (click)="toggle()" filter>Filled</anglify-chip>
+  </ng-template>
+  <ng-template slot="item-group-item" let-active="active" let-toggle>
+    <anglify-chip [active]="active" (click)="toggle()" filter appearance="outlined">
+      <ng-template slot="prepend">
+        <anglify-icon icon="mdi-home" left></anglify-icon>
+      </ng-template>
+      <ng-template slot="append">
+        <anglify-icon icon="mdi-close-circle" right></anglify-icon>
+      </ng-template>
+      Outlined
+    </anglify-chip>
+  </ng-template>
+</anglify-item-group>

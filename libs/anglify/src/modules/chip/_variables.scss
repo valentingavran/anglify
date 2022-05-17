@@ -1,0 +1,14 @@
+$chip-border-radius: var(--anglify-chip-border-radius, 16px);
+$chip-height: var(--anglify-chip-height, 20px);
+$chip-padding: var(--anglify-chip-padding, 6px 12px);
+$chip-background-color: var(--anglify-chip-background-color, var(--color-surface-overlay));
+$chip-text-decoration: var(--anglify-chip-text-decoration, none);
+$chip-cursor: var(--anglify-chip-cursor, default);
+$chip-inline-padding-start-dense: var(--anglify-chip-inline-padding-start-dense, 5px);
+$chip-inline-padding-end-dense: var(--anglify-chip-inline-padding-end-dense, 5px);
+$chip-outlined-border: var(--anglify-chip-outlined-border, 1px solid var(--border-color-on-surface-low-emphasis));
+$chip-group-gap: var(--anglify-chip-group-gap, 16px);
+$chip-filter-prepend-width: var(--anglify-chip-filter-prepend-width, 30px);
+$chip-filter-transition-speed: var(--anglify-chip-filter-transition-speed, all 250ms);
+$chip-hover-state-color: var(--anglify-hover-state-color, var(--color-primary-state-hover)) !default;
+$chip-focus-state-color: var(--anglify-focus-state-color, var(--color-primary-state-focus)) !default;

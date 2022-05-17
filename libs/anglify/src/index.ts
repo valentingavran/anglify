@@ -15,6 +15,11 @@ export * from './modules/checkbox/tokens/checkbox.token';
 export * from './modules/checkbox/checkbox.component';
 export * from './modules/checkbox/functions/register-icons.function';
 export * from './modules/checkbox/checkbox.module';
+// Chip
+export * from './modules/chip/chip-settings.token';
+export * from './modules/chip/chip.interface';
+export * from './modules/chip/chip.component';
+export * from './modules/chip/chip.module';
 // Common
 export * from './modules/common/directives/slot/slot.directive';
 export * from './modules/common/directives/slot-outlet/slot-outlet.directive';

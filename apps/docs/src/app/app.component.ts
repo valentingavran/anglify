@@ -61,6 +61,10 @@ export class AppComponent {
       name: 'Checkbox',
     },
     {
+      link: 'components/chip',
+      name: 'Chip',
+    },
+    {
       link: 'components/dialog',
       name: 'Dialog',
     },
