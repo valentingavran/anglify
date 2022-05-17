@@ -66,7 +66,11 @@ export class PositionService {
     private readonly _elementRef: ElementRef<HTMLElement>,
     @Inject(POSITION_SETTINGS) private readonly settings: PositionSettings
   ) {
-    merge(observeOnResize(this._elementRef.nativeElement), fromEvent(window, 'scroll', { capture: true }))
+    merge(
+      observeOnResize(this._elementRef.nativeElement),
+      fromEvent(window, 'scroll', { capture: true }),
+      fromEvent(window, 'resize', { capture: true })
+    )
       .pipe(untilDestroyed(this))
       .subscribe(() => {
         void this.updatePosition();
