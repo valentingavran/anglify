@@ -1,6 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { filterEmpty } from 'libs/anglify/src/utils/operator-functions';
 import { BehaviorSubject, filter, tap } from 'rxjs';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
@@ -34,6 +36,8 @@ export class ListGroupComponent {
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
   @ContentChildren(ListGroupComponent) public listGroups?: QueryList<ListGroupComponent>;
 
+  @Input() public disableGroupCollapse: BooleanLike = false;
+
   @Input() public set active(value: BooleanLike) {
     this.active$.next(toBoolean(value));
   }
@@ -44,8 +48,57 @@ export class ListGroupComponent {
 
   public active$ = new BehaviorSubject<boolean>(false);
 
-  public constructor() {
+  public constructor(private readonly router: Router) {
     this.childrenListGroupsCloseHandler$.pipe(untilDestroyed(this)).subscribe();
+
+    this.router.events
+      .pipe(
+        untilDestroyed(this),
+        filter(() => this.groupHasLinkItems()), // only continue if group has link items
+        filter(event => event instanceof NavigationEnd),
+        filterEmpty(),
+        tap(link => {
+          const url = (link as NavigationEnd).url.split('?')[0];
+          const foundItems = this.findListItems(url);
+
+          if (foundItems.length > 0) {
+            this.open();
+          } else if (foundItems.length === 0 && !this.disableGroupCollapse) {
+            this.close();
+          }
+        })
+      )
+      .subscribe();
+  }
+
+  /**
+   * @returns true if a list item is found with a routerLink that matches the current URL
+   */
+  private findListItems(currentURL: string) {
+    return this.listItems
+      ? this.listItems.filter(
+          x =>
+            x.routerLink !== undefined &&
+            x.routerLink !== null &&
+            (x.routerLink.length > 0 || typeof x.routerLink === 'string') &&
+            this.checkRouterLink(x.routerLink, currentURL)
+        )
+      : [];
+  }
+
+  /**
+   * @returns true if routerLink matches currentURL
+   */
+  private checkRouterLink(routerLink: string | any[], currentURL: string) {
+    const link = typeof routerLink === 'string' ? `/${routerLink}` : `/${routerLink.join('/')}`;
+    return link === currentURL;
+  }
+
+  /**
+   * @returns true if the group has at least one list item with a routerLink
+   */
+  private groupHasLinkItems() {
+    return this.listItems ? this.listItems.some(x => x.routerLink !== undefined && x.routerLink !== null) : false;
   }
 
   public open() {
