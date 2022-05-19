@@ -37,6 +37,7 @@ import { ButtonExamplesModule } from './examples/button/button-examples.module';
 import { CardExamplesModule } from './examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
 import { ChipExamplesModule } from './examples/chip/chip-examples.module';
+import { DialogExamplesModule } from './examples/dialog/dialog-examples.module';
 import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from './examples/icon/icon-examples.module';
 import { ItemGroupExamplesModule } from './examples/item-group/item-group-examples.module';
@@ -147,6 +148,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     ItemGroupExamplesModule,
     ChipModule,
     ChipExamplesModule,
+    DialogExamplesModule,
   ],
   providers: [
     {

@@ -29,8 +29,8 @@ export class SnackbarComponent implements OnInit {
   }
 
   public ngOnInit() {
-    if (this.context.duration ?? this.settings.duration) {
-      setTimeout(() => this.context.completeWith('internal.duration'), this.context.duration ?? this.settings.duration);
+    if (this.context.timeout ?? this.settings.timeout) {
+      setTimeout(() => this.context.completeWith('internal.timeout'), this.context.timeout ?? this.settings.timeout);
     }
   }
 

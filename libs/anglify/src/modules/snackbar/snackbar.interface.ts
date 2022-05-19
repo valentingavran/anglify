@@ -5,7 +5,7 @@ export type Position = 'center' | 'leading';
 export interface SnackbarSettings {
   position?: Position;
   stacked?: boolean;
-  duration?: number;
+  timeout?: number;
 }
 
 export interface SnackbarData {
