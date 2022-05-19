@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BadgePageComponent } from './pages/component-pages/badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './pages/component-pages/bottom-navigation-page/bottom-navigation-page.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
@@ -106,6 +107,10 @@ const routes: Routes = [
   {
     path: 'components/bottom-navigation',
     component: BottomNavigationPageComponent,
+  },
+  {
+    path: 'components/badge',
+    component: BadgePageComponent,
   },
   {
     path: 'getting-started',

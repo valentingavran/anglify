@@ -31,6 +31,7 @@ import { AppComponent } from './app.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
 import { ReferencesComponent } from './components/references/references.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
+import { BadgeExampleModule } from './examples/badge/badge-example.module';
 import { BottomNavigationExampleModule } from './examples/bottom-navigation/bottom-navigation-example.module';
 import { ButtonExamplesModule } from './examples/button/button-examples.module';
 import { CardExamplesModule } from './examples/card/card-examples.module';
@@ -50,6 +51,7 @@ import { StepperExamplesModule } from './examples/stepper/stepper-examples.modul
 import { TableExamplesModule } from './examples/table/table-examples.module';
 import { ToolbarExampleModule } from './examples/toolbar/toolbar-example.module';
 import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
+import { BadgePageComponent } from './pages/component-pages/badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './pages/component-pages/bottom-navigation-page/bottom-navigation-page.component';
 import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
 import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
@@ -93,6 +95,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     NavDrawerPageComponent,
     ToolbarPageComponent,
     BottomNavigationPageComponent,
+    BadgePageComponent,
     SnackbarPageComponent,
     ItemGroupPageComponent,
     ChipPageComponent,
@@ -138,6 +141,7 @@ import { TooltipPageComponent } from './pages/component-pages/tooltip-page/toolt
     ToolbarExampleModule,
     BottomNavigationModule,
     BottomNavigationExampleModule,
+    BadgeExampleModule,
     SnackbarModule,
     SnackbarExamplesModule,
     ItemGroupExamplesModule,

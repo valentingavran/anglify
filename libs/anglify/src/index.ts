@@ -1,3 +1,15 @@
+// Badge
+export * from './modules/badge/badge-settings.token';
+export * from './modules/badge/badge.component';
+export * from './modules/badge/badge.directive';
+export * from './modules/badge/badge.interface';
+export * from './modules/badge/badge.module';
+// Bottom-Navigation
+export * from './modules/bottom-navigation/bottom-navigation.module';
+export * from './modules/bottom-navigation/bottom-navigation.component';
+export * from './modules/bottom-navigation/bottom-navigation-settings.token';
+export * from './modules/bottom-navigation/bottom-navigation.interface';
+export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';
 // Button
 export * from './modules/button/button.component';
 export * from './modules/button/button.interface';
@@ -110,9 +122,3 @@ export * from './modules/toolbar/toolbar.module';
 export * from './modules/toolbar/toolbar-settings.token';
 export * from './modules/toolbar/toolbar.interface';
 export * from './modules/toolbar/toolbar.component';
-// Bottom-Navigation
-export * from './modules/bottom-navigation/bottom-navigation.module';
-export * from './modules/bottom-navigation/bottom-navigation.component';
-export * from './modules/bottom-navigation/bottom-navigation-settings.token';
-export * from './modules/bottom-navigation/bottom-navigation.interface';
-export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';

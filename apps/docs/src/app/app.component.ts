@@ -49,6 +49,10 @@ export class AppComponent {
 
   public components = [
     {
+      link: 'components/badge',
+      name: 'Badge',
+    },
+    {
       link: 'components/bottom-navigation',
       name: 'Bottom Navigation',
     },
