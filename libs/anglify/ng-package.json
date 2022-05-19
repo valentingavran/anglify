@@ -11,18 +11,21 @@
     "src/modules/button/*.scss",
     "src/modules/card/*.scss",
     "src/modules/checkbox/*.scss",
+    "src/modules/chip/*.scss",
     "src/modules/dialog/*.scss",
     "src/modules/form-field/*.scss",
     "src/modules/icon/*.scss",
+    "src/modules/item-group/*.scss",
     "src/modules/list/*.scss",
     "src/modules/menu/*.scss",
     "src/modules/nav-drawer/*.scss",
     "src/modules/progress-circular/*.scss",
     "src/modules/progress-linear/*.scss",
     "src/modules/radio-button/*.scss",
+    "src/modules/snackbar/*.scss",
     "src/modules/stepper/*.scss",
     "src/modules/table/*.scss",
-    "src/modules/tooltip/*.scss",
-    "src/modules/toolbar/*.scss"
+    "src/modules/toolbar/*.scss",
+    "src/modules/tooltip/*.scss"
   ]
 }
