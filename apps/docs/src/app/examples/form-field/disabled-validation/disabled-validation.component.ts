@@ -55,7 +55,9 @@ export class DisabledValidationComponent {
   }
 
   public manualError() {
-    this.form.get('email')?.setErrors({ message: 'This email already exists' });
+    const control = this.form.get('email');
+    control?.markAsDirty();
+    control?.setErrors({ message: 'This email already exists' });
   }
 }
 

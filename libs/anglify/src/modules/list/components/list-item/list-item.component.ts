@@ -15,7 +15,7 @@ import { BehaviorSubject, filter, map, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { bindClassToNativeElement, toBoolean } from '../../../../utils/functions';
-import type { BooleanLike } from '../../../../utils/interfaces';
+import type { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
 import { filterEmpty } from '../../../../utils/operator-functions';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 
@@ -69,7 +69,7 @@ export class ListItemComponent {
     return this.rippleService.state;
   }
 
-  @Input() public set routerLink(commands: any[] | string | null | undefined) {
+  @Input() public set routerLink(commands: RouterLinkCommands) {
     this.routerLink$.next(commands);
   }
 
@@ -93,7 +93,7 @@ export class ListItemComponent {
 
   public readonly active$ = new BehaviorSubject<boolean>(false);
   public readonly selectable$ = new BehaviorSubject<boolean>(false);
-  public readonly routerLink$ = new BehaviorSubject<any[] | string | null | undefined>(null);
+  public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,

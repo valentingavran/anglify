@@ -28,7 +28,9 @@ body {
 }
 
 h1 {
-  @extend %display-s;
+  @extend %display-m;
+
+  margin-bottom: 1rem;
 }
 
 h2 {

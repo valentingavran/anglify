@@ -171,7 +171,7 @@ export class FormFieldComponent implements AfterViewInit {
         )
         .subscribe();
 
-      this.input.valid$
+      this.input.invalid$
         .pipe(
           untilDestroyed(this),
           tap(valid => {

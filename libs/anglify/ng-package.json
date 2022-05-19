@@ -6,6 +6,8 @@
   },
   "assets": [
     "src/styles/**/*.scss",
+    "src/modules/badge/*.scss",
+    "src/modules/bottom-navigation/*.scss",
     "src/modules/button/*.scss",
     "src/modules/card/*.scss",
     "src/modules/checkbox/*.scss",
@@ -21,7 +23,6 @@
     "src/modules/stepper/*.scss",
     "src/modules/table/*.scss",
     "src/modules/tooltip/*.scss",
-    "src/modules/toolbar/*.scss",
-    "src/modules/bottom-navigation/*.scss"
+    "src/modules/toolbar/*.scss"
   ]
 }

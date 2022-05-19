@@ -33,6 +33,10 @@ export class AppComponent {
     window.open('https://github.com/valentingavran/anglify', '_blank')!.focus();
   }
 
+  public openMaterialDesignWebsite() {
+    window.open('https://material.io', '_blank')!.focus();
+  }
+
   public constructor(public readonly router: Router) {
     this.initTheme();
   }
@@ -44,6 +48,10 @@ export class AppComponent {
   ];
 
   public components = [
+    {
+      link: 'components/badge',
+      name: 'Badge',
+    },
     {
       link: 'components/bottom-navigation',
       name: 'Bottom Navigation',
@@ -61,6 +69,10 @@ export class AppComponent {
       name: 'Checkbox',
     },
     {
+      link: 'components/chip',
+      name: 'Chip',
+    },
+    {
       link: 'components/dialog',
       name: 'Dialog',
     },
@@ -71,6 +83,10 @@ export class AppComponent {
     {
       link: 'components/icon',
       name: 'Icon',
+    },
+    {
+      link: 'components/item-group',
+      name: 'Item Group',
     },
     {
       link: 'components/list',
@@ -95,6 +111,10 @@ export class AppComponent {
     {
       link: 'components/radio-button',
       name: 'Radio Button',
+    },
+    {
+      link: 'components/snackbar',
+      name: 'Snackbar',
     },
     {
       link: 'components/stepper',

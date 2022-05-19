@@ -27,6 +27,7 @@ export class ServerErrorHandlingComponent {
     // Simulate server response with this delay
     setTimeout(() => {
       if (this.passwordControl.value !== '12345678') {
+        this.passwordControl.markAsDirty();
         this.passwordControl.setErrors({ message: 'Password is not 12345678' });
       }
     }, 2000);

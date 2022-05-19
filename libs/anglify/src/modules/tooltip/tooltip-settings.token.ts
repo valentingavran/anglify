@@ -14,4 +14,6 @@ export const DEFAULT_TOOLTIP_SETTINGS: Required<TooltipSettings> = {
   defaultOffset: 10,
   autoCloseOnTouchDevicesAfterDelay: true,
   parentWidth: false,
+  flip: true,
+  shift: true,
 };

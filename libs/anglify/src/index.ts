@@ -1,3 +1,15 @@
+// Badge
+export * from './modules/badge/badge-settings.token';
+export * from './modules/badge/badge.component';
+export * from './modules/badge/badge.directive';
+export * from './modules/badge/badge.interface';
+export * from './modules/badge/badge.module';
+// Bottom-Navigation
+export * from './modules/bottom-navigation/bottom-navigation.module';
+export * from './modules/bottom-navigation/bottom-navigation.component';
+export * from './modules/bottom-navigation/bottom-navigation-settings.token';
+export * from './modules/bottom-navigation/bottom-navigation.interface';
+export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';
 // Button
 export * from './modules/button/button.component';
 export * from './modules/button/button.interface';
@@ -15,6 +27,11 @@ export * from './modules/checkbox/tokens/checkbox.token';
 export * from './modules/checkbox/checkbox.component';
 export * from './modules/checkbox/functions/register-icons.function';
 export * from './modules/checkbox/checkbox.module';
+// Chip
+export * from './modules/chip/chip-settings.token';
+export * from './modules/chip/chip.interface';
+export * from './modules/chip/chip.component';
+export * from './modules/chip/chip.module';
 // Common
 export * from './modules/common/directives/slot/slot.directive';
 export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
@@ -40,6 +57,9 @@ export * from './modules/icon/icon-settings.token';
 export * from './modules/icon/icon.component';
 export * from './modules/icon/icon.interface';
 export * from './modules/icon/icon.module';
+// Item Group
+export * from './modules/item-group/item-group.component';
+export * from './modules/item-group/item-group.module';
 // List
 export * from './modules/list/components/list/list.component';
 export * from './modules/list/components/list-group/list-group.component';
@@ -74,6 +94,11 @@ export * from './modules/progress-linear/progress-linear.module';
 export * from './modules/radio-button/radio-button.component';
 export * from './modules/radio-button/radio-button.interface';
 export * from './modules/radio-button/radio-button.module';
+// Snackbar
+export * from './modules/snackbar/snackbar.component';
+export * from './modules/snackbar/snackbar.interface';
+export * from './modules/snackbar/snackbar.service';
+export * from './modules/snackbar/snackbar.module';
 // Stepper
 export * from './modules/stepper/components/stepper-header/stepper-header.component';
 export * from './modules/stepper/components/stepper/stepper.component';
@@ -97,9 +122,3 @@ export * from './modules/toolbar/toolbar.module';
 export * from './modules/toolbar/toolbar-settings.token';
 export * from './modules/toolbar/toolbar.interface';
 export * from './modules/toolbar/toolbar.component';
-// Bottom-Navigation
-export * from './modules/bottom-navigation/bottom-navigation.module';
-export * from './modules/bottom-navigation/bottom-navigation.component';
-export * from './modules/bottom-navigation/bottom-navigation-settings.token';
-export * from './modules/bottom-navigation/bottom-navigation.interface';
-export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';

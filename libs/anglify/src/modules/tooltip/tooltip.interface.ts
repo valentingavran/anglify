@@ -15,4 +15,6 @@ export interface TooltipSettings {
   defaultOffset?: number;
   autoCloseOnTouchDevicesAfterDelay?: boolean;
   parentWidth?: boolean;
+  flip?: boolean;
+  shift?: boolean;
 }
