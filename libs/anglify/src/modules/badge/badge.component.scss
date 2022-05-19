@@ -1,0 +1,30 @@
+@use 'variables' as *;
+@use '../../styles/settings/typography.scss' as *;
+
+:host {
+  ::ng-deep {
+    * {
+      color: $badge-text-color;
+    }
+  }
+
+  &.badge {
+    position: fixed;
+    color: $badge-text-color;
+    border-radius: 20px;
+    background-color: $badge-background-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+    padding: 5px;
+    width: fit-content;
+    text-indent: 0;
+    @extend %label-s;
+  }
+
+  &.border {
+    border: solid $badge-border-color 2px;
+  }
+}
