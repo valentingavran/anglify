@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.19.0](https://github.com/valentingavran/anglify/compare/v0.18.1...v0.19.0) (2022-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* By default, the bars now use the global `--color-bar` CSS custom property for the
+background color. This also changed the background color of the bars in dark mode to a grey tone.
+* In order to set an error manually on untouched FormFields, the FormField must now
+be marked as dirty beforehand with the FormControl method `markAsDirty()`. Otherwise the error will
+not be displayed.
+
+### 🐛  Bug Fixes
+
+* dark theme colors across all components ([b8a30b5](https://github.com/valentingavran/anglify/commit/b8a30b52c8a89cfb6469874a42a3401c39560921))
+* form field error state checking ([99def9e](https://github.com/valentingavran/anglify/commit/99def9e51a1825c2d2bb0efdb89db13b8ff181e7))
+* position service window resize position bug ([fc7ebcd](https://github.com/valentingavran/anglify/commit/fc7ebcd43331f2cf3425074e2a2b2586c8bd5bfe))
+
+
+### 🚀  Features
+
+* add item group component ([7ada336](https://github.com/valentingavran/anglify/commit/7ada336fa8b3540387bead72b2edb02ecd72cf7c))
+* badge component ([d35b256](https://github.com/valentingavran/anglify/commit/d35b2569fbaf87a48d2e71a02a316b8f5d854ad5))
+* chip ([e26cd53](https://github.com/valentingavran/anglify/commit/e26cd5386ebcc466df10fa3d70fcac6f92b7adb3))
+* list group collapsing ([b3fe51c](https://github.com/valentingavran/anglify/commit/b3fe51c6d79e96671966b58c84a9202bc281a730))
+* set color of Anglify icons in tooltips the same as the text color ([ce1a99d](https://github.com/valentingavran/anglify/commit/ce1a99d516c8f487420fb27afe70a1e0c91d82bd))
+* snackbar ([53413d0](https://github.com/valentingavran/anglify/commit/53413d05b5604b301884fb5e90783fd002a951fb))
+* **Tooltip:** possibility to activate/deactivate shift & flip ([a4708a4](https://github.com/valentingavran/anglify/commit/a4708a4de79ec133e91eca8833455dea44d62ddf))
+
+
+### 📝  Docs
+
+* add references to material.io and other pages to every component ([6030d3f](https://github.com/valentingavran/anglify/commit/6030d3f1c32d1118e6d2a41696c61899752fa199))
+* improve examples and code quality ([a0419b8](https://github.com/valentingavran/anglify/commit/a0419b85e894e1192da7205bf8e7eaebd2cd17bc))
+* remove active group in navigation drawer ([b3fbcf3](https://github.com/valentingavran/anglify/commit/b3fbcf359a76836a66ff8902f3acb2401864f901))
+* remove button sizing example ([45d3f52](https://github.com/valentingavran/anglify/commit/45d3f52023d088b5909ffc3a1102d30773283084))
+
 ### [0.18.1](https://github.com/valentingavran/anglify/compare/v0.18.0...v0.18.1) (2022-05-19)
 
 
