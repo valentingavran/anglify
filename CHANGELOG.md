@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.1](https://github.com/valentingavran/anglify/compare/v0.18.0...v0.18.1) (2022-05-19)
+
+
+### 🐛  Bug Fixes
+
+* replace absolute paths inside bottom navigation component ([d7101e1](https://github.com/valentingavran/anglify/commit/d7101e145206324f74793c4ca294834ac2dfc58d))
+
 ## [0.18.0](https://github.com/valentingavran/anglify/compare/v0.17.2...v0.18.0) (2022-05-13)
 
 
