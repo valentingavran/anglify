@@ -29,10 +29,21 @@
 </anglify-nav-drawer>
 <main>
   <div class="toolbar">
-    <button anglifyButton appearance="icon" (click)="openGithubRepo()">
-      <anglify-icon icon="mdi-github"></anglify-icon>
+    <button anglifyButton appearance="icon" (click)="openMaterialDesignWebsite()" [anglifyTooltip]="materialTooltip">
+      <anglify-icon icon="mdi-material-design"></anglify-icon>
+      <ng-template #materialTooltip>
+        Open material.io
+        <anglify-icon icon="mdi-open-in-new" right size="x-small"></anglify-icon>
+      </ng-template>
     </button>
-    <button anglifyButton appearance="icon" (click)="toggleTheme()">
+    <button anglifyButton appearance="icon" (click)="openGithubRepo()" [anglifyTooltip]="githubTooltip">
+      <anglify-icon icon="mdi-github"></anglify-icon>
+      <ng-template #githubTooltip>
+        Open GitHub Repo
+        <anglify-icon icon="mdi-open-in-new" right size="x-small"></anglify-icon>
+      </ng-template>
+    </button>
+    <button anglifyButton appearance="icon" (click)="toggleTheme()" anglifyTooltip="Switch theme">
       <anglify-icon icon="mdi-theme-light-dark"></anglify-icon>
     </button>
   </div>

@@ -33,6 +33,10 @@ export class AppComponent {
     window.open('https://github.com/valentingavran/anglify', '_blank')!.focus();
   }
 
+  public openMaterialDesignWebsite() {
+    window.open('https://material.io', '_blank')!.focus();
+  }
+
   public constructor(public readonly router: Router) {
     this.initTheme();
   }
