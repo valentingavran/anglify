@@ -9,11 +9,11 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
-import { RIPPLE } from 'libs/anglify/src/composables/ripple/ripple.provider';
-import { RippleService } from 'libs/anglify/src/composables/ripple/ripple.service';
-import { toBoolean } from 'libs/anglify/src/utils/functions';
-import { BooleanLike } from 'libs/anglify/src/utils/interfaces';
 import { BehaviorSubject } from 'rxjs';
+import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
+import { RippleService } from '../../../../composables/ripple/ripple.service';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 
 @Component({
