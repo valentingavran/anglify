@@ -1,9 +1,9 @@
-import { DOCUMENT } from '@angular/common';
+import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ApplicationRef,
   ComponentFactoryResolver,
   EmbeddedViewRef,
-  Inject,
   Injectable,
   InjectionToken,
   Injector,
@@ -26,11 +26,17 @@ export const DIALOG_NODES = new InjectionToken<HTMLElement[]>('Dialog nodes to i
 export class DialogService {
   private readonly dialogs$ = new BehaviorSubject<ReadonlyArray<DialogContext>>([]);
 
+  private readonly overlayConfig = new OverlayConfig({
+    positionStrategy: this.overlay.position().global().centerVertically().centerHorizontally(),
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+    hasBackdrop: true,
+    backdropClass: 'anglify-dialog-backdrop',
+  });
+
   public constructor(
     private readonly appRef: ApplicationRef,
     private readonly componentFactoryResolver: ComponentFactoryResolver,
-    private readonly injector: Injector,
-    @Inject(DOCUMENT) private readonly document: Document,
+    private readonly overlay: Overlay,
     private readonly idService: AnglifyIdService
   ) {}
 
@@ -50,46 +56,42 @@ export class DialogService {
         ...options,
       };
 
-      const componentRef =
+      this.dialogs$.next([...this.dialogs$.value, context]);
+      const viewRef =
         component instanceof TemplateRef
           ? this.createFromTemplate(component, context)
           : (this.createFromComponent(component, context).hostView as EmbeddedViewRef<any>);
-      const dialogComponentRef = this.createDialogComponent(context, componentRef.rootNodes);
-
-      this.dialogs$.next([...this.dialogs$.value, context]);
-
-      this.document.body.appendChild(dialogComponentRef.location.nativeElement);
-      this.appRef.attachView(dialogComponentRef.hostView);
-      this.appRef.attachView(componentRef);
+      const overlayRef = this.overlay.create(this.overlayConfig);
+      const componentRef = new ComponentPortal(
+        DialogComponent,
+        null,
+        Injector.create({
+          providers: [
+            {
+              provide: DIALOG_CONTEXT,
+              useValue: context,
+            },
+            {
+              provide: DIALOG_NODES,
+              useValue: viewRef.rootNodes,
+            },
+          ],
+        })
+      );
+      overlayRef.attach(componentRef);
+      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith());
+      this.appRef.attachView(viewRef);
 
       return () => {
         this.dialogs$.next(this.dialogs$.value.filter(item => item !== context));
-        this.document.body.removeChild(dialogComponentRef.location.nativeElement);
-        this.appRef.detachView(dialogComponentRef.hostView);
-        this.appRef.detachView(componentRef);
-        dialogComponentRef.hostView.destroy();
-        componentRef.destroy();
+        backdropSubscription.unsubscribe();
+        overlayRef.detach();
+        overlayRef.dispose();
+        componentRef.detach();
+        viewRef.detach();
+        viewRef.destroy();
       };
     });
-  }
-
-  private createDialogComponent(context: DialogContext, nodes: any[]) {
-    const dialogComponent = this.componentFactoryResolver.resolveComponentFactory(DialogComponent);
-    return dialogComponent.create(
-      Injector.create({
-        providers: [
-          {
-            provide: DIALOG_CONTEXT,
-            useValue: context,
-          },
-          {
-            provide: DIALOG_NODES,
-            useValue: nodes,
-          },
-        ],
-        parent: this.injector,
-      })
-    );
   }
 
   private createFromComponent(component: Type<any>, context: DialogContext) {
@@ -102,7 +104,6 @@ export class DialogService {
             useValue: context,
           },
         ],
-        parent: this.injector,
       })
     );
   }

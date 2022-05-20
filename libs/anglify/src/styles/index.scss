@@ -1,5 +1,6 @@
 @use 'generic/index';
 @use 'settings/typography.scss' as *;
+@import '@angular/cdk/overlay-prebuilt.css';
 
 :root {
   @include typography;
