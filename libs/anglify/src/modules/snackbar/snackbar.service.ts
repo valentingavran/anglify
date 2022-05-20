@@ -14,9 +14,7 @@ export const SNACKBAR_CONTEXT = new InjectionToken<SnackbarContext>('Snackbar co
 export class SnackbarService {
   public readonly activeSnackbar$ = new BehaviorSubject<SnackbarContext | null>(null);
 
-  private readonly overlayConfig = new OverlayConfig({
-    positionStrategy: this.overlay.position().global().centerVertically().centerHorizontally(),
-  });
+  private readonly overlayConfig = new OverlayConfig();
 
   public constructor(private readonly overlay: Overlay, private readonly idService: AnglifyIdService) {}
 
