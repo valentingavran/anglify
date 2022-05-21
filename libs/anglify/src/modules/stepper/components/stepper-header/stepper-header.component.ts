@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, HostListener, Input, QueryList } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  QueryList,
+} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, tap } from 'rxjs/operators';
@@ -85,10 +94,16 @@ export class StepperHeaderComponent {
     this.ripple = true;
   }
 
-  @HostListener('click')
-  protected navigate() {
+  // @ts-expect-error
+  @HostBinding('tabindex') private readonly tabIndex = 0;
+
+  @HostListener('click', ['$event'])
+  @HostListener('keydown.enter', ['$event'])
+  @HostListener('keydown.space', ['$event'])
+  protected navigate(event: Event) {
     if (this.stepperSettings.getHeaderNavigationEnabledSnapshot()) {
       this.stepper.navigateTo(this.index$.value);
+      event.stopPropagation();
     }
   }
 }
