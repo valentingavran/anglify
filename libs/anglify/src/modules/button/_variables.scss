@@ -13,8 +13,8 @@ $button-contained-label-color: var(--anglify-button-contained-label-color, var(-
 $button-contained-label-color-disabled: var(--anglify-button-contained-label-color, var(--color-on-surface-low-emphasis)) !default;
 $button-contained-label-font: var(--anglify-button-contained-label-font, medium 14px/16px Roboto sans-serif) !default;
 $button-contained-border-radius: var(--anglify-button-contained-border-radius, 4px) !default;
-$button-outlined-background: var(--anglify-button-outlined-background, var(--color-surface)) !default;
-$button-outlined-background-disabled: var(--anglify-button-outlined-background, var(--color-surface)) !default;
+$button-outlined-background: var(--anglify-button-outlined-background, transparent) !default;
+$button-outlined-background-disabled: var(--anglify-button-outlined-background, transparent) !default;
 $button-outlined-label-color: var(--anglify-button-outlined-label-color, var(--color-on-surface-high-emphasis)) !default;
 $button-outlined-label-color-disabled: var(--anglify-button-outlined-label-color, var(--color-on-surface-low-emphasis)) !default;
 $button-outlined-label-font: var(--anglify-button-outlined-label-font, medium 14px/16px Roboto sans-serif) !default;
