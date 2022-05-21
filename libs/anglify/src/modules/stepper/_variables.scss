@@ -7,7 +7,7 @@ $stepper-step-connection-line-color: var(
 ) !default;
 $stepper-step-indicator-size: var(--anglify-stepper-step-indicator-size, 40%) !default;
 $stepper-step-indicator-color-inactive: var(--anglify-stepper-step-indicator-color-inactive, var(--color-surface-overlay)) !default;
-$stepper-step-indicator-color-active: var(--color-primary) !default;
+$stepper-step-indicator-color-active: var(--anglify-stepper-step-indicator-color-active, var(--color-primary)) !default;
 $stepper-step-indicator-transition: var(--anglify-stepper-step-indicator-transition, none) !default;
 $stepper-step-indicator-font-size: var(--anglify-stepper-step-indicator-font-size, 16px) !default;
 $stepper-step-indicator-text-color-inactive: var(
