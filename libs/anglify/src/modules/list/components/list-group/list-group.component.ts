@@ -1,12 +1,14 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, tap } from 'rxjs';
+import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
 import { filterEmpty } from '../../../../utils/operator-functions';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { ListItemComponent } from '../list-item/list-item.component';
 
 @UntilDestroy()
@@ -48,7 +50,7 @@ export class ListGroupComponent {
 
   public active$ = new BehaviorSubject<boolean>(false);
 
-  public constructor(private readonly router: Router) {
+  public constructor(@Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition, private readonly router: Router) {
     this.childrenListGroupsCloseHandler$.pipe(untilDestroyed(this)).subscribe();
     this.listGroupCloseHandler$.pipe(untilDestroyed(this)).subscribe();
   }

@@ -1,10 +1,22 @@
 import { animate, group, query, state, style, transition, trigger } from '@angular/animations';
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, ElementRef, Input, Output, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  ElementRef,
+  Inject,
+  Input,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
+import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { Step } from '../../directives/step/step.directive';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { Stepper } from '../../services/stepper/stepper.service';
@@ -86,7 +98,11 @@ export class StepperComponent extends Stepper implements AfterContentInit {
 
   private readonly nativeElement = this.elementRef.nativeElement;
 
-  public constructor(public readonly stepperSettings: StepperSettings, private readonly elementRef: ElementRef<HTMLElement>) {
+  public constructor(
+    public readonly stepperSettings: StepperSettings,
+    private readonly elementRef: ElementRef<HTMLElement>,
+    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+  ) {
     super();
     this._orientationHandler$.pipe(untilDestroyed(this)).subscribe();
   }

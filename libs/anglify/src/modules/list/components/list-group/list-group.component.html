@@ -7,7 +7,7 @@
   <ng-container *anglifySlotOutlet="slots | findSlot: 'activator'"></ng-container>
   <ng-template slot="append">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'activator:append'">
-      <anglify-icon icon="mdi-chevron-down" [@rotatedState]="active$ | async"></anglify-icon>
+      <anglify-icon [icon]="internalIcons.chevronDown" [@rotatedState]="active$ | async"></anglify-icon>
     </ng-container>
   </ng-template>
 </anglify-list-item>
