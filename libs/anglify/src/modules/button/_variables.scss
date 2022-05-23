@@ -33,5 +33,5 @@ $button-fab-label-color: var(--anglify-button-icon-label-color, var(--color-on-s
 $button-fab-border-radius: var(--anglify-button-fab-border-radius, 50px) !default;
 $button-fab-label-font: var(--anglify-button-fab-label-font, medium 14px/16px Roboto sans-serif) !default;
 $button-fab-size: var(--anglify-button-fab-size, 56px) !default;
-$button-hover-state-color: var(--anglify-hover-state-color, var(--color-primary-state-hover)) !default;
-$button-focus-state-color: var(--anglify-focus-state-color, var(--color-primary-state-focus)) !default;
+$button-hover-state-color: var(--anglify-button-hover-state-color, var(--color-primary-state-hover)) !default;
+$button-focus-state-color: var(--anglify-button-focus-state-color, var(--color-primary-state-focus)) !default;
