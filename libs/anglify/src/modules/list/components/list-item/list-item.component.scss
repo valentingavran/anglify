@@ -33,6 +33,9 @@
 
 :host-context(.active) {
   --state-container-color: var(--color-primary-state-focus);
+  --anglify-icon-inactive-color: #{$list-item-active-text-color};
+
+  color: $list-item-active-text-color;
 }
 
 :host-context(.selectable) {
