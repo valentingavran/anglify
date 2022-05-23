@@ -1,27 +1,5 @@
 @use 'variables' as *;
 
-::ng-deep {
-  label .container .checkbox-custom-icons {
-    anglify-icon {
-      width: 100%;
-      height: 100%;
-      font-size: $checkbox-custom-icon-size;
-    }
-  }
-
-  input:disabled + .container .checkbox-custom-icons {
-    anglify-icon {
-      color: $checkbox-disabled-color;
-    }
-  }
-
-  input:checked:not([disabled]) + .container .checkbox-custom-icons {
-    anglify-icon {
-      color: $checkbox-checked-color;
-    }
-  }
-}
-
 :host {
   display: block;
   user-select: none;
@@ -57,7 +35,6 @@
         height: $checkbox-height;
         border-width: $checkbox-border-width;
         border-style: solid;
-        border-color: $checkbox-border-color;
         margin: auto;
         border-radius: $checkbox-border-radius;
 
@@ -105,91 +82,74 @@
     }
   }
 
-  input {
-    // Input should be hidden but we still want it to be focusable
-    opacity: 0;
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  // Unchecked styles for only enabled state
-  input:not(:disabled) {
-    & ~ .checkbox-label,
-    & ~ .container .state-container {
+  &:not(.anglify-checkbox-disabled) {
+    /* stylelint-disable-next-line no-descending-specificity */
+    .state-container,
+    .checkbox-label {
       cursor: pointer;
     }
+  }
 
-    & ~ .container {
-      .state-container:hover {
-        --state-container-color: #{$checkbox-hover-state-inactive-color};
-      }
+  &:not(.anglify-checkbox-checked):not(.anglify-checkbox-disabled) {
+    .check-box-effect {
+      border-color: $checkbox-border-color;
+    }
+
+    .state-container:focus-visible {
+      --state-container-color: #{$checkbox-focus-state-inactive-color};
+    }
+
+    .state-container:hover {
+      --state-container-color: #{$checkbox-hover-state-inactive-color};
     }
   }
 
-  // Unchecked styles for only disabled state
-  input:disabled {
-    & ~ .checkbox-label {
+  &.anglify-checkbox-checked.anglify-checkbox-disabled {
+    --anglify-icon-inactive-color: #{$checkbox-disabled-color};
+
+    .check-box-effect {
+      background-color: $checkbox-disabled-color;
+      border-color: transparent !important;
+    }
+  }
+
+  &.anglify-checkbox-checked:not(.anglify-checkbox-disabled) {
+    --anglify-icon-inactive-color: #{$checkbox-checked-color};
+
+    label .container .check-box-effect {
+      background-color: $checkbox-checked-color;
+      border-color: $checkbox-checked-border-color;
+
+      &::before {
+        width: $checkbox-icon-before-width;
+        background: $checkbox-checked-icon-color;
+        transition: $checkbox-checked-icon-transition-speed;
+      }
+
+      &::after {
+        width: $checkbox-icon-after-width;
+        background: $checkbox-checked-icon-color;
+        transition: $checkbox-checked-icon-transition-speed;
+      }
+    }
+
+    .state-container:focus-visible {
+      --state-container-color: #{$checkbox-focus-state-active-color};
+    }
+
+    .state-container:hover {
+      --state-container-color: #{$checkbox-hover-state-active-color};
+    }
+  }
+
+  &.anglify-checkbox-disabled {
+    .checkbox-label {
       color: $checkbox-disabled-color;
     }
-  }
 
-  // Unchecked styles for both enabled and disabled state
-  input:not(:checked) {
-    &:focus-visible {
-      & ~ .container {
-        --state-container-color: #{$checkbox-focus-state-inactive-color};
-      }
-    }
-  }
-
-  // Checked styles for both enabled and disabled state
-  /* stylelint-disable-next-line no-descending-specificity */
-  input:checked {
     /* stylelint-disable-next-line no-descending-specificity */
-    & ~ .container {
-      .check-box-effect {
-        background-color: $checkbox-checked-color !important;
-        border-color: $checkbox-checked-border-color;
-
-        &::before {
-          width: $checkbox-icon-before-width;
-          background: $checkbox-checked-icon-color;
-          transition: $checkbox-checked-icon-transition-speed;
-        }
-
-        &::after {
-          width: $checkbox-icon-after-width;
-          background: $checkbox-checked-icon-color;
-          transition: $checkbox-checked-icon-transition-speed;
-        }
-      }
-    }
-
-    &:focus-visible {
-      & ~ .container {
-        --state-container-color: #{$checkbox-focus-state-active-color};
-      }
-    }
-  }
-
-  // Checked styles for only disabled state
-  input:checked:disabled + .container .check-box-effect {
-    background-color: $checkbox-disabled-color !important;
-    border-color: transparent;
-  }
-
-  // Checked styles for only enabled state
-  input:checked:not(:disabled) {
-    & ~ .checkbox-label,
-    & ~ .container .state-container {
-      cursor: pointer;
-    }
-
-    & ~ .container {
-      .state-container:hover {
-        --state-container-color: #{$checkbox-hover-state-active-color};
-      }
+    .check-box-effect {
+      border-color: $checkbox-disabled-color !important;
     }
   }
 }

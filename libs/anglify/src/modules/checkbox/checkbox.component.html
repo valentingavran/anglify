@@ -1,26 +1,22 @@
 <label [class.before]="labelPosition === 'before'">
-  <input
-    type="checkbox"
-    [disabled]="disabled | booleanLikeToBoolean"
-    [ngModel]="checked | booleanLikeToBoolean"
-    (ngModelChange)="onModelChange($event)"
-  />
   <div #overlayContainer class="container">
     <div
       class="state-container"
       anglifyInteractionState
-      [active]="(ripple | booleanLikeToBoolean) && !(disabled | booleanLikeToBoolean)"
+      [active]="(ripple | booleanLikeToBoolean) && (disabled$ | async) === false"
       [rippleOrigin]="rippleOrigin"
       [state]="state | booleanLikeToBoolean"
+      (keydown.space)="onCheckedChange($event)"
+      [tabindex]="(disabled$ | async) ? '-1' : '0'"
     ></div>
-    <span #reflectOffIcon [style.display]="!(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons">
+    <span #reflectOffIcon [style.display]="(checked$ | async) ? 'none' : 'block'" class="checkbox-custom-icons">
       <ng-container *anglifySlotOutlet="slots | findSlot: 'offIcon'"></ng-container>
     </span>
-    <span #reflectOnIcon [style.display]="(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons">
+    <span #reflectOnIcon [style.display]="(checked$ | async) ? 'block' : 'none'" class="checkbox-custom-icons">
       <ng-container *anglifySlotOutlet="slots | findSlot: 'onIcon'"></ng-container>
     </span>
-    <span #offIcon [style.display]="!(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons"></span>
-    <span #onIcon [style.display]="(checked | booleanLikeToBoolean) ? 'block' : 'none'" class="checkbox-custom-icons"></span>
+    <span #onIcon [style.display]="(checked$ | async) ? 'block' : 'none'" class="checkbox-custom-icons"></span>
+    <span #offIcon [style.display]="(checked$ | async) ? 'none' : 'block'" class="checkbox-custom-icons"></span>
     <span #defaultIcon class="check-box-effect"></span>
   </div>
   <span class="checkbox-label">
