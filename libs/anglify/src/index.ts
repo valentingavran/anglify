@@ -8,6 +8,8 @@ export * from './composables/position/position.service';
 export * from './composables/ripple/ripple.interface';
 export * from './composables/ripple/ripple.provider';
 export * from './composables/ripple/ripple.service';
+// Utils
+export * from './utils/animations';
 // Badge
 export * from './modules/badge/badge-settings.token';
 export * from './modules/badge/badge.component';

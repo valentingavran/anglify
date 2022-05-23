@@ -1,8 +1,8 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { INTERNAL_ICONS } from 'libs/anglify/src/tokens/internal-icons.token';
+import { fastInFastOutY, rotate } from 'libs/anglify/src/utils/animations';
 import { BehaviorSubject, filter, tap } from 'rxjs';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
@@ -17,21 +17,7 @@ import { ListItemComponent } from '../list-item/list-item.component';
   templateUrl: './list-group.component.html',
   styleUrls: ['./list-group.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    // Each unique animation requires its own trigger. The first argument of the trigger function is the name
-    trigger('rotatedState', [
-      state('false', style({ transform: 'rotate(0)' })),
-      state('true', style({ transform: 'rotate(180deg)' })),
-      transition('1 => 0', animate('200ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
-      transition('0 => 1', animate('200ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
-    ]),
-    trigger('fast-in-fast-out-y', [
-      state('*', style({ 'overflow-y': 'hidden' })),
-      state('void', style({ 'overflow-y': 'hidden' })),
-      transition('* => void', [style({ height: '*' }), animate('200ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ height: 0 }))]),
-      transition('void => *', [style({ height: '0' }), animate('200ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ height: '*' }))]),
-    ]),
-  ],
+  animations: [rotate(), fastInFastOutY()],
 })
 export class ListGroupComponent {
   @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;
