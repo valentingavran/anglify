@@ -1,4 +1,3 @@
-export type ProgressLinearMode = 'indeterminate' | 'buffer';
 
 export interface EntireProgressLinearSettings {
   active: boolean;
