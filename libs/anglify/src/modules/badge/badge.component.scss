@@ -19,6 +19,7 @@
     z-index: 1;
     overflow: hidden;
     padding: 5px;
+    min-width: 1rem;
     width: fit-content;
     text-indent: 0;
     @extend %label-s;
