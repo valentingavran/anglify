@@ -22,7 +22,7 @@ import { BehaviorSubject, filter, fromEvent, map, skip, Subject, takeUntil, tap 
 import { MenuComponent } from './components/menu/menu.component';
 import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
 import type { EntireMenuSettings, MenuMountingPoint } from './menu.interface';
-import type { Elevation } from '../../composables/elevation/elevation';
+import type { Elevation } from '../../composables/elevation/elevation.interface';
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';

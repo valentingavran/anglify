@@ -1,9 +1,9 @@
 import { Subscriber } from 'rxjs';
 
-export type Position = 'center' | 'leading';
+export type SnackbarPosition = 'center' | 'leading';
 
 export interface EntireSnackbarSettings {
-  position: Position;
+  position: SnackbarPosition;
   stacked: boolean;
   timeout: number;
 }

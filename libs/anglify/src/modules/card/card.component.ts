@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, Self } from '@angular/core';
 import { CARD_SETTINGS, DEFAULT_CARD_SETTINGS } from './card-settings.token';
 import { EntireCardSettings } from './card.interface';
-import type { Elevation } from '../../composables/elevation/elevation';
+import type { Elevation } from '../../composables/elevation/elevation.interface';
 import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';

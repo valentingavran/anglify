@@ -1,4 +1,4 @@
-import type { Elevation } from '../../composables/elevation/elevation';
+import type { Elevation } from '../../composables/elevation/elevation.interface';
 import type { Position } from '../../composables/position/position.interface';
 
 export type MenuMountingPoint = HTMLElement | 'body' | 'parent';
