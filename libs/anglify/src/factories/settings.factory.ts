@@ -1,4 +1,5 @@
 import { inject, InjectFlags, InjectionToken, Provider } from '@angular/core';
+import merge from 'ts-deepmerge';
 
 /**
  *
@@ -12,7 +13,7 @@ export function createSettingsProvider<T>(name: string, defaultValues: T, settin
     provide: name,
     useFactory: () => {
       const overwrittenSettings = inject<InjectionToken<any>>(settingsToken, InjectFlags.Optional);
-      return { ...defaultValues, ...overwrittenSettings };
+      return merge(defaultValues, overwrittenSettings ?? {});
     },
   };
 }
