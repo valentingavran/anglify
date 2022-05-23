@@ -1,3 +1,5 @@
+@use '../../_variables.scss' as *;
+
 :host {
   display: flex;
   align-items: center;
@@ -14,6 +16,14 @@
   .prepend,
   .append {
     --state-container-color: transparent;
+  }
+
+  &:focus-visible {
+    --state-container-color: #{$list-item-focus-state-color};
+  }
+
+  &:hover {
+    --state-container-color: #{$list-item-hover-state-color};
   }
 }
 
