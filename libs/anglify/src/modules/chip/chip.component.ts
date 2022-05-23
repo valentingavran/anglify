@@ -20,9 +20,11 @@ import { ChipAppearance, EntireChipSettings } from './chip.interface';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
 import { bindClassToNativeElement, toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { InternalIconSetDefinition } from '../icon/icon.interface';
 
 @UntilDestroy()
 @Component({
@@ -62,8 +64,9 @@ export class ChipComponent implements OnInit {
   public readonly active$ = new BehaviorSubject<boolean>(false);
 
   public constructor(
-    private readonly elementRef: ElementRef<HTMLElement>,
+    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition,
     @Self() @Inject('anglifyChipSettings') public settings: EntireChipSettings,
+    private readonly elementRef: ElementRef<HTMLElement>,
     private readonly rippleService: RippleService
   ) {
     bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');

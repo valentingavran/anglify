@@ -1,13 +1,11 @@
 import type { ComponentSize } from '../../utils/interfaces';
 
 // TODO This type must always be up-to-date (add new required internal icons here)
-export type InternalIcons = 'add' | 'edit';
+export type InternalIcons = 'check' | 'chevronDown' | 'edit';
 
 export type IconSet = 'fa4' | 'fa5' | 'md' | 'mdi' | 'custom' | 'faSVG' | 'mdiSVG';
-export type IconMapping = { [K in IconSet]: string };
-export type IconMappingOverrides = Partial<IconMapping>;
-export type InternalIconsMapping = { [T in InternalIcons]?: IconMapping };
-export type InternalIconsMappingOverrides = { [T in InternalIcons]?: IconMappingOverrides };
+export type InternalIconMappings = { [T in IconSet]: InternalIconSetDefinition };
+export type InternalIconSetDefinition = { [T in InternalIcons]: string };
 
 export interface SVGIconSets {
   faSVG?: FontawesomeObject[];
@@ -24,14 +22,14 @@ export interface FontawesomeObject {
 export interface EntireIconSettings {
   defaultSet: IconSet;
   defaultSize: ComponentSize;
-  internalIcons: InternalIconsMapping;
+  internalIcons: InternalIconMappings;
   svgIconSets: SVGIconSets;
 }
 
 export type IconSettings = Partial<EntireIconSettings>;
 
 export const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
-  fa4: '',
+  fa4: 'fa',
   md: 'material-icons',
   custom: '',
   fa5: '',
