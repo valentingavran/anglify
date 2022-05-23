@@ -3,7 +3,6 @@ import { EntireToolbarSettings, ToolbarSettings } from './toolbar.interface';
 
 export const DEFAULT_TOOLBAR_SETTINGS: EntireToolbarSettings = {
   prominent: false,
-  navigation: true,
   collapse: false,
 };
 export const TOOLBAR_SETTINGS = new InjectionToken<ToolbarSettings>('Toolbar Settings');

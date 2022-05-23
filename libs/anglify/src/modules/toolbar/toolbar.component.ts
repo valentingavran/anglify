@@ -16,7 +16,6 @@ export class ToolbarComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @Input() public prominent: BooleanLike = this.settings.prominent;
-  @Input() public navigation: BooleanLike = this.settings.navigation;
   @Input() public collapse: BooleanLike = this.settings.collapse;
 
   public constructor(@Self() @Inject('anglifyToolbarSettings') public settings: EntireToolbarSettings) {}
