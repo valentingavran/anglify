@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject, Input, OnInit, Self } from '@angular/core';
 import { BUTTON_SETTINGS, DEFAULT_BUTTON_SETTINGS } from './button-settings.token';
-import { ButtonAppearance, ButtonSettings } from './button.interface';
+import { ButtonAppearance, EntireButtonSettings } from './button.interface';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -12,7 +12,7 @@ import { BooleanLike } from '../../utils/interfaces';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<ButtonSettings>('anglifyButtonSettings', DEFAULT_BUTTON_SETTINGS, BUTTON_SETTINGS), RIPPLE],
+  providers: [createSettingsProvider<EntireButtonSettings>('anglifyButtonSettings', DEFAULT_BUTTON_SETTINGS, BUTTON_SETTINGS), RIPPLE],
 })
 export class ButtonComponent implements OnInit {
   @Input() public appearance: ButtonAppearance = this.settings.appearance;
@@ -42,7 +42,7 @@ export class ButtonComponent implements OnInit {
 
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
-    @Self() @Inject('anglifyButtonSettings') public settings: Required<ButtonSettings>,
+    @Self() @Inject('anglifyButtonSettings') public settings: EntireButtonSettings,
     private readonly rippleService: RippleService
   ) {
     this.ripple = this.settings.ripple;

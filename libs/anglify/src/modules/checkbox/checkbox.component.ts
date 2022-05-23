@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxIconRef } from './functions/register-icons.function';
-import type { CheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
+import { EntireCheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
@@ -36,7 +36,7 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
       useExisting: forwardRef(() => CheckboxComponent),
       multi: true,
     },
-    createSettingsProvider<CheckboxSettings>('anglifyCheckboxSettings', DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
+    createSettingsProvider<EntireCheckboxSettings>('anglifyCheckboxSettings', DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -73,7 +73,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
-    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: Required<CheckboxSettings>,
+    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: null | (() => CheckboxIconRef)
   ) {
     if (this.iconProviderFactory) {

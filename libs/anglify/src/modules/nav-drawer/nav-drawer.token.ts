@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import type { NavDrawerSettings } from './nav-drawer.interface';
+import type { EntireNavDrawerSettings, NavDrawerSettings } from './nav-drawer.interface';
 
-export const DEFAULT_NAV_DRAWER_SETTINGS: Required<NavDrawerSettings> = {
+export const DEFAULT_NAV_DRAWER_SETTINGS: EntireNavDrawerSettings = {
   mode: 'standard',
   fixed: false,
   closeOnOutsideClick: true,

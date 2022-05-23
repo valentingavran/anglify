@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import { CheckboxSettings } from '../interfaces/checkbox.interface';
+import { CheckboxSettings, EntireCheckboxSettings } from '../interfaces/checkbox.interface';
 
-export const DEFAULT_CHECKBOX_SETTINGS: Required<CheckboxSettings> = {
+export const DEFAULT_CHECKBOX_SETTINGS: EntireCheckboxSettings = {
   disabled: false,
   checked: false,
   labelPosition: 'after',

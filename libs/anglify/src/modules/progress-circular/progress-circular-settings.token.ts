@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import type { ProgressCircularSettings } from './progress-circular.interface';
+import type { EntireProgressCircularSettings, ProgressCircularSettings } from './progress-circular.interface';
 
-export const DEFAULT_PROGRESS_CIRCULAR_SETTINGS: Required<ProgressCircularSettings> = {
+export const DEFAULT_PROGRESS_CIRCULAR_SETTINGS: EntireProgressCircularSettings = {
   indeterminate: false,
   rotation: 0,
   value: 0,

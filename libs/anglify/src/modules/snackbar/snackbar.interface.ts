@@ -2,11 +2,13 @@ import { Subscriber } from 'rxjs';
 
 export type Position = 'center' | 'leading';
 
-export interface SnackbarSettings {
-  position?: Position;
-  stacked?: boolean;
-  timeout?: number;
+export interface EntireSnackbarSettings {
+  position: Position;
+  stacked: boolean;
+  timeout: number;
 }
+
+export type SnackbarSettings = Partial<EntireSnackbarSettings>;
 
 export interface SnackbarData {
   label?: string;

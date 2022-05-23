@@ -6,7 +6,7 @@ export type InternalIcons = 'add' | 'edit';
 export type IconSet = 'fa4' | 'fa5' | 'md' | 'mdi' | 'custom' | 'faSVG' | 'mdiSVG';
 export type IconMapping = { [K in IconSet]: string };
 export type IconMappingOverrides = Partial<IconMapping>;
-export type InternalIconsMapping = { [T in InternalIcons]: IconMapping };
+export type InternalIconsMapping = { [T in InternalIcons]?: IconMapping };
 export type InternalIconsMappingOverrides = { [T in InternalIcons]?: IconMappingOverrides };
 
 export interface SVGIconSets {
@@ -21,12 +21,14 @@ export interface FontawesomeObject {
   readonly node: HTMLCollection;
 }
 
-export interface IconSettings {
-  defaultSet?: IconSet;
-  svgIconSets?: SVGIconSets;
-  internalIcons?: InternalIconsMappingOverrides;
-  defaultSize?: ComponentSize;
+export interface EntireIconSettings {
+  defaultSet: IconSet;
+  defaultSize: ComponentSize;
+  internalIcons: InternalIconsMapping;
+  svgIconSets: SVGIconSets;
 }
+
+export type IconSettings = Partial<EntireIconSettings>;
 
 export const ICON_SET_CLASS_MAPPING: { [K in IconSet]: string } = {
   fa4: '',

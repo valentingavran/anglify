@@ -18,7 +18,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { InputDirective } from './directives/input.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
-import type { FormFieldSettings, FormFieldType } from './form-field.interface';
+import type { EntireFormFieldSettings, FormFieldType } from './form-field.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
@@ -30,7 +30,9 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<FormFieldSettings>('anglifyFormFieldSettings', DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS)],
+  providers: [
+    createSettingsProvider<EntireFormFieldSettings>('anglifyFormFieldSettings', DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS),
+  ],
 })
 export class FormFieldComponent implements AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
@@ -79,7 +81,7 @@ export class FormFieldComponent implements AfterViewInit {
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly cdr: ChangeDetectorRef,
-    @Self() @Inject('anglifyFormFieldSettings') private readonly settings: Required<FormFieldSettings>
+    @Self() @Inject('anglifyFormFieldSettings') private readonly settings: EntireFormFieldSettings
   ) {}
 
   @HostBinding('class')

@@ -19,7 +19,7 @@ import {
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BADGE_SETTINGS, DEFAULT_BADGE_SETTINGS } from './badge-settings.token';
 import { BadgeComponent } from './badge.component';
-import { BadgeSettings } from './badge.interface';
+import { EntireBadgeSettings } from './badge.interface';
 import { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -29,7 +29,7 @@ import { BooleanLike } from '../../utils/interfaces';
 @Directive({
   selector: '[anglifyBadge]',
   exportAs: 'anglifyBadge',
-  providers: [createSettingsProvider<BadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS)],
+  providers: [createSettingsProvider<EntireBadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS)],
 })
 export class BadgeDirective implements OnInit {
   @Input('anglifyBadge') public content!: string | TemplateRef<any> | Type<any>;
@@ -40,7 +40,7 @@ export class BadgeDirective implements OnInit {
   private embeddedView: EmbeddedViewRef<any> | undefined; // Badge Content Template Reference
 
   public constructor(
-    @Self() @Inject('anglifyBadgeSettings') public settings: Required<BadgeSettings>,
+    @Self() @Inject('anglifyBadgeSettings') public settings: EntireBadgeSettings,
     private readonly element: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,

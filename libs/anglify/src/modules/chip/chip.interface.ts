@@ -1,7 +1,9 @@
 export type ChipAppearance = 'filled' | 'outlined';
 
-export interface ChipSettings {
-  appearance?: ChipAppearance;
-  filter?: boolean;
-  ripple?: boolean;
+export interface EntireChipSettings {
+  appearance: ChipAppearance;
+  filter: boolean;
+  ripple: boolean;
 }
+
+export type ChipSettings = Partial<EntireChipSettings>;

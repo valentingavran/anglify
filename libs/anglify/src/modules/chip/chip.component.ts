@@ -16,7 +16,7 @@ import {
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject } from 'rxjs';
 import { CHIP_SETTINGS, DEFAULT_CHIP_SETTINGS } from './chip-settings.token';
-import { ChipAppearance, ChipSettings } from './chip.interface';
+import { ChipAppearance, EntireChipSettings } from './chip.interface';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -30,7 +30,7 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<ChipSettings>('anglifyChipSettings', DEFAULT_CHIP_SETTINGS, CHIP_SETTINGS), RIPPLE],
+  providers: [createSettingsProvider<EntireChipSettings>('anglifyChipSettings', DEFAULT_CHIP_SETTINGS, CHIP_SETTINGS), RIPPLE],
 })
 export class ChipComponent implements OnInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
@@ -63,7 +63,7 @@ export class ChipComponent implements OnInit {
 
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
-    @Self() @Inject('anglifyChipSettings') public settings: Required<ChipSettings>,
+    @Self() @Inject('anglifyChipSettings') public settings: EntireChipSettings,
     private readonly rippleService: RippleService
   ) {
     bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');

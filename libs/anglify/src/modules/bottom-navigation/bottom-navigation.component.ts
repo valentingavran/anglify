@@ -12,7 +12,7 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, startWith, tap } from 'rxjs';
 import { BOTTOM_NAVIGATION_SETTINGS, DEFAULT_BOTTOM_NAVIGATION_SETTINGS } from './bottom-navigation-settings.token';
-import { BottomNavigationSettings } from './bottom-navigation.interface';
+import { EntireBottomNavigationSettings } from './bottom-navigation.interface';
 import { BottomNavigationItemComponent } from './components/bottom-navigation-item/bottom-navigation-item.component';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -26,7 +26,7 @@ import { BooleanLike } from '../../utils/interfaces';
   styleUrls: ['./bottom-navigation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    createSettingsProvider<BottomNavigationSettings>(
+    createSettingsProvider<EntireBottomNavigationSettings>(
       'anglifyBottomNavigationSettings',
       DEFAULT_BOTTOM_NAVIGATION_SETTINGS,
       BOTTOM_NAVIGATION_SETTINGS
@@ -66,7 +66,7 @@ export class BottomNavigationComponent implements AfterViewInit {
     })
   );
 
-  public constructor(@Self() @Inject('anglifyBottomNavigationSettings') public settings: Required<BottomNavigationSettings>) {
+  public constructor(@Self() @Inject('anglifyBottomNavigationSettings') public settings: EntireBottomNavigationSettings) {
     this.changeHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 

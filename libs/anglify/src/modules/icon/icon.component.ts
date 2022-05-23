@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DEFAULT_ICON_SETTINGS, ICON_SETTINGS } from './icon-settings.token';
-import { IconSet, IconSettings, ICON_SET_CLASS_MAPPING } from './icon.interface';
+import { EntireIconSettings, IconSet, ICON_SET_CLASS_MAPPING } from './icon.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import type { BooleanLike, ComponentSize } from '../../utils/interfaces';
@@ -16,7 +16,7 @@ import type { BooleanLike, ComponentSize } from '../../utils/interfaces';
   template: ``,
   styleUrls: ['./icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<IconSettings>('anglifyIconSettings', DEFAULT_ICON_SETTINGS, ICON_SETTINGS)],
+  providers: [createSettingsProvider<EntireIconSettings>('anglifyIconSettings', DEFAULT_ICON_SETTINGS, ICON_SETTINGS)],
 })
 export class IconComponent {
   /**
@@ -44,7 +44,7 @@ export class IconComponent {
   @Input() public right: BooleanLike = false;
 
   public constructor(
-    @Self() @Inject('anglifyIconSettings') private readonly settings: Required<IconSettings>,
+    @Self() @Inject('anglifyIconSettings') private readonly settings: EntireIconSettings,
     private readonly sanitizer: DomSanitizer
   ) {}
 

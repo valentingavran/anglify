@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject, Input, Self, ViewContainerRef } from '@angular/core';
 import { BADGE_SETTINGS, DEFAULT_BADGE_SETTINGS } from './badge-settings.token';
-import { BadgeSettings } from './badge.interface';
+import { EntireBadgeSettings } from './badge.interface';
 import { Position } from '../../composables/position/position.interface';
 import { POSITION } from '../../composables/position/position.provider';
 import { PositionService } from '../../composables/position/position.service';
@@ -12,7 +12,7 @@ import { toBoolean } from '../../utils/functions';
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<BadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS), POSITION],
+  providers: [createSettingsProvider<EntireBadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS), POSITION],
 })
 export class BadgeComponent {
   @Input() public border = this.settings.border;
@@ -30,7 +30,7 @@ export class BadgeComponent {
   }
 
   public constructor(
-    @Self() @Inject('anglifyBadgeSettings') public settings: Required<BadgeSettings>,
+    @Self() @Inject('anglifyBadgeSettings') public settings: EntireBadgeSettings,
     public readonly element: ElementRef<HTMLElement>,
     private readonly positionService: PositionService
   ) {

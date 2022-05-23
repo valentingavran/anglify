@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
-import { BadgeSettings } from './badge.interface';
+import { BadgeSettings, EntireBadgeSettings } from './badge.interface';
 
-export const DEFAULT_BADGE_SETTINGS: Required<BadgeSettings> = {
+export const DEFAULT_BADGE_SETTINGS: EntireBadgeSettings = {
   border: false,
   position: 'top-end',
 };
-export const BADGE_SETTINGS = new InjectionToken<Required<BadgeSettings>>('Badge Settings');
+export const BADGE_SETTINGS = new InjectionToken<BadgeSettings>('Badge Settings');

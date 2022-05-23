@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, OnInit, Self } from '@angular/core';
 import { DEFAULT_SNACKBAR_SETTINGS, SNACKBAR_SETTINGS } from './snackbar-settings.token';
-import { SnackbarContext, SnackbarSettings } from './snackbar.interface';
+import { EntireSnackbarSettings, SnackbarContext } from './snackbar.interface';
 import { SNACKBAR_CONTEXT } from './snackbar.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
 
@@ -9,12 +9,12 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   templateUrl: './snackbar.component.html',
   styleUrls: ['./snackbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<SnackbarSettings>('anglifySnackbarSettings', DEFAULT_SNACKBAR_SETTINGS, SNACKBAR_SETTINGS)],
+  providers: [createSettingsProvider<EntireSnackbarSettings>('anglifySnackbarSettings', DEFAULT_SNACKBAR_SETTINGS, SNACKBAR_SETTINGS)],
 })
 export class SnackbarComponent implements OnInit {
   public constructor(
     @Inject(SNACKBAR_CONTEXT) public readonly context: SnackbarContext,
-    @Self() @Inject('anglifySnackbarSettings') public settings: Required<SnackbarSettings>
+    @Self() @Inject('anglifySnackbarSettings') public settings: EntireSnackbarSettings
   ) {}
 
   @HostBinding('class')

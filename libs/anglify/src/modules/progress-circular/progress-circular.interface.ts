@@ -1,5 +1,7 @@
-export interface ProgressCircularSettings {
-  indeterminate?: boolean;
-  rotation?: number;
-  value?: 0;
+export interface EntireProgressCircularSettings {
+  indeterminate: boolean;
+  rotation: number;
+  value: 0;
 }
+
+export type ProgressCircularSettings = Partial<EntireProgressCircularSettings>;

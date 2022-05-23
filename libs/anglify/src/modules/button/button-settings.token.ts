@@ -1,11 +1,11 @@
 import { InjectionToken } from '@angular/core';
-import { ButtonSettings } from './button.interface';
+import { ButtonSettings, EntireButtonSettings } from './button.interface';
 
-export const DEFAULT_BUTTON_SETTINGS: Required<ButtonSettings> = {
+export const DEFAULT_BUTTON_SETTINGS: EntireButtonSettings = {
   appearance: 'contained',
   block: false,
   ripple: true,
   state: true,
 };
 
-export const BUTTON_SETTINGS = new InjectionToken<Required<ButtonSettings>>('Button Settings');
+export const BUTTON_SETTINGS = new InjectionToken<ButtonSettings>('Button Settings');

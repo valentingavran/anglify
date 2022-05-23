@@ -1,9 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import type { TooltipSettings } from './tooltip.interface';
+import type { EntireTooltipSettings, TooltipSettings } from './tooltip.interface';
 
-export const TOOLTIP_SETTINGS = new InjectionToken<Required<TooltipSettings>>('Tooltip Settings');
-
-export const DEFAULT_TOOLTIP_SETTINGS: Required<TooltipSettings> = {
+export const DEFAULT_TOOLTIP_SETTINGS: EntireTooltipSettings = {
   position: 'bottom',
   hoverOpenDelay: 0,
   touchOpenDelay: 0,
@@ -17,3 +15,5 @@ export const DEFAULT_TOOLTIP_SETTINGS: Required<TooltipSettings> = {
   flip: true,
   shift: true,
 };
+
+export const TOOLTIP_SETTINGS = new InjectionToken<TooltipSettings>('Tooltip Settings');

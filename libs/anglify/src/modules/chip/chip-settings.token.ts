@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
-import type { ChipSettings } from './chip.interface';
+import type { ChipSettings, EntireChipSettings } from './chip.interface';
 
-export const DEFAULT_CHIP_SETTINGS: Required<ChipSettings> = {
+export const DEFAULT_CHIP_SETTINGS: EntireChipSettings = {
   appearance: 'filled',
   filter: false,
   ripple: false,
 };
 
-export const CHIP_SETTINGS = new InjectionToken<Required<ChipSettings>>('Chip Settings');
+export const CHIP_SETTINGS = new InjectionToken<ChipSettings>('Chip Settings');
