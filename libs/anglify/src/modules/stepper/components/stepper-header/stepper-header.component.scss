@@ -21,7 +21,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: $stepper-step-indicator-font-size;
+      font: $stepper-step-indicator-font;
+      letter-spacing: $stepper-step-indicator-letter-spacing;
+      text-transform: $stepper-step-indicator-text-transform;
       border-radius: 50%;
       background: $stepper-step-indicator-color-inactive;
       color: $stepper-step-indicator-text-color-inactive;
@@ -33,7 +35,7 @@
         justify-content: center;
         align-items: center;
 
-        --anglify-icon-size-regular: #{$stepper-step-indicator-font-size};
+        --anglify-icon-size-regular: 1rem;
       }
     }
 
@@ -44,7 +46,9 @@
 
       line-clamp: 2;
       user-select: none;
-      font-size: $stepper-label-font-size;
+      font: $stepper-label-font;
+      letter-spacing: $stepper-label-letter-spacing;
+      text-transform: $stepper-label-text-transform;
       color: $stepper-label-color-inactive;
       transition: $stepper-label-transition;
       text-overflow: ellipsis;

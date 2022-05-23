@@ -1,119 +1,107 @@
-.display-l,
-%display-l {
-  font-weight: 400;
-  font-size: 57px;
-  line-height: 64px;
-  letter-spacing: 0;
+@mixin typography {
+  --font-display-1: normal normal 300 96px/112px 'Roboto', sans-serif;
+  --font-letter-spacing-display-1: -1.5px;
+  --font-text-transform-display-1: none;
+  --font-display-2: normal normal 300 60px/72px 'Roboto', sans-serif;
+  --font-letter-spacing-display-2: -0.5px;
+  --font-text-transform-display-2: none;
+  --font-display-3: normal normal 400 48px/56px 'Roboto', sans-serif;
+  --font-letter-spacing-display-3: 0;
+  --font-text-transform-display-3: none;
+  --font-display-4: normal normal 400 34px/36px 'Roboto', sans-serif;
+  --font-letter-spacing-display-4: 0;
+  --font-text-transform-display-4: none;
+  --font-display-5: normal normal 400 24px/24px 'Roboto', sans-serif;
+  --font-letter-spacing-display-5: 0.18px;
+  --font-text-transform-display-5: none;
+  --font-display-6: normal normal 500 20px/24px 'Roboto', sans-serif;
+  --font-letter-spacing-display-6: 0.15px;
+  --font-text-transform-display-6: none;
+  --font-subtitle-1: normal normal 400 16px/24px 'Roboto', sans-serif;
+  --font-letter-spacing-subtitle-1: 0.15px;
+  --font-text-transform-subtitle-1: none;
+  --font-subtitle-2: normal normal 500 14px/24px 'Roboto', sans-serif;
+  --font-letter-spacing-subtitle-2: 0.1px;
+  --font-text-transform-subtitle-2: none;
+  --font-body-1: normal normal 400 16px/24px 'Roboto', sans-serif;
+  --font-letter-spacing-body-1: 0.5px;
+  --font-text-transform-body-1: none;
+  --font-body-2: normal normal 400 14px/20px 'Roboto', sans-serif;
+  --font-letter-spacing-body-2: 0.25px;
+  --font-text-transform-body-2: none;
+  --font-button: normal normal 500 14px/16px 'Roboto', sans-serif;
+  --font-letter-spacing-button: 1.25px;
+  --font-text-transform-button: uppercase;
+  --font-caption: normal normal 400 12px/16px 'Roboto', sans-serif;
+  --font-letter-spacing-caption: 0.4px;
+  --font-text-transform-caption: none;
+  --font-overline: normal normal 500 10px/16px 'Roboto', sans-serif;
+  --font-letter-spacing-overline: 1.5px;
+  --font-text-transform-overline: uppercase;
 }
 
-.display-m,
-%display-m {
-  font-weight: 400;
-  font-size: 45px;
-  line-height: 52px;
-  letter-spacing: 0;
+@mixin display-1 {
+  font: var(--font-display-1);
+  letter-spacing: var(--font-letter-spacing-display-1);
+  text-transform: var(--font-text-transform-display-1);
 }
-
-.display-s,
-%display-s {
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 44px;
-  letter-spacing: 0;
+@mixin display-2 {
+  font: var(--font-display-2);
+  letter-spacing: var(--font-letter-spacing-display-2);
+  text-transform: var(--font-text-transform-display-2);
 }
-
-.headline-l,
-%headline-l {
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 40px;
-  letter-spacing: 0;
+@mixin display-3 {
+  font: var(--font-display-3);
+  letter-spacing: var(--font-letter-spacing-display-3);
+  text-transform: var(--font-text-transform-display-3);
 }
-
-.headline-m,
-%headline-m {
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 36px;
-  letter-spacing: 0;
+@mixin display-4 {
+  font: var(--font-display-4);
+  letter-spacing: var(--font-letter-spacing-display-4);
+  text-transform: var(--font-text-transform-display-4);
 }
-
-.headline-s,
-%headline-s {
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  letter-spacing: 0;
+@mixin display-5 {
+  font: var(--font-display-5);
+  letter-spacing: var(--font-letter-spacing-display-5);
+  text-transform: var(--font-text-transform-display-5);
 }
-
-.title-l,
-%title-l {
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 28px;
-  letter-spacing: 0;
+@mixin display-6 {
+  font: var(--font-display-6);
+  letter-spacing: var(--font-letter-spacing-display-6);
+  text-transform: var(--font-text-transform-display-6);
 }
-
-.title-m,
-%title-m {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.15px;
+@mixin subtitle-1 {
+  font: var(--font-subtitle-1);
+  letter-spacing: var(--font-letter-spacing-subtitle-1);
+  text-transform: var(--font-text-transform-subtitle-1);
 }
-
-.title-s,
-%title-s {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.1px;
+@mixin subtitle-2 {
+  font: var(--font-subtitle-2);
+  letter-spacing: var(--font-letter-spacing-subtitle-2);
+  text-transform: var(--font-text-transform-subtitle-2);
 }
-
-.label-l,
-%label-l {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.1px;
+@mixin body-1 {
+  font: var(--font-body-1);
+  letter-spacing: var(--font-letter-spacing-body-1);
+  text-transform: var(--font-text-transform-body-1);
 }
-
-.label-m,
-%label-m {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.5px;
+@mixin body-2 {
+  font: var(--font-body-2);
+  letter-spacing: var(--font-letter-spacing-body-2);
+  text-transform: var(--font-text-transform-body-2);
 }
-
-.label-s,
-%label-s {
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 16px;
-  letter-spacing: 0.5px;
+@mixin button {
+  font: var(--font-button);
+  letter-spacing: var(--font-letter-spacing-button);
+  text-transform: var(--font-text-transform-button);
 }
-
-.body-l,
-%body-l {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.15px;
+@mixin caption {
+  font: var(--font-caption);
+  letter-spacing: var(--font-letter-spacing-caption);
+  text-transform: var(--font-text-transform-caption);
 }
-
-.body-m,
-%body-m {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.25px;
-}
-
-.body-s,
-%body-s {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.4px;
+@mixin overline {
+  font: var(--font-overline);
+  letter-spacing: var(--font-letter-spacing-overline);
+  text-transform: var(--font-text-transform-overline);
 }

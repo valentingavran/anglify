@@ -1,1 +1,6 @@
 @use 'generic/index';
+@use 'settings/typography.scss' as *;
+
+:root {
+  @include typography;
+}

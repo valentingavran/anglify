@@ -7,7 +7,9 @@
   pointer-events: none;
   user-select: none;
   max-width: $tooltip-max-width;
-  font-size: $tooltip-font-size;
+  font: $tooltip-font;
+  letter-spacing: $tooltip-letter-spacing;
+  text-transform: $tooltip-text-transform;
   text-align: $tooltip-text-alignment;
   color: $tooltip-text-color;
   padding: $tooltip-padding;

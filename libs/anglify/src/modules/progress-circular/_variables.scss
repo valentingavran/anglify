@@ -15,3 +15,6 @@ $progress-circular-indeterminate-stroke-animation-easing: var(
   ease-in-out
 );
 $progress-circular-intermediate-svg-transition: var(--anglify-progress-circular-intermediate-svg-transition, all 0.2s ease-in-out);
+$progress-circular-font: var(--anglify-progress-circular-font, var(--font-body-1));
+$progress-circular-letter-spacing: var(--anglify-progress-circular-letter-spacing, var(--font-letter-spacing-body-1));
+$progress-circular-text-transform: var(--anglify-progress-circular-text-transform, var(--font-text-transform-body-1));

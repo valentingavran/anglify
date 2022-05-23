@@ -21,7 +21,9 @@
   .label {
     display: flex;
     justify-content: center;
-    @extend %label-m;
+    font: $bottom-navigation-item-font;
+    letter-spacing: $bottom-navigation-item-letter-spacing;
+    text-transform: $bottom-navigation-item-text-transform;
   }
 }
 

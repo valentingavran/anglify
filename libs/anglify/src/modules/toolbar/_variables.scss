@@ -12,3 +12,6 @@ $toolbar-prominent-title-margin-bottom: var(--anglify-toolbar-prominent-margin-b
 $toolbar-collapse-right-actions-margin-left: var(--anglify-toolbar-collapse-actions-margin-right, 16px) !default;
 $toolbar-collapse-actions-margin-left: var(--anglify-toolbar-collapse-actions-margin-left, 0) !default;
 $toolbar-collapse-width: var(--anglify-toolbar-collapse-width, auto) !default;
+$toolbar-title-font: var(--anglify-toolbar-title-font, var(--font-display-6)) !default;
+$toolbar-title-letter-spacing: var(--anglify-toolbar-title-letter-spacing, var(--font-letter-spacing-display-6)) !default;
+$toolbar-title-text-transform: var(--anglify-toolbar-title-text-transform, var(--font-text-transform-display-6)) !default;

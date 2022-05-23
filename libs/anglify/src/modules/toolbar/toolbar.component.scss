@@ -7,7 +7,9 @@
   justify-content: space-between;
 
   .title {
-    @extend %title-m;
+    font: $toolbar-title-font;
+    letter-spacing: $toolbar-title-letter-spacing;
+    text-transform: $toolbar-title-text-transform;
   }
 
   .toolbar-container {

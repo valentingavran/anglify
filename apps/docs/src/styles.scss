@@ -2,7 +2,7 @@
 @use '../../../libs/anglify/src/styles/themes/light' as *;
 @use '../../../libs/anglify/src/styles/themes/dark' as *;
 @use '../../../libs/anglify/src/modules/table';
-@use '../../../libs/anglify/src/styles/settings/typography';
+@use '../../../libs/anglify/src/styles/settings//typography.scss';
 
 :root {
   @include light-theme;
@@ -28,17 +28,17 @@ body {
 }
 
 h1 {
-  @extend %display-m;
+  @include typography.display-3;
 
   margin-bottom: 1rem;
 }
 
 h2 {
-  @extend %headline-m;
+  @include typography.display-4;
 }
 
 h3 {
-  @extend %headline-s;
+  @include typography.display-5;
 }
 
 a {
@@ -46,7 +46,7 @@ a {
 }
 
 p {
-  @extend %body-l;
+  @include typography.body-1;
 }
 
 code {
@@ -54,7 +54,6 @@ code {
   border-radius: 14px;
   white-space: pre;
   padding: 0 0.5rem !important;
-  @extend %body-l;
 }
 
 pre {
@@ -63,13 +62,12 @@ pre {
 
   code {
     padding: 1rem !important;
-    @extend %body-s;
   }
 }
 
 table {
   code {
-    @extend %body-s;
+    @include typography.body-2;
   }
 }
 

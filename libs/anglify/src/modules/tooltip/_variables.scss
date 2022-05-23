@@ -1,7 +1,9 @@
 $tooltip-background-color: var(--anglify-tooltip-background-color, var(--color-background-tooltip)) !default;
 $tooltip-text-color: var(--anglify-tooltip-text-color, var(--color-on-primary)) !default;
 $tooltip-border-radius: var(--anglify-tooltip-border-radius, 4px) !default;
-$tooltip-font-size: var(--anglify-tooltip-font-size, 12px) !default;
+$tooltip-font: var(--anglify-tooltip-font, var(--font-caption)) !default;
+$tooltip-letter-spacing: var(--anglify-tooltip-letter-spacing, var(--font-letter-spacing-caption)) !default;
+$tooltip-text-transform: var(--anglify-tooltip-text-transform, var(--font-text-transform-caption)) !default;
 $tooltip-padding: var(--anglify-tooltip-padding, 4px 12px) !default;
 $tooltip-max-width: var(--anglify-tooltip-max-width, 150px) !default;
 $tooltip-text-alignment: var(--anglify-tooltip-text-alignment, center) !default;

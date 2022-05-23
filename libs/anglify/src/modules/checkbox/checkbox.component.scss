@@ -3,9 +3,7 @@
 ::ng-deep {
   label .container .checkbox-custom-icons {
     anglify-icon {
-      width: 100%;
-      height: 100%;
-      font-size: $checkbox-custom-icon-size;
+      --anglify-icon-size-regular: #{$checkbox-custom-icon-size};
     }
   }
 
@@ -99,7 +97,9 @@
 
     .checkbox-label {
       display: flex;
-      font-size: $checkbox-label-font-size;
+      font: $checkbox-label-font;
+      letter-spacing: $checkbox-label-letter-spacing;
+      text-transform: $checkbox-label-text-transform;
       align-items: center;
       padding: $checkbox-label-margin;
     }

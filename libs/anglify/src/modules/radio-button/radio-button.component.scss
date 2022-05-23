@@ -57,7 +57,9 @@
 
     .label {
       display: flex;
-      font-size: $radio-button-label-font-size;
+      font: $radio-button-label-font;
+      letter-spacing: $radio-button-label-letter-spacing;
+      text-transform: $radio-button-label-text-transform;
       align-items: center;
       padding: $radio-button-label-margin;
     }

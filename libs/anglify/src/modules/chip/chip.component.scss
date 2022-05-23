@@ -9,6 +9,9 @@
   min-height: $chip-height;
   height: 1px;
   cursor: $chip-cursor;
+  font: $chip-font;
+  letter-spacing: $chip-letter-spacing;
+  text-transform: $chip-text-transform;
 
   &:hover {
     --state-container-color: #{$chip-hover-state-color};

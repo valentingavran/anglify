@@ -5,7 +5,9 @@ $radio-button-checked-color: var(--anglify-radio-button-checked-color, var(--col
 $radio-button-checked-hover-color: var(--anglify-radio-button-checked-hover-color, var(--color-primary));
 $radio-button-checked-hover-border-color: var(--anglify-radio-button-checked-hover-border-color, var(--color-primary));
 $radio-button-checked-border-color: var(--anglify-radio-button-checked-border-color, var(--color-primary));
-$radio-button-label-font-size: var(--anglify-radio-button-label-font-size, 14px);
+$radio-button-label-font: var(--anglify-radio-button-label-font, var(--font-body-2));
+$radio-button-label-letter-spacing: var(--anglify-radio-button-label-letter-spacing, var(--font-letter-spacing-body-2));
+$radio-button-label-text-transform: var(--anglify-radio-button-label-text-transform, var(--font-text-transform-body-2));
 $radio-button-label-margin: var(--anglify-radio-button-label-margin, 0 5px);
 $radio-button-border-width: var(--anglify-radio-button-border-width, 2px);
 $radio-button-border-radius: var(--anglify-radio-button-border-radius, 50%);

@@ -1,11 +1,13 @@
+@use '../../variables' as *;
 @use '../../../../styles/settings/typography';
 
 :host {
-  @extend %body-m;
-
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
+  font: $list-item-description-font;
+  letter-spacing: $list-item-description-letter-spacing;
+  text-transform: $list-item-description-text-transform;
 }
