@@ -4,6 +4,8 @@ $list-item-active-text-color: var(--anglify-list-item-active-text-color, var(--c
 $list-item-title-font: var(--anglify-list-item-title-font, var(--font-subtitle-1)) !default;
 $list-item-title-letter-spacing: var(--anglify-list-item-title-letter-spacing, var(--font-letter-spacing-subtitle-1)) !default;
 $list-item-title-text-transform: var(--anglify-list-item-title-text-transform, var(--font-text-transform-subtitle-1)) !default;
+$list-item-title-line-clamp: var(--anglify-list-item-title-line-clamp, 1) !default;
 $list-item-description-font: var(--anglify-list-item-description-font, var(--font-body-2)) !default;
 $list-item-description-letter-spacing: var(--anglify-list-item-description-letter-spacing, var(--font-letter-spacing-body-2)) !default;
 $list-item-description-text-transform: var(--anglify-list-item-description-text-transform, var(--font-text-transform-body-2)) !default;
+$list-item-description-line-clamp: var(--anglify-list-item-description-line-clamp, 2) !default;
