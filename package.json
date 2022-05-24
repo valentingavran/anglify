@@ -27,10 +27,10 @@
     "@ngneat/until-destroy": "^9.2.0",
     "@nrwl/angular": "^14.1.4",
     "common-tags": "^1.8.2",
+    "deepmerge-ts": "^4.0.3",
     "ngx-highlightjs": "^6.1.2",
     "ngx-markdown": "^13.1.0",
     "rxjs": "^7.5.5",
-    "ts-deepmerge": "^2.0.1",
     "tslib": "^2.4.0",
     "zone.js": "^0.11.5"
   },
