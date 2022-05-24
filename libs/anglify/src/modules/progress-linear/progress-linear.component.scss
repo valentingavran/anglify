@@ -1,19 +1,19 @@
 @use 'variables' as *;
 
 :host {
+  position: relative;
   display: block;
   overflow: hidden;
   height: $progress-linear-height;
-  position: relative;
   background: transparent;
 
   .anglify-progress-linear-track {
-    background: $progress-linear-track-color;
-    bottom: 0;
-    left: 0;
-    opacity: 0.24;
     position: absolute;
     top: 0;
+    bottom: 0;
+    left: 0;
+    background: $progress-linear-track-color;
+    opacity: 0.24;
     transition: inherit;
     transition-property: width, left, right;
   }
@@ -24,24 +24,24 @@
   }
 
   .anglify-progress-linear-determinate {
-    height: inherit;
-    left: 0;
     position: absolute;
+    left: 0;
+    height: inherit;
     transition: inherit;
     transition-property: width, left, right;
   }
 
   .anglify-progress-linear-indeterminate {
-    animation-play-state: paused;
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: inherit;
     animation-duration: $progress-linear-indeterminate-animation-duration;
     animation-iteration-count: infinite;
-    bottom: 0;
-    height: inherit;
-    left: 0;
-    position: absolute;
-    right: auto;
-    top: 0;
-    width: auto;
+    animation-play-state: paused;
     will-change: left, right;
 
     &.long {
@@ -54,18 +54,18 @@
   }
 
   .anglify-progress-linear-stream {
-    animation-play-state: paused;
-    animation-duration: $progress-linear-stream-animation-duration;
-    animation-name: stream-ltr;
-    animation-iteration-count: infinite;
+    position: absolute;
+    top: 0;
+    right: calc(-2 * #{$progress-linear-height});
     left: auto;
+    border-top: dotted $progress-linear-height $progress-linear-stream-color;
+    animation-duration: $progress-linear-stream-animation-duration;
+    animation-iteration-count: infinite;
+    animation-name: stream-ltr;
+    animation-play-state: paused;
     opacity: 0.24;
     pointer-events: none;
-    position: absolute;
     transition: inherit;
-    right: calc(-2 * #{$progress-linear-height});
-    top: 0;
-    border-top: dotted $progress-linear-height $progress-linear-stream-color;
   }
 
   &.anglify-progress-linear-active {
@@ -77,35 +77,35 @@
 
   @keyframes indeterminate-ltr {
     0% {
-      left: -90%;
       right: 100%;
+      left: -90%;
     }
 
     60% {
-      left: -90%;
       right: 100%;
+      left: -90%;
     }
 
     100% {
-      left: 100%;
       right: -35%;
+      left: 100%;
     }
   }
 
   @keyframes indeterminate-short-ltr {
     0% {
-      left: -200%;
       right: 100%;
+      left: -200%;
     }
 
     60% {
-      left: 107%;
       right: -8%;
+      left: 107%;
     }
 
     100% {
-      left: 107%;
       right: -8%;
+      left: 107%;
     }
   }
 

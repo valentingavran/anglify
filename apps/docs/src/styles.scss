@@ -22,9 +22,9 @@
 html,
 body {
   margin: 0;
-  font-family: Roboto, sans-serif;
   background-color: var(--color-background);
   color: var(--color-on-background-high-emphasis);
+  font-family: Roboto, sans-serif;
 }
 
 h1 {
@@ -50,15 +50,15 @@ p {
 }
 
 code {
+  padding: 0 0.5rem !important;
   background-color: var(--color-surface-overlay) !important;
   border-radius: 14px;
   white-space: pre;
-  padding: 0 0.5rem !important;
 }
 
 pre {
-  white-space: normal;
   padding: 0 !important;
+  white-space: normal;
 
   code {
     padding: 1rem !important;
@@ -77,16 +77,16 @@ td code {
 
 .playground {
   display: grid;
-  grid-template-columns: 2fr 1fr;
   border: 1px solid var(--border-color-on-surface-low-emphasis);
   border-radius: 14px;
+  grid-template-columns: 2fr 1fr;
 
   .content {
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-right: 1px solid var(--border-color-on-surface-low-emphasis);
+    justify-content: center;
     padding: 24px;
+    border-right: 1px solid var(--border-color-on-surface-low-emphasis);
 
     anglify-form-field {
       max-width: 300px;

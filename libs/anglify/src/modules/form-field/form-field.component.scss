@@ -5,8 +5,8 @@
 @use 'variables' as *;
 
 :host {
-  width: 100%;
   display: grid;
+  width: 100%;
   grid-template-areas:
     'outer-prepend form-field-container  outer-append'
     '. details .';
@@ -19,49 +19,49 @@
   }
 
   .outer-prepend:not(:empty) {
-    grid-area: outer-prepend;
     display: flex;
     align-items: center;
+    grid-area: outer-prepend;
     margin-inline-end: 14px;
   }
 
   .outer-append:not(:empty) {
-    grid-area: outer-append;
     display: flex;
     align-items: center;
+    grid-area: outer-append;
     margin-inline-start: 14px;
   }
 
   .form-field-container {
-    grid-area: form-field-container;
     position: relative;
     display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: 'prepend content append';
+    max-width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    max-width: 100%;
+    grid-area: form-field-container;
+    grid-template-areas: 'prepend content append';
+    grid-template-columns: auto 1fr auto;
 
     label {
-      grid-area: content;
       display: grid;
       align-items: center;
+      grid-area: content;
 
       ::ng-deep {
         input,
         textarea {
-          grid-column: 1 / -1;
-          grid-row: 1;
-          border-style: none;
-          outline: none;
-          line-height: $form-field-line-height;
-          max-width: 100%;
+          width: 100%;
           min-width: 0;
+          max-width: 100%;
+          box-sizing: border-box;
+          border-style: none;
           background-color: transparent;
           font-size: $form-field-font-size;
-          width: 100%;
-          box-sizing: border-box;
+          grid-column: 1 / -1;
+          grid-row: 1;
+          line-height: $form-field-line-height;
+          outline: none;
           resize: vertical;
 
           &::placeholder {
@@ -79,8 +79,8 @@
     }
 
     .prepend:not(:empty) {
-      grid-area: prepend;
       cursor: default;
+      grid-area: prepend;
       user-select: none;
 
       ::ng-deep {
@@ -91,8 +91,8 @@
     }
 
     .append:not(:empty) {
-      grid-area: append;
       cursor: default;
+      grid-area: append;
       user-select: none;
 
       ::ng-deep {

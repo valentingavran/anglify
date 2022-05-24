@@ -5,9 +5,9 @@
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   overflow: hidden;
-  text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   font: $list-item-title-font;
   letter-spacing: $list-item-title-letter-spacing;
+  text-overflow: ellipsis;
   text-transform: $list-item-title-text-transform;
 }

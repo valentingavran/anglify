@@ -2,34 +2,34 @@
 @use '../../styles/mixins/elevation' as *;
 
 .anglify-dialog-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  flex-shrink: 0;
   position: relative;
-  box-sizing: border-box;
+  display: flex;
   width: auto;
   max-width: 100%;
   height: auto;
   max-height: 100%;
-  pointer-events: $dialog-pointer-events;
-  overflow-y: auto;
+  box-sizing: border-box;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: $dialog-padding;
   background: $dialog-background;
   border-radius: $dialog-border-radius;
-  padding: $dialog-padding;
+  overflow-y: auto;
+  pointer-events: $dialog-pointer-events;
   @include elevation-transition;
   @include elevation(24);
 }
 
 .anglify-dialog-backdrop {
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: $dialog-backdrop-z-index;
   top: 0;
   left: 0;
-  height: 100%;
+  display: flex;
   width: 100%;
-  z-index: $dialog-backdrop-z-index;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
   background: $dialog-backdrop-background;
 }

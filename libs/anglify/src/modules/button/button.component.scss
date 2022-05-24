@@ -3,17 +3,17 @@
 @use '../../styles/settings';
 
 :host {
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
+  align-items: center;
   justify-content: center;
+  border: none;
+  cursor: pointer;
   outline: 0;
   text-decoration: none;
   user-select: none;
   vertical-align: middle;
+  white-space: nowrap;
   @include elevation-transition;
 
   &.contained,
@@ -21,8 +21,8 @@
   &.outlined,
   &.text {
     height: $button-height;
-    padding-inline-start: $button-inline-padding-start;
     padding-inline-end: $button-inline-padding-end;
+    padding-inline-start: $button-inline-padding-start;
   }
 
   &:disabled {
@@ -39,11 +39,11 @@
 
   &.contained {
     background: $button-contained-background;
+    border-radius: $button-contained-border-radius;
     color: $button-contained-label-color;
     font: $button-contained-font;
     letter-spacing: $button-contained-letter-spacing;
     text-transform: $button-contained-text-transform;
-    border-radius: $button-contained-border-radius;
 
     &:disabled {
       background: $button-contained-background-disabled;
@@ -56,13 +56,13 @@
   }
 
   &.outlined {
+    border: $button-outline-border;
     background: $button-outlined-background;
+    border-radius: $button-outlined-border-radius;
     color: $button-outlined-label-color;
     font: $button-outlined-font;
     letter-spacing: $button-outlined-letter-spacing;
     text-transform: $button-outlined-text-transform;
-    border-radius: $button-outlined-border-radius;
-    border: $button-outline-border;
 
     &:disabled {
       background: $button-outlined-background-disabled;
@@ -72,13 +72,13 @@
 
   &.text {
     background: transparent;
+    border-radius: $button-text-border-radius;
     color: $button-text-label-color;
     font: $button-text-font;
     letter-spacing: $button-text-letter-spacing;
-    text-transform: $button-text-text-transform;
-    border-radius: $button-text-border-radius;
-    padding-inline-start: $button-inline-padding-start-text;
     padding-inline-end: $button-inline-padding-end-text;
+    padding-inline-start: $button-inline-padding-start-text;
+    text-transform: $button-text-text-transform;
 
     &:disabled {
       color: $button-outlined-label-color-disabled;
@@ -86,11 +86,11 @@
   }
 
   &.icon {
+    width: $button-icon-size;
+    height: $button-icon-size;
     background: transparent;
     border-radius: $button-icon-border-radius;
     color: $button-icon-label-color;
-    height: $button-icon-size;
-    width: $button-icon-size;
 
     &:disabled {
       color: $button-icon-label-color-disabled;
@@ -98,26 +98,26 @@
   }
 
   &.fab {
-    padding-inline-start: $button-inline-padding-start;
-    padding-inline-end: $button-inline-padding-end;
+    height: $button-fab-size;
     background: $button-fab-background;
     border-radius: $button-fab-border-radius;
     color: $button-fab-label-color;
-    height: $button-fab-size;
+    padding-inline-end: $button-inline-padding-end;
+    padding-inline-start: $button-inline-padding-start;
 
     @include elevation(7);
   }
 
   &.extended-fab {
-    padding-inline-start: $button-inline-padding-start-extended-fab;
-    padding-inline-end: $button-inline-padding-end-extended-fab;
+    height: $button-fab-size;
     background: $button-fab-background;
-    font: $button-fab-font;
-    letter-spacing: $button-fab-letter-spacing;
-    text-transform: $button-fab-text-transform;
     border-radius: $button-fab-border-radius;
     color: $button-fab-label-color;
-    height: $button-fab-size;
+    font: $button-fab-font;
+    letter-spacing: $button-fab-letter-spacing;
+    padding-inline-end: $button-inline-padding-end-extended-fab;
+    padding-inline-start: $button-inline-padding-start-extended-fab;
+    text-transform: $button-fab-text-transform;
 
     @include elevation(7);
   }

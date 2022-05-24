@@ -2,9 +2,9 @@
 @use '../../../../styles/settings/typography.scss' as *;
 
 :host {
-  height: 100%;
   min-width: $bottom-navigation-item-min-width;
   max-width: $bottom-navigation-item-max-width;
+  height: 100%;
   cursor: pointer;
 
   ::ng-deep {

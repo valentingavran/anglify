@@ -8,66 +8,66 @@
   }
 
   label {
-    display: flex;
     position: relative;
+    display: flex;
 
     .container {
-      width: $radio-button-ripple-inner-width;
-      height: $radio-button-ripple-inner-height;
+      position: relative;
       display: flex;
       overflow: visible !important;
-      position: relative;
+      width: $radio-button-ripple-inner-width;
+      height: $radio-button-ripple-inner-height;
 
       .state-container {
-        height: $radio-button-ripple-height;
+        position: absolute;
         width: $radio-button-ripple-width;
+        height: $radio-button-ripple-height;
         margin: $radio-button-ripple-margin;
         border-radius: $radio-button-ripple-border-radius;
-        position: absolute;
       }
 
       .radio-button-effect {
-        display: inline-flex;
         position: relative;
-        box-sizing: border-box;
+        display: inline-flex;
         width: $radio-button-width;
         height: $radio-button-height;
+        box-sizing: border-box;
+        align-content: center;
         border-width: $radio-button-border-width;
         border-style: solid;
         border-color: $radio-button-border-color;
-        border-radius: $radio-button-border-radius;
         margin: auto;
-        align-content: center;
+        border-radius: $radio-button-border-radius;
         pointer-events: none;
 
         .radio-button-effect-dot {
-          height: $radio-button-dot-height;
+          position: relative;
+          display: inline-block;
           width: $radio-button-dot-width;
+          height: $radio-button-dot-height;
+          margin: auto;
           background-color: transparent;
           border-radius: 50%;
-          visibility: hidden;
-          position: relative;
-          margin: auto;
-          transition: transform 0.2s linear;
           transform: scale(0);
-          display: inline-block;
+          transition: transform 0.2s linear;
+          visibility: hidden;
         }
       }
     }
 
     .label {
       display: flex;
+      align-items: center;
+      padding: $radio-button-label-margin;
       font: $radio-button-label-font;
       letter-spacing: $radio-button-label-letter-spacing;
       text-transform: $radio-button-label-text-transform;
-      align-items: center;
-      padding: $radio-button-label-margin;
     }
   }
 
   input {
-    opacity: 0;
     position: absolute;
+    opacity: 0;
     pointer-events: none;
     user-select: none;
   }
@@ -82,14 +82,14 @@
   input:disabled {
     & ~ .container {
       .radio-button-effect {
-        border-color: $radio-button-disabled-color;
-        border-style: solid;
         border-width: $radio-button-border-width;
+        border-style: solid;
+        border-color: $radio-button-disabled-color;
       }
 
       .radio-button-effect-dot {
-        transform: scale(1);
         background-color: $radio-button-disabled-color;
+        transform: scale(1);
       }
     }
 
@@ -104,9 +104,9 @@
         border-color: $radio-button-checked-border-color;
 
         .radio-button-effect-dot {
-          visibility: visible;
-          transform: scale(1);
           background: $radio-button-checked-dot-color;
+          transform: scale(1);
+          visibility: visible;
         }
       }
     }

@@ -2,11 +2,11 @@
 
 :host {
   display: flex;
-  height: $bottom-navigation-height;
-  background-color: $bottom-navigation-background;
   width: $bottom-navigation-width;
-  justify-content: center;
+  height: $bottom-navigation-height;
   align-items: center;
+  justify-content: center;
+  background-color: $bottom-navigation-background;
 }
 
 :host(.grow) {

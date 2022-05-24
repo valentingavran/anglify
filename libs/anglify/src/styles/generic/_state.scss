@@ -5,22 +5,22 @@
 
   .anglify-state-container {
     position: absolute;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    contain: strict;
     inset: 0;
     pointer-events: none;
-    border-radius: inherit;
-    overflow: hidden;
-    z-index: 0;
-    contain: strict;
   }
 
   .anglify-state-ripple {
-    background-color: var(--anglify-ripple-color, var(--color-ripple));
-    transform: scale(0);
     position: absolute;
+    background-color: var(--anglify-ripple-color, var(--color-ripple));
     border-radius: 50%;
+    transform: scale(0);
+    transition-delay: 70ms; // Ripple is slightly delayed, to handle route changes better
+    transition-duration: 1000ms;
     transition-property: transform, opacity;
     transition-timing-function: linear;
-    transition-duration: 1000ms;
-    transition-delay: 70ms; // Ripple is slightly delayed, to handle route changes better
   }
 }
