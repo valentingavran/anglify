@@ -26,6 +26,11 @@ export class ListGroupComponent {
 
   @Input() public disableGroupCollapse: BooleanLike = false;
 
+  /**
+   * Exactly match the link. Without this, `/` will match every route.
+   */
+  @Input() public exact: BooleanLike = false;
+
   @Input() public set active(value: BooleanLike) {
     this.active$.next(toBoolean(value));
   }
@@ -75,7 +80,12 @@ export class ListGroupComponent {
   private checkRouterLink(routerLink: RouterLinkCommands, currentURL: string) {
     if (!routerLink) return false;
     const link = typeof routerLink === 'string' ? `/${routerLink}` : `/${routerLink.join('/')}`;
-    return link === currentURL;
+
+    if (this.exact) {
+      return link === currentURL;
+    }
+
+    return currentURL.includes(link);
   }
 
   /**
