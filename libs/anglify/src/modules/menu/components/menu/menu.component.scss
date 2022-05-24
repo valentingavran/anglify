@@ -1,10 +1,10 @@
 @use '../../variables' as *;
 
 :host {
-  display: block;
   position: fixed;
-  max-width: $menu-max-width;
-  border-radius: $menu-border-radius;
   z-index: $menu-z-index;
+  display: block;
+  max-width: $menu-max-width;
   background: $menu-background;
+  border-radius: $menu-border-radius;
 }

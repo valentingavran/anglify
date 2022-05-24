@@ -2,34 +2,34 @@
 @use '../../styles/mixins/elevation' as *;
 
 :host {
-  display: block;
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, 0);
+  display: block;
   width: fit-content;
   min-width: 345px;
   max-width: 675px;
+  margin: 8px;
   background: $snackbar-background-color;
   border-radius: 4px;
-  margin: 8px;
+  transform: translate(-50%, 0);
   @include elevation-transition;
   @include elevation(5);
 
   .container {
     display: flex;
+    width: 100%;
     align-items: center;
     background-color: $snackbar-container-color;
     border-radius: 4px;
-    width: 100%;
 
     .label {
+      flex-grow: 1;
+      padding: 14px 16px;
+      color: $snackbar-label-color;
       font: $snackbar-label-font;
       letter-spacing: $snackbar-label-letter-spacing;
       text-transform: $snackbar-label-text-transform;
-      color: $snackbar-label-color;
-      padding: 14px 16px;
-      flex-grow: 1;
     }
 
     .actions {

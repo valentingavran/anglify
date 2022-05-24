@@ -78,6 +78,7 @@
     "prettier": "^2.6.2",
     "standard-version": "^9.3.2",
     "stylelint": "^14.8.2",
+    "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier-scss": "^0.0.1",
     "stylelint-config-standard-scss": "^3.0.0",
     "ts-jest": "^28.0.2",

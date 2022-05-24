@@ -2,31 +2,31 @@
 
 .anglify-table {
   width: 100%;
-  table-layout: $table-layout;
   border-collapse: collapse;
+  table-layout: $table-layout;
 
   th,
   td {
-    text-align: left;
-    text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
     border-bottom-width: $table-border-width;
     border-bottom-style: $table-border-style;
     border-bottom-color: $table-border-color;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   th {
-    padding-left: $table-header-cell-padding-left;
-    padding-right: $table-header-cell-padding-right;
     height: $table-header-cell-height;
+    padding-right: $table-header-cell-padding-right;
+    padding-left: $table-header-cell-padding-left;
     background: $table-header-cell-background;
   }
 
   td {
-    padding-left: $table-cell-padding-left;
-    padding-right: $table-cell-padding-right;
     height: $table-cell-height;
+    padding-right: $table-cell-padding-right;
+    padding-left: $table-cell-padding-left;
     background: $table-cell-background;
   }
 

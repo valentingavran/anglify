@@ -2,26 +2,26 @@
 
 :host {
   .details {
-    grid-area: details;
     display: flex;
-    gap: 14px;
-    min-height: 16px;
     overflow: hidden;
+    min-height: 16px;
     font: $form-field-details-font;
+    gap: 14px;
+    grid-area: details;
     letter-spacing: $form-field-details-letter-spacing;
     text-transform: $form-field-details-text-transform;
 
     .hint {
-      flex: 1;
       /* stylelint-disable-next-line value-no-vendor-prefix */
       display: -webkit-box;
       overflow: hidden;
-      text-overflow: ellipsis;
-      line-clamp: 1;
-      -webkit-line-clamp: 1;
+      flex: 1;
       -webkit-box-orient: vertical;
-      transition: transform $transition-duration $form-field-transition-timing-function;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      text-overflow: ellipsis;
       transform: translateY(-100%);
+      transition: transform $transition-duration $form-field-transition-timing-function;
     }
   }
 

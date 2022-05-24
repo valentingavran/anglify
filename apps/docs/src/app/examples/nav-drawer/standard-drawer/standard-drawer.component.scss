@@ -1,11 +1,11 @@
 :host {
   .drawer-container {
-    height: 200px;
-    width: 600px;
-    margin: auto;
-    border: 1px solid;
     position: relative;
     display: flex;
+    width: 600px;
+    height: 200px;
+    border: 1px solid;
+    margin: auto;
     margin-bottom: 10px;
     contain: content;
   }

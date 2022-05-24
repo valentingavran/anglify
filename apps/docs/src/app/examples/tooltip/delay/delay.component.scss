@@ -4,10 +4,10 @@
   gap: 3rem;
 
   div {
-    max-width: 300px;
-    text-align: center;
     display: flex;
+    max-width: 300px;
     flex-direction: column;
     gap: 1rem;
+    text-align: center;
   }
 }

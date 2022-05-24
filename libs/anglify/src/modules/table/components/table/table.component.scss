@@ -3,9 +3,9 @@
 :host {
   display: block;
   width: $table-width;
-  background: $table-background;
   border-width: $table-border-width;
   border-style: $table-border-style;
-  border-radius: $table-border-radius;
   border-color: $table-border-color;
+  background: $table-background;
+  border-radius: $table-border-radius;
 }

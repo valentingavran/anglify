@@ -29,28 +29,27 @@
   }
 
   label {
-    display: flex;
     position: relative;
+    display: flex;
 
     .container {
-      width: $checkbox-ripple-inner-width;
-      height: $checkbox-ripple-inner-height;
+      position: relative;
       display: flex;
       overflow: visible;
-      position: relative;
+      width: $checkbox-ripple-inner-width;
+      height: $checkbox-ripple-inner-height;
 
       .state-container {
-        height: $checkbox-ripple-height;
+        position: absolute;
         width: $checkbox-ripple-width;
+        height: $checkbox-ripple-height;
         margin: $checkbox-ripple-margin;
         border-radius: $checkbox-ripple-border-radius;
-        position: absolute;
       }
 
       .check-box-effect {
-        display: inline-flex;
         position: relative;
-        pointer-events: none;
+        display: inline-flex;
         width: $checkbox-width;
         height: $checkbox-height;
         border-width: $checkbox-border-width;
@@ -58,57 +57,57 @@
         border-color: $checkbox-border-color;
         margin: auto;
         border-radius: $checkbox-border-radius;
+        pointer-events: none;
 
         &::after {
-          content: '';
-          width: 0;
-          height: $checkbox-icon-after-height;
-          border-radius: 3px;
-          background: $checkbox-icon-color;
           position: absolute;
-          transform: rotate(305deg);
           top: $checkbox-icon-after-top-position;
           left: $checkbox-icon-after-left-position;
-          transition: width 50ms ease;
+          width: 0;
+          height: $checkbox-icon-after-height;
+          background: $checkbox-icon-color;
+          border-radius: 3px;
+          content: '';
+          transform: rotate(305deg);
           transform-origin: 0% 0%;
+          transition: width 50ms ease;
         }
 
         &::before {
-          content: '';
-          width: 0;
-          height: $checkbox-icon-before-height;
-          border-radius: 3px;
-          background: $checkbox-icon-color;
           position: absolute;
-          transform: rotate(45deg);
           top: $checkbox-icon-before-top-position;
           left: $checkbox-icon-before-left-position;
-          transition: width 50ms ease 50ms;
+          width: 0;
+          height: $checkbox-icon-before-height;
+          background: $checkbox-icon-color;
+          border-radius: 3px;
+          content: '';
+          transform: rotate(45deg);
           transform-origin: 0% 0%;
+          transition: width 50ms ease 50ms;
         }
       }
 
       /* stylelint-disable-next-line no-descending-specificity */
       .checkbox-custom-icons {
-        height: $checkbox-custom-icon-size;
         width: $checkbox-custom-icon-size;
+        height: $checkbox-custom-icon-size;
       }
     }
 
     .checkbox-label {
       display: flex;
+      align-items: center;
+      padding: $checkbox-label-margin;
       font: $checkbox-label-font;
       letter-spacing: $checkbox-label-letter-spacing;
       text-transform: $checkbox-label-text-transform;
-      align-items: center;
-      padding: $checkbox-label-margin;
     }
   }
 
   input {
-    // Input should be hidden but we still want it to be focusable
-    opacity: 0;
     position: absolute;
+    opacity: 0; // Input should be hidden but we still want it to be focusable
     pointer-events: none;
     user-select: none;
   }
@@ -149,8 +148,8 @@
     /* stylelint-disable-next-line no-descending-specificity */
     & ~ .container {
       .check-box-effect {
-        background-color: $checkbox-checked-color !important;
         border-color: $checkbox-checked-border-color;
+        background-color: $checkbox-checked-color !important;
 
         &::before {
           width: $checkbox-icon-before-width;
@@ -175,8 +174,8 @@
 
   // Checked styles for only disabled state
   input:checked:disabled + .container .check-box-effect {
-    background-color: $checkbox-disabled-color !important;
     border-color: transparent;
+    background-color: $checkbox-disabled-color !important;
   }
 
   // Checked styles for only enabled state

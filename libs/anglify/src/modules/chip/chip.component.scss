@@ -2,15 +2,15 @@
 
 :host {
   display: inline-flex;
-  align-items: center;
-  text-decoration: $chip-text-decoration;
-  border-radius: $chip-border-radius;
-  padding: $chip-padding;
-  min-height: $chip-height;
   height: 1px;
+  min-height: $chip-height;
+  align-items: center;
+  padding: $chip-padding;
+  border-radius: $chip-border-radius;
   cursor: $chip-cursor;
   font: $chip-font;
   letter-spacing: $chip-letter-spacing;
+  text-decoration: $chip-text-decoration;
   text-transform: $chip-text-transform;
 
   &:hover {
@@ -28,16 +28,16 @@
 
   &.filter {
     .prepend {
-      opacity: 0;
       width: 0;
+      opacity: 0;
       transform: translate(calc(-1 * $chip-filter-prepend-width), 0);
       transition: $chip-filter-transition-speed;
     }
 
     &.active {
       .prepend {
-        opacity: 1;
         width: $chip-filter-prepend-width;
+        opacity: 1;
         transform: translate(0, 0);
       }
     }

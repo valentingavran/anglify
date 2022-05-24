@@ -8,55 +8,55 @@
   $font-size: var(--anglify-notched-outline-font-size, 12px);
   $transition-timing-function: var(--anglify-notched-outline-transition-timing-function, cubic-bezier(0.25, 0.8, 0.5, 1));
 
+  position: absolute;
   display: flex;
   width: 100%;
-  position: absolute;
   height: 100%;
-  user-select: none;
   pointer-events: none;
+  user-select: none;
 
   .start {
     width: calc(#{$start-width} - #{$padding});
-    border-top-left-radius: $border-radius;
-    border-bottom-left-radius: $border-radius;
-    border-style: $border-style none $border-style $border-style;
-    border-width: $border-width;
-    border-color: $border-color;
     box-sizing: border-box;
     flex-shrink: 0;
+    border-width: $border-width;
+    border-style: $border-style none $border-style $border-style;
+    border-color: $border-color;
+    border-bottom-left-radius: $border-radius;
+    border-top-left-radius: $border-radius;
   }
 
   .notch {
-    display: block;
-    border-bottom: $border-width $border-style $border-color;
-    box-sizing: border-box;
     position: relative;
-    padding-left: $padding;
+    display: block;
+    max-width: calc(100% - #{$start-width} - #{$start-width});
+    box-sizing: border-box;
     padding-right: $padding;
+    padding-left: $padding;
+    border-bottom: $border-width $border-style $border-color;
     font-size: 12px;
     white-space: nowrap;
-    max-width: calc(100% - #{$start-width} - #{$start-width});
 
     /* This pseudo element is responsible for the notch border width animation */
     &::after {
-      content: '';
       position: absolute;
-      width: $notch-width;
       top: 0;
       right: 0;
-      transition: width $transition-duration $transition-timing-function;
+      width: $notch-width;
       border-top: $border-width $border-style $border-color;
+      content: '';
+      transition: width $transition-duration $transition-timing-function;
     }
   }
 
   .end {
-    flex: 1;
     min-width: $start-width;
     box-sizing: border-box;
-    border-top-right-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
-    border-style: $border-style $border-style $border-style none;
+    flex: 1;
     border-width: $border-width;
+    border-style: $border-style $border-style $border-style none;
     border-color: $border-color;
+    border-bottom-right-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
 }

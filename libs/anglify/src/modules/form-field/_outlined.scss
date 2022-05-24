@@ -8,14 +8,14 @@
 
   .form-field-container {
     background-color: $form-field-outlined-background;
-    padding-inline-start: $form-field-outlined-padding-start;
     padding-inline-end: $form-field-outlined-padding-start;
+    padding-inline-start: $form-field-outlined-padding-start;
 
     ::ng-deep {
       input,
       textarea {
-        padding-block-start: $form-field-outlined-padding-top;
         padding-block-end: $form-field-outlined-padding-bottom;
+        padding-block-start: $form-field-outlined-padding-top;
       }
     }
 
@@ -27,22 +27,22 @@
 
       .notch * {
         display: block;
+        font-size: calc(#{$form-field-font-size} * #{$form-field-label-scale-focused});
         transform: translateY(-50%);
         visibility: hidden;
-        font-size: calc(#{$form-field-font-size} * #{$form-field-label-scale-focused});
       }
     }
 
     .label {
+      overflow: hidden;
+      max-width: 100%;
+      font-size: $form-field-font-size;
+      text-overflow: ellipsis;
+      transform-origin: left;
       transition-duration: $transition-duration;
       transition-property: transform, max-width, margin-inline-start, width;
       transition-timing-function: $form-field-transition-timing-function;
-      transform-origin: left;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      font-size: $form-field-font-size;
     }
   }
 
@@ -112,11 +112,11 @@
           (#{$form-field-line-height} + #{$form-field-outlined-padding-bottom} + #{$form-field-outlined-padding-top}) / 2 * -1
         );
 
-        transform: translateY($translate-y) scale($form-field-label-scale-focused);
+        width: calc(100% / #{$form-field-label-scale-focused});
+        max-width: calc(100% / #{$form-field-label-scale-focused});
         grid-column: 1 / 3;
         grid-row: 1;
-        max-width: calc(100% / #{$form-field-label-scale-focused});
-        width: calc(100% / #{$form-field-label-scale-focused});
+        transform: translateY($translate-y) scale($form-field-label-scale-focused);
       }
     }
   }
@@ -135,8 +135,8 @@
     }
 
     .form-field-container {
-      padding-inline-start: $form-field-outlined-padding-start-dense;
       padding-inline-end: $form-field-outlined-padding-start-dense;
+      padding-inline-start: $form-field-outlined-padding-start-dense;
 
       .form-field-border {
         --anglify-notched-outline-start-width: #{$form-field-outlined-padding-start-dense};
@@ -145,8 +145,8 @@
       ::ng-deep {
         input,
         textarea {
-          padding-block-start: $form-field-outlined-padding-top-dense;
           padding-block-end: $form-field-outlined-padding-bottom-dense;
+          padding-block-start: $form-field-outlined-padding-top-dense;
         }
       }
     }

@@ -2,15 +2,15 @@
 
 :host {
   display: flex;
-  align-items: center;
   min-height: 40px;
+  align-items: center;
   padding: 8px 16px;
   gap: 16px;
   user-select: none;
 
   .content {
-    flex: 1;
     min-width: 0;
+    flex: 1;
   }
 
   .prepend,
