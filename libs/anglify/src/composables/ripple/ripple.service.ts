@@ -70,8 +70,10 @@ export class RippleService {
     });
 
     if (event instanceof MouseEvent && this.rippleOrigin !== 'center') {
-      const offsetX = event.offsetX;
-      const offsetY = event.offsetY;
+      const position = this.elementRef.nativeElement.getBoundingClientRect();
+      const offsetX = event.clientX - position.x;
+      const offsetY = event.clientY - position.y;
+
       focusContainer.style.left = `${offsetX - width / 2 - (width < height ? diff / 2 : 0)}px`;
       focusContainer.style.top = `${offsetY - height / 2 - (width > height ? diff / 2 : 0)}px`;
     } else {
