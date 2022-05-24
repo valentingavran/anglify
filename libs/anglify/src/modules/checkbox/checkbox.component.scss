@@ -108,7 +108,7 @@
   }
 
   &.anglify-checkbox-checked.anglify-checkbox-disabled {
-    --anglify-icon-inactive-color: #{$checkbox-disabled-color};
+    --anglify-icon-color: #{$checkbox-disabled-color};
 
     .check-box-effect {
       border-color: transparent !important;
@@ -117,7 +117,7 @@
   }
 
   &.anglify-checkbox-checked:not(.anglify-checkbox-disabled) {
-    --anglify-icon-inactive-color: #{$checkbox-checked-color};
+    --anglify-icon-color: #{$checkbox-checked-color};
 
     label .container .check-box-effect {
       border-color: $checkbox-checked-border-color;

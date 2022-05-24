@@ -33,7 +33,7 @@
 
 :host-context(.active) {
   --state-container-color: var(--color-primary-state-focus);
-  --anglify-icon-inactive-color: #{$list-item-active-text-color};
+  --anglify-icon-color: #{$list-item-active-text-color};
 
   ::ng-deep anglify-list-item-title {
     color: $list-item-active-text-color;

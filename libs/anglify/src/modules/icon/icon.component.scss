@@ -7,14 +7,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: $icon-inactive-color;
+  color: $icon-color;
   font-feature-settings: 'liga';
   letter-spacing: $icon-letter-spacing;
   line-height: $icon-line-height;
-  pointer-events: none;
   text-indent: $icon-text-indent;
   user-select: none;
   vertical-align: $icon-vertical-align;
+
+  ::ng-deep * {
+    pointer-events: none;
+  }
 
   @each $name in settings.$sizes {
     &.icon-size-#{$name} {
@@ -24,19 +27,8 @@
     }
   }
 
-  &:active {
-    color: $icon-active-color;
-  }
-
   &.clickable {
     cursor: pointer;
-    pointer-events: auto;
-  }
-
-  &.disabled {
-    color: $icon-disabled-color;
-    cursor: default;
-    pointer-events: none;
   }
 
   &.left {

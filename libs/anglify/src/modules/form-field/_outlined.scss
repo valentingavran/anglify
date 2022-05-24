@@ -2,7 +2,7 @@
 @use '../../styles/mixins/notched-outline' as *;
 
 :host-context(.form-field-type-outlined) {
-  --anglify-icon-inactive-color: #{$form-field-outlined-icon-color};
+  --anglify-icon-color: #{$form-field-outlined-icon-color};
 
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
@@ -58,7 +58,7 @@
   }
 
   &.focused {
-    --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-focused};
+    --anglify-icon-color: #{$form-field-outlined-icon-color-focused};
 
     .form-field-container {
       background-color: $form-field-outlined-background-focused;
@@ -82,7 +82,7 @@
       .label {
         color: $form-field-outlined-label-color-focused;
 
-        --anglify-icon-inactive-color: #{$form-field-outlined-label-color-focused};
+        --anglify-icon-color: #{$form-field-outlined-label-color-focused};
       }
     }
   }
@@ -164,7 +164,7 @@
       .label {
         color: $form-field-outlined-label-color;
 
-        --anglify-icon-inactive-color: $form-field-outlined-label-color;
+        --anglify-icon-color: $form-field-outlined-label-color;
       }
 
       &:hover {
@@ -195,7 +195,7 @@
 
   /* stylelint-disable no-descending-specificity */
   &.disabled {
-    --anglify-icon-inactive-color: #{$form-field-outlined-icon-color-disabled};
+    --anglify-icon-color: #{$form-field-outlined-icon-color-disabled};
 
     ::ng-deep {
       input,

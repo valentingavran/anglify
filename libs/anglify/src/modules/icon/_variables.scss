@@ -9,6 +9,4 @@ $icon-sizes: (
   icon-size-large: var(--anglify-icon-size-large, 1.75rem),
   icon-size-x-large: var(--anglify-icon-size-x-large, 2rem),
 ) !default;
-$icon-active-color: var(--anglify-icon-active-color, var(--color-on-surface-high-emphasis)) !default;
-$icon-inactive-color: var(--anglify-icon-inactive-color, var(--color-on-surface-medium-emphasis)) !default;
-$icon-disabled-color: var(--anglify-icon-disabled-color, var(--color-on-surface-low-emphasis)) !default;
+$icon-color: var(--anglify-icon-color, var(--color-on-surface-medium-emphasis)) !default;
