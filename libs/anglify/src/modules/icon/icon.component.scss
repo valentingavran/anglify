@@ -15,8 +15,15 @@
   user-select: none;
   vertical-align: $icon-vertical-align;
 
-  ::ng-deep * {
-    pointer-events: none;
+  ::ng-deep {
+    * {
+      pointer-events: none;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   @each $name in settings.$sizes {
