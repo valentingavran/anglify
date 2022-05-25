@@ -1,6 +1,6 @@
 $snackbar-background-color: var(--anglify-snackbar-background-color, var(--color-background));
-$snackbar-container-color: var(--anglify-snackbar-container-color, var(--color-on-surface-high-emphasis));
-$snackbar-label-color: var(--anglify-snackbar-label-color, var(--color-on-primary-high-emphasis));
+$snackbar-container-color: var(--anglify-snackbar-container-color, var(--color-inverse-surface));
+$snackbar-label-color: var(--anglify-snackbar-label-color, var(--color-on-inverse-surface-high-emphasis));
 $snackbar-label-font: var(--anglify-snackbar-label-font, var(--font-body-2));
 $snackbar-label-letter-spacing: var(--anglify-snackbar-label-letter-spacing, var(--font-letter-spacing-body-2));
 $snackbar-label-text-transform: var(--anglify-snackbar-label-text-transform, var(--font-text-transform-body-2));
