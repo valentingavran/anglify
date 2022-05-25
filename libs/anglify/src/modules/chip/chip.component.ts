@@ -16,13 +16,15 @@ import {
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject } from 'rxjs';
 import { CHIP_SETTINGS, DEFAULT_CHIP_SETTINGS } from './chip-settings.token';
-import { ChipAppearance, ChipSettings } from './chip.interface';
+import { ChipAppearance, EntireChipSettings } from './chip.interface';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
 import { bindClassToNativeElement, toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { InternalIconSetDefinition } from '../icon/icon.interface';
 
 @UntilDestroy()
 @Component({
@@ -30,7 +32,7 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<ChipSettings>('anglifyChipSettings', DEFAULT_CHIP_SETTINGS, CHIP_SETTINGS), RIPPLE],
+  providers: [createSettingsProvider<EntireChipSettings>('anglifyChipSettings', DEFAULT_CHIP_SETTINGS, CHIP_SETTINGS), RIPPLE],
 })
 export class ChipComponent implements OnInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
@@ -62,8 +64,9 @@ export class ChipComponent implements OnInit {
   public readonly active$ = new BehaviorSubject<boolean>(false);
 
   public constructor(
+    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition,
+    @Self() @Inject('anglifyChipSettings') public settings: EntireChipSettings,
     private readonly elementRef: ElementRef<HTMLElement>,
-    @Self() @Inject('anglifyChipSettings') public settings: Required<ChipSettings>,
     private readonly rippleService: RippleService
   ) {
     bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');

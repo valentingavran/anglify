@@ -6,7 +6,7 @@
     <div class="start"></div>
     <div class="notch" *ngIf="type === 'outlined'">
       <span>
-        <ng-container *anglifySlotOutlet="slots | findSlot: 'label'"></ng-container>
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'label'">{{ label }}</ng-container>
       </span>
     </div>
     <div class="end"></div>

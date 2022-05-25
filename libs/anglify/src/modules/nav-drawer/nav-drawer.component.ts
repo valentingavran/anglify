@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import type { DrawerMode, NavDrawerSettings } from './nav-drawer.interface';
+import type { DrawerMode, EntireNavDrawerSettings } from './nav-drawer.interface';
 import { DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS } from './nav-drawer.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
@@ -30,7 +30,7 @@ import { ListComponent } from '../list/components/list/list.component';
       useExisting: forwardRef(() => NavDrawerComponent),
       multi: true,
     },
-    createSettingsProvider<NavDrawerSettings>('anglifyNavDrawerSettings', DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS),
+    createSettingsProvider<EntireNavDrawerSettings>('anglifyNavDrawerSettings', DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -60,7 +60,7 @@ export class NavDrawerComponent implements AfterViewInit {
 
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
 
-  public constructor(@Self() @Inject('anglifyNavDrawerSettings') private readonly settings: Required<NavDrawerSettings>) {}
+  public constructor(@Self() @Inject('anglifyNavDrawerSettings') private readonly settings: EntireNavDrawerSettings) {}
 
   public ngAfterViewInit() {
     if (this.closeOnItemClick) {

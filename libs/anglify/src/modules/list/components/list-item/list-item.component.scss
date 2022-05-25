@@ -1,19 +1,29 @@
+@use '../../_variables.scss' as *;
+
 :host {
   display: flex;
-  align-items: center;
   min-height: 40px;
+  align-items: center;
   padding: 8px 16px;
   gap: 16px;
   user-select: none;
 
   .content {
-    flex: 1;
     min-width: 0;
+    flex: 1;
   }
 
   .prepend,
   .append {
     --state-container-color: transparent;
+  }
+
+  &:focus-visible {
+    --state-container-color: #{$list-item-focus-state-color};
+  }
+
+  &:hover {
+    --state-container-color: #{$list-item-hover-state-color};
   }
 }
 
@@ -23,6 +33,11 @@
 
 :host-context(.active) {
   --state-container-color: var(--color-primary-state-focus);
+  --anglify-icon-color: #{$list-item-active-text-color};
+
+  ::ng-deep anglify-list-item-title {
+    color: $list-item-active-text-color;
+  }
 }
 
 :host-context(.selectable) {

@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 :host-context(.form-field-type-filled) {
-  --anglify-icon-inactive-color: #{$form-field-filled-icon-color};
+  --anglify-icon-color: #{$form-field-filled-icon-color};
 
   padding-top: calc((#{$form-field-font-size} * #{$form-field-label-scale-focused}) / 2);
 
@@ -9,66 +9,66 @@
   &.persistent-placeholder,
   &.floating {
     .label {
+      width: calc(100% / #{$form-field-label-scale-focused}) !important;
+      max-width: calc(100% / #{$form-field-label-scale-focused}) !important;
       transform: translateY(calc((#{$form-field-line-height} - #{$form-field-filled-padding-bottom}) * -1))
         scale($form-field-label-scale-focused);
-      max-width: calc(100% / #{$form-field-label-scale-focused}) !important;
-      width: calc(100% / #{$form-field-label-scale-focused}) !important;
     }
   }
 
   .form-field-container {
     background-color: $form-field-filled-background;
     border-radius: $form-field-filled-border-radius;
-    padding-inline-start: $form-field-filled-padding-start;
     padding-inline-end: $form-field-filled-padding-start;
+    padding-inline-start: $form-field-filled-padding-start;
 
     label {
       .label {
+        overflow: hidden;
+        max-width: 100%;
+        font-size: $form-field-font-size;
+        text-overflow: ellipsis;
+        transform-origin: left;
         transition-duration: $transition-duration;
         transition-property: max-width, transform, width;
         transition-timing-function: $form-field-transition-timing-function;
-        transform-origin: left;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-        font-size: $form-field-font-size;
       }
 
       ::ng-deep {
         input,
         textarea {
-          padding-block-start: $form-field-filled-padding-top;
-          padding-block-end: $form-field-filled-padding-bottom;
           color: $form-field-filled-text-color;
+          padding-block-end: $form-field-filled-padding-bottom;
+          padding-block-start: $form-field-filled-padding-top;
         }
       }
     }
 
     /* This pseudo element contains the inactive bottom border */
     &::before {
-      content: '';
       position: absolute;
-      width: 0;
       bottom: 0;
+      width: 0;
       border-bottom: 1px solid $form-field-filled-border-color;
+      content: '';
     }
 
     /* This pseudo element contains the focused bottom border. It animates on focus from the center to the edges */
     &::after {
-      content: '';
       position: absolute;
-      width: 0;
-      background-color: $form-field-filled-border-color-focused;
-      transition: width $transition-duration $form-field-transition-timing-function;
       bottom: 0;
+      width: 0;
       height: 2px;
+      background-color: $form-field-filled-border-color-focused;
+      content: '';
       justify-self: center;
+      transition: width $transition-duration $form-field-transition-timing-function;
     }
   }
 
   &.focused {
-    --anglify-icon-inactive-color: #{$form-field-filled-icon-color-focused};
+    --anglify-icon-color: #{$form-field-filled-icon-color-focused};
 
     .form-field-container {
       &::before {
@@ -120,15 +120,15 @@
       ::ng-deep {
         input,
         textarea {
-          padding-block-start: 14px !important;
           padding-block-end: 14px !important;
+          padding-block-start: 14px !important;
         }
       }
     }
   }
 
   &.disabled {
-    --anglify-icon-inactive-color: #{$form-field-filled-icon-color-disabled};
+    --anglify-icon-color: #{$form-field-filled-icon-color-disabled};
 
     /* stylelint-disable no-descending-specificity */
     ::ng-deep {
@@ -163,8 +163,8 @@
 
   &.dense:not(.has-label) {
     .form-field-container {
-      padding-inline-start: $form-field-filled-padding-start-dense;
       padding-inline-end: $form-field-filled-padding-start-dense;
+      padding-inline-start: $form-field-filled-padding-start-dense;
 
       .form-field-border {
         --anglify-notched-outline-start-width: #{$form-field-filled-padding-start-dense};
@@ -173,8 +173,8 @@
       ::ng-deep {
         input,
         textarea {
-          padding-block-start: 10px !important;
           padding-block-end: 10px !important;
+          padding-block-start: 10px !important;
         }
       }
     }

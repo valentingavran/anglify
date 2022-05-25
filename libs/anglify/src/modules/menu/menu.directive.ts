@@ -21,8 +21,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, fromEvent, map, skip, Subject, takeUntil, tap } from 'rxjs';
 import { MenuComponent } from './components/menu/menu.component';
 import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
-import type { MenuMountingPoint, MenuSettings } from './menu.interface';
-import type { Elevation } from '../../composables/elevation/elevation';
+import type { EntireMenuSettings, MenuMountingPoint } from './menu.interface';
+import type { Elevation } from '../../composables/elevation/elevation.interface';
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -33,7 +33,7 @@ import { BooleanLike } from '../../utils/interfaces';
 @Directive({
   selector: '[anglifyMenuTriggerFor]',
   exportAs: 'anglifyMenu',
-  providers: [createSettingsProvider('anglifyMenuSettings', DEFAULT_MENU_SETTINGS, MENU_SETTINGS)],
+  providers: [createSettingsProvider<EntireMenuSettings>('anglifyMenuSettings', DEFAULT_MENU_SETTINGS, MENU_SETTINGS)],
 })
 export class MenuDirective implements OnDestroy {
   @Input('anglifyMenuTriggerFor') public content!: TemplateRef<any> | Type<any>;
@@ -98,7 +98,7 @@ export class MenuDirective implements OnDestroy {
     private readonly resolver: ComponentFactoryResolver,
     private readonly applicationRef: ApplicationRef,
     private readonly cdRef: ChangeDetectorRef,
-    @Self() @Inject('anglifyMenuSettings') private readonly settings: Required<MenuSettings>
+    @Self() @Inject('anglifyMenuSettings') private readonly settings: EntireMenuSettings
   ) {
     this.openHandler$.pipe(untilDestroyed(this)).subscribe();
     this.closeHandler$.pipe(untilDestroyed(this)).subscribe();

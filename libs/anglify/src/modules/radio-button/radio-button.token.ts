@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import { RadioButtonSettings } from './radio-button.interface';
+import { EntireRadioButtonSettings, RadioButtonSettings } from './radio-button.interface';
 
-export const DEFAULT_RADIO_BUTTON_SETTINGS: Required<RadioButtonSettings> = {
+export const DEFAULT_RADIO_BUTTON_SETTINGS: EntireRadioButtonSettings = {
   disabled: false,
   labelPosition: 'after',
   ripple: true,

@@ -1,10 +1,22 @@
-import { animate, group, query, state, style, transition, trigger } from '@angular/animations';
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, ElementRef, Input, Output, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  ElementRef,
+  Inject,
+  Input,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
+import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
+import { fastInFastOutY, slide } from '../../../../utils/animations';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { Step } from '../../directives/step/step.directive';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { Stepper } from '../../services/stepper/stepper.service';
@@ -16,36 +28,7 @@ import { Stepper } from '../../services/stepper/stepper.service';
   styleUrls: ['./stepper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: Stepper, useExisting: StepperComponent }, StepperSettings],
-  animations: [
-    trigger('fast-in-fast-out-y', [
-      state('*', style({ 'overflow-y': 'hidden' })),
-      state('void', style({ 'overflow-y': 'hidden' })),
-      transition('* => void', [style({ height: '*' }), animate('300ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ height: 0 }))]),
-      transition('void => *', [style({ height: '0' }), animate('300ms 320ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ height: '*' }))]),
-    ]),
-    trigger('slide', [
-      transition(':increment', [
-        group([
-          query(':enter', [style({ transform: 'translateX(100%)' }), animate(300, style({ transform: 'translateX(0%)' }))], {
-            optional: true,
-          }),
-          query(':leave', [style({ transform: 'translateX(0%)' }), animate(300, style({ transform: 'translateX(-100%)' }))], {
-            optional: true,
-          }),
-        ]),
-      ]),
-      transition(':decrement', [
-        group([
-          query(':enter', [style({ transform: 'translateX(-100%)' }), animate(300, style({ transform: 'translateX(0%)' }))], {
-            optional: true,
-          }),
-          query(':leave', [style({ transform: 'translateX(0%)' }), animate(300, style({ transform: 'translateX(100%)' }))], {
-            optional: true,
-          }),
-        ]),
-      ]),
-    ]),
-  ],
+  animations: [fastInFastOutY({ duration: '500ms' }), slide()],
 })
 export class StepperComponent extends Stepper implements AfterContentInit {
   @ContentChildren(Step) private readonly _steps?: QueryList<Step>;
@@ -86,7 +69,11 @@ export class StepperComponent extends Stepper implements AfterContentInit {
 
   private readonly nativeElement = this.elementRef.nativeElement;
 
-  public constructor(public readonly stepperSettings: StepperSettings, private readonly elementRef: ElementRef<HTMLElement>) {
+  public constructor(
+    public readonly stepperSettings: StepperSettings,
+    private readonly elementRef: ElementRef<HTMLElement>,
+    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+  ) {
     super();
     this._orientationHandler$.pipe(untilDestroyed(this)).subscribe();
   }

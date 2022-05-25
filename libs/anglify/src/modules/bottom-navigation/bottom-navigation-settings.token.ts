@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
-import { BottomNavigationSettings } from './bottom-navigation.interface';
+import { BottomNavigationSettings, EntireBottomNavigationSettings } from './bottom-navigation.interface';
 
-export const DEFAULT_BOTTOM_NAVIGATION_SETTINGS: Required<BottomNavigationSettings> = {
+export const DEFAULT_BOTTOM_NAVIGATION_SETTINGS: EntireBottomNavigationSettings = {
   shift: false,
   grow: false,
 };
-export const BOTTOM_NAVIGATION_SETTINGS = new InjectionToken<Required<BottomNavigationSettings>>('BottomNavigation Settings');
+export const BOTTOM_NAVIGATION_SETTINGS = new InjectionToken<BottomNavigationSettings>('BottomNavigation Settings');

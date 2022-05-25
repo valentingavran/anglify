@@ -1,23 +1,23 @@
 :host {
   display: grid;
-  grid-template-areas: 'preview' 'controls';
   gap: 0.5rem;
+  grid-template-areas: 'preview' 'controls';
 
   .preview {
-    grid-area: preview;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
     border: 1px solid var(--border-color-on-surface-low-emphasis);
     border-radius: 14px;
-    padding: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    grid-area: preview;
   }
 
   .controls {
-    grid-area: controls;
     display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
     min-height: 24px;
+    justify-content: flex-end;
+    gap: 1rem;
+    grid-area: controls;
   }
 }

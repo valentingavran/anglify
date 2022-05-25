@@ -2,19 +2,21 @@
 
 .anglify-tooltip {
   position: fixed;
+  z-index: $tooltip-z-index;
   display: flex;
-  align-items: center;
-  pointer-events: none;
-  user-select: none;
   max-width: $tooltip-max-width;
-  font-size: $tooltip-font-size;
-  text-align: $tooltip-text-alignment;
-  color: $tooltip-text-color;
+  align-items: center;
   padding: $tooltip-padding;
   background: $tooltip-background-color;
   border-radius: $tooltip-border-radius;
-  z-index: $tooltip-z-index;
+  color: $tooltip-text-color;
+  font: $tooltip-font;
+  letter-spacing: $tooltip-letter-spacing;
+  pointer-events: none;
+  text-align: $tooltip-text-alignment;
+  text-transform: $tooltip-text-transform;
+  user-select: none;
   word-break: $tooltip-word-break;
 
-  --anglify-icon-inactive-color: $tooltip-text-color;
+  --anglify-icon-color: $tooltip-text-color;
 }

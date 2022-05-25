@@ -9,7 +9,7 @@
   >
     <ng-template slot="visitedIcon">
       <ng-container *anglifySlotOutlet="slots | findSlot: 'visitedIcon'">
-        <anglify-icon icon="mdi-pencil"></anglify-icon>
+        <anglify-icon [icon]="internalIcons.edit"></anglify-icon>
       </ng-container>
     </ng-template>
   </anglify-stepper-header>

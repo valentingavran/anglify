@@ -2,85 +2,63 @@
 
 :host {
   display: flex;
-  align-items: center;
   height: $stepper-header-height;
+  align-items: center;
 
   .prepend-item {
-    display: flex;
-    flex-shrink: 0;
-    flex-grow: 0;
-    flex-basis: $stepper-header-height;
-    height: $stepper-header-height;
-    justify-content: center;
-    align-items: center;
     position: relative;
+    display: flex;
+    height: $stepper-header-height;
+    flex-basis: $stepper-header-height;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
 
     .step-indicator {
-      height: $stepper-step-indicator-size;
-      width: $stepper-step-indicator-size;
       display: flex;
-      justify-content: center;
+      width: $stepper-step-indicator-size;
+      height: $stepper-step-indicator-size;
       align-items: center;
-      font-size: $stepper-step-indicator-font-size;
-      border-radius: 50%;
+      justify-content: center;
       background: $stepper-step-indicator-color-inactive;
+      border-radius: 50%;
       color: $stepper-step-indicator-text-color-inactive;
-      user-select: none;
+      font: $stepper-step-indicator-font;
+      letter-spacing: $stepper-step-indicator-letter-spacing;
+      text-transform: $stepper-step-indicator-text-transform;
       transition: $stepper-step-indicator-transition;
+      user-select: none;
 
       div {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
 
-        --anglify-icon-size: $stepper-step-indicator-font-size;
+        --anglify-icon-size-regular: 1rem;
       }
-    }
-
-    &:hover {
-      cursor: pointer;
-
-      --state-container-color: #{$stepper-hover-state-color};
-    }
-
-    &:focus-visible {
-      --state-container-color: #{$stepper-focus-state-color};
     }
 
     .label {
+      overflow: hidden;
       flex-grow: 1;
+      color: $stepper-label-color-inactive;
+      font: $stepper-label-font;
+      letter-spacing: $stepper-label-letter-spacing;
+      line-clamp: 2;
+      text-overflow: ellipsis;
+      text-transform: $stepper-label-text-transform;
+      transition: $stepper-label-transition;
+      user-select: none;
 
       --webkit-line-clamp: 2;
-
-      line-clamp: 2;
-      user-select: none;
-      font-size: $stepper-label-font-size;
-      color: $stepper-label-color-inactive;
-      transition: $stepper-label-transition;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    &.active {
-      .prepend-item {
-        .step-indicator {
-          background: $stepper-step-indicator-color-active;
-          transition: $stepper-step-indicator-transition;
-          color: $stepper-step-indicator-text-color-active;
-        }
-      }
-
-      .label {
-        color: $stepper-label-color-active;
-        transition: $stepper-label-transition;
-      }
     }
 
     .step-connection-line {
+      position: absolute;
       width: 100%;
       height: calc(((100% - #{$stepper-step-indicator-size}) / 2) - #{$stepper-step-connection-line-offset});
       background: linear-gradient(#{$stepper-step-connection-line-color}, #{$stepper-step-connection-line-color}) no-repeat center/1px 100%;
-      position: absolute;
 
       &.top {
         top: 0;
@@ -90,5 +68,30 @@
         bottom: 0;
       }
     }
+  }
+
+  &.active {
+    .prepend-item {
+      .step-indicator {
+        background: $stepper-step-indicator-color-active;
+        color: $stepper-step-indicator-text-color-active;
+        transition: $stepper-step-indicator-transition;
+      }
+    }
+
+    .label {
+      color: $stepper-label-color-active;
+      transition: $stepper-label-transition;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    --state-container-color: #{$stepper-hover-state-color};
+  }
+
+  &:focus-visible {
+    --state-container-color: #{$stepper-focus-state-color};
   }
 }

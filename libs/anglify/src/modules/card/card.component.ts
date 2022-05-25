@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, Self } from '@angular/core';
 import { CARD_SETTINGS, DEFAULT_CARD_SETTINGS } from './card-settings.token';
-import type { CardSettings } from './card.interface';
-import type { Elevation } from '../../composables/elevation/elevation';
+import { EntireCardSettings } from './card.interface';
+import type { Elevation } from '../../composables/elevation/elevation.interface';
 import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
@@ -15,7 +15,7 @@ import { BooleanLike } from '../../utils/interfaces';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [createSettingsProvider<CardSettings>('anglifyCardSettings', DEFAULT_CARD_SETTINGS, CARD_SETTINGS), ELEVATION, RIPPLE],
+  providers: [createSettingsProvider<EntireCardSettings>('anglifyCardSettings', DEFAULT_CARD_SETTINGS, CARD_SETTINGS), ELEVATION, RIPPLE],
 })
 export class CardComponent {
   @Input()
@@ -37,7 +37,7 @@ export class CardComponent {
   }
 
   public constructor(
-    @Self() @Inject('anglifyCardSettings') public settings: Required<CardSettings>,
+    @Self() @Inject('anglifyCardSettings') public settings: EntireCardSettings,
     private readonly elevationService: ElevationService,
     private readonly rippleService: RippleService
   ) {

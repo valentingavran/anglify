@@ -1,6 +1,5 @@
 @mixin light-theme {
   --color-primary: #6e00ee;
-  --color-on-primary: #fff;
   --color-on-primary-high-emphasis: rgb(255 255 255 / 87%);
   --color-on-primary-medium-emphasis: rgb(255 255 255 / 60%);
   --color-on-primary-low-emphasis: rgb(255 255 255 / 38%);
@@ -8,11 +7,9 @@
   --color-primary-state-focus: rgb(98 0 238 / 12%);
   --color-primary-variant: #bb86fc;
   --color-secondary: #01a299;
-  --color-on-secondary: #000;
   --color-on-secondary-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-secondary-medium-emphasis: rgb(0 0 0 / 60%);
   --color-on-secondary-low-emphasis: rgb(0 0 0 / 38%);
-  --color-secondary-variant: #03dac5;
   --color-error: #b00020;
   --color-on-error-high-emphasis: rgb(255 255 255 / 87%);
   --color-on-error-medium-emphasis: rgb(255 255 255 / 60%);
@@ -21,11 +18,14 @@
   --color-on-background-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-background-medium-emphasis: rgb(0 0 0 / 60%);
   --color-on-background-low-emphasis: rgb(0 0 0 / 38%);
-  --color-background-tooltip: rgb(0 0 0 / 60%);
   --color-surface: #fff;
   --color-on-surface-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-surface-medium-emphasis: rgb(0 0 0 / 60%);
   --color-on-surface-low-emphasis: rgb(0 0 0 / 38%);
+  --color-inverse-surface: rgb(0 0 0 / 87%);
+  --color-on-inverse-surface-high-emphasis: rgb(255 255 255 / 87%);
+  --color-on-inverse-surface-medium-emphasis: rgb(255 255 255 / 60%);
+  --color-on-inverse-surface-low-emphasis: rgb(255 255 255 / 38%);
   --border-color-on-surface-high-emphasis: rgb(0 0 0 / 87%);
   --border-color-on-surface-medium-emphasis: rgb(0 0 0 / 60%);
   --border-color-on-surface-low-emphasis: rgb(0 0 0 / 12%);
@@ -37,7 +37,7 @@
   --color-backdrop: rgb(0 0 0 / 12%);
   --color-ripple: rgb(0 0 0 / 12%);
   --color-bar: var(--color-primary);
-  --color-on-bar: var(--color-on-primary-high-emphasis);
   --color-on-bar-high-emphasis: var(--color-on-primary-high-emphasis);
   --color-on-bar-medium-emphasis: var(--color-on-primary-medium-emphasis);
+  --color-on-bar-low-emphasis: var(--color-on-primary-low-emphasis);
 }

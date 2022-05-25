@@ -1,16 +1,16 @@
 :host {
   anglify-item-group {
     display: flex;
-    gap: 1rem;
     margin-bottom: 1rem;
+    gap: 1rem;
   }
 
   anglify-card {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100px;
     height: 100px;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 
     &.active {

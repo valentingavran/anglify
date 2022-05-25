@@ -1,8 +1,8 @@
 :host {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
 
   .checkbox-medium {
     --anglify-checkbox-height: 18px;
@@ -20,5 +20,6 @@
     --anglify-checkbox-height: 32px !important;
     --anglify-checkbox-width: 32px !important;
     --anglify-checkbox-label-font-size: 32px !important;
+    --anglify-icon-size-regular: 60px;
   }
 }

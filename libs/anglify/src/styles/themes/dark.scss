@@ -1,6 +1,5 @@
 @mixin dark-theme {
   --color-primary: #bb86fc;
-  --color-on-primary: #000;
   --color-on-primary-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-primary-medium-emphasis: rgb(0 0 0 / 60%);
   --color-on-primary-low-emphasis: rgb(0 0 0 / 38%);
@@ -8,11 +7,9 @@
   --color-primary-state-focus: rgb(187 134 252 / 12%);
   --color-primary-variant: var(--color-primary);
   --color-secondary: #01a299;
-  --color-on-secondary: #000;
   --color-on-secondary-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-secondary-medium-emphasis: rgb(0 0 0 / 60%);
   --color-on-secondary-low-emphasis: rgb(0 0 0 / 38%);
-  --color-secondary-variant: #03dac5;
   --color-error: #cf6679;
   --color-on-error-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-error-medium-emphasis: rgb(0 0 0 / 60%);
@@ -21,11 +18,14 @@
   --color-on-background-high-emphasis: rgb(255 255 255 / 87%);
   --color-on-background-medium-emphasis: rgb(255 255 255 / 60%);
   --color-on-background-low-emphasis: rgb(255 255 255 / 38%);
-  --color-background-tooltip: #979797;
   --color-surface: #121212;
   --color-on-surface-high-emphasis: rgb(255 255 255 / 87%);
   --color-on-surface-medium-emphasis: rgb(255 255 255 / 60%);
   --color-on-surface-low-emphasis: rgb(255 255 255 / 38%);
+  --color-inverse-surface: rgb(255 255 255 / 87%);
+  --color-on-inverse-surface-high-emphasis: rgb(0 0 0 / 87%);
+  --color-on-inverse-surface-medium-emphasis: rgb(0 0 0 / 60%);
+  --color-on-inverse-surface-low-emphasis: rgb(0 0 0 / 38%);
   --border-color-on-surface-high-emphasis: rgb(255 255 255 / 87%);
   --border-color-on-surface-medium-emphasis: rgb(255 255 255 / 60%);
   --border-color-on-surface-low-emphasis: rgb(255 255 255 / 12%);
@@ -37,7 +37,7 @@
   --color-backdrop: rgb(0 0 0 / 32%);
   --color-ripple: rgb(255 255 255 / 12%);
   --color-bar: var(--color-elevated);
-  --color-on-bar: var(--color-primary);
   --color-on-bar-high-emphasis: var(--color-on-surface-high-emphasis);
   --color-on-bar-medium-emphasis: var(--color-on-surface-medium-emphasis);
+  --color-on-bar-low-emphasis: var(--color-on-surface-low-emphasis);
 }

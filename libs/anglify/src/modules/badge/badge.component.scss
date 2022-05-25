@@ -10,18 +10,21 @@
 
   &.badge {
     position: fixed;
-    color: $badge-text-color;
-    border-radius: 20px;
-    background-color: $badge-background-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 1;
+    display: flex;
     overflow: hidden;
-    padding: 5px;
     width: fit-content;
+    min-width: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: $badge-background-color;
+    border-radius: 20px;
+    color: $badge-text-color;
+    font: $badge-font;
+    letter-spacing: $badge-letter-spacing;
     text-indent: 0;
-    @extend %label-s;
+    text-transform: $badge-text-transform;
   }
 
   &.border {

@@ -12,10 +12,6 @@
       "section": "🐛  Bug Fixes"
     },
     {
-      "type": "style",
-      "section": "✨  Styles"
-    },
-    {
       "type": "perf",
       "section": "🐎  Performance"
     },
@@ -45,6 +41,10 @@
     },
     {
       "type": "test",
+      "section": "🛠  Other Commmits"
+    },
+    {
+      "type": "style",
       "section": "🛠  Other Commmits"
     }
   ],

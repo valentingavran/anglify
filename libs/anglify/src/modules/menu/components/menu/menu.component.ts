@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import type { Elevation } from '../../../../composables/elevation/elevation';
+import type { Elevation } from '../../../../composables/elevation/elevation.interface';
 import { ELEVATION } from '../../../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../../../composables/elevation/elevation.service';
 import type { Position } from '../../../../composables/position/position.interface';

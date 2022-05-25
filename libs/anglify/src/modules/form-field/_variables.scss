@@ -74,3 +74,6 @@ $form-field-filled-placeholder-color-disabled: var(
   var(--color-on-surface-low-emphasis)
 );
 $form-field-filled-error-color: var(--anglify-form-field-filled-error-color, var(--color-error));
+$form-field-details-font: var(--anglify-form-field-details-font, var(--font-caption));
+$form-field-details-letter-spacing: var(--anglify-form-field-details-letter-spacing, var(--font-letter-spacing-caption));
+$form-field-details-text-transform: var(--anglify-form-field-details-text-transform, var(--font-text-transform-caption));

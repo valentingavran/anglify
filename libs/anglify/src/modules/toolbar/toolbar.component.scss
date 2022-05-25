@@ -7,17 +7,19 @@
   justify-content: space-between;
 
   .title {
-    @extend %title-m;
+    font: $toolbar-title-font;
+    letter-spacing: $toolbar-title-letter-spacing;
+    text-transform: $toolbar-title-text-transform;
   }
 
   .toolbar-container {
+    display: flex;
+    width: $toolbar-width;
     height: $toolbar-regular-height;
+    align-items: center;
+    justify-content: space-between;
     background-color: $toolbar-background;
     color: $toolbar-text-color;
-    width: $toolbar-width;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
     .left {
       display: flex;
@@ -42,8 +44,8 @@
     .right {
       display: flex;
       height: 100%;
-      margin-right: $toolbar-right-actions-margin-right;
       align-items: center;
+      margin-right: $toolbar-right-actions-margin-right;
 
       .actions {
         margin-left: $toolbar-actions-margin-left;

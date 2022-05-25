@@ -22,7 +22,7 @@ import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
-import type { TooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
+import type { EntireTooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -33,7 +33,7 @@ import type { BooleanLike } from '../../utils/interfaces';
 @Directive({
   selector: '[anglifyTooltip]',
   exportAs: 'anglifyTooltip',
-  providers: [createSettingsProvider<TooltipSettings>('anglifyTooltipSettings', DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
+  providers: [createSettingsProvider<EntireTooltipSettings>('anglifyTooltipSettings', DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
 })
 export class TooltipDirective implements OnDestroy {
   @Input('anglifyTooltip') public content!: string | TemplateRef<any> | Type<any>;
@@ -167,7 +167,7 @@ export class TooltipDirective implements OnDestroy {
     private readonly resolver: ComponentFactoryResolver,
     private readonly applicationRef: ApplicationRef,
     private readonly cdRef: ChangeDetectorRef,
-    @Self() @Inject('anglifyTooltipSettings') private readonly settings: Required<TooltipSettings>
+    @Self() @Inject('anglifyTooltipSettings') private readonly settings: EntireTooltipSettings
   ) {
     this._visibleHandler$.pipe(untilDestroyed(this)).subscribe();
   }

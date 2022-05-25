@@ -1,3 +1,15 @@
+// Composables
+export * from './composables/elevation/elevation.interface';
+export * from './composables/elevation/elevation.provider';
+export * from './composables/elevation/elevation.service';
+export * from './composables/position/position.interface';
+export * from './composables/position/position.provider';
+export * from './composables/position/position.service';
+export * from './composables/ripple/ripple.interface';
+export * from './composables/ripple/ripple.provider';
+export * from './composables/ripple/ripple.service';
+// Utils
+export * from './utils/animations';
 // Badge
 export * from './modules/badge/badge-settings.token';
 export * from './modules/badge/badge.component';
@@ -89,6 +101,7 @@ export * from './modules/progress-circular/progress-circular.interface';
 export * from './modules/progress-circular/progress-circular.module';
 // Progress Linear
 export * from './modules/progress-linear/progress-linear.component';
+export * from './modules/progress-linear/progress-linear.interface';
 export * from './modules/progress-linear/progress-linear.module';
 // Radio Button
 export * from './modules/radio-button/radio-button.component';

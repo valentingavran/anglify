@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Inject, Input, Output, Self } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioButtonSettings, RadioLabelPosition } from './radio-button.interface';
+import { EntireRadioButtonSettings, RadioLabelPosition } from './radio-button.interface';
 import { DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS } from './radio-button.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -16,7 +16,7 @@ import { BooleanLike } from '../../utils/interfaces';
       useExisting: forwardRef(() => RadioButtonComponent),
       multi: true,
     },
-    createSettingsProvider<RadioButtonSettings>('anglifyRadioButtonSettings', DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS),
+    createSettingsProvider<EntireRadioButtonSettings>('anglifyRadioButtonSettings', DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -35,7 +35,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   public onChange: (...args: any[]) => void = () => {};
   public onTouch: (...args: any[]) => void = () => {};
 
-  public constructor(@Self() @Inject('anglifyRadioButtonSettings') private readonly settings: Required<RadioButtonSettings>) {}
+  public constructor(@Self() @Inject('anglifyRadioButtonSettings') private readonly settings: EntireRadioButtonSettings) {}
 
   public registerOnChange(fn: (...args: any[]) => void) {
     this.onChange = fn;

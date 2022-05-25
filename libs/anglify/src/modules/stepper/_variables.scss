@@ -7,9 +7,11 @@ $stepper-step-connection-line-color: var(
 ) !default;
 $stepper-step-indicator-size: var(--anglify-stepper-step-indicator-size, 40%) !default;
 $stepper-step-indicator-color-inactive: var(--anglify-stepper-step-indicator-color-inactive, var(--color-surface-overlay)) !default;
-$stepper-step-indicator-color-active: var(--color-primary) !default;
+$stepper-step-indicator-color-active: var(--anglify-stepper-step-indicator-color-active, var(--color-primary)) !default;
 $stepper-step-indicator-transition: var(--anglify-stepper-step-indicator-transition, none) !default;
-$stepper-step-indicator-font-size: var(--anglify-stepper-step-indicator-font-size, 16px) !default;
+$stepper-step-indicator-font: var(--anglify-stepper-step-indicator-font, var(--font-body-2)) !default;
+$stepper-step-indicator-letter-spacing: var(--anglify-stepper-step-indicator-letter-spacing, var(--font-letter-spacing-body-2)) !default;
+$stepper-step-indicator-text-transform: var(--anglify-stepper-step-indicator-text-transform, var(--font-text-transform-body-2)) !default;
 $stepper-step-indicator-text-color-inactive: var(
   --anglify-stepper-step-indicator-text-color-inactive,
   var(--color-on-surface-high-emphasis)
@@ -18,7 +20,9 @@ $stepper-step-indicator-text-color-active: var(
   --anglify-stepper-step-indicator-text-color-active,
   var(--color-on-primary-high-emphasis)
 ) !default;
-$stepper-label-font-size: var(--anglify-stepper-label-font-size, 16px) !default;
+$stepper-label-font: var(--anglify-stepper-label-font, var(--font-subtitle-1)) !default;
+$stepper-label-letter-spacing: var(--anglify-stepper-label-letter-spacing, var(--font-letter-spacing-subtitle-1)) !default;
+$stepper-label-text-transform: var(--anglify-stepper-label-text-transform, var(--font-text-transform-subtitle-1)) !default;
 $stepper-label-color-inactive: var(--anglify-stepper-label-color-inactive, rgba(var(--color-on-surface-high-emphasis, 0.6))) !default;
 $stepper-label-color-active: var(--anglify-stepper-label-color-active, var(--color-primary)) !default;
 $stepper-label-transition: var(--anglify-stepper-label-transition, color 500ms ease-out) !default;
