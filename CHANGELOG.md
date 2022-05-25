@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.20.1](https://github.com/valentingavran/anglify/compare/v0.20.0...v0.20.1) (2022-05-25)
+
+
+### 🔬  Code Refactoring
+
+* simplify dialog and snackbar services ([82bdd7b](https://github.com/valentingavran/anglify/commit/82bdd7be0c2e88fe52abaf47748701311525bb61))
+
+
+### 🐛  Bug Fixes
+
+* **Icon:** custom icons are now displayed in safari ([76a59ef](https://github.com/valentingavran/anglify/commit/76a59ef2560bdb3973bcc078654deed866b998fa))
+
 ## [0.20.0](https://github.com/valentingavran/anglify/compare/v0.19.0...v0.20.0) (2022-05-25)
 
 
