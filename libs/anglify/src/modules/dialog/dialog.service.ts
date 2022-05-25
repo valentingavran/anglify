@@ -85,11 +85,11 @@ export class DialogService {
       return () => {
         this.dialogs$.next(this.dialogs$.value.filter(item => item !== context));
         backdropSubscription.unsubscribe();
-        overlayRef.detach();
-        overlayRef.dispose();
-        componentRef.detach();
-        viewRef.detach();
+        if (componentRef.isAttached) {
+          componentRef.detach();
+        }
         viewRef.destroy();
+        overlayRef.detach();
       };
     });
   }
