@@ -38,9 +38,12 @@
   }
 
   .info {
-    align-items: center;
     display: flex;
+    align-items: center;
     justify-content: center;
+    font: $progress-circular-font;
+    letter-spacing: $progress-circular-letter-spacing;
+    text-transform: $progress-circular-text-transform;
   }
 
   @keyframes rotate {

@@ -7,3 +7,6 @@ $bottom-navigation-item-min-width: var(--anglify-bottom-navigation-item-min-widt
 $bottom-navigation-item-max-width: var(--anglify-bottom-navigation-item-max-width, 168px) !default;
 $bottom-navigation-item-icon-margin-top: var(--anglify-bottom-navigation-item-icon-margin-top, 8px) !default;
 $bottom-navigation-item-shift-icon-margin-top: var(--anglify-bottom-navigation-item-shift-icon-margin-top, 16px) !default;
+$bottom-navigation-item-font: var(--anglify-bottom-navigation-item-font, var(--font-body-2)) !default;
+$bottom-navigation-item-letter-spacing: var(--anglify-bottom-navigation-item-letter-spacing, var(--font-letter-spacing-body-2)) !default;
+$bottom-navigation-item-text-transform: var(--anglify-bottom-navigation-item-text-transform, var(--font-text-transform-body-2)) !default;

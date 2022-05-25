@@ -22,7 +22,9 @@
     min-width: 1rem;
     width: fit-content;
     text-indent: 0;
-    @extend %label-s;
+    font: $badge-font;
+    letter-spacing: $badge-letter-spacing;
+    text-transform: $badge-text-transform;
   }
 
   &.border {

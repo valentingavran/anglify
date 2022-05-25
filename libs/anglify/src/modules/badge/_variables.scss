@@ -1,3 +1,6 @@
 $badge-text-color: var(--anglify-badge-text-color, var(--color-on-primary-high-emphasis)) !default;
 $badge-background-color: var(--anglify-badge-background-color, var(--color-secondary)) !default;
 $badge-border-color: var(--anglify-badge-border-color, var(--color-background)) !default;
+$badge-font: var(--anglify-badge-font, var(--font-caption)) !default;
+$badge-letter-spacing: var(--anglify-badge-letter-spacing, var(--font-letter-spacing-caption)) !default;
+$badge-text-transform: var(--anglify-badge-text-transform, var(--font-text-transform-caption)) !default;

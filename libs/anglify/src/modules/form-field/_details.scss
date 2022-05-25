@@ -5,10 +5,11 @@
     grid-area: details;
     display: flex;
     gap: 14px;
-    line-height: 16px;
     min-height: 16px;
-    font-size: 12px;
     overflow: hidden;
+    font: $form-field-details-font;
+    letter-spacing: $form-field-details-letter-spacing;
+    text-transform: $form-field-details-text-transform;
 
     .hint {
       flex: 1;

@@ -1,3 +1,5 @@
+@use '../../../../libs/anglify/src/styles/settings/typography';
+
 :host {
   display: flex;
 
@@ -8,6 +10,8 @@
 
   .headline-m {
     margin: 1rem;
+    text-align: center;
+    @include typography.display-5;
   }
 
   main {
