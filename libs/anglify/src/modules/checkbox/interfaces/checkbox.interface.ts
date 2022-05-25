@@ -9,6 +9,7 @@ export interface EntireCheckboxSettings {
   labelPosition: LabelPosition;
   rippleOrigin: RippleOrigin;
   state: boolean;
+  readonly: boolean;
 }
 
 export type CheckboxSettings = Partial<EntireCheckboxSettings>;

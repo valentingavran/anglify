@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  HostListener,
   Inject,
   Input,
   Optional,
@@ -16,16 +17,19 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { BehaviorSubject } from 'rxjs';
 import { CheckboxIconRef } from './functions/register-icons.function';
 import { EntireCheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
+import { bindClassToNativeElement, toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 
+@UntilDestroy()
 @Component({
   selector: 'anglify-checkbox',
   templateUrl: './checkbox.component.html',
@@ -50,25 +54,33 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('reflectOffIcon') public reflectOffIcon!: ElementRef<HTMLElement>;
   @ViewChild('reflectOnIcon') public reflectOnIcon!: ElementRef<HTMLElement>;
 
-  @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
-  @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
-  @Input() public checked: BooleanLike = this.settings.checked;
-  @Input() public disabled: BooleanLike = this.settings.disabled;
   @Input() public ripple: BooleanLike = this.settings.ripple;
   @Input() public state: BooleanLike = this.settings.state;
+  @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
+  @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
+  @Input() public set checked(value: BooleanLike) {
+    this.checked$.next(toBoolean(value));
+  }
+
+  public get checked() {
+    return this.checked$.value;
+  }
+
+  @Input() public set disabled(value: BooleanLike) {
+    this.disabled$.next(toBoolean(value));
+  }
 
   @Input('readonly')
   public set isReadonly(value: BooleanLike) {
-    if (toBoolean(value)) {
-      this.renderer.setStyle(this.elementRef.nativeElement, 'pointer-events', 'none');
-    } else {
-      this.renderer.removeStyle(this.elementRef.nativeElement, 'pointer-events');
-    }
+    this.readonly$.next(toBoolean(value));
   }
 
   @Output() public checkedChange = new EventEmitter<boolean>();
 
   public iconProvider!: null | CheckboxIconRef;
+  public checked$ = new BehaviorSubject(this.settings.checked);
+  public disabled$ = new BehaviorSubject(this.settings.disabled);
+  public readonly$ = new BehaviorSubject(this.settings.readonly);
 
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
@@ -76,6 +88,9 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: null | (() => CheckboxIconRef)
   ) {
+    bindClassToNativeElement(this, this.checked$, this.elementRef.nativeElement, 'anglify-checkbox-checked');
+    bindClassToNativeElement(this, this.disabled$, this.elementRef.nativeElement, 'anglify-checkbox-disabled');
+    bindClassToNativeElement(this, this.readonly$, this.elementRef.nativeElement, 'anglify-checkbox-readonly');
     if (this.iconProviderFactory) {
       this.iconProvider = this.iconProviderFactory();
     }
@@ -146,12 +161,15 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   public writeValue(checked: boolean) {
-    this.checked = checked;
+    this.checked$.next(checked);
   }
 
-  public onModelChange(e: boolean) {
-    this.checked = e;
-    this.checkedChange.next(e);
-    this.onChange(e);
+  @HostListener('click', ['$event'])
+  public onCheckedChange(event: Event) {
+    event.preventDefault();
+    if (this.disabled$.value || this.readonly$.value) return;
+    this.checked$.next(!this.checked$.value);
+    this.checkedChange.emit(this.checked$.value);
+    this.onChange(this.checked$.value);
   }
 }

@@ -8,6 +8,7 @@ export const DEFAULT_CHECKBOX_SETTINGS: EntireCheckboxSettings = {
   ripple: true,
   rippleOrigin: 'center',
   state: true,
+  readonly: false,
 };
 
 export const CHECKBOX_SETTINGS = new InjectionToken<CheckboxSettings>('Checkbox Settings');
