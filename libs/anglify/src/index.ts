@@ -99,6 +99,7 @@ export * from './modules/progress-circular/progress-circular.interface';
 export * from './modules/progress-circular/progress-circular.module';
 // Progress Linear
 export * from './modules/progress-linear/progress-linear.component';
+export * from './modules/progress-linear/progress-linear.interface';
 export * from './modules/progress-linear/progress-linear.module';
 // Radio Button
 export * from './modules/radio-button/radio-button.component';
