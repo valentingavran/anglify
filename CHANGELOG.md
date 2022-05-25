@@ -2,6 +2,69 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.20.0](https://github.com/valentingavran/anglify/compare/v0.19.0...v0.20.0) (2022-05-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ColorSystem:** The color system has been revised. `--color-on-primary`, `--color-on-secondary` &
+`--color-on-bar` have been removed, they are covered by the respective `--color-on-*-high-emphasis`
+colors. `--color-secondary-variant` has been removed and `--color-secondary` is instead used where
+needed. `--color-background-tooltip` has also been removed. The tooltip and snackbar color can now
+be customized by the `--color-inverse-surface` color (and the matching font colors).
+* **Icon:** The `--anglify-icon-inactive-color` and `--anglify-icon-active-color` properties
+of the icon component have been removed and replaced by the `--anglify-icon-color` property.
+* The type system has been completely revised. As a result, existing custom font
+properties of components have been either removed or unnamed. Now you can override the fonts either
+globally or on component level and style them as you wish.
+* **Button:** The `--anglify-hover-state-color` and `--anglify-focus-state-color` properties of
+the button were renamed to `--anglify-button-hover-state-color` and
+`--anglify-button-focus-state-color`
+* **Icon:** The `--anglify-icon-size` css property was removed, because the icon size can be
+overwritten by the different size properties (for example: `--anglify-icon-size-regular: 2rem)`
+
+### 🚀  Features
+
+* composables can now also be used outside the library ([337cb60](https://github.com/valentingavran/anglify/commit/337cb60bf8d170965a0fd424f9a1c0dbb3471c28))
+* internal animations are now exported for own usage ([6cd8790](https://github.com/valentingavran/anglify/commit/6cd87906f1fb740ae3d229171c8719a42acd0f61))
+* **List:** add line clamp css props for list item title & description ([80ac6fc](https://github.com/valentingavran/anglify/commit/80ac6fc5b4a867617c4ab1d030d08470e3c3b6d7))
+* **ListItem:** add hover and focus state colors ([87b3b0e](https://github.com/valentingavran/anglify/commit/87b3b0e3096fe35d5eb98860bf926c9815ae0aa6))
+* **ListItem:** add possibility to either match exact URL or partial ([94fca33](https://github.com/valentingavran/anglify/commit/94fca33c450be6dd060a42c9b84a659de4543785))
+* **ListItem:** text has now primary color when item active ([43c95e3](https://github.com/valentingavran/anglify/commit/43c95e34e4d6ead673e05bb99f03c0006e996c36))
+* **ProgressLinear:** provide SettingsToken ([ecddf33](https://github.com/valentingavran/anglify/commit/ecddf33cf4eb1f455ddfe05ebe2f343e1400ce7e))
+* **Toolbar:** add elevation property ([e8c61ca](https://github.com/valentingavran/anglify/commit/e8c61ca15ac38868c71bfa140661925fa913df5f))
+
+
+### 🛠  Other Commmits
+
+* adjust changelog generation ([7d9381d](https://github.com/valentingavran/anglify/commit/7d9381d84b82fb64b1b50bc803b747facf87c5a8))
+* extend stylelint config so that style properties get sorted ([d611a28](https://github.com/valentingavran/anglify/commit/d611a286dc2568355aa3dc4a0cc6c1d8ad850b4a))
+
+
+### 🐛  Bug Fixes
+
+* **Badge:** short badges are now completely round ([a3f855f](https://github.com/valentingavran/anglify/commit/a3f855f7c8d531da47510ff17d082e76dc2fc8a9))
+* **Button:** make transparent default background of outlined buttons ([e76eda4](https://github.com/valentingavran/anglify/commit/e76eda481283ecf0f26bc29422806e67f5e3cbae))
+* **FormField:** outlined label properties are now displayed correctly ([543f986](https://github.com/valentingavran/anglify/commit/543f986be8eb47c191cb5a5d4c39eb86f61af11e))
+* internalIcons change automatically according to set default iconSet ([0ace0c5](https://github.com/valentingavran/anglify/commit/0ace0c5db7b27a2cc8db65fb1bfe05bc99262b0a))
+* **Ripple:** the origin is now calculated correctly ([8146344](https://github.com/valentingavran/anglify/commit/814634449b9b8e22a490d9fc039405f6eb4bfd0b))
+* **SettingsFactory:** settings of components are now deep merged ([25608e3](https://github.com/valentingavran/anglify/commit/25608e3261dc3ad31dc123373b243b183a1840f6))
+* **Stepper:** fix hover and active state of stepper header ([3d61e22](https://github.com/valentingavran/anglify/commit/3d61e2216742dc0b0aad0930d725956915f10e0f))
+* **Stepper:** make active step indicator color configurable ([9e04965](https://github.com/valentingavran/anglify/commit/9e049659657cb225a01d569c092817ad7e4ef43f))
+
+
+### 🔬  Code Refactoring
+
+* **Button:** change hover and focus css custom property names ([4751fe2](https://github.com/valentingavran/anglify/commit/4751fe2b1d19720920b6935f64a11b5e3fb4d6c0))
+* **Checkbox:** remove internal input element ([07c2637](https://github.com/valentingavran/anglify/commit/07c2637d7cc606d86efa5868714ce8dc29952605))
+* **ColorSystem:** remove & add some global colors ([9ef4fbe](https://github.com/valentingavran/anglify/commit/9ef4fbefa688edffafcf1ae909d3ed10a406ff3e))
+* **Icon:** remove --anglify-icon-size css property ([0431179](https://github.com/valentingavran/anglify/commit/04311796062cc8060656552aa0def8e6fef1bcbb))
+* **Icon:** replace active and inactive color through simple color ([85474a2](https://github.com/valentingavran/anglify/commit/85474a21943eddc22473a7b5816b39d0eebf4bd9))
+* introduce "Entire*" types for every component ([7f02ab7](https://github.com/valentingavran/anglify/commit/7f02ab738573b386060b2e758d85817549e4beb5))
+* **ProgressLinear:** remove unused ProgressLinearMode interface ([6af324a](https://github.com/valentingavran/anglify/commit/6af324a971662ccb6ce358e76dade4cee3da86f4))
+* the typography system was completely revised ([1e0a043](https://github.com/valentingavran/anglify/commit/1e0a043c549f56f5e7dc54386d69e38d9951180f))
+* **Toolbar:** remove unused navigation input property ([6228d1f](https://github.com/valentingavran/anglify/commit/6228d1fc94e7eb78ed2fe6fbe1c8da73808c2148))
+
 ## [0.19.0](https://github.com/valentingavran/anglify/compare/v0.18.1...v0.19.0) (2022-05-19)
 
 
