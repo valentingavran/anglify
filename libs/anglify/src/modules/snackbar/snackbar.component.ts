@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Inject, OnInit, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, OnDestroy, OnInit, Self } from '@angular/core';
 import { DEFAULT_SNACKBAR_SETTINGS, SNACKBAR_SETTINGS } from './snackbar-settings.token';
 import { EntireSnackbarSettings, SnackbarContext } from './snackbar.interface';
 import { SNACKBAR_CONTEXT } from './snackbar.service';
@@ -11,7 +11,9 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [createSettingsProvider<EntireSnackbarSettings>('anglifySnackbarSettings', DEFAULT_SNACKBAR_SETTINGS, SNACKBAR_SETTINGS)],
 })
-export class SnackbarComponent implements OnInit {
+export class SnackbarComponent implements OnInit, OnDestroy {
+  public timeout: number | null = null;
+
   public constructor(
     @Inject(SNACKBAR_CONTEXT) public readonly context: SnackbarContext,
     @Self() @Inject('anglifySnackbarSettings') public settings: EntireSnackbarSettings
@@ -30,7 +32,16 @@ export class SnackbarComponent implements OnInit {
 
   public ngOnInit() {
     if (this.context.timeout ?? this.settings.timeout) {
-      setTimeout(() => this.context.completeWith('internal.timeout'), this.context.timeout ?? this.settings.timeout);
+      this.timeout = setTimeout(() => {
+        this.context.completeWith('internal.timeout');
+        this.timeout = null;
+      }, this.context.timeout ?? this.settings.timeout);
+    }
+  }
+
+  public ngOnDestroy() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
     }
   }
 

@@ -15,7 +15,7 @@ export interface SnackbarData {
   actions?: { label?: string; id?: string };
 }
 
-export interface SnackbarOptions<T = Record<string, unknown>> extends SnackbarSettings {
+export interface SnackbarOptions<T = SnackbarData & Record<string, unknown>> extends SnackbarSettings {
   id: string;
   data?: T;
 }
