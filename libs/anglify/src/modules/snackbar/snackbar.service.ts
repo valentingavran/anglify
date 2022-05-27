@@ -39,16 +39,18 @@ export class SnackbarService {
 
       this.activeSnackbar$.next(context);
       const overlayRef = this.overlay.create(this.overlayConfig);
-      const portal = new ComponentPortal(
+      const componentRef = new ComponentPortal(
         SnackbarComponent,
         null,
         Injector.create({ providers: [{ provide: SNACKBAR_CONTEXT, useValue: context }] })
       );
-      overlayRef.attach(portal);
+      overlayRef.attach(componentRef);
 
       return () => {
         this.activeSnackbar$.next(null);
-        overlayRef.detach();
+        if (componentRef.isAttached) {
+          componentRef.detach();
+        }
         overlayRef.dispose();
       };
     });
