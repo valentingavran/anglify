@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.20.2](https://github.com/valentingavran/anglify/compare/v0.20.1...v0.20.2) (2022-05-27)
+
+
+### 🐛  Bug Fixes
+
+* detach dialog and snackbars properly ([4c2b632](https://github.com/valentingavran/anglify/commit/4c2b632273f00a00689cdcaf83518253670dd3ca))
+
 ### [0.20.1](https://github.com/valentingavran/anglify/compare/v0.20.0...v0.20.1) (2022-05-25)
 
 
