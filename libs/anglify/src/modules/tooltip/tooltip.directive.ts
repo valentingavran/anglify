@@ -22,12 +22,10 @@ import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
-import type { EntireTooltipSettings, TooltipTouchTrigger } from './tooltip.interface';
-import type { Position } from '../../composables/position/position.interface';
+import type { EntireTooltipSettings, TooltipSettings } from './tooltip.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { isTouchDevice, toBoolean } from '../../utils/functions';
-import type { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Directive({
@@ -37,97 +35,82 @@ import type { BooleanLike } from '../../utils/interfaces';
 })
 export class TooltipDirective implements OnDestroy {
   @Input('anglifyTooltip') public content!: string | TemplateRef<any> | Type<any>;
-  @Input('tooltipMountingPoint') public mountingPoint: 'body' | 'parent' | HTMLElement = 'parent';
-  @Input('tooltipHoverOpenDelay') public hoverOpenDelay = this.settings.hoverOpenDelay;
-  @Input('tooltipHoverCloseDelay') public hoverCloseDelay = this.settings.hoverCloseDelay;
-  @Input('tooltipTouchOpenDelay') public touchOpenDelay = this.settings.touchOpenDelay;
-  @Input('tooltipTouchCloseDelay') public touchCloseDelay = this.settings.touchCloseDelay;
-  /** Prevents the context menu from opening when the host is long pressed. */
-  @Input() public preventContextMenuOnTouchDevice: BooleanLike = this.settings.preventContextMenuOnTouchDevice;
-  /** Allows you to define whether the tooltip is opened with a quick press or with a long press. */
-  @Input() public tooltipMobileTrigger: TooltipTouchTrigger = this.settings.mobileTrigger;
-  @Input() public autoCloseOnTouchDevicesAfterDelay: BooleanLike = this.settings.autoCloseOnTouchDevicesAfterDelay;
 
-  @Input()
-  public set parentWidth(value: BooleanLike) {
-    const bool = toBoolean(value);
-    this._parentWidth = bool;
-    if (this.componentRef) {
-      this.componentRef.instance.parentWidth = bool;
+  @Input() public set anglifyToolTipConfig(value: TooltipSettings) {
+    if (value.position !== undefined && value.position !== this.position) {
+      this.position = value.position;
+      if (this.componentRef) {
+        this.componentRef.instance.position = value.position;
+      }
+    }
+    if (value.defaultOffset !== undefined && value.defaultOffset !== this.offset) {
+      this.offset = value.defaultOffset;
+      if (this.componentRef) {
+        this.componentRef.instance.offset = value.defaultOffset;
+      }
+    }
+    if (value.flip !== undefined && value.flip !== this.flip) {
+      this.flip = value.flip;
+      if (this.componentRef) {
+        this.componentRef.instance.flip = value.flip;
+      }
+    }
+    if (value.parentWidth !== undefined && value.parentWidth !== this.parentWidth) {
+      this.parentWidth = value.parentWidth;
+      if (this.componentRef) {
+        this.componentRef.instance.parentWidth = value.parentWidth;
+      }
+    }
+    if (value.shift !== undefined && value.shift !== this.shift) {
+      this.shift = value.shift;
+      if (this.componentRef) {
+        this.componentRef.instance.shift = value.shift;
+      }
+    }
+    if (value.contentClass !== undefined && value.contentClass !== this.contentClass) {
+      this.contentClass = value.contentClass;
+      if (this.componentRef) {
+        this.componentRef.instance.contentClass = value.contentClass;
+      }
+    }
+    if (
+      value.autoCloseOnTouchDevicesAfterDelay !== undefined &&
+      value.autoCloseOnTouchDevicesAfterDelay !== this.settings.autoCloseOnTouchDevicesAfterDelay
+    ) {
+      this.settings.autoCloseOnTouchDevicesAfterDelay = value.autoCloseOnTouchDevicesAfterDelay;
+    }
+    if (value.mobileTrigger !== undefined && value.mobileTrigger !== this.settings.mobileTrigger) {
+      this.settings.mobileTrigger = value.mobileTrigger;
+    }
+    if (
+      value.preventContextMenuOnTouchDevice !== undefined &&
+      value.preventContextMenuOnTouchDevice !== this.settings.preventContextMenuOnTouchDevice
+    ) {
+      this.settings.preventContextMenuOnTouchDevice = value.preventContextMenuOnTouchDevice;
+    }
+    if (value.hoverOpenDelay !== undefined && value.hoverOpenDelay !== this.settings.hoverOpenDelay) {
+      this.settings.hoverOpenDelay = value.hoverOpenDelay;
+    }
+    if (value.hoverCloseDelay !== undefined && value.hoverCloseDelay !== this.settings.hoverCloseDelay) {
+      this.settings.hoverCloseDelay = value.hoverCloseDelay;
+    }
+    if (value.touchOpenDelay !== undefined && value.touchOpenDelay !== this.settings.touchOpenDelay) {
+      this.settings.touchOpenDelay = value.touchOpenDelay;
+    }
+    if (value.touchCloseDelay !== undefined && value.touchCloseDelay !== this.settings.touchCloseDelay) {
+      this.settings.touchCloseDelay = value.touchCloseDelay;
+    }
+    if (value.mountingPoint !== undefined && value.mountingPoint !== this.settings.mountingPoint) {
+      this.settings.mountingPoint = value.mountingPoint;
     }
   }
 
-  public get parentWidth() {
-    return this._parentWidth;
-  }
-
-  /** Distance between the tooltip and the host element */
-  @Input()
-  public set offset(value: number) {
-    this._offset = value;
-    if (this.componentRef) {
-      this.componentRef.instance.offset = value;
-    }
-  }
-
-  public get offset() {
-    return this._offset;
-  }
-
-  @Input()
-  public set position(value: Position) {
-    this._position = value;
-    if (this.componentRef) {
-      this.componentRef.instance.position = value;
-    }
-  }
-
-  public get position() {
-    return this._position;
-  }
-
-  @Input()
-  public set flip(value: BooleanLike) {
-    this._flip = toBoolean(value);
-    if (this.componentRef) {
-      this.componentRef.instance.flip = this._flip;
-    }
-  }
-
-  public get flip() {
-    return this._flip;
-  }
-
-  @Input()
-  public set shift(value: BooleanLike) {
-    this._shift = toBoolean(value);
-    if (this.componentRef) {
-      this.componentRef.instance.shift = this._shift;
-    }
-  }
-
-  public get shift() {
-    return this._shift;
-  }
-
-  @Input()
-  public set contentClass(value: string | undefined) {
-    this._contentClass = value;
-    if (this.componentRef) {
-      this.componentRef.instance.contentClass = value;
-    }
-  }
-
-  public get contentClass() {
-    return this._contentClass;
-  }
-
-  private _position: Position = DEFAULT_TOOLTIP_SETTINGS.position;
-  private _offset = DEFAULT_TOOLTIP_SETTINGS.defaultOffset;
-  private _parentWidth = DEFAULT_TOOLTIP_SETTINGS.parentWidth;
-  private _contentClass?: string | undefined;
-  private _flip: boolean = DEFAULT_TOOLTIP_SETTINGS.flip;
-  private _shift: boolean = DEFAULT_TOOLTIP_SETTINGS.shift;
+  private position = this.settings.position;
+  private parentWidth = this.settings.parentWidth;
+  private offset = this.settings.defaultOffset;
+  private flip = this.settings.flip;
+  private shift = this.settings.shift;
+  private contentClass = this.settings.contentClass;
 
   private componentRef: ComponentRef<TooltipComponent> | undefined; // Tooltip Component Reference
   private embeddedView: EmbeddedViewRef<any> | undefined; // Tooltip Content Template Reference
@@ -198,26 +181,26 @@ export class TooltipDirective implements OnDestroy {
   @HostListener('mouseenter')
   protected onOpenEventDesktop() {
     if (isTouchDevice()) return;
-    this.open(this.hoverOpenDelay);
+    this.open(this.settings.hoverOpenDelay);
   }
 
   @HostListener('touchstart', ['$event'])
   @HostListener('contextmenu', ['$event'])
   protected onOpenEventMobile(event: Event) {
     if (!isTouchDevice()) return;
-    if (this.tooltipMobileTrigger === 'long' && event.type === 'touchstart') return;
-    if (this.tooltipMobileTrigger === 'short' && event.type === 'contextmenu') return;
-    if (toBoolean(this.preventContextMenuOnTouchDevice) || toBoolean(this.autoCloseOnTouchDevicesAfterDelay)) {
+    if (this.settings.mobileTrigger === 'long' && event.type === 'touchstart') return;
+    if (this.settings.mobileTrigger === 'short' && event.type === 'contextmenu') return;
+    if (toBoolean(this.settings.preventContextMenuOnTouchDevice) || toBoolean(this.settings.autoCloseOnTouchDevicesAfterDelay)) {
       event.preventDefault();
     }
-    this.open(this.touchOpenDelay);
+    this.open(this.settings.touchOpenDelay);
   }
 
   @HostListener('touchend')
   protected autoCloseOnMobile() {
-    if (!toBoolean(this.autoCloseOnTouchDevicesAfterDelay)) return;
+    if (!toBoolean(this.settings.autoCloseOnTouchDevicesAfterDelay)) return;
     if (!isTouchDevice()) return;
-    this.close(this.touchCloseDelay);
+    this.close(this.settings.touchCloseDelay);
   }
 
   @HostListener('document:click', ['$event', '$event.target'])
@@ -231,7 +214,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseleave')
   protected onCloseEvent() {
-    this.close(isTouchDevice() ? this.touchCloseDelay : this.hoverCloseDelay);
+    this.close(isTouchDevice() ? this.settings.touchCloseDelay : this.settings.hoverCloseDelay);
   }
 
   private create() {
@@ -266,11 +249,11 @@ export class TooltipDirective implements OnDestroy {
 
   private changeMountingPoint() {
     if (!this.componentRef) return;
-    if (this.mountingPoint === 'parent') {
-    } else if (this.mountingPoint === 'body') {
+    if (this.settings.mountingPoint === 'parent') {
+    } else if (this.settings.mountingPoint === 'body') {
       this.renderer.appendChild(document.body, this.componentRef.location.nativeElement);
     } else {
-      this.renderer.appendChild(this.mountingPoint, this.componentRef.location.nativeElement);
+      this.renderer.appendChild(this.settings.mountingPoint, this.componentRef.location.nativeElement);
     }
   }
 }
