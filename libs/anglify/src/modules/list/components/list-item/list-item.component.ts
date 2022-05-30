@@ -11,12 +11,11 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, map, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, filter, map, merge, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { bindClassToNativeElement, toBoolean } from '../../../../utils/functions';
 import type { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
-import { filterEmpty } from '../../../../utils/operator-functions';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 
 @UntilDestroy()
@@ -105,16 +104,19 @@ export class ListItemComponent {
     this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
-  private readonly routerLinkHandler$ = this.router.events.pipe(
+  private readonly routerLinkHandler$ = merge(
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)),
+    this.routerLink$
+  ).pipe(
     filter(() => !toBoolean(this.inactive)),
-    filter(event => event instanceof NavigationEnd),
     switchMap(() => this.routerLink$),
-    filterEmpty(),
     map(routerLink => this.isRouteActive(routerLink)),
     tap(isActive => this.active$.next(isActive))
   );
 
-  private isRouteActive(route: any[] | string) {
+  private isRouteActive(route: RouterLinkCommands) {
+    if (!route) return false;
+
     let url;
     if (route instanceof Array) {
       url = this.router.createUrlTree(route);
