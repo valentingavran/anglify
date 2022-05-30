@@ -1,4 +1,13 @@
-import { ButtonModule, IconModule, IconSettings, ICON_SETTINGS, ListModule, NavDrawerModule, TooltipModule } from '@anglify/components';
+import {
+  ButtonModule,
+  IconModule,
+  IconSettings,
+  ICON_SETTINGS,
+  ListModule,
+  NavDrawerModule,
+  ToolbarModule,
+  TooltipModule,
+} from '@anglify/components';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,9 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BlankComponent } from './layouts/blank/blank.component';
+import { DefaultComponent } from './layouts/default/default.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DefaultComponent, BlankComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +30,7 @@ import { AppComponent } from './app.component';
     ListModule,
     NavDrawerModule,
     OverlayModule,
+    ToolbarModule,
   ],
   providers: [
     {
