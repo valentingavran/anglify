@@ -1,154 +1,24 @@
-import {
-  BottomNavigationModule,
-  ButtonModule,
-  CardModule,
-  CheckboxModule,
-  ChipModule,
-  FormFieldModule,
-  IconModule,
-  IconSettings,
-  ICON_SETTINGS,
-  ListModule,
-  MenuModule,
-  NavDrawerModule,
-  ProgressCircularModule,
-  ProgressLinearModule,
-  RadioButtonModule,
-  SnackbarModule,
-  TableModule,
-  ToolbarModule,
-  TooltipModule,
-} from '@anglify/components';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule, SecurityContext } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule, IconModule, IconSettings, ICON_SETTINGS, ListModule, NavDrawerModule, TooltipModule } from '@anglify/components';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { MarkdownModule } from 'ngx-markdown';
+import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CodeExampleComponent } from './components/code-example/code-example.component';
-import { ReferencesComponent } from './components/references/references.component';
-import { StylingTableComponent } from './components/styling-table/styling-table.component';
-import { BadgeExampleModule } from './examples/badge/badge-example.module';
-import { BottomNavigationExampleModule } from './examples/bottom-navigation/bottom-navigation-example.module';
-import { ButtonExamplesModule } from './examples/button/button-examples.module';
-import { CardExamplesModule } from './examples/card/card-examples.module';
-import { CheckBoxExamplesModule } from './examples/checkbox/checkbox-examples.module';
-import { ChipExamplesModule } from './examples/chip/chip-examples.module';
-import { DialogExamplesModule } from './examples/dialog/dialog-examples.module';
-import { FormFieldExamplesModule } from './examples/form-field/form-field-examples.module';
-import { IconExamplesModule } from './examples/icon/icon-examples.module';
-import { ItemGroupExamplesModule } from './examples/item-group/item-group-examples.module';
-import { ListExamplesModule } from './examples/list/list-examples.module';
-import { MenuExamplesModule } from './examples/menu/menu-examples.module';
-import { NavDrawerExamplesModule } from './examples/nav-drawer/nav-drawer-examples.module';
-import { ProgressCircularExamplesModule } from './examples/progress-circular/progress-circular-examples.module';
-import { ProgressLinearExamplesModule } from './examples/progress-linear/progress-linear-examples.module';
-import { RadioButtonExamplesModule } from './examples/radio-button/radio-button-examples.module';
-import { SnackbarExamplesModule } from './examples/snackbar/snackbar-examples.module';
-import { StepperExamplesModule } from './examples/stepper/stepper-examples.module';
-import { TableExamplesModule } from './examples/table/table-examples.module';
-import { ToolbarExampleModule } from './examples/toolbar/toolbar-example.module';
-import { TooltipExamplesModule } from './examples/tooltip/tooltip-examples.module';
-import { BadgePageComponent } from './pages/component-pages/badge-page/badge-page.component';
-import { BottomNavigationPageComponent } from './pages/component-pages/bottom-navigation-page/bottom-navigation-page.component';
-import { ButtonPageComponent } from './pages/component-pages/button-page/button-page.component';
-import { CardPageComponent } from './pages/component-pages/card-page/card-page.component';
-import { CheckBoxPageComponent } from './pages/component-pages/checkbox-page/checkbox-page.component';
-import { ChipPageComponent } from './pages/component-pages/chip-page/chip-page.component';
-import { DialogPageComponent } from './pages/component-pages/dialog-page/dialog-page.component';
-import { FormFieldPageComponent } from './pages/component-pages/form-field-page/form-field-page.component';
-import { IconPageComponent } from './pages/component-pages/icon-page/icon-page.component';
-import { ItemGroupPageComponent } from './pages/component-pages/item-group-page/item-group-page.component';
-import { ListPageComponent } from './pages/component-pages/list-page/list-page.component';
-import { MenuPageComponent } from './pages/component-pages/menu-page/menu-page.component';
-import { NavDrawerPageComponent } from './pages/component-pages/nav-drawer-page/nav-drawer-page.component';
-import { ProgressCircularPageComponent } from './pages/component-pages/progress-circular-page/progress-circular-page.component';
-import { ProgressLinearPageComponent } from './pages/component-pages/progress-linear-page/progress-linear-page.component';
-import { RadioButtonPageComponent } from './pages/component-pages/radio-button-page/radio-button-page.component';
-import { SnackbarPageComponent } from './pages/component-pages/snackbar-page/snackbar-page.component';
-import { StepperComponent } from './pages/component-pages/stepper/stepper.component';
-import { TablePageComponent } from './pages/component-pages/table-page/table-page.component';
-import { ToolbarPageComponent } from './pages/component-pages/toolbar-page/toolbar-page.component';
-import { TooltipPageComponent } from './pages/component-pages/tooltip-page/tooltip-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StylingTableComponent,
-    CodeExampleComponent,
-    ButtonPageComponent,
-    FormFieldPageComponent,
-    IconPageComponent,
-    TooltipPageComponent,
-    StepperComponent,
-    ListPageComponent,
-    MenuPageComponent,
-    CardPageComponent,
-    ProgressCircularPageComponent,
-    CheckBoxPageComponent,
-    TablePageComponent,
-    ProgressLinearPageComponent,
-    RadioButtonPageComponent,
-    DialogPageComponent,
-    NavDrawerPageComponent,
-    ToolbarPageComponent,
-    BottomNavigationPageComponent,
-    BadgePageComponent,
-    SnackbarPageComponent,
-    ItemGroupPageComponent,
-    ChipPageComponent,
-    ReferencesComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    HighlightModule,
-    ReactiveFormsModule,
-    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     ButtonModule,
-    ButtonExamplesModule,
-    FormFieldModule,
-    FormFieldExamplesModule,
     IconModule,
-    IconExamplesModule,
-    StepperExamplesModule,
-    TooltipExamplesModule,
     TooltipModule,
     ListModule,
-    ListExamplesModule,
-    MenuModule,
-    MenuExamplesModule,
-    CardModule,
-    CardExamplesModule,
-    ProgressCircularModule,
-    ProgressCircularExamplesModule,
-    CheckboxModule,
-    CheckBoxExamplesModule,
-    TableModule,
-    TableExamplesModule,
-    ProgressLinearModule,
-    ProgressLinearExamplesModule,
-    RadioButtonModule,
-    RadioButtonExamplesModule,
     NavDrawerModule,
-    NavDrawerExamplesModule,
-    ToolbarModule,
-    ToolbarExampleModule,
-    BottomNavigationModule,
-    BottomNavigationExampleModule,
-    BadgeExampleModule,
-    SnackbarModule,
-    SnackbarExamplesModule,
-    ItemGroupExamplesModule,
-    ChipModule,
-    ChipExamplesModule,
-    DialogExamplesModule,
+    OverlayModule,
   ],
   providers: [
     {

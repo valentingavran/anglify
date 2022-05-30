@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 const EXAMPLE_FOLDER_URL = environment.exampleFolderURL;
 
@@ -95,7 +95,7 @@ export class CodeExampleComponent implements OnInit {
   private async loadComponent(vcr: ViewContainerRef) {
     const example = this.example$.value;
     if (example) {
-      const component = (await import(`../../examples/${this.component}/${example}/${example}.component`)) as { default: Type<any> };
+      const component = (await import(`../../../examples/${this.component}/${example}/${example}.component`)) as { default: Type<any> };
       vcr.createComponent(this.componentFactoryResolver.resolveComponentFactory(component.default));
       this.cdr.markForCheck();
     }
