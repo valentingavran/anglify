@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/getting-started/getting-started.module').then(m => m.GettingStartedModule),
       },
       {
+        path: 'features',
+        loadChildren: () => import('./pages/features/features.module').then(m => m.FeaturesModule),
+      },
+      {
         path: 'components',
         loadChildren: () => import('./pages/components/components.module').then(m => m.ComponentsModule),
       },

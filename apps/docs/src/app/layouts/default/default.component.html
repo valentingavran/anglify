@@ -45,6 +45,17 @@
       </anglify-list-group>
       <anglify-list-group>
         <ng-template slot="activator:prepend">
+          <anglify-icon icon="mdi-feature-search"></anglify-icon>
+        </ng-template>
+        <ng-template slot="activator">
+          <anglify-list-item-title>Features</anglify-list-item-title>
+        </ng-template>
+        <anglify-list-item *ngFor="let article of features" [routerLink]="article.link">
+          <anglify-list-item-title>{{ article.name }}</anglify-list-item-title>
+        </anglify-list-item>
+      </anglify-list-group>
+      <anglify-list-group>
+        <ng-template slot="activator:prepend">
           <anglify-icon icon="mdi-toggle-switch-outline"></anglify-icon>
         </ng-template>
         <ng-template slot="activator">
