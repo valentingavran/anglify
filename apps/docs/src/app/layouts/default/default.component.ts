@@ -43,10 +43,11 @@ export class DefaultComponent {
     this.initTheme();
   }
 
-  public gettingStarted = [
-    { link: 'getting-started/installation', name: 'Installation' },
-    { link: 'getting-started/theming', name: 'Theming' },
-    { link: 'getting-started/icon-fonts', name: 'Icon Fonts' },
+  public gettingStarted = [{ link: 'getting-started/installation', name: 'Installation' }];
+
+  public features = [
+    { link: 'features/theming', name: 'Theming' },
+    { link: 'features/icon-fonts', name: 'Icon Fonts' },
   ];
 
   public components = [
