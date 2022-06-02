@@ -1,0 +1,17 @@
+@import '../../variables';
+
+:host {
+  position: relative;
+  display: flex;
+
+  .anglify-tab-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: $tab-indicator-height;
+    background-color: $tab-indicator-color;
+    transition-duration: 250ms;
+    transition-property: width, left;
+    transition-timing-function: ease-in-out;
+  }
+}

@@ -18,6 +18,7 @@ import { ProgressLinearPageComponent } from './progress-linear-page/progress-lin
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperComponent } from './stepper/stepper.component';
+import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
@@ -90,6 +91,10 @@ const routes: Routes = [
   {
     path: 'table',
     component: TablePageComponent,
+  },
+  {
+    path: 'tabs',
+    component: TabPageComponent,
   },
   {
     path: 'tooltip',
