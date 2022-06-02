@@ -124,6 +124,12 @@ export * from './modules/stepper/services/stepper-settings/stepper-settings.serv
 export * from './modules/stepper/services/stepper/stepper.service';
 export * from './modules/stepper/stepper-testing.module';
 export * from './modules/stepper/stepper.module';
+// Tab
+export * from './modules/tab/components/tab/tab.component';
+export * from './modules/tab/components/tab-group/tab-group.component';
+export * from './modules/tab/tab-settings.token';
+export * from './modules/tab/tab.interface';
+export * from './modules/tab/tab.module';
 // Table
 export * from './modules/table/components/table/table.component';
 export * from './modules/table/table.module';

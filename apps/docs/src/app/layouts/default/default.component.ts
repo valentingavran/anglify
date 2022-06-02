@@ -131,6 +131,10 @@ export class DefaultComponent {
       name: 'Table',
     },
     {
+      link: 'components/tabs',
+      name: 'Tabs',
+    },
+    {
       link: 'components/tooltip',
       name: 'Tooltip',
     },
