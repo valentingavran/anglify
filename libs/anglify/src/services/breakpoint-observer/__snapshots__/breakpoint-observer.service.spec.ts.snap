@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Advanced BreakpointObserverService tests should throw error if breakpoints not in descending order 1`] = `"Breakpoint configuration is not correct. xs must be smaller than sm, sm must be smaller than md, md must be smaller than lg, lg must be smaller than xl"`;
