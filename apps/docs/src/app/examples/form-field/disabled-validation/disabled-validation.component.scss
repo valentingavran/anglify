@@ -1,4 +1,4 @@
-@import '../../../helpers/breakpoints';
+@use '../../../../../../../libs/anglify/src/styles/mixins/breakpoints.scss' as *;
 
 :host {
   display: grid;

@@ -4,7 +4,6 @@ $grid-breakpoints: (
   'md': 960px,
   'lg': 1280px,
   'xl': 1920px,
-  'xxl': 2560px,
 );
 
 @mixin xs {
@@ -33,12 +32,6 @@ $grid-breakpoints: (
 
 @mixin xl {
   @media (min-width: #{ map-get($grid-breakpoints, xl)}) {
-    @content;
-  }
-}
-
-@mixin xxl {
-  @media (min-width: #{ map-get($grid-breakpoints, xxl)}) {
     @content;
   }
 }
