@@ -44,6 +44,11 @@
   user-select: auto;
 }
 
+:host-context(.anglify-list-nav) {
+  margin-top: 4px;
+  border-radius: 4px;
+}
+
 :host-context(.anglify-list-group-items) {
   padding-inline-start: 56px;
 }

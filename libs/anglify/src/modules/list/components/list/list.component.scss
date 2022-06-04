@@ -1,3 +1,7 @@
 :host {
   display: block;
+
+  &.anglify-list-nav {
+    padding: 4px 8px 8px;
+  }
 }
