@@ -25,6 +25,9 @@ export class ListComponent implements AfterViewInit {
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
 
   @Input() public dense: BooleanLike = false;
+
+  /** An alternative styling that reduces `anglify-list-item` width and rounds the corners. Typically used with anglify-nav-drawer */
+  @Input() public nav: BooleanLike = false;
   @Output() public readonly onItemClick = new EventEmitter<void>();
 
   @HostBinding('class')
@@ -33,6 +36,11 @@ export class ListComponent implements AfterViewInit {
 
     if (toBoolean(this.dense)) {
       classNames.push('dense');
+    }
+
+    if (toBoolean(this.nav)) {
+      // items styling changes through this using :host-context
+      classNames.push('anglify-list-nav');
     }
 
     return classNames.join(' ');
