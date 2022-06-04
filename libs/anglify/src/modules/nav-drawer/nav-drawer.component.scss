@@ -2,61 +2,65 @@
 @use '../../styles/mixins/elevation' as *;
 
 :host {
-  height: 100vh;
-  @include elevation-transition;
+  overflow: hidden;
 
-  .anglify-drawer {
-    z-index: 1;
-    top: $drawer-top;
-    display: block;
-    width: $drawer-width;
+  .anglify-navigation-drawer {
+    z-index: 2;
+    display: flex;
+    overflow: hidden;
+    width: $navigation-drawer-width;
+    max-width: 100%;
     height: 100%;
-    background: $drawer-background-color;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
+    flex-direction: column;
+    background: $navigation-drawer-background;
+    -webkit-overflow-scrolling: $navigation-drawer-overflow-scrolling;
+    pointer-events: auto;
+    transform: translateX(0);
+    transition-duration: $navigation-drawer-transition-duration;
+    transition-property: $navigation-drawer-transition-property;
+    transition-timing-function: $navigation-drawer-transition-timing-function;
+    will-change: $navigation-drawer-will-change;
 
-  &.standard {
-    .anglify-drawer {
-      position: relative;
-      left: 0;
-      @include elevation(24);
+    &-content {
+      max-width: 100%;
+      height: $navigation-drawer-content-height;
+      flex: 0 1 auto;
+      overflow-x: $navigation-drawer-content-overflow-x;
+      overflow-y: $navigation-drawer-content-overflow-y;
     }
   }
 
-  &.modal {
-    .anglify-drawer {
-      position: absolute;
-      left: calc(-1 * $drawer-width);
-      transition: left 250ms;
-    }
-  }
-
-  .anglify-drawer-backdrop {
+  .anglify-navigation-drawer-backdrop {
     position: absolute;
     z-index: 1;
-    left: 0;
-    width: 0%;
+    width: 100%;
     height: 100%;
-    background-color: $drawer-backdrop-color;
-    opacity: 0;
-    transition: opacity 250ms linear;
+    background: $navigation-drawer-backdrop-background;
   }
 
-  &.anglify-drawer-sticky {
-    position: sticky;
-    top: 0;
-  }
+  &.anglify-navigation-drawer-modal {
+    position: absolute;
+    width: 100%;
+    height: $navigation-drawer-height;
 
-  &.anglify-drawer-opened {
-    .anglify-drawer {
-      left: 0;
-      @include elevation(24);
+    .anglify-navigation-drawer {
+      position: absolute;
+      @include elevation(12);
     }
+  }
 
-    .anglify-drawer-backdrop {
-      width: 100%;
-      opacity: 1;
+  &.anglify-navigation-drawer-standard {
+    .anglify-navigation-drawer {
+      border-right: 1px solid $navigation-drawer-standard-border-color;
+    }
+  }
+
+  &.anglify-navigation-drawer-closed {
+    pointer-events: none;
+
+    .anglify-navigation-drawer {
+      width: 0;
+      transform: translateX(-200%);
     }
   }
 }

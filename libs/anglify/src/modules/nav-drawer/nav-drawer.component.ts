@@ -3,19 +3,21 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  forwardRef,
-  HostBinding,
+  ElementRef,
+  EventEmitter,
   Inject,
   Input,
+  Output,
   QueryList,
   Self,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { BehaviorSubject, filter, map } from 'rxjs';
 import type { DrawerMode, EntireNavDrawerSettings } from './nav-drawer.interface';
 import { DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS } from './nav-drawer.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
+import { enterLeaveOpacityAnimation } from '../../utils/animations';
+import { bindClassToNativeElement, bindObservableValueToNativeElement, toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
 import { ListComponent } from '../list/components/list/list.component';
 
@@ -25,67 +27,77 @@ import { ListComponent } from '../list/components/list/list.component';
   templateUrl: './nav-drawer.component.html',
   styleUrls: ['./nav-drawer.component.scss'],
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NavDrawerComponent),
-      multi: true,
-    },
     createSettingsProvider<EntireNavDrawerSettings>('anglifyNavDrawerSettings', DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS),
+  ],
+  animations: [
+    // used for backdrop opacity transition
+    enterLeaveOpacityAnimation(),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavDrawerComponent implements AfterViewInit {
-  @Input() public mode: DrawerMode = this.settings.mode;
-  @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
-  @Input() public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
-  @Input() public open = false;
-  @Input() public fixed: BooleanLike = this.settings.fixed;
-
-  @HostBinding('class.anglify-drawer-opened')
-  public get opened() {
-    return this.open;
-  }
-
-  @HostBinding('class.anglify-drawer-sticky')
-  public get sticky() {
-    return toBoolean(this.fixed);
-  }
-
-  @HostBinding('class')
-  protected get classList() {
-    const classNames = [this.mode];
-
-    return classNames.join(' ');
-  }
-
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
 
-  public constructor(@Self() @Inject('anglifyNavDrawerSettings') private readonly settings: EntireNavDrawerSettings) {}
+  @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
+  @Input() public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
+  @Input() public set mode(value: DrawerMode) {
+    this.mode$.next(value);
+  }
+
+  public get mode() {
+    return this.mode$.value;
+  }
+
+  @Input() public set ngModel(value: BooleanLike) {
+    this.setOpened(toBoolean(value));
+  }
+
+  public get ngModel() {
+    return this.opened$.value;
+  }
+
+  @Output() public ngModelChange = new EventEmitter();
+
+  public opened$ = new BehaviorSubject(false);
+  public mode$ = new BehaviorSubject<DrawerMode>(this.settings.mode);
+
+  public constructor(
+    @Self() @Inject('anglifyNavDrawerSettings') private readonly settings: EntireNavDrawerSettings,
+    public elementRef: ElementRef<HTMLElement>
+  ) {
+    bindObservableValueToNativeElement(this, this.mode$, this.elementRef.nativeElement, 'anglify-navigation-drawer-');
+    bindClassToNativeElement(
+      this,
+      this.opened$.pipe(map(value => !value)),
+      this.elementRef.nativeElement,
+      'anglify-navigation-drawer-closed'
+    );
+  }
 
   public ngAfterViewInit() {
-    if (this.closeOnItemClick) {
-      this.lists?.forEach(list => {
-        list.onItemClick
-          .asObservable()
-          .pipe(untilDestroyed(this))
-          .subscribe(() => {
-            this.setOpen(false);
-          });
-      });
-    }
+    this.listItemClickHandler();
   }
 
-  public toggle(isOpen = !this.open) {
-    this.setOpen(isOpen);
+  public toggle(isOpen = !this.opened$.value) {
+    this.setOpened(isOpen);
   }
 
-  private setOpen(isOpen: boolean) {
-    this.open = isOpen;
+  private setOpened(open: boolean) {
+    this.opened$.next(open);
+    this.ngModelChange.emit(open);
   }
 
-  public onBackdropClick() {
-    if (this.closeOnOutsideClick) {
-      this.setOpen(false);
-    }
+  private listItemClickHandler() {
+    this.lists?.forEach(list => {
+      list.onItemClick
+        .asObservable()
+        .pipe(
+          filter(() => toBoolean(this.closeOnItemClick) && this.mode$.value === 'modal'),
+          untilDestroyed(this)
+        )
+        .subscribe(() => {
+          this.setOpened(false);
+        });
+    });
   }
 }
