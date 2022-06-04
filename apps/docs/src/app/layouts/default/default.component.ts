@@ -43,7 +43,10 @@ export class DefaultComponent {
     this.initTheme();
   }
 
-  public gettingStarted = [{ link: 'getting-started/installation', name: 'Installation' }];
+  public gettingStarted = [
+    { link: 'getting-started/installation', name: 'Installation' },
+    { link: 'getting-started/application-layouts', name: 'Application Layouts' },
+  ];
 
   public features = [
     { link: 'features/theming', name: 'Theming' },

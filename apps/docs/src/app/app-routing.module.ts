@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BlankComponent } from './layouts/blank/blank.component';
 import { DefaultComponent } from './layouts/default/default.component';
 
 const routes: Routes = [
@@ -23,6 +24,16 @@ const routes: Routes = [
       {
         path: 'components',
         loadChildren: () => import('./pages/components/components.module').then(m => m.ComponentsModule),
+      },
+    ],
+  },
+  {
+    path: 'examples/layouts',
+    component: BlankComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/layout-examples/layout-examples.module').then(m => m.LayoutExamplesModule),
       },
     ],
   },
