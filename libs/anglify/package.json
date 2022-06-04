@@ -1,6 +1,18 @@
 {
   "name": "@anglify/components",
+  "description": "Anglify – Material Component Framework for Angular",
   "version": "0.20.2",
+  "license": "MIT",
+  "homepage": "https://anglify.io",
+  "keywords": [
+    "anglify",
+    "ui framework",
+    "component framework",
+    "ui library",
+    "component library",
+    "material components",
+    "angular framework"
+  ],
   "peerDependencies": {
     "@angular/common": "^13.3.2",
     "@angular/core": "^13.3.2"
