@@ -3,7 +3,6 @@ import type { EntireNavDrawerSettings, NavDrawerSettings } from './nav-drawer.in
 
 export const DEFAULT_NAV_DRAWER_SETTINGS: EntireNavDrawerSettings = {
   mode: 'standard',
-  fixed: false,
   closeOnOutsideClick: true,
   closeOnItemClick: true,
 };
