@@ -1,6 +1,5 @@
-<div class="drawer-container modal">
+<anglify-card [elevation]="4">
   <anglify-nav-drawer mode="modal" #drawer>
-    Modal drawer
     <anglify-list>
       <anglify-list-item>
         <ng-template anglifyPrepend>
@@ -16,5 +15,7 @@
       </anglify-list-item>
     </anglify-list>
   </anglify-nav-drawer>
-  <button anglifyButton appearance="contained" (click)="drawer.toggle()">Toggle drawer</button>
-</div>
+  <main>
+    <button anglifyButton appearance="contained" (click)="drawer.toggle()">Toggle drawer</button>
+  </main>
+</anglify-card>

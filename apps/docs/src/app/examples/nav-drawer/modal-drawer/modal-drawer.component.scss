@@ -1,22 +1,19 @@
 :host {
-  .drawer-container {
+  width: 100%;
+  height: 200px;
+  padding: 24px;
+
+  anglify-card {
     position: relative;
-    display: flex;
     overflow: hidden;
-    width: 600px;
-    height: 200px;
-    border: 1px solid;
-    margin: auto;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
 
-    &.modal {
-      justify-content: right;
-
-      button {
-        align-self: center;
-        margin-right: 20px;
-        justify-self: center;
-      }
+    main {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

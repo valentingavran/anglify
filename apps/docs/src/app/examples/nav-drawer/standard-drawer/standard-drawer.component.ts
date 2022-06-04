@@ -1,5 +1,4 @@
-import { NavDrawerComponent } from '@anglify/components';
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-standard-drawer',
@@ -7,10 +6,6 @@ import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
   styleUrls: ['./standard-drawer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StandardDrawerComponent {
-  @ViewChild('drawer') public drawer!: NavDrawerComponent;
-
-  public doSomething(): void {}
-}
+export class StandardDrawerComponent {}
 
 export default StandardDrawerComponent;
