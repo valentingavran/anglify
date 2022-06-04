@@ -1,0 +1,30 @@
+:host {
+  .layouts {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .layout {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    font: var(--font-subtitle-1);
+    gap: 0.5rem;
+    letter-spacing: var(--font-letter-spacing-subtitle-1);
+    text-transform: var(--font-text-transform-subtitle-1);
+
+    anglify-card {
+      width: 100%;
+      aspect-ratio: 5/3;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+    }
+  }
+}
