@@ -10,13 +10,14 @@ import {
 } from '@anglify/components';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { DefaultComponent } from './layouts/default/default.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, DefaultComponent, BlankComponent],
@@ -59,4 +60,9 @@ import { DefaultComponent } from './layouts/default/default.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  public constructor(private readonly meta: Meta) {
+    this.meta.addTag({ name: 'description', content: environment.description });
+    this.meta.addTag({ name: 'keywords', content: environment.keywords.toString() });
+  }
+}
