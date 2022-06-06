@@ -1,5 +1,6 @@
 :host {
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   gap: 1rem;
-  grid-template-columns: repeat(2, auto);
 }

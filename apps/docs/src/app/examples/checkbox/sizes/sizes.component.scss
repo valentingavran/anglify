@@ -1,8 +1,9 @@
 :host {
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
 
   .checkbox-medium {
     --anglify-checkbox-height: 18px;

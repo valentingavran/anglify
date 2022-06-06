@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 1rem;
     border: 1px solid var(--border-color-on-surface-low-emphasis);
     border-radius: 14px;
     grid-area: preview;
@@ -19,5 +19,9 @@
     justify-content: flex-end;
     gap: 1rem;
     grid-area: controls;
+  }
+
+  .code-container {
+    overflow: hidden;
   }
 }

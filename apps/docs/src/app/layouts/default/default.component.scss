@@ -24,8 +24,12 @@
   }
 
   main {
-    padding: 1rem;
+    padding: 0.5rem;
     grid-area: main;
     overflow-y: auto;
+
+    @include md {
+      padding: 1rem;
+    }
   }
 }
