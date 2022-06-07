@@ -26,7 +26,7 @@ export class ListComponent implements AfterViewInit {
 
   @Input() public dense: BooleanLike = false;
 
-  /** An alternative styling that reduces `anglify-list-item` width and rounds the corners. Typically used with anglify-nav-drawer */
+  /** An alternative styling that reduces `anglify-list-item` width and rounds the corners. Typically used with anglify-navigation-drawer */
   @Input() public nav: BooleanLike = false;
   @Output() public readonly onItemClick = new EventEmitter<void>();
 

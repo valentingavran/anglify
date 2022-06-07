@@ -6,11 +6,11 @@
   </ng-template>
   <ng-template slot="title">Application</ng-template>
 </anglify-toolbar>
-<anglify-nav-drawer
+<anglify-navigation-drawer
   [mode]="(breakpointService.mdAndDown$ | async) ? 'modal' : 'standard'"
   [ngModel]="(breakpointService.lgAndUp$ | async) ?? true"
   #drawer
-></anglify-nav-drawer>
+></anglify-navigation-drawer>
 <main>
   <!-- your content here -->
 </main>

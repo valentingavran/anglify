@@ -12,7 +12,7 @@ import { IconPageComponent } from './icon-page/icon-page.component';
 import { ItemGroupPageComponent } from './item-group-page/item-group-page.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
-import { NavDrawerPageComponent } from './nav-drawer-page/nav-drawer-page.component';
+import { NavigationDrawerPageComponent } from './navigation-drawer-page/navigation-drawer-page.component';
 import { ProgressCircularPageComponent } from './progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
@@ -65,8 +65,8 @@ const routes: Routes = [
     component: MenuPageComponent,
   },
   {
-    path: 'nav-drawer',
-    component: NavDrawerPageComponent,
+    path: 'navigation-drawer',
+    component: NavigationDrawerPageComponent,
   },
   {
     path: 'progress-circular',

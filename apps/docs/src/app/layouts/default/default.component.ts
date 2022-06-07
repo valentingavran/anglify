@@ -103,7 +103,7 @@ export class DefaultComponent {
       name: 'Menu',
     },
     {
-      link: 'components/nav-drawer',
+      link: 'components/navigation-drawer',
       name: 'Navigation Drawer',
     },
     {

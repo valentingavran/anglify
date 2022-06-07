@@ -1,0 +1,16 @@
+$navigation-drawer-background: var(--anglify-navigation-drawer-background-color, var(--color-elevated)) !default;
+$navigation-drawer-backdrop-background: var(--anglify-navigation-drawer-backdrop-color, var(--color-backdrop));
+$navigation-drawer-width: var(--anglify-navigation-drawer-width, 304px) !default;
+$navigation-drawer-height: var(--anglify-navigation-drawer-height, 100%) !default;
+$navigation-drawer-content-height: var(--anglify-navigation-drawer-content-height, 100%) !default;
+$navigation-drawer-content-overflow-x: var(--anglify-navigation-drawer-content-overflow-x, hidden) !default;
+$navigation-drawer-content-overflow-y: var(--anglify-navigation-drawer-content-overflow-y, auto) !default;
+$navigation-drawer-overflow-scrolling: var(--anglify-navigation-drawer-overflow-scrolling, touch) !default;
+$navigation-drawer-transition-duration: var(--anglify-navigation-drawer-transition-duration, 0.2s) !default;
+$navigation-drawer-transition-property: var(--anglify-navigation-drawer-transition-property, box-shadow, width, transform) !default;
+$navigation-drawer-transition-timing-function: var(--anglify-navigation-drawer-transition-timing-function, linear) !default;
+$navigation-drawer-will-change: var(--anglify-navigation-drawer-will-change, width, transform) !default;
+$navigation-drawer-standard-border-color: var(
+  --anglify-navigation-drawer-standard-border-color,
+  var(--border-color-on-surface-low-emphasis)
+) !default;

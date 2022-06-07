@@ -18,7 +18,7 @@
     "src/modules/item-group/*.scss",
     "src/modules/list/*.scss",
     "src/modules/menu/*.scss",
-    "src/modules/nav-drawer/*.scss",
+    "src/modules/navigation-drawer/*.scss",
     "src/modules/progress-circular/*.scss",
     "src/modules/progress-linear/*.scss",
     "src/modules/radio-button/*.scss",

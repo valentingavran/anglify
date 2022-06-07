@@ -13,8 +13,8 @@ import {
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map } from 'rxjs';
-import type { DrawerMode, EntireNavDrawerSettings } from './nav-drawer.interface';
-import { DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS } from './nav-drawer.token';
+import type { NavigationDrawerMode, EntireNavigationDrawerSettings } from './navigation-drawer.interface';
+import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from './navigation-drawer.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { enterLeaveOpacityAnimation } from '../../utils/animations';
 import { bindClassToNativeElement, bindObservableValueToNativeElement, toBoolean } from '../../utils/functions';
@@ -23,11 +23,15 @@ import { ListComponent } from '../list/components/list/list.component';
 
 @UntilDestroy()
 @Component({
-  selector: 'anglify-nav-drawer',
-  templateUrl: './nav-drawer.component.html',
-  styleUrls: ['./nav-drawer.component.scss'],
+  selector: 'anglify-navigation-drawer',
+  templateUrl: './navigation-drawer.component.html',
+  styleUrls: ['./navigation-drawer.component.scss'],
   providers: [
-    createSettingsProvider<EntireNavDrawerSettings>('anglifyNavDrawerSettings', DEFAULT_NAV_DRAWER_SETTINGS, NAV_DRAWER_SETTINGS),
+    createSettingsProvider<EntireNavigationDrawerSettings>(
+      'anglifyNavigationDrawerSettings',
+      DEFAULT_NAVIGATION_DRAWER_SETTINGS,
+      NAVIGATION_DRAWER_SETTINGS
+    ),
   ],
   animations: [
     // used for backdrop opacity transition
@@ -35,12 +39,12 @@ import { ListComponent } from '../list/components/list/list.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavDrawerComponent implements AfterViewInit {
+export class NavigationDrawerComponent implements AfterViewInit {
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
 
   @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
   @Input() public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
-  @Input() public set mode(value: DrawerMode) {
+  @Input() public set mode(value: NavigationDrawerMode) {
     this.mode$.next(value);
   }
 
@@ -59,10 +63,10 @@ export class NavDrawerComponent implements AfterViewInit {
   @Output() public ngModelChange = new EventEmitter();
 
   public opened$ = new BehaviorSubject(false);
-  public mode$ = new BehaviorSubject<DrawerMode>(this.settings.mode);
+  public mode$ = new BehaviorSubject<NavigationDrawerMode>(this.settings.mode);
 
   public constructor(
-    @Self() @Inject('anglifyNavDrawerSettings') private readonly settings: EntireNavDrawerSettings,
+    @Self() @Inject('anglifyNavigationDrawerSettings') private readonly settings: EntireNavigationDrawerSettings,
     public elementRef: ElementRef<HTMLElement>
   ) {
     bindObservableValueToNativeElement(this, this.mode$, this.elementRef.nativeElement, 'anglify-navigation-drawer-');

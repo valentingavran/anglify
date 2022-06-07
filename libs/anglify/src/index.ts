@@ -88,11 +88,11 @@ export * from './modules/menu/menu-settings.token';
 export * from './modules/menu/menu.directive';
 export * from './modules/menu/menu.interface';
 export * from './modules/menu/menu.module';
-// Nav Drawer
-export * from './modules/nav-drawer/nav-drawer.component';
-export * from './modules/nav-drawer/nav-drawer.token';
-export * from './modules/nav-drawer/nav-drawer.interface';
-export * from './modules/nav-drawer/nav-drawer.module';
+// Navigation Drawer
+export * from './modules/navigation-drawer/navigation-drawer.component';
+export * from './modules/navigation-drawer/navigation-drawer.interface';
+export * from './modules/navigation-drawer/navigation-drawer.module';
+export * from './modules/navigation-drawer/navigation-drawer.token';
 // Overlay
 export * from './modules/interaction-state/interaction-state.directive';
 export * from './modules/interaction-state/interaction-state.module';

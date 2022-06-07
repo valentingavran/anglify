@@ -25,7 +25,7 @@
     </button>
   </ng-template>
 </anglify-toolbar>
-<anglify-nav-drawer
+<anglify-navigation-drawer
   [mode]="(breakpointService.mdAndDown$ | async) ? 'modal' : 'standard'"
   [ngModel]="(breakpointService.lgAndUp$ | async) ?? true"
   #drawer
@@ -67,7 +67,7 @@
       </anglify-list-group>
     </anglify-list-item-group>
   </anglify-list>
-</anglify-nav-drawer>
+</anglify-navigation-drawer>
 <main>
   <router-outlet></router-outlet>
 </main>

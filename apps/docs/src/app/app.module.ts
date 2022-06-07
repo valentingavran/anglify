@@ -4,7 +4,7 @@ import {
   IconSettings,
   ICON_SETTINGS,
   ListModule,
-  NavDrawerModule,
+  NavigationDrawerModule,
   ToolbarModule,
   TooltipModule,
 } from '@anglify/components';
@@ -29,7 +29,7 @@ import { environment } from '../environments/environment';
     IconModule,
     TooltipModule,
     ListModule,
-    NavDrawerModule,
+    NavigationDrawerModule,
     OverlayModule,
     ToolbarModule,
   ],

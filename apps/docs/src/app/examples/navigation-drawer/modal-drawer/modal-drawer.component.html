@@ -1,5 +1,5 @@
 <anglify-card [elevation]="4">
-  <anglify-nav-drawer mode="modal" #drawer>
+  <anglify-navigation-drawer mode="modal" #drawer>
     <anglify-list>
       <anglify-list-item>
         <ng-template anglifyPrepend>
@@ -7,14 +7,14 @@
         </ng-template>
         <anglify-list-item-title>Item 1</anglify-list-item-title>
       </anglify-list-item>
-      <anglify-list-item (click)="doSomething()">
+      <anglify-list-item>
         <ng-template anglifyPrepend>
           <anglify-icon icon="mdi-angular"></anglify-icon>
         </ng-template>
         <anglify-list-item-title>Item 2</anglify-list-item-title>
       </anglify-list-item>
     </anglify-list>
-  </anglify-nav-drawer>
+  </anglify-navigation-drawer>
   <main>
     <button anglifyButton appearance="contained" (click)="drawer.toggle()">Toggle drawer</button>
   </main>
