@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.21.0](https://github.com/valentingavran/anglify/compare/v0.20.2...v0.21.0) (2022-06-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **NavigationDrawer:** All occurrences of `anglify-nav-drawer`, `NavDrawer`, `NavDrawerSettings`, etc.
+have been renamed to `NavigationDrawer`, `anglify-nav-drawer` etc.. To update to this version, all
+occurrences in your application must be renamed.
+* **NavigationDrawer:** How you use Navigation Drawers has completely changed. Check every navigation
+drawer in your app and visit the documentation page for more information.
+* **List:** ListGroups no longer have the `exact` input property. Instead, the ListItem
+should indicate whether it should be active when the exact route is found, or a subset of it. If
+ListGroups have active items, then they are automatically opened when the web page is loaded.
+Checking is now done via the `active` property of the ListItem component.
+* **Tooltip:** All tooltip input properties have been removed. The tooltip is now configured
+using the new `tooltipConfig` input property. This prevents overrides if two directives use input
+properties with the same name.
+
+### 🐛  Bug Fixes
+
+* **Radio Button:** remove hover state when hovering over label ([74a4cb1](https://github.com/valentingavran/anglify/commit/74a4cb14b0294d74490a60d22e43bfab0aee7f9e))
+
+
+### 🛠  Other Commmits
+
+* add package description and additional information ([f97ed25](https://github.com/valentingavran/anglify/commit/f97ed253e9d63205065bba3dffb0cfa1cc19e0f0))
+* copy root README to anglify lib bundle just before publishing ([ff52da2](https://github.com/valentingavran/anglify/commit/ff52da2ed935c456b32c61205a8b622860bbba46))
+* remove README from anglify lib ([d44b30b](https://github.com/valentingavran/anglify/commit/d44b30b887886d051ff9445f93698bf912af9543))
+
+
+### 🚀  Features
+
+* add and expose enterLeaveOpacityAnimation ([0f6c204](https://github.com/valentingavran/anglify/commit/0f6c204ca2cc5ba87e03c3222627d5fd4b390ee3))
+* add breakpoint observer service ([158058b](https://github.com/valentingavran/anglify/commit/158058ba18511815ff6aef1d861313eeec6066da))
+* add breakpoints scss mixin ([6e6c984](https://github.com/valentingavran/anglify/commit/6e6c98421642ab72cd7d891d894a4b3c5981a8d7))
+* add color secondary variant & adjust color secondary ([7ae9be8](https://github.com/valentingavran/anglify/commit/7ae9be80423b473523cd138da874975be754f5b2))
+* add tab component ([b38cc88](https://github.com/valentingavran/anglify/commit/b38cc88da2c3462f9a1fb683ccc9180a43522077))
+* **Lists:** add `nav` property that enables a different display mode ([dbe8dc7](https://github.com/valentingavran/anglify/commit/dbe8dc7f2c979839eae6cc0148db7f8d4d607670))
+
+
+### 📝  Docs
+
+* add application layout examples ([381b001](https://github.com/valentingavran/anglify/commit/381b00188f17c7f6fad31bc2c036093b67cbfefa))
+* add feature group inside the navigation drawer ([48d5d44](https://github.com/valentingavran/anglify/commit/48d5d44e08fc2aafdb4e053e4ef169f0398fbe3f))
+* add page meta description & meta keywords using package.json info ([95d9785](https://github.com/valentingavran/anglify/commit/95d97858c37a8e7ac6ae358266cca7ad38f203c0))
+* adjust navigation drawer examples ([ef4f3df](https://github.com/valentingavran/anglify/commit/ef4f3df53960003641193eda3316710cc51b8563))
+* extract component pages into own module ([9d448a7](https://github.com/valentingavran/anglify/commit/9d448a71f471ef6a429198c21019bdeea33a6f2d))
+* introduce app layouts that can be set for each route individually ([61aba71](https://github.com/valentingavran/anglify/commit/61aba71a4c3db903d3b77056557e3370f23b0fb9))
+* optimize docs for all screen sizes ([b397b02](https://github.com/valentingavran/anglify/commit/b397b02ffcbb6716c28f66f566b8650d8c0c963b))
+
+
+### 🔬  Code Refactoring
+
+* **List:** move exact responsibility from list group to list items ([cb50203](https://github.com/valentingavran/anglify/commit/cb5020341538908b6a0ae20deb0ed6dc1849c1ff))
+* **NavigationDrawer:** make it usable in complex app layouts ([208f40b](https://github.com/valentingavran/anglify/commit/208f40b0e366b726cc6b03b0e92065082bd47b0a))
+* **NavigationDrawer:** rename NavDrawer to NavigationDrawer ([8cf9124](https://github.com/valentingavran/anglify/commit/8cf91248461f511adbdcd9b804cc0401e2527b52))
+* **Tooltip:** add tooltipConfig input property and remove others ([db28b96](https://github.com/valentingavran/anglify/commit/db28b960f71b6295a0e65ef592d31eda51706fda))
+
 ### [0.20.2](https://github.com/valentingavran/anglify/compare/v0.20.1...v0.20.2) (2022-05-27)
 
 
