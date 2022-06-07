@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, tap } from 'rxjs';
+import { BehaviorSubject, map, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, rotate } from '../../../../utils/animations';
 import { toBoolean } from '../../../../utils/functions';
-import { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
-import { filterEmpty } from '../../../../utils/operator-functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { ListItemComponent } from '../list-item/list-item.component';
@@ -19,17 +17,12 @@ import { ListItemComponent } from '../list-item/list-item.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [rotate(), fastInFastOutY()],
 })
-export class ListGroupComponent {
+export class ListGroupComponent implements AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
   @ContentChildren(ListGroupComponent) public listGroups?: QueryList<ListGroupComponent>;
 
   @Input() public disableGroupCollapse: BooleanLike = false;
-
-  /**
-   * Exactly match the link. Without this, `/` will match every route.
-   */
-  @Input() public exact: BooleanLike = false;
 
   @Input() public set active(value: BooleanLike) {
     this.active$.next(toBoolean(value));
@@ -40,59 +33,35 @@ export class ListGroupComponent {
   }
 
   public active$ = new BehaviorSubject<boolean>(false);
+  public unsubscribeActiveListenersAction = new Subject<void>();
 
-  public constructor(@Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition, private readonly router: Router) {
-    this.childrenListGroupsCloseHandler$.pipe(untilDestroyed(this)).subscribe();
-    this.listGroupCloseHandler$.pipe(untilDestroyed(this)).subscribe();
+  public constructor(@Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition) {}
+
+  public ngAfterViewInit() {
+    this.listItems?.changes
+      .pipe(
+        untilDestroyed(this),
+        startWith(this.listItems),
+        map(items => items as ListItemComponent[]),
+        tap(items => {
+          this.unsubscribeActiveListenersAction.next();
+          items.forEach(item => {
+            item.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeActiveListenersAction)).subscribe(() => {
+              setTimeout(() => {
+                this.hasActiveListItems(items) ? this.open() : this.close();
+              }, 0);
+            });
+          });
+        })
+      )
+      .subscribe();
   }
 
   /**
-   * If the List Group has items with the RouterLink property, and groupCollapse is enabled, then
-   * the group will be opened if the current route corresponds to a routerLink in the group, and closed otherwise.
+   * @returns true if an active list item is found inside this list group
    */
-  private readonly listGroupCloseHandler$ = this.router.events.pipe(
-    filter(() => this.groupHasLinkItems()), // only continue if group has link items
-    filter(event => event instanceof NavigationEnd),
-    filterEmpty(),
-    tap(event => {
-      // notice: urlAfterRedirects is used here instead of url, because the router may redirect to a different route
-      const url = (event as NavigationEnd).urlAfterRedirects.split('?')[0];
-      const foundItems = this.findListItems(url);
-
-      if (foundItems.length) {
-        this.open();
-      } else if (foundItems.length === 0 && !toBoolean(this.disableGroupCollapse)) {
-        this.close();
-      }
-    })
-  );
-
-  /**
-   * @returns true if a list item is found with a routerLink that matches the current URL
-   */
-  private findListItems(currentURL: string) {
-    return this.listItems?.filter(x => this.checkRouterLink(x.routerLink, currentURL)) ?? [];
-  }
-
-  /**
-   * @returns true if routerLink matches currentURL
-   */
-  private checkRouterLink(routerLink: RouterLinkCommands, currentURL: string) {
-    if (!routerLink) return false;
-    const link = typeof routerLink === 'string' ? `/${routerLink}` : `/${routerLink.join('/')}`;
-
-    if (this.exact) {
-      return link === currentURL;
-    }
-
-    return currentURL.includes(link);
-  }
-
-  /**
-   * @returns true if the group has at least one list item with a routerLink
-   */
-  private groupHasLinkItems() {
-    return this.listItems?.some(x => Boolean(x.routerLink)) ?? false;
+  private hasActiveListItems(items: ListItemComponent[]) {
+    return items.some(x => toBoolean(x.active));
   }
 
   public open() {
@@ -106,9 +75,4 @@ export class ListGroupComponent {
   public toggle() {
     this.active$.next(!this.active$.value);
   }
-
-  private readonly childrenListGroupsCloseHandler$ = this.active$.pipe(
-    filter(active => active), // on close
-    tap(() => this.listGroups?.forEach(group => group.close()))
-  );
 }

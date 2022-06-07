@@ -39,3 +39,9 @@ export const slide = ({ name = 'slide', duration = '300ms' } = {}) =>
       ]),
     ]),
   ]);
+
+export const enterLeaveOpacityAnimation = ({ duration = '200ms', from = 0, to = 1 } = {}) =>
+  trigger('enterLeaveOpacityAnimation', [
+    transition(':enter', [style({ opacity: from }), animate(duration, style({ opacity: to }))]),
+    transition(':leave', [style({ opacity: to }), animate(duration, style({ opacity: from }))]),
+  ]);

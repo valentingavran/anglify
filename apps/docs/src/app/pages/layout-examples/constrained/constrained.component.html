@@ -1,0 +1,25 @@
+<anglify-toolbar [elevation]="5">
+  <ng-template slot="title">
+    <button anglifyButton appearance="text">Dashboard</button>
+    <button anglifyButton appearance="text">Messages</button>
+    <button anglifyButton appearance="text">Profile</button>
+    <button anglifyButton appearance="text">Updates</button>
+  </ng-template>
+</anglify-toolbar>
+<main>
+  <anglify-card class="menu">
+    <anglify-list>
+      <anglify-list-item><anglify-list-item-title>List item 1</anglify-list-item-title></anglify-list-item>
+      <anglify-list-item><anglify-list-item-title>List item 2</anglify-list-item-title></anglify-list-item>
+      <anglify-list-item><anglify-list-item-title>List item 3</anglify-list-item-title></anglify-list-item>
+      <anglify-list-item><anglify-list-item-title>List item 4</anglify-list-item-title></anglify-list-item>
+      <anglify-list-item><anglify-list-item-title>List item 5</anglify-list-item-title></anglify-list-item>
+      <anglify-list-item><anglify-list-item-title>List item 6</anglify-list-item-title></anglify-list-item>
+    </anglify-list>
+  </anglify-card>
+  <anglify-card class="main"> </anglify-card>
+</main>
+
+<button class="open-example-code" anglifyButton appearance="fab" (click)="openExampleCode()">
+  <anglify-icon icon="mdi-github"></anglify-icon>
+</button>

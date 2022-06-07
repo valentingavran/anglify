@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import packageJson from '../../../../libs/anglify/package.json';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -5,6 +8,13 @@
 export const environment = {
   production: false,
   exampleFolderURL: 'https://raw.githubusercontent.com/valentingavran/anglify/develop/apps/docs/src/app/examples/',
+  applicationLayoutsExampleURLs: {
+    base: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/pages/layout-examples/base',
+    constrained: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/pages/layout-examples/constrained',
+  },
+  version: packageJson.version,
+  description: packageJson.description,
+  keywords: packageJson.keywords,
 };
 
 /*

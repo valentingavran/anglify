@@ -42,6 +42,7 @@ export class IconComponent {
   @Input() public disabled: BooleanLike = false;
   @Input() public left: BooleanLike = false;
   @Input() public right: BooleanLike = false;
+  @Input() public top: BooleanLike = false;
 
   public constructor(
     @Self() @Inject('anglifyIconSettings') private readonly settings: EntireIconSettings,
@@ -68,6 +69,9 @@ export class IconComponent {
 
     if (toBoolean(this.right)) {
       classNames.push('right');
+    }
+    if (toBoolean(this.top)) {
+      classNames.push('top');
     }
 
     return classNames.join(' ');

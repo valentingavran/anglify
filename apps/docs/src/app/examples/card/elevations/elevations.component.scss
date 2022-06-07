@@ -1,9 +1,11 @@
 :host {
-  display: grid;
-  gap: 100px;
-  grid-template-columns: repeat(4, 100px);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 2rem;
 
   anglify-card {
+    width: 100px;
     aspect-ratio: 1;
   }
 }

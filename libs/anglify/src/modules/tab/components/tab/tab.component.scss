@@ -1,0 +1,37 @@
+@import '../../variables';
+
+:host {
+  &:hover {
+    --state-container-color: #{$tab-hover-state-color};
+  }
+
+  &:focus-visible {
+    --state-container-color: #{$tab-focus-state-color};
+  }
+
+  .anglify-tab-label {
+    position: relative;
+    display: flex;
+    height: $tab-label-height;
+    align-items: center;
+    justify-content: center;
+    padding: $tab-padding;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+
+    &.active {
+      color: $tab-active-color;
+
+      --anglify-icon-color: #{$tab-active-color};
+    }
+  }
+
+  &.anglify-tab-has-top-icon {
+    .anglify-tab-label {
+      height: $tab-label-top-icon-height;
+      flex-direction: column;
+      gap: $tab-label-top-icon-gap;
+    }
+  }
+}

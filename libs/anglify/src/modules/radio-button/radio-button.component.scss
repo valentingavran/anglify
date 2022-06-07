@@ -111,31 +111,23 @@
       }
     }
 
-    &:hover {
-      ~ .container {
-        --state-container-color: #{$radio-button-hover-state-active-color};
-      }
+    & ~ .container:hover {
+      --state-container-color: #{$radio-button-hover-state-active-color};
     }
 
-    &:focus-visible {
-      ~ .container {
-        --state-container-color: #{$radio-button-focus-state-active-color};
-      }
+    & ~ .container:focus-visible {
+      --state-container-color: #{$radio-button-focus-state-active-color};
     }
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
   input:not(:checked):not(:disabled) {
-    &:hover {
-      & ~ .container {
-        --state-container-color: #{$radio-button-hover-state-inactive-color};
-      }
+    & ~ .container:hover {
+      --state-container-color: #{$radio-button-hover-state-inactive-color};
     }
 
-    &:focus-visible {
-      & ~ .container {
-        --state-container-color: #{$radio-button-focus-state-inactive-color};
-      }
+    & ~ .container:focus-visible {
+      --state-container-color: #{$radio-button-focus-state-inactive-color};
     }
   }
 }

@@ -1,5 +1,7 @@
 :host {
+  width: 100%;
+
   anglify-list {
-    width: 450px;
+    width: min(450px, 100%);
   }
 }

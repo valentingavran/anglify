@@ -1,5 +1,5 @@
 import { untilDestroyed } from '@ngneat/until-destroy';
-import { Observable, tap } from 'rxjs';
+import { Observable, pairwise, startWith, tap } from 'rxjs';
 import type { BooleanLike } from './interfaces';
 
 export function observeOnMutation(target: Node, config: MutationObserverInit | undefined): Observable<MutationRecord[]> {
@@ -88,6 +88,20 @@ export function bindClassToNativeElement(componentReference: any, data$: Observa
         } else {
           element.classList.remove(className);
         }
+      })
+    )
+    .subscribe();
+}
+
+export function bindObservableValueToNativeElement(componentReference: any, data$: Observable<string>, element: HTMLElement, prefix = '') {
+  data$
+    .pipe(
+      untilDestroyed(componentReference),
+      startWith(''),
+      pairwise(),
+      tap(([oldValue, newValue]) => {
+        oldValue.length && element.classList.remove(`${prefix}${oldValue}`);
+        element.classList.add(`${prefix}${newValue}`);
       })
     )
     .subscribe();

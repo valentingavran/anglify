@@ -1,6 +1,7 @@
 :host {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: center;
   gap: 3rem;
 
   div {

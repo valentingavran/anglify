@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IconFontsComponent } from './icon-fonts/icon-fonts.component';
 import { InstallationComponent } from './installation/installation.component';
-import { ThemingComponent } from './theming/theming.component';
+import { LayoutsComponent } from './layouts/layouts.component';
 
 const routes: Routes = [
   {
@@ -10,12 +9,8 @@ const routes: Routes = [
     component: InstallationComponent,
   },
   {
-    path: 'theming',
-    component: ThemingComponent,
-  },
-  {
-    path: 'icon-fonts',
-    component: IconFontsComponent,
+    path: 'application-layouts',
+    component: LayoutsComponent,
   },
 ];
 

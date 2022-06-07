@@ -1,0 +1,20 @@
+<anglify-toolbar [elevation]="5">
+  <ng-template slot="navigation">
+    <button anglifyButton appearance="icon" (click)="drawer.toggle()">
+      <anglify-icon icon="mdi-menu"></anglify-icon>
+    </button>
+  </ng-template>
+  <ng-template slot="title">Application</ng-template>
+</anglify-toolbar>
+<anglify-navigation-drawer
+  [mode]="(breakpointService.mdAndDown$ | async) ? 'modal' : 'standard'"
+  [ngModel]="(breakpointService.lgAndUp$ | async) ?? true"
+  #drawer
+></anglify-navigation-drawer>
+<main>
+  <!-- your content here -->
+</main>
+
+<button class="open-example-code" anglifyButton appearance="fab" (click)="openExampleCode()">
+  <anglify-icon icon="mdi-github"></anglify-icon>
+</button>

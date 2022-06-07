@@ -20,6 +20,7 @@ jobs:
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           npm ci
           npm run build:anglify
+          cp README.md dist/libs/anglify/README.md
           cd dist/libs/anglify
           npm publish --access public
         env:

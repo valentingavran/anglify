@@ -1,0 +1,61 @@
+@use '../../../../../../../libs/anglify/src/styles/mixins/breakpoints.scss' as *;
+
+:host {
+  --anglify-toolbar-regular-height: 56px;
+  --color-background: #f0f0f0;
+
+  anglify-toolbar {
+    --anglify-button-text-label-color: var(--color-on-primary-high-emphasis);
+    --anglify-button-text-label-color-disabled: var(--color-on-primary-medium-emphasis);
+
+    position: sticky;
+    z-index: 1;
+    top: 0;
+  }
+
+  main {
+    display: grid;
+    padding: 1rem;
+    background-color: var(--color-background);
+    gap: 1rem;
+
+    @include xs {
+      .menu {
+        display: none;
+      }
+
+      grid-template-areas: 'main';
+      grid-template-columns: 1fr;
+    }
+
+    @include sm {
+      grid-template-areas: 'menu main';
+      grid-template-columns: 0.5fr 2fr;
+
+      .menu {
+        position: sticky;
+        top: calc(var(--anglify-toolbar-regular-height) + 1rem);
+        display: block;
+        height: fit-content;
+        grid-area: menu;
+      }
+    }
+
+    @include md {
+      grid-template-areas: '. menu main .';
+      grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr;
+    }
+
+    .main {
+      height: 2000px; // only for test purposes
+      padding: 2rem;
+      grid-area: main;
+    }
+  }
+
+  .open-example-code {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

@@ -1,3 +1,4 @@
+import { TooltipSettings } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
@@ -8,6 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class CustomMountingPointComponent {
   public newMountingPoint = document.body;
+  public config: TooltipSettings = { mountingPoint: this.newMountingPoint };
 }
 
 export default CustomMountingPointComponent;

@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5rem;
+
+  anglify-chip {
+    cursor: pointer;
+    font-size: 14px;
+
+    --anglify-chip-height: 14px;
+    --anglify-chip-padding: 5px 10px;
+  }
+}
