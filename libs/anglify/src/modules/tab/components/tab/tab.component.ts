@@ -11,12 +11,12 @@ import {
   QueryList,
   Self,
 } from '@angular/core';
-import { RIPPLE } from 'libs/anglify/src/composables/ripple/ripple.provider';
-import { RippleService } from 'libs/anglify/src/composables/ripple/ripple.service';
-import { createSettingsProvider } from 'libs/anglify/src/factories/settings.factory';
-import { toBoolean } from 'libs/anglify/src/utils/functions';
-import { BooleanLike } from 'libs/anglify/src/utils/interfaces';
 import { BehaviorSubject } from 'rxjs';
+import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
+import { RippleService } from '../../../../composables/ripple/ripple.service';
+import { createSettingsProvider } from '../../../../factories/settings.factory';
+import { toBoolean } from '../../../../utils/functions';
+import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { DEFAULT_TAB_SETTINGS, TAB_SETTINGS } from '../../tab-settings.token';
 import { EntireTabSettings } from '../../tab.interface';
