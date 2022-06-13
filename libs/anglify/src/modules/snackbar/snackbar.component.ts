@@ -32,7 +32,7 @@ export class SnackbarComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     if (this.context.timeout ?? this.settings.timeout) {
-      this.timeout = setTimeout(() => {
+      this.timeout = window.setTimeout(() => {
         this.context.completeWith('internal.timeout');
         this.timeout = null;
       }, this.context.timeout ?? this.settings.timeout);
@@ -41,7 +41,7 @@ export class SnackbarComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
     if (this.timeout) {
-      clearTimeout(this.timeout);
+      window.clearTimeout(this.timeout);
     }
   }
 

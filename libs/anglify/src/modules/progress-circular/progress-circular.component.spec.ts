@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProgressCircularComponent } from './progress-circular.component';
 
-import { ExtendedComponent } from './extended.component';
-
-describe('ExtendedComponent', () => {
-  let component: ExtendedComponent;
-  let fixture: ComponentFixture<ExtendedComponent>;
+describe('ProgressCircularComponent', () => {
+  let component: ProgressCircularComponent;
+  let fixture: ComponentFixture<ProgressCircularComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ExtendedComponent],
+      declarations: [ProgressCircularComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExtendedComponent);
+    fixture = TestBed.createComponent(ProgressCircularComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

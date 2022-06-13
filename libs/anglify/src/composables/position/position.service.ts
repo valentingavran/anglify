@@ -3,7 +3,7 @@ import { Options } from '@floating-ui/core/src/middleware/offset';
 import { computePosition, offset, flip, shift } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, merge } from 'rxjs';
-import type { Position, PositionSettings } from './position.interface';
+import { Position, PositionSettings } from './position.interface';
 import { POSITION_SETTINGS } from './position.token';
 import { observeOnResize, toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';
