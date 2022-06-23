@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, forwardRef, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { BehaviorSubject, filter, first, map, startWith, tap } from 'rxjs';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
 import { ListItemComponent } from '../list-item/list-item.component';
@@ -20,19 +21,16 @@ import { ListItemComponent } from '../list-item/list-item.component';
   ],
 })
 export class ListItemGroupComponent implements AfterViewInit, ControlValueAccessor {
-  @ContentChildren(ListItemComponent, { descendants: true }) private readonly items?: QueryList<ListItemComponent>;
+  @ContentChildren(ListItemComponent, { descendants: true }) private readonly allSlots?: QueryList<ListItemComponent>;
 
   @Input() public mandatory: BooleanLike = false;
   @Input() public multiple: BooleanLike = false;
+  @Input() public max?: number;
 
   public onChange: (...args: any[]) => void = () => {};
   public onTouch: (...args: any[]) => void = () => {};
 
-  private activeCount = 0;
-
-  public ngAfterViewInit() {
-    this.items?.forEach(item => this.createItemClickHandler(item));
-  }
+  public readonly itemGroupItems$ = new BehaviorSubject<ListItemComponent[]>([]);
 
   public writeValue(value: number | number[] | null) {
     let indicesToBeActive: number[] = [];
@@ -42,13 +40,20 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
     } else {
       indicesToBeActive.push(value);
     }
-    this.items?.forEach((item, index) => {
-      if (indicesToBeActive.includes(index)) {
-        item.active = true;
-      } else {
-        item.active = false;
-      }
-    });
+
+    if (this.itemGroupItems$.value.length === 0) {
+      /* It may happen that writeValue is called before the slots have been loaded or any are present at all.
+      As soon as the slots change, this method is called. */
+      this.itemGroupItems$
+        .pipe(
+          untilDestroyed(this),
+          filter(items => items.length > 0),
+          first()
+        )
+        .subscribe(() => this.activateAllIndices(indicesToBeActive));
+    } else {
+      this.activateAllIndices(indicesToBeActive);
+    }
   }
 
   public registerOnChange(fn: (...args: any[]) => void) {
@@ -63,33 +68,76 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
     item.onClick.pipe(untilDestroyed(this)).subscribe(() => this.handleItemClick(item));
   }
 
-  private handleItemClick(item: ListItemComponent) {
-    let activeCount = this.activeCount;
-    if (item.active) activeCount -= 1;
+  public handleItemClick = (item: ListItemComponent) => {
+    const activeCount = this.itemGroupItems$.value.filter(item => item.active).length;
+    let otherSelectedItemsCount = activeCount;
+    if (item.active) {
+      // don't count this item if it's selected, because only other items should be counted
+      otherSelectedItemsCount -= 1;
+    }
 
-    const otherItemsSelected = activeCount > 0;
-    if ((!otherItemsSelected && !toBoolean(item.active)) || (toBoolean(this.multiple) && !toBoolean(item.active))) {
-      this.selectItem(item);
-    } else if ((!toBoolean(this.mandatory) && toBoolean(item.active)) || (otherItemsSelected && toBoolean(item.active))) {
+    const areOtherItemsSelected = otherSelectedItemsCount > 0;
+
+    // See README.md for explanation of this logic
+    if ((!areOtherItemsSelected && !toBoolean(item.active)) || (toBoolean(this.multiple) && !toBoolean(item.active))) {
+      if (this.max === undefined) {
+        this.selectItem(item);
+      } else if (activeCount < this.max) {
+        this.selectItem(item);
+      }
+    } else if ((!toBoolean(this.mandatory) && toBoolean(item.active)) || (areOtherItemsSelected && toBoolean(item.active))) {
       this.deselectItem(item);
-    } else if ((!toBoolean(this.multiple) && !otherItemsSelected) || !toBoolean(item.active)) {
+    } else if ((!toBoolean(this.multiple) && !areOtherItemsSelected) || !toBoolean(item.active)) {
       this.deselectAll();
       this.selectItem(item);
     }
-  }
+    this.onChange(this.getActiveIndices());
+  };
 
-  public selectItem(item: ListItemComponent) {
+  private selectItem(item: ListItemComponent) {
     item.active = true;
-    this.activeCount += 1;
   }
 
-  public deselectItem(item: ListItemComponent) {
+  private deselectItem(item: ListItemComponent) {
     item.active = false;
-    this.activeCount -= 1;
   }
 
-  public deselectAll() {
-    this.items?.forEach(item => (item.active = false));
-    this.activeCount = 0;
+  private deselectAll() {
+    this.itemGroupItems$.value.forEach(item => (item.active = false));
+  }
+
+  private activateAllIndices(indices: number[]) {
+    this.itemGroupItems$.value.forEach((item, index) => {
+      if (indices.includes(index)) {
+        item.active = true;
+      } else {
+        item.active = false;
+      }
+    });
+  }
+
+  private getActiveIndices(): number[] {
+    return this.itemGroupItems$.value
+      .map((item, index) => ({ item, index }))
+      .filter(({ item }) => toBoolean(item.active))
+      .map(({ index }) => index);
+  }
+
+  public ngAfterViewInit(): void {
+    if (this.allSlots) {
+      this.allSlots.changes
+        .pipe(
+          untilDestroyed(this),
+          startWith(this.allSlots),
+          map(slots => slots as ListItemComponent[]),
+          tap(items => {
+            items.forEach(item => {
+              this.createItemClickHandler(item);
+            });
+            setTimeout(() => this.itemGroupItems$.next(items), 0);
+          })
+        )
+        .subscribe();
+    }
   }
 }
