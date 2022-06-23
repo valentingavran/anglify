@@ -14,7 +14,6 @@
     "src/modules/checkbox/*.scss",
     "src/modules/chip/*.scss",
     "src/modules/dialog/*.scss",
-    "src/modules/form-field/*.scss",
     "src/modules/icon/*.scss",
     "src/modules/item-group/*.scss",
     "src/modules/list/*.scss",

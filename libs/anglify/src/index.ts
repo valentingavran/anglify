@@ -65,12 +65,6 @@ export * from './modules/dialog/dialog-options.interface';
 export * from './modules/dialog/dialog.component';
 export * from './modules/dialog/dialog.service';
 export * from './modules/dialog/dialog.module';
-// Form Field
-export * from './modules/form-field/directives/input.directive';
-export * from './modules/form-field/form-field-settings.token';
-export * from './modules/form-field/form-field.component';
-export * from './modules/form-field/form-field.interface';
-export * from './modules/form-field/form-field.module';
 // Icon
 export * from './modules/icon/icon-settings.token';
 export * from './modules/icon/icon.component';
