@@ -31,6 +31,7 @@ export class DialogService {
     scrollStrategy: this.overlay.scrollStrategies.block(),
     hasBackdrop: true,
     backdropClass: 'anglify-dialog-backdrop',
+    panelClass: 'anglify-dialog-pane',
   });
 
   public constructor(
@@ -79,7 +80,7 @@ export class DialogService {
         })
       );
       overlayRef.attach(componentRef);
-      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith());
+      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith('internal.backdrop'));
       this.appRef.attachView(viewRef);
 
       return () => {

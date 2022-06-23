@@ -1,19 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ToolbarPageComponent } from './toolbar-page.component';
-
-describe('ToolbarPageComponent', () => {
-  let component: ToolbarPageComponent;
-  let fixture: ComponentFixture<ToolbarPageComponent>;
+import { TableComponent } from './table.component';
+describe('TableComponent', () => {
+  let component: TableComponent;
+  let fixture: ComponentFixture<TableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToolbarPageComponent],
+      declarations: [TableComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToolbarPageComponent);
+    fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

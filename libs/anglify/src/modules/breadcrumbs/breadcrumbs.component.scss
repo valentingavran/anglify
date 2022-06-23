@@ -1,0 +1,33 @@
+@use 'variables' as *;
+
+:host {
+  display: flex;
+  align-items: center;
+  user-select: none;
+
+  a {
+    color: $breadcrumbs-inactive-color;
+    font: $breadcrumbs-text-font;
+    letter-spacing: $breadcrumbs-text-letter-spacing;
+    text-decoration: none;
+    text-transform: $breadcrumbs-text-transform;
+  }
+
+  .active {
+    color: $breadcrumbs-active-color;
+  }
+
+  .divider {
+    padding: $breadcrumbs-divider-padding;
+    color: $breadcrumbs-inactive-color;
+    font: $breadcrumbs-divider-font;
+    letter-spacing: $breadcrumbs-divider-letter-spacing;
+    text-decoration: none;
+    text-transform: $breadcrumbs-divider-transform;
+  }
+
+  .disabled {
+    color: $breadcrumbs-disabled-color;
+    cursor: not-allowed;
+  }
+}

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS } from './progress-circular-settings.token';
-import type { EntireProgressCircularSettings } from './progress-circular.interface';
+import { EntireProgressCircularSettings } from './progress-circular.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import { BooleanLike } from '../../utils/interfaces';

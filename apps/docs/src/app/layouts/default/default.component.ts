@@ -63,6 +63,10 @@ export class DefaultComponent {
       name: 'Bottom Navigation',
     },
     {
+      link: 'components/breadcrumbs',
+      name: 'Breadcrumbs',
+    },
+    {
       link: 'components/button',
       name: 'Button',
     },

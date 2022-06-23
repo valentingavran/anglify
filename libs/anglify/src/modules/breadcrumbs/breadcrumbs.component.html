@@ -1,0 +1,15 @@
+<ng-container *ngFor="let item of items">
+  <a
+    *ngIf="!item.disabled"
+    [routerLink]="item.routerLink"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="matchOptions"
+    [href]="item.href"
+  >
+    {{ item.text }}
+  </a>
+  <a *ngIf="item.disabled" class="disabled" routerLinkActive="active" [routerLinkActiveOptions]="matchOptions">{{ item.text }}</a>
+  <div *ngIf="isLastItem(item) === false" class="divider">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'divider'">{{ divider }}</ng-container>
+  </div>
+</ng-container>

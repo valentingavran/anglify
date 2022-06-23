@@ -18,7 +18,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { InputDirective } from './directives/input.directive';
 import { DEFAULT_FORM_FIELD_SETTINGS, FORM_FIELD_SETTINGS } from './form-field-settings.token';
-import type { EntireFormFieldSettings, FormFieldType } from './form-field.interface';
+import { EntireFormFieldSettings, FormFieldType } from './form-field.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { toBoolean } from '../../utils/functions';
 import type { BooleanLike } from '../../utils/interfaces';
@@ -182,7 +182,7 @@ export class FormFieldComponent implements AfterViewInit {
         )
         .subscribe();
     } else {
-      throw new Error('An input field that has an anglifyInput directive must be added to the anglify-form-field component for it to work');
+      console.warn('An input field that has an anglifyInput directive must be added to the anglify-form-field component for it to work');
     }
   }
 }

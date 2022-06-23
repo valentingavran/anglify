@@ -1,0 +1,10 @@
+$breadcrumbs-active-color: var(--anglify-breadcrumbs-active-color, var(--color-primary)) !default;
+$breadcrumbs-inactive-color: var(--anglify-breadcrumbs-inactive-color, var(--color-on-surface-medium-emphasis)) !default;
+$breadcrumbs-text-font: var(--anglify-breadcrumbs-text-font, var(--font-body-2)) !default;
+$breadcrumbs-text-letter-spacing: var(--anglify-breadcrumbs-text-letter-spacing, var(--font-letter-spacing-body-2)) !default;
+$breadcrumbs-text-transform: var(--anglify-breadcrumbs-text-transform, var(--font-text-transform-body-2)) !default;
+$breadcrumbs-divider-font: var(--anglify-breadcrumbs-divider-font, var(--font-body-2)) !default;
+$breadcrumbs-divider-letter-spacing: var(--anglify-breadcrumbs-divider-letter-spacing, var(--font-letter-spacing-body-2)) !default;
+$breadcrumbs-divider-transform: var(--anglify-breadcrumbs-divider-transform, var(--font-text-transform-body-2)) !default;
+$breadcrumbs-divider-padding: var(--anglify-breadcrumbs-divider-padding, 0 12px) !default;
+$breadcrumbs-disabled-color: var(--anglify-breadcrumbs-disabled-color, var(--color-on-surface-low-emphasis)) !default;

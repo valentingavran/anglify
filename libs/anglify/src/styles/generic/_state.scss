@@ -1,11 +1,12 @@
 .anglify-state {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   outline: none;
 
   .anglify-state-container {
     position: absolute;
-    z-index: 0;
+    z-index: -1;
     overflow: hidden;
     border-radius: inherit;
     contain: strict;
@@ -15,7 +16,7 @@
 
   .anglify-state-ripple {
     position: absolute;
-    background-color: var(--anglify-ripple-color, var(--color-ripple));
+    background-color: var(--color-ripple);
     border-radius: 50%;
     transform: scale(0);
     transition-delay: 70ms; // Ripple is slightly delayed, to handle route changes better

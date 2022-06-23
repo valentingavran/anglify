@@ -11,16 +11,19 @@ import {
   QueryList,
   Self,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { BehaviorSubject, filter, map, merge, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
 import { toBoolean } from '../../../../utils/functions';
-import { BooleanLike } from '../../../../utils/interfaces';
+import { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { DEFAULT_TAB_SETTINGS, TAB_SETTINGS } from '../../tab-settings.token';
 import { EntireTabSettings } from '../../tab.interface';
 
+@UntilDestroy()
 @Component({
   selector: 'anglify-tab',
   templateUrl: './tab.component.html',
@@ -65,15 +68,41 @@ export class TabComponent implements AfterViewInit {
     return this.rippleService.state;
   }
 
+  @Input() public set routerLink(commands: RouterLinkCommands) {
+    this.routerLink$.next(commands);
+  }
+
+  public get routerLink() {
+    return this.routerLink$.value;
+  }
+
+  /**
+   * If this option is set, the list item will not be displayed as a link even if the [routerLink]
+   * property is set.
+   */
+  @Input() public inactive: BooleanLike = false;
+
+  /**
+   * Exactly match the link. Without this, `/user/profile/` will match for example every
+   * user sub-route too (like `/user/profile/edit`).
+   */
+  @Input() public exact: BooleanLike = false;
+
   @Output() public activeChange = new EventEmitter<void>();
+
+  public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
   public constructor(
     @Self() @Inject('anglifyTabSettings') public settings: EntireTabSettings,
     public readonly elementRef: ElementRef<HTMLElement>,
-    private readonly rippleService: RippleService
+    private readonly rippleService: RippleService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {
     this.ripple = this.settings.ripple;
     this.state = this.settings.state;
+
+    this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
   public ngAfterViewInit(): void {
@@ -98,6 +127,33 @@ export class TabComponent implements AfterViewInit {
         });
       }
       return false;
+    });
+  }
+
+  private readonly routerLinkHandler$ = merge(
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)),
+    this.routerLink$
+  ).pipe(
+    filter(() => !toBoolean(this.inactive)),
+    switchMap(() => this.routerLink$),
+    map(routerLink => this.isRouteActive(routerLink)),
+    tap(isActive => this._active$.next(isActive))
+  );
+
+  private isRouteActive(route: RouterLinkCommands) {
+    if (!route) return false;
+
+    let url;
+    if (route instanceof Array) {
+      url = this.router.createUrlTree(route);
+    } else {
+      url = this.router.createUrlTree([route], { relativeTo: this.route });
+    }
+    return this.router.isActive(url, {
+      paths: toBoolean(this.exact) ? 'exact' : 'subset',
+      matrixParams: 'ignored',
+      queryParams: 'ignored',
+      fragment: 'ignored',
     });
   }
 }

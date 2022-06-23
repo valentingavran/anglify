@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ListItemTitleComponent } from './list-item-title.component';
 
-import { ShiftComponent } from './shift.component';
-
-describe('ShiftComponent', () => {
-  let component: ShiftComponent;
-  let fixture: ComponentFixture<ShiftComponent>;
+describe('ListItemTitleComponent', () => {
+  let component: ListItemTitleComponent;
+  let fixture: ComponentFixture<ListItemTitleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ShiftComponent],
+      declarations: [ListItemTitleComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShiftComponent);
+    fixture = TestBed.createComponent(ListItemTitleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

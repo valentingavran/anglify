@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BadgePageComponent } from './badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './bottom-navigation-page/bottom-navigation-page.component';
+import { BreadcrumbsPageComponent } from './breadcrumbs-page/breadcrumbs-page.component';
 import { ButtonPageComponent } from './button-page/button-page.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
@@ -111,6 +112,10 @@ const routes: Routes = [
   {
     path: 'badge',
     component: BadgePageComponent,
+  },
+  {
+    path: 'breadcrumbs',
+    component: BreadcrumbsPageComponent,
   },
 ];
 
