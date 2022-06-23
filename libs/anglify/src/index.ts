@@ -28,6 +28,11 @@ export * from './modules/bottom-navigation/components/bottom-navigation-item/bot
 export * from './modules/button/button.component';
 export * from './modules/button/button.interface';
 export * from './modules/button/button.module';
+// Breadcrumbs
+export * from './modules/breadcrumbs/breadcrumbs-settings.token';
+export * from './modules/breadcrumbs/breadcrumbs.component';
+export * from './modules/breadcrumbs/breadcrumbs.interface';
+export * from './modules/breadcrumbs/breadcrumbs.module';
 // Card
 export * from './modules/card/card-settings.token';
 export * from './modules/card/card.component';
