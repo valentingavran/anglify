@@ -9,6 +9,7 @@
     "src/modules/badge/*.scss",
     "src/modules/bottom-navigation/*.scss",
     "src/modules/button/*.scss",
+    "src/modules/breadcrumbs/*.scss",
     "src/modules/card/*.scss",
     "src/modules/checkbox/*.scss",
     "src/modules/chip/*.scss",
