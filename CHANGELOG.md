@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.3](https://github.com/valentingavran/anglify/compare/v0.21.2...v0.21.3) (2022-06-23)
+
+
+### 🐛  Bug Fixes
+
+* **ListItemGroup:** selected indices can now be accessed by FormControls ([025c1bb](https://github.com/valentingavran/anglify/commit/025c1bbcf37b7a20cf27e25bf90f467e100d3641))
+
 ### [0.21.2](https://github.com/valentingavran/anglify/compare/v0.21.1...v0.21.2) (2022-06-23)
 
 
