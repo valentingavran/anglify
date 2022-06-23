@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.2](https://github.com/valentingavran/anglify/compare/v0.21.1...v0.21.2) (2022-06-23)
+
+
+### 🛠  Other Commmits
+
+* add missing test files ([e96dc50](https://github.com/valentingavran/anglify/commit/e96dc50feb2973e2ecb23f1186795110b9c8254f))
+
+
+### 🐛  Bug Fixes
+
+* **dialog:** backdrop clicking reason and pane class ([4542aa3](https://github.com/valentingavran/anglify/commit/4542aa3d02a05b1d373c1944fbafa92e0580087c))
+* **Ripple:** ripples are now behind texts ([b834a68](https://github.com/valentingavran/anglify/commit/b834a68d4ed9b88e8b8bf6a11f88f7d215cc3b56))
+
+
+### 🚀  Features
+
+* add breadcrumbs component ([5c3a382](https://github.com/valentingavran/anglify/commit/5c3a3821b0fc9845bb60d81007fa762ea8bbaf01))
+* **Tabs:** add support for routerLinks ([514f1ff](https://github.com/valentingavran/anglify/commit/514f1ff31bd557ab36c9f7d96582dffeb945c5c5))
+
 ### [0.21.1](https://github.com/valentingavran/anglify/compare/v0.21.0...v0.21.1) (2022-06-07)
 
 
