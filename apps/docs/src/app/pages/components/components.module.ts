@@ -23,6 +23,7 @@ import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
+import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 import { BadgeExampleModule } from '../../examples/badge/badge-example.module';
@@ -45,6 +46,7 @@ import { SnackbarExamplesModule } from '../../examples/snackbar/snackbar-example
 import { StepperExamplesModule } from '../../examples/stepper/stepper-examples.module';
 import { TabExamplesModule } from '../../examples/tab/tab-examples.module';
 import { TableExamplesModule } from '../../examples/table/table-examples.module';
+import { TextFieldExamplesModule } from '../../examples/text-field/text-field-examples.module';
 import { ToolbarExampleModule } from '../../examples/toolbar/toolbar-example.module';
 import { TooltipExamplesModule } from '../../examples/tooltip/tooltip-examples.module';
 import { SharedModule } from '../../modules/shared/shared.module';
@@ -73,6 +75,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ChipPageComponent,
     TabPageComponent,
     BreadcrumbsPageComponent,
+    TextFieldPageComponent,
   ],
   imports: [
     CommonModule,
@@ -100,7 +103,9 @@ import { SharedModule } from '../../modules/shared/shared.module';
     CardExamplesModule,
     TabExamplesModule,
     BreadcrumbsExampleModule,
+    TextFieldExamplesModule,
     // Imports for Playground
+    TextFieldModule,
     IconModule,
     TextFieldModule,
     ReactiveFormsModule,
