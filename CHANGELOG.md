@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.22.0](https://github.com/valentingavran/anglify/compare/v0.21.3...v0.22.0) (2022-06-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **completeWith:** The completeWith function for Dialogs and Snackbars now requires passing an object
+with `{ reason: string; data?: any | unknown }`, where reason is the reason for closing/sending
+(required) and data is the arbitrary data that is passed.
+This allows for a consistent interface instead of a possible union type of
+`string | unknown | undefined`, which made it much harder to check what was being returned or why
+the Dialog/Snackbar action completed
+* The Form Field component has been removed. Instead you should use the Text Field
+and the Text Area component
+
+### 🐛  Bug Fixes
+
+* **Stepper:** horizontal step header items will fill the full width now ([3053324](https://github.com/valentingavran/anglify/commit/3053324ebe3d14a6d9a7ca112b881d1930722deb))
+
+
+### 📝  Docs
+
+* add text area page and examples ([1593cd4](https://github.com/valentingavran/anglify/commit/1593cd43d8ccd64ab1fa5b0d9a548b9284749cdd))
+* add text field page and examples ([292c2b5](https://github.com/valentingavran/anglify/commit/292c2b53934a3accf91aa5ade8cfbe42a6a731b1))
+* remove form field page and examples ([bc0a31e](https://github.com/valentingavran/anglify/commit/bc0a31ea50a0e2b47e3d5a1611e830cd25ac3c45))
+* **Stepper:** add custom visited icon example ([a032303](https://github.com/valentingavran/anglify/commit/a032303806dc8c67a1bd9a2d668f70f15203d878))
+
+
+### 🚀  Features
+
+* create text field & text area components ([0f4f772](https://github.com/valentingavran/anglify/commit/0f4f772665febc8f9c4d0cb57942acd39a36add7))
+* expose frequently used form control validators ([33421ee](https://github.com/valentingavran/anglify/commit/33421ee86862562754d6ce894e119aa23b6bec71))
+
+
+### 🔬  Code Refactoring
+
+* **completeWith:** modal data and snackbar data format ([0a6f86e](https://github.com/valentingavran/anglify/commit/0a6f86ec5ddb1172d964b03676b1a25792a04aa3))
+* remove form field component ([d536e32](https://github.com/valentingavran/anglify/commit/d536e32507378591bd6634f56ff1af85c0f79a2d))
+* replace [@import](https://github.com/import) with [@use](https://github.com/use) everywhere ([5fdf7d1](https://github.com/valentingavran/anglify/commit/5fdf7d15706db03c34e72a6eed4ce9d04257dd04))
+
+
+### 🛠  Other Commmits
+
+* update deps and add cpy-cli and rimraf for cross-platform compatability ([9ea98c0](https://github.com/valentingavran/anglify/commit/9ea98c0ea3cc0e896b4887c99b51cd5579db57aa))
+
 ### [0.21.3](https://github.com/valentingavran/anglify/compare/v0.21.2...v0.21.3) (2022-06-23)
 
 
