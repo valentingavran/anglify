@@ -1,4 +1,4 @@
-import { CheckboxModule, FormFieldModule, IconModule, ProgressLinearModule, RadioButtonModule, TableModule } from '@anglify/components';
+import { CheckboxModule, IconModule, ProgressLinearModule, RadioButtonModule, TableModule } from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +11,6 @@ import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
-import { FormFieldPageComponent } from './form-field-page/form-field-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
 import { ItemGroupPageComponent } from './item-group-page/item-group-page.component';
 import { ListPageComponent } from './list-page/list-page.component';
@@ -34,7 +33,6 @@ import { CardExamplesModule } from '../../examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from '../../examples/checkbox/checkbox-examples.module';
 import { ChipExamplesModule } from '../../examples/chip/chip-examples.module';
 import { DialogExamplesModule } from '../../examples/dialog/dialog-examples.module';
-import { FormFieldExamplesModule } from '../../examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from '../../examples/icon/icon-examples.module';
 import { ItemGroupExamplesModule } from '../../examples/item-group/item-group-examples.module';
 import { ListExamplesModule } from '../../examples/list/list-examples.module';
@@ -54,7 +52,6 @@ import { SharedModule } from '../../modules/shared/shared.module';
 @NgModule({
   declarations: [
     ButtonPageComponent,
-    FormFieldPageComponent,
     IconPageComponent,
     TooltipPageComponent,
     StepperPageComponent,
@@ -94,7 +91,6 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TableExamplesModule,
     ProgressLinearExamplesModule,
     ButtonExamplesModule,
-    FormFieldExamplesModule,
     IconExamplesModule,
     StepperExamplesModule,
     TooltipExamplesModule,
@@ -106,7 +102,6 @@ import { SharedModule } from '../../modules/shared/shared.module';
     BreadcrumbsExampleModule,
     // Imports for Playground
     IconModule,
-    FormFieldModule,
     ReactiveFormsModule,
     FormsModule,
     ProgressLinearModule,
