@@ -1,18 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
-
-class Validators {
-  public static required(control: AbstractControl): ValidationErrors | null {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const value = control.value;
-    if (value === null || value === undefined || value === '') {
-      return {
-        message: 'This field is required',
-      };
-    }
-    return null;
-  }
-}
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-server-error-handling',

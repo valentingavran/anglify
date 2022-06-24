@@ -10,6 +10,7 @@ export * from './composables/ripple/ripple.provider';
 export * from './composables/ripple/ripple.service';
 // Utils
 export * from './utils/animations';
+export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
 // Badge
