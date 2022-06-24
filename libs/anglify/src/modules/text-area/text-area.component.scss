@@ -1,0 +1,77 @@
+:host {
+  --anglify-input-outlined-label-start-offset: 16px;
+  --anglify-input-outlined-label-end-offset: 16px;
+  --anglify-input-filled-label-start-offset: 16px;
+  --anglify-input-filled-label-end-offset: 16px;
+  --anglify-input-min-height-dense: 32px;
+  --anglify-input-filled-label-top-distance-inactive: 28px;
+  --anglify-input-outlined-label-top-distance: 28px;
+
+  anglify-input {
+    ::ng-deep textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      background-color: transparent;
+      caret-color: var(--color-primary);
+      color: var(--color-on-surface-high-emphasis);
+      font: var(--font-body-1);
+      letter-spacing: var(--font-letter-spacing-body-1);
+      outline: none;
+      resize: vertical;
+      text-transform: var(--font-text-transform-body-1);
+
+      &::placeholder {
+        color: transparent;
+        transition: color 0.2s ease-in-out;
+      }
+
+      &:disabled {
+        color: var(--color-on-surface-medium-emphasis);
+      }
+    }
+
+    &.anglify-input-focused {
+      ::ng-deep textarea::placeholder {
+        color: var(--color-on-surface-medium-emphasis);
+      }
+    }
+
+    &.anglify-input-floating,
+    &.anglify-input-always-floating-label {
+      ::ng-deep textarea::placeholder {
+        color: var(--color-on-surface-medium-emphasis);
+      }
+
+      &.anglify-input-disabled {
+        ::ng-deep textarea::placeholder {
+          color: var(--color-on-surface-low-emphasis);
+        }
+      }
+    }
+
+    &.anglify-input-filled {
+      --anglify-input-min-height: calc(56px - 24px);
+
+      ::ng-deep textarea {
+        min-height: var(--anglify-input-min-height);
+        padding: 0;
+        margin-top: 24px;
+        padding-inline-end: var(--anglify-input-filled-label-end-offset);
+        padding-inline-start: var(--anglify-input-filled-label-start-offset);
+      }
+    }
+
+    &.anglify-input-outlined {
+      --anglify-input-min-height: calc(56px - var(--anglify-input-outlined-label-start-offset));
+
+      ::ng-deep textarea {
+        min-height: var(--anglify-input-min-height);
+        padding: 0;
+        margin-top: var(--anglify-input-outlined-label-start-offset);
+        padding-inline-end: var(--anglify-input-outlined-label-end-offset);
+        padding-inline-start: var(--anglify-input-outlined-label-start-offset);
+      }
+    }
+  }
+}
