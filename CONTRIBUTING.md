@@ -242,7 +242,7 @@ Must be one of the following:
 - **perf**: A code change that improves performance
 - **test**: Adding missing tests or correcting existing tests
 - **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- **ci**: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs
+- **ci**: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
 - **chore**: Other changes that don't modify src or test files
 - **revert**: Reverts a previous commit
 

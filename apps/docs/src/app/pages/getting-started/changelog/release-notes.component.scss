@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .release {
+    padding: 2rem;
+    border: 1px solid var(--border-color-on-surface-low-emphasis);
+    border-radius: 14px;
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3rem;
+      gap: 1rem;
+
+      h2 {
+        margin: 0;
+
+        a {
+          color: var(--color-on-surface-high-emphasis);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  anglify-chip {
+    color: #bf8700;
+    font-size: 14px;
+
+    --anglify-chip-height: 14px;
+    --anglify-chip-padding: 5px 10px;
+    --anglify-chip-outlined-border: 1px solid #bf8700;
+  }
+}
+
+:host-context(.dark) {
+  anglify-chip {
+    color: #d29922;
+
+    --anglify-chip-outlined-border: 1px solid #d29922;
+  }
+}
