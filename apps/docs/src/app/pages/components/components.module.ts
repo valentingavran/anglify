@@ -21,7 +21,7 @@ import { ProgressCircularPageComponent } from './progress-circular-page/progress
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
-import { StepperComponent } from './stepper/stepper.component';
+import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
@@ -57,7 +57,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     FormFieldPageComponent,
     IconPageComponent,
     TooltipPageComponent,
-    StepperComponent,
+    StepperPageComponent,
     ListPageComponent,
     MenuPageComponent,
     CardPageComponent,

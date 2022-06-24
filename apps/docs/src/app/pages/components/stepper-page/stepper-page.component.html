@@ -8,6 +8,7 @@
   Steppers display progress through a sequence of logical and numbered steps. They may also be used for navigation. Steppers may display a
   transient feedback message after a step is saved.
 </p>
+<p>The individual Anglify Steps are loaded lazily.</p>
 
 <h2>Examples</h2>
 
@@ -16,6 +17,13 @@
 
 <h3>Horizontal Stepper</h3>
 <app-code-example component="stepper" example="horizontal-stepper"></app-code-example>
+
+<h3>Custom visited icon</h3>
+<p>
+  Jump to the next step so that you can see the custom icon in the indicator. However, you don't necessarily have to pass Anglify symbols.
+  You can just as easily pass SVGs or completely different content.
+</p>
+<app-code-example component="stepper" example="custom-icon"></app-code-example>
 
 <h2>API</h2>
 <h3>Styling</h3>
