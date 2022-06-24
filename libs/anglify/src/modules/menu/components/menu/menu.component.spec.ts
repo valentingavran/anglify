@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { POSITION_SETTINGS } from 'libs/anglify/src/composables/position/position.token';
 import { MenuComponent } from './menu.component';
+import { POSITION_SETTINGS } from '../../../../composables/position/position.token';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;

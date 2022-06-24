@@ -1,0 +1,97 @@
+@use 'variables' as *;
+
+@mixin anglify-input-filled {
+  .anglify-input {
+    position: relative;
+    overflow: hidden;
+    background: $input-filled-background;
+
+    // Border bottom inactive
+    &::before {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-inactive;
+      content: '';
+    }
+
+    // Border bottom focused
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      border-bottom: $input-filled-border-width-focused solid $input-filled-border-color-focused;
+      margin: auto;
+      content: '';
+      transition: width 0.2s cubic-bezier(0.25, 0.8, 0.5, 1);
+    }
+
+    label {
+      top: $input-filled-label-top-distance-inactive;
+      left: calc(#{$input-prepend-width} + #{$input-filled-label-start-offset});
+      width: calc(100% / #{$input-filled-label-scale-factor} - #{$input-prepend-width} - #{$input-filled-label-start-offset});
+      color: $input-filled-label-color-inactive;
+      transform: translateY(-50%) scale($input-filled-label-scale-factor);
+    }
+
+    .notch {
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  &.anglify-input-floating,
+  &.anglify-input-always-floating-label,
+  &.anglify-input-focused {
+    .anglify-input {
+      label {
+        top: 0;
+        width: calc(100% - #{$input-prepend-width} - #{$input-filled-label-start-offset} - #{$input-filled-label-end-offset});
+        transform: scale(1) translateY($input-filled-label-top-distance-focused);
+      }
+    }
+  }
+
+  &.anglify-input-disabled {
+    .anglify-input {
+      label {
+        color: $input-filled-label-color-disabled;
+      }
+    }
+  }
+
+  &.anglify-input-focused:not(.anglify-input-disabled) {
+    .anglify-input {
+      &::after {
+        width: 100%;
+      }
+
+      label {
+        color: $input-filled-label-color-focused;
+      }
+    }
+  }
+
+  &:not(.anglify-input-focused):not(.anglify-input-disabled) {
+    .anglify-input {
+      &:hover {
+        --state-container-color: #{$input-filled-state-color-hover};
+
+        &::before {
+          border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-hover;
+        }
+      }
+    }
+  }
+
+  .anglify-input-prepend-inner {
+    padding-inline-start: $input-filled-label-start-offset;
+  }
+
+  .anglify-input-append-inner {
+    padding-inline-end: $input-filled-label-end-offset;
+  }
+}

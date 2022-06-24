@@ -1,0 +1,31 @@
+<anglify-input
+  [appearance]="appearance"
+  #anglifyInput
+  [hint]="hint"
+  [persistentHint]="persistentHint | booleanLikeToBoolean"
+  [alwaysFloatingLabel]="alwaysFloatingLabel | booleanLikeToBoolean"
+  [hideDetails]="hideDetails | booleanLikeToBoolean"
+  [counter]="counter | booleanLikeToBoolean"
+  [length]="(input?.length$ | async) || 0"
+  [maxLength]="(input?.maxLength$ | async) || undefined"
+  [dense]="dense | booleanLikeToBoolean"
+  [error]="error"
+  [inputId]="input?.id"
+>
+  <ng-template slot="prepend">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
+  </ng-template>
+  <ng-template slot="prepend-inner">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
+  </ng-template>
+  <ng-template slot="append-inner">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'"></ng-container>
+  </ng-template>
+  <ng-template slot="append">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'append'"></ng-container>
+  </ng-template>
+  <ng-template slot="label">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'label'">{{ label }}</ng-container>
+  </ng-template>
+  <ng-content></ng-content>
+</anglify-input>

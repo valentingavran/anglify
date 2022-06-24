@@ -1,0 +1,49 @@
+@use 'variables' as *;
+
+@mixin details {
+  .anglify-input-details {
+    display: flex;
+    overflow: hidden;
+    min-height: $input-details-min-height;
+    margin-top: $input-gap;
+    font: var(--font-caption);
+    gap: $input-gap;
+    grid-area: details;
+    letter-spacing: var(--font-letter-spacing-caption);
+    text-transform: var(--font-text-transform-caption);
+
+    .hint {
+      overflow: hidden;
+      flex: 1;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      text-overflow: ellipsis;
+      transform: translateY(-100%);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+
+  &.anglify-input-hide-details .anglify-input-details {
+    display: none;
+  }
+
+  &.anglify-input-persistent-hint,
+  &.anglify-input-focused {
+    .anglify-input-details .hint {
+      transform: translateY(0);
+    }
+  }
+
+  &.anglify-input-filled {
+    .anglify-input-details {
+      padding-inline-start: $input-filled-label-start-offset;
+    }
+  }
+
+  &.anglify-input-outlined {
+    .anglify-input-details {
+      padding-inline-start: $input-outlined-label-start-offset;
+    }
+  }
+}

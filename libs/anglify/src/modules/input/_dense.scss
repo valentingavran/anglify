@@ -1,0 +1,15 @@
+@use 'variables' as *;
+
+@mixin dense {
+  &.anglify-input-dense {
+    .anglify-input {
+      min-height: var(--anglify-input-min-height-dense);
+    }
+  }
+
+  &.anglify-input-filled {
+    &.anglify-input-dense {
+      --anglify-input-filled-label-top-distance-focused: 2px;
+    }
+  }
+}

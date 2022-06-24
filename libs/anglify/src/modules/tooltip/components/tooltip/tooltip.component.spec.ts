@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { POSITION_SETTINGS } from 'libs/anglify/src/composables/position/position.token';
 import { TooltipComponent } from './tooltip.component';
+import { POSITION_SETTINGS } from '../../../../composables/position/position.token';
 
 describe('TooltipComponent', () => {
   let component: TooltipComponent;

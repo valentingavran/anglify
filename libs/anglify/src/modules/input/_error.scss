@@ -1,0 +1,51 @@
+@use 'variables' as *;
+
+@mixin error {
+  &.anglify-input-outlined {
+    &.anglify-input-error:not(.anglify-input-disabled) {
+      .anglify-input {
+        --anglify-notched-outline-border-color: #{$input-error-color};
+
+        label {
+          color: $input-error-color;
+        }
+
+        &:hover {
+          --anglify-notched-outline-border-width: #{$input-outlined-border-width-focused};
+        }
+      }
+    }
+  }
+
+  &.anglify-input-filled {
+    &.anglify-input-error:not(.anglify-input-disabled) {
+      /* stylelint-disable-next-line no-descending-specificity */
+      .anglify-input {
+        label {
+          color: $input-error-color;
+        }
+
+        &::after,
+        &::before {
+          border-color: $input-error-color;
+        }
+
+        &:hover {
+          &::before {
+            border-color: $input-error-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.anglify-input-error:not(.anglify-input-disabled) {
+    .anglify-input-details {
+      color: $input-error-color;
+
+      .hint {
+        transform: translateY(0);
+      }
+    }
+  }
+}

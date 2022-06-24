@@ -1,4 +1,4 @@
-import { CheckboxModule, FormFieldModule, IconModule, ProgressLinearModule, RadioButtonModule, TableModule } from '@anglify/components';
+import { CheckboxModule, IconModule, ProgressLinearModule, RadioButtonModule, TableModule, TextFieldModule } from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +11,6 @@ import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
-import { FormFieldPageComponent } from './form-field-page/form-field-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
 import { ItemGroupPageComponent } from './item-group-page/item-group-page.component';
 import { ListPageComponent } from './list-page/list-page.component';
@@ -21,9 +20,11 @@ import { ProgressCircularPageComponent } from './progress-circular-page/progress
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
-import { StepperComponent } from './stepper/stepper.component';
+import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
+import { TextAreaPageComponent } from './text-area-page/text-area-page.component';
+import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 import { BadgeExampleModule } from '../../examples/badge/badge-example.module';
@@ -34,7 +35,6 @@ import { CardExamplesModule } from '../../examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from '../../examples/checkbox/checkbox-examples.module';
 import { ChipExamplesModule } from '../../examples/chip/chip-examples.module';
 import { DialogExamplesModule } from '../../examples/dialog/dialog-examples.module';
-import { FormFieldExamplesModule } from '../../examples/form-field/form-field-examples.module';
 import { IconExamplesModule } from '../../examples/icon/icon-examples.module';
 import { ItemGroupExamplesModule } from '../../examples/item-group/item-group-examples.module';
 import { ListExamplesModule } from '../../examples/list/list-examples.module';
@@ -47,6 +47,8 @@ import { SnackbarExamplesModule } from '../../examples/snackbar/snackbar-example
 import { StepperExamplesModule } from '../../examples/stepper/stepper-examples.module';
 import { TabExamplesModule } from '../../examples/tab/tab-examples.module';
 import { TableExamplesModule } from '../../examples/table/table-examples.module';
+import { TextAreaExamplesModule } from '../../examples/text-area/text-area-examples.module';
+import { TextFieldExamplesModule } from '../../examples/text-field/text-field-examples.module';
 import { ToolbarExampleModule } from '../../examples/toolbar/toolbar-example.module';
 import { TooltipExamplesModule } from '../../examples/tooltip/tooltip-examples.module';
 import { SharedModule } from '../../modules/shared/shared.module';
@@ -54,10 +56,9 @@ import { SharedModule } from '../../modules/shared/shared.module';
 @NgModule({
   declarations: [
     ButtonPageComponent,
-    FormFieldPageComponent,
     IconPageComponent,
     TooltipPageComponent,
-    StepperComponent,
+    StepperPageComponent,
     ListPageComponent,
     MenuPageComponent,
     CardPageComponent,
@@ -76,6 +77,8 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ChipPageComponent,
     TabPageComponent,
     BreadcrumbsPageComponent,
+    TextFieldPageComponent,
+    TextAreaPageComponent,
   ],
   imports: [
     CommonModule,
@@ -94,7 +97,8 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TableExamplesModule,
     ProgressLinearExamplesModule,
     ButtonExamplesModule,
-    FormFieldExamplesModule,
+    TextFieldExamplesModule,
+    TextAreaExamplesModule,
     IconExamplesModule,
     StepperExamplesModule,
     TooltipExamplesModule,
@@ -104,9 +108,11 @@ import { SharedModule } from '../../modules/shared/shared.module';
     CardExamplesModule,
     TabExamplesModule,
     BreadcrumbsExampleModule,
+    TextFieldExamplesModule,
     // Imports for Playground
+    TextFieldModule,
     IconModule,
-    FormFieldModule,
+    TextFieldModule,
     ReactiveFormsModule,
     FormsModule,
     ProgressLinearModule,

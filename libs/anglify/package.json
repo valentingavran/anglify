@@ -14,10 +14,10 @@
     "angular framework"
   ],
   "peerDependencies": {
-    "@angular/common": "^13.3.2",
-    "@angular/core": "^13.3.2"
+    "@angular/common": "^13.3.11",
+    "@angular/core": "^13.3.11"
   },
   "dependencies": {
-    "tslib": "^2.3.1"
+    "tslib": "^2.4.0"
   }
 }

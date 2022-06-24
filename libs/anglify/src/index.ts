@@ -10,6 +10,7 @@ export * from './composables/ripple/ripple.provider';
 export * from './composables/ripple/ripple.service';
 // Utils
 export * from './utils/animations';
+export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
 // Badge
@@ -65,17 +66,14 @@ export * from './modules/dialog/dialog-options.interface';
 export * from './modules/dialog/dialog.component';
 export * from './modules/dialog/dialog.service';
 export * from './modules/dialog/dialog.module';
-// Form Field
-export * from './modules/form-field/directives/input.directive';
-export * from './modules/form-field/form-field-settings.token';
-export * from './modules/form-field/form-field.component';
-export * from './modules/form-field/form-field.interface';
-export * from './modules/form-field/form-field.module';
 // Icon
 export * from './modules/icon/icon-settings.token';
 export * from './modules/icon/icon.component';
 export * from './modules/icon/icon.interface';
 export * from './modules/icon/icon.module';
+// Input
+export * from './modules/input/input.directive';
+export * from './modules/input/input.interface';
 // Item Group
 export * from './modules/item-group/item-group.component';
 export * from './modules/item-group/item-group.module';
@@ -138,6 +136,12 @@ export * from './modules/tab/tab.module';
 // Table
 export * from './modules/table/components/table/table.component';
 export * from './modules/table/table.module';
+// Text Area
+export * from './modules/text-area/text-area.component';
+export * from './modules/text-area/text-area.module';
+// Text Field
+export * from './modules/text-field/text-field.component';
+export * from './modules/text-field/text-field.module';
 // Tooltip
 export * from './modules/tooltip/tooltip-settings.token';
 export * from './modules/tooltip/tooltip.directive';

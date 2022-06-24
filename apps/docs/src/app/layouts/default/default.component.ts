@@ -87,10 +87,6 @@ export class DefaultComponent {
       name: 'Dialog',
     },
     {
-      link: 'components/form-field',
-      name: 'Form Field',
-    },
-    {
       link: 'components/icon',
       name: 'Icon',
     },
@@ -137,6 +133,14 @@ export class DefaultComponent {
     {
       link: 'components/tabs',
       name: 'Tabs',
+    },
+    {
+      link: 'components/text-area',
+      name: 'Text Area',
+    },
+    {
+      link: 'components/text-field',
+      name: 'Text Field',
     },
     {
       link: 'components/tooltip',

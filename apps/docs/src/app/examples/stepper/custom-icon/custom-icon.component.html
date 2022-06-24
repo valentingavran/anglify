@@ -1,0 +1,31 @@
+<anglify-stepper>
+  <ng-template anglifyStep label="First step">
+    <div class="container">
+      First step content
+      <div class="actions">
+        <button anglifyButton anglifyStepperNext>Continue</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template anglifyStep label="Second step">
+    <div class="container">
+      Second step content
+      <div class="actions">
+        <button anglifyButton anglifyStepperPrevious>Back</button>
+        <button anglifyButton anglifyStepperNext>Continue</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template anglifyStep label="Third step">
+    <div class="container">
+      Third step content
+      <div class="actions">
+        <button anglifyButton anglifyStepperPrevious>Back</button>
+        <button anglifyButton anglifyStepperNext>Continue</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template slot="visitedIcon">
+    <anglify-icon icon="mdi-check"></anglify-icon>
+  </ng-template>
+</anglify-stepper>

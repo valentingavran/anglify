@@ -8,7 +8,6 @@ import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
-import { FormFieldPageComponent } from './form-field-page/form-field-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
 import { ItemGroupPageComponent } from './item-group-page/item-group-page.component';
 import { ListPageComponent } from './list-page/list-page.component';
@@ -18,9 +17,11 @@ import { ProgressCircularPageComponent } from './progress-circular-page/progress
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
-import { StepperComponent } from './stepper/stepper.component';
+import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
+import { TextAreaPageComponent } from './text-area-page/text-area-page.component';
+import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 
@@ -45,10 +46,7 @@ const routes: Routes = [
     path: 'dialog',
     component: DialogPageComponent,
   },
-  {
-    path: 'form-field',
-    component: FormFieldPageComponent,
-  },
+
   {
     path: 'icon',
     component: IconPageComponent,
@@ -87,7 +85,7 @@ const routes: Routes = [
   },
   {
     path: 'stepper',
-    component: StepperComponent,
+    component: StepperPageComponent,
   },
   {
     path: 'table',
@@ -96,6 +94,14 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabPageComponent,
+  },
+  {
+    path: 'text-area',
+    component: TextAreaPageComponent,
+  },
+  {
+    path: 'text-field',
+    component: TextFieldPageComponent,
   },
   {
     path: 'tooltip',
