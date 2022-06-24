@@ -1,4 +1,4 @@
-@import '../mixins/elevation';
+@use '../mixins/elevation' as *;
 
 $z: 24;
 @while $z >= 0 {
