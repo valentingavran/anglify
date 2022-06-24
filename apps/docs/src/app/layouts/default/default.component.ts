@@ -87,10 +87,6 @@ export class DefaultComponent {
       name: 'Dialog',
     },
     {
-      link: 'components/form-field',
-      name: 'Form Field',
-    },
-    {
       link: 'components/icon',
       name: 'Icon',
     },
