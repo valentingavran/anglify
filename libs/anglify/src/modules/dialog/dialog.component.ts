@@ -27,7 +27,7 @@ export class DialogComponent implements OnInit {
     fromEvent<KeyboardEvent>(this.document.body, 'keyup')
       .pipe(filter(({ key }) => key === 'Escape'))
       .pipe(untilDestroyed(this))
-      .subscribe(() => this.context.completeWith());
+      .subscribe(() => this.context.completeWith({ reason: 'internal.escape' }));
 
     this.dialogElement.nativeElement.append(...this.nodes);
   }

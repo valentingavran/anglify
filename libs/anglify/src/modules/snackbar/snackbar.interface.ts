@@ -10,18 +10,23 @@ export interface EntireSnackbarSettings {
 
 export type SnackbarSettings = Partial<EntireSnackbarSettings>;
 
-export interface SnackbarData {
+export interface SnackbarInput {
   label?: string;
   actions?: { label?: string; id?: string };
 }
 
-export interface SnackbarOptions<T = SnackbarData & Record<string, unknown>> extends SnackbarSettings {
+export interface SnackbarOptions<T = SnackbarInput & Record<string, unknown>> extends SnackbarSettings {
   id: string;
   data?: T;
 }
 
-export interface SnackbarContext<T = SnackbarData> extends SnackbarOptions<T> {
-  completeWith: (result?: any) => void;
+export interface SnackbarData {
+  reason: string;
+  data?: unknown;
+}
+
+export interface SnackbarContext<T = SnackbarInput> extends SnackbarOptions<T> {
+  completeWith: (data: SnackbarData) => void;
   $implicit: Subscriber<unknown>;
   createdAt: number;
 }
