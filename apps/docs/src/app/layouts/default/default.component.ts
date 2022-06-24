@@ -135,6 +135,10 @@ export class DefaultComponent {
       name: 'Tabs',
     },
     {
+      link: 'components/text-area',
+      name: 'Text Area',
+    },
+    {
       link: 'components/text-field',
       name: 'Text Field',
     },

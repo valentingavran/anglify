@@ -20,6 +20,7 @@ import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
+import { TextAreaPageComponent } from './text-area-page/text-area-page.component';
 import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
@@ -93,6 +94,10 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabPageComponent,
+  },
+  {
+    path: 'text-area',
+    component: TextAreaPageComponent,
   },
   {
     path: 'text-field',
