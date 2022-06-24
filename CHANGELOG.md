@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.22.1](https://github.com/valentingavran/anglify/compare/v0.22.0...v0.22.1) (2022-06-24)
+
+
+### 📝  Docs
+
+* add release notes page ([dbbb083](https://github.com/valentingavran/anglify/commit/dbbb0833de578ad3885abc395fc6e22326782dc8))
+
+
+### 🛠  Other Commmits
+
+* fix anglify build command ([5543a6a](https://github.com/valentingavran/anglify/commit/5543a6ae623764b77b19f69da7d5fb0b9badf723))
+
 ## [0.22.0](https://github.com/valentingavran/anglify/compare/v0.21.3...v0.22.0) (2022-06-24)
 
 
