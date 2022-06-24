@@ -27,10 +27,12 @@
   }
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(.dense) {
   min-height: 24px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(.active) {
   --state-container-color: var(--color-primary-state-focus);
   --anglify-icon-color: #{$list-item-active-text-color};
@@ -40,23 +42,28 @@
   }
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(.selectable) {
   user-select: auto;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(.anglify-list-nav) {
   margin-top: 4px;
   border-radius: 4px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(.anglify-list-group-items) {
   padding-inline-start: 56px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(.anglify-list-group-items .anglify-list-group-items) {
   padding-inline-start: 96px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 :host-context(.anglify-list-group-items .anglify-list-group-items .anglify-list-group-items) {
   padding-inline-start: 136px;
 }
