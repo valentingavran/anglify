@@ -8,7 +8,7 @@
     "test:coverage": "nx test --coverage --project=anglify",
     "lint": "prettier --check . && stylelint \"**/*.scss\" && nx run-many --all --target=lint",
     "format": "prettier --write . && stylelint \"**/*.scss\" --fix && nx run-many --all --target=lint --fix",
-    "build:anglify": "nx run anglify:build:production --skip-nx-cache && cpy dist/libs/anglify/src/ dist/libs/anglify/ && rimraf dist/libs/anglify/src",
+    "build:anglify": "rimraf dist/ && nx run anglify:build:production --skip-nx-cache && cpy . '../' --cwd=dist/libs/anglify/src && rimraf dist/libs/anglify/src",
     "release": "standard-version",
     "prepare": "is-ci || husky install"
   },
