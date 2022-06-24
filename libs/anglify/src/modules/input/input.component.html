@@ -1,0 +1,35 @@
+<div class="anglify-input-prepend">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
+</div>
+<div class="anglify-input" anglifyInteractionState active="false" (click)="onInputClick.next()">
+  <div class="anglify-input-prepend-inner" #prependInner>
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
+  </div>
+  <div class="anglify-input-content" #content>
+    <ng-content></ng-content>
+  </div>
+  <div class="anglify-input-append-inner" #appendInner>
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'"></ng-container>
+  </div>
+  <div class="anglify-input-border">
+    <div class="start"></div>
+    <div class="notch">
+      <label [for]="inputId" #label>
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'label'"></ng-container>
+      </label>
+    </div>
+    <div class="end"></div>
+  </div>
+</div>
+<div class="anglify-input-append">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'append'"></ng-container>
+</div>
+<div class="anglify-input-details">
+  <div class="hint">
+    <ng-container *ngIf="error$ | async as e; else hintTemplate">{{ e }}</ng-container>
+    <ng-template #hintTemplate>{{ hint }}</ng-template>
+  </div>
+  <div class="counter" *ngIf="counter">
+    {{ length }}<span *ngIf="maxLength !== undefined">/{{ maxLength }}</span>
+  </div>
+</div>

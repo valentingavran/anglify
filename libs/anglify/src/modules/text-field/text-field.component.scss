@@ -1,0 +1,75 @@
+:host {
+  --anglify-input-outlined-label-start-offset: 16px;
+  --anglify-input-outlined-label-end-offset: 16px;
+  --anglify-input-filled-label-start-offset: 16px;
+  --anglify-input-filled-label-end-offset: 16px;
+  --anglify-input-min-height: 56px;
+  --anglify-input-min-height-dense: 40px;
+
+  anglify-input {
+    ::ng-deep input {
+      width: 100%;
+      height: var(--anglify-input-min-height);
+      min-height: var(--anglify-input-min-height);
+      box-sizing: border-box;
+      border: none;
+      background-color: transparent;
+      caret-color: var(--color-primary);
+      color: var(--color-on-surface-high-emphasis);
+      font: var(--font-body-1);
+      letter-spacing: var(--font-letter-spacing-body-1);
+      outline: none;
+      text-transform: var(--font-text-transform-body-1);
+
+      &::placeholder {
+        color: transparent;
+        transition: color 0.2s ease-in-out;
+      }
+
+      &:disabled {
+        color: var(--color-on-surface-medium-emphasis);
+      }
+    }
+
+    &.anglify-input-focused {
+      ::ng-deep input::placeholder {
+        color: var(--color-on-surface-medium-emphasis);
+      }
+    }
+
+    &.anglify-input-floating,
+    &.anglify-input-always-floating-label {
+      ::ng-deep input::placeholder {
+        color: var(--color-on-surface-medium-emphasis);
+      }
+
+      &.anglify-input-disabled {
+        ::ng-deep input::placeholder {
+          color: var(--color-on-surface-low-emphasis);
+        }
+      }
+    }
+
+    &.anglify-input-filled {
+      ::ng-deep input {
+        padding-top: 14px;
+        padding-inline-end: var(--anglify-input-filled-label-end-offset);
+        padding-inline-start: var(--anglify-input-filled-label-start-offset);
+      }
+    }
+
+    &.anglify-input-outlined {
+      ::ng-deep input {
+        padding-inline-end: var(--anglify-input-outlined-label-end-offset);
+        padding-inline-start: var(--anglify-input-outlined-label-start-offset);
+      }
+    }
+
+    &.anglify-input-dense {
+      ::ng-deep input {
+        height: var(--anglify-input-min-height-dense);
+        min-height: var(--anglify-input-min-height-dense);
+      }
+    }
+  }
+}

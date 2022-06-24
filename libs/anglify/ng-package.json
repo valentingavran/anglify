@@ -26,6 +26,8 @@
     "src/modules/stepper/*.scss",
     "src/modules/tab/*.scss",
     "src/modules/table/*.scss",
+    "src/modules/text-area/*.scss",
+    "src/modules/text-field/*.scss",
     "src/modules/toolbar/*.scss",
     "src/modules/tooltip/*.scss"
   ]

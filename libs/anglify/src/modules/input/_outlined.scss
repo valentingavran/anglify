@@ -1,0 +1,89 @@
+@use 'variables' as *;
+@use 'notched-outline' as *;
+
+@mixin anglify-input-outlined {
+  .anglify-input {
+    position: relative;
+
+    --anglify-notched-outline-border-color: #{$input-outlined-border-color-inactive};
+    --anglify-notched-outline-start-width: #{$input-outlined-label-start-offset};
+    --anglify-notched-outline-notch-width: 100%;
+    --anglify-notched-outline-padding: 4px;
+
+    .anglify-input-border {
+      @include notched-outline;
+    }
+
+    label {
+      top: $input-outlined-label-top-distance;
+      left: calc(#{$input-prepend-width} - var(--anglify-notched-outline-start-width) + #{$input-outlined-label-start-offset});
+      width: calc(
+        #{$input-content-width} / #{$input-outlined-label-scale-factor} - #{$input-outlined-label-start-offset} - #{$input-outlined-label-end-offset}
+      );
+      color: $input-outlined-label-color-inactive;
+      transform: translateY(-50%) scale($input-outlined-label-scale-factor);
+
+      &:not(:empty) {
+        padding-right: var(--anglify-notched-outline-padding);
+        padding-left: var(--anglify-notched-outline-padding);
+      }
+    }
+
+    .notch {
+      width: 100%;
+    }
+
+    &:hover {
+      --anglify-notched-outline-border-color: #{$input-outlined-border-color-hover};
+    }
+  }
+
+  &.anglify-input-floating,
+  &.anglify-input-always-floating-label,
+  &.anglify-input-focused {
+    .anglify-input {
+      --anglify-notched-outline-notch-width: 0;
+
+      label {
+        top: 0;
+        left: 0;
+        width: 100%;
+        transform: scale(1) translateY(-50%);
+      }
+
+      .notch {
+        width: auto;
+      }
+    }
+  }
+
+  &.anglify-input-focused {
+    .anglify-input {
+      --anglify-notched-outline-border-color: #{$input-outlined-border-color-focused};
+      --anglify-notched-outline-border-width: #{$input-outlined-border-width-focused};
+
+      label {
+        color: $input-outlined-label-color-focused;
+      }
+    }
+  }
+
+  &.anglify-input-disabled {
+    .anglify-input {
+      --anglify-notched-outline-border-color: #{$input-outlined-border-color-disabled};
+      --anglify-notched-outline-border-width: #{$input-outlined-border-width-inactive};
+
+      label {
+        color: $input-outlined-label-color-disabled;
+      }
+    }
+  }
+
+  .anglify-input-prepend-inner {
+    padding-inline-start: $input-outlined-label-start-offset;
+  }
+
+  .anglify-input-append-inner {
+    padding-inline-end: $input-outlined-label-end-offset;
+  }
+}

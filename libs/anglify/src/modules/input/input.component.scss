@@ -1,0 +1,118 @@
+@use 'dense' as *;
+@use 'details' as *;
+@use 'error' as *;
+@use 'filled' as *;
+@use 'outlined' as *;
+@use 'variables' as *;
+
+:host {
+  display: grid;
+  grid-template-areas: 'prepend input append' '. details .';
+  grid-template-columns: auto 1fr auto;
+
+  .anglify-input-prepend {
+    display: flex;
+    align-items: center;
+    grid-area: prepend;
+    margin-inline-end: $input-gap;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .anglify-input {
+    position: relative;
+    display: flex;
+    min-height: $input-min-height;
+    box-sizing: border-box;
+    border-radius: $input-border-radius;
+    cursor: text;
+    grid-area: input;
+
+    &-prepend-inner,
+    &-append-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+    }
+
+    &-border {
+      position: absolute;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    label {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      font: $input-label-font;
+      letter-spacing: $input-label-letter-spacing;
+      text-overflow: ellipsis;
+      text-transform: $input-label-text-transform;
+      transform-origin: left center;
+      white-space: nowrap;
+      will-change: transform, top, left, width;
+
+      &.transitions {
+        transition-duration: 0.2s;
+        transition-property: transform, top, left;
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.5, 1);
+      }
+    }
+  }
+
+  .anglify-input-append {
+    display: flex;
+    align-items: center;
+    grid-area: append;
+    margin-inline-start: $input-gap;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &.anglify-input-filled {
+    @include anglify-input-filled;
+  }
+
+  &.anglify-input-outlined {
+    @include anglify-input-outlined;
+  }
+
+  &.anglify-input-focused {
+    .anglify-input-prepend,
+    .anglify-input-prepend-inner,
+    .anglify-input-append,
+    .anglify-input-append-inner {
+      color: $input-filled-label-color-focused;
+
+      --anglify-icon-color: #{$input-filled-label-color-focused};
+    }
+  }
+
+  &.anglify-input-disabled {
+    .anglify-input {
+      cursor: auto;
+    }
+  }
+
+  @include details;
+  @include error;
+  @include dense;
+}

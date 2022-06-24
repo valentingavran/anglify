@@ -1,4 +1,4 @@
-import { CheckboxModule, IconModule, ProgressLinearModule, RadioButtonModule, TableModule } from '@anglify/components';
+import { CheckboxModule, IconModule, ProgressLinearModule, RadioButtonModule, TableModule, TextFieldModule } from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -102,6 +102,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     BreadcrumbsExampleModule,
     // Imports for Playground
     IconModule,
+    TextFieldModule,
     ReactiveFormsModule,
     FormsModule,
     ProgressLinearModule,
