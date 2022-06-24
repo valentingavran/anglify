@@ -11,7 +11,7 @@ import {
   Type,
 } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DialogContext } from './dialog-context.interface';
+import { DialogContext, ModalData } from './dialog-context.interface';
 import { DialogOptions } from './dialog-options.interface';
 import { DialogComponent } from './dialog.component';
 import { AnglifyIdService } from '../../services/id/id.service';
@@ -43,8 +43,8 @@ export class DialogService {
 
   public open(component: Type<any> | TemplateRef<any>, options: Partial<DialogOptions> = {}) {
     return new Observable(observer => {
-      const completeWith = (result?: any) => {
-        observer.next(result);
+      const completeWith = (data: ModalData) => {
+        observer.next(data);
         observer.complete();
       };
 
@@ -80,7 +80,7 @@ export class DialogService {
         })
       );
       overlayRef.attach(componentRef);
-      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith('internal.backdrop'));
+      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith({ reason: 'internal.backdrop' }));
       this.appRef.attachView(viewRef);
 
       return () => {
