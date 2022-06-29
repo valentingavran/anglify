@@ -89,6 +89,10 @@ export class DefaultComponent {
       name: 'Dialog',
     },
     {
+      link: 'components/expansion-panels',
+      name: 'Expansion Panels',
+    },
+    {
       link: 'components/icon',
       name: 'Icon',
     },
