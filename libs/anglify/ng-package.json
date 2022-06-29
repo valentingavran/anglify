@@ -6,6 +6,7 @@
   },
   "assets": [
     "src/styles/**/*.scss",
+    "src/modules/expansion-panels/*.scss",
     "src/modules/badge/*.scss",
     "src/modules/bottom-navigation/*.scss",
     "src/modules/button/*.scss",

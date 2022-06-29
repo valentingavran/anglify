@@ -11,6 +11,7 @@ import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
+import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
 import { ItemGroupPageComponent } from './item-group-page/item-group-page.component';
 import { ListPageComponent } from './list-page/list-page.component';
@@ -35,6 +36,7 @@ import { CardExamplesModule } from '../../examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from '../../examples/checkbox/checkbox-examples.module';
 import { ChipExamplesModule } from '../../examples/chip/chip-examples.module';
 import { DialogExamplesModule } from '../../examples/dialog/dialog-examples.module';
+import { ExpansionPanelsExampleModule } from '../../examples/expansion-panels/expansion-panels-example.module';
 import { IconExamplesModule } from '../../examples/icon/icon-examples.module';
 import { ItemGroupExamplesModule } from '../../examples/item-group/item-group-examples.module';
 import { ListExamplesModule } from '../../examples/list/list-examples.module';
@@ -79,6 +81,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     BreadcrumbsPageComponent,
     TextFieldPageComponent,
     TextAreaPageComponent,
+    ExpansionPanelsPageComponent,
   ],
   imports: [
     CommonModule,
@@ -109,6 +112,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TabExamplesModule,
     BreadcrumbsExampleModule,
     TextFieldExamplesModule,
+    ExpansionPanelsExampleModule,
     // Imports for Playground
     TextFieldModule,
     IconModule,

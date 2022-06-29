@@ -1,0 +1,11 @@
+$expansion-panels-background: var(--anglify-expansion-panels-background, var(--color-elevated)) !default;
+$expansion-panels-divider: var(--anglify-expansion-panels-divider, 1px solid var(--border-color-on-surface-low-emphasis)) !default;
+$expansion-panels-header-background: var(--anglify-expansion-panels-header-background, var(--color-elevated)) !default;
+$expansion-panels-header-border-style: var(--anglify-expansion-panels-header-border-style, none) !default;
+$expansion-panels-header-border-width: var(--anglify-expansion-panels-header-border-width, 0px) !default;
+$expansion-panels-header-border-color: var(
+  --anglify-expansion-panels-header-border-color,
+  var(--border-color-on-surface-medium-emphasis)
+) !default;
+$expansion-panels-header-padding: var(--anglify-expansion-panels-header-padding, 16px) !default;
+$expansion-panels-content-padding: var(--anglify-expansion-panels-content-padding, 16px) !default;

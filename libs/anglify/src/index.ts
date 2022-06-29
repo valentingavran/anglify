@@ -13,6 +13,12 @@ export * from './utils/animations';
 export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
+// Expansion Panels
+export * from './modules/expansion-panels/components/expansion-panel/expansion-panel.component';
+export * from './modules/expansion-panels/components/expansion-panels/expansion-panels.component';
+export * from './modules/expansion-panels/expansion-panels-settings.token';
+export * from './modules/expansion-panels/expansion-panels.interface';
+export * from './modules/expansion-panels/expansion-panels.module';
 // Badge
 export * from './modules/badge/badge-settings.token';
 export * from './modules/badge/badge.component';

@@ -8,6 +8,7 @@ import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
+import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
 import { ItemGroupPageComponent } from './item-group-page/item-group-page.component';
 import { ListPageComponent } from './list-page/list-page.component';
@@ -46,7 +47,10 @@ const routes: Routes = [
     path: 'dialog',
     component: DialogPageComponent,
   },
-
+  {
+    path: 'expansion-panels',
+    component: ExpansionPanelsPageComponent,
+  },
   {
     path: 'icon',
     component: IconPageComponent,
