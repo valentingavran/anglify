@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { CheckboxComponent } from './checkbox.component';
-import { DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
+import { DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';
 import { AnglifyCommonModule } from '../common/anglify-common.module';
 import { InteractionStateModule } from '../interaction-state/interaction-state.module';
 

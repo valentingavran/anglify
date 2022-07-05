@@ -13,8 +13,8 @@ import {
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map } from 'rxjs';
+import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from './navigation-drawer-settings.token';
 import { NavigationDrawerMode, EntireNavigationDrawerSettings } from './navigation-drawer.interface';
-import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from './navigation-drawer.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { enterLeaveOpacityAnimation } from '../../utils/animations';
 import { bindClassToNativeElement, bindObservableValueToNativeElement, toBoolean } from '../../utils/functions';

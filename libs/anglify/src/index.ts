@@ -43,7 +43,7 @@ export * from './modules/card/card.module';
 export * from './modules/checkbox/interfaces/checkbox.interface';
 export * from './modules/checkbox/interfaces/checkbox-icons.interface';
 export * from './modules/checkbox/tokens/checkbox-icons.token';
-export * from './modules/checkbox/tokens/checkbox.token';
+export * from './modules/checkbox/tokens/checkbox-settings.token';
 export * from './modules/checkbox/checkbox.component';
 export * from './modules/checkbox/functions/register-icons.function';
 export * from './modules/checkbox/checkbox.module';
@@ -95,7 +95,7 @@ export * from './modules/menu/menu.module';
 export * from './modules/navigation-drawer/navigation-drawer.component';
 export * from './modules/navigation-drawer/navigation-drawer.interface';
 export * from './modules/navigation-drawer/navigation-drawer.module';
-export * from './modules/navigation-drawer/navigation-drawer.token';
+export * from './modules/navigation-drawer/navigation-drawer-settings.token';
 // Overlay
 export * from './modules/interaction-state/interaction-state.directive';
 export * from './modules/interaction-state/interaction-state.module';

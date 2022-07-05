@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Inject, Input, Output, Self } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS } from './radio-button-settings.token';
 import { EntireRadioButtonSettings, RadioLabelPosition } from './radio-button.interface';
-import { DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS } from './radio-button.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { BooleanLike } from '../../utils/interfaces';

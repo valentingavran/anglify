@@ -22,7 +22,7 @@ import { BehaviorSubject } from 'rxjs';
 import { CheckboxIconRef } from './functions/register-icons.function';
 import { EntireCheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
-import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox.token';
+import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { bindClassToNativeElement, toBoolean } from '../../utils/functions';
