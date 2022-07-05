@@ -2,9 +2,9 @@ import { TemplateRef, Type } from '@angular/core';
 import { Subscriber } from 'rxjs';
 import { DialogOptions } from './dialog-options.interface';
 
-export interface ModalData {
+export interface ModalData<T = unknown> {
   reason: string;
-  data?: unknown;
+  data?: T;
 }
 
 export interface DialogContext<T = Record<string, unknown>> extends DialogOptions<T> {
