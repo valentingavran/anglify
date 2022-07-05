@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { delay, map, switchMap, take, tap } from 'rxjs/operators';
-import type { Step } from '../../directives/step/step.directive';
+import type { StepDirective } from '../../directives/step/step.directive';
 
 @UntilDestroy()
 @Injectable()
-export abstract class Stepper {
-  private readonly _steps$ = new BehaviorSubject<Step[]>([]);
+export abstract class StepperService {
+  private readonly _steps$ = new BehaviorSubject<StepDirective[]>([]);
   public readonly steps$ = this._steps$.asObservable();
 
   private readonly _selectedIndex$ = new BehaviorSubject<number>(0);
@@ -24,7 +24,7 @@ export abstract class Stepper {
   private readonly _previousAction = new Subject<void>();
   private readonly _nextAction = new Subject<void>();
   private readonly _navigateToAction = new Subject<number>();
-  private readonly _updateStepsAction = new Subject<Step[]>();
+  private readonly _updateStepsAction = new Subject<StepDirective[]>();
 
   private readonly _resetAction$ = new Subject<void>();
   public readonly onReset$ = this._resetAction$.asObservable();
@@ -58,7 +58,7 @@ export abstract class Stepper {
             tap(valid => {
               if (!valid) return;
 
-              const nextStep = currentSteps[currentlySelectedIndex + 1] as Step | undefined;
+              const nextStep = currentSteps[currentlySelectedIndex + 1] as StepDirective | undefined;
               if (!nextStep) return;
 
               this._selectedIndex$.next(currentlySelectedIndex + 1);
@@ -109,8 +109,8 @@ export abstract class Stepper {
       this._steps$.pipe(
         take(1),
         tap(currentSteps => {
-          Stepper.updateIndexesOfSteps(steps);
-          Stepper.updateFirstAndLastSteps(steps);
+          StepperService.updateIndexesOfSteps(steps);
+          StepperService.updateFirstAndLastSteps(steps);
 
           if (steps.length === 0) {
             this._selectedIndex$.next(0);
@@ -158,7 +158,7 @@ export abstract class Stepper {
     this._navigateToAction.next(index);
   }
 
-  public updateSteps(steps: Step[]) {
+  public updateSteps(steps: StepDirective[]) {
     this._updateStepsAction.next(steps);
   }
 
@@ -166,13 +166,13 @@ export abstract class Stepper {
     this._resetAction$.next();
   }
 
-  private static updateIndexesOfSteps(steps: Step[]) {
+  private static updateIndexesOfSteps(steps: StepDirective[]) {
     steps.forEach((s, i) => {
       s.setIndex(i);
     });
   }
 
-  private static updateFirstAndLastSteps(steps: Step[]) {
+  private static updateFirstAndLastSteps(steps: StepDirective[]) {
     steps.forEach((s, i) => {
       s.setIsFirstStep(i === 0);
       s.setISLastStep(i === steps.length - 1);

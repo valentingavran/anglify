@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 import { StepperHeaderComponent } from './stepper-header.component';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
-import { Stepper } from '../../services/stepper/stepper.service';
+import { StepperService } from '../../services/stepper/stepper.service';
 
 describe('StepperHeaderComponent', () => {
   let component: StepperHeaderComponent;
@@ -20,8 +20,8 @@ describe('StepperHeaderComponent', () => {
           },
         },
         {
-          provide: Stepper,
-          useClass: Stepper,
+          provide: StepperService,
+          useClass: StepperService,
         },
       ],
     }).compileComponents();

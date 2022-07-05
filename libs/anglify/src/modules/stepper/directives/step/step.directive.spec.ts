@@ -1,8 +1,8 @@
-import { Step } from './step.directive';
+import { StepDirective } from './step.directive';
 
 describe('StepDirective', () => {
   it('should create an instance', () => {
-    const directive = Step;
+    const directive = StepDirective;
     expect(directive).toBeTruthy();
   });
 });

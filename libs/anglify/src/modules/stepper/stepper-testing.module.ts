@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { StepperComponent } from './components/stepper/stepper.component';
-import { Step } from './directives/step/step.directive';
+import { StepDirective } from './directives/step/step.directive';
 import { StepperSettings } from './services/stepper-settings/stepper-settings.service';
-import { Stepper } from './services/stepper/stepper.service';
+import { StepperService } from './services/stepper/stepper.service';
 
 @NgModule({
   providers: [
     {
-      provide: Step,
+      provide: StepDirective,
       useValue: {
         isFirstStep$: new BehaviorSubject(true),
         isLastStep$: new BehaviorSubject(true),
@@ -29,7 +29,7 @@ import { Stepper } from './services/stepper/stepper.service';
         getValidSnapshot: () => true,
       },
     },
-    { provide: Stepper, useClass: StepperComponent },
+    { provide: StepperService, useClass: StepperComponent },
     { provide: StepperSettings, useClass: StepperSettings },
   ],
 })

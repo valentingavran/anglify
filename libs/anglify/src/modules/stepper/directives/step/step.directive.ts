@@ -1,17 +1,16 @@
-/* eslint-disable @angular-eslint/directive-class-suffix */
 import { Directive, Input, Output, TemplateRef } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
-import { Stepper } from '../../services/stepper/stepper.service';
+import { StepperService } from '../../services/stepper/stepper.service';
 
 @UntilDestroy()
 @Directive({
   selector: 'ng-template[anglifyStep]',
 })
-export class Step {
+export class StepDirective {
   private readonly _isFirstStep$ = new BehaviorSubject<boolean>(false);
   public readonly isFirstStep$ = this._isFirstStep$.asObservable().pipe(shareReplay(1));
 
@@ -54,7 +53,7 @@ export class Step {
   @Output() public validChange = this.valid$;
   @Output() public visitedChange = this.visited$;
 
-  public constructor(protected readonly stepper: Stepper, public template: TemplateRef<any>) {
+  public constructor(protected readonly stepper: StepperService, public template: TemplateRef<any>) {
     this.selected$.pipe(untilDestroyed(this)).subscribe();
   }
 
