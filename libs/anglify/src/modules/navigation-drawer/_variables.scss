@@ -1,5 +1,5 @@
 $navigation-drawer-background: var(--anglify-navigation-drawer-background-color, var(--color-elevated)) !default;
-$navigation-drawer-backdrop-background: var(--anglify-navigation-drawer-backdrop-color, var(--color-backdrop));
+$navigation-drawer-backdrop-background: var(--anglify-navigation-drawer-backdrop-color, var(--color-backdrop)) !default;
 $navigation-drawer-width: var(--anglify-navigation-drawer-width, 304px) !default;
 $navigation-drawer-height: var(--anglify-navigation-drawer-height, 100%) !default;
 $navigation-drawer-content-height: var(--anglify-navigation-drawer-content-height, 100%) !default;

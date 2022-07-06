@@ -1,40 +1,52 @@
-$input-prepend-width: var(--anglify-input-prepend-width, 0px);
-$input-content-width: var(--anglify-input-content-width, 0px);
-$input-append-width: var(--anglify-input-append-width, 0px);
-$input-min-height: var(--anglify-input-min-height, 56px);
-$input-border-radius: var(--anglify-input-border-radius, 4px);
-$input-gap: var(--anglify-input-gap, 8px);
-$input-label-font: var(--anglify-input-label-font, var(--font-caption));
-$input-label-letter-spacing: var(--anglify-input-label-letter-spacing, var(--font-letter-spacing-caption));
-$input-label-text-transform: var(--anglify-input-label-text-transform, var(--font-text-transform-caption));
-$input-filled-background: var(--anglify-input-filled-background, var(--color-surface-overlay));
-$input-filled-label-color-disabled: var(--anglify-input-filled-label-color-disabled, var(--color-on-surface-low-emphasis));
-$input-filled-label-color-inactive: var(--anglify-input-filled-label-color-inactive, var(--color-on-surface-medium-emphasis));
-$input-filled-label-color-focused: var(--anglify-input-filled-label-color-focused, var(--color-primary));
-$input-filled-label-top-distance-inactive: var(--anglify-input-filled-label-top-distance-inactive, 50%);
-$input-filled-label-top-distance-focused: var(--anglify-input-filled-label-top-distance-focused, 8px);
-$input-filled-border-color-disabled: var(--anglify-input-filled-border-color-disabled, var(--border-color-on-surface-low-emphasis));
-$input-filled-border-color-inactive: var(--anglify-input-filled-border-color-inactive, var(--border-color-on-surface-medium-emphasis));
-$input-filled-border-color-hover: var(--anglify-input-filled-border-color-hover, var(--border-color-on-surface-high-emphasis));
-$input-filled-border-color-focused: var(--anglify-input-filled-border-color-focused, var(--color-primary));
-$input-filled-state-color-hover: var(--anglify-input-filled-state-color-hover, var(--color-primary-state-hover));
-$input-filled-label-scale-factor: var(--anglify-input-filled-label-scale-factor, 1.25);
-$input-filled-border-width-inactive: var(--anglify-input-filled-border-width-inactive, 1.5px);
-$input-filled-border-width-focused: var(--anglify-input-filled-border-width-focused, 2px);
-$input-filled-label-start-offset: var(--anglify-input-filled-label-start-offset, 16px);
-$input-filled-label-end-offset: var(--anglify-input-filled-label-end-offset, 16px);
-$input-outlined-label-scale-factor: 1.25;
-$input-outlined-label-top-distance: var(--anglify-input-outlined-label-top-distance, 50%);
-$input-outlined-label-color-disabled: var(--anglify-input-outlined-label-color-disabled, var(--color-on-surface-low-emphasis));
-$input-outlined-label-color-inactive: var(--anglify-input-outlined-label-color-inactive, var(--color-on-surface-medium-emphasis));
-$input-outlined-label-color-focused: var(--anglify-input-outlined-label-color-focused, var(--color-primary));
-$input-outlined-border-color-disabled: var(--anglify-input-outlined-border-color-disabled, var(--border-color-on-surface-low-emphasis));
-$input-outlined-border-color-inactive: var(--anglify-input-outlined-border-color-inactive, var(--border-color-on-surface-medium-emphasis));
-$input-outlined-border-color-hover: var(--border-color-on-surface-high-emphasis);
-$input-outlined-border-color-focused: var(--anglify-input-outlined-border-color-focused, var(--color-primary));
-$input-outlined-border-width-inactive: var(--anglify-input-outlined-border-width-inactive, 1px);
-$input-outlined-border-width-focused: var(--anglify-input-outlined-border-width-focused, 2px);
-$input-outlined-label-start-offset: var(--anglify-input-outlined-label-start-offset, 16px);
-$input-outlined-label-end-offset: var(--anglify-input-outlined-label-end-offset, 16px);
-$input-error-color: var(--anglify-input-error-color, var(--color-error));
-$input-details-min-height: var(--anglify-input-details-min-height, 16px);
+$input-prepend-width: var(--anglify-input-prepend-width, 0px) !default;
+$input-content-width: var(--anglify-input-content-width, 0px) !default;
+$input-append-width: var(--anglify-input-append-width, 0px) !default;
+$input-min-height: var(--anglify-input-min-height, 56px) !default;
+$input-border-radius: var(--anglify-input-border-radius, 4px) !default;
+$input-gap: var(--anglify-input-gap, 8px) !default;
+$input-label-font: var(--anglify-input-label-font, var(--font-caption)) !default;
+$input-label-letter-spacing: var(--anglify-input-label-letter-spacing, var(--font-letter-spacing-caption)) !default;
+$input-label-text-transform: var(--anglify-input-label-text-transform, var(--font-text-transform-caption)) !default;
+$input-filled-background: var(--anglify-input-filled-background, var(--color-surface-overlay)) !default;
+$input-filled-label-color-disabled: var(--anglify-input-filled-label-color-disabled, var(--color-on-surface-low-emphasis)) !default;
+$input-filled-label-color-inactive: var(--anglify-input-filled-label-color-inactive, var(--color-on-surface-medium-emphasis)) !default;
+$input-filled-label-color-focused: var(--anglify-input-filled-label-color-focused, var(--color-primary)) !default;
+$input-filled-label-top-distance-inactive: var(--anglify-input-filled-label-top-distance-inactive, 50%) !default;
+$input-filled-label-top-distance-focused: var(--anglify-input-filled-label-top-distance-focused, 8px) !default;
+$input-filled-border-color-disabled: var(
+  --anglify-input-filled-border-color-disabled,
+  var(--border-color-on-surface-low-emphasis)
+) !default;
+$input-filled-border-color-inactive: var(
+  --anglify-input-filled-border-color-inactive,
+  var(--border-color-on-surface-medium-emphasis)
+) !default;
+$input-filled-border-color-hover: var(--anglify-input-filled-border-color-hover, var(--border-color-on-surface-high-emphasis)) !default;
+$input-filled-border-color-focused: var(--anglify-input-filled-border-color-focused, var(--color-primary)) !default;
+$input-filled-state-color-hover: var(--anglify-input-filled-state-color-hover, var(--color-primary-state-hover)) !default;
+$input-filled-label-scale-factor: var(--anglify-input-filled-label-scale-factor, 1.25) !default;
+$input-filled-border-width-inactive: var(--anglify-input-filled-border-width-inactive, 1.5px) !default;
+$input-filled-border-width-focused: var(--anglify-input-filled-border-width-focused, 2px) !default;
+$input-filled-label-start-offset: var(--anglify-input-filled-label-start-offset, 16px) !default;
+$input-filled-label-end-offset: var(--anglify-input-filled-label-end-offset, 16px) !default;
+$input-outlined-label-scale-factor: 1.25 !default;
+$input-outlined-label-top-distance: var(--anglify-input-outlined-label-top-distance, 50%) !default;
+$input-outlined-label-color-disabled: var(--anglify-input-outlined-label-color-disabled, var(--color-on-surface-low-emphasis)) !default;
+$input-outlined-label-color-inactive: var(--anglify-input-outlined-label-color-inactive, var(--color-on-surface-medium-emphasis)) !default;
+$input-outlined-label-color-focused: var(--anglify-input-outlined-label-color-focused, var(--color-primary)) !default;
+$input-outlined-border-color-disabled: var(
+  --anglify-input-outlined-border-color-disabled,
+  var(--border-color-on-surface-low-emphasis)
+) !default;
+$input-outlined-border-color-inactive: var(
+  --anglify-input-outlined-border-color-inactive,
+  var(--border-color-on-surface-medium-emphasis)
+) !default;
+$input-outlined-border-color-hover: var(--border-color-on-surface-high-emphasis) !default;
+$input-outlined-border-color-focused: var(--anglify-input-outlined-border-color-focused, var(--color-primary)) !default;
+$input-outlined-border-width-inactive: var(--anglify-input-outlined-border-width-inactive, 1px) !default;
+$input-outlined-border-width-focused: var(--anglify-input-outlined-border-width-focused, 2px) !default;
+$input-outlined-label-start-offset: var(--anglify-input-outlined-label-start-offset, 16px) !default;
+$input-outlined-label-end-offset: var(--anglify-input-outlined-label-end-offset, 16px) !default;
+$input-error-color: var(--anglify-input-error-color, var(--color-error)) !default;
+$input-details-min-height: var(--anglify-input-details-min-height, 16px) !default;
