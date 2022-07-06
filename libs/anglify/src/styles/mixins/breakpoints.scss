@@ -6,31 +6,31 @@ $grid-breakpoints: (
   'xl': 1920px,
 );
 
-@mixin xs {
+@mixin xs-and-up {
   @media (min-width: #{ map-get($grid-breakpoints, xs)}) {
     @content;
   }
 }
 
-@mixin sm {
+@mixin sm-and-up {
   @media (min-width: #{ map-get($grid-breakpoints, sm)}) {
     @content;
   }
 }
 
-@mixin md {
+@mixin md-and-up {
   @media (min-width: #{ map-get($grid-breakpoints, md)}) {
     @content;
   }
 }
 
-@mixin lg {
+@mixin lg-and-up {
   @media (min-width: #{ map-get($grid-breakpoints, lg)}) {
     @content;
   }
 }
 
-@mixin xl {
+@mixin xl-and-up {
   @media (min-width: #{ map-get($grid-breakpoints, xl)}) {
     @content;
   }

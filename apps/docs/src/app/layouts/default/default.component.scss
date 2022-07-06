@@ -8,7 +8,7 @@
     'main';
   grid-template-rows: auto 1fr;
 
-  @include md {
+  @include md-and-up {
     grid-auto-columns: auto 1fr;
     grid-template-areas:
       'toolbar toolbar'
@@ -28,7 +28,7 @@
     grid-area: main;
     overflow-y: auto;
 
-    @include md {
+    @include md-and-up {
       padding: 1rem;
     }
   }

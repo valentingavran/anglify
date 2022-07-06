@@ -6,7 +6,7 @@
   gap: 1rem;
   grid-template-columns: 1fr;
 
-  @include sm {
+  @include sm-and-up {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }

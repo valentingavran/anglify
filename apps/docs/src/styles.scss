@@ -85,7 +85,7 @@ td code {
   border-radius: 14px;
   grid-template-columns: 1fr;
 
-  @include md {
+  @include md-and-up {
     grid-template-columns: 2fr 1fr;
   }
 
@@ -100,7 +100,7 @@ td code {
       max-width: 300px;
     }
 
-    @include md {
+    @include md-and-up {
       border-right: 1px solid var(--border-color-on-surface-low-emphasis);
     }
   }

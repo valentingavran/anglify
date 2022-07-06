@@ -8,7 +8,7 @@
     'main';
   grid-template-rows: auto 1fr;
 
-  @include md {
+  @include md-and-up {
     grid-auto-columns: auto 1fr;
     grid-template-areas:
       'drawer toolbar'
