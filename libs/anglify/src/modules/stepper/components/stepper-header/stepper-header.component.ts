@@ -17,7 +17,7 @@ import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
-import { Stepper } from '../../services/stepper/stepper.service';
+import { StepperService } from '../../services/stepper/stepper.service';
 
 @UntilDestroy()
 @Component({
@@ -86,7 +86,7 @@ export class StepperHeaderComponent {
 
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
-    private readonly stepper: Stepper,
+    private readonly stepper: StepperService,
     private readonly stepperSettings: StepperSettings,
     private readonly rippleService: RippleService
   ) {

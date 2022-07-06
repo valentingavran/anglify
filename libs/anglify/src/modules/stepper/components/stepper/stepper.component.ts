@@ -17,9 +17,9 @@ import { toBoolean } from '../../../../utils/functions';
 import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
-import { Step } from '../../directives/step/step.directive';
+import { StepDirective } from '../../directives/step/step.directive';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
-import { Stepper } from '../../services/stepper/stepper.service';
+import { StepperService } from '../../services/stepper/stepper.service';
 
 @UntilDestroy()
 @Component({
@@ -27,11 +27,11 @@ import { Stepper } from '../../services/stepper/stepper.service';
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: Stepper, useExisting: StepperComponent }, StepperSettings],
+  providers: [{ provide: StepperService, useExisting: StepperComponent }, StepperSettings],
   animations: [fastInFastOutY({ duration: '500ms' }), slide()],
 })
-export class StepperComponent extends Stepper implements AfterContentInit {
-  @ContentChildren(Step) private readonly _steps?: QueryList<Step>;
+export class StepperComponent extends StepperService implements AfterContentInit {
+  @ContentChildren(StepDirective) private readonly _steps?: QueryList<StepDirective>;
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @Input()
@@ -82,7 +82,7 @@ export class StepperComponent extends Stepper implements AfterContentInit {
     this._steps!.changes.pipe(
       startWith(this._steps),
       untilDestroyed(this),
-      map((steps: QueryList<Step>) => steps.toArray()),
+      map((steps: QueryList<StepDirective>) => steps.toArray()),
       tap(steps => this.updateSteps(steps))
     ).subscribe();
   }

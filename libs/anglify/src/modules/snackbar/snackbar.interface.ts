@@ -20,9 +20,9 @@ export interface SnackbarOptions<T = SnackbarInput & Record<string, unknown>> ex
   data?: T;
 }
 
-export interface SnackbarData {
+export interface SnackbarData<T = unknown> {
   reason: string;
-  data?: unknown;
+  data?: T;
 }
 
 export interface SnackbarContext<T = SnackbarInput> extends SnackbarOptions<T> {

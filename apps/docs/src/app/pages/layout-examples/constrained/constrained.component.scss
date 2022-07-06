@@ -19,7 +19,7 @@
     background-color: var(--color-background);
     gap: 1rem;
 
-    @include xs {
+    @include xs-and-up {
       .menu {
         display: none;
       }
@@ -28,7 +28,7 @@
       grid-template-columns: 1fr;
     }
 
-    @include sm {
+    @include sm-and-up {
       grid-template-areas: 'menu main';
       grid-template-columns: 0.5fr 2fr;
 
@@ -41,7 +41,7 @@
       }
     }
 
-    @include md {
+    @include md-and-up {
       grid-template-areas: '. menu main .';
       grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr;
     }

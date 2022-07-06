@@ -1,0 +1,11 @@
+<div class="anglify-expansion-panel-header" (click)="onClick.next()">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'header'">{{ label }}</ng-container>
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'append'">
+    <anglify-icon *ngIf="!hideToggle" [icon]="internalIcons.chevronDown" [@rotate]="active$ | async"></anglify-icon>
+  </ng-container>
+</div>
+<div *ngIf="active$ | async" @fast-in-fast-out-y>
+  <div class="anglify-expansion-panel-content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,5 +1,5 @@
+import { BreadCrumb } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BreadCrumb } from 'libs/anglify/src/modules/breadcrumbs/breadcrumbs.interface';
 
 @Component({
   templateUrl: './basic.component.html',
