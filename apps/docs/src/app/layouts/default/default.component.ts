@@ -52,6 +52,7 @@ export class DefaultComponent {
   public features = [
     { link: 'features/theming', name: 'Theming' },
     { link: 'features/icon-fonts', name: 'Icon Fonts' },
+    { link: 'features/breakpoints', name: 'Breakpoints' },
   ];
 
   public components = [
