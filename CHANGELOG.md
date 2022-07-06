@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.23.0](https://github.com/valentingavran/anglify/compare/v0.22.1...v0.23.0) (2022-07-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Breakpoints:** breakpoint SCSS mixins were renamed
+* **Stepper:** The names of the stepper service and directive classes have changed
+
+### 🐛  Bug Fixes
+
+* expose modal data and snackbar data generic to allow typing the return data ([d1b81e7](https://github.com/valentingavran/anglify/commit/d1b81e7f8b6ba53e21be1ea5e2744042a60cb00a))
+
+
+### 📝  Docs
+
+* add breakpoints feature page ([1f6d013](https://github.com/valentingavran/anglify/commit/1f6d01322b219921f22c5801a55870582d1894a2))
+
+
+### 🔬  Code Refactoring
+
+* add default flag to all SCSS variables ([48b9277](https://github.com/valentingavran/anglify/commit/48b9277564543ee6f11ff22ec47ce977dc28d291))
+* **Breakpoints:** rename breakpoint SCSS mixins ([4219357](https://github.com/valentingavran/anglify/commit/4219357121310831242a562588fc1020a64ceaac))
+* **Stepper:** directives and services have now the according suffix ([836ebe1](https://github.com/valentingavran/anglify/commit/836ebe125a08c0972f37b573f3c921462858ad7a))
+* unify setting token file names ([64467a6](https://github.com/valentingavran/anglify/commit/64467a681640eca7bfaf747172be2cebe3814909))
+
+
+### 🚀  Features
+
+* add expansion panels component ([9ee1df9](https://github.com/valentingavran/anglify/commit/9ee1df995791673fa80293239227c4f12172d142))
+
 ### [0.22.1](https://github.com/valentingavran/anglify/compare/v0.22.0...v0.22.1) (2022-06-24)
 
 
