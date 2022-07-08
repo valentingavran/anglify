@@ -67,9 +67,8 @@ export * from './modules/common/pipes/find-slot/find-slot.pipe';
 export * from './modules/common/pipes/percent/percent.pipe';
 export * from './modules/common/anglify-common.module';
 // Dialog
-export * from './modules/dialog/dialog-context.interface';
-export * from './modules/dialog/dialog-options.interface';
 export * from './modules/dialog/dialog.component';
+export * from './modules/dialog/dialog.interface';
 export * from './modules/dialog/dialog.service';
 export * from './modules/dialog/dialog.module';
 // Icon
