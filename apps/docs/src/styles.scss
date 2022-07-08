@@ -53,7 +53,7 @@ p {
 code {
   padding: 0 0.5rem !important;
   background-color: var(--color-surface-overlay) !important;
-  border-radius: 14px;
+  border-radius: 4px;
   white-space: pre;
 }
 
@@ -69,20 +69,10 @@ pre {
   }
 }
 
-table {
-  code {
-    @include typography.body-2;
-  }
-}
-
-td code {
-  background: transparent !important;
-}
-
 .playground {
   display: grid;
   border: 1px solid var(--border-color-on-surface-low-emphasis);
-  border-radius: 14px;
+  border-radius: 4px;
   grid-template-columns: 1fr;
 
   @include md-and-up {
