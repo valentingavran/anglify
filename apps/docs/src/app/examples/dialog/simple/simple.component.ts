@@ -11,14 +11,7 @@ export class SimpleComponent {
   public constructor(private readonly dialogService: DialogService) {}
 
   public openDialog() {
-    this.dialogService.open(DialogTestComponent).subscribe({
-      complete: () => {
-        console.log('modal page: closed');
-      },
-      next: data => {
-        console.log('modal page: data:', data);
-      },
-    });
+    this.dialogService.open(DialogTestComponent);
   }
 }
 export default SimpleComponent;

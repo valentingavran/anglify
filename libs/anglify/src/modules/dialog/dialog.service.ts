@@ -10,7 +10,7 @@ import {
   TemplateRef,
   Type,
 } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { DialogContext, ModalData } from './dialog-context.interface';
 import { DialogOptions } from './dialog-options.interface';
 import { DialogComponent } from './dialog.component';
@@ -42,6 +42,16 @@ export class DialogService {
   ) {}
 
   public open(component: Type<any> | TemplateRef<any>, options: Partial<DialogOptions> = {}) {
+    const subscription = this.open$(component, options)
+      .pipe(
+        finalize(() => {
+          subscription.unsubscribe();
+        })
+      )
+      .subscribe();
+  }
+
+  public open$(component: Type<any> | TemplateRef<any>, options: Partial<DialogOptions> = {}) {
     return new Observable(observer => {
       const completeWith = (data: ModalData) => {
         observer.next(data);
