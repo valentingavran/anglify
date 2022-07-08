@@ -1,6 +1,5 @@
 import { SnackbarService } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { first } from 'rxjs';
 
 @Component({
   templateUrl: './indefinitely.component.html',
@@ -12,20 +11,19 @@ export class IndefinitelyComponent {
 
   public openSnackbar() {
     this.snackbarService
-      .open({
+      .open$({
         data: {
           label: "Hello, I'm a snackbar",
           actions: { label: 'Dismiss' },
         },
         timeout: 0,
       })
-      .pipe(first())
       .subscribe({
-        complete: () => {
-          console.log('Snackbar closed');
-        },
         next: data => {
-          console.log('Snackbar data:', data);
+          console.log('snackbar page: data:', data);
+        },
+        complete: () => {
+          console.log('snackbar page: closed');
         },
       });
   }
