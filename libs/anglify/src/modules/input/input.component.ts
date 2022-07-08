@@ -28,10 +28,12 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 })
 export class InputComponent implements OnInit, AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
-  @ViewChild('prependInner', { static: true }) public prependInner?: ElementRef<HTMLElement>;
-  @ViewChild('content', { static: true }) public content?: ElementRef<HTMLElement>;
-  @ViewChild('appendInner', { static: true }) public appendInner?: ElementRef<HTMLElement>;
-  @ViewChild('label', { static: true }) public label?: ElementRef<HTMLElement>;
+  @ViewChild('prependInner', { static: true }) private readonly prependInner?: ElementRef<HTMLElement>;
+  @ViewChild('content', { static: true }) private readonly content?: ElementRef<HTMLElement>;
+  @ViewChild('appendInner', { static: true }) private readonly appendInner?: ElementRef<HTMLElement>;
+  @ViewChild('label', { static: true }) private readonly label?: ElementRef<HTMLElement>;
+  @ViewChild('hintWrapper') private readonly hintWrapper?: ElementRef<HTMLElement>;
+  @ViewChild('hintElement') private readonly hintElement?: ElementRef<HTMLElement>;
 
   @Input() public set appearance(appearance: InputAppearance) {
     this.appearance$.next(appearance);
@@ -65,6 +67,10 @@ export class InputComponent implements OnInit, AfterViewInit {
     return this.floating$.value;
   }
 
+  public get hintOverflow() {
+    return this.hintOverflow$.value;
+  }
+
   @HostBinding('class.anglify-input-persistent-hint')
   @Input()
   public persistentHint = false;
@@ -89,7 +95,7 @@ export class InputComponent implements OnInit, AfterViewInit {
     return this.error$.value;
   }
 
-  @Input() public hint?: string;
+  @Input() public hint = '';
   @Input() public inputId?: string;
   @Input() public length?: number;
   @Input() public maxLength?: number;
@@ -102,6 +108,7 @@ export class InputComponent implements OnInit, AfterViewInit {
   private readonly floating$ = new BehaviorSubject<boolean>(false);
   private readonly focused$ = new BehaviorSubject<boolean>(false);
   private readonly disabled$ = new BehaviorSubject<boolean>(false);
+  public readonly hintOverflow$ = new BehaviorSubject<boolean>(false);
   public readonly error$ = new BehaviorSubject<string | null | undefined>(null);
 
   public constructor(private readonly elementRef: ElementRef<HTMLElement>) {
@@ -143,6 +150,14 @@ export class InputComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
+  public isHintOverflowing() {
+    if ((this.hintWrapper?.nativeElement.offsetHeight ?? 0) <= (this.hintElement?.nativeElement.offsetHeight ?? 0)) {
+      this.setHintOverflow(true);
+      return;
+    }
+    this.setHintOverflow(false);
+  }
+
   private setPrependWidth(width: number) {
     this.elementRef.nativeElement.style.setProperty('--anglify-input-prepend-width', `${width}px`);
   }
@@ -153,5 +168,9 @@ export class InputComponent implements OnInit, AfterViewInit {
 
   private setAppendWidth(width: number) {
     this.elementRef.nativeElement.style.setProperty('--anglify-input-append-width', `${width}px`);
+  }
+
+  private setHintOverflow(overflow: BooleanLike) {
+    this.hintOverflow$.next(toBoolean(overflow));
   }
 }

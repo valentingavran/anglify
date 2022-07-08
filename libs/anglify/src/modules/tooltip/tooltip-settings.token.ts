@@ -16,6 +16,7 @@ export const DEFAULT_TOOLTIP_SETTINGS: EntireTooltipSettings = {
   shift: true,
   mountingPoint: 'parent',
   contentClass: undefined,
+  disabled: false,
 };
 
 export const TOOLTIP_SETTINGS = new InjectionToken<TooltipSettings>('Tooltip Settings');
