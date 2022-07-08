@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TextAreaComponent } from './text-area.component';
 import { AnglifyCommonModule } from '../common/anglify-common.module';
 import { InputModule } from '../input/input.module';
+import { TooltipModule } from '../tooltip/tooltip.module';
 
 describe('TextAreaComponent', () => {
   let component: TextAreaComponent;
@@ -10,7 +11,7 @@ describe('TextAreaComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TextAreaComponent],
-      imports: [InputModule, AnglifyCommonModule],
+      imports: [InputModule, AnglifyCommonModule, TooltipModule],
     }).compileComponents();
   });
 

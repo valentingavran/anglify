@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InputComponent } from './input.component';
 import { AnglifyCommonModule } from '../common/anglify-common.module';
+import { TooltipModule } from '../tooltip/tooltip.module';
 
 describe('InputComponent', () => {
   let component: InputComponent;
@@ -9,7 +10,7 @@ describe('InputComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [InputComponent],
-      imports: [AnglifyCommonModule],
+      imports: [AnglifyCommonModule, TooltipModule],
     }).compileComponents();
   });
 

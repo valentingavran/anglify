@@ -21,6 +21,7 @@ export interface EntireTooltipSettings {
   shift: boolean;
   mountingPoint: TooltipMountingPoint;
   contentClass: string | undefined;
+  disabled: boolean;
 }
 
 export type TooltipSettings = Partial<EntireTooltipSettings>;
