@@ -20,8 +20,14 @@ export interface SnackbarOptions<T = SnackbarInput & Record<string, unknown>> ex
   data?: T;
 }
 
+export enum SnackbarInteralDismissReason {
+  Priority = 'internal.priority',
+  Timeout = 'internal.timeout',
+  Dismissed = 'internal.dismissed',
+}
+
 export interface SnackbarData<T = unknown> {
-  reason: string;
+  reason: SnackbarInteralDismissReason | string;
   data?: T;
 }
 

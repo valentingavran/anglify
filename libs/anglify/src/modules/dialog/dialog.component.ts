@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { filter, fromEvent } from 'rxjs';
-import { DialogContext } from './dialog-context.interface';
+import { DialogContext, ModalInteralCloseReason } from './dialog.interface';
 import { DIALOG_CONTEXT, DIALOG_NODES } from './dialog.service';
 
 @UntilDestroy()
@@ -27,7 +27,7 @@ export class DialogComponent implements OnInit {
     fromEvent<KeyboardEvent>(this.document.body, 'keyup')
       .pipe(filter(({ key }) => key === 'Escape'))
       .pipe(untilDestroyed(this))
-      .subscribe(() => this.context.completeWith({ reason: 'internal.escape' }));
+      .subscribe(() => this.context.completeWith({ reason: ModalInteralCloseReason.Escape }));
 
     this.dialogElement.nativeElement.append(...this.nodes);
   }

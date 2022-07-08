@@ -3,7 +3,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, InjectionToken, Injector } from '@angular/core';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { SnackbarComponent } from './snackbar.component';
-import { SnackbarContext, SnackbarData, SnackbarOptions } from './snackbar.interface';
+import { SnackbarContext, SnackbarData, SnackbarInteralDismissReason, SnackbarOptions } from './snackbar.interface';
 import { AnglifyIdService } from '../../services/id/id.service';
 
 export const SNACKBAR_CONTEXT = new InjectionToken<SnackbarContext>('Snackbar context');
@@ -31,7 +31,7 @@ export class SnackbarService {
   public open$(options: Partial<SnackbarOptions> = {}) {
     return new Observable(observer => {
       if (this.activeSnackbar$.value) {
-        this.activeSnackbar$.value.completeWith({ reason: 'internal.priority' });
+        this.activeSnackbar$.value.completeWith({ reason: SnackbarInteralDismissReason.Priority });
       }
 
       const completeWith = (data: SnackbarData) => {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, OnDestroy, OnInit, Self } from '@angular/core';
 import { DEFAULT_SNACKBAR_SETTINGS, SNACKBAR_SETTINGS } from './snackbar-settings.token';
-import { EntireSnackbarSettings, SnackbarContext } from './snackbar.interface';
+import { EntireSnackbarSettings, SnackbarContext, SnackbarInteralDismissReason } from './snackbar.interface';
 import { SNACKBAR_CONTEXT } from './snackbar.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
 
@@ -33,7 +33,7 @@ export class SnackbarComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     if (this.context.timeout ?? this.settings.timeout) {
       this.timeout = window.setTimeout(() => {
-        this.context.completeWith({ reason: 'internal.timeout' });
+        this.context.completeWith({ reason: SnackbarInteralDismissReason.Timeout });
         this.timeout = null;
       }, this.context.timeout ?? this.settings.timeout);
     }
@@ -46,6 +46,6 @@ export class SnackbarComponent implements OnInit, OnDestroy {
   }
 
   public dismiss() {
-    this.context.completeWith({ reason: this.context.data?.actions?.id ?? 'internal.dismissed' });
+    this.context.completeWith({ reason: this.context.data?.actions?.id ?? SnackbarInteralDismissReason.Dismissed });
   }
 }
