@@ -20,6 +20,7 @@ import { NavigationDrawerPageComponent } from './navigation-drawer-page/navigati
 import { ProgressCircularPageComponent } from './progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
+import { SliderPageComponent } from './slider-page/slider-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
@@ -45,6 +46,7 @@ import { NavigationDrawerExamplesModule } from '../../examples/navigation-drawer
 import { ProgressCircularExamplesModule } from '../../examples/progress-circular/progress-circular-examples.module';
 import { ProgressLinearExamplesModule } from '../../examples/progress-linear/progress-linear-examples.module';
 import { RadioButtonExamplesModule } from '../../examples/radio-button/radio-button-examples.module';
+import { SliderExamplesModule } from '../../examples/slider/slider-examples.module';
 import { SnackbarExamplesModule } from '../../examples/snackbar/snackbar-examples.module';
 import { StepperExamplesModule } from '../../examples/stepper/stepper-examples.module';
 import { TabExamplesModule } from '../../examples/tab/tab-examples.module';
@@ -82,6 +84,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TextFieldPageComponent,
     TextAreaPageComponent,
     ExpansionPanelsPageComponent,
+    SliderPageComponent,
   ],
   imports: [
     CommonModule,
@@ -113,6 +116,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     BreadcrumbsExampleModule,
     TextFieldExamplesModule,
     ExpansionPanelsExampleModule,
+    SliderExamplesModule,
     // Imports for Playground
     TextFieldModule,
     IconModule,

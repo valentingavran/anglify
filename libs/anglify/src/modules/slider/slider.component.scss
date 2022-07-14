@@ -1,0 +1,74 @@
+@use 'variables' as *;
+
+:host {
+  --anglify-slider-ratio: 0;
+  --anglify-slider-track-position: calc(var(--anglify-slider-ratio) * (100%));
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+
+  .anglify-slider-track {
+    display: inline-flex;
+    width: 100%;
+    height: $slider-height;
+    justify-content: space-between;
+    background: linear-gradient($slider-range-background, $slider-range-background) 0 / var(--anglify-slider-track-position) 100% no-repeat,
+      $slider-range-background-variant;
+    border-radius: $slider-range-border-radius;
+    cursor: pointer;
+
+    .anglify-slider-tick {
+      width: $slider-height;
+      height: $slider-height;
+      background-color: $slider-thumb-color;
+      border-radius: $slider-range-border-radius;
+    }
+  }
+
+  .state-container {
+    position: absolute;
+    display: flex;
+    width: $slider-thumb-ripple-width;
+    height: $slider-thumb-ripple-height;
+    align-items: center;
+    justify-content: center;
+    margin-left: calc(($slider-thumb-size / -2) - (($slider-thumb-ripple-width - $slider-thumb-size) / 2));
+    border-radius: $slider-thumb-ripple-border-radius;
+    cursor: pointer;
+
+    .anglify-slider-thumb {
+      position: absolute;
+      width: $slider-thumb-size;
+      height: $slider-thumb-size;
+      align-self: center;
+      background: $slider-thumb-color;
+      border-radius: $slider-thumb-border-radius;
+    }
+
+    &.smooth {
+      transition: transform 250ms ease-in-out;
+    }
+
+    &:hover {
+      --state-container-color: #{$slider-hover-state-active-color};
+    }
+
+    &:focus-visible {
+      --state-container-color: #{$slider-focus-state-active-color};
+    }
+  }
+
+  &.anglify-slider-disabled {
+    .anglify-slider-track {
+      background: linear-gradient($slider-disabled-color, $slider-disabled-color) 0 / var(--anglify-slider-track-position) 100% no-repeat,
+        $slider-disabled-color-variant;
+      cursor: pointer;
+    }
+
+    .anglify-slider-thumb {
+      background: $slider-disabled-color !important;
+    }
+  }
+}
