@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-tooltip-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./tooltip-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipPageComponent {}
+export class TooltipPageComponent {
+  public config: APIConfig = {
+    directives: ['TooltipDirective'],
+  };
+}

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-timeline-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./timeline-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimelinePageComponent {}
+export class TimelinePageComponent {
+  public config: APIConfig = {
+    components: ['TimelineComponent', 'TimelineItemComponent'],
+  };
+}

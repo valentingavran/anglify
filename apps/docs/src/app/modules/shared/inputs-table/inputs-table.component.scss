@@ -1,0 +1,40 @@
+:host {
+  anglify-item-group {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+
+    h3 {
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+    }
+  }
+
+  table {
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid var(--border-color-on-surface-low-emphasis);
+    border-radius: 14px;
+    border-spacing: 0;
+    white-space: pre-wrap;
+
+    tr:nth-child(even) {
+      background-color: var(--color-surface-overlay);
+    }
+
+    td,
+    th {
+      padding: 14px;
+      text-align: start;
+
+      code {
+        background-color: transparent;
+        white-space: pre-wrap;
+      }
+    }
+  }
+}

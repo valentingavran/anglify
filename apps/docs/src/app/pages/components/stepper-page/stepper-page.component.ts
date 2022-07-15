@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-stepper-page',
@@ -6,4 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./stepper-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StepperPageComponent {}
+export class StepperPageComponent {
+  public config: APIConfig = {
+    components: ['StepperComponent'],
+    directives: ['StepDirective'],
+    services: ['StepperService'],
+  };
+}

@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-expansion-panels-page',
@@ -6,4 +7,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./expansion-panels-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExpansionPanelsPageComponent {}
+export class ExpansionPanelsPageComponent {
+  public config: APIConfig = {
+    components: ['ExpansionPanelComponent', 'ExpansionPanelsComponent'],
+  };
+}

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-icon-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./icon-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IconPageComponent {}
+export class IconPageComponent {
+  public config: APIConfig = {
+    components: ['IconComponent'],
+  };
+}

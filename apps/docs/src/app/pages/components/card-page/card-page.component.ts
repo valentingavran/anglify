@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-card-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./card-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardPageComponent {}
+export class CardPageComponent {
+  public config: APIConfig = {
+    components: ['CardComponent'],
+  };
+}

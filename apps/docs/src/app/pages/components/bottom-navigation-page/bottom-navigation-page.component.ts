@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-bottom-navigation-page',
@@ -6,4 +7,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./bottom-navigation-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BottomNavigationPageComponent {}
+export class BottomNavigationPageComponent {
+  public config: APIConfig = {
+    components: ['BottomNavigationComponent', 'BottomNavigationItemComponent'],
+  };
+}

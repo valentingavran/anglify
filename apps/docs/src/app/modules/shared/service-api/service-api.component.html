@@ -1,0 +1,37 @@
+<ng-container *ngIf="publicProperties$ | async as publicProperties">
+  <h3>Properties</h3>
+  <anglify-table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prop of publicProperties">
+        <td>{{ prop.name }}</td>
+        <td>{{ prop.type }}</td>
+        <td [innerHTML]="prop.description"></td>
+      </tr>
+    </tbody>
+  </anglify-table>
+</ng-container>
+
+<ng-container *ngIf="publicMethods$ | async as publicMethods">
+  <h3>Methods</h3>
+  <anglify-table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let method of publicMethods">
+        <td>{{ method.name }}</td>
+        <td>{{ method.description }}</td>
+      </tr>
+    </tbody>
+  </anglify-table>
+</ng-container>

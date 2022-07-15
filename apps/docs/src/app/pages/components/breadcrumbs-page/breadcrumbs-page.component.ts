@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-breadcrumbs-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./breadcrumbs-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BreadcrumbsPageComponent {}
+export class BreadcrumbsPageComponent {
+  public config: APIConfig = {
+    components: ['BreadcrumbsComponent'],
+  };
+}

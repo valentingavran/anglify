@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-text-area-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./text-area-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextAreaPageComponent {}
+export class TextAreaPageComponent {
+  public config: APIConfig = {
+    components: ['TextAreaComponent'],
+  };
+}

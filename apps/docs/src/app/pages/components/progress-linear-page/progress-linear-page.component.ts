@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-progress-linear-page',
@@ -7,6 +8,10 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressLinearPageComponent {
+  public config: APIConfig = {
+    components: ['ProgressLinearComponent'],
+  };
+
   public mode = 'indeterminate';
   public progress = 60;
   public buffer = 70;

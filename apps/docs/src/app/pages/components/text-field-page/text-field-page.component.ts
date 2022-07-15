@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-text-field-page',
@@ -7,6 +8,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFieldPageComponent {
+  public config: APIConfig = {
+    components: ['TextFieldComponent'],
+  };
+
   public appearance: 'filled' | 'outlined' = 'filled';
   public label = 'Label';
   public placeholder = 'Placeholder';
