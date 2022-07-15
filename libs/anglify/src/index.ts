@@ -61,7 +61,6 @@ export * from './modules/chip/chip.module';
 // Common
 export * from './modules/common/directives/slot/slot.directive';
 export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
-export * from './modules/common/pipes/boolean-like-to-boolean/boolean-like-to-boolean.pipe';
 export * from './modules/common/pipes/clamp/clamp.pipe';
 export * from './modules/common/pipes/find-slot/find-slot.pipe';
 export * from './modules/common/pipes/percent/percent.pipe';

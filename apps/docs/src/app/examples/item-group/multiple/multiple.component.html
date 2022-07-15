@@ -1,11 +1,11 @@
-<anglify-item-group multiple>
+<anglify-item-group [multiple]="true">
   <ng-template slot="item-group-item" let-active="active" let-toggle>
-    <anglify-card ripple [class.active]="active" (click)="toggle()">1</anglify-card>
+    <anglify-card [ripple]="true" [class.active]="active" (click)="toggle()">1</anglify-card>
   </ng-template>
   <ng-template slot="item-group-item" let-active="active" let-toggle>
-    <anglify-card ripple [class.active]="active" (click)="toggle()">2</anglify-card>
+    <anglify-card [ripple]="true" [class.active]="active" (click)="toggle()">2</anglify-card>
   </ng-template>
   <ng-template slot="item-group-item" let-active="active" let-toggle>
-    <anglify-card ripple [class.active]="active" (click)="toggle()">3</anglify-card>
+    <anglify-card [ripple]="true" [class.active]="active" (click)="toggle()">3</anglify-card>
   </ng-template>
 </anglify-item-group>

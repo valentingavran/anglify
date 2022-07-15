@@ -33,15 +33,15 @@
     </anglify-text-field>
   </div>
   <div class="controls">
-    <anglify-text-field hideDetails>
+    <anglify-text-field [hideDetails]="true">
       <ng-template anglifyLabel>Label</ng-template>
       <input anglifyInput [(ngModel)]="label" />
     </anglify-text-field>
-    <anglify-text-field hideDetails>
+    <anglify-text-field [hideDetails]="true">
       <ng-template anglifyLabel>Placeholder</ng-template>
       <input anglifyInput [(ngModel)]="placeholder" />
     </anglify-text-field>
-    <anglify-text-field hideDetails>
+    <anglify-text-field [hideDetails]="true">
       <ng-template anglifyLabel>Hint</ng-template>
       <input anglifyInput [(ngModel)]="hint" />
     </anglify-text-field>

@@ -2,13 +2,13 @@
   [appearance]="appearance"
   #anglifyInput
   [hint]="hint"
-  [persistentHint]="persistentHint | booleanLikeToBoolean"
-  [alwaysFloatingLabel]="alwaysFloatingLabel | booleanLikeToBoolean"
-  [hideDetails]="hideDetails | booleanLikeToBoolean"
-  [counter]="counter | booleanLikeToBoolean"
+  [persistentHint]="persistentHint"
+  [alwaysFloatingLabel]="alwaysFloatingLabel"
+  [hideDetails]="hideDetails"
+  [counter]="counter"
   [length]="(input?.length$ | async) || 0"
   [maxLength]="(input?.maxLength$ | async) || undefined"
-  [dense]="dense | booleanLikeToBoolean"
+  [dense]="dense"
   [error]="error"
   [inputId]="input?.id"
 >

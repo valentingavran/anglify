@@ -25,7 +25,7 @@ import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.t
 import type { EntireTooltipSettings, TooltipSettings } from './tooltip.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { isTouchDevice, toBoolean } from '../../utils/functions';
+import { isTouchDevice } from '../../utils/functions';
 
 @UntilDestroy()
 @Directive({
@@ -196,7 +196,7 @@ export class TooltipDirective implements OnDestroy {
     if (!isTouchDevice()) return;
     if (this.settings.mobileTrigger === 'long' && event.type === 'touchstart') return;
     if (this.settings.mobileTrigger === 'short' && event.type === 'contextmenu') return;
-    if (toBoolean(this.settings.preventContextMenuOnTouchDevice) || toBoolean(this.settings.autoCloseOnTouchDevicesAfterDelay)) {
+    if (this.settings.preventContextMenuOnTouchDevice || this.settings.autoCloseOnTouchDevicesAfterDelay) {
       event.preventDefault();
     }
     this.open(this.settings.touchOpenDelay);
@@ -204,7 +204,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('touchend')
   protected autoCloseOnMobile() {
-    if (!toBoolean(this.settings.autoCloseOnTouchDevicesAfterDelay)) return;
+    if (!this.settings.autoCloseOnTouchDevicesAfterDelay) return;
     if (!isTouchDevice()) return;
     this.close(this.settings.touchCloseDelay);
   }

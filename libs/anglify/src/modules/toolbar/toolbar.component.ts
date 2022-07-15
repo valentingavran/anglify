@@ -5,7 +5,6 @@ import { Elevation } from '../../composables/elevation/elevation.interface';
 import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { BooleanLike } from '../../utils/interfaces';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 
 @Component({
@@ -21,8 +20,8 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 export class ToolbarComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input() public prominent: BooleanLike = this.settings.prominent;
-  @Input() public collapse: BooleanLike = this.settings.collapse;
+  @Input() public prominent = this.settings.prominent;
+  @Input() public collapse = this.settings.collapse;
 
   @Input()
   public set elevation(value: Elevation) {

@@ -15,8 +15,7 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map } from 'rxjs';
 import { InputAppearance } from './input.interface';
-import { bindClassToNativeElement, bindObservableValueToNativeElement, observeOnResize, toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { bindClassToNativeElement, bindObservableValueToNativeElement, observeOnResize } from '../../utils/functions';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 
 @UntilDestroy()
@@ -43,24 +42,24 @@ export class InputComponent implements OnInit, AfterViewInit {
     return this.appearance$.value;
   }
 
-  @Input() public set disabled(disabled: BooleanLike) {
-    this.disabled$.next(toBoolean(disabled));
+  @Input() public set disabled(disabled: boolean) {
+    this.disabled$.next(disabled);
   }
 
   public get disabled() {
     return this.disabled$.value;
   }
 
-  @Input() public set focused(focused: BooleanLike) {
-    this.focused$.next(toBoolean(focused));
+  @Input() public set focused(focused: boolean) {
+    this.focused$.next(focused);
   }
 
   public get focused() {
     return this.focused$.value;
   }
 
-  @Input() public set floating(floating: BooleanLike) {
-    this.floating$.next(toBoolean(floating));
+  @Input() public set floating(floating: boolean) {
+    this.floating$.next(floating);
   }
 
   public get floating() {
@@ -170,7 +169,7 @@ export class InputComponent implements OnInit, AfterViewInit {
     this.elementRef.nativeElement.style.setProperty('--anglify-input-append-width', `${width}px`);
   }
 
-  private setHintOverflow(overflow: BooleanLike) {
-    this.hintOverflow$.next(toBoolean(overflow));
+  private setHintOverflow(overflow: boolean) {
+    this.hintOverflow$.next(overflow);
   }
 }

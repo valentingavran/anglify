@@ -1,8 +1,6 @@
-import { BooleanLike } from '../../utils/interfaces';
-
 export interface EntireBottomNavigationSettings {
-  shift: BooleanLike;
-  grow: BooleanLike;
+  shift: boolean;
+  grow: boolean;
 }
 
 export type BottomNavigationSettings = Partial<EntireBottomNavigationSettings>;

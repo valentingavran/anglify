@@ -13,8 +13,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, slide } from '../../../../utils/animations';
-import { toBoolean } from '../../../../utils/functions';
-import { BooleanLike } from '../../../../utils/interfaces';
+
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { StepDirective } from '../../directives/step/step.directive';
@@ -35,13 +34,13 @@ export class StepperComponent extends StepperService implements AfterContentInit
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @Input()
-  public set stepConnectionLine(value: BooleanLike) {
-    this.stepperSettings.setHasStepConnectionLine(toBoolean(value));
+  public set stepConnectionLine(value: boolean) {
+    this.stepperSettings.setHasStepConnectionLine(value);
   }
 
   @Input()
-  public set headerNavigation(value: BooleanLike) {
-    this.stepperSettings.setHeaderNavigationEnabled(toBoolean(value));
+  public set headerNavigation(value: boolean) {
+    this.stepperSettings.setHeaderNavigationEnabled(value);
   }
 
   @Input()

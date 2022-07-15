@@ -10,8 +10,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { toBoolean } from '../../../../utils/functions';
-import type { BooleanLike } from '../../../../utils/interfaces';
+
 import { ListItemComponent } from '../list-item/list-item.component';
 
 @UntilDestroy()
@@ -24,21 +23,21 @@ import { ListItemComponent } from '../list-item/list-item.component';
 export class ListComponent implements AfterViewInit {
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
 
-  @Input() public dense: BooleanLike = false;
+  @Input() public dense = false;
 
   /** An alternative styling that reduces `anglify-list-item` width and rounds the corners. Typically used with anglify-navigation-drawer */
-  @Input() public nav: BooleanLike = false;
+  @Input() public nav = false;
   @Output() public readonly onItemClick = new EventEmitter<void>();
 
   @HostBinding('class')
   protected get classList() {
     const classNames = [];
 
-    if (toBoolean(this.dense)) {
+    if (this.dense) {
       classNames.push('dense');
     }
 
-    if (toBoolean(this.nav)) {
+    if (this.nav) {
       // items styling changes through this using :host-context
       classNames.push('anglify-list-nav');
     }

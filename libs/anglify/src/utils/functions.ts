@@ -1,6 +1,5 @@
 import { untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, pairwise, startWith, tap } from 'rxjs';
-import type { BooleanLike } from './interfaces';
 
 export function observeOnMutation(target: Node, config: MutationObserverInit | undefined): Observable<MutationRecord[]> {
   return new Observable(observer => {
@@ -20,10 +19,6 @@ export function observeOnResize(target: Element): Observable<ResizeObserverEntry
       resizeObserver.disconnect();
     };
   });
-}
-
-export function toBoolean(value: BooleanLike) {
-  return value === true || value === 'true' || value === '';
 }
 
 export function isTouchDevice() {

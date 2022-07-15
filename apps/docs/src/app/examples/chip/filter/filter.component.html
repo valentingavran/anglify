@@ -1,22 +1,22 @@
-<anglify-item-group multiple>
+<anglify-item-group [multiple]="true">
   <ng-template slot="item-group-item" let-active="active" let-toggle>
-    <anglify-chip [active]="active" (click)="toggle()" filter>
+    <anglify-chip [active]="active" (click)="toggle()" [filter]="true">
       <ng-template slot="prepend">
-        <anglify-icon icon="mdi-home" left></anglify-icon>
+        <anglify-icon icon="mdi-home" [left]="true"></anglify-icon>
       </ng-template>
       Filled
     </anglify-chip>
   </ng-template>
   <ng-template slot="item-group-item" let-active="active" let-toggle>
-    <anglify-chip [active]="active" (click)="toggle()" filter>Filled</anglify-chip>
+    <anglify-chip [active]="active" (click)="toggle()" [filter]="true">Filled</anglify-chip>
   </ng-template>
   <ng-template slot="item-group-item" let-active="active" let-toggle>
-    <anglify-chip [active]="active" (click)="toggle()" filter appearance="outlined">
+    <anglify-chip [active]="active" (click)="toggle()" [filter]="true" appearance="outlined">
       <ng-template slot="prepend">
-        <anglify-icon icon="mdi-home" left></anglify-icon>
+        <anglify-icon icon="mdi-home" [left]="true"></anglify-icon>
       </ng-template>
       <ng-template slot="append">
-        <anglify-icon icon="mdi-close-circle" right></anglify-icon>
+        <anglify-icon icon="mdi-close-circle" [right]="true"></anglify-icon>
       </ng-template>
       Outlined
     </anglify-chip>

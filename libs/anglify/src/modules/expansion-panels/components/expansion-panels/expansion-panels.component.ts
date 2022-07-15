@@ -13,8 +13,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, first, map, startWith, tap } from 'rxjs';
 import { ELEVATION } from '../../../../composables/elevation/elevation.provider';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
-import { bindClassToNativeElement, toBoolean } from '../../../../utils/functions';
-import { BooleanLike } from '../../../../utils/interfaces';
+import { bindClassToNativeElement } from '../../../../utils/functions';
 import { DEFAULT_EXPANSION_PANELS_SETTINGS, EXPANSION_PANELS_SETTINGS } from '../../expansion-panels-settings.token';
 import { EntireExpansionPanelsSettings } from '../../expansion-panels.interface';
 import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
@@ -37,11 +36,11 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
 export class ExpansionPanelsComponent implements AfterViewInit {
   @ContentChildren(ExpansionPanelComponent, { descendants: true }) private readonly allSlots?: QueryList<ExpansionPanelComponent>;
 
-  @Input() public mandatory: BooleanLike = this.settings.mandatory;
-  @Input() public multiple: BooleanLike = this.settings.multiple;
+  @Input() public mandatory = this.settings.mandatory;
+  @Input() public multiple = this.settings.multiple;
   @Input() public max: number | undefined = this.settings.max;
-  @Input() public set accordion(value: BooleanLike) {
-    this.accordion$.next(toBoolean(value));
+  @Input() public set accordion(value: boolean) {
+    this.accordion$.next(value);
   }
 
   public get accordion() {
@@ -108,15 +107,15 @@ export class ExpansionPanelsComponent implements AfterViewInit {
     const areOtherItemsSelected = otherSelectedItemsCount > 0;
 
     // See README.md for explanation of this logic
-    if ((!areOtherItemsSelected && !toBoolean(item.active)) || (toBoolean(this.multiple) && !toBoolean(item.active))) {
+    if ((!areOtherItemsSelected && !item.active) || (this.multiple && !item.active)) {
       if (this.max === undefined) {
         this.selectItem(item);
       } else if (activeCount < this.max) {
         this.selectItem(item);
       }
-    } else if ((!toBoolean(this.mandatory) && toBoolean(item.active)) || (areOtherItemsSelected && toBoolean(item.active))) {
+    } else if ((!this.mandatory && item.active) || (areOtherItemsSelected && item.active)) {
       this.deselectItem(item);
-    } else if ((!toBoolean(this.multiple) && !areOtherItemsSelected) || !toBoolean(item.active)) {
+    } else if ((!this.multiple && !areOtherItemsSelected) || !item.active) {
       this.deselectAll();
       this.selectItem(item);
     }
@@ -148,7 +147,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
   private getActiveIndices(): number[] {
     return this.itemGroupItems$.value
       .map((item, index) => ({ item, index }))
-      .filter(({ item }) => toBoolean(item.active))
+      .filter(({ item }) => item.active)
       .map(({ index }) => index);
   }
 

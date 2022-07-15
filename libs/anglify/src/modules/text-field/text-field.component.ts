@@ -3,7 +3,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { DEFAULT_TEXT_FIELD_SETTINGS, TEXT_FIELD_SETTINGS } from './text-field-settings.token';
 import { EntireTextFieldSettings } from './text-field.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { BooleanLike } from '../../utils/interfaces';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
@@ -26,12 +25,12 @@ export class TextFieldComponent implements AfterViewInit {
   @Input() public label?: string;
   @Input() public appearance: InputAppearance = this.settings.appearance;
   @Input() public hint = '';
-  @Input() public persistentHint: BooleanLike = this.settings.persistentHint;
-  @Input() public alwaysFloatingLabel: BooleanLike = this.settings.alwaysFloatingLabel;
-  @Input() public hideDetails: BooleanLike = this.settings.hideDetails;
-  @Input() public counter: BooleanLike = this.settings.counter;
+  @Input() public persistentHint = this.settings.persistentHint;
+  @Input() public alwaysFloatingLabel = this.settings.alwaysFloatingLabel;
+  @Input() public hideDetails = this.settings.hideDetails;
+  @Input() public counter = this.settings.counter;
   @Input() public error?: string;
-  @Input() public dense: BooleanLike = this.settings.dense;
+  @Input() public dense = this.settings.dense;
 
   public constructor(@Self() @Inject('anglifyTextFieldSettings') public settings: EntireTextFieldSettings) {}
 

@@ -1,15 +1,15 @@
-<anglify-item-group multiple [max]="3">
+<anglify-item-group [multiple]="true" [max]="3">
   <ng-template *ngFor="let item of items$ | async; trackBy: trackByFn" slot="item-group-item" let-active="active" let-toggle>
-    <anglify-card ripple [class.active]="active" (click)="toggle()">{{ item }}</anglify-card>
+    <anglify-card [ripple]="true" [class.active]="active" (click)="toggle()">{{ item }}</anglify-card>
   </ng-template>
 </anglify-item-group>
 <div class="actions">
   <button anglifyButton appearance="outlined" (click)="removeItem()">
-    <anglify-icon icon="mdi-minus" left></anglify-icon>
+    <anglify-icon icon="mdi-minus" [left]="true"></anglify-icon>
     Remove item
   </button>
   <button anglifyButton appearance="outlined" (click)="addItem()">
-    <anglify-icon icon="mdi-plus" left></anglify-icon>
+    <anglify-icon icon="mdi-plus" [left]="true"></anglify-icon>
     Add item
   </button>
 </div>

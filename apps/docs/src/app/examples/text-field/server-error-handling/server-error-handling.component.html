@@ -2,7 +2,7 @@
   <input anglifyInput placeholder="johndoe" value="johndoe" disabled />
 </anglify-text-field>
 
-<anglify-text-field appearance="outlined" hint="The valid password is 12345678" persistentHint label="Password">
+<anglify-text-field appearance="outlined" hint="The valid password is 12345678" [persistentHint]="true" label="Password">
   <input anglifyInput type="password" [formControl]="passwordControl" />
 </anglify-text-field>
 

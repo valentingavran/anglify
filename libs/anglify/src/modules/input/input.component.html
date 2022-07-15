@@ -1,7 +1,7 @@
 <div class="anglify-input-prepend">
   <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
 </div>
-<div class="anglify-input" anglifyInteractionState active="false" (click)="onInputClick.next()">
+<div class="anglify-input" anglifyInteractionState [active]="false" (click)="onInputClick.next()">
   <div class="anglify-input-prepend-inner" #prependInner>
     <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
   </div>

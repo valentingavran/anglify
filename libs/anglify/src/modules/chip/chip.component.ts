@@ -21,8 +21,8 @@ import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
-import { bindClassToNativeElement, toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { bindClassToNativeElement } from '../../utils/functions';
+
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
 
@@ -38,21 +38,21 @@ export class ChipComponent implements OnInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @Input()
-  public set active(value: BooleanLike) {
-    this.active$.next(toBoolean(value));
+  public set active(value: boolean) {
+    this.active$.next(value);
   }
 
   public get active() {
     return this.active$.value;
   }
 
-  @Input('filter') public filter: BooleanLike = this.settings.filter;
+  @Input('filter') public filter = this.settings.filter;
 
   @Input() public appearance: ChipAppearance = this.settings.appearance;
 
   @Input()
-  public set ripple(value: BooleanLike) {
-    this.rippleService.active = toBoolean(value);
+  public set ripple(value: boolean) {
+    this.rippleService.active = value;
   }
 
   public get ripple(): boolean {
@@ -102,7 +102,7 @@ export class ChipComponent implements OnInit {
   protected get classList() {
     const classNames: string[] = [this.appearance];
 
-    if (toBoolean(this.filter)) {
+    if (this.filter) {
       classNames.push('filter');
     }
 

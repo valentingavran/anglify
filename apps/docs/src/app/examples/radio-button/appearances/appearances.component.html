@@ -1,6 +1,6 @@
 <form>
   <anglify-radio-button name="group-1" value="1" [rippleOrigin]="undefined">Check me!</anglify-radio-button>
-  <anglify-radio-button name="group-1" value="2" [labelPosition]="'before'" ripple="false">No ripple!</anglify-radio-button>
-  <anglify-radio-button name="group-1" value="3" [(ngModel)]="disabledInput" disabled>Disabled</anglify-radio-button>
-  <anglify-radio-button name="group-1" value="4" [(ngModel)]="disabledInput" disabled>Disabled</anglify-radio-button>
+  <anglify-radio-button name="group-1" value="2" [labelPosition]="'before'" [ripple]="false">No ripple!</anglify-radio-button>
+  <anglify-radio-button name="group-1" value="3" [(ngModel)]="disabledInput" [disabled]="true">Disabled</anglify-radio-button>
+  <anglify-radio-button name="group-1" value="4" [(ngModel)]="disabledInput" [disabled]="true">Disabled</anglify-radio-button>
 </form>

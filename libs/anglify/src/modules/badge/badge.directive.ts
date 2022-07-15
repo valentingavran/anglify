@@ -23,7 +23,6 @@ import { EntireBadgeSettings } from './badge.interface';
 import { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Directive({
@@ -34,7 +33,7 @@ import { BooleanLike } from '../../utils/interfaces';
 export class BadgeDirective implements OnInit {
   @Input('anglifyBadge') public content!: string | TemplateRef<any> | Type<any>;
   @Input('badgePosition') public position: Position = this.settings.position;
-  @Input('badgeBorder') public border: BooleanLike = this.settings.border;
+  @Input('badgeBorder') public border = this.settings.border;
 
   private componentRef: ComponentRef<BadgeComponent> | undefined; // Badge Component Reference
   private embeddedView: EmbeddedViewRef<any> | undefined; // Badge Content Template Reference

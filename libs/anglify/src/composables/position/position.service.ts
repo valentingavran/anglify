@@ -1,12 +1,11 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
 import { Options } from '@floating-ui/core/src/middleware/offset';
-import { computePosition, offset, flip, shift } from '@floating-ui/dom';
+import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, merge } from 'rxjs';
 import { Position, PositionSettings } from './position.interface';
 import { POSITION_SETTINGS } from './position.token';
-import { observeOnResize, toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { observeOnResize } from '../../utils/functions';
 
 @UntilDestroy()
 @Injectable()
@@ -35,8 +34,8 @@ export class PositionService {
     return this._offset;
   }
 
-  public set parentWidth(value: BooleanLike) {
-    this._parentWidth = toBoolean(value);
+  public set parentWidth(value: boolean) {
+    this._parentWidth = value;
     void this.updatePosition();
   }
 
@@ -44,8 +43,8 @@ export class PositionService {
     return this._parentWidth;
   }
 
-  public set flip(value: BooleanLike) {
-    this._flip = toBoolean(value);
+  public set flip(value: boolean) {
+    this._flip = value;
     void this.updatePosition();
   }
 
@@ -53,8 +52,8 @@ export class PositionService {
     return this._flip;
   }
 
-  public set shift(value: BooleanLike) {
-    this._shift = toBoolean(value);
+  public set shift(value: boolean) {
+    this._shift = value;
     void this.updatePosition();
   }
 

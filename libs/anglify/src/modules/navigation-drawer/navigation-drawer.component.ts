@@ -17,8 +17,7 @@ import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from '
 import { NavigationDrawerMode, EntireNavigationDrawerSettings } from './navigation-drawer.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { enterLeaveOpacityAnimation } from '../../utils/animations';
-import { bindClassToNativeElement, bindObservableValueToNativeElement, toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { bindClassToNativeElement, bindObservableValueToNativeElement } from '../../utils/functions';
 import { ListComponent } from '../list/components/list/list.component';
 
 @UntilDestroy()
@@ -42,8 +41,8 @@ import { ListComponent } from '../list/components/list/list.component';
 export class NavigationDrawerComponent implements AfterViewInit {
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
 
-  @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
-  @Input() public closeOnItemClick: BooleanLike = this.settings.closeOnItemClick;
+  @Input() public closeOnOutsideClick = this.settings.closeOnOutsideClick;
+  @Input() public closeOnItemClick = this.settings.closeOnItemClick;
   @Input() public set mode(value: NavigationDrawerMode) {
     this.mode$.next(value);
   }
@@ -52,8 +51,8 @@ export class NavigationDrawerComponent implements AfterViewInit {
     return this.mode$.value;
   }
 
-  @Input() public set ngModel(value: BooleanLike) {
-    this.setOpened(toBoolean(value));
+  @Input() public set ngModel(value: boolean) {
+    this.setOpened(value);
   }
 
   public get ngModel() {
@@ -96,7 +95,7 @@ export class NavigationDrawerComponent implements AfterViewInit {
       list.onItemClick
         .asObservable()
         .pipe(
-          filter(() => toBoolean(this.closeOnItemClick) && this.mode$.value === 'modal'),
+          filter(() => this.closeOnItemClick && this.mode$.value === 'modal'),
           untilDestroyed(this)
         )
         .subscribe(() => {

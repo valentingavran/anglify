@@ -1,20 +1,7 @@
 <label [class.before]="labelPosition === 'before'">
-  <input
-    type="radio"
-    [disabled]="disabled | booleanLikeToBoolean"
-    [ngModel]="checked"
-    (ngModelChange)="onModelChange($event)"
-    [value]="value"
-    [name]="name"
-  />
+  <input type="radio" [disabled]="disabled" [ngModel]="checked" (ngModelChange)="onModelChange($event)" [value]="value" [name]="name" />
   <div class="container">
-    <div
-      class="state-container"
-      anglifyInteractionState
-      [active]="(ripple | booleanLikeToBoolean) && !(disabled | booleanLikeToBoolean)"
-      [rippleOrigin]="rippleOrigin"
-      [state]="state | booleanLikeToBoolean"
-    ></div>
+    <div class="state-container" anglifyInteractionState [active]="ripple && !disabled" [rippleOrigin]="rippleOrigin" [state]="state"></div>
     <div class="radio-button-effect">
       <div class="radio-button-effect-dot"></div>
     </div>

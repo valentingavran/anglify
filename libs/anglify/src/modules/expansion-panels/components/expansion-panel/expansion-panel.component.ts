@@ -17,8 +17,8 @@ import { ELEVATION } from '../../../../composables/elevation/elevation.provider'
 import { ElevationService } from '../../../../composables/elevation/elevation.service';
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, rotate } from '../../../../utils/animations';
-import { bindClassToNativeElement, toBoolean } from '../../../../utils/functions';
-import { BooleanLike } from '../../../../utils/interfaces';
+import { bindClassToNativeElement } from '../../../../utils/functions';
+
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { EntireExpansionPanelsSettings } from '../../expansion-panels.interface';
@@ -35,11 +35,11 @@ import { EntireExpansionPanelsSettings } from '../../expansion-panels.interface'
 export class ExpansionPanelComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input() public hideToggle: BooleanLike = false;
+  @Input() public hideToggle = false;
   @Input() public label?: string;
 
-  @Input() public set active(value: BooleanLike) {
-    this._active$.next(toBoolean(value));
+  @Input() public set active(value: boolean) {
+    this._active$.next(value);
   }
 
   public get active() {

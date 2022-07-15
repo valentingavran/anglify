@@ -2,7 +2,7 @@
   <ng-template slot="item-group-item" let-active="active" let-toggle>
     <anglify-chip [active]="active" (click)="toggle()">
       <ng-template slot="prepend">
-        <anglify-icon icon="mdi-home" left></anglify-icon>
+        <anglify-icon icon="mdi-home" [left]="true"></anglify-icon>
       </ng-template>
       Chip 1
     </anglify-chip>

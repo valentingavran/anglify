@@ -4,8 +4,6 @@ import { ButtonAppearance, EntireButtonSettings } from './button.interface';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
 
 @Component({
   selector: 'button[anglifyButton]',
@@ -20,11 +18,11 @@ export class ButtonComponent implements OnInit {
   /**
    * Expands the button to 100% of available space.
    */
-  @Input() public block: BooleanLike = this.settings.block;
+  @Input() public block = this.settings.block;
 
   @Input()
-  public set ripple(value: BooleanLike) {
-    this.rippleService.active = toBoolean(value);
+  public set ripple(value: boolean) {
+    this.rippleService.active = value;
   }
 
   public get ripple() {
@@ -32,8 +30,8 @@ export class ButtonComponent implements OnInit {
   }
 
   @Input()
-  public set state(value: BooleanLike) {
-    this.rippleService.state = toBoolean(value);
+  public set state(value: boolean) {
+    this.rippleService.state = value;
   }
 
   public get state() {
@@ -79,7 +77,7 @@ export class ButtonComponent implements OnInit {
   protected get classList() {
     const classNames: string[] = [this.appearance];
 
-    if (toBoolean(this.block)) {
+    if (this.block) {
       classNames.push('block');
     }
 

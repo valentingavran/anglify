@@ -10,14 +10,14 @@
       <anglify-icon icon="mdi-material-design"></anglify-icon>
       <ng-template #materialTooltip>
         Open material.io
-        <anglify-icon icon="mdi-open-in-new" right size="x-small"></anglify-icon>
+        <anglify-icon icon="mdi-open-in-new" [right]="true" size="x-small"></anglify-icon>
       </ng-template>
     </button>
     <button anglifyButton appearance="icon" (click)="openGithubRepo()" [anglifyTooltip]="githubTooltip">
       <anglify-icon icon="mdi-github"></anglify-icon>
       <ng-template #githubTooltip>
         Open GitHub Repo
-        <anglify-icon icon="mdi-open-in-new" right size="x-small"></anglify-icon>
+        <anglify-icon icon="mdi-open-in-new" [right]="true" size="x-small"></anglify-icon>
       </ng-template>
     </button>
     <button anglifyButton appearance="icon" (click)="toggleTheme()" anglifyTooltip="Switch theme">
@@ -30,8 +30,8 @@
   [ngModel]="(breakpointService.lgAndUp$ | async) ?? true"
   #drawer
 >
-  <anglify-list dense nav>
-    <anglify-list-item-group mandatory>
+  <anglify-list [dense]="true" [nav]="true">
+    <anglify-list-item-group [mandatory]="true">
       <anglify-list-group>
         <ng-template slot="activator:prepend">
           <anglify-icon icon="mdi-text-box"></anglify-icon>

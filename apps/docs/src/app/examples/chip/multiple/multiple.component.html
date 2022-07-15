@@ -1,4 +1,4 @@
-<anglify-item-group multiple>
+<anglify-item-group [multiple]="true">
   <ng-template slot="item-group-item" let-active="active" let-toggle>
     <anglify-chip [active]="active" (click)="toggle()">Chip 1</anglify-chip>
   </ng-template>
