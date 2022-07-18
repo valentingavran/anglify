@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  HostBinding,
   HostListener,
   Inject,
   Input,
@@ -57,7 +58,10 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @Input() public state = this.settings.state;
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
-  @Input() public set checked(value: boolean) {
+
+  @HostBinding('attr.aria-checked')
+  @Input()
+  public set checked(value: boolean) {
     this.checked$.next(value);
   }
 
@@ -65,13 +69,24 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     return this.checked$.value;
   }
 
-  @Input() public set disabled(value: boolean) {
+  @HostBinding('attr.aria-disabled')
+  @Input()
+  public set disabled(value: boolean) {
     this.disabled$.next(value);
   }
 
+  public get disabled() {
+    return this.disabled$.value;
+  }
+
+  @HostBinding('attr.aria-readonly')
   @Input('readonly')
   public set isReadonly(value: boolean) {
     this.readonly$.next(value);
+  }
+
+  public get isReadonly() {
+    return this.readonly$.value;
   }
 
   @Output() public checkedChange = new EventEmitter<boolean>();
@@ -80,6 +95,8 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   public checked$ = new BehaviorSubject(this.settings.checked);
   public disabled$ = new BehaviorSubject(this.settings.disabled);
   public readonly$ = new BehaviorSubject(this.settings.readonly);
+
+  @HostBinding('attr.role') protected readonly role = 'checkbox';
 
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,

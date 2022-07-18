@@ -9,6 +9,7 @@ import { InteractionStateModule } from '../interaction-state/interaction-state.m
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
+  let nativeElement: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,6 +21,7 @@ describe('CheckboxComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
+    nativeElement = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
 
@@ -33,5 +35,30 @@ describe('CheckboxComponent', () => {
     expect(await firstValueFrom(component.disabled$)).toBe(DEFAULT_CHECKBOX_SETTINGS.disabled);
     expect(await firstValueFrom(component.checked$)).toBe(DEFAULT_CHECKBOX_SETTINGS.checked);
     expect(component.ripple).toBe(DEFAULT_CHECKBOX_SETTINGS.ripple);
+  });
+
+  it('should have checkbox role', () => {
+    expect(nativeElement.getAttribute('role')).toBe('checkbox');
+  });
+
+  it('should have working aria-checked attribute', () => {
+    expect(nativeElement.getAttribute('aria-checked')).toBe('false');
+    component.checked = true;
+    fixture.detectChanges();
+    expect(nativeElement.getAttribute('aria-checked')).toBe('true');
+  });
+
+  it('should have working aria-disabled attribute', () => {
+    expect(nativeElement.getAttribute('aria-disabled')).toBe('false');
+    component.disabled = true;
+    fixture.detectChanges();
+    expect(nativeElement.getAttribute('aria-disabled')).toBe('true');
+  });
+
+  it('should have working aria-readonly attribute', () => {
+    expect(nativeElement.getAttribute('aria-readonly')).toBe('false');
+    component.isReadonly = true;
+    fixture.detectChanges();
+    expect(nativeElement.getAttribute('aria-readonly')).toBe('true');
   });
 });
