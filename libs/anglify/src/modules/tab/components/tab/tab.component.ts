@@ -5,6 +5,8 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  HostBinding,
+  HostListener,
   Inject,
   Input,
   Output,
@@ -35,7 +37,9 @@ export class TabComponent implements AfterViewInit {
 
   @Input() public label?: string;
 
-  @Input() public set active(value: boolean) {
+  @HostBinding('attr.aria-selected')
+  @Input()
+  public set active(value: boolean) {
     this._active$.next(value);
     if (value) this.activeChange.next();
   }
@@ -86,8 +90,34 @@ export class TabComponent implements AfterViewInit {
   @Input() public exact = false;
 
   @Output() public activeChange = new EventEmitter<void>();
+  @Output() public selectPrevious = new EventEmitter<void>();
+  @Output() public selectNext = new EventEmitter<void>();
 
   public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
+
+  // @ts-expect-error
+  @HostBinding('attr.role') private readonly role = 'tab';
+  // @ts-expect-error
+  @HostBinding('tabindex') private get tabindex() {
+    return this.active ? 0 : -1;
+  }
+
+  @HostListener('keydown.arrowleft', ['$event'])
+  @HostListener('keydown.arrowright', ['$event'])
+  // @ts-expect-error
+  private onKeydown(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') {
+      this.selectPrevious.next();
+    } else if (event.key === 'ArrowRight') {
+      this.selectNext.next();
+    }
+  }
+
+  @HostListener('click')
+  // @ts-expect-error
+  private click() {
+    this.active = true;
+  }
 
   public constructor(
     @Self() @Inject('anglifyTabSettings') public settings: EntireTabSettings,
