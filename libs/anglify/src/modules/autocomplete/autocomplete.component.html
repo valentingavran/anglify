@@ -1,0 +1,128 @@
+<anglify-text-field
+  [appearance]="appearance"
+  [label]="label"
+  [alwaysFloatingLabel]="alwaysFloatingLabel || !!(selectedOptions$ | async)!.length || (isOpen$ | async)!"
+  [hint]="hint"
+  [persistentHint]="persistentHint"
+  [hideDetails]="hideDetails"
+  [error]="(error$ | async)!"
+  [anglifyMenuTriggerFor]="menuTemplate"
+  #menuDirective="anglifyMenu"
+  [openOnClick]="!readonly && (disabled$ | async) === false"
+  [position]="dropdownPosition"
+  [offset]="dropdownOffset"
+  [parentWidth]="true"
+  [class.expand-min-height]="!!(selectedOptions$ | async)!.length && multiple"
+>
+  <ng-template slot="prepend">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
+  </ng-template>
+  <ng-template slot="prepend-inner">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'">
+      <div></div>
+    </ng-container>
+  </ng-template>
+  <ng-template slot="prepend-inner-content">
+    <ng-container *ngIf="!!(selectedOptions$ | async)!.length && multiple">
+      <ng-container
+        *anglifySlotOutlet="
+          slots | findSlot: 'prepend-inner-content';
+          context: { options: selectedOptions$ | async, select, readonly, disabled: disabled$ | async }
+        "
+      >
+        <div class="prepend-inner-option" *ngFor="let option of selectedOptions$ | async">
+          <anglify-chip
+            [class.disabled]="!!option.disabled || (disabled$ | async)"
+            anglifyClickStopPropagation
+            [ripple]="!option.disabled || (disabled$ | async) === false"
+          >
+            {{ option.text }}
+            <ng-container *ngIf="(disabled$ | async) === false">
+              <ng-template slot="append">
+                <anglify-icon
+                  *ngIf="!option.disabled || (disabled$ | async) === false"
+                  [class.disabled]="option.disabled || (disabled$ | async)"
+                  [icon]="internalIcons.closeCircle"
+                  [right]="true"
+                  [clickable]="!option.disabled || !readonly || (disabled$ | async) === false"
+                  (click)="select(option)"
+                  anglifyClickStopPropagation
+                ></anglify-icon>
+              </ng-template>
+            </ng-container>
+          </anglify-chip>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+  <ng-template slot="label">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'label'">{{ label }}</ng-container>
+  </ng-template>
+
+  <input anglifyInput type="text" [autocomplete]="false" [placeholder]="placeholder" [disabled]="disabled$ | async" [readonly]="readonly" />
+
+  <ng-template slot="append-inner">
+    <ng-container
+      *anglifySlotOutlet="
+        slots | findSlot: 'append-inner';
+        context: { clearable, clearSelection, toggleMenu, isOpen: isOpen$ | async, disabled: disabled$ | async }
+      "
+    >
+      <anglify-icon
+        *ngIf="clearable"
+        [class.disabled]="disabled$ | async"
+        [icon]="internalIcons.close"
+        [clickable]="!readonly || (disabled$ | async) === false"
+        (click)="clearSelection()"
+        anglifyClickStopPropagation
+      ></anglify-icon>
+      <anglify-icon
+        [class.disabled]="disabled$ | async"
+        [icon]="internalIcons.chevronDown"
+        [@rotate]="isOpen$ | async"
+        [clickable]="!readonly || (disabled$ | async) === false"
+        (click)="toggleMenu()"
+        anglifyClickStopPropagation
+      ></anglify-icon>
+    </ng-container>
+  </ng-template>
+  <ng-template slot="append">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'append'"></ng-container>
+  </ng-template>
+</anglify-text-field>
+
+<ng-template #menuTemplate>
+  <div class="dropdown-menu">
+    <ng-container
+      *anglifySlotOutlet="
+        slots | findSlot: 'menu';
+        context: { options: filteredOptions$ | async, multiple: multiple, isOptionSelected$, select, disabled: disabled$ | async }
+      "
+    >
+      <anglify-list *ngIf="!(filteredOptions$ | async)?.length">
+        <anglify-list-item-group>
+          <anglify-list-item [state]="false" [disabled]="true">
+            <anglify-list-item-title>{{ noOptions }}</anglify-list-item-title>
+          </anglify-list-item>
+        </anglify-list-item-group>
+      </anglify-list>
+      <anglify-list>
+        <anglify-list-item-group [multiple]="multiple">
+          <anglify-list-item
+            *ngFor="let option of filteredOptions$ | async; trackBy: trackOption"
+            class="option-item"
+            [class.disabled]="!!option.disabled"
+            [active]="(isOptionSelected$(option) | async)!"
+            (mousedown)="$event.preventDefault()"
+            (onClick)="select(option)"
+            [state]="!option.disabled"
+            [ripple]="!option.disabled"
+            [disabled]="!!option.disabled"
+          >
+            <anglify-list-item-title>{{ option.text }}</anglify-list-item-title>
+          </anglify-list-item>
+        </anglify-list-item-group>
+      </anglify-list>
+    </ng-container>
+  </div>
+</ng-template>

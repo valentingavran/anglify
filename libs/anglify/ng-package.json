@@ -6,7 +6,7 @@
   },
   "assets": [
     "src/styles/**/*.scss",
-    "src/modules/expansion-panels/*.scss",
+    "src/modules/autocomplete/*.scss",
     "src/modules/badge/*.scss",
     "src/modules/bottom-navigation/*.scss",
     "src/modules/button/*.scss",
@@ -15,6 +15,7 @@
     "src/modules/checkbox/*.scss",
     "src/modules/chip/*.scss",
     "src/modules/dialog/*.scss",
+    "src/modules/expansion-panels/*.scss",
     "src/modules/icon/*.scss",
     "src/modules/input/*.scss",
     "src/modules/item-group/*.scss",

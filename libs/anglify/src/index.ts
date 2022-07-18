@@ -21,12 +21,9 @@ export * from './utils/animations';
 export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
-// Expansion Panels
-export * from './modules/expansion-panels/components/expansion-panel/expansion-panel.component';
-export * from './modules/expansion-panels/components/expansion-panels/expansion-panels.component';
-export * from './modules/expansion-panels/expansion-panels-settings.token';
-export * from './modules/expansion-panels/expansion-panels.interface';
-export * from './modules/expansion-panels/expansion-panels.module';
+// Autocomplete
+export * from './modules/autocomplete/autocomplete.component';
+export * from './modules/autocomplete/autocomplete.module';
 // Badge
 export * from './modules/badge/badge-settings.token';
 export * from './modules/badge/badge.component';
@@ -39,15 +36,15 @@ export * from './modules/bottom-navigation/bottom-navigation.component';
 export * from './modules/bottom-navigation/bottom-navigation-settings.token';
 export * from './modules/bottom-navigation/bottom-navigation.interface';
 export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';
-// Button
-export * from './modules/button/button.component';
-export * from './modules/button/button.interface';
-export * from './modules/button/button.module';
 // Breadcrumbs
 export * from './modules/breadcrumbs/breadcrumbs-settings.token';
 export * from './modules/breadcrumbs/breadcrumbs.component';
 export * from './modules/breadcrumbs/breadcrumbs.interface';
 export * from './modules/breadcrumbs/breadcrumbs.module';
+// Button
+export * from './modules/button/button.component';
+export * from './modules/button/button.interface';
+export * from './modules/button/button.module';
 // Card
 export * from './modules/card/card-settings.token';
 export * from './modules/card/card.component';
@@ -71,6 +68,12 @@ export * from './modules/dialog/dialog.component';
 export * from './modules/dialog/dialog.interface';
 export * from './modules/dialog/dialog.service';
 export * from './modules/dialog/dialog.module';
+// Expansion Panels
+export * from './modules/expansion-panels/components/expansion-panel/expansion-panel.component';
+export * from './modules/expansion-panels/components/expansion-panels/expansion-panels.component';
+export * from './modules/expansion-panels/expansion-panels-settings.token';
+export * from './modules/expansion-panels/expansion-panels.interface';
+export * from './modules/expansion-panels/expansion-panels.module';
 // Icon
 export * from './modules/icon/icon-settings.token';
 export * from './modules/icon/icon.component';
@@ -152,13 +155,13 @@ export * from './modules/text-area/text-area.module';
 // Text Field
 export * from './modules/text-field/text-field.component';
 export * from './modules/text-field/text-field.module';
-// Tooltip
-export * from './modules/tooltip/tooltip-settings.token';
-export * from './modules/tooltip/tooltip.directive';
-export * from './modules/tooltip/tooltip.interface';
-export * from './modules/tooltip/tooltip.module';
 // Toolbar
 export * from './modules/toolbar/toolbar.module';
 export * from './modules/toolbar/toolbar-settings.token';
 export * from './modules/toolbar/toolbar.interface';
 export * from './modules/toolbar/toolbar.component';
+// Tooltip
+export * from './modules/tooltip/tooltip-settings.token';
+export * from './modules/tooltip/tooltip.directive';
+export * from './modules/tooltip/tooltip.interface';
+export * from './modules/tooltip/tooltip.module';
