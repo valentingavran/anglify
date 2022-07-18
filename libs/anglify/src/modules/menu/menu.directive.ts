@@ -198,8 +198,14 @@ export class MenuDirective implements OnDestroy {
         takeUntil(this.closeAction),
         filter(() => this.closeOnOutsideClick),
         map(event => event.target as HTMLElement),
-        map(target => !this.element.nativeElement.contains(target)),
-        filter(clickedOutside => Boolean(clickedOutside)),
+        map(target => {
+          if (this.componentRef) {
+            const element = this.componentRef.location.nativeElement as HTMLElement;
+            return !element.contains(target) && !element.parentElement?.contains(target);
+          }
+          return !this.element.nativeElement.contains(target);
+        }),
+        filter(closeClick => Boolean(closeClick)),
         tap(() => {
           this.closeAction.next();
         })
