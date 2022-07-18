@@ -37,6 +37,7 @@
     </span>
     <ng-template #hintTemplate>
       <span
+        *ngIf="hint"
         #hintElement
         [anglifyTooltip]="hint"
         [anglifyToolTipConfig]="{ mountingPoint: inputDetails, disabled: !hintOverflow }"
