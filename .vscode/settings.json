@@ -7,5 +7,11 @@
   },
   "stylelint.snippet": ["css", "less", "postcss", "scss"],
   "stylelint.validate": ["css", "less", "postcss", "scss"],
-  "cSpell.words": ["anexia", "Anglify", "devkit", "highlightjs", "ngneat", "nrwl", "packagr"]
+  "cSpell.words": ["anexia", "Anglify", "devkit", "highlightjs", "ngneat", "nrwl", "packagr"],
+  "search.exclude": {
+    "**/.angular": true,
+    "**/dist": true,
+    "**/tmp": true,
+    "**/package-lock.json": true
+  }
 }
