@@ -1,7 +1,7 @@
 <div *ngIf="slots | findSlot: 'prepend'" class="prepend">
   <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'; context: { active: active$ | async }"></ng-container>
 </div>
-<div class="content">
+<div class="item-content">
   <ng-content></ng-content>
 </div>
 <div *ngIf="slots | findSlot: 'append'" class="append">
