@@ -94,7 +94,7 @@ export class InputComponent implements OnInit, AfterViewInit {
     return this.error$.value;
   }
 
-  @Input() public hint = '';
+  @Input() public hint?: string;
   @Input() public inputId?: string;
   @Input() public length?: number;
   @Input() public maxLength?: number;

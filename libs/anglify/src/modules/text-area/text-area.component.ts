@@ -22,7 +22,7 @@ export class TextAreaComponent implements AfterViewInit {
 
   @Input() public label?: string;
   @Input() public appearance: InputAppearance = this.settings.appearance;
-  @Input() public hint = '';
+  @Input() public hint?: string;
   @Input() public persistentHint = this.settings.persistentHint;
   @Input() public alwaysFloatingLabel = this.settings.alwaysFloatingLabel;
   @Input() public hideDetails = this.settings.hideDetails;
