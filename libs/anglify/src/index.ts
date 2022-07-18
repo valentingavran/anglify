@@ -8,6 +8,13 @@ export * from './composables/position/position.service';
 export * from './composables/ripple/ripple.interface';
 export * from './composables/ripple/ripple.provider';
 export * from './composables/ripple/ripple.service';
+// Common
+export * from './modules/common/directives/slot/slot.directive';
+export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
+export * from './modules/common/pipes/clamp/clamp.pipe';
+export * from './modules/common/pipes/find-slot/find-slot.pipe';
+export * from './modules/common/pipes/percent/percent.pipe';
+export * from './modules/common/anglify-common.module';
 // Utils
 export * from './utils/animations';
 export * from './utils/validators';
@@ -58,13 +65,6 @@ export * from './modules/chip/chip-settings.token';
 export * from './modules/chip/chip.interface';
 export * from './modules/chip/chip.component';
 export * from './modules/chip/chip.module';
-// Common
-export * from './modules/common/directives/slot/slot.directive';
-export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
-export * from './modules/common/pipes/clamp/clamp.pipe';
-export * from './modules/common/pipes/find-slot/find-slot.pipe';
-export * from './modules/common/pipes/percent/percent.pipe';
-export * from './modules/common/anglify-common.module';
 // Dialog
 export * from './modules/dialog/dialog.component';
 export * from './modules/dialog/dialog.interface';
