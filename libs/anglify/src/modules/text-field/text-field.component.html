@@ -18,6 +18,12 @@
   <ng-template slot="prepend-inner">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
   </ng-template>
+  <ng-template slot="prepend-inner-content">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner-content'"></ng-container>
+  </ng-template>
+  <ng-template slot="append-inner-content">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner-content'"></ng-container>
+  </ng-template>
   <ng-template slot="append-inner">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'"></ng-container>
   </ng-template>

@@ -3,15 +3,22 @@
   --anglify-input-outlined-label-end-offset: 16px;
   --anglify-input-filled-label-start-offset: 16px;
   --anglify-input-filled-label-end-offset: 16px;
+  --anglify-input-min-width: 0;
   --anglify-input-min-height: 56px;
   --anglify-input-min-height-dense: 40px;
+  --anglify-input-flex-basis: 100px;
+  --anglify-input-flex-grow: 1;
+  --anglify-input-flex-shrink: 1;
 
   anglify-input {
     ::ng-deep input {
-      width: 100%;
+      min-width: var(--anglify-input-min-width);
       height: var(--anglify-input-min-height);
       min-height: var(--anglify-input-min-height);
       box-sizing: border-box;
+      flex-basis: var(--anglify-input-flex-basis);
+      flex-grow: var(--anglify-input-flex-grow);
+      flex-shrink: var(--anglify-input-flex-shrink);
       border: none;
       background-color: transparent;
       caret-color: var(--color-primary);
@@ -51,17 +58,37 @@
     }
 
     &.anglify-input-filled {
-      ::ng-deep input {
-        padding-top: 14px;
-        padding-inline-end: var(--anglify-input-filled-label-end-offset);
-        padding-inline-start: var(--anglify-input-filled-label-start-offset);
+      --anglify-input-filled-content-top-offset: 14px;
+
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: var(--anglify-input-filled-content-top-offset);
+        }
+
+        input {
+          height: calc(var(--anglify-input-min-height) - var(--anglify-input-filled-content-top-offset));
+          min-height: calc(var(--anglify-input-min-height) - var(--anglify-input-filled-content-top-offset));
+          padding-inline-end: var(--anglify-input-filled-label-end-offset);
+          padding-inline-start: var(--anglify-input-filled-label-start-offset);
+        }
       }
     }
 
     &.anglify-input-outlined {
-      ::ng-deep input {
-        padding-inline-end: var(--anglify-input-outlined-label-end-offset);
-        padding-inline-start: var(--anglify-input-outlined-label-start-offset);
+      /* stylelint-disable-next-line length-zero-no-unit */
+      --anglify-input-outlined-content-top-offset: 0px;
+
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: var(--anglify-input-outlined-content-top-offset);
+        }
+
+        input {
+          height: calc(var(--anglify-input-min-height) - var(--anglify-input-outlined-content-top-offset));
+          min-height: calc(var(--anglify-input-min-height) - var(--anglify-input-outlined-content-top-offset));
+          padding-inline-end: var(--anglify-input-outlined-label-end-offset);
+          padding-inline-start: var(--anglify-input-outlined-label-start-offset);
+        }
       }
     }
 
