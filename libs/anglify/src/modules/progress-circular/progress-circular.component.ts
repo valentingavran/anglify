@@ -62,4 +62,14 @@ export class ProgressCircularComponent {
   public get style() {
     return `transform: rotate(${this.rotation}deg)`;
   }
+
+  @HostBinding('attr.role') protected readonly role = 'progressbar';
+
+  /** aria-valuenow should be provided and updated unless the value is indeterminate, in which case
+   * don't include the attribute. */
+  @HostBinding('attr.aria-valuenow')
+  protected get ariaValueNow() {
+    if (this.indeterminate) return undefined;
+    return this.value;
+  }
 }
