@@ -41,6 +41,8 @@ export class TooltipComponent {
   @Input()
   public contentClass?: string | undefined;
 
+  @HostBinding('attr.role') protected role = 'tooltip';
+
   public constructor(private readonly positionService: PositionService, private readonly element: ElementRef<HTMLElement>) {
     this.element.nativeElement.classList.add('anglify-tooltip');
   }
