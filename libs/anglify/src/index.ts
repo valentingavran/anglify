@@ -9,6 +9,7 @@ export * from './composables/ripple/ripple.interface';
 export * from './composables/ripple/ripple.provider';
 export * from './composables/ripple/ripple.service';
 // Common
+export * from './modules/common/directives/click-stop-propagation/click-stop-propagation.directive';
 export * from './modules/common/directives/slot/slot.directive';
 export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
 export * from './modules/common/pipes/clamp/clamp.pipe';
