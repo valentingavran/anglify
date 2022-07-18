@@ -24,6 +24,7 @@
     "src/modules/progress-circular/*.scss",
     "src/modules/progress-linear/*.scss",
     "src/modules/radio-button/*.scss",
+    "src/modules/select/*.scss",
     "src/modules/snackbar/*.scss",
     "src/modules/stepper/*.scss",
     "src/modules/tab/*.scss",

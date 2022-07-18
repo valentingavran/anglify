@@ -1,0 +1,15 @@
+:host {
+  width: 100%;
+
+  .cols-2 {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cols-3 {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

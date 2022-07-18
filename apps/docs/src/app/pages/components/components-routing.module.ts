@@ -17,6 +17,7 @@ import { NavigationDrawerPageComponent } from './navigation-drawer-page/navigati
 import { ProgressCircularPageComponent } from './progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
+import { SelectPageComponent } from './select-page/select-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
@@ -82,6 +83,10 @@ const routes: Routes = [
   {
     path: 'radio-button',
     component: RadioButtonPageComponent,
+  },
+  {
+    path: 'select',
+    component: SelectPageComponent,
   },
   {
     path: 'snackbar',
