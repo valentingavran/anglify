@@ -6,7 +6,9 @@
     <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
   </div>
   <div class="anglify-input-content" #content>
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner-content'"></ng-container>
     <ng-content></ng-content>
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner-content'"></ng-container>
   </div>
   <div class="anglify-input-append-inner" #appendInner>
     <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'"></ng-container>
@@ -42,8 +44,9 @@
         [anglifyTooltip]="hint"
         [anglifyToolTipConfig]="{ mountingPoint: inputDetails, disabled: !hintOverflow }"
         (mouseover)="isHintOverflowing()"
-        >{{ hint }}</span
       >
+        {{ hint }}
+      </span>
     </ng-template>
   </div>
   <div class="counter" *ngIf="counter">
