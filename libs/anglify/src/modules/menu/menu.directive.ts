@@ -18,7 +18,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, fromEvent, map, skip, Subject, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, filter, fromEvent, map, ReplaySubject, share, skip, Subject, takeUntil, tap } from 'rxjs';
 import { MenuComponent } from './components/menu/menu.component';
 import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
 import type { EntireMenuSettings, MenuMountingPoint } from './menu.interface';
@@ -97,6 +97,9 @@ export class MenuDirective implements OnDestroy {
   private readonly openHandler$ = this.openAction.pipe(tap(() => this.create()));
   private readonly closeHandler$ = this.closeAction.pipe(tap(() => this.detach()));
 
+  private readonly _isOpen$ = new BehaviorSubject<boolean>(false);
+  public readonly isOpen$ = this._isOpen$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
+
   public constructor(
     private readonly element: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
@@ -154,6 +157,7 @@ export class MenuDirective implements OnDestroy {
     this.cdRef.markForCheck();
 
     this.createClickOutsideListener();
+    this._isOpen$.next(true);
   }
 
   private detach() {
@@ -161,6 +165,7 @@ export class MenuDirective implements OnDestroy {
     this.componentRef = undefined;
     this.embeddedView?.destroy();
     this.embeddedView = undefined;
+    this._isOpen$.next(false);
   }
 
   private generateNgContent() {
