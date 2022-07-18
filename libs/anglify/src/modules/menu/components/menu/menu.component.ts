@@ -30,6 +30,11 @@ export class MenuComponent {
   }
 
   @Input()
+  public set flip(value: boolean) {
+    this._positionService.flip = value;
+  }
+
+  @Input()
   public set elevation(value: Elevation) {
     this._elevationService.elevation = value;
   }

@@ -63,6 +63,14 @@ export class MenuDirective implements OnDestroy {
     }
   }
 
+  @Input()
+  public set flip(value: boolean) {
+    this.flip$.next(value);
+    if (this.componentRef) {
+      this.componentRef.instance.flip = value;
+    }
+  }
+
   @Input('anglifyMenuElevation')
   public set elevation(value: Elevation) {
     this.elevation$.next(value);
@@ -78,6 +86,7 @@ export class MenuDirective implements OnDestroy {
   private readonly offset$ = new BehaviorSubject<number>(this.settings.offset);
   private readonly elevation$ = new BehaviorSubject<Elevation>(this.settings.elevation);
   private readonly position$ = new BehaviorSubject<Position>(this.settings.position);
+  private readonly flip$ = new BehaviorSubject<boolean>(this.settings.flip);
 
   private readonly openAction = new Subject<void>();
   private readonly closeAction = new Subject<void>();
