@@ -19,13 +19,19 @@
   </div>
 </div>
 <div class="controls">
-  <button *ngIf="template$ | async" anglifyButton appearance="icon" (click)="switchView('template')">
+  <button
+    *ngIf="template$ | async"
+    anglifyButton
+    appearance="icon"
+    (click)="switchView('template')"
+    aria-label="HTML template of the example"
+  >
     <anglify-icon icon="mdi-xml"></anglify-icon>
   </button>
-  <button *ngIf="code$ | async" anglifyButton appearance="icon" (click)="switchView('code')">
+  <button *ngIf="code$ | async" anglifyButton appearance="icon" (click)="switchView('code')" aria-label="Typescript code of the example">
     <anglify-icon icon="mdi-language-typescript"></anglify-icon>
   </button>
-  <button *ngIf="style$ | async" anglifyButton appearance="icon" (click)="switchView('style')">
+  <button *ngIf="style$ | async" anglifyButton appearance="icon" (click)="switchView('style')" aria-label="Styles of the example">
     <anglify-icon icon="mdi-language-css3"></anglify-icon>
   </button>
 </div>
