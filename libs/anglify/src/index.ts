@@ -116,6 +116,11 @@ export * from './modules/progress-linear/progress-linear.module';
 export * from './modules/radio-button/radio-button.component';
 export * from './modules/radio-button/radio-button.interface';
 export * from './modules/radio-button/radio-button.module';
+// Slider
+export * from './modules/slider/slider.component';
+export * from './modules/slider/slider.interface';
+export * from './modules/slider/slider.module';
+export * from './modules/slider/slider.token';
 // Snackbar
 export * from './modules/snackbar/snackbar.component';
 export * from './modules/snackbar/snackbar.interface';
