@@ -8,6 +8,7 @@ import { ButtonPageComponent } from './button-page/button-page.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
+import { ComboboxPageComponent } from './combobox-page/combobox-page.component';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
 import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
@@ -34,6 +35,18 @@ const routes: Routes = [
     component: AutocompletePageComponent,
   },
   {
+    path: 'badge',
+    component: BadgePageComponent,
+  },
+  {
+    path: 'bottom-navigation',
+    component: BottomNavigationPageComponent,
+  },
+  {
+    path: 'breadcrumbs',
+    component: BreadcrumbsPageComponent,
+  },
+  {
     path: 'button',
     component: ButtonPageComponent,
   },
@@ -48,6 +61,10 @@ const routes: Routes = [
   {
     path: 'chip',
     component: ChipPageComponent,
+  },
+  {
+    path: 'combobox',
+    component: ComboboxPageComponent,
   },
   {
     path: 'dialog',
@@ -118,24 +135,12 @@ const routes: Routes = [
     component: TextFieldPageComponent,
   },
   {
-    path: 'tooltip',
-    component: TooltipPageComponent,
-  },
-  {
     path: 'toolbar',
     component: ToolbarPageComponent,
   },
   {
-    path: 'bottom-navigation',
-    component: BottomNavigationPageComponent,
-  },
-  {
-    path: 'badge',
-    component: BadgePageComponent,
-  },
-  {
-    path: 'breadcrumbs',
-    component: BreadcrumbsPageComponent,
+    path: 'tooltip',
+    component: TooltipPageComponent,
   },
 ];
 

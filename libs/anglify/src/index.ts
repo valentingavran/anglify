@@ -63,6 +63,9 @@ export * from './modules/chip/chip-settings.token';
 export * from './modules/chip/chip.interface';
 export * from './modules/chip/chip.component';
 export * from './modules/chip/chip.module';
+// Combobox
+export * from './modules/combobox/combobox.component';
+export * from './modules/combobox/combobox.module';
 // Dialog
 export * from './modules/dialog/dialog.component';
 export * from './modules/dialog/dialog.interface';

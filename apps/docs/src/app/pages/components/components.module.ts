@@ -1,6 +1,7 @@
 import {
   AutocompleteModule,
   CheckboxModule,
+  ComboboxModule,
   IconModule,
   ProgressLinearModule,
   RadioButtonModule,
@@ -19,6 +20,7 @@ import { ButtonPageComponent } from './button-page/button-page.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
+import { ComboboxPageComponent } from './combobox-page/combobox-page.component';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
 import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
@@ -95,6 +97,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ExpansionPanelsPageComponent,
     SelectPageComponent,
     AutocompletePageComponent,
+    ComboboxPageComponent,
   ],
   imports: [
     CommonModule,
@@ -137,6 +140,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     RadioButtonModule,
     SelectModule,
     AutocompleteModule,
+    ComboboxModule,
   ],
 })
 export class ComponentsModule {}
