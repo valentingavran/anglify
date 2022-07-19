@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.24.2](https://github.com/valentingavran/anglify/compare/v0.24.1...v0.24.2) (2022-07-19)
+
+
+### 🐛  Bug Fixes
+
+* **TextArea, TextField:** export missing Typescript files ([7c09ecd](https://github.com/valentingavran/anglify/commit/7c09ecd563acb8d6f4474e6f223d2edeac6b8cfd))
+
 ### [0.24.1](https://github.com/valentingavran/anglify/compare/v0.24.0...v0.24.1) (2022-07-19)
 
 
