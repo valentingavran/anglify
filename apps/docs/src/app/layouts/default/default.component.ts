@@ -125,6 +125,10 @@ export class DefaultComponent {
       name: 'Radio Button',
     },
     {
+      link: 'components/select',
+      name: 'Select',
+    },
+    {
       link: 'components/snackbar',
       name: 'Snackbar',
     },

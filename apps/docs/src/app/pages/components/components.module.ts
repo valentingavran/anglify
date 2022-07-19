@@ -1,4 +1,12 @@
-import { CheckboxModule, IconModule, ProgressLinearModule, RadioButtonModule, TableModule, TextFieldModule } from '@anglify/components';
+import {
+  CheckboxModule,
+  IconModule,
+  ProgressLinearModule,
+  RadioButtonModule,
+  SelectModule,
+  TableModule,
+  TextFieldModule,
+} from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +28,7 @@ import { NavigationDrawerPageComponent } from './navigation-drawer-page/navigati
 import { ProgressCircularPageComponent } from './progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
+import { SelectPageComponent } from './select-page/select-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
@@ -82,6 +91,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TextFieldPageComponent,
     TextAreaPageComponent,
     ExpansionPanelsPageComponent,
+    SelectPageComponent,
   ],
   imports: [
     CommonModule,
@@ -116,13 +126,13 @@ import { SharedModule } from '../../modules/shared/shared.module';
     // Imports for Playground
     TextFieldModule,
     IconModule,
-    TextFieldModule,
     ReactiveFormsModule,
     FormsModule,
     ProgressLinearModule,
     TableModule,
     CheckboxModule,
     RadioButtonModule,
+    SelectModule,
   ],
 })
 export class ComponentsModule {}

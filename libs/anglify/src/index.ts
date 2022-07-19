@@ -117,6 +117,11 @@ export * from './modules/progress-linear/progress-linear.module';
 export * from './modules/radio-button/radio-button.component';
 export * from './modules/radio-button/radio-button.interface';
 export * from './modules/radio-button/radio-button.module';
+// Select
+export * from './modules/select/select-settings.token';
+export * from './modules/select/select.component';
+export * from './modules/select/select.interface';
+export * from './modules/select/select.module';
 // Snackbar
 export * from './modules/snackbar/snackbar.component';
 export * from './modules/snackbar/snackbar.interface';
