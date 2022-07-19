@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList, Self } from '@angular/core';
-import { IsActiveMatchOptions } from '@angular/router';
 import { BREADCRUMBS_SETTINGS, DEFAULT_BREADCRUMBS_SETTINGS } from './breadcrumbs-settings.token';
 import { BreadCrumb, EntireBreadCrumbsSettings } from './breadcrumbs.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -19,7 +18,6 @@ export class BreadcrumbsComponent {
 
   @Input() public items: BreadCrumb[] = this.settings.items;
   @Input() public divider: string = this.settings.divider;
-  @Input() public matchOptions: IsActiveMatchOptions = this.settings.matchOptions;
 
   public constructor(@Self() @Inject('anglifyBreadcrumbsSettings') public settings: EntireBreadCrumbsSettings) {}
 

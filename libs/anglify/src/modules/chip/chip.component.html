@@ -1,4 +1,4 @@
-<div *ngIf="!(slots | findSlot: 'prepend') && filter | booleanLikeToBoolean" class="prepend">
+<div *ngIf="!(slots | findSlot: 'prepend') && filter" class="prepend">
   <anglify-icon [icon]="internalIcons.check"></anglify-icon>
 </div>
 <div *ngIf="slots | findSlot: 'prepend'" class="prepend">

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutocompletePageComponent } from './autocomplete-page/autocomplete-page.component';
 import { BadgePageComponent } from './badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './bottom-navigation-page/bottom-navigation-page.component';
 import { BreadcrumbsPageComponent } from './breadcrumbs-page/breadcrumbs-page.component';
@@ -7,6 +8,7 @@ import { ButtonPageComponent } from './button-page/button-page.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
+import { ComboboxPageComponent } from './combobox-page/combobox-page.component';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
 import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
@@ -17,6 +19,7 @@ import { NavigationDrawerPageComponent } from './navigation-drawer-page/navigati
 import { ProgressCircularPageComponent } from './progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
+import { SelectPageComponent } from './select-page/select-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
@@ -27,6 +30,22 @@ import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 
 const routes: Routes = [
+  {
+    path: 'autocomplete',
+    component: AutocompletePageComponent,
+  },
+  {
+    path: 'badge',
+    component: BadgePageComponent,
+  },
+  {
+    path: 'bottom-navigation',
+    component: BottomNavigationPageComponent,
+  },
+  {
+    path: 'breadcrumbs',
+    component: BreadcrumbsPageComponent,
+  },
   {
     path: 'button',
     component: ButtonPageComponent,
@@ -42,6 +61,10 @@ const routes: Routes = [
   {
     path: 'chip',
     component: ChipPageComponent,
+  },
+  {
+    path: 'combobox',
+    component: ComboboxPageComponent,
   },
   {
     path: 'dialog',
@@ -84,6 +107,10 @@ const routes: Routes = [
     component: RadioButtonPageComponent,
   },
   {
+    path: 'select',
+    component: SelectPageComponent,
+  },
+  {
     path: 'snackbar',
     component: SnackbarPageComponent,
   },
@@ -108,24 +135,12 @@ const routes: Routes = [
     component: TextFieldPageComponent,
   },
   {
-    path: 'tooltip',
-    component: TooltipPageComponent,
-  },
-  {
     path: 'toolbar',
     component: ToolbarPageComponent,
   },
   {
-    path: 'bottom-navigation',
-    component: BottomNavigationPageComponent,
-  },
-  {
-    path: 'badge',
-    component: BadgePageComponent,
-  },
-  {
-    path: 'breadcrumbs',
-    component: BreadcrumbsPageComponent,
+    path: 'tooltip',
+    component: TooltipPageComponent,
   },
 ];
 

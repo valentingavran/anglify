@@ -1,9 +1,8 @@
 import { Elevation } from '../../composables/elevation/elevation.interface';
-import { BooleanLike } from '../../utils/interfaces';
 
 export interface EntireToolbarSettings {
-  prominent: BooleanLike;
-  collapse: BooleanLike;
+  prominent: boolean;
+  collapse: boolean;
   elevation: Elevation;
 }
 

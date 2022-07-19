@@ -5,6 +5,8 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  HostBinding,
+  HostListener,
   Inject,
   Input,
   Output,
@@ -17,8 +19,7 @@ import { BehaviorSubject, filter, map, merge, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
-import { toBoolean } from '../../../../utils/functions';
-import { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
+import { RouterLinkCommands } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { DEFAULT_TAB_SETTINGS, TAB_SETTINGS } from '../../tab-settings.token';
 import { EntireTabSettings } from '../../tab.interface';
@@ -36,11 +37,11 @@ export class TabComponent implements AfterViewInit {
 
   @Input() public label?: string;
 
-  @Input() public set active(value: BooleanLike) {
-    this._active$.next(toBoolean(value));
-    if (toBoolean(value)) {
-      this.activeChange.next();
-    }
+  @HostBinding('attr.aria-selected')
+  @Input()
+  public set active(value: boolean) {
+    this._active$.next(value);
+    if (value) this.activeChange.next();
   }
 
   public get active() {
@@ -51,8 +52,8 @@ export class TabComponent implements AfterViewInit {
   public active$ = this._active$.asObservable();
 
   @Input()
-  public set ripple(value: BooleanLike) {
-    this.rippleService.active = toBoolean(value);
+  public set ripple(value: boolean) {
+    this.rippleService.active = value;
   }
 
   public get ripple(): boolean {
@@ -60,8 +61,8 @@ export class TabComponent implements AfterViewInit {
   }
 
   @Input()
-  public set state(value: BooleanLike) {
-    this.rippleService.state = toBoolean(value);
+  public set state(value: boolean) {
+    this.rippleService.state = value;
   }
 
   public get state() {
@@ -80,17 +81,43 @@ export class TabComponent implements AfterViewInit {
    * If this option is set, the list item will not be displayed as a link even if the [routerLink]
    * property is set.
    */
-  @Input() public inactive: BooleanLike = false;
+  @Input() public inactive = false;
 
   /**
    * Exactly match the link. Without this, `/user/profile/` will match for example every
    * user sub-route too (like `/user/profile/edit`).
    */
-  @Input() public exact: BooleanLike = false;
+  @Input() public exact = false;
 
   @Output() public activeChange = new EventEmitter<void>();
+  @Output() public selectPrevious = new EventEmitter<void>();
+  @Output() public selectNext = new EventEmitter<void>();
 
   public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
+
+  // @ts-expect-error
+  @HostBinding('attr.role') private readonly role = 'tab';
+  // @ts-expect-error
+  @HostBinding('tabindex') private get tabindex() {
+    return this.active ? 0 : -1;
+  }
+
+  @HostListener('keydown.arrowleft', ['$event'])
+  @HostListener('keydown.arrowright', ['$event'])
+  // @ts-expect-error
+  private onKeydown(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') {
+      this.selectPrevious.next();
+    } else if (event.key === 'ArrowRight') {
+      this.selectNext.next();
+    }
+  }
+
+  @HostListener('click')
+  // @ts-expect-error
+  private click() {
+    this.active = true;
+  }
 
   public constructor(
     @Self() @Inject('anglifyTabSettings') public settings: EntireTabSettings,
@@ -134,7 +161,7 @@ export class TabComponent implements AfterViewInit {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)),
     this.routerLink$
   ).pipe(
-    filter(() => !toBoolean(this.inactive)),
+    filter(() => !this.inactive),
     switchMap(() => this.routerLink$),
     map(routerLink => this.isRouteActive(routerLink)),
     tap(isActive => this._active$.next(isActive))
@@ -150,7 +177,7 @@ export class TabComponent implements AfterViewInit {
       url = this.router.createUrlTree([route], { relativeTo: this.route });
     }
     return this.router.isActive(url, {
-      paths: toBoolean(this.exact) ? 'exact' : 'subset',
+      paths: this.exact ? 'exact' : 'subset',
       matrixParams: 'ignored',
       queryParams: 'ignored',
       fragment: 'ignored',

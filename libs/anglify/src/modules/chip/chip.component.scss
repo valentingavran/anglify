@@ -12,6 +12,7 @@
   letter-spacing: $chip-letter-spacing;
   text-decoration: $chip-text-decoration;
   text-transform: $chip-text-transform;
+  user-select: none;
 
   &:hover {
     --state-container-color: #{$chip-hover-state-color};

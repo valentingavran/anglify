@@ -3,7 +3,7 @@
   issues="https://github.com/valentingavran/anglify/labels/component%3A%20Dialog"
   materialDesign="https://material.io/components/dialogs"
   bundleSize="https://bundlephobia.com/package/@anglify/components@latest"
-  w3c="https://www.w3.org/TR/wai-aria-practices/#dialog_modal"
+  w3c="https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/"
 ></app-references>
 <p>
   A dialog is a type of modal window that appears in front of app content to provide critical information or ask for a decision. Dialogs
@@ -14,8 +14,14 @@
 <h2>Examples</h2>
 
 <h3>Simple</h3>
+<p>
+  If you use the simple <code>open()</code> method, receiving a return or close value is impossible. Instead, you can use the
+  <code>open$()</code> method, which returns an observable you can subscribe to.
+</p>
 <app-code-example component="dialog" example="simple"></app-code-example>
 
 <h2>API</h2>
+<app-import-example import="import { DialogModule } from '@anglify/components';"></app-import-example>
+
 <h3>Styling</h3>
 <app-styling-table forComponent="dialog"></app-styling-table>

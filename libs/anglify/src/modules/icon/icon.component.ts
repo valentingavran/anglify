@@ -3,8 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DEFAULT_ICON_SETTINGS, ICON_SETTINGS } from './icon-settings.token';
 import { EntireIconSettings, IconSet, ICON_SET_CLASS_MAPPING } from './icon.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
-import type { BooleanLike, ComponentSize } from '../../utils/interfaces';
+import type { ComponentSize } from '../../utils/interfaces';
 
 /**
  * Anglify comes bootstrapped with support for Material Design Icons, Material Icons, Font Awesome 4, Font Awesome 5 and Custom Icons.
@@ -38,11 +37,11 @@ export class IconComponent {
    * @default "regular"
    */
   @Input() public size: ComponentSize = this.settings.defaultSize;
-  @Input() public clickable: BooleanLike = false;
-  @Input() public disabled: BooleanLike = false;
-  @Input() public left: BooleanLike = false;
-  @Input() public right: BooleanLike = false;
-  @Input() public top: BooleanLike = false;
+  @Input() public clickable = false;
+  @Input() public disabled = false;
+  @Input() public left = false;
+  @Input() public right = false;
+  @Input() public top = false;
 
   public constructor(
     @Self() @Inject('anglifyIconSettings') private readonly settings: EntireIconSettings,
@@ -55,22 +54,22 @@ export class IconComponent {
 
     const classNames = [ICON_SET_CLASS_MAPPING[this.iconSet], this.icon, `icon-size-${this.size}`];
 
-    if (toBoolean(this.clickable)) {
+    if (this.clickable) {
       classNames.push('clickable');
     }
 
-    if (toBoolean(this.disabled)) {
+    if (this.disabled) {
       classNames.push('disabled');
     }
 
-    if (toBoolean(this.left)) {
+    if (this.left) {
       classNames.push('left');
     }
 
-    if (toBoolean(this.right)) {
+    if (this.right) {
       classNames.push('right');
     }
-    if (toBoolean(this.top)) {
+    if (this.top) {
       classNames.push('top');
     }
 

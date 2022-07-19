@@ -8,17 +8,22 @@ export * from './composables/position/position.service';
 export * from './composables/ripple/ripple.interface';
 export * from './composables/ripple/ripple.provider';
 export * from './composables/ripple/ripple.service';
+// Common
+export * from './modules/common/directives/click-stop-propagation/click-stop-propagation.directive';
+export * from './modules/common/directives/slot/slot.directive';
+export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
+export * from './modules/common/pipes/clamp/clamp.pipe';
+export * from './modules/common/pipes/find-slot/find-slot.pipe';
+export * from './modules/common/pipes/percent/percent.pipe';
+export * from './modules/common/anglify-common.module';
 // Utils
 export * from './utils/animations';
 export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
-// Expansion Panels
-export * from './modules/expansion-panels/components/expansion-panel/expansion-panel.component';
-export * from './modules/expansion-panels/components/expansion-panels/expansion-panels.component';
-export * from './modules/expansion-panels/expansion-panels-settings.token';
-export * from './modules/expansion-panels/expansion-panels.interface';
-export * from './modules/expansion-panels/expansion-panels.module';
+// Autocomplete
+export * from './modules/autocomplete/autocomplete.component';
+export * from './modules/autocomplete/autocomplete.module';
 // Badge
 export * from './modules/badge/badge-settings.token';
 export * from './modules/badge/badge.component';
@@ -31,15 +36,15 @@ export * from './modules/bottom-navigation/bottom-navigation.component';
 export * from './modules/bottom-navigation/bottom-navigation-settings.token';
 export * from './modules/bottom-navigation/bottom-navigation.interface';
 export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';
-// Button
-export * from './modules/button/button.component';
-export * from './modules/button/button.interface';
-export * from './modules/button/button.module';
 // Breadcrumbs
 export * from './modules/breadcrumbs/breadcrumbs-settings.token';
 export * from './modules/breadcrumbs/breadcrumbs.component';
 export * from './modules/breadcrumbs/breadcrumbs.interface';
 export * from './modules/breadcrumbs/breadcrumbs.module';
+// Button
+export * from './modules/button/button.component';
+export * from './modules/button/button.interface';
+export * from './modules/button/button.module';
 // Card
 export * from './modules/card/card-settings.token';
 export * from './modules/card/card.component';
@@ -58,20 +63,20 @@ export * from './modules/chip/chip-settings.token';
 export * from './modules/chip/chip.interface';
 export * from './modules/chip/chip.component';
 export * from './modules/chip/chip.module';
-// Common
-export * from './modules/common/directives/slot/slot.directive';
-export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
-export * from './modules/common/pipes/boolean-like-to-boolean/boolean-like-to-boolean.pipe';
-export * from './modules/common/pipes/clamp/clamp.pipe';
-export * from './modules/common/pipes/find-slot/find-slot.pipe';
-export * from './modules/common/pipes/percent/percent.pipe';
-export * from './modules/common/anglify-common.module';
+// Combobox
+export * from './modules/combobox/combobox.component';
+export * from './modules/combobox/combobox.module';
 // Dialog
-export * from './modules/dialog/dialog-context.interface';
-export * from './modules/dialog/dialog-options.interface';
 export * from './modules/dialog/dialog.component';
+export * from './modules/dialog/dialog.interface';
 export * from './modules/dialog/dialog.service';
 export * from './modules/dialog/dialog.module';
+// Expansion Panels
+export * from './modules/expansion-panels/components/expansion-panel/expansion-panel.component';
+export * from './modules/expansion-panels/components/expansion-panels/expansion-panels.component';
+export * from './modules/expansion-panels/expansion-panels-settings.token';
+export * from './modules/expansion-panels/expansion-panels.interface';
+export * from './modules/expansion-panels/expansion-panels.module';
 // Icon
 export * from './modules/icon/icon-settings.token';
 export * from './modules/icon/icon.component';
@@ -118,6 +123,11 @@ export * from './modules/progress-linear/progress-linear.module';
 export * from './modules/radio-button/radio-button.component';
 export * from './modules/radio-button/radio-button.interface';
 export * from './modules/radio-button/radio-button.module';
+// Select
+export * from './modules/select/select-settings.token';
+export * from './modules/select/select.component';
+export * from './modules/select/select.interface';
+export * from './modules/select/select.module';
 // Snackbar
 export * from './modules/snackbar/snackbar.component';
 export * from './modules/snackbar/snackbar.interface';
@@ -148,13 +158,13 @@ export * from './modules/text-area/text-area.module';
 // Text Field
 export * from './modules/text-field/text-field.component';
 export * from './modules/text-field/text-field.module';
-// Tooltip
-export * from './modules/tooltip/tooltip-settings.token';
-export * from './modules/tooltip/tooltip.directive';
-export * from './modules/tooltip/tooltip.interface';
-export * from './modules/tooltip/tooltip.module';
 // Toolbar
 export * from './modules/toolbar/toolbar.module';
 export * from './modules/toolbar/toolbar-settings.token';
 export * from './modules/toolbar/toolbar.interface';
 export * from './modules/toolbar/toolbar.component';
+// Tooltip
+export * from './modules/tooltip/tooltip-settings.token';
+export * from './modules/tooltip/tooltip.directive';
+export * from './modules/tooltip/tooltip.interface';
+export * from './modules/tooltip/tooltip.module';

@@ -22,14 +22,14 @@
   <input anglifyInput placeholder="Placeholder" maxlength="10" value="12345678901" />
 </anglify-text-field>
 
-<anglify-text-field appearance="outlined" hint="Only small letters from a-z allowed" persistentHint label="Check for pattern">
+<anglify-text-field appearance="outlined" hint="Only small letters from a-z allowed" [persistentHint]="true" label="Check for pattern">
   <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" />
 </anglify-text-field>
 
 <anglify-text-field
   appearance="outlined"
   hint="Only small letters from a-z allowed"
-  persistentHint
+  [persistentHint]="true"
   label="Prefilled value checked for pattern"
 >
   <input anglifyInput placeholder="Placeholder" pattern="^[a-z]+$" value="abcDef" />

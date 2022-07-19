@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } 
 import { DEFAULT_PROGRESS_LINEAR_SETTINGS, PROGRESS_LINEAR_SETTINGS } from './progress-linear-settings.token';
 import { EntireProgressLinearSettings } from './progress-linear.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { clamp } from '../../utils/functions';
 
 @Component({
   selector: 'anglify-progress-linear',
@@ -19,22 +18,36 @@ import { BooleanLike } from '../../utils/interfaces';
   ],
 })
 export class ProgressLinearComponent {
-  @Input() public active: BooleanLike = this.settings.active;
+  @Input() public active = this.settings.active;
   @Input() public bufferValue = this.settings.bufferValue;
-  @Input() public indeterminate: BooleanLike = this.settings.indeterminate;
-  @Input() public stream: BooleanLike = this.settings.stream;
+  @Input() public indeterminate = this.settings.indeterminate;
+  @Input() public stream = this.settings.stream;
   @Input() public value = this.settings.value;
 
   public constructor(@Self() @Inject('anglifyProgressLinearSettings') private readonly settings: EntireProgressLinearSettings) {}
+
+  public get normalizedValue() {
+    return clamp(this.value, 0, 100);
+  }
 
   @HostBinding('class')
   protected get classList() {
     const classNames = [];
 
-    if (toBoolean(this.active)) {
+    if (this.active) {
       classNames.push('anglify-progress-linear-active');
     }
 
     return classNames.join(' ');
+  }
+
+  @HostBinding('attr.role') protected readonly role = 'progressbar';
+
+  /** aria-valuenow should be provided and updated unless the value is indeterminate, in which case
+   * don't include the attribute. */
+  @HostBinding('attr.aria-valuenow')
+  protected get ariaValueNow() {
+    if (this.indeterminate) return undefined;
+    return this.normalizedValue;
   }
 }

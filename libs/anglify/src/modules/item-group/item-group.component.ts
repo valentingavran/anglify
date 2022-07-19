@@ -2,8 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, for
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, first, map, startWith, tap } from 'rxjs';
-import { toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 
 @UntilDestroy()
@@ -22,8 +21,8 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 export class ItemGroupComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(SlotDirective, { descendants: true }) private readonly allSlots?: QueryList<SlotDirective<boolean>>;
 
-  @Input() public mandatory: BooleanLike = false;
-  @Input() public multiple: BooleanLike = false;
+  @Input() public mandatory = false;
+  @Input() public multiple = false;
   @Input() public max?: number;
 
   public onChange: (...args: any[]) => void = () => {};
@@ -75,15 +74,15 @@ export class ItemGroupComponent implements ControlValueAccessor, AfterViewInit {
     const areOtherItemsSelected = otherSelectedItemsCount > 0;
 
     // See README.md for explanation of this logic
-    if ((!areOtherItemsSelected && !toBoolean(item.data)) || (toBoolean(this.multiple) && !toBoolean(item.data))) {
+    if ((!areOtherItemsSelected && !item.data) || (this.multiple && !item.data)) {
       if (this.max === undefined) {
         this.selectItem(item);
       } else if (activeCount < this.max) {
         this.selectItem(item);
       }
-    } else if ((!toBoolean(this.mandatory) && toBoolean(item.data)) || (areOtherItemsSelected && toBoolean(item.data))) {
+    } else if ((!this.mandatory && item.data) || (areOtherItemsSelected && item.data)) {
       this.deselectItem(item);
-    } else if ((!toBoolean(this.multiple) && !areOtherItemsSelected) || !toBoolean(item.data)) {
+    } else if ((!this.multiple && !areOtherItemsSelected) || !item.data) {
       this.deselectAll();
       this.selectItem(item);
     }
@@ -115,7 +114,7 @@ export class ItemGroupComponent implements ControlValueAccessor, AfterViewInit {
   private getActiveIndices(): number[] {
     return this.itemGroupItems$.value
       .map((item, index) => ({ item, index }))
-      .filter(({ item }) => toBoolean(item.data))
+      .filter(({ item }) => item.data)
       .map(({ index }) => index);
   }
 

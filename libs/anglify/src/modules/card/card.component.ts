@@ -7,8 +7,6 @@ import { ElevationService } from '../../composables/elevation/elevation.service'
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
 
 @Component({
   selector: 'anglify-card',
@@ -28,8 +26,8 @@ export class CardComponent {
   }
 
   @Input()
-  public set ripple(value: BooleanLike) {
-    this.rippleService.active = toBoolean(value);
+  public set ripple(value: boolean) {
+    this.rippleService.active = value;
   }
 
   public get ripple() {

@@ -1,12 +1,12 @@
-<anglify-checkbox checked>Check me!</anglify-checkbox>
-<anglify-checkbox checked ripple="false">No ripple!</anglify-checkbox>
-<anglify-checkbox checked>
+<anglify-checkbox [checked]="true">Check me!</anglify-checkbox>
+<anglify-checkbox [checked]="true" [ripple]="false">No ripple!</anglify-checkbox>
+<anglify-checkbox [checked]="true">
   <ng-template slot="onIcon">
     <anglify-icon icon="mdi-cards-heart"></anglify-icon>
   </ng-template>
   Custom On, Global Off Icon
 </anglify-checkbox>
-<anglify-checkbox checked>
+<anglify-checkbox [checked]="true">
   <ng-template slot="onIcon">
     <anglify-icon icon="mdi-bookmark"></anglify-icon>
   </ng-template>

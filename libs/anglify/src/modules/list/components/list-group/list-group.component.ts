@@ -3,8 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, rotate } from '../../../../utils/animations';
-import { toBoolean } from '../../../../utils/functions';
-import { BooleanLike } from '../../../../utils/interfaces';
+
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { ListItemComponent } from '../list-item/list-item.component';
@@ -22,10 +21,10 @@ export class ListGroupComponent implements AfterViewInit {
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
   @ContentChildren(ListGroupComponent) public listGroups?: QueryList<ListGroupComponent>;
 
-  @Input() public disableGroupCollapse: BooleanLike = false;
+  @Input() public disableGroupCollapse = false;
 
-  @Input() public set active(value: BooleanLike) {
-    this.active$.next(toBoolean(value));
+  @Input() public set active(value: boolean) {
+    this.active$.next(value);
   }
 
   public get active() {
@@ -61,7 +60,7 @@ export class ListGroupComponent implements AfterViewInit {
    * @returns true if an active list item is found inside this list group
    */
   private hasActiveListItems(items: ListItemComponent[]) {
-    return items.some(x => toBoolean(x.active));
+    return items.some(x => x.active);
   }
 
   public open() {

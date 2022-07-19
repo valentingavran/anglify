@@ -15,8 +15,7 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map } from 'rxjs';
 import { InputAppearance } from './input.interface';
-import { bindClassToNativeElement, bindObservableValueToNativeElement, observeOnResize, toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { bindClassToNativeElement, bindObservableValueToNativeElement, observeOnResize } from '../../utils/functions';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 
 @UntilDestroy()
@@ -28,10 +27,12 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 })
 export class InputComponent implements OnInit, AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
-  @ViewChild('prependInner', { static: true }) public prependInner?: ElementRef<HTMLElement>;
-  @ViewChild('content', { static: true }) public content?: ElementRef<HTMLElement>;
-  @ViewChild('appendInner', { static: true }) public appendInner?: ElementRef<HTMLElement>;
-  @ViewChild('label', { static: true }) public label?: ElementRef<HTMLElement>;
+  @ViewChild('prependInner', { static: true }) private readonly prependInner?: ElementRef<HTMLElement>;
+  @ViewChild('content', { static: true }) private readonly content?: ElementRef<HTMLElement>;
+  @ViewChild('appendInner', { static: true }) private readonly appendInner?: ElementRef<HTMLElement>;
+  @ViewChild('label', { static: true }) private readonly label?: ElementRef<HTMLElement>;
+  @ViewChild('hintWrapper') private readonly hintWrapper?: ElementRef<HTMLElement>;
+  @ViewChild('hintElement') private readonly hintElement?: ElementRef<HTMLElement>;
 
   @Input() public set appearance(appearance: InputAppearance) {
     this.appearance$.next(appearance);
@@ -41,28 +42,32 @@ export class InputComponent implements OnInit, AfterViewInit {
     return this.appearance$.value;
   }
 
-  @Input() public set disabled(disabled: BooleanLike) {
-    this.disabled$.next(toBoolean(disabled));
+  @Input() public set disabled(disabled: boolean) {
+    this.disabled$.next(disabled);
   }
 
   public get disabled() {
     return this.disabled$.value;
   }
 
-  @Input() public set focused(focused: BooleanLike) {
-    this.focused$.next(toBoolean(focused));
+  @Input() public set focused(focused: boolean) {
+    this.focused$.next(focused);
   }
 
   public get focused() {
     return this.focused$.value;
   }
 
-  @Input() public set floating(floating: BooleanLike) {
-    this.floating$.next(toBoolean(floating));
+  @Input() public set floating(floating: boolean) {
+    this.floating$.next(floating);
   }
 
   public get floating() {
     return this.floating$.value;
+  }
+
+  public get hintOverflow() {
+    return this.hintOverflow$.value;
   }
 
   @HostBinding('class.anglify-input-persistent-hint')
@@ -102,6 +107,7 @@ export class InputComponent implements OnInit, AfterViewInit {
   private readonly floating$ = new BehaviorSubject<boolean>(false);
   private readonly focused$ = new BehaviorSubject<boolean>(false);
   private readonly disabled$ = new BehaviorSubject<boolean>(false);
+  public readonly hintOverflow$ = new BehaviorSubject<boolean>(false);
   public readonly error$ = new BehaviorSubject<string | null | undefined>(null);
 
   public constructor(private readonly elementRef: ElementRef<HTMLElement>) {
@@ -143,6 +149,14 @@ export class InputComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
+  public isHintOverflowing() {
+    if ((this.hintWrapper?.nativeElement.offsetHeight ?? 0) <= (this.hintElement?.nativeElement.offsetHeight ?? 0)) {
+      this.setHintOverflow(true);
+      return;
+    }
+    this.setHintOverflow(false);
+  }
+
   private setPrependWidth(width: number) {
     this.elementRef.nativeElement.style.setProperty('--anglify-input-prepend-width', `${width}px`);
   }
@@ -153,5 +167,9 @@ export class InputComponent implements OnInit, AfterViewInit {
 
   private setAppendWidth(width: number) {
     this.elementRef.nativeElement.style.setProperty('--anglify-input-append-width', `${width}px`);
+  }
+
+  private setHintOverflow(overflow: boolean) {
+    this.hintOverflow$.next(overflow);
   }
 }

@@ -37,7 +37,9 @@ export class InputDirective implements OnInit {
     @Optional() @Self() public ngControl?: NgControl
   ) {
     this.elementRef.nativeElement.id = this.id;
-    this.rows = 4;
+    if (this.elementRef.nativeElement instanceof HTMLTextAreaElement) {
+      this.rows = 2;
+    }
   }
 
   public ngOnInit(): void {

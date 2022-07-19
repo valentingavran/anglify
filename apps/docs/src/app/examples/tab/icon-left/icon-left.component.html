@@ -1,13 +1,13 @@
 <anglify-tab-group>
-  <anglify-tab active>
+  <anglify-tab [active]="true">
     <ng-template slot="label">
-      <anglify-icon icon="mdi-history" left></anglify-icon>
+      <anglify-icon icon="mdi-history" [left]="true"></anglify-icon>
       Recent
     </ng-template>
   </anglify-tab>
   <anglify-tab>
     <ng-template slot="label">
-      <anglify-icon icon="mdi-heart" left></anglify-icon>
+      <anglify-icon icon="mdi-heart" [left]="true"></anglify-icon>
       Favorites
     </ng-template>
   </anglify-tab>

@@ -5,8 +5,6 @@ import { ElevationService } from '../../../../composables/elevation/elevation.se
 import type { Position } from '../../../../composables/position/position.interface';
 import { POSITION } from '../../../../composables/position/position.provider';
 import { PositionService } from '../../../../composables/position/position.service';
-import { toBoolean } from '../../../../utils/functions';
-import { BooleanLike } from '../../../../utils/interfaces';
 
 @Component({
   selector: 'anglify-menu',
@@ -17,8 +15,8 @@ import { BooleanLike } from '../../../../utils/interfaces';
 })
 export class MenuComponent {
   @Input()
-  public set parentWidth(value: BooleanLike) {
-    this._positionService.parentWidth = toBoolean(value);
+  public set parentWidth(value: boolean) {
+    this._positionService.parentWidth = value;
   }
 
   @Input()
@@ -29,6 +27,11 @@ export class MenuComponent {
   @Input()
   public set position(value: Position) {
     this._positionService.position = value;
+  }
+
+  @Input()
+  public set flip(value: boolean) {
+    this._positionService.flip = value;
   }
 
   @Input()

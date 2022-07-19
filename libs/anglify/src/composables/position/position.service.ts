@@ -1,17 +1,18 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
 import { Options } from '@floating-ui/core/src/middleware/offset';
-import { computePosition, offset, flip, shift } from '@floating-ui/dom';
+import { computePosition, flip, offset, Padding, shift, size } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, merge } from 'rxjs';
 import { Position, PositionSettings } from './position.interface';
 import { POSITION_SETTINGS } from './position.token';
-import { observeOnResize, toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
+import { observeOnResize } from '../../utils/functions';
 
 @UntilDestroy()
 @Injectable()
 export class PositionService {
   private _position: Position = 'top';
+  private _minSize = 250;
+  private _padding: Padding = 5;
   private _offset: Options = 10;
   private _parentWidth = false;
   private _flip = false;
@@ -26,6 +27,24 @@ export class PositionService {
     return this._position;
   }
 
+  public set minSize(value: number) {
+    this._minSize = value;
+    void this.updatePosition();
+  }
+
+  public get minSize() {
+    return this._minSize;
+  }
+
+  public set padding(value: Padding) {
+    this._padding = value;
+    void this.updatePosition();
+  }
+
+  public get padding() {
+    return this._padding;
+  }
+
   public set offset(value: Options) {
     this._offset = value;
     void this.updatePosition();
@@ -35,8 +54,8 @@ export class PositionService {
     return this._offset;
   }
 
-  public set parentWidth(value: BooleanLike) {
-    this._parentWidth = toBoolean(value);
+  public set parentWidth(value: boolean) {
+    this._parentWidth = value;
     void this.updatePosition();
   }
 
@@ -44,8 +63,8 @@ export class PositionService {
     return this._parentWidth;
   }
 
-  public set flip(value: BooleanLike) {
-    this._flip = toBoolean(value);
+  public set flip(value: boolean) {
+    this._flip = value;
     void this.updatePosition();
   }
 
@@ -53,8 +72,8 @@ export class PositionService {
     return this._flip;
   }
 
-  public set shift(value: BooleanLike) {
-    this._shift = toBoolean(value);
+  public set shift(value: boolean) {
+    this._shift = value;
     void this.updatePosition();
   }
 
@@ -68,6 +87,7 @@ export class PositionService {
   ) {
     merge(
       observeOnResize(this._elementRef.nativeElement),
+      fromEvent(this._elementRef.nativeElement, 'click'),
       fromEvent(window, 'scroll', { capture: true }),
       fromEvent(window, 'resize', { capture: true })
     )
@@ -78,9 +98,23 @@ export class PositionService {
   }
 
   private async updatePosition() {
-    const middleware = [offset(this._offset)];
-    if (this._flip) middleware.push(flip());
-    if (this._shift) middleware.push(shift({ padding: 5 }));
+    const padding = this._padding;
+    const minSize = this._minSize;
+    const parentWidth = this._parentWidth;
+    const middleware = [
+      size({
+        padding,
+        apply({ availableHeight, elements, rects }) {
+          Object.assign(elements.floating.style, {
+            maxHeight: `${Math.min(minSize, availableHeight)}px`,
+            width: parentWidth ? `${rects.reference.width}px` : undefined,
+          });
+        },
+      }),
+    ];
+    if (this._flip) middleware.push(flip({ padding, crossAxis: false, fallbackStrategy: 'initialPlacement', flipAlignment: false }));
+    if (this._shift) middleware.push(shift({ padding }));
+    middleware.push(offset(this._offset));
 
     const { x, y } = await computePosition(this.settings.host, this._elementRef.nativeElement, {
       placement: this._position,
@@ -90,8 +124,5 @@ export class PositionService {
 
     this._elementRef.nativeElement.style.left = `${x}px`;
     this._elementRef.nativeElement.style.top = `${y}px`;
-    if (this._parentWidth) {
-      this._elementRef.nativeElement.style.width = `${this.settings.host.getBoundingClientRect().width}px`;
-    }
   }
 }

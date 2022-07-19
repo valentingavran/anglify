@@ -57,6 +57,10 @@ export class DefaultComponent {
 
   public components = [
     {
+      link: 'components/autocomplete',
+      name: 'Autocomplete',
+    },
+    {
       link: 'components/badge',
       name: 'Badge',
     },
@@ -83,6 +87,10 @@ export class DefaultComponent {
     {
       link: 'components/chip',
       name: 'Chip',
+    },
+    {
+      link: 'components/combobox',
+      name: 'Combobox',
     },
     {
       link: 'components/dialog',
@@ -125,6 +133,10 @@ export class DefaultComponent {
       name: 'Radio Button',
     },
     {
+      link: 'components/select',
+      name: 'Select',
+    },
+    {
       link: 'components/snackbar',
       name: 'Snackbar',
     },
@@ -149,12 +161,12 @@ export class DefaultComponent {
       name: 'Text Field',
     },
     {
-      link: 'components/tooltip',
-      name: 'Tooltip',
-    },
-    {
       link: 'components/toolbar',
       name: 'Toolbar',
+    },
+    {
+      link: 'components/tooltip',
+      name: 'Tooltip',
     },
   ];
 }

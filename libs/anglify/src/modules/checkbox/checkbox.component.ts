@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  HostBinding,
   HostListener,
   Inject,
   Input,
@@ -25,8 +26,7 @@ import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { bindClassToNativeElement, toBoolean } from '../../utils/functions';
-import type { BooleanLike } from '../../utils/interfaces';
+import { bindClassToNativeElement } from '../../utils/functions';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 
 @UntilDestroy()
@@ -54,25 +54,39 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('reflectOffIcon') public reflectOffIcon!: ElementRef<HTMLElement>;
   @ViewChild('reflectOnIcon') public reflectOnIcon!: ElementRef<HTMLElement>;
 
-  @Input() public ripple: BooleanLike = this.settings.ripple;
-  @Input() public state: BooleanLike = this.settings.state;
+  @Input() public ripple = this.settings.ripple;
+  @Input() public state = this.settings.state;
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
-  @Input() public set checked(value: BooleanLike) {
-    this.checked$.next(toBoolean(value));
+
+  @HostBinding('attr.aria-checked')
+  @Input()
+  public set checked(value: boolean) {
+    this.checked$.next(value);
   }
 
   public get checked() {
     return this.checked$.value;
   }
 
-  @Input() public set disabled(value: BooleanLike) {
-    this.disabled$.next(toBoolean(value));
+  @HostBinding('attr.aria-disabled')
+  @Input()
+  public set disabled(value: boolean) {
+    this.disabled$.next(value);
   }
 
+  public get disabled() {
+    return this.disabled$.value;
+  }
+
+  @HostBinding('attr.aria-readonly')
   @Input('readonly')
-  public set isReadonly(value: BooleanLike) {
-    this.readonly$.next(toBoolean(value));
+  public set isReadonly(value: boolean) {
+    this.readonly$.next(value);
+  }
+
+  public get isReadonly() {
+    return this.readonly$.value;
   }
 
   @Output() public checkedChange = new EventEmitter<boolean>();
@@ -81,6 +95,8 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   public checked$ = new BehaviorSubject(this.settings.checked);
   public disabled$ = new BehaviorSubject(this.settings.disabled);
   public readonly$ = new BehaviorSubject(this.settings.readonly);
+
+  @HostBinding('attr.role') protected readonly role = 'checkbox';
 
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,

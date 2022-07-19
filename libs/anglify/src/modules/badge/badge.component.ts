@@ -5,7 +5,6 @@ import { Position } from '../../composables/position/position.interface';
 import { POSITION } from '../../composables/position/position.provider';
 import { PositionService } from '../../composables/position/position.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
 
 @Component({
   selector: 'anglify-badge',
@@ -71,7 +70,7 @@ export class BadgeComponent {
   @HostBinding('class')
   protected get classList() {
     const classNames = ['badge'];
-    if (toBoolean(this.border)) {
+    if (this.border) {
       classNames.push('border');
     }
 

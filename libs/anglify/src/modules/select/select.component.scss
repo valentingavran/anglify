@@ -1,0 +1,66 @@
+:host {
+  --anglify-menu-max-width: 100%;
+  --anglify-menu-border-radius: 4px;
+
+  display: block;
+
+  ::ng-deep {
+    .anglify-input {
+      cursor: pointer !important;
+    }
+
+    .anglify-input-content {
+      overflow: hidden;
+    }
+
+    anglify-menu {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  .input {
+    overflow: hidden;
+    min-width: 167px;
+    padding-inline-end: var(--anglify-input-filled-label-end-offset);
+    padding-inline-start: var(--anglify-input-filled-label-start-offset);
+
+    .value {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .outlined {
+    ::ng-deep {
+      anglify-menu {
+        border-radius: var(--anglify-menu-border-radius);
+      }
+    }
+  }
+
+  .disabled {
+    color: var(--color-on-surface-low-emphasis);
+  }
+
+  anglify-icon {
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .dropdown-menu {
+    max-height: inherit;
+    overflow-y: auto;
+  }
+
+  .option-item {
+    cursor: pointer;
+
+    &.disabled {
+      color: var(--color-on-surface-low-emphasis);
+      cursor: not-allowed;
+    }
+  }
+}

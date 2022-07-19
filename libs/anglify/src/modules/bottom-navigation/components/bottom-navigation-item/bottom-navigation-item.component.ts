@@ -12,8 +12,6 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
-import { toBoolean } from '../../../../utils/functions';
-import { BooleanLike } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 
 @Component({
@@ -46,8 +44,8 @@ export class BottomNavigationItemComponent {
   }
 
   @Input()
-  public set shift(value: BooleanLike) {
-    this.shift$.next(toBoolean(value));
+  public set shift(value: boolean) {
+    this.shift$.next(value);
   }
 
   public get shift() {
@@ -55,8 +53,8 @@ export class BottomNavigationItemComponent {
   }
 
   @Input()
-  public set ripple(value: BooleanLike) {
-    this.rippleService.active = toBoolean(value);
+  public set ripple(value: boolean) {
+    this.rippleService.active = value;
   }
 
   public get ripple() {
@@ -64,8 +62,8 @@ export class BottomNavigationItemComponent {
   }
 
   @Input()
-  public set state(value: BooleanLike) {
-    this.rippleService.state = toBoolean(value);
+  public set state(value: boolean) {
+    this.rippleService.state = value;
   }
 
   public get state() {
@@ -73,8 +71,8 @@ export class BottomNavigationItemComponent {
   }
 
   @Input()
-  public set active(value: BooleanLike) {
-    this.active$.next(toBoolean(value));
+  public set active(value: boolean) {
+    this.active$.next(value);
   }
 
   public get active() {

@@ -5,6 +5,8 @@
     position: relative;
     overflow: hidden;
     background: $input-filled-background;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 
     // Border bottom inactive
     &::before {
@@ -31,7 +33,10 @@
     label {
       top: $input-filled-label-top-distance-inactive;
       left: calc(#{$input-prepend-width} + #{$input-filled-label-start-offset});
-      width: calc(100% / #{$input-filled-label-scale-factor} - #{$input-prepend-width} - #{$input-filled-label-start-offset});
+      width: calc(
+        100% / #{$input-filled-label-scale-factor} - #{$input-prepend-width} - #{$input-append-width} - #{$input-filled-label-start-offset} -
+          #{$input-filled-label-end-offset}
+      );
       color: $input-filled-label-color-inactive;
       transform: translateY(-50%) scale($input-filled-label-scale-factor);
     }
@@ -49,7 +54,9 @@
     .anglify-input {
       label {
         top: 0;
-        width: calc(100% - #{$input-prepend-width} - #{$input-filled-label-start-offset} - #{$input-filled-label-end-offset});
+        width: calc(
+          100% - #{$input-prepend-width} - #{$input-append-width} - #{$input-filled-label-start-offset} - #{$input-filled-label-end-offset}
+        );
         transform: scale(1) translateY($input-filled-label-top-distance-focused);
       }
     }

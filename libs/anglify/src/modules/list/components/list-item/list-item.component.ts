@@ -14,8 +14,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, merge, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
-import { bindClassToNativeElement, toBoolean } from '../../../../utils/functions';
-import type { BooleanLike, RouterLinkCommands } from '../../../../utils/interfaces';
+import { bindClassToNativeElement } from '../../../../utils/functions';
+import type { RouterLinkCommands } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 
 @UntilDestroy()
@@ -30,38 +30,38 @@ export class ListItemComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @Input()
-  public set active(value: BooleanLike) {
-    this.active$.next(toBoolean(value));
+  public set active(value: boolean) {
+    this.active$.next(value);
   }
 
   public get active() {
     return this.active$.value;
   }
 
-  @Input() public dense: BooleanLike = false;
-  @Input() public disabled: BooleanLike = false;
+  @Input() public dense = false;
+  @Input() public disabled = false;
 
   /**
    * Allow text selection inside anglify-list-item. This prop uses {@link https://developer.mozilla.org/en-US/docs/Web/CSS/user-select user-select}
    */
-  @Input() public set selectable(value: BooleanLike) {
-    this.selectable$.next(toBoolean(value));
+  @Input() public set selectable(value: boolean) {
+    this.selectable$.next(value);
   }
 
   public get selectable() {
     return this.selectable$.value;
   }
 
-  @Input() public set ripple(value: BooleanLike) {
-    this.rippleService.active = toBoolean(value);
+  @Input() public set ripple(value: boolean) {
+    this.rippleService.active = value;
   }
 
   public get ripple() {
     return this.rippleService.active;
   }
 
-  @Input() public set state(value: BooleanLike) {
-    this.rippleService.state = toBoolean(value);
+  @Input() public set state(value: boolean) {
+    this.rippleService.state = value;
   }
 
   public get state() {
@@ -80,13 +80,13 @@ export class ListItemComponent {
    * If this option is set, the list item will not be displayed as a link even if the [routerLink]
    * property is set.
    */
-  @Input() public inactive: BooleanLike = false;
+  @Input() public inactive = false;
 
   /**
    * Exactly match the link. Without this, `/user/profile/` will match for example every
    * user sub-route too (like `/user/profile/edit`).
    */
-  @Input() public exact: BooleanLike = false;
+  @Input() public exact = false;
 
   @Output() public readonly onClick = new EventEmitter<void>();
 
@@ -108,7 +108,7 @@ export class ListItemComponent {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)),
     this.routerLink$
   ).pipe(
-    filter(() => !toBoolean(this.inactive)),
+    filter(() => !this.inactive),
     switchMap(() => this.routerLink$),
     map(routerLink => this.isRouteActive(routerLink)),
     tap(isActive => this.active$.next(isActive))
@@ -124,7 +124,7 @@ export class ListItemComponent {
       url = route;
     }
     return this.router.isActive(url, {
-      paths: toBoolean(this.exact) ? 'exact' : 'subset',
+      paths: this.exact ? 'exact' : 'subset',
       matrixParams: 'ignored',
       queryParams: 'ignored',
       fragment: 'ignored',

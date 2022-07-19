@@ -16,8 +16,6 @@ import { EntireBottomNavigationSettings } from './bottom-navigation.interface';
 import { BottomNavigationItemComponent } from './components/bottom-navigation-item/bottom-navigation-item.component';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Component({
@@ -37,27 +35,27 @@ import { BooleanLike } from '../../utils/interfaces';
 export class BottomNavigationComponent implements AfterViewInit {
   @ContentChildren(BottomNavigationItemComponent) public readonly navigationItems?: QueryList<BottomNavigationItemComponent>;
 
-  @Input() public grow: BooleanLike = this.settings.grow;
+  @Input() public grow = this.settings.grow;
 
   @HostBinding('class')
   protected get classList() {
     const classNames = [];
-    if (toBoolean(this.grow)) {
+    if (this.grow) {
       classNames.push('grow');
     }
 
     return classNames.join(' ');
   }
 
-  @Input() public set shift(value: BooleanLike) {
-    this.shift$.next(toBoolean(value));
+  @Input() public set shift(value: boolean) {
+    this.shift$.next(value);
   }
 
   public get shift() {
     return this.shift$.value;
   }
 
-  private readonly shift$ = new BehaviorSubject<boolean>(toBoolean(this.settings.shift));
+  private readonly shift$ = new BehaviorSubject<boolean>(this.settings.shift);
   private readonly items$ = new BehaviorSubject<BottomNavigationItemComponent[]>([]);
 
   private readonly changeHandler$ = combineLatest([this.shift$, this.items$]).pipe(

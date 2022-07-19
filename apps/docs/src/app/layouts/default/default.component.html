@@ -1,26 +1,32 @@
 <anglify-toolbar [elevation]="5">
   <ng-template slot="navigation">
-    <button anglifyButton appearance="icon" (click)="drawer.toggle()">
+    <button anglifyButton appearance="icon" (click)="drawer.toggle()" aria-label="Toggle navigation menu">
       <anglify-icon icon="mdi-menu"></anglify-icon>
     </button>
   </ng-template>
   <ng-template slot="title">Anglify</ng-template>
   <ng-template slot="actions">
-    <button anglifyButton appearance="icon" (click)="openMaterialDesignWebsite()" [anglifyTooltip]="materialTooltip">
+    <button
+      anglifyButton
+      appearance="icon"
+      (click)="openMaterialDesignWebsite()"
+      [anglifyTooltip]="materialTooltip"
+      aria-label="Open material.io"
+    >
       <anglify-icon icon="mdi-material-design"></anglify-icon>
       <ng-template #materialTooltip>
         Open material.io
-        <anglify-icon icon="mdi-open-in-new" right size="x-small"></anglify-icon>
+        <anglify-icon icon="mdi-open-in-new" [right]="true" size="x-small"></anglify-icon>
       </ng-template>
     </button>
-    <button anglifyButton appearance="icon" (click)="openGithubRepo()" [anglifyTooltip]="githubTooltip">
+    <button anglifyButton appearance="icon" (click)="openGithubRepo()" [anglifyTooltip]="githubTooltip" aria-label="Open GitHub Repository">
       <anglify-icon icon="mdi-github"></anglify-icon>
       <ng-template #githubTooltip>
         Open GitHub Repo
-        <anglify-icon icon="mdi-open-in-new" right size="x-small"></anglify-icon>
+        <anglify-icon icon="mdi-open-in-new" [right]="true" size="x-small"></anglify-icon>
       </ng-template>
     </button>
-    <button anglifyButton appearance="icon" (click)="toggleTheme()" anglifyTooltip="Switch theme">
+    <button anglifyButton appearance="icon" (click)="toggleTheme()" anglifyTooltip="Switch theme" aria-label="Switch Website Theme">
       <anglify-icon icon="mdi-theme-light-dark"></anglify-icon>
     </button>
   </ng-template>
@@ -30,8 +36,8 @@
   [ngModel]="(breakpointService.lgAndUp$ | async) ?? true"
   #drawer
 >
-  <anglify-list dense nav>
-    <anglify-list-item-group mandatory>
+  <anglify-list [dense]="true" [nav]="true">
+    <anglify-list-item-group [mandatory]="true">
       <anglify-list-group>
         <ng-template slot="activator:prepend">
           <anglify-icon icon="mdi-text-box"></anglify-icon>

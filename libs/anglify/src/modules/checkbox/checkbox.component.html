@@ -3,9 +3,9 @@
     <div
       class="state-container"
       anglifyInteractionState
-      [active]="(ripple | booleanLikeToBoolean) && (disabled$ | async) === false"
+      [active]="ripple && (disabled$ | async) === false"
       [rippleOrigin]="rippleOrigin"
-      [state]="state | booleanLikeToBoolean"
+      [state]="state"
       (keydown.space)="onCheckedChange($event)"
       [tabindex]="(disabled$ | async) ? '-1' : '0'"
     ></div>

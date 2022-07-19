@@ -1,0 +1,94 @@
+:host {
+  --anglify-menu-max-width: 100%;
+  --anglify-menu-border-radius: 4px;
+
+  display: block;
+
+  ::ng-deep {
+    label {
+      /* stylelint-disable length-zero-no-unit */
+      --anglify-input-outlined-label-start-offset: 0px;
+      --anglify-input-outlined-label-end-offset: 0px;
+      --anglify-input-filled-label-start-offset: 0px;
+      --anglify-input-filled-label-end-offset: 0px;
+      /* stylelint-enable length-zero-no-unit */
+    }
+
+    input {
+      --anglify-input-filled-label-start-offset: 0;
+      --anglify-input-outlined-label-start-offset: 0;
+    }
+
+    anglify-menu {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &.outlined {
+    ::ng-deep {
+      anglify-menu {
+        border-radius: var(--anglify-menu-border-radius);
+      }
+    }
+  }
+
+  .disabled {
+    color: var(--color-on-surface-low-emphasis);
+  }
+
+  anglify-icon {
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .prepend-inner-option {
+    display: flex;
+    min-height: calc(
+      var(--anglify-input-min-height) - var(--anglify-input-filled-content-top-offset, var(--anglify-input-outlined-content-top-offset))
+    );
+    align-items: center;
+    margin-right: 5px;
+
+    &:last-of-type {
+      margin-right: unset;
+      padding-inline-end: var(--anglify-input-filled-label-start-offset);
+    }
+  }
+
+  .expand-min-height {
+    ::ng-deep {
+      input {
+        --anglify-input-filled-content-top-offset: 14px;
+      }
+
+      .anglify-input-filled {
+        --anglify-input-filled-content-top-offset: 24px;
+      }
+
+      .anglify-input-outlined {
+        --anglify-input-outlined-content-top-offset: 7px;
+      }
+    }
+
+    .prepend-inner-option {
+      --anglify-input-filled-content-top-offset: 14px;
+      --anglify-input-outlined-content-top-offset: 7px;
+    }
+  }
+
+  .dropdown-menu {
+    max-height: inherit;
+    overflow-y: auto;
+  }
+
+  .option-item {
+    cursor: pointer;
+
+    &.disabled {
+      color: var(--color-on-surface-low-emphasis);
+      cursor: not-allowed;
+    }
+  }
+}

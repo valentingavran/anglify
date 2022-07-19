@@ -18,7 +18,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, fromEvent, map, skip, Subject, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, filter, fromEvent, map, ReplaySubject, share, skip, Subject, takeUntil, tap } from 'rxjs';
 import { MenuComponent } from './components/menu/menu.component';
 import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
 import type { EntireMenuSettings, MenuMountingPoint } from './menu.interface';
@@ -26,8 +26,6 @@ import type { Elevation } from '../../composables/elevation/elevation.interface'
 import type { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { toBoolean } from '../../utils/functions';
-import { BooleanLike } from '../../utils/interfaces';
 
 @UntilDestroy()
 @Directive({
@@ -40,8 +38,8 @@ export class MenuDirective implements OnDestroy {
   @Input('anglifyMenuMountingPoint') public mountingPoint: MenuMountingPoint = 'parent';
 
   @Input()
-  public set parentWidth(value: BooleanLike) {
-    const bool = toBoolean(value);
+  public set parentWidth(value: boolean) {
+    const bool = value;
     this.parentWidth$.next(bool);
     if (this.componentRef) {
       this.componentRef.instance.parentWidth = bool;
@@ -65,6 +63,14 @@ export class MenuDirective implements OnDestroy {
     }
   }
 
+  @Input()
+  public set flip(value: boolean) {
+    this.flip$.next(value);
+    if (this.componentRef) {
+      this.componentRef.instance.flip = value;
+    }
+  }
+
   @Input('anglifyMenuElevation')
   public set elevation(value: Elevation) {
     this.elevation$.next(value);
@@ -73,13 +79,14 @@ export class MenuDirective implements OnDestroy {
     }
   }
 
-  @Input() public openOnClick: BooleanLike = this.settings.openOnClick;
-  @Input() public closeOnOutsideClick: BooleanLike = this.settings.closeOnOutsideClick;
+  @Input() public openOnClick = this.settings.openOnClick;
+  @Input() public closeOnOutsideClick = this.settings.closeOnOutsideClick;
 
   private readonly parentWidth$ = new BehaviorSubject<boolean>(this.settings.parentWidth);
   private readonly offset$ = new BehaviorSubject<number>(this.settings.offset);
   private readonly elevation$ = new BehaviorSubject<Elevation>(this.settings.elevation);
   private readonly position$ = new BehaviorSubject<Position>(this.settings.position);
+  private readonly flip$ = new BehaviorSubject<boolean>(this.settings.flip);
 
   private readonly openAction = new Subject<void>();
   private readonly closeAction = new Subject<void>();
@@ -89,6 +96,9 @@ export class MenuDirective implements OnDestroy {
 
   private readonly openHandler$ = this.openAction.pipe(tap(() => this.create()));
   private readonly closeHandler$ = this.closeAction.pipe(tap(() => this.detach()));
+
+  private readonly _isOpen$ = new BehaviorSubject<boolean>(false);
+  public readonly isOpen$ = this._isOpen$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
 
   public constructor(
     private readonly element: ElementRef<HTMLElement>,
@@ -111,7 +121,7 @@ export class MenuDirective implements OnDestroy {
   @HostListener('click')
   // @ts-expect-error
   private onClick() {
-    if (!toBoolean(this.openOnClick)) return;
+    if (!this.openOnClick) return;
     this.openAction.next();
   }
 
@@ -147,6 +157,7 @@ export class MenuDirective implements OnDestroy {
     this.cdRef.markForCheck();
 
     this.createClickOutsideListener();
+    this._isOpen$.next(true);
   }
 
   private detach() {
@@ -154,6 +165,7 @@ export class MenuDirective implements OnDestroy {
     this.componentRef = undefined;
     this.embeddedView?.destroy();
     this.embeddedView = undefined;
+    this._isOpen$.next(false);
   }
 
   private generateNgContent() {
@@ -184,10 +196,16 @@ export class MenuDirective implements OnDestroy {
         skip(1),
         untilDestroyed(this),
         takeUntil(this.closeAction),
-        filter(() => toBoolean(this.closeOnOutsideClick)),
+        filter(() => this.closeOnOutsideClick),
         map(event => event.target as HTMLElement),
-        map(target => !this.element.nativeElement.contains(target)),
-        filter(clickedOutside => Boolean(clickedOutside)),
+        map(target => {
+          if (this.componentRef) {
+            const element = this.componentRef.location.nativeElement as HTMLElement;
+            return !element.contains(target) && !element.parentElement?.contains(target);
+          }
+          return !this.element.nativeElement.contains(target);
+        }),
+        filter(closeClick => Boolean(closeClick)),
         tap(() => {
           this.closeAction.next();
         })

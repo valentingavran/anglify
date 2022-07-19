@@ -25,7 +25,7 @@ import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.t
 import type { EntireTooltipSettings, TooltipSettings } from './tooltip.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { isTouchDevice, toBoolean } from '../../utils/functions';
+import { isTouchDevice } from '../../utils/functions';
 
 @UntilDestroy()
 @Directive({
@@ -103,6 +103,9 @@ export class TooltipDirective implements OnDestroy {
     if (value.mountingPoint !== undefined && value.mountingPoint !== this.settings.mountingPoint) {
       this.settings.mountingPoint = value.mountingPoint;
     }
+    if (value.disabled !== undefined && value.disabled !== this.disabled) {
+      this.disabled = value.disabled;
+    }
   }
 
   private position = this.settings.position;
@@ -111,6 +114,7 @@ export class TooltipDirective implements OnDestroy {
   private flip = this.settings.flip;
   private shift = this.settings.shift;
   private contentClass = this.settings.contentClass;
+  private disabled = this.settings.disabled;
 
   private componentRef: ComponentRef<TooltipComponent> | undefined; // Tooltip Component Reference
   private embeddedView: EmbeddedViewRef<any> | undefined; // Tooltip Content Template Reference
@@ -180,6 +184,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   protected onOpenEventDesktop() {
+    if (this.disabled) return;
     if (isTouchDevice()) return;
     this.open(this.settings.hoverOpenDelay);
   }
@@ -187,10 +192,11 @@ export class TooltipDirective implements OnDestroy {
   @HostListener('touchstart', ['$event'])
   @HostListener('contextmenu', ['$event'])
   protected onOpenEventMobile(event: Event) {
+    if (this.disabled) return;
     if (!isTouchDevice()) return;
     if (this.settings.mobileTrigger === 'long' && event.type === 'touchstart') return;
     if (this.settings.mobileTrigger === 'short' && event.type === 'contextmenu') return;
-    if (toBoolean(this.settings.preventContextMenuOnTouchDevice) || toBoolean(this.settings.autoCloseOnTouchDevicesAfterDelay)) {
+    if (this.settings.preventContextMenuOnTouchDevice || this.settings.autoCloseOnTouchDevicesAfterDelay) {
       event.preventDefault();
     }
     this.open(this.settings.touchOpenDelay);
@@ -198,7 +204,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('touchend')
   protected autoCloseOnMobile() {
-    if (!toBoolean(this.settings.autoCloseOnTouchDevicesAfterDelay)) return;
+    if (!this.settings.autoCloseOnTouchDevicesAfterDelay) return;
     if (!isTouchDevice()) return;
     this.close(this.settings.touchCloseDelay);
   }
@@ -206,6 +212,7 @@ export class TooltipDirective implements OnDestroy {
   @HostListener('document:click', ['$event', '$event.target'])
   @HostListener('document:contextmenu', ['$event', '$event.target'])
   public onClickOutside(_: MouseEvent, targetElement: HTMLElement) {
+    if (this.disabled) return;
     if (!this.componentRef) return;
     if (!Boolean(targetElement)) return;
     const clickedInside = this.element.nativeElement.contains(targetElement);
@@ -221,7 +228,12 @@ export class TooltipDirective implements OnDestroy {
     if (this.componentRef) return;
     const factory = this.resolver.resolveComponentFactory(TooltipComponent);
     const injector = Injector.create({
-      providers: [{ provide: POSITION_SETTINGS, useValue: { host: this.element.nativeElement } }],
+      providers: [
+        {
+          provide: POSITION_SETTINGS,
+          useValue: { host: typeof this.settings.mountingPoint === 'string' ? this.element.nativeElement : this.settings.mountingPoint },
+        },
+      ],
     });
     this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector, this.generateNgContent());
     this.componentRef.instance.position = this.position;

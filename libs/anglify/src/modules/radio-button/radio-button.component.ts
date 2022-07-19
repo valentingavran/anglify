@@ -4,7 +4,6 @@ import { DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS } from './radio-bu
 import { EntireRadioButtonSettings, RadioLabelPosition } from './radio-button.interface';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { BooleanLike } from '../../utils/interfaces';
 
 @Component({
   selector: 'anglify-radio-button',
@@ -23,11 +22,11 @@ import { BooleanLike } from '../../utils/interfaces';
 export class RadioButtonComponent implements ControlValueAccessor {
   @Input() public value: any;
   @Input() public name = '';
-  @Input() public disabled: BooleanLike = this.settings.disabled;
-  @Input() public ripple: BooleanLike = this.settings.ripple;
+  @Input() public disabled = this.settings.disabled;
+  @Input() public ripple = this.settings.ripple;
   @Input() public labelPosition: RadioLabelPosition = this.settings.labelPosition;
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
-  @Input() public state: BooleanLike = this.settings.state;
+  @Input() public state = this.settings.state;
 
   @Output() public checkedChange = new EventEmitter<boolean>();
   public checked: any;

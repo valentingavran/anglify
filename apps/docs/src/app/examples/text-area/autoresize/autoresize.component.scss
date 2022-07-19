@@ -1,0 +1,12 @@
+@use '../../../../../../../libs/anglify/src/styles/mixins/breakpoints.scss' as *;
+
+:host {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @include sm-and-up {
+    grid-template-columns: 1fr 1fr;
+  }
+}

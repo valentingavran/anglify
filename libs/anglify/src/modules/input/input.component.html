@@ -1,12 +1,14 @@
 <div class="anglify-input-prepend">
   <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
 </div>
-<div class="anglify-input" anglifyInteractionState active="false" (click)="onInputClick.next()">
+<div class="anglify-input" anglifyInteractionState [active]="false" (click)="onInputClick.next()">
   <div class="anglify-input-prepend-inner" #prependInner>
     <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
   </div>
   <div class="anglify-input-content" #content>
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner-content'"></ng-container>
     <ng-content></ng-content>
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner-content'"></ng-container>
   </div>
   <div class="anglify-input-append-inner" #appendInner>
     <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'"></ng-container>
@@ -24,10 +26,28 @@
 <div class="anglify-input-append">
   <ng-container *anglifySlotOutlet="slots | findSlot: 'append'"></ng-container>
 </div>
-<div class="anglify-input-details">
-  <div class="hint">
-    <ng-container *ngIf="error$ | async as e; else hintTemplate">{{ e }}</ng-container>
-    <ng-template #hintTemplate>{{ hint }}</ng-template>
+<div class="anglify-input-details" #inputDetails>
+  <div class="hint" #hintWrapper>
+    <span
+      *ngIf="error$ | async as e; else hintTemplate"
+      #hintElement
+      [anglifyTooltip]="e"
+      [anglifyToolTipConfig]="{ mountingPoint: inputDetails, disabled: !hintOverflow }"
+      (mouseover)="isHintOverflowing()"
+    >
+      {{ e }}
+    </span>
+    <ng-template #hintTemplate>
+      <span
+        *ngIf="hint"
+        #hintElement
+        [anglifyTooltip]="hint"
+        [anglifyToolTipConfig]="{ mountingPoint: inputDetails, disabled: !hintOverflow }"
+        (mouseover)="isHintOverflowing()"
+      >
+        {{ hint }}
+      </span>
+    </ng-template>
   </div>
   <div class="counter" *ngIf="counter">
     {{ length }}<span *ngIf="maxLength !== undefined">/{{ maxLength }}</span>

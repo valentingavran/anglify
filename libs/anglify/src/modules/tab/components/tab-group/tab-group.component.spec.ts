@@ -5,7 +5,7 @@ import { TabGroupComponent } from './tab-group.component';
 describe('TabGroupComponent', () => {
   let component: TabGroupComponent;
   let fixture: ComponentFixture<TabGroupComponent>;
-
+  let nativeElement: HTMLElement;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TabGroupComponent],
@@ -15,10 +15,15 @@ describe('TabGroupComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TabGroupComponent);
     component = fixture.componentInstance;
+    nativeElement = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have aria role tablist', () => {
+    expect(nativeElement.getAttribute('role')).toBe('tablist');
   });
 });
