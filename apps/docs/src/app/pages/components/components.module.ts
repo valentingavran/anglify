@@ -39,6 +39,7 @@ import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
 import { TextAreaPageComponent } from './text-area-page/text-area-page.component';
 import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
+import { TimelinePageComponent } from './timeline-page/timeline-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 import { BadgeExampleModule } from '../../examples/badge/badge-example.module';
@@ -64,6 +65,7 @@ import { TabExamplesModule } from '../../examples/tab/tab-examples.module';
 import { TableExamplesModule } from '../../examples/table/table-examples.module';
 import { TextAreaExamplesModule } from '../../examples/text-area/text-area-examples.module';
 import { TextFieldExamplesModule } from '../../examples/text-field/text-field-examples.module';
+import { TimelineExamplesModule } from '../../examples/timeline/timeline-examples.module';
 import { ToolbarExampleModule } from '../../examples/toolbar/toolbar-example.module';
 import { TooltipExamplesModule } from '../../examples/tooltip/tooltip-examples.module';
 import { SharedModule } from '../../modules/shared/shared.module';
@@ -98,6 +100,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     SelectPageComponent,
     AutocompletePageComponent,
     ComboboxPageComponent,
+    TimelinePageComponent,
   ],
   imports: [
     CommonModule,
@@ -129,6 +132,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     BreadcrumbsExampleModule,
     TextFieldExamplesModule,
     ExpansionPanelsExampleModule,
+    TimelineExamplesModule,
     // Imports for Playground
     TextFieldModule,
     IconModule,

@@ -33,6 +33,7 @@
     "src/modules/table/*.scss",
     "src/modules/text-area/*.scss",
     "src/modules/text-field/*.scss",
+    "src/modules/timeline/*.scss",
     "src/modules/toolbar/*.scss",
     "src/modules/tooltip/*.scss"
   ]
