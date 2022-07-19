@@ -153,10 +153,14 @@ export * from './modules/tab/tab.module';
 export * from './modules/table/components/table/table.component';
 export * from './modules/table/table.module';
 // Text Area
+export * from './modules/text-area/text-area-settings.token';
 export * from './modules/text-area/text-area.component';
+export * from './modules/text-area/text-area.interface';
 export * from './modules/text-area/text-area.module';
 // Text Field
+export * from './modules/text-field/text-field-settings.token';
 export * from './modules/text-field/text-field.component';
+export * from './modules/text-field/text-field.interface';
 export * from './modules/text-field/text-field.module';
 // Toolbar
 export * from './modules/toolbar/toolbar.module';
