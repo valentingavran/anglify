@@ -2,6 +2,69 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.24.0](https://github.com/valentingavran/anglify/compare/v0.23.0...v0.24.0) (2022-07-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Checkbox:** Checkbox labels are no longer in a flex container and therefore not centered.
+* The `BooleanLike` type is no longer supported. All `BooleanLike` types have been
+changed to `boolean`. Templates must be adapted and use the bracket syntax that is normal for
+Angular.
+* **Breadcrumbs:** Breadcrumb matchOptions are now configured for each item separately.
+* **Textarea:** Text areas now have only two lines by default
+
+### 📝  Docs
+
+* add module import examples to every component ([d2e80be](https://github.com/valentingavran/anglify/commit/d2e80be5e7b8688350a005096211f563658e535a))
+* improve accessibility ([81200ed](https://github.com/valentingavran/anglify/commit/81200ed4bf6cf993f6f22de1140fc4b7e1cf4ff0))
+* update w3c links ([ecf41cd](https://github.com/valentingavran/anglify/commit/ecf41cdb3bf130239f61c8c1459e4ecc7507dbe8))
+* use Anglify table for styling API ([febfd29](https://github.com/valentingavran/anglify/commit/febfd299259f9d9e7fdafa82053728acf0b66e30))
+
+
+### 🛠  Other Commmits
+
+* adjust vscode settings to exclude build directory from search ([fd89678](https://github.com/valentingavran/anglify/commit/fd8967811434b14fe5642d1cca308b73f9204867))
+* cleanup index.ts ([b901192](https://github.com/valentingavran/anglify/commit/b901192f625e199e5a3afba64a2ecea1c3f5f4e8))
+
+
+### 🐛  Bug Fixes
+
+* **Menu:** click outside listener now works correctly ([55c4435](https://github.com/valentingavran/anglify/commit/55c443532795e673dff7cdc955f89496d7c4499b))
+* **Menu:** rename styles that were leaking into this component ([08d7849](https://github.com/valentingavran/anglify/commit/08d7849ca92451d37642340f8e37c019cc54dba5))
+* **RadioButton:** focus color ([8c62225](https://github.com/valentingavran/anglify/commit/8c62225d75f35f2228b5fa764cde0077b54da85a))
+
+
+### 🚀  Features
+
+* add additional internal icons ([79be106](https://github.com/valentingavran/anglify/commit/79be106ec65029bc371096a209d5dc1f44bc7f79))
+* add directive that can stop click event propagation ([10e4826](https://github.com/valentingavran/anglify/commit/10e482673dbeb8e45ff3851f5a97cf0a1c8b41c4))
+* add flip functionality to position service ([56f4ce3](https://github.com/valentingavran/anglify/commit/56f4ce35b49eb6125691252752ffd2539731f9d9))
+* **Checkbox:** improve accessibility ([6c6d89a](https://github.com/valentingavran/anglify/commit/6c6d89a892a8c63b286979c837c9ae29a43b18dd))
+* **Chip:** don't allow text selection ([3476723](https://github.com/valentingavran/anglify/commit/347672348357c91a53fb3d96b8df7f3414c393e1))
+* **Dialog, Snackbar:** enum for internal reasons ([ac93637](https://github.com/valentingavran/anglify/commit/ac936379775a00c7fa250ae912c24c266ab1e244))
+* **Dialog, Snackbar:** simple opening method ([f694026](https://github.com/valentingavran/anglify/commit/f69402666181cf2e6a001bb8f3d3ad9e221d67d7))
+* **Input:** show tooltip when hint is cut off ([8a1ac28](https://github.com/valentingavran/anglify/commit/8a1ac28ceecdc0a6ff93079f076ff27385547c6a))
+* **Menu:** expose open$ observable ([99a295a](https://github.com/valentingavran/anglify/commit/99a295a6c42b5035d5df2174a5f86378caa8aa05))
+* pre-publish autocomplete component (should not be used yet) ([41a9454](https://github.com/valentingavran/anglify/commit/41a94541224f7cfda909631c936298c223774866))
+* pre-publish combobox component (should not be used yet) ([bed0ea9](https://github.com/valentingavran/anglify/commit/bed0ea9ba9034d4bca389f7d66b047f880b45a03))
+* pre-publish select component (should not be used yet) ([4dd62e8](https://github.com/valentingavran/anglify/commit/4dd62e81075c0062c87c500409d7e5379d41d9bc))
+* **ProgressCircular:** improve accessibility ([9d521f1](https://github.com/valentingavran/anglify/commit/9d521f1ad72893d2c9438b79f814021e3415d23f))
+* **ProgressLinear:** improve accessibility ([e1a98ab](https://github.com/valentingavran/anglify/commit/e1a98ab5920051f2c5e499fd5a7ea0756077baa9))
+* **Tabs:** improve accessibility ([3e76e41](https://github.com/valentingavran/anglify/commit/3e76e414f95a4920015ce5ab4db392fe051a1f28))
+* **Textarea:** add autoresize support & example ([49881ee](https://github.com/valentingavran/anglify/commit/49881ee5a354debdb374328fa55dc2cde5b24fae))
+* **Tooltip:** improve accessibility ([6494527](https://github.com/valentingavran/anglify/commit/6494527d97a624d8a5d8040e2066118879f9a253))
+
+
+### 🔬  Code Refactoring
+
+* **Breadcrumbs:** make some item props optional ([1126075](https://github.com/valentingavran/anglify/commit/1126075411f7be4afee4dbd69584980419031324))
+* **Checkbox:** remove flex align center behaviour from label ([486044e](https://github.com/valentingavran/anglify/commit/486044eb11d91e099fd1816c8ecc4219b9ef44b9))
+* **Input:** adjust styles ([e3db5c6](https://github.com/valentingavran/anglify/commit/e3db5c668d4505873a66e3967ad804fa6c2450d0))
+* **Input:** make hint optional ([458775b](https://github.com/valentingavran/anglify/commit/458775be3c4ed27fa4573e6662dddd23568fc1aa))
+* remove BooleanLike type & helpers ([4e1b8df](https://github.com/valentingavran/anglify/commit/4e1b8dff4221ae59ef49db3ce212b0f3913a8bea))
+* **TextField:** adjust styles ([6b3d897](https://github.com/valentingavran/anglify/commit/6b3d897260d21cec60baeebaba1c6d2f35b5253e))
+
 ## [0.23.0](https://github.com/valentingavran/anglify/compare/v0.22.1...v0.23.0) (2022-07-06)
 
 
