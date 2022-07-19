@@ -1,4 +1,5 @@
 import {
+  AutocompleteModule,
   CheckboxModule,
   IconModule,
   ProgressLinearModule,
@@ -10,6 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AutocompletePageComponent } from './autocomplete-page/autocomplete-page.component';
 import { BadgePageComponent } from './badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './bottom-navigation-page/bottom-navigation-page.component';
 import { BreadcrumbsPageComponent } from './breadcrumbs-page/breadcrumbs-page.component';
@@ -92,6 +94,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TextAreaPageComponent,
     ExpansionPanelsPageComponent,
     SelectPageComponent,
+    AutocompletePageComponent,
   ],
   imports: [
     CommonModule,
@@ -133,6 +136,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     CheckboxModule,
     RadioButtonModule,
     SelectModule,
+    AutocompleteModule,
   ],
 })
 export class ComponentsModule {}

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutocompletePageComponent } from './autocomplete-page/autocomplete-page.component';
 import { BadgePageComponent } from './badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './bottom-navigation-page/bottom-navigation-page.component';
 import { BreadcrumbsPageComponent } from './breadcrumbs-page/breadcrumbs-page.component';
@@ -28,6 +29,10 @@ import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 
 const routes: Routes = [
+  {
+    path: 'autocomplete',
+    component: AutocompletePageComponent,
+  },
   {
     path: 'button',
     component: ButtonPageComponent,
