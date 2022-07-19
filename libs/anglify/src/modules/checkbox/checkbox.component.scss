@@ -76,9 +76,7 @@
     }
 
     .checkbox-label {
-      display: flex;
-      align-items: center;
-      padding: $checkbox-label-margin;
+      padding: $checkbox-label-padding;
       font: $checkbox-label-font;
       letter-spacing: $checkbox-label-letter-spacing;
       text-transform: $checkbox-label-text-transform;

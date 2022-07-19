@@ -7,7 +7,7 @@ $checkbox-checked-border-color: var(--anglify-checkbox-checked-border-color, var
 $checkbox-label-font: var(--anglify-checkbox-label-font, var(--font-body-2)) !default;
 $checkbox-label-letter-spacing: var(--anglify-checkbox-label-letter-spacing, var(--font-letter-spacing-body-2)) !default;
 $checkbox-label-text-transform: var(--anglify-checkbox-label-text-transform, var(--font-text-transform-body-2)) !default;
-$checkbox-label-margin: var(--anglify-checkbox-label-margin, 0 5px) !default;
+$checkbox-label-padding: var(--anglify-checkbox-label-margin, 0 6px) !default;
 $checkbox-border-width: var(--anglify-checkbox-border-width, 2px) !default;
 $checkbox-border-radius: var(--anglify-checkbox-border-radius, 3px) !default;
 $checkbox-height: var(--anglify-checkbox-height, 14px) !default;
