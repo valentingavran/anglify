@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  ElementRef,
   EventEmitter,
   HostBinding,
   HostListener,
@@ -9,11 +10,16 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { BehaviorSubject, combineLatest, filter, map, merge, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
+import { bindClassToNativeElement } from '../../../../utils/functions';
+import { RouterLinkCommands } from '../../../../utils/interfaces';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 
+@UntilDestroy()
 @Component({
   selector: 'anglify-bottom-navigation-item',
   templateUrl: './bottom-navigation-item.component.html',
@@ -23,25 +29,6 @@ import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 })
 export class BottomNavigationItemComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
-  @Output() public readonly onClick = new EventEmitter<void>();
-
-  public readonly shift$ = new BehaviorSubject(false);
-  public readonly active$ = new BehaviorSubject(false);
-
-  public constructor(private readonly rippleService: RippleService) {}
-
-  @HostBinding('class')
-  protected get classList() {
-    const classNames = [];
-    if (this.active) {
-      classNames.push('active');
-    }
-    if (!this.active && this.shift) {
-      classNames.push('shift');
-    }
-
-    return classNames.join(' ');
-  }
 
   @Input()
   public set shift(value: boolean) {
@@ -70,6 +57,7 @@ export class BottomNavigationItemComponent {
     return this.rippleService.state;
   }
 
+  @HostBinding('attr.aria-selected')
   @Input()
   public set active(value: boolean) {
     this.active$.next(value);
@@ -79,9 +67,101 @@ export class BottomNavigationItemComponent {
     return this.active$.value;
   }
 
+  @Input() public set routerLink(commands: RouterLinkCommands) {
+    this.routerLink$.next(commands);
+  }
+
+  public get routerLink() {
+    return this.routerLink$.value;
+  }
+
+  /**
+   * If this option is set, the bottom navigation item will not be displayed as a link even if the [routerLink]
+   * property is set.
+   */
+  @Input() public inactive = false;
+
+  /**
+   * Exactly match the link. Without this, `/user/profile/` will match for example every
+   * user sub-route too (like `/user/profile/edit`).
+   */
+  @Input() public exact = false;
+
+  @Output() public activeChange = new EventEmitter<void>();
+  @Output() public selectPrevious = new EventEmitter<void>();
+  @Output() public selectNext = new EventEmitter<void>();
+  @Output() public readonly onClick = new EventEmitter<void>();
+
+  public readonly shift$ = new BehaviorSubject(false);
+  public readonly active$ = new BehaviorSubject(false);
+  private readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
+
+  public constructor(
+    private readonly rippleService: RippleService,
+    public readonly elementRef: ElementRef<HTMLElement>,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
+    bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');
+    bindClassToNativeElement(
+      this,
+      combineLatest([this.active$, this.shift$]).pipe(map(([active, shift]) => !active && shift)),
+      this.elementRef.nativeElement,
+      'shift'
+    );
+
+    this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
+  }
+
+  // @ts-expect-error
+  @HostBinding('attr.role') private readonly role = 'tab';
+
+  // @ts-expect-error
+  @HostBinding('tabindex') private get tabindex() {
+    return this.active ? 0 : -1;
+  }
+
   @HostListener('click')
   // @ts-expect-error
   private click() {
     this.onClick.next();
+  }
+
+  @HostListener('keydown.arrowleft', ['$event'])
+  @HostListener('keydown.arrowright', ['$event'])
+  // @ts-expect-error
+  private onKeydown(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') {
+      this.selectPrevious.next();
+    } else if (event.key === 'ArrowRight') {
+      this.selectNext.next();
+    }
+  }
+
+  private readonly routerLinkHandler$ = merge(
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)),
+    this.routerLink$
+  ).pipe(
+    filter(() => !this.inactive),
+    switchMap(() => this.routerLink$),
+    map(routerLink => this.isRouteActive(routerLink)),
+    tap(isActive => this.active$.next(isActive))
+  );
+
+  private isRouteActive(route: RouterLinkCommands) {
+    if (!route) return false;
+
+    let url;
+    if (route instanceof Array) {
+      url = this.router.createUrlTree(route);
+    } else {
+      url = this.router.createUrlTree([route], { relativeTo: this.route });
+    }
+    return this.router.isActive(url, {
+      paths: this.exact ? 'exact' : 'subset',
+      matrixParams: 'ignored',
+      queryParams: 'ignored',
+      fragment: 'ignored',
+    });
   }
 }
