@@ -34,9 +34,8 @@
       [anglifyTooltip]="e"
       [anglifyToolTipConfig]="{ mountingPoint: inputDetails, disabled: !hintOverflow }"
       (mouseover)="isHintOverflowing()"
+      >{{ e }}</span
     >
-      {{ e }}
-    </span>
     <ng-template #hintTemplate>
       <span
         *ngIf="hint"
@@ -44,9 +43,8 @@
         [anglifyTooltip]="hint"
         [anglifyToolTipConfig]="{ mountingPoint: inputDetails, disabled: !hintOverflow }"
         (mouseover)="isHintOverflowing()"
+        >{{ hint }}</span
       >
-        {{ hint }}
-      </span>
     </ng-template>
   </div>
   <div class="counter" *ngIf="counter">
