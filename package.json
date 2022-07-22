@@ -2,15 +2,16 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "node ./scripts/css-variable-extractor.js && nx serve",
-    "build": "node ./scripts/css-variable-extractor.js && nx build",
+    "start": "node ./scripts/css-variable-extractor.js && npm run compodoc-json && nx serve",
+    "build": "node ./scripts/css-variable-extractor.js && npm run compodoc-json && nx build",
     "test": "nx test --project=anglify",
     "test:coverage": "nx test --coverage --project=anglify",
     "lint": "prettier --check . && stylelint \"**/*.scss\" && nx run-many --all --target=lint",
     "format": "prettier --write . && stylelint \"**/*.scss\" --fix && nx run-many --all --target=lint --fix",
     "build:anglify": "rimraf dist/ && nx run anglify:build:production --skip-nx-cache && cpy . '../' --cwd=dist/libs/anglify/src && rimraf dist/libs/anglify/src",
     "release": "standard-version",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "compodoc-json": "compodoc -p ./libs/anglify/tsconfig.json -e json -d ./apps/docs/src/assets"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +46,7 @@
     "@angular/language-service": "^13.3.11",
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@compodoc/compodoc": "^1.1.19",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@mdi/js": "^6.7.96",
