@@ -1,11 +1,11 @@
 <anglify-toolbar [elevation]="5">
-  <ng-template slot="navigation">
+  Anglify
+  <ng-template slot="start">
     <button anglifyButton appearance="icon" (click)="drawer.toggle()" aria-label="Toggle navigation menu">
       <anglify-icon icon="mdi-menu"></anglify-icon>
     </button>
   </ng-template>
-  <ng-template slot="title">Anglify</ng-template>
-  <ng-template slot="actions">
+  <ng-template slot="end">
     <button
       anglifyButton
       appearance="icon"

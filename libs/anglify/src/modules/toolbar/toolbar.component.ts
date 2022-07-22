@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChildren, HostBinding, Inject, Input, QueryList, Self } from '@angular/core';
 import { DEFAULT_TOOLBAR_SETTINGS, TOOLBAR_SETTINGS } from './toolbar-settings.token';
 import { EntireToolbarSettings } from './toolbar.interface';
 import { Elevation } from '../../composables/elevation/elevation.interface';
@@ -20,11 +20,11 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 export class ToolbarComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input() public prominent = this.settings.prominent;
-  @Input() public collapse = this.settings.collapse;
+  @Input() @HostBinding('class.prominent') public prominent = this.settings.prominent;
 
-  @Input()
-  public set elevation(value: Elevation) {
+  @Input() @HostBinding('class.collapse') public collapse = this.settings.collapse;
+
+  @Input() public set elevation(value: Elevation) {
     this.elevationService.elevation = value;
   }
 
