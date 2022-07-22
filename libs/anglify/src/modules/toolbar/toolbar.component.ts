@@ -20,10 +20,14 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 export class ToolbarComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input() @HostBinding('class.prominent') public prominent = this.settings.prominent;
+  /** Increases the height of the toolbar. */
+  @Input() @HostBinding('class.prominent') public prominent: boolean = this.settings.prominent;
 
-  @Input() @HostBinding('class.collapse') public collapse = this.settings.collapse;
+  /** Puts the toolbar into a collapsed state reducing its maximum width. */
+  @Input() @HostBinding('class.collapse') public collapse: boolean = this.settings.collapse;
 
+  /** Designates an elevation applied to the component between 0 and 24. You can find more
+   * information on the elevation page. */
   @Input() public set elevation(value: Elevation) {
     this.elevationService.elevation = value;
   }

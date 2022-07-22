@@ -20,12 +20,25 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonComponent implements ControlValueAccessor {
+  /** The input’s value. */
   @Input() public value: any;
+
+  /** Sets the component’s name attribute. */
   @Input() public name = '';
+
+  /** Removes the ability to click or target the component. */
   @Input() public disabled = this.settings.disabled;
+
+  /** Turns the ripple effect on or off. */
   @Input() public ripple = this.settings.ripple;
+
+  /** Changes the position of the label. */
   @Input() public labelPosition: RadioLabelPosition = this.settings.labelPosition;
+
+  /** Defines whether the ripple starts in the middle of the component or where the mouse click occurs. */
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
+
+  /** Controls whether to display the focus and hover styles for this component. */
   @Input() public state = this.settings.state;
 
   @Output() public checkedChange = new EventEmitter<boolean>();

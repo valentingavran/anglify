@@ -21,8 +21,11 @@ import { ListItemComponent } from '../list-item/list-item.component';
 export class ListItemGroupComponent implements AfterViewInit, ControlValueAccessor {
   @ContentChildren(ListItemComponent, { descendants: true }) private readonly allSlots?: QueryList<ListItemComponent>;
 
+  /** Forces a value to always be selected (if available). */
   @Input() public mandatory = false;
+  /** Allow multiple selections. */
   @Input() public multiple = false;
+  /** Sets a maximum number of selections that can be made. */
   @Input() public max?: number;
 
   public onChange: (...args: any[]) => void = () => {};

@@ -23,9 +23,11 @@ import { ListItemComponent } from '../list-item/list-item.component';
 export class ListComponent implements AfterViewInit {
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
 
+  /** Lowers max height of list items. */
   @Input() public dense = false;
 
-  /** An alternative styling that reduces `anglify-list-item` width and rounds the corners. Typically used with anglify-navigation-drawer */
+  /** An alternative styling that reduces `anglify-list-item` width and rounds the corners.
+   * Typically used with `anglify-navigation-drawer`. */
   @Input() public nav = false;
   @Output() public readonly onItemClick = new EventEmitter<void>();
 

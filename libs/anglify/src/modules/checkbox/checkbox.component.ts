@@ -54,11 +54,19 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('reflectOffIcon') public reflectOffIcon!: ElementRef<HTMLElement>;
   @ViewChild('reflectOnIcon') public reflectOnIcon!: ElementRef<HTMLElement>;
 
+  /** Turns the ripple effect on or off. */
   @Input() public ripple = this.settings.ripple;
+
+  /** Controls whether to display the focus and hover styles for this component. */
   @Input() public state = this.settings.state;
+
+  /** Changes the position of the label. */
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
+
+  /** Defines whether the ripple starts in the middle of the component or where the mouse click occurs. */
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
 
+  /** The input’s value. */
   @HostBinding('attr.aria-checked')
   @Input()
   public set checked(value: boolean) {
@@ -69,6 +77,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     return this.checked$.value;
   }
 
+  /** Disable the input. */
   @HostBinding('attr.aria-disabled')
   @Input()
   public set disabled(value: boolean) {
@@ -79,6 +88,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     return this.disabled$.value;
   }
 
+  /** Puts input in readonly state. */
   @HostBinding('attr.aria-readonly')
   @Input('readonly')
   public set isReadonly(value: boolean) {

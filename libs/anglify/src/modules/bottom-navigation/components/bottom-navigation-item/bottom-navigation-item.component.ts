@@ -30,6 +30,7 @@ import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 export class BottomNavigationItemComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
+  /** Hides text of `BottomNavigationItem's` when they are not active. */
   @Input()
   public set shift(value: boolean) {
     this.shift$.next(value);
@@ -39,6 +40,7 @@ export class BottomNavigationItemComponent {
     return this.shift$.value;
   }
 
+  /** Turns the ripple effect on or off. */
   @Input()
   public set ripple(value: boolean) {
     this.rippleService.active = value;
@@ -48,6 +50,7 @@ export class BottomNavigationItemComponent {
     return this.rippleService.active;
   }
 
+  /** Controls whether to display the focus and hover styles for this component. */
   @Input()
   public set state(value: boolean) {
     this.rippleService.state = value;
@@ -57,8 +60,9 @@ export class BottomNavigationItemComponent {
     return this.rippleService.state;
   }
 
-  @HostBinding('attr.aria-selected')
+  /** Sets this items as the default active item. Only one item inside each `BottomNavigation` can have this property. */
   @Input()
+  @HostBinding('attr.aria-selected')
   public set active(value: boolean) {
     this.active$.next(value);
   }
@@ -67,6 +71,7 @@ export class BottomNavigationItemComponent {
     return this.active$.value;
   }
 
+  /** Denotes the target route of the link. You can find more information about the to prop on the [Angular RouterLink documentation](https://angular.io/api/router/RouterLink) page. */
   @Input() public set routerLink(commands: RouterLinkCommands) {
     this.routerLink$.next(commands);
   }

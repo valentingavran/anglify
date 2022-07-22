@@ -42,18 +42,10 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 export class BottomNavigationComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(BottomNavigationItemComponent) public readonly navigationItems?: QueryList<BottomNavigationItemComponent>;
 
+  /** Force items to take up all available space. */
   @Input() public grow = this.settings.grow;
 
-  @HostBinding('class')
-  protected get classList() {
-    const classNames = [];
-    if (this.grow) {
-      classNames.push('grow');
-    }
-
-    return classNames.join(' ');
-  }
-
+  /** Hides text of items when they are not active. */
   @Input() public set shift(value: boolean) {
     this.shift$.next(value);
   }
@@ -68,8 +60,30 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
   private readonly destroySelectPreviousSubscription = new Subject<void>();
   private readonly destroySelectNextSubscription = new Subject<void>();
 
+  public constructor(@Self() @Inject('anglifyBottomNavigationSettings') public settings: EntireBottomNavigationSettings) {
+    this.changeHandler$.pipe(untilDestroyed(this)).subscribe();
+
+    this.items$.pipe(untilDestroyed(this)).subscribe(items => {
+      items.forEach((item, index) => {
+        item.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeAll), filter(Boolean)).subscribe(() => {
+          this.onSelectedItemChange(item, index);
+        });
+      });
+    });
+  }
+
   // @ts-expect-error
   @HostBinding('attr.role') private readonly role = 'tablist';
+
+  @HostBinding('class')
+  protected get classList() {
+    const classNames = [];
+    if (this.grow) {
+      classNames.push('grow');
+    }
+
+    return classNames.join(' ');
+  }
 
   private readonly changeHandler$ = combineLatest([this.shift$, this.items$]).pipe(
     tap(([shift, items]) => {
@@ -86,18 +100,6 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
 
   public registerOnTouched(fn: (...args: any[]) => void) {
     this.onTouch = fn;
-  }
-
-  public constructor(@Self() @Inject('anglifyBottomNavigationSettings') public settings: EntireBottomNavigationSettings) {
-    this.changeHandler$.pipe(untilDestroyed(this)).subscribe();
-
-    this.items$.pipe(untilDestroyed(this)).subscribe(items => {
-      items.forEach((item, index) => {
-        item.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeAll), filter(Boolean)).subscribe(() => {
-          this.onSelectedItemChange(item, index);
-        });
-      });
-    });
   }
 
   private getActiveIndices(): number[] {

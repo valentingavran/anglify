@@ -21,8 +21,11 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 export class ItemGroupComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(SlotDirective, { descendants: true }) private readonly allSlots?: QueryList<SlotDirective<boolean>>;
 
+  /** Forces a value to always be selected (if available). */
   @Input() public mandatory = false;
+  /** Allow multiple selections. */
   @Input() public multiple = false;
+  /** Sets a maximum number of selections that can be made. */
   @Input() public max?: number;
 
   public onChange: (...args: any[]) => void = () => {};

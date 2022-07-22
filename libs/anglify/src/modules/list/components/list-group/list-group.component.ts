@@ -21,8 +21,7 @@ export class ListGroupComponent implements AfterViewInit {
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
   @ContentChildren(ListGroupComponent) public listGroups?: QueryList<ListGroupComponent>;
 
-  @Input() public disableGroupCollapse = false;
-
+  /** Control if the group is open by default. */
   @Input() public set active(value: boolean) {
     this.active$.next(value);
   }

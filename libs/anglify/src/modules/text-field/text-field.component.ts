@@ -22,14 +22,31 @@ export class TextFieldComponent implements AfterViewInit {
   @ContentChild(InputDirective) public readonly input?: InputDirective;
   @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput!: InputComponent;
 
+  /** Sets the input label. */
   @Input() public label?: string;
+
+  /** Sets one of the two predefined input styles (`filled` or `outlined`). */
   @Input() public appearance: InputAppearance = this.settings.appearance;
+
+  /** Hint text. */
   @Input() public hint?: string;
+
+  /** Forces hint to always be visible. */
   @Input() public persistentHint = this.settings.persistentHint;
+
+  /** Forces label to always be in floating mode. */
   @Input() public alwaysFloatingLabel = this.settings.alwaysFloatingLabel;
+
+  /** Hides hint and validation errors. */
   @Input() public hideDetails = this.settings.hideDetails;
+
+  /** Creates counter for input length. The maximum length can be set using the `maxlength` property on the `anglfyInput` directive. **/
   @Input() public counter = this.settings.counter;
+
+  /** Puts the input in a manual error state. */
   @Input() public error?: string;
+
+  /** Reduces the input height. */
   @Input() public dense = this.settings.dense;
 
   public constructor(@Self() @Inject('anglifyTextFieldSettings') public settings: EntireTextFieldSettings) {}

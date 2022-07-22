@@ -13,15 +13,14 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   providers: [createSettingsProvider<EntireButtonSettings>('anglifyButtonSettings', DEFAULT_BUTTON_SETTINGS, BUTTON_SETTINGS), RIPPLE],
 })
 export class ButtonComponent implements OnInit {
+  /** Sets one of several predefined styles. */
   @Input() public appearance: ButtonAppearance = this.settings.appearance;
 
-  /**
-   * Expands the button to 100% of available space.
-   */
+  /** Expands the button to 100% of available space. */
   @Input() public block = this.settings.block;
 
-  @Input()
-  public set ripple(value: boolean) {
+  /** Turns the ripple effect on or off. */
+  @Input() public set ripple(value: boolean) {
     this.rippleService.active = value;
   }
 
@@ -29,8 +28,8 @@ export class ButtonComponent implements OnInit {
     return this.rippleService.active;
   }
 
-  @Input()
-  public set state(value: boolean) {
+  /** Controls whether to display the focus and hover styles for this component. */
+  @Input() public set state(value: boolean) {
     this.rippleService.state = value;
   }
 

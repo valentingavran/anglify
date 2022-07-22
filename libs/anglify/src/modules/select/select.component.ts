@@ -41,23 +41,38 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
   @ViewChild(InputDirective, { static: true }) public readonly input!: InputDirective;
   @ViewChild(MenuDirective, { static: true }) public readonly menu!: MenuDirective;
 
+  /** Sets the input label. */
   @Input() public label?: string;
+  /** Sets the input’s placeholder text */
   @Input() public placeholder?: string;
+  /** Hint text. */
   @Input() public hint?: string;
+  /** Forces label to always be in floating mode. */
   @Input() public alwaysFloatingLabel: boolean = this.settings.alwaysFloatingLabel;
+  /** Forces hint to always be visible. */
   @Input() public persistentHint: boolean = this.settings.persistentHint;
+  /** Sets one of the two predefined input styles (`filled` or `outlined`). */
   @Input() public appearance: InputAppearance = this.settings.appearance;
-  @Input() public clearable = this.settings.clearable;
+  /** Add input clear functionality (appends an clear icon). */
+  @Input() public clearable: boolean = this.settings.clearable;
+  /** Sets the position of the menu. */
   @Input() public dropdownPosition = this.settings.dropdownPosition;
+  /** Automatically determines the best position for the menu. If possible the preset position is used. */
   @Input() public dropdownAutoPosition = this.settings.dropdownAutoPosition;
+  /**  Displaces the menu from the input element along the relevant axes. */
   @Input() public dropdownOffset = this.settings.dropdownOffset;
+  /** Hides hint and validation errors. */
   @Input() public hideDetails = false;
+  /** Puts input in readonly state. */
   @Input() public readonly = false;
-  @Input() public required = false;
+  /** Changes select to multiple. Accepts array for value. */
   @Input() public multiple = false;
-  @Input() public closeOnSelect = this.settings.closeOnSelect;
-  @Input() public noOptions = this.settings.noOptions;
+  /** Designates if menu should close when its content is clicked. */
+  @Input() public closeOnSelect: boolean = this.settings.closeOnSelect;
+  /** Display text when there is no data. */
+  @Input() public noOptions: string = this.settings.noOptions;
 
+  /** Puts the input in a manual error state. */
   @Input() public set error(error: string | undefined) {
     this._error$.next(error);
   }
@@ -66,6 +81,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     return this._error$.value;
   }
 
+  /** Disables the input. */
   @Input() public set disabled(isDisabled: boolean) {
     this._disabled$.next(isDisabled);
   }
@@ -74,6 +90,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     return this._disabled$.value;
   }
 
+  /** Can be an array of objects or array of strings/numbers. */
   @Input() public set options(options: SelectOption[] | string[] | number[]) {
     if (this.assumePrimitive(options)) {
       const primitiveOptions = options as string[] | number[] | boolean[];
