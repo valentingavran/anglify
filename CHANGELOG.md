@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.26.0](https://github.com/valentingavran/anglify/compare/v0.25.0...v0.26.0) (2022-07-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* All dependencies including Angular have been updated to the latest version.
+Anglify now uses Angular 14 Updating should work seamlessly.
+
+### 🛠  Other Commmits
+
+* update to Angular 14 ([64d971d](https://github.com/valentingavran/anglify/commit/64d971d666459dd5b17b0fdfeb4357614dd1e5f0))
+
 ## [0.25.0](https://github.com/valentingavran/anglify/compare/v0.24.2...v0.25.0) (2022-07-23)
 
 
