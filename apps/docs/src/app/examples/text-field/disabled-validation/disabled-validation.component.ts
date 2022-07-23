@@ -10,8 +10,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class DisabledValidationComponent {
   public form = new FormGroup({
-    email: new FormControl('', [Validators.email, Validators.required]),
-    password: new FormControl('', [Validators.password, Validators.required]),
+    email: new FormControl<string | null>(null, [Validators.email, Validators.required]),
+    password: new FormControl<string | null>(null, [Validators.password, Validators.required]),
   });
 
   public disableEmailField() {

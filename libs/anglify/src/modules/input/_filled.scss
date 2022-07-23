@@ -70,6 +70,18 @@
     }
   }
 
+  &:not(.anglify-input-focused, .anglify-input-disabled) {
+    .anglify-input {
+      &:hover {
+        --state-container-color: #{$input-filled-state-color-hover};
+
+        &::before {
+          border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-hover;
+        }
+      }
+    }
+  }
+
   &.anglify-input-focused:not(.anglify-input-disabled) {
     .anglify-input {
       &::after {
@@ -78,18 +90,6 @@
 
       label {
         color: $input-filled-label-color-focused;
-      }
-    }
-  }
-
-  &:not(.anglify-input-focused):not(.anglify-input-disabled) {
-    .anglify-input {
-      &:hover {
-        --state-container-color: #{$input-filled-state-color-hover};
-
-        &::before {
-          border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-hover;
-        }
       }
     }
   }

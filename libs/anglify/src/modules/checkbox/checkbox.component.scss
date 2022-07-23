@@ -93,17 +93,19 @@
     }
   }
 
-  &:not(.anglify-checkbox-checked):not(.anglify-checkbox-disabled) {
-    .check-box-effect {
-      border-color: $checkbox-border-color;
-    }
+  &:not(.anglify-checkbox-checked, .anglify-checkbox-disabled) {
+    .container {
+      .check-box-effect {
+        border-color: $checkbox-border-color;
+      }
 
-    .state-container:focus-visible {
-      --state-container-color: #{$checkbox-focus-state-inactive-color};
-    }
+      .state-container:focus-visible {
+        --state-container-color: #{$checkbox-focus-state-inactive-color};
+      }
 
-    .state-container:hover {
-      --state-container-color: #{$checkbox-hover-state-inactive-color};
+      .state-container:hover {
+        --state-container-color: #{$checkbox-hover-state-inactive-color};
+      }
     }
   }
 

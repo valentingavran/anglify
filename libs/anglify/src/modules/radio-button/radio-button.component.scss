@@ -98,6 +98,18 @@
     }
   }
 
+  input:not(:checked, :disabled) {
+    & ~ .container:hover {
+      --state-container-color: #{$radio-button-hover-state-inactive-color};
+    }
+
+    &:focus-visible {
+      & ~ .container {
+        --state-container-color: #{$radio-button-focus-state-inactive-color};
+      }
+    }
+  }
+
   input:checked:not(:disabled) {
     & ~ .container {
       .radio-button-effect {
@@ -118,19 +130,6 @@
     &:focus-visible {
       & ~ .container {
         --state-container-color: #{$radio-button-focus-state-active-color};
-      }
-    }
-  }
-
-  /* stylelint-disable-next-line no-descending-specificity */
-  input:not(:checked):not(:disabled) {
-    & ~ .container:hover {
-      --state-container-color: #{$radio-button-hover-state-inactive-color};
-    }
-
-    &:focus-visible {
-      & ~ .container {
-        --state-container-color: #{$radio-button-focus-state-inactive-color};
       }
     }
   }
