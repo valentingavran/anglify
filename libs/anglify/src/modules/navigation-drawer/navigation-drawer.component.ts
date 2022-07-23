@@ -33,16 +33,17 @@ import { ListComponent } from '../list/components/list/list.component';
     ),
   ],
   animations: [
-    // used for backdrop opacity transition
-    enterLeaveOpacityAnimation(),
+    enterLeaveOpacityAnimation(), // used for backdrop opacity transition
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationDrawerComponent implements AfterViewInit {
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
 
-  @Input() public closeOnOutsideClick = this.settings.closeOnOutsideClick;
+  /** Modal drawer will be closed on item clicks if this property is set. */
   @Input() public closeOnItemClick = this.settings.closeOnItemClick;
+
+  /** Changes the Navigation Drawer mode (modal or standard). */
   @Input() public set mode(value: NavigationDrawerMode) {
     this.mode$.next(value);
   }
@@ -51,6 +52,7 @@ export class NavigationDrawerComponent implements AfterViewInit {
     return this.mode$.value;
   }
 
+  /** Control whether the NavigationDrawer is opened or not. */
   @Input() public set ngModel(value: boolean) {
     this.setOpened(value);
   }

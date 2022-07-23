@@ -161,6 +161,10 @@ export class DefaultComponent {
       name: 'Text Field',
     },
     {
+      link: 'components/timeline',
+      name: 'Timeline',
+    },
+    {
       link: 'components/toolbar',
       name: 'Toolbar',
     },

@@ -35,9 +35,12 @@ import { EntireExpansionPanelsSettings } from '../../expansion-panels.interface'
 export class ExpansionPanelComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
+  /** Hide the expand icon in the panel header. */
   @Input() public hideToggle = false;
+  /** The label in the panel header. */
   @Input() public label?: string;
 
+  /** Sets this item as active by default */
   @Input() public set active(value: boolean) {
     this._active$.next(value);
   }
@@ -46,6 +49,8 @@ export class ExpansionPanelComponent {
     return this._active$.value;
   }
 
+  /** Designates an elevation applied to the component between 0 and 24. You can find more
+   * information on the elevation page. */
   @Input() public set elevation(value: Elevation) {
     this.elevationService.elevation = value;
   }

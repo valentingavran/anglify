@@ -26,6 +26,7 @@ import { TabPageComponent } from './tab-page/tab-page.component';
 import { TablePageComponent } from './table-page/table-page.component';
 import { TextAreaPageComponent } from './text-area-page/text-area-page.component';
 import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
+import { TimelinePageComponent } from './timeline-page/timeline-page.component';
 import { ToolbarPageComponent } from './toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 
@@ -133,6 +134,10 @@ const routes: Routes = [
   {
     path: 'text-field',
     component: TextFieldPageComponent,
+  },
+  {
+    path: 'timeline',
+    component: TimelinePageComponent,
   },
   {
     path: 'toolbar',

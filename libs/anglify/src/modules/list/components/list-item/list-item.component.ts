@@ -29,8 +29,8 @@ import { SlotDirective } from '../../../common/directives/slot/slot.directive';
 export class ListItemComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input()
-  public set active(value: boolean) {
+  /** Marks this item as active, which changes the style. */
+  @Input() public set active(value: boolean) {
     this.active$.next(value);
   }
 
@@ -38,7 +38,9 @@ export class ListItemComponent {
     return this.active$.value;
   }
 
+  /** Lowers max height of this list item. */
   @Input() public dense = false;
+  /** Disables the component. */
   @Input() public disabled = false;
 
   /**
@@ -52,6 +54,7 @@ export class ListItemComponent {
     return this.selectable$.value;
   }
 
+  /** Turns the ripple effect on or off. */
   @Input() public set ripple(value: boolean) {
     this.rippleService.active = value;
   }
@@ -60,6 +63,7 @@ export class ListItemComponent {
     return this.rippleService.active;
   }
 
+  /** Controls whether to display the focus and hover styles for this component. */
   @Input() public set state(value: boolean) {
     this.rippleService.state = value;
   }
@@ -68,6 +72,8 @@ export class ListItemComponent {
     return this.rippleService.state;
   }
 
+  /** Denotes the target route of the link. You can find more information about the to prop on the
+   * [Angular RouterLink documentation](https://angular.io/api/router/RouterLink) page. */
   @Input() public set routerLink(commands: RouterLinkCommands) {
     this.routerLink$.next(commands);
   }

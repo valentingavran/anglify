@@ -20,13 +20,28 @@ export class TextAreaComponent implements AfterViewInit {
   @ContentChild(InputDirective) public readonly input?: InputDirective;
   @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput!: InputComponent;
 
+  /** Sets input label. */
   @Input() public label?: string;
+
+  /** Sets one of the two predefined input styles (`filled` or `outlined`). */
   @Input() public appearance: InputAppearance = this.settings.appearance;
+
+  /** Hint text. */
   @Input() public hint?: string;
-  @Input() public persistentHint = this.settings.persistentHint;
-  @Input() public alwaysFloatingLabel = this.settings.alwaysFloatingLabel;
-  @Input() public hideDetails = this.settings.hideDetails;
-  @Input() public counter = this.settings.counter;
+
+  /** Forces hint to always be visible. */
+  @Input() public persistentHint: boolean = this.settings.persistentHint;
+
+  /** Forces label to always be in floating mode. */
+  @Input() public alwaysFloatingLabel: boolean = this.settings.alwaysFloatingLabel;
+
+  /** Hides hint and validation errors. */
+  @Input() public hideDetails: boolean = this.settings.hideDetails;
+
+  /** Creates counter for input length. The maximum length can be set using the `maxlength` property on the `anglfyInput` directive. **/
+  @Input() public counter: boolean = this.settings.counter;
+
+  /** Puts the input in a manual error state. */
   @Input() public error?: string;
 
   public constructor(@Self() @Inject('anglifyTextAreaSettings') public settings: EntireTextAreaSettings) {}

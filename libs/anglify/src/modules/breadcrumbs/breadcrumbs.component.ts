@@ -16,7 +16,10 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 export class BreadcrumbsComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
+  /** An array of objects describing each breadcrumb. */
   @Input() public items: BreadCrumb[] = this.settings.items;
+
+  /** Specifies the dividing character between items. */
   @Input() public divider: string = this.settings.divider;
 
   public constructor(@Self() @Inject('anglifyBreadcrumbsSettings') public settings: EntireBreadCrumbsSettings) {}

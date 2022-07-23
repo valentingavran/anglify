@@ -1,0 +1,17 @@
+<anglify-item-group [mandatory]="true" [formControl]="selection">
+  <ng-template *ngFor="let c of selectables$ | async" slot="item-group-item" let-active="active" let-toggle>
+    <anglify-chip [active]="active" (click)="toggle()">{{ c }}</anglify-chip>
+  </ng-template>
+</anglify-item-group>
+
+<ng-container *ngIf="selectedName$ | async as selection">
+  <ng-container *ngFor="let component of components$ | async">
+    <app-component-api *ngIf="component.name === selection" [documentation]="component"></app-component-api>
+  </ng-container>
+  <ng-container *ngFor="let service of services$ | async">
+    <app-service-api *ngIf="service.name === selection" [documentation]="service"></app-service-api>
+  </ng-container>
+  <ng-container *ngFor="let directive of directives$ | async">
+    <app-directive-api *ngIf="directive.name === selection" [documentation]="directive"></app-directive-api>
+  </ng-container>
+</ng-container>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-snackbar-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./snackbar-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SnackbarPageComponent {}
+export class SnackbarPageComponent {
+  public config: APIConfig = {
+    services: ['SnackbarService'],
+  };
+}

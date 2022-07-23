@@ -34,11 +34,17 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   providers: [createSettingsProvider<EntireMenuSettings>('anglifyMenuSettings', DEFAULT_MENU_SETTINGS, MENU_SETTINGS)],
 })
 export class MenuDirective implements OnDestroy {
+  /** The reference of the menu to be displayed. */
   @Input('anglifyMenuTriggerFor') public content!: TemplateRef<any> | Type<any>;
+  /** The place where the menu is added in the DOM. Default: `parent`.*/
   @Input('anglifyMenuMountingPoint') public mountingPoint: MenuMountingPoint = 'parent';
+  /** Whether to open the menu when the activator (host) is clicked. */
+  @Input() public openOnClick = this.settings.openOnClick;
+  /** Whether the menu should be closed when clicking outside the menu. */
+  @Input() public closeOnOutsideClick = this.settings.closeOnOutsideClick;
 
-  @Input()
-  public set parentWidth(value: boolean) {
+  /** Inherits and uses the size of the parent. */
+  @Input() public set parentWidth(value: boolean) {
     const bool = value;
     this.parentWidth$.next(bool);
     if (this.componentRef) {
@@ -47,40 +53,37 @@ export class MenuDirective implements OnDestroy {
   }
 
   /** Distance between the menu and the activator */
-  @Input()
-  public set offset(value: number) {
+  @Input() public set offset(value: number) {
     this.offset$.next(value);
     if (this.componentRef) {
       this.componentRef.instance.offset = value;
     }
   }
 
-  @Input()
-  public set position(value: Position) {
+  /** Defines at which position the menu should be displayed. */
+  @Input() public set position(value: Position) {
     this.position$.next(value);
     if (this.componentRef) {
       this.componentRef.instance.position = value;
     }
   }
 
-  @Input()
-  public set flip(value: boolean) {
+  /** Automatically determines the best position for the menu. If possible the preset position is used. */
+  @Input() public set flip(value: boolean) {
     this.flip$.next(value);
     if (this.componentRef) {
       this.componentRef.instance.flip = value;
     }
   }
 
-  @Input('anglifyMenuElevation')
-  public set elevation(value: Elevation) {
+  /** Designates an elevation applied to the component between 0 and 24. You can find more
+   * information on the elevation page. */
+  @Input('anglifyMenuElevation') public set elevation(value: Elevation) {
     this.elevation$.next(value);
     if (this.componentRef) {
       this.componentRef.instance.elevation = value;
     }
   }
-
-  @Input() public openOnClick = this.settings.openOnClick;
-  @Input() public closeOnOutsideClick = this.settings.closeOnOutsideClick;
 
   private readonly parentWidth$ = new BehaviorSubject<boolean>(this.settings.parentWidth);
   private readonly offset$ = new BehaviorSubject<number>(this.settings.offset);

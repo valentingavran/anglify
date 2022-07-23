@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-badge-page',
@@ -6,4 +7,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./badge-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BadgePageComponent {}
+export class BadgePageComponent {
+  public config: APIConfig = {
+    components: ['BadgeComponent'],
+    directives: ['BadgeDirective'],
+  };
+}

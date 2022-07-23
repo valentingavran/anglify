@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-select-page',
@@ -7,6 +8,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectPageComponent {
+  public config: APIConfig = {
+    components: ['SelectComponent'],
+  };
+
   public appearance: 'filled' | 'outlined' = 'filled';
   public label = 'Label';
   public placeholder = 'Placeholder';

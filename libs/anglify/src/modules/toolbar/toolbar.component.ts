@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChildren, HostBinding, Inject, Input, QueryList, Self } from '@angular/core';
 import { DEFAULT_TOOLBAR_SETTINGS, TOOLBAR_SETTINGS } from './toolbar-settings.token';
 import { EntireToolbarSettings } from './toolbar.interface';
 import { Elevation } from '../../composables/elevation/elevation.interface';
@@ -20,11 +20,15 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
 export class ToolbarComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input() public prominent = this.settings.prominent;
-  @Input() public collapse = this.settings.collapse;
+  /** Increases the height of the toolbar. */
+  @Input() @HostBinding('class.prominent') public prominent: boolean = this.settings.prominent;
 
-  @Input()
-  public set elevation(value: Elevation) {
+  /** Puts the toolbar into a collapsed state reducing its maximum width. */
+  @Input() @HostBinding('class.collapse') public collapse: boolean = this.settings.collapse;
+
+  /** Designates an elevation applied to the component between 0 and 24. You can find more
+   * information on the elevation page. */
+  @Input() public set elevation(value: Elevation) {
     this.elevationService.elevation = value;
   }
 

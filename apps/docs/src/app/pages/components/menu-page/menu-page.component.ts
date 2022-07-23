@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-menu-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./menu-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MenuPageComponent {}
+export class MenuPageComponent {
+  public config: APIConfig = {
+    directives: ['MenuDirective'],
+  };
+}

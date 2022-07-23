@@ -16,8 +16,9 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   providers: [createSettingsProvider<EntireCardSettings>('anglifyCardSettings', DEFAULT_CARD_SETTINGS, CARD_SETTINGS), ELEVATION, RIPPLE],
 })
 export class CardComponent {
-  @Input()
-  public set elevation(value: Elevation) {
+  /** Designates an elevation applied to the component between 0 and 24. You can find more
+   * information on the elevation page. */
+  @Input() public set elevation(value: Elevation) {
     this.elevationService.elevation = value;
   }
 
@@ -25,8 +26,8 @@ export class CardComponent {
     return this.elevationService.elevation;
   }
 
-  @Input()
-  public set ripple(value: boolean) {
+  /** Turns the ripple effect on or off. */
+  @Input() public set ripple(value: boolean) {
     this.rippleService.active = value;
   }
 

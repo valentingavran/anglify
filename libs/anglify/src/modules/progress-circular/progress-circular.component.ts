@@ -17,8 +17,13 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   ],
 })
 export class ProgressCircularComponent {
+  /** Constantly animates, use when loading progress is unknown. */
   @Input() public indeterminate = this.settings.indeterminate;
+
+  /** The percentage value for current progress. */
   @Input() public value: number = this.settings.value;
+
+  /** The amount in degrees that the component should be rotated. */
   @Input() public rotation: number = this.settings.rotation;
 
   public readonly radius = 20;

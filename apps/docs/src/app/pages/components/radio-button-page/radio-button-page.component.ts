@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-radio-button-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./radio-button-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RadioButtonPageComponent {}
+export class RadioButtonPageComponent {
+  public config: APIConfig = {
+    components: ['RadioButtonComponent'],
+  };
+}

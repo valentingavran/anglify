@@ -1,0 +1,13 @@
+<div class="opposite-container" *ngIf="(hideOpposite$ | async) === false">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'opposite'"></ng-container>
+</div>
+<div class="indicator-container">
+  <div *ngIf="topConnectionLineVisible" class="connection-line top"></div>
+  <div *ngIf="bottomConnectionLineVisible" class="connection-line bottom"></div>
+  <div class="indicator">
+    <div><ng-container *anglifySlotOutlet="slots | findSlot: 'indicator'"></ng-container></div>
+  </div>
+</div>
+<div class="content-container">
+  <ng-content></ng-content>
+</div>

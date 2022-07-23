@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-navigation-drawer-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./navigation-drawer-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavigationDrawerPageComponent {}
+export class NavigationDrawerPageComponent {
+  public config: APIConfig = {
+    components: ['NavigationDrawerComponent'],
+  };
+}

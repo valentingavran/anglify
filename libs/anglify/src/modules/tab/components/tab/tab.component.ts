@@ -35,8 +35,10 @@ import { EntireTabSettings } from '../../tab.interface';
 export class TabComponent implements AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
+  /** Sets the label of the Tab. */
   @Input() public label?: string;
 
+  /** Sets this tab as the default active tab. Only one tab have this property per tab group. */
   @HostBinding('attr.aria-selected')
   @Input()
   public set active(value: boolean) {
@@ -51,6 +53,7 @@ export class TabComponent implements AfterViewInit {
   private readonly _active$ = new BehaviorSubject<boolean>(false);
   public active$ = this._active$.asObservable();
 
+  /** Turns the ripple effect on or off. */
   @Input()
   public set ripple(value: boolean) {
     this.rippleService.active = value;
@@ -60,6 +63,7 @@ export class TabComponent implements AfterViewInit {
     return this.rippleService.active;
   }
 
+  /** Controls whether to display the focus and hover styles for this component. */
   @Input()
   public set state(value: boolean) {
     this.rippleService.state = value;
@@ -69,6 +73,8 @@ export class TabComponent implements AfterViewInit {
     return this.rippleService.state;
   }
 
+  /** Denotes the target route of the link. You can find more information about the to prop on the
+   * [Angular RouterLink documentation](https://angular.io/api/router/RouterLink) page. */
   @Input() public set routerLink(commands: RouterLinkCommands) {
     this.routerLink$.next(commands);
   }

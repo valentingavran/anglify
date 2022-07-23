@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { APIConfig } from '../../../app.interface';
 
 @Component({
   selector: 'app-dialog-page',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./dialog-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogPageComponent {}
+export class DialogPageComponent {
+  public config: APIConfig = {
+    services: ['DialogService'],
+  };
+}

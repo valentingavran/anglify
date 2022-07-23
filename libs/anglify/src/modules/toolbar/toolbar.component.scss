@@ -3,13 +3,16 @@
 @use '../../styles/settings/typography.scss' as *;
 
 :host {
-  display: flex;
-  justify-content: space-between;
+  .extension-container {
+    height: $toolbar-extension-container-height;
+    background-color: $toolbar-background;
+    padding-inline-start: $toolbar-extension-container-padding-start;
 
-  .title {
-    font: $toolbar-title-font;
-    letter-spacing: $toolbar-title-letter-spacing;
-    text-transform: $toolbar-title-text-transform;
+    ::ng-deep {
+      * {
+        color: $toolbar-text-color;
+      }
+    }
   }
 
   .toolbar-container {
@@ -17,84 +20,67 @@
     width: $toolbar-width;
     height: $toolbar-regular-height;
     align-items: center;
-    justify-content: space-between;
     background-color: $toolbar-background;
     color: $toolbar-text-color;
 
-    .left {
-      display: flex;
-      height: 100%;
-      align-items: center;
-
-      .navigation {
-        margin-left: $toolbar-navigation-margin-left;
-
-        ::ng-deep {
-          * {
-            color: $toolbar-text-color;
-          }
-        }
-      }
-
-      .title {
-        margin-left: $toolbar-title-margin-left;
+    ::ng-deep {
+      * {
+        color: $toolbar-text-color;
       }
     }
 
-    .right {
+    .center {
+      width: 100%;
+      font: $toolbar-center-font;
+      letter-spacing: $toolbar-center-letter-spacing;
+      margin-inline-start: $toolbar-center-margin-start;
+      text-transform: $toolbar-center-text-transform;
+    }
+
+    .start {
       display: flex;
       height: 100%;
       align-items: center;
-      margin-right: $toolbar-right-actions-margin-right;
+      margin-inline-start: $toolbar-start-margin-start;
+    }
 
-      .actions {
-        margin-left: $toolbar-actions-margin-left;
+    .end {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      margin-inline-end: $toolbar-end-margin-end;
+      margin-inline-start: $toolbar-end-margin-start;
 
-        ::ng-deep {
-          * {
-            color: $toolbar-text-color;
-          }
+      ::ng-deep {
+        * {
+          color: $toolbar-text-color;
         }
       }
     }
   }
 
-  .prominent {
-    height: $toolbar-prominent-height;
-    padding-top: $toolbar-prominent-padding-top;
+  &.prominent {
+    .toolbar-container {
+      height: $toolbar-prominent-height;
+      padding-top: $toolbar-prominent-padding-top;
 
-    .left {
-      align-items: flex-start;
+      .start {
+        align-items: flex-start;
+      }
 
-      .title {
+      .center {
         align-self: end;
-        margin-bottom: $toolbar-prominent-title-margin-bottom;
+        margin-bottom: $toolbar-prominent-center-margin-bottom;
       }
-    }
 
-    .right {
-      align-items: flex-start;
-
-      .actions {
-        margin-left: $toolbar-actions-margin-left;
+      .end {
+        align-items: flex-start;
 
         ::ng-deep {
           * {
             color: $toolbar-text-color;
           }
         }
-      }
-    }
-  }
-
-  .collapse {
-    width: $toolbar-collapse-width;
-
-    .right {
-      margin-left: $toolbar-collapse-right-actions-margin-left;
-
-      .actions {
-        margin-left: $toolbar-collapse-actions-margin-left;
       }
     }
   }

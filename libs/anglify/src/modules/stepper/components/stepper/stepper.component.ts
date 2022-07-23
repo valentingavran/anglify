@@ -33,18 +33,18 @@ export class StepperComponent extends StepperService implements AfterContentInit
   @ContentChildren(StepDirective) private readonly _steps?: QueryList<StepDirective>;
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input()
-  public set stepConnectionLine(value: boolean) {
+  /** Shows or hides the line between the step headers. */
+  @Input() public set stepConnectionLine(value: boolean) {
     this.stepperSettings.setHasStepConnectionLine(value);
   }
 
-  @Input()
-  public set headerNavigation(value: boolean) {
+  /** Specify whether it is possible to navigate between steps by clicking on the individual step headers. */
+  @Input() public set headerNavigation(value: boolean) {
     this.stepperSettings.setHeaderNavigationEnabled(value);
   }
 
-  @Input()
-  public set orientation(value: StepperOrientation) {
+  /** Whether the steps should be listed vertically or horizontally. */
+  @Input() public set orientation(value: StepperOrientation) {
     this.stepperSettings.setOrientation(value);
   }
 

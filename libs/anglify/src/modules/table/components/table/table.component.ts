@@ -7,14 +7,15 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent {
-  @Input()
-  public fixedHeader = false;
+  /** Displays the header while scrolling and not only at the very top. */
+  @Input() public fixedHeader = false;
 
-  @Input()
-  public fixedFooter = false;
+  /** Displays the footer while scrolling and not only at the very bottom. */
+  @Input() public fixedFooter = false;
 
-  @Input()
+  /** Sets the height for the component. */
   @HostBinding('style.--anglify-table-fixed-height')
   @HostBinding('class.anglify-table-fixed-height')
+  @Input()
   public fixedHeight: string | null = null;
 }

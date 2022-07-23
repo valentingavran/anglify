@@ -18,29 +18,31 @@ import type { ComponentSize } from '../../utils/interfaces';
   providers: [createSettingsProvider<EntireIconSettings>('anglifyIconSettings', DEFAULT_ICON_SETTINGS, ICON_SETTINGS)],
 })
 export class IconComponent {
-  /**
-   * Name of the icon to display
-   * @default undefined
-   */
+  /** Name of the icon to display. */
   @Input() public icon?: string;
 
   /**
    * Specifies from which IconSet the icon should be displayed. If the iconSet property is not
    * specified, the icon will be searched for in the defaultSet and then displayed
-   * @default "mdi"
    */
   @Input() public iconSet: IconSet = this.settings.defaultSet;
 
   /**
    * By providing IconSettings, this default value can be overridden globally. Otherwise, this property
    * can be set for individual icons
-   * @default "regular"
    */
   @Input() public size: ComponentSize = this.settings.defaultSize;
+
+  /** Changes the cursor to pointer mode. */
   @Input() public clickable = false;
-  @Input() public disabled = false;
+
+  /** Applies appropriate margins to the icon inside other components when placed to the left of another element or text. */
   @Input() public left = false;
+
+  /** Applies appropriate margins to the icon inside other components when placed to the right of another element or text. */
   @Input() public right = false;
+
+  /** Applies appropriate margins to the icon inside other components when placed on top of another element or text. */
   @Input() public top = false;
 
   public constructor(
@@ -56,10 +58,6 @@ export class IconComponent {
 
     if (this.clickable) {
       classNames.push('clickable');
-    }
-
-    if (this.disabled) {
-      classNames.push('disabled');
     }
 
     if (this.left) {

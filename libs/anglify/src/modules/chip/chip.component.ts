@@ -37,8 +37,8 @@ import { InternalIconSetDefinition } from '../icon/icon.interface';
 export class ChipComponent implements OnInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  @Input()
-  public set active(value: boolean) {
+  /** The chip’s value. */
+  @Input() public set active(value: boolean) {
     this.active$.next(value);
   }
 
@@ -46,12 +46,14 @@ export class ChipComponent implements OnInit {
     return this.active$.value;
   }
 
+  /** Displays a selection icon when selected. */
   @Input('filter') public filter = this.settings.filter;
 
+  /** Sets one of several predefined styles. */
   @Input() public appearance: ChipAppearance = this.settings.appearance;
 
-  @Input()
-  public set ripple(value: boolean) {
+  /** Turns the ripple effect on or off. */
+  @Input() public set ripple(value: boolean) {
     this.rippleService.active = value;
   }
 

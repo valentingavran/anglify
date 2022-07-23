@@ -7,9 +7,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListItemDescriptionComponent {
-  @HostBinding('style.-webkit-line-clamp')
-  @Input()
-  public lineClamp = 1;
+  /** Limits the number of lines. */
+  @Input() @HostBinding('style.-webkit-line-clamp') public lineClamp = 1;
 
   @HostBinding('class')
   protected get classList() {

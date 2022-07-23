@@ -1,0 +1,26 @@
+<anglify-toolbar [prominent]="true">
+  <ng-template slot="start">
+    <button anglifyButton appearance="icon">
+      <anglify-icon icon="mdi-menu"></anglify-icon>
+    </button>
+  </ng-template>
+  Photos
+  <ng-template slot="end">
+    <button anglifyButton appearance="icon">
+      <anglify-icon icon="mdi-magnify"></anglify-icon>
+    </button>
+    <button anglifyButton appearance="icon">
+      <anglify-icon icon="mdi-plus"></anglify-icon>
+    </button>
+    <button anglifyButton appearance="icon">
+      <anglify-icon icon="mdi-dots-vertical"></anglify-icon>
+    </button>
+  </ng-template>
+  <ng-template slot="extension">
+    <anglify-tab-group>
+      <anglify-tab label="Tab 1"></anglify-tab>
+      <anglify-tab label="Tab 2" [active]="true"></anglify-tab>
+      <anglify-tab label="Tab 3"></anglify-tab>
+    </anglify-tab-group>
+  </ng-template>
+</anglify-toolbar>

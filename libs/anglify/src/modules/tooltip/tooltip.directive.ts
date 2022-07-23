@@ -34,8 +34,10 @@ import { isTouchDevice } from '../../utils/functions';
   providers: [createSettingsProvider<EntireTooltipSettings>('anglifyTooltipSettings', DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
 })
 export class TooltipDirective implements OnDestroy {
+  /** Tooltip content. Can either be a `string`, a `ng-template` or `Component`. */
   @Input('anglifyTooltip') public content!: string | TemplateRef<any> | Type<any>;
 
+  /** Tooltip configuration object. */
   @Input() public set anglifyToolTipConfig(value: TooltipSettings) {
     if (value.position !== undefined && value.position !== this.position) {
       this.position = value.position;

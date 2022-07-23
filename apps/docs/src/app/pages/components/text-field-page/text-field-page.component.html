@@ -34,15 +34,15 @@
   </div>
   <div class="controls">
     <anglify-text-field [hideDetails]="true">
-      <ng-template anglifyLabel>Label</ng-template>
+      <ng-template slot="label">Label</ng-template>
       <input anglifyInput [(ngModel)]="label" />
     </anglify-text-field>
     <anglify-text-field [hideDetails]="true">
-      <ng-template anglifyLabel>Placeholder</ng-template>
+      <ng-template slot="label">Placeholder</ng-template>
       <input anglifyInput [(ngModel)]="placeholder" />
     </anglify-text-field>
     <anglify-text-field [hideDetails]="true">
-      <ng-template anglifyLabel>Hint</ng-template>
+      <ng-template slot="label">Hint</ng-template>
       <input anglifyInput [(ngModel)]="hint" />
     </anglify-text-field>
     <div class="cols-3">
@@ -124,3 +124,5 @@
 
 <h2>API</h2>
 <app-import-example import="import { TextFieldModule } from '@anglify/components';"></app-import-example>
+
+<app-inputs-table [config]="config"></app-inputs-table>

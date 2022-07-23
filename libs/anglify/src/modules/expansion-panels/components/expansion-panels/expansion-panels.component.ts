@@ -36,9 +36,16 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
 export class ExpansionPanelsComponent implements AfterViewInit {
   @ContentChildren(ExpansionPanelComponent, { descendants: true }) private readonly allSlots?: QueryList<ExpansionPanelComponent>;
 
+  /** Forces a value to always be selected (if available). */
   @Input() public mandatory = this.settings.mandatory;
+
+  /** Allow multiple selections. */
   @Input() public multiple = this.settings.multiple;
+
+  /** Sets a maximum number of selections that can be made. */
   @Input() public max: number | undefined = this.settings.max;
+
+  /** Removes the margin around open panels. */
   @Input() public set accordion(value: boolean) {
     this.accordion$.next(value);
   }

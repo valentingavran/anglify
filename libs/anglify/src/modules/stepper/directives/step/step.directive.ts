@@ -38,13 +38,13 @@ export class StepDirective {
     shareReplay(1)
   );
 
-  @Input()
-  public set label(label: string) {
+  /** Sets the Step label. */
+  @Input() public set label(label: string) {
     this._label$.next(label);
   }
 
-  @Input()
-  public set valid(valid: boolean) {
+  /** Condition for the step to be valid and to be able to navigate to the next step. */
+  @Input() public set valid(valid: boolean) {
     this._valid$.next(valid);
   }
 

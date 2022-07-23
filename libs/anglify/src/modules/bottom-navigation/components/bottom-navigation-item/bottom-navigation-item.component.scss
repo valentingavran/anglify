@@ -25,18 +25,18 @@
     letter-spacing: $bottom-navigation-item-letter-spacing;
     text-transform: $bottom-navigation-item-text-transform;
   }
-}
 
-:host(.active) {
-  ::ng-deep {
-    * {
-      color: $bottom-navigation-text-color-active;
+  &.active {
+    ::ng-deep {
+      * {
+        color: $bottom-navigation-text-color-active;
+      }
     }
   }
-}
 
-:host(.shift) {
-  .icon {
-    margin-top: $bottom-navigation-item-shift-icon-margin-top;
+  &.shift {
+    .icon {
+      margin-top: $bottom-navigation-item-shift-icon-margin-top;
+    }
   }
 }

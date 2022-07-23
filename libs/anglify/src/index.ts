@@ -162,6 +162,10 @@ export * from './modules/text-field/text-field-settings.token';
 export * from './modules/text-field/text-field.component';
 export * from './modules/text-field/text-field.interface';
 export * from './modules/text-field/text-field.module';
+// Timeline
+export * from './modules/timeline/components/timeline/timeline.component';
+export * from './modules/timeline/components/timeline-item/timeline-item.component';
+export * from './modules/timeline/timeline.module';
 // Toolbar
 export * from './modules/toolbar/toolbar.module';
 export * from './modules/toolbar/toolbar-settings.token';

@@ -71,7 +71,7 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
     this.indicator.nativeElement.style.width = `${tab.elementRef.nativeElement.offsetWidth}px`;
     this.indicator.nativeElement.style.left = `${tab.elementRef.nativeElement.offsetLeft}px`;
     this.deselectAllOthers(tab);
-
+    this.destroySelectPreviousSubscription.next();
     tab.selectPrevious.pipe(untilDestroyed(this), takeUntil(this.destroySelectPreviousSubscription)).subscribe(() => {
       this.selectPrevious(tab);
     });
