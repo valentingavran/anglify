@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.25.0](https://github.com/valentingavran/anglify/compare/v0.24.2...v0.25.0) (2022-07-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Toolbar:** Toolbar slots and some CSS custom properties were renamed
+
+### 🐛  Bug Fixes
+
+* **BottomNavigation:** add FormControl support ([1f6d466](https://github.com/valentingavran/anglify/commit/1f6d4667f5b38ad09ffffbf84d460b88ae933e13))
+* **Input:** remove hint & error spacing ([bc0b825](https://github.com/valentingavran/anglify/commit/bc0b825e4984ecbc188511a0480d1830927ad3bf))
+* **Tabs:** improve performance ([8de69eb](https://github.com/valentingavran/anglify/commit/8de69eb442fcca10fa9ec3f5027a7d3dd63ca404))
+
+
+### 🔬  Code Refactoring
+
+* **Toolbar:** change slot structure & add extension slot ([0a9039a](https://github.com/valentingavran/anglify/commit/0a9039ac07aa490813caec7b64766175de9eaf16))
+
+
+### 🚀  Features
+
+* add timeline component ([5cf0dcf](https://github.com/valentingavran/anglify/commit/5cf0dcff5834a78da93ad92a585c0d66ef9c120b))
+* **Table:** add css custom properties for table fonts ([e98c828](https://github.com/valentingavran/anglify/commit/e98c828af5a0f57aaacce5fcf17de421b9c73d53))
+
+
+### 📝  Docs
+
+* add component APIs ([a415c78](https://github.com/valentingavran/anglify/commit/a415c789c772591655c1eb24160cc7221616c30c))
+* add jsdoc descriptions to input properties ([bb3eca0](https://github.com/valentingavran/anglify/commit/bb3eca0e209c8ee0fb0cf077bd67e723aead7aea))
+* fix some deprecated slots ([bd90880](https://github.com/valentingavran/anglify/commit/bd90880b04d77f6f34e9c326133c25802495b260))
+
+
+### 🛠  Other Commmits
+
+* add compodoc npm script command ([73afce5](https://github.com/valentingavran/anglify/commit/73afce558ac6bcc748f109946361d6fae4eec0fe))
+
 ### [0.24.2](https://github.com/valentingavran/anglify/compare/v0.24.1...v0.24.2) (2022-07-19)
 
 
