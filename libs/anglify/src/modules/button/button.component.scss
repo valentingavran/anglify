@@ -17,7 +17,6 @@
   @include elevation-transition;
 
   &.contained,
-  &.contained-tonal,
   &.outlined,
   &.text {
     height: $button-height;
