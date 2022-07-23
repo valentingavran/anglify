@@ -50,7 +50,7 @@ export class InputsTableComponent {
   );
 
   public selectedName$ = combineLatest([this.selection.valueChanges.pipe(startWith(this.selection.value)), this.selectables$]).pipe(
-    map(([index, selectables]) => selectables[index as number])
+    map(([index, selectables]) => selectables[index!])
   );
 
   public components$ = combineLatest([this.documentation$, this.config$]).pipe(

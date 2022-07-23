@@ -40,7 +40,7 @@
       margin-top: 14px;
     }
 
-    &:not(:first-of-type):not(:last-of-type) {
+    &:not(:first-of-type, :last-of-type) {
       margin-top: 14px;
       margin-bottom: 14px;
     }
@@ -61,7 +61,7 @@
       margin-top: 0;
     }
 
-    &:not(:first-of-type):not(:last-of-type) {
+    &:not(:first-of-type, :last-of-type) {
       margin-top: 0;
       margin-bottom: 0;
     }

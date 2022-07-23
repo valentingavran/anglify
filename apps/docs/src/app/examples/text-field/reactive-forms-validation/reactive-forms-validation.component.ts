@@ -9,8 +9,8 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReactiveFormsValidationComponent {
-  public emailControl = new FormControl('', [Validators.email, Validators.required]);
-  public passwordControl = new FormControl('', [Validators.password, Validators.required]);
+  public emailControl = new FormControl<string | null>(null, [Validators.email, Validators.required]);
+  public passwordControl = new FormControl<string | null>(null, [Validators.password, Validators.required]);
 }
 
 export default ReactiveFormsValidationComponent;
