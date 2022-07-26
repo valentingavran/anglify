@@ -8,9 +8,9 @@ $button-inline-padding-end-icon: var(--anglify-button-inline-padding-end-icon, 1
 $button-inline-padding-end-text: var(--anglify-button-inline-padding-end-text, 8px) !default;
 $button-inline-padding-end-extended-fab: var(--anglify-button-inline-padding-end-extended-fab, 20px) !default;
 $button-contained-background: var(--anglify-button-contained-background, var(--color-primary)) !default;
-$button-contained-background-disabled: var(--anglify-button-contained-background, var(--color-surface)) !default;
+$button-contained-background-disabled: var(--anglify-button-contained-background, var(--color-surface-overlay)) !default;
 $button-contained-label-color: var(--anglify-button-contained-label-color, var(--color-on-primary-high-emphasis)) !default;
-$button-contained-label-color-disabled: var(--anglify-button-contained-label-color, var(--color-on-surface-low-emphasis)) !default;
+$button-contained-label-color-disabled: var(--anglify-button-contained-label-color, var(--color-on-surface-overlay-low-emphasis)) !default;
 $button-contained-font: var(--anglify-button-contained-font, var(--font-button)) !default;
 $button-contained-letter-spacing: var(--anglify-button-contained-letter-spacing, var(--font-letter-spacing-button)) !default;
 $button-contained-text-transform: var(--anglify-button-contained-text-transform, var(--font-text-transform-button)) !default;
