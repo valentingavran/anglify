@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.27.0](https://github.com/valentingavran/anglify/compare/v0.26.0...v0.27.0) (2022-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Button:** `contained-tonal` Button appearance was removed. It was an artifact.
+
+### 🛠  Other Commits
+
+* fix typo inside .versionrc ([b628993](https://github.com/valentingavran/anglify/commit/b62899361915ea5116a1b22ae15eebc10785797d))
+
+
+### 🐛  Bug Fixes
+
+* **Button:** improve background & label color for contained appearance ([d67489b](https://github.com/valentingavran/anglify/commit/d67489b6eed71a4de0011e5b85f996df997dd128))
+* **Button:** remove contained-tonal appearance ([bf4f44c](https://github.com/valentingavran/anglify/commit/bf4f44c681ced508c1769595a704c25bf448393f))
+* change colors on surface overlay for dark theme ([1230a7f](https://github.com/valentingavran/anglify/commit/1230a7f505b1fec531021fc12fc588e0ee61866d))
+* **TextField:** change details spacing & component size ([275837a](https://github.com/valentingavran/anglify/commit/275837a4779d645a2096541822f8a73dde706ec3))
+* **TextField:** improve inactive bottom border ([b5f5a1c](https://github.com/valentingavran/anglify/commit/b5f5a1c79f813d5114aeca67d3e305ff6a929c4a))
+
 ## [0.26.0](https://github.com/valentingavran/anglify/compare/v0.25.0...v0.26.0) (2022-07-23)
 
 
