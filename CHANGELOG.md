@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. See [standa
 * All dependencies including Angular have been updated to the latest version.
 Anglify now uses Angular 14 Updating should work seamlessly.
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * update to Angular 14 ([64d971d](https://github.com/valentingavran/anglify/commit/64d971d666459dd5b17b0fdfeb4357614dd1e5f0))
 
@@ -46,7 +46,7 @@ Anglify now uses Angular 14 Updating should work seamlessly.
 * fix some deprecated slots ([bd90880](https://github.com/valentingavran/anglify/commit/bd90880b04d77f6f34e9c326133c25802495b260))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * add compodoc npm script command ([73afce5](https://github.com/valentingavran/anglify/commit/73afce558ac6bcc748f109946361d6fae4eec0fe))
 
@@ -84,7 +84,7 @@ Angular.
 * use Anglify table for styling API ([febfd29](https://github.com/valentingavran/anglify/commit/febfd299259f9d9e7fdafa82053728acf0b66e30))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * adjust vscode settings to exclude build directory from search ([fd89678](https://github.com/valentingavran/anglify/commit/fd8967811434b14fe5642d1cca308b73f9204867))
 * cleanup index.ts ([b901192](https://github.com/valentingavran/anglify/commit/b901192f625e199e5a3afba64a2ecea1c3f5f4e8))
@@ -165,7 +165,7 @@ Angular.
 * add release notes page ([dbbb083](https://github.com/valentingavran/anglify/commit/dbbb0833de578ad3885abc395fc6e22326782dc8))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * fix anglify build command ([5543a6a](https://github.com/valentingavran/anglify/commit/5543a6ae623764b77b19f69da7d5fb0b9badf723))
 
@@ -209,7 +209,7 @@ and the Text Area component
 * replace [@import](https://github.com/import) with [@use](https://github.com/use) everywhere ([5fdf7d1](https://github.com/valentingavran/anglify/commit/5fdf7d15706db03c34e72a6eed4ce9d04257dd04))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * update deps and add cpy-cli and rimraf for cross-platform compatability ([9ea98c0](https://github.com/valentingavran/anglify/commit/9ea98c0ea3cc0e896b4887c99b51cd5579db57aa))
 
@@ -223,7 +223,7 @@ and the Text Area component
 ### [0.21.2](https://github.com/valentingavran/anglify/compare/v0.21.1...v0.21.2) (2022-06-23)
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * add missing test files ([e96dc50](https://github.com/valentingavran/anglify/commit/e96dc50feb2973e2ecb23f1186795110b9c8254f))
 
@@ -269,7 +269,7 @@ properties with the same name.
 * **Radio Button:** remove hover state when hovering over label ([74a4cb1](https://github.com/valentingavran/anglify/commit/74a4cb14b0294d74490a60d22e43bfab0aee7f9e))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * add package description and additional information ([f97ed25](https://github.com/valentingavran/anglify/commit/f97ed253e9d63205065bba3dffb0cfa1cc19e0f0))
 * copy root README to anglify lib bundle just before publishing ([ff52da2](https://github.com/valentingavran/anglify/commit/ff52da2ed935c456b32c61205a8b622860bbba46))
@@ -356,7 +356,7 @@ overwritten by the different size properties (for example: `--anglify-icon-size-
 * **Toolbar:** add elevation property ([e8c61ca](https://github.com/valentingavran/anglify/commit/e8c61ca15ac38868c71bfa140661925fa913df5f))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * adjust changelog generation ([7d9381d](https://github.com/valentingavran/anglify/commit/7d9381d84b82fb64b1b50bc803b747facf87c5a8))
 * extend stylelint config so that style properties get sorted ([d611a28](https://github.com/valentingavran/anglify/commit/d611a286dc2568355aa3dc4a0cc6c1d8ad850b4a))
@@ -473,7 +473,7 @@ to add the theme variables, you must now call the mixin with `@include light-the
 * typographies should not have predefined colors ([813ea7d](https://github.com/valentingavran/anglify/commit/813ea7d173692325bf058786aaf275a2d44fbf39))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * add husky pre-commit checks ([3f3ed9c](https://github.com/valentingavran/anglify/commit/3f3ed9cdd02507c73df47b10d915bf3032af41f4))
 * add stylelint ([c36fc84](https://github.com/valentingavran/anglify/commit/c36fc840351deec8c1d821297eedf2b294e15467))
@@ -506,7 +506,7 @@ to add the theme variables, you must now call the mixin with `@include light-the
 * change absolute import paths to relative ones in some places ([f733ed3](https://github.com/valentingavran/anglify/commit/f733ed3ac66bb302ce487b5e425d31b8978e7ef3))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * **release:** 0.17.2 ([53e996e](https://github.com/valentingavran/anglify/commit/53e996ebf24566932a3f1321b3cd13e32039955d))
 * **release:** 0.17.2 ([debf753](https://github.com/valentingavran/anglify/commit/debf753f8537e81515b150150fccaf0a540589ca))
@@ -528,7 +528,7 @@ were also places where no TemplateRefs were used at all (instad only normal sele
 now been standardized. At the respective places one must now use
 `<ng-template slot="...">...</ng-template>`. The slot name is passed via the slot attribute
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * improve pull request and issue templates ([af08084](https://github.com/valentingavran/anglify/commit/af08084ef5549ecfc271bbf807d01c4ac7a71753))
 * test anglify library when running npm run test ([b0fd37a](https://github.com/valentingavran/anglify/commit/b0fd37afcb4239f0322f111f6a63d11ae045edf5))
@@ -587,7 +587,7 @@ been unified. BooleanLike only makes sense in templates.
 * **List:** add list item group examples ([125b289](https://github.com/valentingavran/anglify/commit/125b289758ae9d575a45a383aa1907d90dbf312a))
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * change release notes structure ([82f40cc](https://github.com/valentingavran/anglify/commit/82f40cc28495eb628363d5ee9eb74e88908b0e26))
 
@@ -608,7 +608,7 @@ been unified. BooleanLike only makes sense in templates.
 ### [0.15.1](https://github.com/valentingavran/anglify/compare/v0.15.0...v0.15.1) (2022-05-02)
 
 
-### 🛠  Other Commmits
+### 🛠  Other Commits
 
 * add contributing guide ([9e1734c](https://github.com/valentingavran/anglify/commit/9e1734cdd0318917d511c0324a848a70fa680635))
 * add GitHub issue templates ([9ade2fd](https://github.com/valentingavran/anglify/commit/9ade2fd2e98d01ac9a552fb5fa3968fdc9e26cb0))

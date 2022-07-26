@@ -29,23 +29,23 @@
     },
     {
       "type": "chore",
-      "section": "🛠  Other Commmits"
+      "section": "🛠  Other Commits"
     },
     {
       "type": "build",
-      "section": "🛠  Other Commmits"
+      "section": "🛠  Other Commits"
     },
     {
       "type": "ci",
-      "section": "🛠  Other Commmits"
+      "section": "🛠  Other Commits"
     },
     {
       "type": "test",
-      "section": "🛠  Other Commmits"
+      "section": "🛠  Other Commits"
     },
     {
       "type": "style",
-      "section": "🛠  Other Commmits"
+      "section": "🛠  Other Commits"
     }
   ],
   "packageFiles": [

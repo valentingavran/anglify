@@ -6,6 +6,7 @@
     overflow: hidden;
     min-height: $input-details-min-height;
     margin-top: $input-gap;
+    margin-bottom: $input-gap;
     font: var(--font-caption);
     gap: $input-gap;
     grid-area: details;

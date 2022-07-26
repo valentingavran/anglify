@@ -51,7 +51,7 @@
     }
 
     &.anglify-input-filled {
-      --anglify-input-min-height: calc(56px - 24px);
+      --anglify-input-min-height: calc(54px - 24px);
 
       ::ng-deep textarea {
         min-height: var(--anglify-input-min-height);
@@ -63,7 +63,7 @@
     }
 
     &.anglify-input-outlined {
-      --anglify-input-min-height: calc(56px - var(--anglify-input-outlined-label-start-offset));
+      --anglify-input-min-height: calc(54px - var(--anglify-input-outlined-label-start-offset));
 
       ::ng-deep textarea {
         min-height: var(--anglify-input-min-height);

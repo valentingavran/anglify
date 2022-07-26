@@ -1,4 +1,4 @@
-export type ButtonAppearance = 'contained' | 'contained-tonal' | 'outlined' | 'text' | 'icon' | 'fab' | 'extended-fab';
+export type ButtonAppearance = 'contained' | 'outlined' | 'text' | 'icon' | 'fab' | 'extended-fab';
 
 export interface EntireButtonSettings {
   appearance: ButtonAppearance;

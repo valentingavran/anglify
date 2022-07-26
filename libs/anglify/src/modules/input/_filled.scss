@@ -67,17 +67,9 @@
       label {
         color: $input-filled-label-color-disabled;
       }
-    }
-  }
 
-  &:not(.anglify-input-focused, .anglify-input-disabled) {
-    .anglify-input {
-      &:hover {
-        --state-container-color: #{$input-filled-state-color-hover};
-
-        &::before {
-          border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-hover;
-        }
+      &::before {
+        border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-disabled;
       }
     }
   }
@@ -90,6 +82,20 @@
 
       label {
         color: $input-filled-label-color-focused;
+      }
+    }
+  }
+
+  // Two separate not selectors needed
+  /* stylelint-disable-next-line selector-not-notation */
+  &:not(.anglify-input-focused):not(.anglify-input-disabled) {
+    .anglify-input {
+      &:hover {
+        --state-container-color: #{$input-filled-state-color-hover};
+
+        &::before {
+          border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-hover;
+        }
       }
     }
   }
