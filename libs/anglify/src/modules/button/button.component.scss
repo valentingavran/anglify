@@ -125,12 +125,4 @@
     display: block;
     width: 100% !important;
   }
-
-  &.has-left-icon {
-    padding-inline-start: $button-inline-padding-start-icon;
-  }
-
-  &.has-right-icon {
-    padding-inline-end: $button-inline-padding-end-icon;
-  }
 }
