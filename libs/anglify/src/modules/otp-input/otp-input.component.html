@@ -1,0 +1,23 @@
+<ng-container *ngIf="otp$ | async as otp">
+  <input
+    #input
+    *ngFor="let i of lengthArray$ | async"
+    [value]="otp[i] || ''"
+    [id]="id + '-' + i"
+    maxlength="1"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    autocomplete="one-time-code"
+    autocapitalize="off"
+    spellcheck="false"
+    [type]="hiddenInput ? 'password' : 'text'"
+    (blur)="onBlur($event)"
+    (input)="onInput($event, i)"
+    (focus)="onFocus($event, i)"
+    (paste)="onPaste($event, i)"
+    (keyup)="onKeyUp($event, i)"
+    [ngClass]="{
+      'anglify-otp-input-focused': isFocused$ | async
+    }"
+  />
+</ng-container>

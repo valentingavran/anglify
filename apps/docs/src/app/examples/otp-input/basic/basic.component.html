@@ -1,0 +1,3 @@
+<anglify-otp-input [(ngModel)]="otp" [length]="length"></anglify-otp-input>
+<button anglifyButton [disabled]="otp.length !== this.length" (click)="clearOTPInput()">Submit</button>
+<p><strong>Value:</strong> "{{ otp }}"</p>

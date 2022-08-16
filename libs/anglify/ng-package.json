@@ -23,6 +23,7 @@
     "src/modules/list/*.scss",
     "src/modules/menu/*.scss",
     "src/modules/navigation-drawer/*.scss",
+    "src/modules/otp-input/*.scss",
     "src/modules/progress-circular/*.scss",
     "src/modules/progress-linear/*.scss",
     "src/modules/radio-button/*.scss",

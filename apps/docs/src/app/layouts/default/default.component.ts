@@ -121,6 +121,10 @@ export class DefaultComponent {
       name: 'Navigation Drawer',
     },
     {
+      link: 'components/otp-input',
+      name: 'OTP Input',
+    },
+    {
       link: 'components/progress-circular',
       name: 'Progress Circular',
     },

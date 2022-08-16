@@ -107,6 +107,11 @@ export * from './modules/navigation-drawer/navigation-drawer.component';
 export * from './modules/navigation-drawer/navigation-drawer.interface';
 export * from './modules/navigation-drawer/navigation-drawer.module';
 export * from './modules/navigation-drawer/navigation-drawer-settings.token';
+// OTP Input
+export * from './modules/otp-input/otp-input-settings.token';
+export * from './modules/otp-input/otp-input.component';
+export * from './modules/otp-input/otp-input.interface';
+export * from './modules/otp-input/otp-input.module';
 // Overlay
 export * from './modules/interaction-state/interaction-state.directive';
 export * from './modules/interaction-state/interaction-state.module';

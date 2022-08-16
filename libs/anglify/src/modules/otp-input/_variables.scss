@@ -1,0 +1,17 @@
+$otp-input-border-color-disabled: var(--anglify-otp-input-border-color-disabled, var(--border-color-on-surface-low-emphasis)) !default;
+$otp-input-border-color-inactive: var(--anglify-input-border-color-inactive, var(--border-color-on-surface-medium-emphasis)) !default;
+$otp-input-border-color-hover: var(--border-color-on-surface-high-emphasis) !default;
+$otp-input-border-color-focused: var(--anglify-otp-input-border-color-focused, var(--color-primary)) !default;
+$otp-input-border-width-inactive: var(--anglify-otp-input-border-width-inactive, 1px) !default;
+$otp-input-border-width-focused: var(--anglify-otp-input-border-width-focused, 2px) !default;
+$otp-input-border-radius: var(--anglify-otp-input-border-radius, 4px) !default;
+$otp-input-gap: var(--anglify-otp-input-gap, 8px) !default;
+$otp-input-height: var(--anglify-otp-input-height, 56px) !default;
+$otp-input-width: var(--anglify-otp-input-width, 48px) !default;
+$otp-input-font: var(--anglify-otp-input-font, var(--font-display-5)) !default;
+$otp-input-letter-spacing: var(--anglify-otp-input-letter-spacing, var(--font-letter-spacing-display-5)) !default;
+$otp-input-text-transform: var(--anglify-otp-input-text-transform, var(--font-text-transform-display-5)) !default;
+$otp-input-background-color: var(--anglify-otp-input-background-color, transparent) !default;
+$otp-input-color-disabled: var(--anglify-otp-input-color-disabled, var(--color-on-surface-low-emphasis)) !default;
+$otp-input-color-inactive: var(--anglify-otp-input-color-inactive, var(--color-on-surface-medium-emphasis)) !default;
+$otp-input-color-focused: var(--anglify-otp-input-color-focused, var(--color-on-surface-high-emphasis)) !default;
