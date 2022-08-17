@@ -4,7 +4,7 @@ import { combineLatest, map, ReplaySubject, share, startWith } from 'rxjs';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from '../select/select-settings.token';
-import { EntireSelectSettings, SelectOption } from '../select/select.interface';
+import { EntireSelectSettings, SelectItem } from '../select/select.interface';
 
 @Component({
   selector: 'anglify-combobox',
@@ -21,20 +21,16 @@ import { EntireSelectSettings, SelectOption } from '../select/select.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComboboxComponent extends AutocompleteComponent {
-  @Input() public addOption = this.settings.addOption;
-  @Input() public addOptionFn: (input: string) => SelectOption | Promise<SelectOption> = input => ({ text: input, value: input });
+  @Input() public addItem = this.settings.addItem;
+  @Input() public addItemFn: (input: string) => SelectItem | Promise<SelectItem> = input => ({ text: input, value: input });
 
-  public readonly isUniqueOption$ = combineLatest([
-    this.filteredOptions$,
-    this.selectedOptions$,
-    this.inputValue$.pipe(startWith('')),
-  ]).pipe(
+  public readonly isUniqueItem$ = combineLatest([this.filteredItems$, this.selectedItems$, this.inputValue$.pipe(startWith(''))]).pipe(
     map(([filtered, selected, value]) => {
       const toCompare = value.toLowerCase();
       return (
         Boolean(value) &&
-        !filtered.some(option => option.text.toLowerCase() === toCompare) &&
-        !selected.some(option => option.text.toLowerCase() === toCompare)
+        !filtered.some(item => item.text.toLowerCase() === toCompare) &&
+        !selected.some(item => item.text.toLowerCase() === toCompare)
       );
     }),
     share({
@@ -43,8 +39,8 @@ export class ComboboxComponent extends AutocompleteComponent {
   );
 
   public async selectTag(input: string) {
-    const option = await this.addOptionFn(input);
-    this._options$.next([...this._options$.value, option]);
-    void this.select(option);
+    const item = await this.addItemFn(input);
+    this._items$.next([...this._items$.value, item]);
+    void this.select(item);
   }
 }

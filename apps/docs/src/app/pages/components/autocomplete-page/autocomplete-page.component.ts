@@ -25,7 +25,7 @@ export class AutocompletePageComponent {
   public persistentHint = false;
   public hideDetails = false;
 
-  public readonly options = [
+  public readonly items = [
     'test',
     'test 1',
     'test 2',

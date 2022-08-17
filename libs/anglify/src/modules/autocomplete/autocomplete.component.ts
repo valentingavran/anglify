@@ -22,8 +22,8 @@ export class AutocompleteComponent extends SelectComponent implements AfterViewI
     })
   );
 
-  public readonly filteredOptions$ = combineLatest([this.options$, this.inputValue$.pipe(startWith(''))]).pipe(
-    map(([options, value]) => (value ? options.filter(option => option.text.includes(value)) : options)),
+  public readonly filteredItems$ = combineLatest([this.items$, this.inputValue$.pipe(startWith(''))]).pipe(
+    map(([items, value]) => (value ? items.filter(item => item.text.includes(value)) : items)),
     share({
       connector: () => new ReplaySubject(1),
     })

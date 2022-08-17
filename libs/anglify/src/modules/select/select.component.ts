@@ -17,7 +17,7 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, firstValueFrom, map, ReplaySubject, share } from 'rxjs';
 import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from './select-settings.token';
-import { EntireSelectSettings, SelectOption } from './select.interface';
+import { EntireSelectSettings, SelectItem } from './select.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
 import { rotate } from '../../utils/animations';
@@ -91,12 +91,12 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
   }
 
   /** Can be an array of objects or array of strings/numbers. */
-  @Input() public set options(options: SelectOption[] | string[] | number[]) {
-    if (this.assumePrimitive(options)) {
-      const primitiveOptions = options as string[] | number[] | boolean[];
-      this._options$.next(this.mapPrimitiveToSelectOption(primitiveOptions));
+  @Input() public set items(items: SelectItem[] | string[] | number[]) {
+    if (this.assumePrimitive(items)) {
+      const primitiveItems = items as string[] | number[] | boolean[];
+      this._items$.next(this.mapPrimitiveToSelectItem(primitiveItems));
     } else {
-      this._options$.next(options as SelectOption[]);
+      this._items$.next(items as SelectItem[]);
     }
   }
 
@@ -109,19 +109,19 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
   protected readonly _isOpen$ = new BehaviorSubject(false);
   public readonly isOpen$ = this._isOpen$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
 
-  protected readonly _options$ = new BehaviorSubject<SelectOption[]>([]);
-  public readonly options$ = this._options$.asObservable();
+  protected readonly _items$ = new BehaviorSubject<SelectItem[]>([]);
+  public readonly items$ = this._items$.asObservable();
 
-  protected readonly _selectedOptions$ = new BehaviorSubject<SelectOption[]>([]);
-  public readonly selectedOptions$ = this._selectedOptions$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
+  protected readonly _selectedItems$ = new BehaviorSubject<SelectItem[]>([]);
+  public readonly selectedItems$ = this._selectedItems$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
 
-  public readonly selectedOptionsText$ = this.selectedOptions$.pipe(
-    map(options => options.map(option => option.text)),
+  public readonly selectedItemsText$ = this.selectedItems$.pipe(
+    map(items => items.map(item => item.text)),
     share({ connector: () => new ReplaySubject(1) })
   );
 
-  public readonly isOptionSelected$ = (option: SelectOption) =>
-    this.selectedOptions$.pipe(map(selectedItems => selectedItems.some(selected => selected.value === option.value)));
+  public readonly isItemSelected$ = (item: SelectItem) =>
+    this.selectedItems$.pipe(map(selectedItems => selectedItems.some(selected => selected.value === item.value)));
 
   public onChange: (...args: any[]) => void = () => {};
   public onTouch: (...args: any[]) => void = () => {};
@@ -152,25 +152,25 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     this.onTouch = fn;
   }
 
-  public writeValue(option: any) {
-    if (option !== undefined && option !== null) {
-      if (!this._selectedOptions$.value.length) {
-        if (Array.isArray(option)) {
-          this._selectedOptions$.next(option as SelectOption[]);
+  public writeValue(item: any) {
+    if (item !== undefined && item !== null) {
+      if (!this._selectedItems$.value.length) {
+        if (Array.isArray(item)) {
+          this._selectedItems$.next(item as SelectItem[]);
         } else {
-          this._selectedOptions$.next([option as SelectOption]);
+          this._selectedItems$.next([item as SelectItem]);
         }
       }
 
-      if (!Array.isArray(option) && !this.multiple) {
-        this.input.elementRef.nativeElement.value = (option as SelectOption).text;
+      if (!Array.isArray(item) && !this.multiple) {
+        this.input.elementRef.nativeElement.value = (item as SelectItem).text;
       } else {
         this.input.elementRef.nativeElement.value = '';
       }
     } else {
       this.input.elementRef.nativeElement.value = '';
     }
-    this.onChange(option);
+    this.onChange(item);
   }
 
   public setDisabledState(isDisabled: boolean) {
@@ -190,31 +190,31 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     }
   }
 
-  public trackOption(_index: number, option: SelectOption) {
+  public trackItem(_index: number, item: SelectItem) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return option.value;
+    return item.value;
   }
 
-  public async select(option: SelectOption) {
-    if (this.disabled || this.readonly || option.disabled) return;
+  public async select(item: SelectItem) {
+    if (this.disabled || this.readonly || item.disabled) return;
 
     if (this.multiple) {
       try {
-        if (await firstValueFrom(this.isOptionSelected$(option), { defaultValue: false })) {
-          this._selectedOptions$.next(this._selectedOptions$.value.filter(selected => selected.value !== option.value));
+        if (await firstValueFrom(this.isItemSelected$(item), { defaultValue: false })) {
+          this._selectedItems$.next(this._selectedItems$.value.filter(selected => selected.value !== item.value));
         } else {
-          this._selectedOptions$.next([...this._selectedOptions$.value, option]);
+          this._selectedItems$.next([...this._selectedItems$.value, item]);
         }
 
-        if (this._selectedOptions$.value.length) {
-          this.writeValue(this._selectedOptions$.value);
+        if (this._selectedItems$.value.length) {
+          this.writeValue(this._selectedItems$.value);
         } else {
           this.writeValue(null);
         }
       } catch {}
     } else {
-      this._selectedOptions$.next([option]);
-      this.writeValue(option);
+      this._selectedItems$.next([item]);
+      this.writeValue(item);
     }
 
     if (this.closeOnSelect) {
@@ -225,10 +225,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
   public clearSelection() {
     if (this.disabled || this.readonly) return;
 
-    this._selectedOptions$.next([]);
+    this._selectedItems$.next([]);
     if (this.multiple) {
-      if (this._selectedOptions$.value.length) {
-        this.writeValue(this._selectedOptions$.value);
+      if (this._selectedItems$.value.length) {
+        this.writeValue(this._selectedItems$.value);
       } else {
         this.writeValue(null);
       }
@@ -243,11 +243,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     this.menu.toggle();
   }
 
-  protected assumePrimitive(items: SelectOption[] | string[] | number[]) {
+  protected assumePrimitive(items: SelectItem[] | string[] | number[]) {
     return typeof items[0] === 'string' || typeof items[0] === 'number' || typeof items[0] === 'boolean';
   }
 
-  protected mapPrimitiveToSelectOption(options: string[] | number[] | boolean[]): SelectOption[] {
-    return options.map(option => ({ text: option.toLocaleString(), value: option }));
+  protected mapPrimitiveToSelectItem(items: string[] | number[] | boolean[]): SelectItem[] {
+    return items.map(item => ({ text: item.toLocaleString(), value: item }));
   }
 }

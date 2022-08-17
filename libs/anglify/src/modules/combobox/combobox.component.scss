@@ -43,7 +43,7 @@
     }
   }
 
-  .prepend-inner-option {
+  .prepend-inner-item {
     display: flex;
     min-height: calc(
       var(--anglify-input-min-height) - var(--anglify-input-filled-content-top-offset, var(--anglify-input-outlined-content-top-offset))
@@ -72,7 +72,7 @@
       }
     }
 
-    .prepend-inner-option {
+    .prepend-inner-item {
       --anglify-input-filled-content-top-offset: 14px;
       --anglify-input-outlined-content-top-offset: 7px;
     }
@@ -83,7 +83,7 @@
     overflow-y: auto;
   }
 
-  .option-item {
+  .item {
     cursor: pointer;
 
     &.disabled {

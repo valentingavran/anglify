@@ -1,7 +1,7 @@
 <anglify-text-field
   [appearance]="appearance"
   [label]="label"
-  [alwaysFloatingLabel]="alwaysFloatingLabel || !!(selectedOptions$ | async)!.length || (isOpen$ | async)!"
+  [alwaysFloatingLabel]="alwaysFloatingLabel || !!(selectedItems$ | async)!.length || (isOpen$ | async)!"
   [hint]="hint"
   [persistentHint]="persistentHint"
   [hideDetails]="hideDetails"
@@ -12,7 +12,7 @@
   [position]="dropdownPosition"
   [offset]="dropdownOffset"
   [parentWidth]="true"
-  [class.expand-min-height]="!!(selectedOptions$ | async)!.length && multiple"
+  [class.expand-min-height]="!!(selectedItems$ | async)!.length && multiple"
 >
   <ng-template slot="prepend">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
@@ -23,29 +23,29 @@
     </ng-container>
   </ng-template>
   <ng-template slot="prepend-inner-content">
-    <ng-container *ngIf="!!(selectedOptions$ | async)!.length && multiple">
+    <ng-container *ngIf="!!(selectedItems$ | async)!.length && multiple">
       <ng-container
         *anglifySlotOutlet="
           slots | findSlot: 'prepend-inner-content';
-          context: { options: selectedOptions$ | async, select, readonly, disabled: disabled$ | async }
+          context: { items: selectedItems$ | async, select, readonly, disabled: disabled$ | async }
         "
       >
-        <div class="prepend-inner-option" *ngFor="let option of selectedOptions$ | async">
+        <div class="prepend-inner-item" *ngFor="let item of selectedItems$ | async">
           <anglify-chip
-            [class.disabled]="!!option.disabled || (disabled$ | async)"
+            [class.disabled]="!!item.disabled || (disabled$ | async)"
             anglifyClickStopPropagation
-            [ripple]="!option.disabled || (disabled$ | async) === false"
+            [ripple]="!item.disabled || (disabled$ | async) === false"
           >
-            {{ option.text }}
+            {{ item.text }}
             <ng-container *ngIf="(disabled$ | async) === false">
               <ng-template slot="append">
                 <anglify-icon
-                  *ngIf="!option.disabled || (disabled$ | async) === false"
-                  [class.disabled]="option.disabled || (disabled$ | async)"
+                  *ngIf="!item.disabled || (disabled$ | async) === false"
+                  [class.disabled]="item.disabled || (disabled$ | async)"
                   [icon]="internalIcons.closeCircle"
                   [right]="true"
-                  [clickable]="!option.disabled || !readonly || (disabled$ | async) === false"
-                  (click)="select(option)"
+                  [clickable]="!item.disabled || !readonly || (disabled$ | async) === false"
+                  (click)="select(item)"
                   anglifyClickStopPropagation
                 ></anglify-icon>
               </ng-template>
@@ -96,10 +96,10 @@
     <ng-container
       *anglifySlotOutlet="
         slots | findSlot: 'menu';
-        context: { options: filteredOptions$ | async, multiple: multiple, isOptionSelected$, select, disabled: disabled$ | async }
+        context: { items: filteredItems$ | async, multiple: multiple, isItemSelected$, select, disabled: disabled$ | async }
       "
     >
-      <anglify-list *ngIf="!(filteredOptions$ | async)?.length">
+      <anglify-list *ngIf="!(filteredItems$ | async)?.length">
         <anglify-list-item-group>
           <anglify-list-item [state]="false" [disabled]="true">
             <anglify-list-item-title>{{ noOptions }}</anglify-list-item-title>
@@ -109,17 +109,17 @@
       <anglify-list>
         <anglify-list-item-group [multiple]="multiple">
           <anglify-list-item
-            *ngFor="let option of filteredOptions$ | async; trackBy: trackOption"
-            class="option-item"
-            [class.disabled]="!!option.disabled"
-            [active]="(isOptionSelected$(option) | async)!"
+            *ngFor="let item of filteredItems$ | async; trackBy: trackItem"
+            class="item"
+            [class.disabled]="!!item.disabled"
+            [active]="(isItemSelected$(item) | async)!"
             (mousedown)="$event.preventDefault()"
-            (onClick)="select(option)"
-            [state]="!option.disabled"
-            [ripple]="!option.disabled"
-            [disabled]="!!option.disabled"
+            (onClick)="select(item)"
+            [state]="!item.disabled"
+            [ripple]="!item.disabled"
+            [disabled]="!!item.disabled"
           >
-            <anglify-list-item-title>{{ option.text }}</anglify-list-item-title>
+            <anglify-list-item-title>{{ item.text }}</anglify-list-item-title>
           </anglify-list-item>
         </anglify-list-item-group>
       </anglify-list>
