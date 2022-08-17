@@ -70,7 +70,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
   /** Designates if menu should close when its content is clicked. */
   @Input() public closeOnSelect: boolean = this.settings.closeOnSelect;
   /** Display text when there is no data. */
-  @Input() public noOptions: string = this.settings.noOptions;
+  @Input() public noDataText: string = this.settings.noDataText;
 
   /** Puts the input in a manual error state. */
   @Input() public set error(error: string | undefined) {

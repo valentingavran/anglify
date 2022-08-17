@@ -16,7 +16,7 @@ export interface EntireSelectSettings {
   dropdownOffset: number;
   clearable: boolean;
   closeOnSelect: boolean;
-  noOptions: string;
+  noDataText: string;
   addItem: string;
 }
 
