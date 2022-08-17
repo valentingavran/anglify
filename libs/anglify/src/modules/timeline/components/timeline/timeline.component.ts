@@ -49,7 +49,7 @@ export class TimelineComponent implements AfterViewInit {
     });
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     if (this.timelineItems) {
       this.timelineItems.changes
         .pipe(

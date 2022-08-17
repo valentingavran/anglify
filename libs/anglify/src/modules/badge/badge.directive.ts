@@ -49,7 +49,7 @@ export class BadgeDirective implements OnInit {
     private readonly cdRef: ChangeDetectorRef
   ) {}
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     this.create();
   }
 

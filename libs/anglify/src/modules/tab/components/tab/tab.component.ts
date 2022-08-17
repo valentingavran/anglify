@@ -138,7 +138,7 @@ export class TabComponent implements AfterViewInit {
     this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     const children = Array.from(this.elementRef.nativeElement.children);
     const hasTopIcon = this.searchIcon(children, 'top');
 

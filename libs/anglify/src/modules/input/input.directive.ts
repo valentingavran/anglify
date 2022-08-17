@@ -42,7 +42,7 @@ export class InputDirective implements OnInit {
     }
   }
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     if (this.ngControl) {
       const abstractControl = this.ngControl.control;
       abstractControl?.statusChanges.pipe(untilDestroyed(this)).subscribe(() => this.statusChanged$.next());

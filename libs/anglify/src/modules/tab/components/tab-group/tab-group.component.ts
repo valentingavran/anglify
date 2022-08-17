@@ -106,7 +106,7 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
     }
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     if (this.allTabs) {
       this.allTabs.changes
         .pipe(
