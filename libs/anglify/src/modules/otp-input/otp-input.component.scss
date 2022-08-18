@@ -31,7 +31,7 @@
       border: $otp-input-border-width-inactive solid $otp-input-border-color-hover;
     }
 
-    &.anglify-otp-input-focused {
+    &.anglify-otp-input-focused:not(:disabled) {
       border: $otp-input-border-width-focused solid $otp-input-border-color-focused;
       color: $otp-input-color-focused;
     }
