@@ -11,11 +11,11 @@
     autocapitalize="off"
     spellcheck="false"
     [type]="hiddenInput ? 'password' : 'text'"
-    (blur)="onBlur($event)"
-    (input)="onInput($event, i)"
-    (focus)="onFocus($event, i)"
-    (paste)="onPaste($event, i)"
-    (keyup)="onKeyUp($event, i)"
+    (blur)="onBlurHandler($event)"
+    (input)="onInputHandler($event, i)"
+    (focus)="onFocusHandler($event, i)"
+    (paste)="onPasteHandler($event, i)"
+    (keyup)="onKeyUpHandler($event, i)"
     [ngClass]="{
       'anglify-otp-input-focused': isFocused$ | async
     }"

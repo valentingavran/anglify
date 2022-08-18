@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class CompletedEventComponent {
   public constructor(public snackbarService: SnackbarService) {}
+
   public onComplete(otp: string) {
     this.snackbarService.open({ data: { label: `OTP is ${otp}` } });
   }

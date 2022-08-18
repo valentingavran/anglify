@@ -63,7 +63,6 @@ export class InputsTableComponent {
   public services$ = combineLatest([this.documentation$, this.config$]).pipe(
     map(([documentation, config]) => {
       const services = config.services ?? [];
-      console.log(services);
       return documentation?.injectables.filter(injectable => services.includes(injectable.name));
     })
   );

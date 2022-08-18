@@ -30,6 +30,11 @@ export class ListGroupComponent implements AfterViewInit {
     return this.active$.value;
   }
 
+  /** If an element that is not in the group gets selected, then the group will be closed
+   * automatically by default. With this property this functionality can be deactivated. This will
+   * keep the group open until the user closes it manually. */
+  @Input() public disableGroupCollapse = false;
+
   public active$ = new BehaviorSubject<boolean>(false);
   public unsubscribeActiveListenersAction = new Subject<void>();
 
@@ -46,7 +51,11 @@ export class ListGroupComponent implements AfterViewInit {
           items.forEach(item => {
             item.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeActiveListenersAction)).subscribe(() => {
               setTimeout(() => {
-                this.hasActiveListItems(items) ? this.open() : this.close();
+                if (this.hasActiveListItems(items)) {
+                  this.open();
+                } else if (!this.disableGroupCollapse) {
+                  this.close();
+                }
               }, 0);
             });
           });
