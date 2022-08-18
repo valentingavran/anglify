@@ -53,17 +53,17 @@ export class NavigationDrawerComponent implements AfterViewInit {
   }
 
   /** Control whether the NavigationDrawer is opened or not. */
-  @Input() public set ngModel(value: boolean) {
+  @Input() public set value(value: boolean) {
     this.setOpened(value);
   }
 
-  public get ngModel() {
-    return this.opened$.value;
+  public get value() {
+    return this.value$.value;
   }
 
-  @Output() public ngModelChange = new EventEmitter();
+  @Output() public valueChange = new EventEmitter();
 
-  public opened$ = new BehaviorSubject(false);
+  public value$ = new BehaviorSubject(false);
   public mode$ = new BehaviorSubject<NavigationDrawerMode>(this.settings.mode);
 
   public constructor(
@@ -73,7 +73,7 @@ export class NavigationDrawerComponent implements AfterViewInit {
     bindObservableValueToNativeElement(this, this.mode$, this.elementRef.nativeElement, 'anglify-navigation-drawer-');
     bindClassToNativeElement(
       this,
-      this.opened$.pipe(map(value => !value)),
+      this.value$.pipe(map(value => !value)),
       this.elementRef.nativeElement,
       'anglify-navigation-drawer-closed'
     );
@@ -83,13 +83,13 @@ export class NavigationDrawerComponent implements AfterViewInit {
     this.listItemClickHandler();
   }
 
-  public toggle(isOpen = !this.opened$.value) {
+  public toggle(isOpen = !this.value$.value) {
     this.setOpened(isOpen);
   }
 
   private setOpened(open: boolean) {
-    this.opened$.next(open);
-    this.ngModelChange.emit(open);
+    this.value$.next(open);
+    this.valueChange.emit(open);
   }
 
   private listItemClickHandler() {
