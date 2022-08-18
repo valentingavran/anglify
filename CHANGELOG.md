@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.28.0](https://github.com/valentingavran/anglify/compare/v0.27.0...v0.28.0) (2022-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **NavigationDrawer:** `ngModel` input property of the NavigationDrawer was renamed to `value`.
+* **Autocomplete, Combobox, Select:** The `noOptions` input property was renamed to `noDataText`.
+* **Autocomplete, Combobox, Select:** The options input property was renamed to items.
+
+### 🛠  Other Commits
+
+* ship components as non-peer deps ([fc4ebc7](https://github.com/valentingavran/anglify/commit/fc4ebc794e1e3f66de25d3f2dafb5aa1100dc9a0))
+
+
+### 📝  Docs
+
+* **Badge:** fix complex docs example ([161ba9a](https://github.com/valentingavran/anglify/commit/161ba9a6c61fa4fd4fe9a0003ebb4c08c4f9b5f0))
+
+
+### 🐛  Bug Fixes
+
+* **Checkbox, RadioButton:** fix focus & hover states ([025a95c](https://github.com/valentingavran/anglify/commit/025a95c7ce6a8e42799aef4723995e8153417af1))
+* **ExpansionPanels:** remove panel margins in accordion mode ([fa5ab9e](https://github.com/valentingavran/anglify/commit/fa5ab9e9c4e9d5f51288c2d6bce89ba2ce2975e0))
+
+
+### 🚀  Features
+
+* add OTP Input component ([132ece2](https://github.com/valentingavran/anglify/commit/132ece2e1da4cd558563abfa5d71f98106b6e131))
+* testing library ([612b7ba](https://github.com/valentingavran/anglify/commit/612b7babcde59102a9caa779c63380c3df8988e4))
+
+
+### 🔬  Code Refactoring
+
+* **Autocomplete, Combobox, Select:** rename noOptions to noDataText ([859a5c0](https://github.com/valentingavran/anglify/commit/859a5c013c82825696d0f4bf2528b1494d082956))
+* **Autocomplete, Combobox, Select:** rename options to items ([45ed04d](https://github.com/valentingavran/anglify/commit/45ed04d625fc87f0f8eb477b13a4fc38be6b9592))
+* **Button:** cleanup button component ([46f00d8](https://github.com/valentingavran/anglify/commit/46f00d872de4b4dc1ef7e8f3187846a9681a222c))
+* cleanup code ([0763c61](https://github.com/valentingavran/anglify/commit/0763c619050514594b8e7c1dc17c211ca42d52c5))
+* **NavigationDrawer:** rename `ngModel` input property to `value` ([59cc325](https://github.com/valentingavran/anglify/commit/59cc3255c5fbfd5ef9a5a8e457f5458399c596bd))
+
 ## [0.27.0](https://github.com/valentingavran/anglify/compare/v0.26.0...v0.27.0) (2022-07-26)
 
 
