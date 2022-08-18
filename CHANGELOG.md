@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.29.1](https://github.com/valentingavran/anglify/compare/v0.29.0...v0.29.1) (2022-08-18)
+
+
+### 🐛  Bug Fixes
+
+* **OtpInput:** remove focus style when input is focused & gets disabled ([b99f39f](https://github.com/valentingavran/anglify/commit/b99f39f4766a895edcef757876fa4501d3455c7d))
+
 ## [0.29.0](https://github.com/valentingavran/anglify/compare/v0.28.0...v0.29.0) (2022-08-18)
 
 
