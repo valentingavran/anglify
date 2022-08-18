@@ -38,13 +38,13 @@ import { AnglifyIdService } from '../../services/id/id.service';
 export class OtpInputComponent implements ControlValueAccessor {
   @ViewChildren('input') private readonly inputRefs?: QueryList<ElementRef<HTMLInputElement>>;
   /** Emitted when cursor is blurred. */
-  @Output() public blur = new EventEmitter<Event>();
+  @Output() public readonly onBlur = new EventEmitter<Event>();
   /** Emitted when the input is filled completely and value gets changed. */
-  @Output() public complete = new EventEmitter<string>();
-  /** Emitted when input gains focus. */
-  @Output() public focus = new EventEmitter<Event>();
+  @Output() private readonly onComplete = new EventEmitter<string>();
+  /** Emitted public input gains focus. */
+  @Output() public readonly onFocus = new EventEmitter<Event>();
   /** Emitted when the input is changed by user interaction. */
-  @Output() public change = new EventEmitter<string>();
+  @Output() public readonly onChange = new EventEmitter<string>();
   /** Disable the input. */
   @Input() public disabled = this.settings.disabled;
   /** Puts input in readonly state. */
@@ -61,12 +61,12 @@ export class OtpInputComponent implements ControlValueAccessor {
     return this.length$.value;
   }
 
-  private readonly length$ = new BehaviorSubject(this.settings.length);
   public readonly id = this.idService.generate();
-  public otp$ = new BehaviorSubject<string[]>([]);
   public readonly focusedIndex$ = new BehaviorSubject(-1);
   public isFocused$ = this.focusedIndex$.pipe(map(index => index >= 0));
-  public lengthArray$ = this.length$.pipe(
+  protected otp$ = new BehaviorSubject<string[]>([]);
+  private readonly length$ = new BehaviorSubject(this.settings.length);
+  protected lengthArray$ = this.length$.pipe(
     map(length =>
       Array(length)
         .fill(0)
@@ -75,8 +75,8 @@ export class OtpInputComponent implements ControlValueAccessor {
   );
 
   // @ts-expect-error
-  private onTouch: (...args: any[]) => void = () => {};
-  private onChange: (...args: any[]) => void = () => {};
+  private onTouchFn: (...args: any[]) => void = () => {};
+  private onChangeFn: (...args: any[]) => void = () => {};
 
   public constructor(
     private readonly idService: AnglifyIdService,
@@ -88,12 +88,12 @@ export class OtpInputComponent implements ControlValueAccessor {
         map(otp => otp.join('')),
         tap(otp => {
           // notify about all changes
-          this.change.emit(otp);
-          this.onChange(otp);
+          this.onChange.emit(otp);
+          this.onChangeFn(otp);
         }),
         tap(otp => {
           // notify when otp is complete
-          if (otp.length === this.length) this.complete.emit(otp);
+          if (otp.length === this.length) this.onComplete.emit(otp);
         }),
         tap(otp => {
           const otpArray = otp.split('');
@@ -111,27 +111,27 @@ export class OtpInputComponent implements ControlValueAccessor {
   }
 
   public registerOnChange(fn: (...args: any[]) => void) {
-    this.onChange = fn;
+    this.onChangeFn = fn;
   }
 
   public registerOnTouched(fn: (...args: any[]) => void) {
-    this.onTouch = fn;
+    this.onTouchFn = fn;
   }
 
-  public onBlur(event: Event) {
+  protected onBlurHandler(event: Event) {
     this.focusedIndex$.next(-1);
-    this.blur.emit(event);
+    this.onBlur.emit(event);
   }
 
-  public onInput(event: Event, index: number) {
+  protected onInputHandler(event: Event, index: number) {
     const target = event.target as HTMLInputElement;
     const newOtp = [...this.otp$.value];
     newOtp[index] = target.value;
     this.otp$.next(newOtp);
-    if (target.value && index + 1 < this.length) this.onFocus(undefined, index + 1);
+    if (target.value && index + 1 < this.length) this.onFocusHandler(undefined, index + 1);
   }
 
-  public onFocus(event?: Event, index?: number) {
+  protected onFocusHandler(event?: Event, index?: number) {
     event?.preventDefault();
     event?.stopPropagation();
     const ref = this.inputs && this.inputs[index ?? 0];
@@ -143,10 +143,10 @@ export class OtpInputComponent implements ControlValueAccessor {
     if (this.isFocused) return;
     this.focusedIndex$.next(index ?? 0);
     ref.select();
-    this.focus.emit(event);
+    this.onFocus.emit(event);
   }
 
-  public onPaste(event: ClipboardEvent, index: number) {
+  protected onPasteHandler(event: ClipboardEvent, index: number) {
     if (this.readonly || this.disabled) return;
     const maxCursor = this.length - 1;
     const inputVal = event.clipboardData?.getData('Text');
@@ -160,16 +160,16 @@ export class OtpInputComponent implements ControlValueAccessor {
     }
     this.otp$.next(newOtp);
     const targetFocus = Math.min(index + inputDataArray.length, maxCursor);
-    this.onFocus(undefined, targetFocus);
+    this.onFocusHandler(undefined, targetFocus);
   }
 
-  public onKeyUp(event: KeyboardEvent, index: number) {
+  protected onKeyUpHandler(event: KeyboardEvent, index: number) {
     event.preventDefault();
     if (['Tab', 'Shift', 'Meta', 'Control', 'Alt'].includes(event.key)) return;
     if (['Delete'].includes(event.key)) return;
     if (event.key === 'ArrowLeft' || (event.key === 'Backspace' && !this.otp$.value[index]))
-      return index > 0 && this.onFocus(undefined, index - 1);
-    if (event.key === 'ArrowRight') return index + 1 < this.length && this.onFocus(undefined, index + 1);
+      return index > 0 && this.onFocusHandler(undefined, index - 1);
+    if (event.key === 'ArrowRight') return index + 1 < this.length && this.onFocusHandler(undefined, index + 1);
   }
 
   private get inputs() {
