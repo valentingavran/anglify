@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.0](https://github.com/valentingavran/anglify/compare/v0.28.0...v0.29.0) (2022-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **OtpInput:** methods/properties were renamed and access modifiers were changed.
+
+### 🔬  Code Refactoring
+
+* **OtpInput:** change access modifiers & rename methods/properties ([541a496](https://github.com/valentingavran/anglify/commit/541a496019494d4e9b29138dd295099be5c47ea0))
+
+
+### 🚀  Features
+
+* **ListGroup:** add `disableGroupCollapse` property back again ([048b8b6](https://github.com/valentingavran/anglify/commit/048b8b6ee91e1dbf259b69ab38977359a196acf5))
+* **OtpInput:** add `focus()` & `blur()`methods ([0c505b8](https://github.com/valentingavran/anglify/commit/0c505b808f3479799c75a7f1019176d0ed8fe448))
+
 ## [0.28.0](https://github.com/valentingavran/anglify/compare/v0.27.0...v0.28.0) (2022-08-18)
 
 
