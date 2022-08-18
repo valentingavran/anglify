@@ -16,6 +16,7 @@ import { ItemGroupPageComponent } from './item-group-page/item-group-page.compon
 import { ListPageComponent } from './list-page/list-page.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { NavigationDrawerPageComponent } from './navigation-drawer-page/navigation-drawer-page.component';
+import { OtpInputPageComponent } from './otp-input-page/otp-input-page.component';
 import { ProgressCircularPageComponent } from './progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
@@ -94,6 +95,10 @@ const routes: Routes = [
   {
     path: 'navigation-drawer',
     component: NavigationDrawerPageComponent,
+  },
+  {
+    path: 'otp-input',
+    component: OtpInputPageComponent,
   },
   {
     path: 'progress-circular',

@@ -124,7 +124,7 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
       .map(({ index }) => index);
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     if (this.allSlots) {
       this.allSlots.changes
         .pipe(

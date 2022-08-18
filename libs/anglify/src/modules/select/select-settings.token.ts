@@ -10,7 +10,7 @@ export const DEFAULT_SELECT_SETTINGS: EntireSelectSettings = {
   dropdownOffset: 0,
   clearable: false,
   closeOnSelect: true,
-  noOptions: 'No options',
-  addOption: 'Add option:',
+  noDataText: 'No data available',
+  addItem: 'Add item:',
 };
 export const SELECT_SETTINGS = new InjectionToken<SelectSettings>('Select Settings');

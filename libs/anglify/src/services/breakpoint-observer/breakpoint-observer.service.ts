@@ -41,7 +41,7 @@ export class BreakpointObserverService {
     return matched ? matched[0] : 'xs';
   }
 
-  private checkForCorrectConfiguration(): void {
+  private checkForCorrectConfiguration() {
     if (
       this.breakpoints.xs < this.breakpoints.sm &&
       this.breakpoints.sm < this.breakpoints.md &&

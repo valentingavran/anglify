@@ -1,7 +1,7 @@
 <anglify-text-field
   [appearance]="appearance"
   [label]="label"
-  [alwaysFloatingLabel]="alwaysFloatingLabel || !!(selectedOptions$ | async)!.length || (isOpen$ | async)!"
+  [alwaysFloatingLabel]="alwaysFloatingLabel || !!(selectedItems$ | async)!.length || (isOpen$ | async)!"
   [hint]="hint"
   [persistentHint]="persistentHint"
   [hideDetails]="hideDetails"
@@ -26,14 +26,14 @@
 
   <div class="input" [class.disabled]="disabled$ | async">
     <div class="value">
-      <ng-container *ngIf="!!(selectedOptions$ | async)!.length">
+      <ng-container *ngIf="!!(selectedItems$ | async)!.length">
         <ng-container
           *anglifySlotOutlet="
             slots | findSlot: 'value';
-            context: { options: selectedOptions$ | async, select, readonly, disabled: disabled$ | async }
+            context: { items: selectedItems$ | async, select, readonly, disabled: disabled$ | async }
           "
         >
-          {{ (selectedOptionsText$ | async)!.join(', ') }}
+          {{ (selectedItemsText$ | async)!.join(', ') }}
         </ng-container>
       </ng-container>
     </div>
@@ -85,35 +85,35 @@
       *anglifySlotOutlet="
         slots | findSlot: 'menu';
         context: {
-          options: options$ | async,
+          items: items$ | async,
           multiple: multiple,
-          isOptionSelected$,
+          isItemSelected$,
           select,
           disabled: disabled$ | async
         }
       "
     >
-      <anglify-list *ngIf="!(options$ | async)?.length">
+      <anglify-list *ngIf="!(items$ | async)?.length">
         <anglify-list-item-group>
           <anglify-list-item [state]="false" [disabled]="true">
-            <anglify-list-item-title>{{ noOptions }}</anglify-list-item-title>
+            <anglify-list-item-title>{{ noDataText }}</anglify-list-item-title>
           </anglify-list-item>
         </anglify-list-item-group>
       </anglify-list>
       <anglify-list>
         <anglify-list-item-group [multiple]="multiple">
           <anglify-list-item
-            *ngFor="let option of options$ | async; trackBy: trackOption"
-            class="option-item"
-            [class.disabled]="!!option.disabled"
-            [active]="(isOptionSelected$(option) | async)!"
+            *ngFor="let item of items$ | async; trackBy: trackItem"
+            class="item"
+            [class.disabled]="!!item.disabled"
+            [active]="(isItemSelected$(item) | async)!"
             (mousedown)="$event.preventDefault()"
-            (onClick)="select(option)"
-            [state]="!option.disabled"
-            [ripple]="!option.disabled"
-            [disabled]="!!option.disabled"
+            (onClick)="select(item)"
+            [state]="!item.disabled"
+            [ripple]="!item.disabled"
+            [disabled]="!!item.disabled"
           >
-            <anglify-list-item-title>{{ option.text }}</anglify-list-item-title>
+            <anglify-list-item-title>{{ item.text }}</anglify-list-item-title>
           </anglify-list-item>
         </anglify-list-item-group>
       </anglify-list>

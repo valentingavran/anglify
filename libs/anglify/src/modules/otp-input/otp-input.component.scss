@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+:host {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: $otp-input-gap;
+
+  input {
+    width: 100%;
+    max-width: $otp-input-width;
+    height: $otp-input-height;
+    box-sizing: border-box;
+    border: $otp-input-border-width-inactive solid $otp-input-border-color-inactive;
+    background-color: $otp-input-background-color;
+    border-radius: $otp-input-border-radius;
+    color: $otp-input-color-inactive;
+    font: $otp-input-font;
+    letter-spacing: $otp-input-letter-spacing;
+    outline: none;
+    text-align: center;
+    text-transform: $otp-input-text-transform;
+
+    &:disabled {
+      border: $otp-input-border-width-inactive solid $otp-input-border-color-disabled;
+      color: $otp-input-color-disabled;
+    }
+
+    /* stylelint-disable-next-line selector-not-notation */
+    &:hover:not(:disabled):not(.anglify-otp-input-focused) {
+      border: $otp-input-border-width-inactive solid $otp-input-border-color-hover;
+    }
+
+    &.anglify-otp-input-focused {
+      border: $otp-input-border-width-focused solid $otp-input-border-color-focused;
+      color: $otp-input-color-focused;
+    }
+  }
+}

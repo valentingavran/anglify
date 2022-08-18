@@ -23,6 +23,7 @@
     "src/modules/list/*.scss",
     "src/modules/menu/*.scss",
     "src/modules/navigation-drawer/*.scss",
+    "src/modules/otp-input/*.scss",
     "src/modules/progress-circular/*.scss",
     "src/modules/progress-linear/*.scss",
     "src/modules/radio-button/*.scss",
@@ -36,5 +37,13 @@
     "src/modules/timeline/*.scss",
     "src/modules/toolbar/*.scss",
     "src/modules/tooltip/*.scss"
+  ],
+  "allowedNonPeerDependencies": [
+    "@angular/animations",
+    "@angular/cdk",
+    "@floating-ui/dom",
+    "@ngneat/until-destroy",
+    "deepmerge-ts",
+    "@mdi/js"
   ]
 }

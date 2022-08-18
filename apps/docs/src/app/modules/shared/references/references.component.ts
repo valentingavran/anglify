@@ -12,7 +12,7 @@ export class ReferencesComponent {
   @Input() public materialDesign?: string;
   @Input() public w3c?: string;
 
-  public open(url: string): void {
+  public open(url: string) {
     window.open(url, '_blank');
   }
 }

@@ -29,6 +29,7 @@ import { ItemGroupPageComponent } from './item-group-page/item-group-page.compon
 import { ListPageComponent } from './list-page/list-page.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { NavigationDrawerPageComponent } from './navigation-drawer-page/navigation-drawer-page.component';
+import { OtpInputPageComponent } from './otp-input-page/otp-input-page.component';
 import { ProgressCircularPageComponent } from './progress-circular-page/progress-circular-page.component';
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
@@ -56,6 +57,7 @@ import { ItemGroupExamplesModule } from '../../examples/item-group/item-group-ex
 import { ListExamplesModule } from '../../examples/list/list-examples.module';
 import { MenuExamplesModule } from '../../examples/menu/menu-examples.module';
 import { NavigationDrawerExamplesModule } from '../../examples/navigation-drawer/navigation-drawer-examples.module';
+import { OtpInputExampleModule } from '../../examples/otp-input/otp-input-example.module';
 import { ProgressCircularExamplesModule } from '../../examples/progress-circular/progress-circular-examples.module';
 import { ProgressLinearExamplesModule } from '../../examples/progress-linear/progress-linear-examples.module';
 import { RadioButtonExamplesModule } from '../../examples/radio-button/radio-button-examples.module';
@@ -101,6 +103,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     AutocompletePageComponent,
     ComboboxPageComponent,
     TimelinePageComponent,
+    OtpInputPageComponent,
   ],
   imports: [
     CommonModule,
@@ -133,6 +136,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TextFieldExamplesModule,
     ExpansionPanelsExampleModule,
     TimelineExamplesModule,
+    OtpInputExampleModule,
     // Imports for Playground
     TextFieldModule,
     IconModule,

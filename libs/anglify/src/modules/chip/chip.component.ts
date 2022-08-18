@@ -74,7 +74,7 @@ export class ChipComponent implements OnInit {
     bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');
   }
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     const children = Array.from(this.elementRef.nativeElement.children);
     const hasLeftIcon = children.some(child => {
       if (child.tagName === 'ANGLIFY-ICON') {

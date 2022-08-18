@@ -4,9 +4,9 @@
   </div>
 </div>
 <div
-  *ngIf="(opened$ | async) && mode === 'modal'"
+  *ngIf="(value$ | async) && mode === 'modal'"
   class="anglify-navigation-drawer-backdrop"
   @enterLeaveOpacityAnimation
-  [class.anglify-navigation-drawer-backdrop-show]="(opened$ | async) && (mode$ | async) === 'modal'"
+  [class.anglify-navigation-drawer-backdrop-show]="(value$ | async) && (mode$ | async) === 'modal'"
   (click)="toggle()"
 ></div>

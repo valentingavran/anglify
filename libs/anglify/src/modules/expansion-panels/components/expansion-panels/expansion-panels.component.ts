@@ -158,7 +158,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
       .map(({ index }) => index);
   }
 
-  public ngAfterViewInit(): void {
+  public ngAfterViewInit() {
     if (this.allSlots) {
       this.allSlots.changes
         .pipe(

@@ -33,7 +33,7 @@
 </anglify-toolbar>
 <anglify-navigation-drawer
   [mode]="(breakpointService.mdAndDown$ | async) ? 'modal' : 'standard'"
-  [ngModel]="(breakpointService.lgAndUp$ | async) ?? true"
+  [value]="(breakpointService.lgAndUp$ | async) ?? true"
   #drawer
 >
   <anglify-list [dense]="true" [nav]="true">
