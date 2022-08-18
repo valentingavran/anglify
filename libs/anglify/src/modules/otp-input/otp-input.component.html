@@ -17,7 +17,7 @@
     (paste)="onPasteHandler($event, i)"
     (keyup)="onKeyUpHandler($event, i)"
     [ngClass]="{
-      'anglify-otp-input-focused': isFocused$ | async
+      'anglify-otp-input-focused': (isFocused$ | async) && disabled === false
     }"
   />
 </ng-container>
