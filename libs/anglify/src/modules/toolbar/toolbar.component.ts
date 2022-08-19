@@ -1,12 +1,26 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, HostBinding, Inject, Input, QueryList, Self } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  ElementRef,
+  HostBinding,
+  Inject,
+  Input,
+  QueryList,
+  Self,
+} from '@angular/core';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { BehaviorSubject } from 'rxjs';
 import { DEFAULT_TOOLBAR_SETTINGS, TOOLBAR_SETTINGS } from './toolbar-settings.token';
 import { EntireToolbarSettings } from './toolbar.interface';
 import { Elevation } from '../../composables/elevation/elevation.interface';
 import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { bindAttrToNativeElement } from '../../utils/functions';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
 
+@UntilDestroy()
 @Component({
   selector: 'anglify-toolbar',
   templateUrl: './toolbar.component.html',
@@ -36,10 +50,22 @@ export class ToolbarComponent {
     return this.elevationService.elevation;
   }
 
+  @Input() public set app(value: boolean) {
+    this.app$.next(value);
+  }
+
+  public get app() {
+    return this.app$.value;
+  }
+
+  private readonly app$ = new BehaviorSubject(false);
+
   public constructor(
     @Self() @Inject('anglifyToolbarSettings') public settings: EntireToolbarSettings,
-    private readonly elevationService: ElevationService
+    private readonly elevationService: ElevationService,
+    private readonly elementRef: ElementRef<HTMLElement>
   ) {
     this.elevation = this.settings.elevation;
+    bindAttrToNativeElement(this, this.app$, this.elementRef.nativeElement, 'role', 'navigation');
   }
 }
