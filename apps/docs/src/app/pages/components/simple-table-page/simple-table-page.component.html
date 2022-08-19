@@ -1,6 +1,6 @@
-<h1>Table</h1>
+<h1>Simple Table</h1>
 <app-references
-  issues="https://github.com/valentingavran/anglify/labels/component%3A%20Table"
+  issues="https://github.com/valentingavran/anglify/labels/component%3A%20Simple%20Table"
   materialDesign="https://material.io/components/data-tables"
   bundleSize="https://bundlephobia.com/package/@anglify/components@latest"
   w3c="https://www.w3.org/WAI/ARIA/apg/patterns/table/"
@@ -18,7 +18,7 @@
 <h2>Playground</h2>
 <div class="playground">
   <div class="content">
-    <anglify-table [fixedHeader]="fixedHeader" [fixedFooter]="fixedFooter" [fixedHeight]="fixedHeight">
+    <anglify-simple-table [fixedHeader]="fixedHeader" [fixedFooter]="fixedFooter" [fixedHeight]="fixedHeight">
       <thead>
         <tr>
           <th class="text-left">Name</th>
@@ -37,7 +37,7 @@
           <td>Total</td>
         </tr>
       </tfoot>
-    </anglify-table>
+    </anglify-simple-table>
   </div>
   <div class="controls">
     <anglify-checkbox [(ngModel)]="fixedHeader">Fixed header</anglify-checkbox>
@@ -63,7 +63,7 @@
 <app-code-example component="table" example="fixed-height"></app-code-example>
 
 <h2>API</h2>
-<app-import-example import="import { TableModule } from '@anglify/components';"></app-import-example>
+<app-import-example import="import { SimpleTableModule } from '@anglify/components';"></app-import-example>
 
 <app-inputs-table [config]="config"></app-inputs-table>
 

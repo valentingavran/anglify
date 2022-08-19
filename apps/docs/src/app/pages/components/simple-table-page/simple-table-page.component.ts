@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { APIConfig } from '../../../app.interface';
 
 @Component({
-  selector: 'app-table-page',
-  templateUrl: './table-page.component.html',
-  styleUrls: ['./table-page.component.scss'],
+  selector: 'app-simple-table-page',
+  templateUrl: './simple-table-page.component.html',
+  styleUrls: ['./simple-table-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TablePageComponent {
+export class SimpleTablePageComponent {
   public config: APIConfig = {
-    components: ['TableComponent'],
+    components: ['SimpleTableComponent'],
   };
 
   public fixedHeader = false;

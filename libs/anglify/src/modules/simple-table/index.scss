@@ -1,32 +1,32 @@
 @use 'variables' as *;
 
-.anglify-table {
+.anglify-simple-table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: $table-layout;
+  table-layout: $simple-table-layout;
 
   th,
   td {
     overflow: hidden;
-    border-bottom-width: $table-border-width;
-    border-bottom-style: $table-border-style;
-    border-bottom-color: $table-border-color;
+    border-bottom-width: $simple-table-border-width;
+    border-bottom-style: $simple-table-border-style;
+    border-bottom-color: $simple-table-border-color;
     text-align: left;
     text-overflow: ellipsis;
   }
 
   th {
-    height: $table-header-cell-height;
-    padding-right: $table-header-cell-padding-right;
-    padding-left: $table-header-cell-padding-left;
-    background: $table-header-cell-background;
+    height: $simple-table-header-cell-height;
+    padding-right: $simple-table-header-cell-padding-right;
+    padding-left: $simple-table-header-cell-padding-left;
+    background: $simple-table-header-cell-background;
   }
 
   td {
-    height: $table-cell-height;
-    padding-right: $table-cell-padding-right;
-    padding-left: $table-cell-padding-left;
-    background: $table-cell-background;
+    height: $simple-table-cell-height;
+    padding-right: $simple-table-cell-padding-right;
+    padding-left: $simple-table-cell-padding-left;
+    background: $simple-table-cell-background;
   }
 
   tr {
@@ -37,7 +37,7 @@
     }
 
     &:hover {
-      background: $table-hover-background;
+      background: $simple-table-hover-background;
 
       td {
         background: transparent;
@@ -49,9 +49,9 @@
     /* stylelint-disable-next-line no-descending-specificity */
     tr {
       &:first-child {
-        border-top-width: $table-border-width;
-        border-top-style: $table-border-style;
-        border-top-color: $table-border-color;
+        border-top-width: $simple-table-border-width;
+        border-top-style: $simple-table-border-style;
+        border-top-color: $simple-table-border-color;
       }
     }
   }
@@ -61,7 +61,7 @@
       position: sticky;
       top: 0;
       border-bottom-color: transparent;
-      box-shadow: inset 0 -1px 0 $table-border-color;
+      box-shadow: inset 0 -1px 0 $simple-table-border-color;
     }
   }
 
@@ -78,14 +78,14 @@
           position: sticky;
           bottom: 0;
           border-top-color: transparent;
-          box-shadow: inset 0 1px 0 $table-border-color;
+          box-shadow: inset 0 1px 0 $simple-table-border-color;
         }
       }
     }
   }
 
   &-fixed-height {
-    height: $table-fixed-height;
+    height: $simple-table-fixed-height;
     overflow-x: auto;
     overflow-y: auto;
   }

@@ -155,8 +155,8 @@ export * from './modules/tab/tab-settings.token';
 export * from './modules/tab/tab.interface';
 export * from './modules/tab/tab.module';
 // Table
-export * from './modules/table/components/table/table.component';
-export * from './modules/table/table.module';
+export * from './modules/simple-table/simple-table.component';
+export * from './modules/simple-table/simple-table.module';
 // Text Area
 export * from './modules/text-area/text-area-settings.token';
 export * from './modules/text-area/text-area.component';

@@ -1,4 +1,4 @@
-import { ButtonModule, ChipModule, IconModule, ItemGroupModule, TableModule } from '@anglify/components';
+import { ButtonModule, ChipModule, IconModule, ItemGroupModule, SimpleTableModule } from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
@@ -33,7 +33,7 @@ import { StylingTableComponent } from './styling-table/styling-table.component';
     ChipModule,
     ButtonModule,
     HttpClientModule,
-    TableModule,
+    SimpleTableModule,
     ItemGroupModule,
     ReactiveFormsModule,
   ],

@@ -1,6 +1,6 @@
 <ng-container *ngIf="publicProperties$ | async as publicProperties">
   <h3>Properties</h3>
-  <anglify-table>
+  <anglify-simple-table>
     <thead>
       <tr>
         <th>Name</th>
@@ -15,12 +15,12 @@
         <td [innerHTML]="prop.description"></td>
       </tr>
     </tbody>
-  </anglify-table>
+  </anglify-simple-table>
 </ng-container>
 
 <ng-container *ngIf="publicMethods$ | async as publicMethods">
   <h3>Methods</h3>
-  <anglify-table>
+  <anglify-simple-table>
     <thead>
       <tr>
         <th>Name</th>
@@ -33,5 +33,5 @@
         <td>{{ method.description }}</td>
       </tr>
     </tbody>
-  </anglify-table>
+  </anglify-simple-table>
 </ng-container>

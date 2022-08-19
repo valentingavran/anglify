@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-  selector: 'anglify-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  selector: 'anglify-simple-table',
+  templateUrl: './simple-table.component.html',
+  styleUrls: ['./simple-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent {
+export class SimpleTableComponent {
   /** Displays the header while scrolling and not only at the very top. */
   @Input() public fixedHeader = false;
 
@@ -14,8 +14,8 @@ export class TableComponent {
   @Input() public fixedFooter = false;
 
   /** Sets the height for the component. */
-  @HostBinding('style.--anglify-table-fixed-height')
-  @HostBinding('class.anglify-table-fixed-height')
+  @HostBinding('style.--anglify-simple-table-fixed-height')
+  @HostBinding('class.anglify-simple-table-fixed-height')
   @Input()
   public fixedHeight: string | null = null;
 }

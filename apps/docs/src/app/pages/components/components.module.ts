@@ -6,7 +6,7 @@ import {
   ProgressLinearModule,
   RadioButtonModule,
   SelectModule,
-  TableModule,
+  SimpleTableModule,
   TextFieldModule,
 } from '@anglify/components';
 import { CommonModule } from '@angular/common';
@@ -34,10 +34,10 @@ import { ProgressCircularPageComponent } from './progress-circular-page/progress
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
 import { SelectPageComponent } from './select-page/select-page.component';
+import { SimpleTablePageComponent } from './simple-table-page/simple-table-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
-import { TablePageComponent } from './table-page/table-page.component';
 import { TextAreaPageComponent } from './text-area-page/text-area-page.component';
 import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
 import { TimelinePageComponent } from './timeline-page/timeline-page.component';
@@ -83,7 +83,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     CardPageComponent,
     ProgressCircularPageComponent,
     CheckBoxPageComponent,
-    TablePageComponent,
+    SimpleTablePageComponent,
     ProgressLinearPageComponent,
     RadioButtonPageComponent,
     DialogPageComponent,
@@ -143,7 +143,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     ProgressLinearModule,
-    TableModule,
+    SimpleTableModule,
     CheckboxModule,
     RadioButtonModule,
     SelectModule,

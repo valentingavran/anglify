@@ -149,8 +149,8 @@ export class DefaultComponent {
       name: 'Stepper',
     },
     {
-      link: 'components/table',
-      name: 'Table',
+      link: 'components/simple-table',
+      name: 'Simple Table',
     },
     {
       link: 'components/tabs',

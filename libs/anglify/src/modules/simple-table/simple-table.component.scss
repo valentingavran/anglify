@@ -1,0 +1,14 @@
+@use 'variables' as *;
+
+:host {
+  display: block;
+  width: $simple-table-width;
+  border-width: $simple-table-border-width;
+  border-style: $simple-table-border-style;
+  border-color: $simple-table-border-color;
+  background: $simple-table-background;
+  border-radius: $simple-table-border-radius;
+  font: $simple-table-font;
+  letter-spacing: $simple-table-font-letter-spacing;
+  text-transform: $simple-table-text-transform;
+}
