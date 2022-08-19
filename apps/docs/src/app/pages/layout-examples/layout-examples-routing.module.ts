@@ -7,10 +7,12 @@ const routes: Routes = [
   {
     path: 'base',
     component: BaseComponent,
+    title: 'Base Layout Example | Anglify',
   },
   {
     path: 'constrained',
     component: ConstrainedComponent,
+    title: 'Constrained Layout Example | Anglify',
   },
 ];
 

@@ -8,14 +8,17 @@ const routes: Routes = [
   {
     path: 'theming',
     component: ThemingComponent,
+    title: 'Theming | Anglify',
   },
   {
     path: 'icon-fonts',
     component: IconFontsComponent,
+    title: 'Icon Fonts | Anglify',
   },
   {
     path: 'breakpoints',
     component: BreakpointsComponent,
+    title: 'Breakpoints | Anglify',
   },
 ];
 

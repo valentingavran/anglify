@@ -35,122 +35,152 @@ const routes: Routes = [
   {
     path: 'autocomplete',
     component: AutocompletePageComponent,
+    title: 'Autocomplete | Anglify',
   },
   {
     path: 'badge',
     component: BadgePageComponent,
+    title: 'Badge | Anglify',
   },
   {
     path: 'bottom-navigation',
     component: BottomNavigationPageComponent,
+    title: 'Bottom Navigation | Anglify',
   },
   {
     path: 'breadcrumbs',
     component: BreadcrumbsPageComponent,
+    title: 'Breadcrumbs | Anglify',
   },
   {
     path: 'button',
     component: ButtonPageComponent,
+    title: 'Button | Anglify',
   },
   {
     path: 'card',
     component: CardPageComponent,
+    title: 'Card | Anglify',
   },
   {
     path: 'checkbox',
     component: CheckBoxPageComponent,
+    title: 'Checkbox | Anglify',
   },
   {
     path: 'chip',
     component: ChipPageComponent,
+    title: 'Chip | Anglify',
   },
   {
     path: 'combobox',
     component: ComboboxPageComponent,
+    title: 'Combobox | Anglify',
   },
   {
     path: 'dialog',
     component: DialogPageComponent,
+    title: 'Dialog | Anglify',
   },
   {
     path: 'expansion-panels',
     component: ExpansionPanelsPageComponent,
+    title: 'Expansion Panels | Anglify',
   },
   {
     path: 'icon',
     component: IconPageComponent,
+    title: 'Icon | Anglify',
   },
   {
     path: 'item-group',
     component: ItemGroupPageComponent,
+    title: 'Item Group | Anglify',
   },
   {
     path: 'list',
     component: ListPageComponent,
+    title: 'List | Anglify',
   },
   {
     path: 'menu',
     component: MenuPageComponent,
+    title: 'Menu | Anglify',
   },
   {
     path: 'navigation-drawer',
     component: NavigationDrawerPageComponent,
+    title: 'Navigation Drawer | Anglify',
   },
   {
     path: 'otp-input',
     component: OtpInputPageComponent,
+    title: 'OTP Input | Anglify',
   },
   {
     path: 'progress-circular',
     component: ProgressCircularPageComponent,
+    title: 'Progress Circular | Anglify',
   },
   {
     path: 'progress-linear',
     component: ProgressLinearPageComponent,
+    title: 'Progress Linear | Anglify',
   },
   {
     path: 'radio-button',
     component: RadioButtonPageComponent,
+    title: 'Radio Button | Anglify',
   },
   {
     path: 'select',
     component: SelectPageComponent,
+    title: 'Select | Anglify',
   },
   {
     path: 'snackbar',
     component: SnackbarPageComponent,
+    title: 'Snackbar | Anglify',
   },
   {
     path: 'stepper',
     component: StepperPageComponent,
+    title: 'Stepper | Anglify',
   },
   {
     path: 'table',
     component: TablePageComponent,
+    title: 'Table | Anglify',
   },
   {
     path: 'tabs',
     component: TabPageComponent,
+    title: 'Tabs | Anglify',
   },
   {
     path: 'text-area',
     component: TextAreaPageComponent,
+    title: 'Text Area | Anglify',
   },
   {
     path: 'text-field',
     component: TextFieldPageComponent,
+    title: 'Text Field | Anglify',
   },
   {
     path: 'timeline',
     component: TimelinePageComponent,
+    title: 'Timeline | Anglify',
   },
   {
     path: 'toolbar',
     component: ToolbarPageComponent,
+    title: 'Toolbar | Anglify',
   },
   {
     path: 'tooltip',
     component: TooltipPageComponent,
+    title: 'Tooltip | Anglify',
   },
 ];
 
