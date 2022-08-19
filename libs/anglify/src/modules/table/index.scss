@@ -35,6 +35,14 @@
         border-bottom-width: 0;
       }
     }
+
+    &:hover {
+      background: $table-hover-background;
+
+      td {
+        background: transparent;
+      }
+    }
   }
 
   tfoot {
