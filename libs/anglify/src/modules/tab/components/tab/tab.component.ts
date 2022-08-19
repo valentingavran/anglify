@@ -43,7 +43,7 @@ export class TabComponent implements AfterViewInit {
   @Input()
   public set active(value: boolean) {
     this._active$.next(value);
-    if (value) this.activeChange.next();
+    if (value) this.onActiveChange.next();
   }
 
   public get active() {
@@ -95,9 +95,9 @@ export class TabComponent implements AfterViewInit {
    */
   @Input() public exact = false;
 
-  @Output() public activeChange = new EventEmitter<void>();
-  @Output() public selectPrevious = new EventEmitter<void>();
-  @Output() public selectNext = new EventEmitter<void>();
+  @Output() public readonly onActiveChange = new EventEmitter<void>();
+  @Output() public readonly onSelectPrevious = new EventEmitter<void>();
+  @Output() public readonly onSelectNext = new EventEmitter<void>();
 
   public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
@@ -113,9 +113,9 @@ export class TabComponent implements AfterViewInit {
   // @ts-expect-error
   private onKeydown(event: KeyboardEvent) {
     if (event.key === 'ArrowLeft') {
-      this.selectPrevious.next();
+      this.onSelectPrevious.next();
     } else if (event.key === 'ArrowRight') {
-      this.selectNext.next();
+      this.onSelectNext.next();
     }
   }
 

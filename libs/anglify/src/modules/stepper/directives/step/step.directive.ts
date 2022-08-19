@@ -48,9 +48,9 @@ export class StepDirective {
     this._valid$.next(valid);
   }
 
-  @Output() public selectedChange = this.selected$;
-  @Output() public validChange = this.valid$;
-  @Output() public visitedChange = this.visited$;
+  @Output() public readonly onSelectedChange = this.selected$;
+  @Output() public readonly onValidChange = this.valid$;
+  @Output() public readonly onVisitedChange = this.visited$;
 
   public constructor(protected readonly stepper: StepperService, public template: TemplateRef<any>) {
     this.selected$.pipe(untilDestroyed(this)).subscribe();

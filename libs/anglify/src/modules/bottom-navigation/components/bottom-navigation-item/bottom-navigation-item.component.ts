@@ -92,9 +92,9 @@ export class BottomNavigationItemComponent {
    */
   @Input() public exact = false;
 
-  @Output() public activeChange = new EventEmitter<void>();
-  @Output() public selectPrevious = new EventEmitter<void>();
-  @Output() public selectNext = new EventEmitter<void>();
+  @Output() public readonly onActiveChange = new EventEmitter<void>();
+  @Output() public readonly onSelectPrevious = new EventEmitter<void>();
+  @Output() public readonly onSelectNext = new EventEmitter<void>();
   @Output() public readonly onClick = new EventEmitter<void>();
 
   public readonly shift$ = new BehaviorSubject(false);
@@ -137,9 +137,9 @@ export class BottomNavigationItemComponent {
   // @ts-expect-error
   private onKeydown(event: KeyboardEvent) {
     if (event.key === 'ArrowLeft') {
-      this.selectPrevious.next();
+      this.onSelectPrevious.next();
     } else if (event.key === 'ArrowRight') {
-      this.selectNext.next();
+      this.onSelectNext.next();
     }
   }
 

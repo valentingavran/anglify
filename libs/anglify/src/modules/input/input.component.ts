@@ -101,7 +101,7 @@ export class InputComponent implements OnInit, AfterViewInit {
   @Input() public counter = false;
   @Input() public readonly = false;
 
-  @Output() public onInputClick = new EventEmitter<void>();
+  @Output() public readonly onInputClick = new EventEmitter<void>();
 
   private readonly appearance$ = new BehaviorSubject<InputAppearance>('filled');
   private readonly floating$ = new BehaviorSubject<boolean>(false);

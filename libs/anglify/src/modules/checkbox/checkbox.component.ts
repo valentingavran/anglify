@@ -99,7 +99,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     return this.readonly$.value;
   }
 
-  @Output() public checkedChange = new EventEmitter<boolean>();
+  @Output() public readonly onCheckedChange = new EventEmitter<boolean>();
 
   public iconProvider!: null | CheckboxIconRef;
   public checked$ = new BehaviorSubject(this.settings.checked);
@@ -191,11 +191,11 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   @HostListener('click', ['$event'])
-  public onCheckedChange(event: Event) {
+  protected onCheckedChangeHandler(event: Event) {
     event.preventDefault();
     if (this.disabled$.value || this.readonly$.value) return;
     this.checked$.next(!this.checked$.value);
-    this.checkedChange.emit(this.checked$.value);
+    this.onCheckedChange.emit(this.checked$.value);
     this.onChange(this.checked$.value);
   }
 }
