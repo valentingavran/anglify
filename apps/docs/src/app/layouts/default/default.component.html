@@ -38,39 +38,37 @@
 >
   <anglify-list [dense]="true" [nav]="true">
     <anglify-list-item-group [mandatory]="true">
-      <anglify-list-group>
-        <ng-template slot="activator:prepend">
-          <anglify-icon icon="mdi-text-box"></anglify-icon>
-        </ng-template>
-        <ng-template slot="activator">
-          <anglify-list-item-title>Getting started</anglify-list-item-title>
-        </ng-template>
-        <anglify-list-item *ngFor="let article of gettingStarted" [routerLink]="article.link">
-          <anglify-list-item-title>{{ article.name }}</anglify-list-item-title>
+      <ng-container *ngFor="let itemOrGroup of navigationTree">
+        <anglify-list-item *ngIf="itemOrGroup.type === 'item'" [routerLink]="itemOrGroup.link">
+          <anglify-list-item-title>{{ itemOrGroup.name }}</anglify-list-item-title>
         </anglify-list-item>
-      </anglify-list-group>
-      <anglify-list-group>
-        <ng-template slot="activator:prepend">
-          <anglify-icon icon="mdi-feature-search"></anglify-icon>
-        </ng-template>
-        <ng-template slot="activator">
-          <anglify-list-item-title>Features</anglify-list-item-title>
-        </ng-template>
-        <anglify-list-item *ngFor="let article of features" [routerLink]="article.link">
-          <anglify-list-item-title>{{ article.name }}</anglify-list-item-title>
-        </anglify-list-item>
-      </anglify-list-group>
-      <anglify-list-group>
-        <ng-template slot="activator:prepend">
-          <anglify-icon icon="mdi-toggle-switch-outline"></anglify-icon>
-        </ng-template>
-        <ng-template slot="activator">
-          <anglify-list-item-title>Components</anglify-list-item-title>
-        </ng-template>
-        <anglify-list-item *ngFor="let component of components" [routerLink]="component.link">
-          <anglify-list-item-title>{{ component.name }}</anglify-list-item-title>
-        </anglify-list-item>
-      </anglify-list-group>
+        <anglify-list-group *ngIf="itemOrGroup.type === 'group'">
+          <ng-template *ngIf="itemOrGroup.icon" slot="activator:prepend">
+            <anglify-icon [icon]="itemOrGroup.icon"></anglify-icon>
+          </ng-template>
+          <ng-template slot="activator">
+            <anglify-list-item-title>{{ itemOrGroup.name }}</anglify-list-item-title>
+          </ng-template>
+          <ng-container *ngFor="let item of itemOrGroup.items">
+            <anglify-list-item *ngIf="item.type === 'item'" [routerLink]="item.link">
+              <anglify-list-item-title>{{ item.name }}</anglify-list-item-title>
+            </anglify-list-item>
+            <anglify-list-group *ngIf="item.type === 'group'">
+              <ng-template *ngIf="item.icon" slot="activator:prepend">
+                <anglify-icon [icon]="item.icon"></anglify-icon>
+              </ng-template>
+              <ng-template slot="activator">
+                <anglify-list-item-title>{{ item.name }}</anglify-list-item-title>
+              </ng-template>
+              <ng-container *ngFor="let item2 of item.items">
+                <anglify-list-item *ngIf="item2.type === 'item'" [routerLink]="item2.link">
+                  <anglify-list-item-title>{{ item2.name }}</anglify-list-item-title>
+                </anglify-list-item>
+              </ng-container>
+            </anglify-list-group>
+          </ng-container>
+        </anglify-list-group>
+      </ng-container>
     </anglify-list-item-group>
   </anglify-list>
 </anglify-navigation-drawer>
