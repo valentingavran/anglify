@@ -14,4 +14,7 @@
   <ng-container *ngFor="let directive of directives$ | async">
     <app-directive-api *ngIf="directive.name === selection" [documentation]="directive"></app-directive-api>
   </ng-container>
+  <ng-container *ngFor="let interface of interfaces$ | async">
+    <app-interface-api *ngIf="interface.name === selection" [documentation]="interface"></app-interface-api>
+  </ng-container>
 </ng-container>
