@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.30.0](https://github.com/valentingavran/anglify/compare/v0.29.1...v0.30.0) (2022-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Checkbox:** Click propagation has been disabled. This may cause some unexpected behaviour in
+existing applications.
+* **Table:** The Table component was renamed to SimpleTable (and all related properties).
+* Almost every output property was renamed (The word `on` was prefixed).
+
+### 🛠  Other Commits
+
+* **Table:** add hover styling to rows ([1d4ce95](https://github.com/valentingavran/anglify/commit/1d4ce95fbafc21a1855f36e0d366134b6b9bfd45))
+
+
+### 🔬  Code Refactoring
+
+* rename & prefix the word `on` to every output property ([6182392](https://github.com/valentingavran/anglify/commit/6182392431aba51dac97be93c93f8f5a5902857f))
+* **Table:** rename Table component to SimpleTable ([f258bf4](https://github.com/valentingavran/anglify/commit/f258bf48b410e149066ed3ad430bd8ea088edd98))
+
+
+### 🐛  Bug Fixes
+
+* **Checkbox:** clicking will stop propagation now ([85ba9f7](https://github.com/valentingavran/anglify/commit/85ba9f71ec98eb9c2edd933cafa7974cd522c2dc))
+* **Stepper:** make stepper header text not selectable ([7110949](https://github.com/valentingavran/anglify/commit/7110949c716208728ac845cbe68dde077d1ef569))
+
+
+### 📝  Docs
+
+* add page titles to every route ([9965b31](https://github.com/valentingavran/anglify/commit/9965b31314a3615b49a4a0ed736832179fd0432e))
+* add support for displaying interfaces inside the api table ([8d57e59](https://github.com/valentingavran/anglify/commit/8d57e5969790ff899bea52f2a5ceb2dd39dd38ac))
+* improve code example component (add scroll behaviour) ([29fcc5f](https://github.com/valentingavran/anglify/commit/29fcc5f316f11614c2ba8facb584a49aa829dff8))
+* use dynamic navigation tree inside navigation drawer ([01bb64a](https://github.com/valentingavran/anglify/commit/01bb64a77d7782eccd32eec00baf957a2fe75213))
+
+
+### 🚀  Features
+
+* add color on primary variant CSS custom properties ([8b185e2](https://github.com/valentingavran/anglify/commit/8b185e2d0dc185d17177cf9cb3a9f36db30922d6))
+* **Chip:** add inactive & active CSS custom properties for label color ([04adf83](https://github.com/valentingavran/anglify/commit/04adf83a9ff7d37f770f2d6d6af357ae01e06507))
+* implement Button Group component ([9531173](https://github.com/valentingavran/anglify/commit/9531173f7cd92173bb01dc61a1daf26daa3ffec7))
+* implement DataTable component ([cfad2b2](https://github.com/valentingavran/anglify/commit/cfad2b2f400ebf459f81fde799a27a8ef3093b90))
+* **Toolbar:** add navigation role to improve accessibility ([d743e91](https://github.com/valentingavran/anglify/commit/d743e91dd59bede0bc71ee7e512b2f4404cd511e))
+
 ### [0.29.1](https://github.com/valentingavran/anglify/compare/v0.29.0...v0.29.1) (2022-08-18)
 
 
