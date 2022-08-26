@@ -1,0 +1,9 @@
+<anglify-button-group [stateless]="true">
+  <button anglifyButtonGroupItem (click)="decrease()">
+    <anglify-icon icon="mdi-minus"></anglify-icon>
+  </button>
+  <button anglifyButtonGroupItem [readonly]="true">{{ count }}</button>
+  <button anglifyButtonGroupItem (onClick)="increase()">
+    <anglify-icon icon="mdi-plus"></anglify-icon>
+  </button>
+</anglify-button-group>

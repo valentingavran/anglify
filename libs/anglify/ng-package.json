@@ -10,6 +10,7 @@
     "src/modules/badge/*.scss",
     "src/modules/bottom-navigation/*.scss",
     "src/modules/button/*.scss",
+    "src/modules/button-group/*.scss",
     "src/modules/breadcrumbs/*.scss",
     "src/modules/card/*.scss",
     "src/modules/checkbox/*.scss",

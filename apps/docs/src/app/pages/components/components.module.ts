@@ -16,6 +16,7 @@ import { AutocompletePageComponent } from './autocomplete-page/autocomplete-page
 import { BadgePageComponent } from './badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './bottom-navigation-page/bottom-navigation-page.component';
 import { BreadcrumbsPageComponent } from './breadcrumbs-page/breadcrumbs-page.component';
+import { ButtonGroupPageComponent } from './button-group-page/button-group-page.component';
 import { ButtonPageComponent } from './button-page/button-page.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
@@ -47,6 +48,7 @@ import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 import { BadgeExampleModule } from '../../examples/badge/badge-example.module';
 import { BottomNavigationExampleModule } from '../../examples/bottom-navigation/bottom-navigation-example.module';
 import { BreadcrumbsExampleModule } from '../../examples/breadcrumbs/breadcrumbs-example.module';
+import { ButtonGroupExamplesModule } from '../../examples/button-group/button-group-examples.module';
 import { ButtonExamplesModule } from '../../examples/button/button-examples.module';
 import { CardExamplesModule } from '../../examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from '../../examples/checkbox/checkbox-examples.module';
@@ -107,6 +109,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TimelinePageComponent,
     OtpInputPageComponent,
     DataTablePageComponent,
+    ButtonGroupPageComponent,
   ],
   imports: [
     CommonModule,
@@ -141,6 +144,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     TimelineExamplesModule,
     OtpInputExampleModule,
     DataTableExampleModule,
+    ButtonGroupExamplesModule,
     // Imports for Playground
     TextFieldModule,
     IconModule,

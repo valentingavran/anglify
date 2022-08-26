@@ -45,6 +45,12 @@ export * from './modules/breadcrumbs/breadcrumbs.module';
 export * from './modules/button/button.component';
 export * from './modules/button/button.interface';
 export * from './modules/button/button.module';
+// Button Group
+export * from './modules/button-group/components/button-group/button-group.component';
+export * from './modules/button-group/components/button-group-item/button-group-item.component';
+export * from './modules/button-group/button-group-settings.token';
+export * from './modules/button-group/button-group.interface';
+export * from './modules/button-group/button-group.module';
 // Card
 export * from './modules/card/card-settings.token';
 export * from './modules/card/card.component';

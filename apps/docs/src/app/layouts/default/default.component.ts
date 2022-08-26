@@ -103,6 +103,11 @@ export class DefaultComponent {
           type: 'item',
         },
         {
+          link: 'components/button-group',
+          name: 'Button Group',
+          type: 'item',
+        },
+        {
           link: 'components/card',
           name: 'Card',
           type: 'item',

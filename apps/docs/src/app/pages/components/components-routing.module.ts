@@ -4,6 +4,7 @@ import { AutocompletePageComponent } from './autocomplete-page/autocomplete-page
 import { BadgePageComponent } from './badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './bottom-navigation-page/bottom-navigation-page.component';
 import { BreadcrumbsPageComponent } from './breadcrumbs-page/breadcrumbs-page.component';
+import { ButtonGroupPageComponent } from './button-group-page/button-group-page.component';
 import { ButtonPageComponent } from './button-page/button-page.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
@@ -57,6 +58,11 @@ const routes: Routes = [
     path: 'button',
     component: ButtonPageComponent,
     title: 'Button | Anglify',
+  },
+  {
+    path: 'button-group',
+    component: ButtonGroupPageComponent,
+    title: 'Button Group | Anglify',
   },
   {
     path: 'card',
