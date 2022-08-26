@@ -61,7 +61,7 @@ export class NavigationDrawerComponent implements AfterViewInit {
     return this.value$.value;
   }
 
-  @Output() public valueChange = new EventEmitter();
+  @Output() public readonly onValueChange = new EventEmitter();
 
   public value$ = new BehaviorSubject(false);
   public mode$ = new BehaviorSubject<NavigationDrawerMode>(this.settings.mode);
@@ -89,7 +89,7 @@ export class NavigationDrawerComponent implements AfterViewInit {
 
   private setOpened(open: boolean) {
     this.value$.next(open);
-    this.valueChange.emit(open);
+    this.onValueChange.emit(open);
   }
 
   private listItemClickHandler() {

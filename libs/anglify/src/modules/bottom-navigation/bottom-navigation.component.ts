@@ -134,10 +134,10 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
     this.deselectAllOthers(item);
     this.destroySelectPreviousSubscription.next();
 
-    item.selectPrevious.pipe(untilDestroyed(this), takeUntil(this.destroySelectPreviousSubscription)).subscribe(() => {
+    item.onSelectPrevious.pipe(untilDestroyed(this), takeUntil(this.destroySelectPreviousSubscription)).subscribe(() => {
       this.selectPrevious(item);
     });
-    item.selectNext.pipe(untilDestroyed(this), takeUntil(this.destroySelectNextSubscription)).subscribe(() => {
+    item.onSelectNext.pipe(untilDestroyed(this), takeUntil(this.destroySelectNextSubscription)).subscribe(() => {
       this.selectNext(item);
     });
 

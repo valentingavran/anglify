@@ -1,6 +1,6 @@
 <ng-container *ngIf="documentation?.inputsClass?.length">
   <h3>Inputs</h3>
-  <anglify-table>
+  <anglify-simple-table>
     <thead>
       <tr>
         <th>Name</th>
@@ -15,12 +15,12 @@
         <td [innerHTML]="input.description"></td>
       </tr>
     </tbody>
-  </anglify-table>
+  </anglify-simple-table>
 </ng-container>
 
 <ng-container *ngIf="documentation?.outputsClass?.length">
   <h3>Outputs</h3>
-  <anglify-table>
+  <anglify-simple-table>
     <thead>
       <tr>
         <th>Name</th>
@@ -33,12 +33,12 @@
         <td [innerHTML]="input.description"></td>
       </tr>
     </tbody>
-  </anglify-table>
+  </anglify-simple-table>
 </ng-container>
 
 <ng-container *ngIf="publicMethods$ | async as publicMethods">
   <h3>Methods</h3>
-  <anglify-table>
+  <anglify-simple-table>
     <thead>
       <tr>
         <th>Name</th>
@@ -51,5 +51,5 @@
         <td>{{ method.description }}</td>
       </tr>
     </tbody>
-  </anglify-table>
+  </anglify-simple-table>
 </ng-container>

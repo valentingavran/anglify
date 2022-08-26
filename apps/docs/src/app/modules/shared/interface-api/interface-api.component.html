@@ -1,0 +1,17 @@
+<ng-container *ngIf="properties$ | async as properties">
+  <h3>Properties</h3>
+  <anglify-simple-table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let property of properties">
+        <td>{{ property.name }}</td>
+        <td>{{ property.type }}</td>
+      </tr>
+    </tbody>
+  </anglify-simple-table>
+</ng-container>

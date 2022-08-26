@@ -1,4 +1,4 @@
-import { TableModule } from '@anglify/components';
+import { SimpleTableModule } from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FixedFooterComponent } from './fixed-footer/fixed-footer.component';
@@ -8,6 +8,6 @@ import { NormalComponent } from './normal/normal.component';
 
 @NgModule({
   declarations: [NormalComponent, FixedHeightComponent, FixedFooterComponent, FixedHeaderComponent],
-  imports: [CommonModule, TableModule],
+  imports: [CommonModule, SimpleTableModule],
 })
 export class TableExamplesModule {}

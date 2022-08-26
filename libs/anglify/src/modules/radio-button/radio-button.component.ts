@@ -41,7 +41,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   /** Controls whether to display the focus and hover styles for this component. */
   @Input() public state = this.settings.state;
 
-  @Output() public checkedChange = new EventEmitter<boolean>();
+  @Output() public readonly onCheckedChange = new EventEmitter<boolean>();
   public checked: any;
 
   public onChange: (...args: any[]) => void = () => {};
@@ -63,7 +63,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
 
   public onModelChange(e: boolean) {
     this.checked = e;
-    this.checkedChange.next(e);
+    this.onCheckedChange.next(e);
     this.onChange(e);
   }
 }

@@ -3,9 +3,10 @@
   --color-on-primary-high-emphasis: rgb(255 255 255 / 87%);
   --color-on-primary-medium-emphasis: rgb(255 255 255 / 60%);
   --color-on-primary-low-emphasis: rgb(255 255 255 / 38%);
-  --color-primary-state-hover: rgb(98 0 238 / 4%);
-  --color-primary-state-focus: rgb(98 0 238 / 12%);
   --color-primary-variant: #bb86fc;
+  --color-on-primary-variant-high-emphasis: rgb(0 0 0 / 87%);
+  --color-on-primary-variant-medium-emphasis: rgb(0 0 0 / 60%);
+  --color-on-primary-variant-low-emphasis: rgb(0 0 0 / 38%);
   --color-secondary: #03dac6;
   --color-on-secondary-high-emphasis: rgb(0 0 0 / 87%);
   --color-on-secondary-medium-emphasis: rgb(0 0 0 / 60%);
@@ -38,10 +39,14 @@
   --color-on-surface-overlay-medium-emphasis: rgb(0 0 0 / 60%);
   --color-on-surface-overlay-low-emphasis: rgb(0 0 0 / 38%);
   --color-elevated: var(--color-surface);
-  --color-backdrop: rgb(0 0 0 / 12%);
-  --color-ripple: rgb(0 0 0 / 12%);
   --color-bar: var(--color-primary);
   --color-on-bar-high-emphasis: var(--color-on-primary-high-emphasis);
   --color-on-bar-medium-emphasis: var(--color-on-primary-medium-emphasis);
   --color-on-bar-low-emphasis: var(--color-on-primary-low-emphasis);
+  --color-backdrop: rgb(0 0 0 / 12%);
+  --color-ripple: rgb(0 0 0 / 12%);
+  --color-primary-state-hover: rgb(98 0 238 / 4%);
+  --color-primary-state-focus: rgb(98 0 238 / 12%);
+  --color-surface-state-hover: rgb(0 0 0 / 4%);
+  --color-surface-state-focus: rgb(0 0 0 / 12%);
 }

@@ -4,6 +4,7 @@
   display: flex;
   height: $stepper-header-height;
   align-items: center;
+  user-select: none;
 
   .prepend-item {
     position: relative;
@@ -28,7 +29,6 @@
       letter-spacing: $stepper-step-indicator-letter-spacing;
       text-transform: $stepper-step-indicator-text-transform;
       transition: $stepper-step-indicator-transition;
-      user-select: none;
 
       div {
         display: flex;
@@ -49,7 +49,6 @@
       text-overflow: ellipsis;
       text-transform: $stepper-label-text-transform;
       transition: $stepper-label-transition;
-      user-select: none;
 
       --webkit-line-clamp: 2;
     }

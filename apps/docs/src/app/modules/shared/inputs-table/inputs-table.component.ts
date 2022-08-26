@@ -34,18 +34,15 @@ export class InputsTableComponent {
   }
 
   public documentation$ = new BehaviorSubject<Documentation | null>(null);
-  public config$ = new BehaviorSubject<APIConfig>({
-    components: ['BadgeComponent', 'InputComponent'],
-    services: ['SnackbarService'],
-    directives: ['BadgeDirective'],
-  });
+  public config$ = new BehaviorSubject<APIConfig>({});
 
   public selectables$ = this.config$.pipe(
     map(config => {
       const components = config.components ?? [];
       const directives = config.directives ?? [];
       const services = config.services ?? [];
-      return [...components, ...directives, ...services];
+      const interfaces = config.interfaces ?? [];
+      return [...components, ...directives, ...services, ...interfaces];
     })
   );
 
@@ -71,6 +68,13 @@ export class InputsTableComponent {
     map(([documentation, config]) => {
       const directives = config.directives ?? [];
       return documentation?.directives.filter(directive => directives.includes(directive.name));
+    })
+  );
+
+  public interfaces$ = combineLatest([this.documentation$, this.config$]).pipe(
+    map(([documentation, config]) => {
+      const interfaces = config.interfaces ?? [];
+      return documentation?.interfaces.filter(i => interfaces.includes(i.name));
     })
   );
 }

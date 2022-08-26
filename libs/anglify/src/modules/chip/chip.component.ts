@@ -61,6 +61,7 @@ export class ChipComponent implements OnInit {
     return this.rippleService.active;
   }
 
+  /** Event that is emitted when the component is clicked. */
   @Output() public readonly onClick = new EventEmitter<void>();
 
   public readonly active$ = new BehaviorSubject<boolean>(false);

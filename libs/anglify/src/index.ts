@@ -45,6 +45,12 @@ export * from './modules/breadcrumbs/breadcrumbs.module';
 export * from './modules/button/button.component';
 export * from './modules/button/button.interface';
 export * from './modules/button/button.module';
+// Button Group
+export * from './modules/button-group/components/button-group/button-group.component';
+export * from './modules/button-group/components/button-group-item/button-group-item.component';
+export * from './modules/button-group/button-group-settings.token';
+export * from './modules/button-group/button-group.interface';
+export * from './modules/button-group/button-group.module';
 // Card
 export * from './modules/card/card-settings.token';
 export * from './modules/card/card.component';
@@ -66,6 +72,11 @@ export * from './modules/chip/chip.module';
 // Combobox
 export * from './modules/combobox/combobox.component';
 export * from './modules/combobox/combobox.module';
+// Data Table
+export * from './modules/data-table/data-table-settings.token';
+export * from './modules/data-table/data-table.component';
+export * from './modules/data-table/data-table.interface';
+export * from './modules/data-table/data-table.module';
 // Dialog
 export * from './modules/dialog/dialog.component';
 export * from './modules/dialog/dialog.interface';
@@ -155,8 +166,8 @@ export * from './modules/tab/tab-settings.token';
 export * from './modules/tab/tab.interface';
 export * from './modules/tab/tab.module';
 // Table
-export * from './modules/table/components/table/table.component';
-export * from './modules/table/table.module';
+export * from './modules/simple-table/simple-table.component';
+export * from './modules/simple-table/simple-table.module';
 // Text Area
 export * from './modules/text-area/text-area-settings.token';
 export * from './modules/text-area/text-area.component';

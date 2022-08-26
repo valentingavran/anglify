@@ -1,0 +1,5 @@
+<anglify-data-table [headers]="headers" [items]="items">
+  <ng-template slot="item:calories" let-item>
+    <anglify-chip [ngClass]="getColor(item.calories)">{{ item.calories }}</anglify-chip>
+  </ng-template>
+</anglify-data-table>

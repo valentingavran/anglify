@@ -6,7 +6,7 @@
       [active]="ripple && (disabled$ | async) === false"
       [rippleOrigin]="rippleOrigin"
       [state]="state"
-      (keydown.space)="onCheckedChange($event)"
+      (keydown.space)="onCheckedChangeHandler($event)"
       [tabindex]="(disabled$ | async) ? '-1' : '0'"
     ></div>
     <span #reflectOffIcon [style.display]="(checked$ | async) ? 'none' : 'block'" class="checkbox-custom-icons">

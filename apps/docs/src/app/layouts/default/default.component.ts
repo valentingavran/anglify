@@ -2,6 +2,19 @@ import { BreakpointObserverService } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+interface NavItem {
+  name: string;
+  link: string;
+  type: 'item';
+}
+
+interface NavGroup {
+  name: string;
+  items: (NavItem | NavGroup)[];
+  type: 'group';
+  icon?: string;
+}
+
 @Component({
   selector: 'anglify-default',
   templateUrl: './default.component.html',
@@ -43,138 +56,205 @@ export class DefaultComponent {
     this.initTheme();
   }
 
-  public gettingStarted = [
-    { link: 'getting-started/installation', name: 'Installation' },
-    { link: 'getting-started/application-layouts', name: 'Application Layouts' },
-    { link: 'getting-started/release-notes', name: 'Release notes' },
-  ];
-
-  public features = [
-    { link: 'features/theming', name: 'Theming' },
-    { link: 'features/icon-fonts', name: 'Icon Fonts' },
-    { link: 'features/breakpoints', name: 'Breakpoints' },
-  ];
-
-  public components = [
+  public navigationTree: (NavItem | NavGroup)[] = [
     {
-      link: 'components/autocomplete',
-      name: 'Autocomplete',
+      name: 'Getting Started',
+      items: [
+        { link: 'getting-started/installation', name: 'Installation', type: 'item' },
+        { link: 'getting-started/application-layouts', name: 'Application Layouts', type: 'item' },
+        { link: 'getting-started/release-notes', name: 'Release notes', type: 'item' },
+      ],
+      type: 'group',
+      icon: 'mdi-text-box',
     },
     {
-      link: 'components/badge',
-      name: 'Badge',
+      name: 'Features',
+      items: [
+        { link: 'features/theming', name: 'Theming', type: 'item' },
+        { link: 'features/icon-fonts', name: 'Icon Fonts', type: 'item' },
+        { link: 'features/breakpoints', name: 'Breakpoints', type: 'item' },
+      ],
+      type: 'group',
+      icon: 'mdi-feature-search',
     },
     {
-      link: 'components/bottom-navigation',
-      name: 'Bottom Navigation',
-    },
-    {
-      link: 'components/breadcrumbs',
-      name: 'Breadcrumbs',
-    },
-    {
-      link: 'components/button',
-      name: 'Button',
-    },
-    {
-      link: 'components/card',
-      name: 'Card',
-    },
-    {
-      link: 'components/checkbox',
-      name: 'Checkbox',
-    },
-    {
-      link: 'components/chip',
-      name: 'Chip',
-    },
-    {
-      link: 'components/combobox',
-      name: 'Combobox',
-    },
-    {
-      link: 'components/dialog',
-      name: 'Dialog',
-    },
-    {
-      link: 'components/expansion-panels',
-      name: 'Expansion Panels',
-    },
-    {
-      link: 'components/icon',
-      name: 'Icon',
-    },
-    {
-      link: 'components/item-group',
-      name: 'Item Group',
-    },
-    {
-      link: 'components/list',
-      name: 'List',
-    },
-    {
-      link: 'components/menu',
-      name: 'Menu',
-    },
-    {
-      link: 'components/navigation-drawer',
-      name: 'Navigation Drawer',
-    },
-    {
-      link: 'components/otp-input',
-      name: 'OTP Input',
-    },
-    {
-      link: 'components/progress-circular',
-      name: 'Progress Circular',
-    },
-    {
-      link: 'components/progress-linear',
-      name: 'Progress Linear',
-    },
-    {
-      link: 'components/radio-button',
-      name: 'Radio Button',
-    },
-    {
-      link: 'components/select',
-      name: 'Select',
-    },
-    {
-      link: 'components/snackbar',
-      name: 'Snackbar',
-    },
-    {
-      link: 'components/stepper',
-      name: 'Stepper',
-    },
-    {
-      link: 'components/table',
-      name: 'Table',
-    },
-    {
-      link: 'components/tabs',
-      name: 'Tabs',
-    },
-    {
-      link: 'components/text-area',
-      name: 'Text Area',
-    },
-    {
-      link: 'components/text-field',
-      name: 'Text Field',
-    },
-    {
-      link: 'components/timeline',
-      name: 'Timeline',
-    },
-    {
-      link: 'components/toolbar',
-      name: 'Toolbar',
-    },
-    {
-      link: 'components/tooltip',
-      name: 'Tooltip',
+      name: 'Components',
+      type: 'group',
+      icon: 'mdi-toggle-switch-outline',
+      items: [
+        {
+          link: 'components/badge',
+          name: 'Badge',
+          type: 'item',
+        },
+        {
+          link: 'components/bottom-navigation',
+          name: 'Bottom Navigation',
+          type: 'item',
+        },
+        {
+          link: 'components/breadcrumbs',
+          name: 'Breadcrumbs',
+          type: 'item',
+        },
+        {
+          link: 'components/button',
+          name: 'Button',
+          type: 'item',
+        },
+        {
+          link: 'components/button-group',
+          name: 'Button Group',
+          type: 'item',
+        },
+        {
+          link: 'components/card',
+          name: 'Card',
+          type: 'item',
+        },
+        {
+          link: 'components/chip',
+          name: 'Chip',
+          type: 'item',
+        },
+        {
+          link: 'components/dialog',
+          name: 'Dialog',
+          type: 'item',
+        },
+        {
+          link: 'components/expansion-panels',
+          name: 'Expansion Panels',
+          type: 'item',
+        },
+        {
+          type: 'group',
+          name: 'Form inputs & controls',
+          items: [
+            {
+              link: 'components/autocomplete',
+              name: 'Autocomplete',
+              type: 'item',
+            },
+            {
+              link: 'components/checkbox',
+              name: 'Checkbox',
+              type: 'item',
+            },
+            {
+              link: 'components/combobox',
+              name: 'Combobox',
+              type: 'item',
+            },
+            {
+              link: 'components/otp-input',
+              name: 'OTP Input',
+              type: 'item',
+            },
+            {
+              link: 'components/radio-button',
+              name: 'Radio Button',
+              type: 'item',
+            },
+            {
+              link: 'components/select',
+              name: 'Select',
+              type: 'item',
+            },
+            {
+              link: 'components/text-area',
+              name: 'Text Area',
+              type: 'item',
+            },
+            {
+              link: 'components/text-field',
+              name: 'Text Field',
+              type: 'item',
+            },
+          ],
+        },
+        {
+          link: 'components/icon',
+          name: 'Icon',
+          type: 'item',
+        },
+        {
+          link: 'components/item-group',
+          name: 'Item Group',
+          type: 'item',
+        },
+        {
+          link: 'components/list',
+          name: 'List',
+          type: 'item',
+        },
+        {
+          link: 'components/menu',
+          name: 'Menu',
+          type: 'item',
+        },
+        {
+          link: 'components/navigation-drawer',
+          name: 'Navigation Drawer',
+          type: 'item',
+        },
+        {
+          link: 'components/progress-circular',
+          name: 'Progress Circular',
+          type: 'item',
+        },
+        {
+          link: 'components/progress-linear',
+          name: 'Progress Linear',
+          type: 'item',
+        },
+        {
+          link: 'components/snackbar',
+          name: 'Snackbar',
+          type: 'item',
+        },
+        {
+          link: 'components/stepper',
+          name: 'Stepper',
+          type: 'item',
+        },
+        {
+          type: 'group',
+          items: [
+            {
+              link: 'components/data-table',
+              name: 'Data Table',
+              type: 'item',
+            },
+            {
+              link: 'components/simple-table',
+              name: 'Simple Table',
+              type: 'item',
+            },
+          ],
+          name: 'Tables',
+        },
+        {
+          link: 'components/tabs',
+          name: 'Tabs',
+          type: 'item',
+        },
+        {
+          link: 'components/timeline',
+          name: 'Timeline',
+          type: 'item',
+        },
+        {
+          link: 'components/toolbar',
+          name: 'Toolbar',
+          type: 'item',
+        },
+        {
+          link: 'components/tooltip',
+          name: 'Tooltip',
+          type: 'item',
+        },
+      ],
     },
   ];
 }

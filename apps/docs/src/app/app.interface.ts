@@ -2,6 +2,7 @@ export interface Documentation {
   components: ComponentDocumentation[];
   directives: DirectiveDocumentation[];
   injectables: InjectableDocumentation[];
+  interfaces: InterfaceDocumentation[];
 }
 
 export interface ComponentDocumentation {
@@ -71,6 +72,7 @@ export interface APIConfig {
   components?: string[];
   directives?: string[];
   services?: string[];
+  interfaces?: string[];
 }
 
 export enum ModifierType {
@@ -95,4 +97,23 @@ export interface MethodDocumentation {
   deprecated: boolean;
   deprecationMessage: boolean;
   modifierKind: ModifierType[];
+}
+
+export interface InterfaceDocumentation {
+  name: string;
+  id: string;
+  file: string;
+  deprecated: boolean;
+  deprecationMessage: string;
+  type: string;
+  sourceCode: string;
+  properties: {
+    name: string;
+    deprecated: boolean;
+    deprecationMessage: string;
+    type: string;
+    optional: boolean;
+    description: string;
+    line: number;
+  }[];
 }

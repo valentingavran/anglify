@@ -8,14 +8,17 @@ const routes: Routes = [
   {
     path: 'installation',
     component: InstallationComponent,
+    title: 'Installation | Anglify',
   },
   {
     path: 'application-layouts',
     component: LayoutsComponent,
+    title: 'Application Layouts | Anglify',
   },
   {
     path: 'release-notes',
     component: ReleaseNotesComponent,
+    title: 'Release Notes | Anglify',
   },
 ];
 

@@ -50,9 +50,9 @@ export class StepperComponent extends StepperService implements AfterContentInit
 
   @Output() public readonly onPrevious = this.onPrevious$;
   @Output() public readonly onNext = this.onNext$;
-  @Output() public readonly orientationChange = this.stepperSettings.orientation$;
+  @Output() public readonly onOrientationChange = this.stepperSettings.orientation$;
   @Output() public readonly onReset = this.onReset$;
-  @Output() public readonly stepChange = this.selectedStep$;
+  @Output() public readonly onStepChange = this.selectedStep$;
 
   private readonly _orientationHandler$ = this.stepperSettings.orientation$.pipe(
     tap(orientation => {

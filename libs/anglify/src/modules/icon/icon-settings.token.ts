@@ -1,5 +1,15 @@
 import { InjectionToken } from '@angular/core';
-import { mdiCheck, mdiChevronDown, mdiClose, mdiCloseCircle, mdiPencil } from '@mdi/js';
+import {
+  mdiCheck,
+  mdiChevronDown,
+  mdiClose,
+  mdiCloseCircle,
+  mdiPencil,
+  mdiArrowUp,
+  mdiArrowDown,
+  mdiArrowLeft,
+  mdiArrowRight,
+} from '@mdi/js';
 import type { EntireIconSettings, IconSettings } from './icon.interface';
 
 export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
@@ -11,6 +21,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       mdiClose,
       mdiCloseCircle,
       mdiPencil,
+      mdiArrowUp,
+      mdiArrowDown,
+      mdiArrowLeft,
+      mdiArrowRight,
     },
     mdiSVG: {
       mdiCheck,
@@ -18,6 +32,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       mdiClose,
       mdiCloseCircle,
       mdiPencil,
+      mdiArrowUp,
+      mdiArrowDown,
+      mdiArrowLeft,
+      mdiArrowRight,
     },
   },
   defaultSize: 'regular',
@@ -28,6 +46,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       close: 'mdiClose',
       closeCircle: 'mdiCircleClose',
       edit: 'mdiPencil',
+      arrowUp: 'mdiArrowUp',
+      arrowDown: 'mdiArrowDown',
+      arrowLeft: 'mdiArrowLeft',
+      arrowRight: 'mdiArrowRight',
     },
     fa4: {
       check: 'fa-check',
@@ -35,6 +57,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       close: 'fa-close',
       closeCircle: 'fa-times-circle',
       edit: 'fa-pencil',
+      arrowUp: 'fa-arrow-up',
+      arrowDown: 'fa-arrow-down',
+      arrowLeft: 'fa-arrow-left',
+      arrowRight: 'fa-arrow-right',
     },
     fa5: {
       check: 'fa-check',
@@ -42,6 +68,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       close: 'fa-close',
       closeCircle: 'fa-times-circle',
       edit: 'fa-pencil',
+      arrowUp: 'fa-arrow-up',
+      arrowDown: 'fa-arrow-down',
+      arrowLeft: 'fa-arrow-left',
+      arrowRight: 'fa-arrow-right',
     },
     md: {
       check: 'check',
@@ -49,6 +79,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       close: 'close',
       closeCircle: 'highlight_off',
       edit: 'edit',
+      arrowUp: 'arrow_upward',
+      arrowDown: 'arrow_downward',
+      arrowLeft: 'arrow_back',
+      arrowRight: 'arrow_forward',
     },
     mdi: {
       check: 'mdi-check',
@@ -56,6 +90,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       close: 'mdi-close',
       closeCircle: 'mdi-close-circle',
       edit: 'mdi-pencil',
+      arrowUp: 'mdi-arrow-up',
+      arrowDown: 'mdi-arrow-down',
+      arrowLeft: 'mdi-arrow-left',
+      arrowRight: 'mdi-arrow-right',
     },
     mdiSVG: {
       check: 'mdiCheck',
@@ -63,6 +101,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       close: 'mdiClose',
       closeCircle: 'mdiCloseCircle',
       edit: 'mdiPencil',
+      arrowUp: 'mdiArrowUp',
+      arrowDown: 'mdiArrowDown',
+      arrowLeft: 'mdiArrowLeft',
+      arrowRight: 'mdiArrowRight',
     },
     faSVG: {
       check: '',
@@ -70,6 +112,10 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       close: '',
       closeCircle: '',
       edit: '',
+      arrowUp: '',
+      arrowDown: '',
+      arrowLeft: '',
+      arrowRight: '',
     },
   },
 };

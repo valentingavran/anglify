@@ -2,7 +2,6 @@ $chip-border-radius: var(--anglify-chip-border-radius, 16px) !default;
 $chip-height: var(--anglify-chip-height, 20px) !default;
 $chip-padding: var(--anglify-chip-padding, 6px 12px) !default;
 $chip-background-color: var(--anglify-chip-background-color, var(--color-surface-overlay)) !default;
-$chip-text-decoration: var(--anglify-chip-text-decoration, none) !default;
 $chip-cursor: var(--anglify-chip-cursor, default) !default;
 $chip-inline-padding-start-dense: var(--anglify-chip-inline-padding-start-dense, 5px) !default;
 $chip-inline-padding-end-dense: var(--anglify-chip-inline-padding-end-dense, 5px) !default;
@@ -15,3 +14,6 @@ $chip-focus-state-color: var(--anglify-focus-state-color, var(--color-primary-st
 $chip-font: var(--anglify-chip-font, var(--font-body-2)) !default;
 $chip-letter-spacing: var(--anglify-chip-letter-spacing, var(--font-letter-spacing-body-2)) !default;
 $chip-text-transform: var(--anglify-chip-text-transform, var(--font-text-transform-body-2)) !default;
+$chip-text-decoration: var(--anglify-chip-text-decoration, none) !default;
+$chip-active-label-color: var(--anglify-chip-active-label-color, var(--color-primary)) !default;
+$chip-inactive-label-color: var(--anglify-chip-active-label-color, var(--color-on-surface-high-emphasis)) !default;

@@ -1,0 +1,92 @@
+@use 'variables' as *;
+
+.anglify-simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: $simple-table-layout;
+
+  th,
+  td {
+    overflow: hidden;
+    border-bottom-width: $simple-table-border-width;
+    border-bottom-style: $simple-table-border-style;
+    border-bottom-color: $simple-table-border-color;
+    text-align: left;
+    text-overflow: ellipsis;
+  }
+
+  th {
+    height: $simple-table-header-cell-height;
+    padding-right: $simple-table-header-cell-padding-right;
+    padding-left: $simple-table-header-cell-padding-left;
+    background: $simple-table-header-cell-background;
+  }
+
+  td {
+    height: $simple-table-cell-height;
+    padding-right: $simple-table-cell-padding-right;
+    padding-left: $simple-table-cell-padding-left;
+    background: $simple-table-cell-background;
+  }
+
+  tr {
+    &:last-child {
+      td {
+        border-bottom-width: 0;
+      }
+    }
+
+    &:hover {
+      background: $simple-table-hover-background;
+
+      td {
+        background: transparent;
+      }
+    }
+  }
+
+  tfoot {
+    /* stylelint-disable-next-line no-descending-specificity */
+    tr {
+      &:first-child {
+        border-top-width: $simple-table-border-width;
+        border-top-style: $simple-table-border-style;
+        border-top-color: $simple-table-border-color;
+      }
+    }
+  }
+
+  &-fixed-header {
+    th {
+      position: sticky;
+      top: 0;
+      border-bottom-color: transparent;
+      box-shadow: inset 0 -1px 0 $simple-table-border-color;
+    }
+  }
+
+  &-fixed-footer {
+    tfoot {
+      /* stylelint-disable-next-line no-descending-specificity */
+      tr {
+        &:first-child {
+          border-top-width: 0;
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity */
+        td {
+          position: sticky;
+          bottom: 0;
+          border-top-color: transparent;
+          box-shadow: inset 0 1px 0 $simple-table-border-color;
+        }
+      }
+    }
+  }
+
+  &-fixed-height {
+    height: $simple-table-fixed-height;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}

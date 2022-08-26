@@ -1,4 +1,4 @@
-import { ButtonModule, ChipModule, IconModule, ItemGroupModule, TableModule } from '@anglify/components';
+import { ButtonModule, ChipModule, IconModule, ItemGroupModule, SimpleTableModule } from '@anglify/components';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, SecurityContext } from '@angular/core';
@@ -10,6 +10,7 @@ import { ComponentAPIComponent } from './component-api/component-api.component';
 import { DirectiveAPIComponent } from './directive-api/directive-api.component';
 import { ImportExampleComponent } from './import-example/import-example.component';
 import { InputsTableComponent } from './inputs-table/inputs-table.component';
+import { InterfaceAPIComponent } from './interface-api/interface-api.component';
 import { ReferencesComponent } from './references/references.component';
 import { ServiceAPIComponent } from './service-api/service-api.component';
 import { StylingTableComponent } from './styling-table/styling-table.component';
@@ -24,6 +25,7 @@ import { StylingTableComponent } from './styling-table/styling-table.component';
     ComponentAPIComponent,
     DirectiveAPIComponent,
     ServiceAPIComponent,
+    InterfaceAPIComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,7 @@ import { StylingTableComponent } from './styling-table/styling-table.component';
     ChipModule,
     ButtonModule,
     HttpClientModule,
-    TableModule,
+    SimpleTableModule,
     ItemGroupModule,
     ReactiveFormsModule,
   ],

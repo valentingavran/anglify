@@ -6,7 +6,7 @@ import {
   ProgressLinearModule,
   RadioButtonModule,
   SelectModule,
-  TableModule,
+  SimpleTableModule,
   TextFieldModule,
 } from '@anglify/components';
 import { CommonModule } from '@angular/common';
@@ -16,12 +16,14 @@ import { AutocompletePageComponent } from './autocomplete-page/autocomplete-page
 import { BadgePageComponent } from './badge-page/badge-page.component';
 import { BottomNavigationPageComponent } from './bottom-navigation-page/bottom-navigation-page.component';
 import { BreadcrumbsPageComponent } from './breadcrumbs-page/breadcrumbs-page.component';
+import { ButtonGroupPageComponent } from './button-group-page/button-group-page.component';
 import { ButtonPageComponent } from './button-page/button-page.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { ComboboxPageComponent } from './combobox-page/combobox-page.component';
 import { ComponentsRoutingModule } from './components-routing.module';
+import { DataTablePageComponent } from './data-table-page/data-table-page.component';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
 import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
@@ -34,10 +36,10 @@ import { ProgressCircularPageComponent } from './progress-circular-page/progress
 import { ProgressLinearPageComponent } from './progress-linear-page/progress-linear-page.component';
 import { RadioButtonPageComponent } from './radio-button-page/radio-button-page.component';
 import { SelectPageComponent } from './select-page/select-page.component';
+import { SimpleTablePageComponent } from './simple-table-page/simple-table-page.component';
 import { SnackbarPageComponent } from './snackbar-page/snackbar-page.component';
 import { StepperPageComponent } from './stepper-page/stepper-page.component';
 import { TabPageComponent } from './tab-page/tab-page.component';
-import { TablePageComponent } from './table-page/table-page.component';
 import { TextAreaPageComponent } from './text-area-page/text-area-page.component';
 import { TextFieldPageComponent } from './text-field-page/text-field-page.component';
 import { TimelinePageComponent } from './timeline-page/timeline-page.component';
@@ -46,10 +48,12 @@ import { TooltipPageComponent } from './tooltip-page/tooltip-page.component';
 import { BadgeExampleModule } from '../../examples/badge/badge-example.module';
 import { BottomNavigationExampleModule } from '../../examples/bottom-navigation/bottom-navigation-example.module';
 import { BreadcrumbsExampleModule } from '../../examples/breadcrumbs/breadcrumbs-example.module';
+import { ButtonGroupExamplesModule } from '../../examples/button-group/button-group-examples.module';
 import { ButtonExamplesModule } from '../../examples/button/button-examples.module';
 import { CardExamplesModule } from '../../examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from '../../examples/checkbox/checkbox-examples.module';
 import { ChipExamplesModule } from '../../examples/chip/chip-examples.module';
+import { DataTableExampleModule } from '../../examples/data-table/data-table-example.module';
 import { DialogExamplesModule } from '../../examples/dialog/dialog-examples.module';
 import { ExpansionPanelsExampleModule } from '../../examples/expansion-panels/expansion-panels-example.module';
 import { IconExamplesModule } from '../../examples/icon/icon-examples.module';
@@ -83,7 +87,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     CardPageComponent,
     ProgressCircularPageComponent,
     CheckBoxPageComponent,
-    TablePageComponent,
+    SimpleTablePageComponent,
     ProgressLinearPageComponent,
     RadioButtonPageComponent,
     DialogPageComponent,
@@ -104,6 +108,8 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ComboboxPageComponent,
     TimelinePageComponent,
     OtpInputPageComponent,
+    DataTablePageComponent,
+    ButtonGroupPageComponent,
   ],
   imports: [
     CommonModule,
@@ -137,13 +143,15 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ExpansionPanelsExampleModule,
     TimelineExamplesModule,
     OtpInputExampleModule,
+    DataTableExampleModule,
+    ButtonGroupExamplesModule,
     // Imports for Playground
     TextFieldModule,
     IconModule,
     ReactiveFormsModule,
     FormsModule,
     ProgressLinearModule,
-    TableModule,
+    SimpleTableModule,
     CheckboxModule,
     RadioButtonModule,
     SelectModule,

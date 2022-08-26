@@ -1,27 +1,33 @@
 :host {
-  display: grid;
-  gap: 0.5rem;
-  grid-template-areas: 'preview' 'controls';
+  display: block;
 
-  .preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    border: 1px solid var(--border-color-on-surface-low-emphasis);
-    border-radius: 4px;
-    grid-area: preview;
-  }
+  .code-example {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-areas: 'preview' 'controls';
 
-  .controls {
-    display: flex;
-    min-height: 24px;
-    justify-content: flex-end;
-    gap: 1rem;
-    grid-area: controls;
-  }
+    .preview {
+      display: flex;
+      overflow: hidden;
+      box-sizing: border-box;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border: 1px solid var(--border-color-on-surface-low-emphasis);
+      border-radius: 4px;
+      grid-area: preview;
+    }
 
-  .code-container {
-    overflow: hidden;
+    .controls {
+      display: flex;
+      min-height: 24px;
+      justify-content: flex-end;
+      gap: 1rem;
+      grid-area: controls;
+    }
+
+    .code-container {
+      overflow: hidden;
+    }
   }
 }

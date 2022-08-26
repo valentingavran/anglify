@@ -88,6 +88,33 @@ export function bindClassToNativeElement(componentReference: any, data$: Observa
     .subscribe();
 }
 
+/**
+ * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ */
+export function bindAttrToNativeElement(
+  componentReference: any,
+  data$: Observable<boolean>,
+  element: HTMLElement,
+  attribute: string,
+  attributeValue: string
+) {
+  data$
+    .pipe(
+      untilDestroyed(componentReference),
+      tap(value => {
+        if (value) {
+          element.setAttribute(attribute, attributeValue);
+        } else {
+          element.removeAttribute(attribute);
+        }
+      })
+    )
+    .subscribe();
+}
+
+/**
+ * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ */
 export function bindObservableValueToNativeElement(componentReference: any, data$: Observable<string>, element: HTMLElement, prefix = '') {
   data$
     .pipe(
@@ -122,6 +149,24 @@ export function bindStyleToNativeElement(
         } else {
           // @ts-expect-error
           element.style[styleName] = null;
+        }
+      })
+    )
+    .subscribe();
+}
+
+/**
+ * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ */
+export function bindStyleValueToNativeElement(componentReference: any, data$: Observable<string>, element: HTMLElement, styleName: string) {
+  data$
+    .pipe(
+      untilDestroyed(componentReference),
+      tap(value => {
+        if (value) {
+          element.style.setProperty(styleName, value);
+        } else {
+          element.style.removeProperty(styleName);
         }
       })
     )
