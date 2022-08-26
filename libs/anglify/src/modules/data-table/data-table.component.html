@@ -1,0 +1,96 @@
+<table>
+  <thead *ngIf="(hideDefaultHeader$ | async) === false">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'header'">
+      <th *ngIf="selectionService.selectableRows$ | async">
+        <anglify-checkbox
+          *ngIf="selectionService.headerCheckboxEnabled$ | async"
+          (onCheckedChange)="selectionService.toggleAll()"
+          [checked]="(selectionService.areAllSelected$ | async) ?? false"
+        ></anglify-checkbox>
+      </th>
+      <ng-container *ngFor="let header of dataService.headers$ | async">
+        <th
+          *ngIf="dataService.isSortable$(header.value) | async; else notSortableHeader"
+          (click)="dataService.toggleSort(header.value, header.sortable)"
+          class="sortable"
+          [ngClass]="header.align ? 'align-' + header.align : 'align-start'"
+        >
+          <ng-container *anglifySlotOutlet="slots | findSlot: 'header:' + header.value; context: { $implicit: header }">
+            <span>{{ header.text }}</span>
+          </ng-container>
+          <ng-container *ngIf="header.sortable !== false">
+            <ng-container *ngIf="dataService.getSortIcon$(header.value) | async as icon; else sortIconPreview">
+              <anglify-icon class="sort-icon" size="x-small" [icon]="icon"></anglify-icon>
+              <div *ngIf="dataService.multiSort$ | async" class="sort-priority">
+                {{ dataService.getSortPriority$(header.value) | async }}
+              </div>
+            </ng-container>
+            <ng-template #sortIconPreview>
+              <anglify-icon class="sort-icon sort-icon-preview" size="x-small" [icon]="internalIcons.arrowDown"></anglify-icon>
+            </ng-template>
+          </ng-container>
+        </th>
+        <ng-template #notSortableHeader>
+          <th [ngClass]="header.align ? 'align-' + header.align : 'align-start'">
+            <ng-container *anglifySlotOutlet="slots | findSlot: 'header:' + header.value; context: { $implicit: header }">
+              <span>{{ header.text }}</span>
+            </ng-container>
+          </th>
+        </ng-template>
+      </ng-container>
+    </ng-container>
+  </thead>
+  <ng-container *ngFor="let item of paginationService.limitedItems$ | async; let index = index; trackBy: trackByFn">
+    <tr (click)="expansionService.expand(index)">
+      <td *ngIf="selectionService.selectableRows$ | async">
+        <anglify-checkbox
+          (onCheckedChange)="selectionService.toggleSelection(item)"
+          [checked]="(selectionService.isSelected$(item) | async) ?? false"
+        ></anglify-checkbox>
+      </td>
+      <td *ngFor="let header of dataService.headers$ | async" [ngClass]="header.align ? 'align-' + header.align : 'align-start'">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'item:' + header.value; context: { $implicit: item }">
+          <span>{{ item[header.value] }}</span>
+        </ng-container>
+      </td>
+    </tr>
+    <tr *ngIf="expansionService.isExpanded$(index) | async">
+      <td class="expanded-item">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'expanded-item'; context: { $implicit: item }"></ng-container>
+      </td>
+    </tr>
+  </ng-container>
+  <tfoot *ngIf="(hideDefaultFooter$ | async) === false">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'footer'">
+      <anglify-select
+        [ngModel]="paginationService.itemsPerPage$ | async"
+        (ngModelChange)="paginationService.itemsPerPage$.next($event)"
+        appearance="outlined"
+        [dense]="true"
+        [hideDetails]="true"
+        label="Rows per page"
+        [items]="paginationService.itemsPerPageOptions"
+        dropdownPosition="top"
+      ></anglify-select>
+      <div class="pagination">{{ paginationService.pagination$ | async }}</div>
+      <div>
+        <button
+          anglifyButton
+          appearance="icon"
+          [disabled]="paginationService.previousPageButtonDisabled$ | async"
+          (click)="paginationService.previousPage()"
+        >
+          <anglify-icon [icon]="internalIcons.arrowLeft"></anglify-icon>
+        </button>
+        <button
+          anglifyButton
+          appearance="icon"
+          [disabled]="paginationService.nextPageButtonDisabled$ | async"
+          (click)="paginationService.nextPage()"
+        >
+          <anglify-icon [icon]="internalIcons.arrowRight"></anglify-icon>
+        </button>
+      </div>
+    </ng-container>
+  </tfoot>
+</table>

@@ -214,9 +214,20 @@ export class DefaultComponent {
           type: 'item',
         },
         {
-          link: 'components/simple-table',
-          name: 'Simple Table',
-          type: 'item',
+          type: 'group',
+          items: [
+            {
+              link: 'components/data-table',
+              name: 'Data Table',
+              type: 'item',
+            },
+            {
+              link: 'components/simple-table',
+              name: 'Simple Table',
+              type: 'item',
+            },
+          ],
+          name: 'Tables',
         },
         {
           link: 'components/tabs',

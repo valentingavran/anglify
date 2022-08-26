@@ -1,0 +1,11 @@
+<anglify-checkbox [checked]="singleSelect" (onCheckedChange)="singleSelect = $event">Single select</anglify-checkbox>
+
+<anglify-data-table
+  [headers]="headers"
+  [items]="items"
+  [selectableRows]="true"
+  [(selection)]="selection"
+  [singleSelect]="singleSelect"
+></anglify-data-table>
+
+<p><strong>Selection:</strong> {{ selection | json }}</p>

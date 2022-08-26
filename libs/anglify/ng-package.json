@@ -15,6 +15,7 @@
     "src/modules/checkbox/*.scss",
     "src/modules/chip/*.scss",
     "src/modules/combobox/*.scss",
+    "src/modules/data-table/*.scss",
     "src/modules/dialog/*.scss",
     "src/modules/expansion-panels/*.scss",
     "src/modules/icon/*.scss",

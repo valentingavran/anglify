@@ -9,6 +9,7 @@ import { CardPageComponent } from './card-page/card-page.component';
 import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { ComboboxPageComponent } from './combobox-page/combobox-page.component';
+import { DataTablePageComponent } from './data-table-page/data-table-page.component';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
 import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
@@ -76,6 +77,11 @@ const routes: Routes = [
     path: 'combobox',
     component: ComboboxPageComponent,
     title: 'Combobox | Anglify',
+  },
+  {
+    path: 'data-table',
+    component: DataTablePageComponent,
+    title: 'Data Table | Anglify',
   },
   {
     path: 'dialog',

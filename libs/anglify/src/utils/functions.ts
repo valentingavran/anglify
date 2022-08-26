@@ -154,3 +154,21 @@ export function bindStyleToNativeElement(
     )
     .subscribe();
 }
+
+/**
+ * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ */
+export function bindStyleValueToNativeElement(componentReference: any, data$: Observable<string>, element: HTMLElement, styleName: string) {
+  data$
+    .pipe(
+      untilDestroyed(componentReference),
+      tap(value => {
+        if (value) {
+          element.style.setProperty(styleName, value);
+        } else {
+          element.style.removeProperty(styleName);
+        }
+      })
+    )
+    .subscribe();
+}

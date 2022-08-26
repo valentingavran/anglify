@@ -22,6 +22,7 @@ import { CheckBoxPageComponent } from './checkbox-page/checkbox-page.component';
 import { ChipPageComponent } from './chip-page/chip-page.component';
 import { ComboboxPageComponent } from './combobox-page/combobox-page.component';
 import { ComponentsRoutingModule } from './components-routing.module';
+import { DataTablePageComponent } from './data-table-page/data-table-page.component';
 import { DialogPageComponent } from './dialog-page/dialog-page.component';
 import { ExpansionPanelsPageComponent } from './expansion-panels-page/expansion-panels-page.component';
 import { IconPageComponent } from './icon-page/icon-page.component';
@@ -50,6 +51,7 @@ import { ButtonExamplesModule } from '../../examples/button/button-examples.modu
 import { CardExamplesModule } from '../../examples/card/card-examples.module';
 import { CheckBoxExamplesModule } from '../../examples/checkbox/checkbox-examples.module';
 import { ChipExamplesModule } from '../../examples/chip/chip-examples.module';
+import { DataTableExampleModule } from '../../examples/data-table/data-table-example.module';
 import { DialogExamplesModule } from '../../examples/dialog/dialog-examples.module';
 import { ExpansionPanelsExampleModule } from '../../examples/expansion-panels/expansion-panels-example.module';
 import { IconExamplesModule } from '../../examples/icon/icon-examples.module';
@@ -104,6 +106,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ComboboxPageComponent,
     TimelinePageComponent,
     OtpInputPageComponent,
+    DataTablePageComponent,
   ],
   imports: [
     CommonModule,
@@ -137,6 +140,7 @@ import { SharedModule } from '../../modules/shared/shared.module';
     ExpansionPanelsExampleModule,
     TimelineExamplesModule,
     OtpInputExampleModule,
+    DataTableExampleModule,
     // Imports for Playground
     TextFieldModule,
     IconModule,

@@ -43,6 +43,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
 
   /** Sets the input label. */
   @Input() public label?: string;
+  /** Reduces the input height. */
+  @Input() public dense = false;
   /** Sets the input’s placeholder text */
   @Input() public placeholder?: string;
   /** Hint text. */

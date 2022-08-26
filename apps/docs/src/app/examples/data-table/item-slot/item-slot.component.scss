@@ -1,0 +1,18 @@
+:host {
+  width: 100%;
+
+  .color-green {
+    --anglify-chip-background-color: #4caf50;
+    --anglify-chip-active-label-color: #fff;
+  }
+
+  .color-orange {
+    --anglify-chip-background-color: #ff9800;
+    --anglify-chip-active-label-color: #fff;
+  }
+
+  .color-red {
+    --anglify-chip-background-color: #f44336;
+    --anglify-chip-active-label-color: #fff;
+  }
+}
