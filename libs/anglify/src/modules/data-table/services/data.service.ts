@@ -30,8 +30,8 @@ export class DataService {
     })
   );
 
-  public readonly sortedItems$ = combineLatest([this.sortBy$, this.filteredItems$]).pipe(
-    map(([sortBy, items]) => DataService.sortFn(sortBy, items))
+  public readonly sortedItems$ = combineLatest([this.sortBy$, this.filteredItems$, this.headers$]).pipe(
+    map(([sortBy, items, headers]) => DataService.sortFn(sortBy, items, headers))
   );
 
   public static searchFn(search: string, headers: DataTableHeader[], items: DataTableItem[]) {
@@ -46,20 +46,26 @@ export class DataService {
     });
   }
 
-  public static sortFn(sortBy: SortSetting[], array: DataTableItem[]) {
+  public static sortFn(sortBy: SortSetting[], array: DataTableItem[], headers: DataTableHeader[]) {
     const items = array.slice();
 
-    if (!sortBy.length) {
-      return items;
-    }
+    if (!sortBy.length) return items;
 
     return items.sort((a, b) => {
       for (const option of sortBy) {
+        // if sort function is defined in headers, use it
+        const header = headers.find(header => header.value === option.value);
+        if (header?.sort) {
+          const sort = header.sort(a, b);
+
+          if (option.direction === 'desc') return sort * -1;
+          return sort;
+        }
+
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const aValue = a[option.value];
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const bValue = b[option.value];
-
         if (aValue === bValue) {
           continue;
         } else if (option.direction === 'asc') {

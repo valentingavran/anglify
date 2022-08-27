@@ -1,0 +1,9 @@
+<anglify-data-table [headers]="headers" [items]="items">
+  <ng-template slot="item:name" let-item>{{ item.first_name }} {{ item.last_name }}</ng-template>
+  <ng-template slot="item:street" let-item>{{ item.address.street }}</ng-template>
+  <ng-template slot="item:city" let-item>{{ item.address.city }}</ng-template>
+  <ng-template slot="item:postalCode" let-item>{{ item.address.postalCode }}</ng-template>
+  <ng-template slot="item:verified" let-item>
+    <anglify-checkbox [checked]="item.verified" [disabled]="true"></anglify-checkbox>
+  </ng-template>
+</anglify-data-table>

@@ -2,6 +2,7 @@ import { CheckboxModule, ChipModule, DataTableModule, TextFieldModule } from '@a
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ComplexDataComponent } from './complex-data/complex-data.component';
 import { ExpandableRowsComponent } from './expandable-rows/expandable-rows.component';
 import { FilterableComponent } from './filterable/filterable.component';
 import { HeaderSlotComponent } from './header-slot/header-slot.component';
@@ -21,6 +22,7 @@ import { SelectableRowsComponent } from './selectable-rows/selectable-rows.compo
     ExpandableRowsComponent,
     HideDefaultHeaderAndFooterComponent,
     SelectableRowsComponent,
+    ComplexDataComponent,
   ],
   imports: [CommonModule, DataTableModule, TextFieldModule, FormsModule, ChipModule, CheckboxModule],
 })

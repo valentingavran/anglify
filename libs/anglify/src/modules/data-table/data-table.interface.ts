@@ -5,6 +5,7 @@ export interface DataTableHeader<T = any> {
   filterable?: boolean;
   value: string;
   width?: number | string;
+  sort?: (a: DataTableItem<T>, b: DataTableItem<T>) => number;
 }
 
 export type DataTableItem<
