@@ -9,8 +9,10 @@ export type InternalIcons =
   | 'edit'
   | 'arrowUp'
   | 'arrowDown'
-  | 'arrowLeft'
-  | 'arrowRight';
+  | 'pageFirst'
+  | 'pageLast'
+  | 'chevronLeft'
+  | 'chevronRight';
 
 export type IconSet = 'fa4' | 'fa5' | 'md' | 'mdi' | 'custom' | 'faSVG' | 'mdiSVG';
 export type InternalIconMappings = { [T in IconSet]: InternalIconSetDefinition };

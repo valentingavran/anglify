@@ -1,6 +1,6 @@
 import { Host, Inject, Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, combineLatest, map, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, take, tap, withLatestFrom } from 'rxjs';
 import { DataService } from './data.service';
 import { EntireDataTableSettings } from '../data-table.interface';
 
@@ -9,6 +9,7 @@ import { EntireDataTableSettings } from '../data-table.interface';
 export class PaginationService {
   public readonly page$ = new BehaviorSubject(this.settings.page);
   public readonly itemsPerPage$ = new BehaviorSubject({ text: '5', value: 5 });
+  public readonly showFirstLastPageControls$ = new BehaviorSubject(this.settings.showFirstLastPageControls);
 
   public itemsPerPageOptions = [
     { value: 5, text: '5' },
@@ -55,8 +56,13 @@ export class PaginationService {
     })
   );
 
+  public readonly firstPageDisabled$ = this.page$.pipe(map(page => page === 1));
   public readonly previousPageButtonDisabled$ = this.page$.pipe(map(page => page <= 1));
   public readonly nextPageButtonDisabled$ = combineLatest([this.page$, this.maxPages$]).pipe(map(([page, maxPages]) => page === maxPages));
+  public readonly lastPageDisabled$ = this.page$.pipe(
+    withLatestFrom(this.maxPages$),
+    map(([page, maxPages]) => page === maxPages)
+  );
 
   public previousPage() {
     this.page$.next(this.page$.value - 1);
@@ -64,5 +70,13 @@ export class PaginationService {
 
   public nextPage() {
     this.page$.next(this.page$.value + 1);
+  }
+
+  public firstPage() {
+    this.page$.next(1);
+  }
+
+  public lastPage() {
+    this.maxPages$.pipe(take(1)).subscribe(maxPages => this.page$.next(maxPages));
   }
 }

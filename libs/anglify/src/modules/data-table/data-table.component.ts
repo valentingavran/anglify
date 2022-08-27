@@ -150,11 +150,21 @@ export class DataTableComponent {
     return this.selectionService.singleSelect$.value;
   }
 
+  /** Displays buttons that allow jumping to the first and last page. */
+  @Input() public set showFirstLastPageControls(value: boolean) {
+    this.paginationService.showFirstLastPageControls$.next(value);
+  }
+
+  public get showFirstLastPageControls() {
+    return this.paginationService.showFirstLastPageControls$.value;
+  }
+
   /** Emitted when the selected items change. */
   @Output() public readonly selectionChange = new EventEmitter<DataTableItem[]>();
 
   public readonly hideDefaultHeader$ = new BehaviorSubject(this.settings.hideDefaultHeader);
   public readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
+
   public readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
 
   public constructor(

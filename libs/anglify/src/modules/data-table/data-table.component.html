@@ -77,12 +77,22 @@
       <div>
         <button
           anglifyButton
+          *ngIf="paginationService.showFirstLastPageControls$ | async"
+          appearance="icon"
+          aria-label="Go to first page button"
+          [disabled]="paginationService.firstPageDisabled$ | async"
+          (click)="paginationService.firstPage()"
+        >
+          <anglify-icon [icon]="internalIcons.pageFirst"></anglify-icon>
+        </button>
+        <button
+          anglifyButton
           appearance="icon"
           [disabled]="paginationService.previousPageButtonDisabled$ | async"
           (click)="paginationService.previousPage()"
           aria-label="Previous page Button"
         >
-          <anglify-icon [icon]="internalIcons.arrowLeft"></anglify-icon>
+          <anglify-icon [icon]="internalIcons.chevronLeft"></anglify-icon>
         </button>
         <button
           anglifyButton
@@ -91,7 +101,17 @@
           (click)="paginationService.nextPage()"
           aria-label="Next page Button"
         >
-          <anglify-icon [icon]="internalIcons.arrowRight"></anglify-icon>
+          <anglify-icon [icon]="internalIcons.chevronRight"></anglify-icon>
+        </button>
+        <button
+          anglifyButton
+          *ngIf="paginationService.showFirstLastPageControls$ | async"
+          appearance="icon"
+          aria-label="Go to first page button"
+          [disabled]="paginationService.lastPageDisabled$ | async"
+          (click)="paginationService.lastPage()"
+        >
+          <anglify-icon [icon]="internalIcons.pageLast"></anglify-icon>
         </button>
       </div>
     </ng-container>

@@ -10,6 +10,7 @@ export const DEFAULT_DATA_TABLE_SETTINGS: EntireDataTableSettings = {
   page: 1,
   selectableRows: false,
   singleSelect: false,
+  showFirstLastPageControls: false,
 };
 
 export const DATA_TABLE_SETTINGS = new InjectionToken<DataTableSettings>('Data Table Settings');

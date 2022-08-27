@@ -28,6 +28,7 @@ export interface EntireDataTableSettings {
   selectableRows: boolean;
   itemKey: string;
   singleSelect: boolean;
+  showFirstLastPageControls: boolean;
 }
 
 export type DataTableSettings = Partial<EntireDataTableSettings>;
