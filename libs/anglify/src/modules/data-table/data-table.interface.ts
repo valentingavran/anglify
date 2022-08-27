@@ -1,4 +1,4 @@
-export interface DataTableHeader {
+export interface DataTableHeader<T = any> {
   text: string;
   align?: 'start' | 'center' | 'end';
   sortable?: boolean;
@@ -7,9 +7,11 @@ export interface DataTableHeader {
   width?: number | string;
 }
 
-export interface DataTableItem {
-  [key: string]: any;
-}
+export type DataTableItem<
+  T = {
+    [key: string]: any;
+  }
+> = T;
 
 export interface SortSetting {
   value: string;
