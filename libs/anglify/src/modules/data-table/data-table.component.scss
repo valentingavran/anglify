@@ -4,6 +4,7 @@
   table {
     display: grid;
     overflow: auto;
+    box-sizing: border-box;
     border: $data-table-border;
     border-radius: $data-table-border-radius;
     grid-template-columns: var(--anglify-data-table-header-widths); // property programmatically set in code
@@ -17,7 +18,7 @@
   th,
   td {
     display: flex;
-    min-height: $data-table-min-row-height;
+    box-sizing: border-box;
     align-items: center;
     border-bottom: $data-table-border;
     padding-inline-end: $data-table-column-padding;
@@ -43,10 +44,11 @@
   }
 
   th {
-    font: var(--font-subtitle-1);
+    min-height: $data-table-min-header-height;
+    font: $data-table-header-font;
     font-weight: bold;
-    letter-spacing: var(--font-letter-spacing-subtitle-1);
-    text-transform: var(--font-text-transform-subtitle-1);
+    letter-spacing: $data-table-header-letter-spacing;
+    text-transform: $data-table-header-text-transform;
     user-select: none;
 
     &.sortable {
@@ -79,6 +81,14 @@
   }
 
   tr {
+    font: $data-table-row-font;
+    letter-spacing: $data-table-row-letter-spacing;
+    text-transform: $data-table-row-text-transform;
+
+    td {
+      min-height: $data-table-min-row-height;
+    }
+
     &:hover {
       td:not(.expanded-item) {
         background-color: $data-table-row-hover-background-color;

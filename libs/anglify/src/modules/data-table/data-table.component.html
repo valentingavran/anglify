@@ -63,6 +63,7 @@
   <tfoot *ngIf="(hideDefaultFooter$ | async) === false">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'footer'">
       <anglify-select
+        aria-label="Items per page"
         [ngModel]="paginationService.itemsPerPage$ | async"
         (ngModelChange)="paginationService.itemsPerPage$.next($event)"
         appearance="outlined"
@@ -72,13 +73,14 @@
         [items]="paginationService.itemsPerPageOptions"
         dropdownPosition="top"
       ></anglify-select>
-      <div class="pagination">{{ paginationService.pagination$ | async }}</div>
+      <div class="pagination" aria-label="Pagination info">{{ paginationService.pagination$ | async }}</div>
       <div>
         <button
           anglifyButton
           appearance="icon"
           [disabled]="paginationService.previousPageButtonDisabled$ | async"
           (click)="paginationService.previousPage()"
+          aria-label="Previous page Button"
         >
           <anglify-icon [icon]="internalIcons.arrowLeft"></anglify-icon>
         </button>
@@ -87,6 +89,7 @@
           appearance="icon"
           [disabled]="paginationService.nextPageButtonDisabled$ | async"
           (click)="paginationService.nextPage()"
+          aria-label="Next page Button"
         >
           <anglify-icon [icon]="internalIcons.arrowRight"></anglify-icon>
         </button>
