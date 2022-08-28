@@ -8,7 +8,6 @@ describe('BadgeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BadgeComponent],
       providers: [
         {
           provide: POSITION_SETTINGS,

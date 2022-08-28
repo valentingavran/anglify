@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-manual-error',
+  standalone: true,
   templateUrl: './manual-error.component.html',
   styleUrls: ['./manual-error.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class ManualErrorComponent {}
-
-export default ManualErrorComponent;
+export default class ManualErrorComponent {}

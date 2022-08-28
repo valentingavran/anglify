@@ -4,12 +4,6 @@ describe('SimpleTableComponent', () => {
   let component: SimpleTableComponent;
   let fixture: ComponentFixture<SimpleTableComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SimpleTableComponent],
-    }).compileComponents();
-  });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(SimpleTableComponent);
     component = fixture.componentInstance;

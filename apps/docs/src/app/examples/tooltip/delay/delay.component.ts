@@ -1,10 +1,11 @@
+import { ButtonComponent, TooltipDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-delay',
+  standalone: true,
   templateUrl: './delay.component.html',
   styleUrls: ['./delay.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TooltipDirective, ButtonComponent],
 })
-export class DelayComponent {}
-export default DelayComponent;
+export default class DelayComponent {}

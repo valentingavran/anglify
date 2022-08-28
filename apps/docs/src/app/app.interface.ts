@@ -1,3 +1,17 @@
+import { CodeExampleComponent } from './components/code-example/code-example.component';
+import { ImportExampleComponent } from './components/import-example/import-example.component';
+import { InputsTableComponent } from './components/inputs-table/inputs-table.component';
+import { ReferencesComponent } from './components/references/references.component';
+import { StylingTableComponent } from './components/styling-table/styling-table.component';
+
+export const ComponentPageModule = [
+  ReferencesComponent,
+  CodeExampleComponent,
+  ImportExampleComponent,
+  InputsTableComponent,
+  StylingTableComponent,
+];
+
 export interface Documentation {
   components: ComponentDocumentation[];
   directives: DirectiveDocumentation[];

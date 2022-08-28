@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   template: '<div>Dialog works!</div>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogTestComponent {}
+export default class DialogTestComponent {}

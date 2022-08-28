@@ -8,7 +8,6 @@ describe('DialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogComponent],
       providers: [
         { provide: DIALOG_CONTEXT, useValue: {} },
         { provide: DIALOG_NODES, useValue: [] },

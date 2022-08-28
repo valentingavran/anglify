@@ -10,6 +10,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 
 @Component({
   selector: 'anglify-card',
+  standalone: true,
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

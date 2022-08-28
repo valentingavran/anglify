@@ -1,10 +1,11 @@
+import { ButtonComponent, IconComponent, SlotDirective, ToolbarComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-prominent',
+  standalone: true,
   templateUrl: './prominent.component.html',
   styleUrls: ['./prominent.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ToolbarComponent, ButtonComponent, IconComponent, SlotDirective],
 })
-export class ProminentComponent {}
-export default ProminentComponent;
+export default class ProminentComponent {}

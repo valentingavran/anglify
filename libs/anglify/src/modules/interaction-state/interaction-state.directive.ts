@@ -5,6 +5,7 @@ import { RippleService } from '../../composables/ripple/ripple.service';
 
 @Directive({
   selector: '[anglifyInteractionState]',
+  standalone: true,
   providers: [RIPPLE],
 })
 export class InteractionStateDirective {

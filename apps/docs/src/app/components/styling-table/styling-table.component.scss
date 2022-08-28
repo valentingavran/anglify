@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  margin-top: 5rem;
+
+  code {
+    padding: 0 !important;
+    background: transparent !important;
+    font: inherit;
+    letter-spacing: inherit;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+}

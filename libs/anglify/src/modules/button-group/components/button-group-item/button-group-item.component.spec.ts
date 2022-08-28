@@ -5,11 +5,7 @@ describe('ButtonGroupItemComponent', () => {
   let component: ButtonGroupItemComponent;
   let fixture: ComponentFixture<ButtonGroupItemComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ButtonGroupItemComponent],
-    }).compileComponents();
-
+  beforeEach(() => {
     fixture = TestBed.createComponent(ButtonGroupItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

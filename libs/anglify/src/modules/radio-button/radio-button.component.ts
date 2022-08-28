@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Inject, Input, Output, Self } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS } from './radio-button-settings.token';
 import { EntireRadioButtonSettings, RadioLabelPosition } from './radio-button.interface';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { InteractionStateDirective } from '../interaction-state/interaction-state.directive';
 
 @Component({
   selector: 'anglify-radio-button',
+  standalone: true,
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
   providers: [
@@ -18,6 +20,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
     createSettingsProvider<EntireRadioButtonSettings>('anglifyRadioButtonSettings', DEFAULT_RADIO_BUTTON_SETTINGS, RADIO_BUTTON_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [InteractionStateDirective, FormsModule],
 })
 export class RadioButtonComponent implements ControlValueAccessor {
   /** The input’s value. */

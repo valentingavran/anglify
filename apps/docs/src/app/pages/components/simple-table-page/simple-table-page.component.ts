@@ -1,11 +1,16 @@
+import { CheckboxComponent, InputDirective, SimpleTableComponent, TextFieldComponent } from '@anglify/components';
+import { NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { APIConfig } from '../../../app.interface';
+import { FormsModule } from '@angular/forms';
+import { APIConfig, ComponentPageModule } from '../../../app.interface';
 
 @Component({
   selector: 'app-simple-table-page',
   templateUrl: './simple-table-page.component.html',
   styleUrls: ['./simple-table-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [...ComponentPageModule, SimpleTableComponent, CheckboxComponent, FormsModule, TextFieldComponent, InputDirective, NgForOf],
 })
 export class SimpleTablePageComponent {
   public config: APIConfig = {

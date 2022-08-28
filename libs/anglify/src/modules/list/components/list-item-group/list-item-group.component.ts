@@ -7,6 +7,7 @@ import { ListItemComponent } from '../list-item/list-item.component';
 @UntilDestroy()
 @Component({
   selector: 'anglify-list-item-group',
+  standalone: true,
   templateUrl: './list-item-group.component.html',
   styleUrls: ['./list-item-group.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

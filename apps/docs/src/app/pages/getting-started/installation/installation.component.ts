@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { stripIndent } from 'common-tags';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'app-installation',
+  standalone: true,
   templateUrl: './installation.component.html',
   styleUrls: ['./installation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [HighlightModule],
 })
 export class InstallationComponent {
   public angularInstallation = `$ npm install -g @angular/cli\n$ ng new my-app\n$ cd my-app`;

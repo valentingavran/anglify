@@ -1,3 +1,4 @@
+import { AsyncPipe, NgForOf, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -13,21 +14,37 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, slide } from '../../../../utils/animations';
+import { SlotOutletDirective } from '../../../common/directives/slot-outlet/slot-outlet.directive';
 
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../../../common/pipes/find-slot/find-slot.pipe';
+import { IconComponent } from '../../../icon/icon.component';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { StepDirective } from '../../directives/step/step.directive';
 import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { StepperService } from '../../services/stepper/stepper.service';
+import { StepperHeaderComponent } from '../stepper-header/stepper-header.component';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-stepper',
+  standalone: true,
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: StepperService, useExisting: StepperComponent }, StepperSettings],
   animations: [fastInFastOutY({ duration: '500ms' }), slide()],
+  imports: [
+    StepperHeaderComponent,
+    AsyncPipe,
+    IconComponent,
+    NgTemplateOutlet,
+    NgForOf,
+    NgIf,
+    SlotOutletDirective,
+    FindSlotPipe,
+    SlotDirective,
+  ],
 })
 export class StepperComponent extends StepperService implements AfterContentInit {
   @ContentChildren(StepDirective) private readonly _steps?: QueryList<StepDirective>;

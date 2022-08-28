@@ -1,10 +1,11 @@
+import { OtpInputComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-hidden-input',
+  standalone: true,
   templateUrl: './hidden-input.component.html',
   styleUrls: ['./hidden-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [OtpInputComponent],
 })
-export class HiddenInputComponent {}
-export default HiddenInputComponent;
+export default class HiddenInputComponent {}

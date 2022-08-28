@@ -1,14 +1,16 @@
-import { DataTableHeader } from '@anglify/components';
+import { DataTableComponent, DataTableHeader, InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-search',
+  standalone: true,
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent, TextFieldComponent, InputDirective, FormsModule],
 })
-export class SearchComponent {
+export default class SearchComponent {
   public search?: string;
 
   public headers: DataTableHeader[] = [
@@ -22,5 +24,3 @@ export class SearchComponent {
 
   public items = items;
 }
-
-export default SearchComponent;

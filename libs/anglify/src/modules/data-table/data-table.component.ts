@@ -1,3 +1,4 @@
+import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +11,7 @@ import {
   QueryList,
   Self,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { DATA_TABLE_SETTINGS, DEFAULT_DATA_TABLE_SETTINGS } from './data-table-settings.token';
@@ -21,12 +23,19 @@ import { SelectionService } from './services/selection.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
 import { bindStyleValueToNativeElement } from '../../utils/functions';
+import { ButtonComponent } from '../button/button.component';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
+import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
+import { SelectComponent } from '../select/select.component';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-data-table',
+  standalone: true,
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,6 +45,19 @@ import { InternalIconSetDefinition } from '../icon/icon.interface';
     SelectionService,
     DataService,
     createSettingsProvider<EntireDataTableSettings>('anglifyDataTableSettings', DEFAULT_DATA_TABLE_SETTINGS, DATA_TABLE_SETTINGS),
+  ],
+  imports: [
+    NgIf,
+    NgForOf,
+    CheckboxComponent,
+    SelectComponent,
+    AsyncPipe,
+    IconComponent,
+    NgClass,
+    FormsModule,
+    FindSlotPipe,
+    SlotOutletDirective,
+    ButtonComponent,
   ],
 })
 export class DataTableComponent {

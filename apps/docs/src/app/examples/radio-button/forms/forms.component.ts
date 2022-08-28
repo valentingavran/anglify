@@ -1,13 +1,15 @@
+import { RadioButtonComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-forms',
+  standalone: true,
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RadioButtonComponent, ReactiveFormsModule],
 })
-export class FormsComponent {
+export default class FormsComponent {
   public inputOne = true;
   public inputTwo = new FormControl(true);
   public form: FormGroup;
@@ -18,5 +20,3 @@ export class FormsComponent {
     });
   }
 }
-
-export default FormsComponent;

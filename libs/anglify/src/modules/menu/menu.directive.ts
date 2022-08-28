@@ -30,6 +30,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 @UntilDestroy()
 @Directive({
   selector: '[anglifyMenuTriggerFor]',
+  standalone: true,
   exportAs: 'anglifyMenu',
   providers: [createSettingsProvider<EntireMenuSettings>('anglifyMenuSettings', DEFAULT_MENU_SETTINGS, MENU_SETTINGS)],
 })

@@ -12,6 +12,7 @@ import type { ComponentSize } from '../../utils/interfaces';
  */
 @Component({
   selector: 'anglify-icon',
+  standalone: true,
   template: ``,
   styleUrls: ['./icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

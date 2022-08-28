@@ -10,7 +10,6 @@ describe('StepperHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StepperHeaderComponent],
       providers: [
         {
           provide: StepperSettings,

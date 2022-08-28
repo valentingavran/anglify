@@ -8,7 +8,6 @@ describe('SnackbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SnackbarComponent],
       providers: [{ provide: SNACKBAR_CONTEXT, useValue: {} }],
     }).compileComponents();
   });

@@ -1,4 +1,4 @@
-import { CheckboxIcons, registerCustomIcons } from '@anglify/components';
+import { CheckboxComponent, CheckboxIcons, IconComponent, registerCustomIcons, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 const checkboxIcons: CheckboxIcons = {
@@ -8,12 +8,11 @@ const checkboxIcons: CheckboxIcons = {
 };
 
 @Component({
-  selector: 'app-custom-icons',
+  standalone: true,
   templateUrl: './custom-icons.component.html',
   styleUrls: ['./custom-icons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [registerCustomIcons(checkboxIcons)],
+  imports: [CheckboxComponent, IconComponent, SlotDirective],
 })
-export class CustomIconsComponent {}
-
-export default CustomIconsComponent;
+export default class CustomIconsComponent {}

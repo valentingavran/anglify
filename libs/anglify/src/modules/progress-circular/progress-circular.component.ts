@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS } from './progress-circular-settings.token';
 import { EntireProgressCircularSettings } from './progress-circular.interface';
@@ -5,6 +6,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 
 @Component({
   selector: 'anglify-progress-circular',
+  standalone: true,
   templateUrl: './progress-circular.component.html',
   styleUrls: ['./progress-circular.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,6 +17,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
       PROGRESS_CIRCULAR_SETTINGS
     ),
   ],
+  imports: [NgIf],
 })
 export class ProgressCircularComponent {
   /** Constantly animates, use when loading progress is unknown. */

@@ -7,6 +7,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 
 @Component({
   selector: 'button[anglifyButton]',
+  standalone: true,
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-without-label',
+  standalone: true,
   templateUrl: './without-label.component.html',
   styleUrls: ['./without-label.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class WithoutLabelComponent {}
-
-export default WithoutLabelComponent;
+export default class WithoutLabelComponent {}

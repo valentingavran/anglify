@@ -1,6 +1,20 @@
-import { BreakpointObserverService } from '@anglify/components';
+import {
+  BreakpointObserverService,
+  ButtonComponent,
+  IconComponent,
+  ListComponent,
+  ListGroupComponent,
+  ListItemComponent,
+  ListItemGroupComponent,
+  ListItemTitleComponent,
+  NavigationDrawerComponent,
+  SlotDirective,
+  ToolbarComponent,
+  TooltipDirective,
+} from '@anglify/components';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 interface NavItem {
   name: string;
@@ -17,9 +31,27 @@ interface NavGroup {
 
 @Component({
   selector: 'anglify-default',
+  standalone: true,
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    ToolbarComponent,
+    IconComponent,
+    NavigationDrawerComponent,
+    ListComponent,
+    ListItemGroupComponent,
+    ListGroupComponent,
+    ListItemComponent,
+    ListItemTitleComponent,
+    TooltipDirective,
+    NgForOf,
+    NgIf,
+    AsyncPipe,
+    RouterModule,
+    SlotDirective,
+    ButtonComponent,
+  ],
 })
 export class DefaultComponent {
   public initTheme() {

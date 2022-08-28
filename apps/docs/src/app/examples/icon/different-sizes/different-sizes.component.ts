@@ -1,10 +1,10 @@
+import { IconComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-different-sizes',
+  standalone: true,
   templateUrl: './different-sizes.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [IconComponent],
 })
-export class DifferentSizesComponent {}
-
-export default DifferentSizesComponent;
+export default class DifferentSizesComponent {}

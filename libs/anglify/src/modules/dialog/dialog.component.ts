@@ -8,6 +8,7 @@ import { DIALOG_CONTEXT, DIALOG_NODES } from './dialog.service';
 @UntilDestroy()
 @Component({
   selector: 'anglify-dialog',
+  standalone: true,
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

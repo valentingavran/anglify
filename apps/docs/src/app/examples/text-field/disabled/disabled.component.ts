@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-disabled',
+  standalone: true,
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class DisabledComponent {}
-
-export default DisabledComponent;
+export default class DisabledComponent {}

@@ -1,17 +1,22 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, Input, QueryList } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject } from 'rxjs';
 import { bindObservableValueToNativeElement } from '../../../../utils/functions';
+import { SlotOutletDirective } from '../../../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../../../common/pipes/find-slot/find-slot.pipe';
 
 type TimelineItemAlignment = 'start' | 'end' | 'none';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-timeline-item',
+  standalone: true,
   templateUrl: './timeline-item.component.html',
   styleUrls: ['./timeline-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgIf, AsyncPipe, FindSlotPipe, SlotOutletDirective],
 })
 export class TimelineItemComponent {
   @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;

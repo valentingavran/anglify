@@ -1,11 +1,23 @@
+import { AutocompleteComponent, CheckboxComponent, InputDirective, RadioButtonComponent, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { APIConfig } from '../../../app.interface';
+import { FormsModule } from '@angular/forms';
+import { APIConfig, ComponentPageModule } from '../../../app.interface';
 
 @Component({
   selector: 'app-autocomplete-page',
   templateUrl: './autocomplete-page.component.html',
   styleUrls: ['./autocomplete-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    ...ComponentPageModule,
+    AutocompleteComponent,
+    TextFieldComponent,
+    InputDirective,
+    FormsModule,
+    CheckboxComponent,
+    RadioButtonComponent,
+  ],
 })
 export class AutocompletePageComponent {
   public config: APIConfig = {

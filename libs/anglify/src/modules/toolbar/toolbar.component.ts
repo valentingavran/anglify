@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,11 +19,14 @@ import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { bindAttrToNativeElement } from '../../utils/functions';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-toolbar',
+  standalone: true,
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,6 +34,7 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
     createSettingsProvider<EntireToolbarSettings>('anglifyToolbarSettings', DEFAULT_TOOLBAR_SETTINGS, TOOLBAR_SETTINGS),
     ELEVATION,
   ],
+  imports: [NgIf, FindSlotPipe, SlotOutletDirective],
 })
 export class ToolbarComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

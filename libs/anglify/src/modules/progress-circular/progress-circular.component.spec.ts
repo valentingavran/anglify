@@ -6,12 +6,6 @@ describe('ProgressCircularComponent', () => {
   let fixture: ComponentFixture<ProgressCircularComponent>;
   let nativeElement: HTMLElement;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ProgressCircularComponent],
-    }).compileComponents();
-  });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(ProgressCircularComponent);
     component = fixture.componentInstance;

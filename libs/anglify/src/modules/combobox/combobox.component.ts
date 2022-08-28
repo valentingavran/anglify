@@ -1,13 +1,28 @@
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { Component, ChangeDetectionStrategy, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { combineLatest, map, ReplaySubject, share, startWith } from 'rxjs';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
+import { ChipComponent } from '../chip/chip.component';
+import { ClickStopPropagationDirective } from '../common/directives/click-stop-propagation/click-stop-propagation.directive';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
+import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
+import { IconComponent } from '../icon/icon.component';
+import { InputDirective } from '../input/input.directive';
+import { ListItemGroupComponent } from '../list/components/list-item-group/list-item-group.component';
+import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
+import { ListItemComponent } from '../list/components/list-item/list-item.component';
+import { ListComponent } from '../list/components/list/list.component';
+import { MenuDirective } from '../menu/menu.directive';
 import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from '../select/select-settings.token';
 import { EntireSelectSettings, SelectItem } from '../select/select.interface';
+import { TextFieldComponent } from '../text-field/text-field.component';
 
 @Component({
   selector: 'anglify-combobox',
+  standalone: true,
   templateUrl: './combobox.component.html',
   styleUrls: ['./combobox.component.scss'],
   providers: [
@@ -19,6 +34,24 @@ import { EntireSelectSettings, SelectItem } from '../select/select.interface';
     createSettingsProvider<EntireSelectSettings>('anglifySelectSettings', DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    TextFieldComponent,
+    NgIf,
+    MenuDirective,
+    AsyncPipe,
+    ClickStopPropagationDirective,
+    NgForOf,
+    ListItemComponent,
+    ListItemGroupComponent,
+    ListComponent,
+    ListItemTitleComponent,
+    IconComponent,
+    ChipComponent,
+    SlotDirective,
+    SlotOutletDirective,
+    FindSlotPipe,
+    InputDirective,
+  ],
 })
 export class ComboboxComponent extends AutocompleteComponent {
   @Input() public addItem = this.settings.addItem;

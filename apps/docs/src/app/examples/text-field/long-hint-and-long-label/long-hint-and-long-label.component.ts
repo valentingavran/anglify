@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-long-hint-and-long-label',
+  standalone: true,
   templateUrl: './long-hint-and-long-label.component.html',
   styleUrls: ['./long-hint-and-long-label.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class LongHintAndLongLabelComponent {}
-
-export default LongHintAndLongLabelComponent;
+export default class LongHintAndLongLabelComponent {}

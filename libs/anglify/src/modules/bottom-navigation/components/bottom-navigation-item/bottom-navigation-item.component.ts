@@ -1,3 +1,4 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,15 +18,19 @@ import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { bindClassToNativeElement } from '../../../../utils/functions';
 import { RouterLinkCommands } from '../../../../utils/interfaces';
+import { SlotOutletDirective } from '../../../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../../../common/pipes/find-slot/find-slot.pipe';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-bottom-navigation-item',
+  standalone: true,
   templateUrl: './bottom-navigation-item.component.html',
   styleUrls: ['./bottom-navigation-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [RIPPLE],
+  imports: [NgIf, FindSlotPipe, AsyncPipe, SlotOutletDirective],
 })
 export class BottomNavigationItemComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

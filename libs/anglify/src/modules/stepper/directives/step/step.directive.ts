@@ -8,6 +8,7 @@ import { StepperService } from '../../services/stepper/stepper.service';
 @UntilDestroy()
 @Directive({
   selector: 'ng-template[anglifyStep]',
+  standalone: true,
 })
 export class StepDirective {
   private readonly _isFirstStep$ = new BehaviorSubject<boolean>(false);

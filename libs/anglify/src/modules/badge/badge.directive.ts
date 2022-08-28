@@ -27,6 +27,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 @UntilDestroy()
 @Directive({
   selector: '[anglifyBadge]',
+  standalone: true,
   exportAs: 'anglifyBadge',
   providers: [createSettingsProvider<EntireBadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS)],
 })

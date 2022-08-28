@@ -1,3 +1,4 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,17 +14,21 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
+import { SlotOutletDirective } from '../../../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../../../common/pipes/find-slot/find-slot.pipe';
 import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { StepperService } from '../../services/stepper/stepper.service';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-stepper-header',
+  standalone: true,
   templateUrl: './stepper-header.component.html',
   styleUrls: ['./stepper-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [RIPPLE],
+  imports: [NgIf, AsyncPipe, SlotOutletDirective, FindSlotPipe],
 })
 export class StepperHeaderComponent {
   @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;

@@ -9,7 +9,6 @@ describe('TooltipComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TooltipComponent],
       providers: [
         {
           provide: POSITION_SETTINGS,

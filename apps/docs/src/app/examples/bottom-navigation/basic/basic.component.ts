@@ -1,10 +1,12 @@
+import { BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective } from '@anglify/components';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'anglify-basic',
+  standalone: true,
+
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective],
 })
-export class BasicComponent {}
-export default BasicComponent;
+export default class BasicComponent {}

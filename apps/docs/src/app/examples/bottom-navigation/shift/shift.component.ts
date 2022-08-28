@@ -1,10 +1,11 @@
+import { BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective } from '@anglify/components';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'anglify-shift',
+  standalone: true,
   templateUrl: './shift.component.html',
   styleUrls: ['./shift.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective],
 })
-export class ShiftComponent {}
-export default ShiftComponent;
+export default class ShiftComponent {}

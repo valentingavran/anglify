@@ -1,13 +1,17 @@
+import { AsyncPipe, NgForOf } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, forwardRef, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, first, map, startWith, tap } from 'rxjs';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-item-group',
+  standalone: true,
   templateUrl: './item-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
@@ -17,6 +21,7 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
       multi: true,
     },
   ],
+  imports: [NgForOf, AsyncPipe, SlotOutletDirective, FindSlotPipe],
 })
 export class ItemGroupComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(SlotDirective, { descendants: true }) private readonly allSlots?: QueryList<SlotDirective<boolean>>;

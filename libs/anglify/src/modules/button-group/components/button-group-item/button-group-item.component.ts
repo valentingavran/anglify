@@ -11,6 +11,7 @@ import { EntireButtonGroupSettings } from '../../button-group.interface';
 @UntilDestroy()
 @Component({
   selector: 'button[anglifyButtonGroupItem]',
+  standalone: true,
   templateUrl: './button-group-item.component.html',
   styleUrls: ['./button-group-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

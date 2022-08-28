@@ -8,7 +8,6 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MenuComponent],
       providers: [
         {
           provide: POSITION_SETTINGS,

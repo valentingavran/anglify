@@ -1,10 +1,11 @@
+import { CardComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-elevations',
+  standalone: true,
   templateUrl: './elevations.component.html',
   styleUrls: ['./elevations.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CardComponent],
 })
-export class ElevationsComponent {}
-export default ElevationsComponent;
+export default class ElevationsComponent {}

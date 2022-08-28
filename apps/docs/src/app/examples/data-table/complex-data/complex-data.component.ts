@@ -1,4 +1,4 @@
-import { DataTableHeader, DataTableItem } from '@anglify/components';
+import { CheckboxComponent, DataTableComponent, DataTableHeader, DataTableItem, SlotDirective } from '@anglify/components';
 import { Component } from '@angular/core';
 
 interface Account {
@@ -14,11 +14,12 @@ interface Account {
 }
 
 @Component({
-  selector: 'anglify-complex-data',
+  standalone: true,
   templateUrl: './complex-data.component.html',
   styleUrls: ['./complex-data.component.scss'],
+  imports: [DataTableComponent, CheckboxComponent, SlotDirective],
 })
-export class ComplexDataComponent {
+export default class ComplexDataComponent {
   protected headers: DataTableHeader<Account>[] = [
     {
       text: 'Name',
@@ -119,5 +120,3 @@ export class ComplexDataComponent {
     },
   ];
 }
-
-export default ComplexDataComponent;

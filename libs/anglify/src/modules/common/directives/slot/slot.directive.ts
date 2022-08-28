@@ -2,6 +2,7 @@ import { Directive, Input, QueryList, TemplateRef } from '@angular/core';
 
 @Directive({
   selector: 'ng-template[slot]',
+  standalone: true,
 })
 export class SlotDirective<T = any> {
   @Input() public slot: string | undefined;

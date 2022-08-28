@@ -5,12 +5,6 @@ describe('ListItemDescriptionComponent', () => {
   let component: ListItemDescriptionComponent;
   let fixture: ComponentFixture<ListItemDescriptionComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ListItemDescriptionComponent],
-    }).compileComponents();
-  });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(ListItemDescriptionComponent);
     component = fixture.componentInstance;

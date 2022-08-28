@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,17 +23,21 @@ import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
 import { bindClassToNativeElement } from '../../utils/functions';
-
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
+import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-chip',
+  standalone: true,
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [createSettingsProvider<EntireChipSettings>('anglifyChipSettings', DEFAULT_CHIP_SETTINGS, CHIP_SETTINGS), RIPPLE],
+  imports: [IconComponent, NgIf, FindSlotPipe, SlotOutletDirective],
 })
 export class ChipComponent implements OnInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

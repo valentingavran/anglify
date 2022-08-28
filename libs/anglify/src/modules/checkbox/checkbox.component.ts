@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -27,11 +28,15 @@ import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { bindClassToNativeElement } from '../../utils/functions';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
+import { InteractionStateDirective } from '../interaction-state/interaction-state.directive';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-checkbox',
+  standalone: true,
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   providers: [
@@ -43,6 +48,7 @@ import { SlotDirective } from '../common/directives/slot/slot.directive';
     createSettingsProvider<EntireCheckboxSettings>('anglifyCheckboxSettings', DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [InteractionStateDirective, AsyncPipe, FindSlotPipe, SlotOutletDirective],
 })
 export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

@@ -1,3 +1,4 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,19 +19,23 @@ import { ElevationService } from '../../../../composables/elevation/elevation.se
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, rotate } from '../../../../utils/animations';
 import { bindClassToNativeElement } from '../../../../utils/functions';
-
+import { SlotOutletDirective } from '../../../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../../../common/pipes/find-slot/find-slot.pipe';
+import { IconComponent } from '../../../icon/icon.component';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { EntireExpansionPanelsSettings } from '../../expansion-panels.interface';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-expansion-panel',
+  standalone: true,
   templateUrl: './expansion-panel.component.html',
   styleUrls: ['./expansion-panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ELEVATION],
   animations: [fastInFastOutY(), rotate()],
+  imports: [NgIf, IconComponent, AsyncPipe, SlotOutletDirective, FindSlotPipe],
 })
 export class ExpansionPanelComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

@@ -1,3 +1,4 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -21,20 +22,45 @@ import { EntireSelectSettings, SelectItem } from './select.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
 import { rotate } from '../../utils/animations';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
+import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
 import { InputDirective } from '../input/input.directive';
 import { InputAppearance } from '../input/input.interface';
+import { ListItemGroupComponent } from '../list/components/list-item-group/list-item-group.component';
+import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
+import { ListItemComponent } from '../list/components/list-item/list-item.component';
+import { ListComponent } from '../list/components/list/list.component';
 import { MenuDirective } from '../menu/menu.directive';
+import { TextFieldComponent } from '../text-field/text-field.component';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-select',
+  standalone: true,
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   providers: [createSettingsProvider<EntireSelectSettings>('anglifySelectSettings', DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [rotate()],
+  imports: [
+    TextFieldComponent,
+    MenuDirective,
+    AsyncPipe,
+    IconComponent,
+    NgIf,
+    ListComponent,
+    ListItemComponent,
+    ListItemTitleComponent,
+    ListItemGroupComponent,
+    FindSlotPipe,
+    SlotOutletDirective,
+    InputDirective,
+    MenuDirective,
+    SlotDirective,
+  ],
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

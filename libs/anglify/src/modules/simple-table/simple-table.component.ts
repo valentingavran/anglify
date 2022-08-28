@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
 
 @Component({
   selector: 'anglify-simple-table',
+  standalone: true,
   templateUrl: './simple-table.component.html',
   styleUrls: ['./simple-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

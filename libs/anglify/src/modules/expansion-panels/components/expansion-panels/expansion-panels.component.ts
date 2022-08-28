@@ -21,6 +21,7 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
 @UntilDestroy()
 @Component({
   selector: 'anglify-expansion-panels',
+  standalone: true,
   templateUrl: './expansion-panels.component.html',
   styleUrls: ['./expansion-panels.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

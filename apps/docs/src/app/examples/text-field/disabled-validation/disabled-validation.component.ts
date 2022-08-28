@@ -1,14 +1,15 @@
-import { Validators } from '@anglify/components';
+import { ButtonComponent, InputDirective, TextFieldComponent, Validators } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-disabled-validation',
+  standalone: true,
   templateUrl: './disabled-validation.component.html',
   styleUrls: ['./disabled-validation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, ReactiveFormsModule, ButtonComponent, InputDirective],
 })
-export class DisabledValidationComponent {
+export default class DisabledValidationComponent {
   public form = new FormGroup({
     email: new FormControl<string | null>(null, [Validators.email, Validators.required]),
     password: new FormControl<string | null>(null, [Validators.password, Validators.required]),
@@ -28,5 +29,3 @@ export class DisabledValidationComponent {
     control?.setErrors({ message: 'This email already exists' });
   }
 }
-
-export default DisabledValidationComponent;

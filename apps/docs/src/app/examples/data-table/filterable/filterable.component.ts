@@ -1,14 +1,16 @@
-import { DataTableHeader } from '@anglify/components';
+import { DataTableComponent, DataTableHeader, InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-filterable',
+  standalone: true,
   templateUrl: './filterable.component.html',
   styleUrls: ['./filterable.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent, TextFieldComponent, InputDirective, FormsModule],
 })
-export class FilterableComponent {
+export default class FilterableComponent {
   public search?: string;
   public headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name', filterable: false },
@@ -21,4 +23,3 @@ export class FilterableComponent {
 
   public items = items;
 }
-export default FilterableComponent;

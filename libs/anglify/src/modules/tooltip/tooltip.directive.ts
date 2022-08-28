@@ -30,6 +30,7 @@ import { isTouchDevice } from '../../utils/functions';
 @UntilDestroy()
 @Directive({
   selector: '[anglifyTooltip]',
+  standalone: true,
   exportAs: 'anglifyTooltip',
   providers: [createSettingsProvider<EntireTooltipSettings>('anglifyTooltipSettings', DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
 })

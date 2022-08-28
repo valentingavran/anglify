@@ -1,14 +1,16 @@
-import { DataTableHeader } from '@anglify/components';
+import { CheckboxComponent, DataTableComponent, DataTableHeader } from '@anglify/components';
+import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-selectable-rows',
+  standalone: true,
   templateUrl: './selectable-rows.component.html',
   styleUrls: ['./selectable-rows.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent, CheckboxComponent, JsonPipe],
 })
-export class SelectableRowsComponent {
+export default class SelectableRowsComponent {
   protected singleSelect = false;
 
   protected headers: DataTableHeader[] = [
@@ -24,4 +26,3 @@ export class SelectableRowsComponent {
 
   protected selection: Array<any> = [items[0]];
 }
-export default SelectableRowsComponent;

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
 
 @Component({
   selector: 'anglify-list-item-description',
+  standalone: true,
   templateUrl: './list-item-description.component.html',
   styleUrls: ['./list-item-description.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

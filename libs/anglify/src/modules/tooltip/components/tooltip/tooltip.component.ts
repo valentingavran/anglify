@@ -5,6 +5,7 @@ import { PositionService } from '../../../../composables/position/position.servi
 
 @Component({
   selector: 'anglify-tooltip',
+  standalone: true,
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

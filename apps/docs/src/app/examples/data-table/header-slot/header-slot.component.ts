@@ -1,14 +1,15 @@
-import { DataTableHeader } from '@anglify/components';
+import { DataTableComponent, DataTableHeader, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-header-slot',
+  standalone: true,
   templateUrl: './header-slot.component.html',
   styleUrls: ['./header-slot.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent, SlotDirective],
 })
-export class HeaderSlotComponent {
+export default class HeaderSlotComponent {
   public headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name', width: 'auto' },
     { text: 'Calories', value: 'calories' },
@@ -20,5 +21,3 @@ export class HeaderSlotComponent {
 
   public items = items;
 }
-
-export default HeaderSlotComponent;

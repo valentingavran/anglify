@@ -1,9 +1,12 @@
+import { AsyncPipe } from '@angular/common';
 import { AfterViewInit, Component, ContentChild, ContentChildren, Inject, Input, QueryList, Self, ViewChild } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { DEFAULT_TEXT_AREA_SETTINGS, TEXT_AREA_SETTINGS } from './text-area-settings.token';
 import { EntireTextAreaSettings } from './text-area.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
 import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
 import { InputAppearance } from '../input/input.interface';
@@ -11,9 +14,11 @@ import { InputAppearance } from '../input/input.interface';
 @UntilDestroy()
 @Component({
   selector: 'anglify-text-area',
+  standalone: true,
   templateUrl: './text-area.component.html',
   styleUrls: ['./text-area.component.scss'],
   providers: [createSettingsProvider<EntireTextAreaSettings>('anglifyTextAreaSettings', DEFAULT_TEXT_AREA_SETTINGS, TEXT_AREA_SETTINGS)],
+  imports: [InputComponent, AsyncPipe, SlotDirective, SlotOutletDirective, FindSlotPipe],
 })
 export class TextAreaComponent implements AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

@@ -1,13 +1,15 @@
+import { ButtonComponent, InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-server-error-handling',
+  standalone: true,
   templateUrl: './server-error-handling.component.html',
   styleUrls: ['./server-error-handling.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, ReactiveFormsModule, InputDirective, ButtonComponent],
 })
-export class ServerErrorHandlingComponent {
+export default class ServerErrorHandlingComponent {
   public passwordControl = new FormControl('password', [Validators.required]);
 
   public submit() {
@@ -20,5 +22,3 @@ export class ServerErrorHandlingComponent {
     }, 2000);
   }
 }
-
-export default ServerErrorHandlingComponent;

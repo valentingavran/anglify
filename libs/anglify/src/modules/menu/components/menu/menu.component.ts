@@ -8,6 +8,7 @@ import { PositionService } from '../../../../composables/position/position.servi
 
 @Component({
   selector: 'anglify-menu',
+  standalone: true,
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

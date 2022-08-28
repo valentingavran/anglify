@@ -6,6 +6,7 @@ import { TimelineItemComponent } from '../timeline-item/timeline-item.component'
 @UntilDestroy()
 @Component({
   selector: 'anglify-timeline',
+  standalone: true,
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

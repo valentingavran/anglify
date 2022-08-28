@@ -21,6 +21,7 @@ import { observeOnMutation } from '../../utils/functions';
 @UntilDestroy()
 @Directive({
   selector: 'input[anglifyInput], textarea[anglifyInput]',
+  standalone: true,
 })
 export class InputDirective implements OnInit {
   public readonly id = this.idService.generate();

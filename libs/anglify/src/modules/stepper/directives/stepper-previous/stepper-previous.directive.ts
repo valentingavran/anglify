@@ -3,6 +3,7 @@ import { StepperService } from '../../services/stepper/stepper.service';
 
 @Directive({
   selector: '[anglifyStepperPrevious]',
+  standalone: true,
 })
 export class StepperPreviousDirective {
   public constructor(private readonly stepper: StepperService) {}

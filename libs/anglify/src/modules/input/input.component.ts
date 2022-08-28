@@ -1,3 +1,4 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -16,14 +17,20 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map } from 'rxjs';
 import { InputAppearance } from './input.interface';
 import { bindClassToNativeElement, bindObservableValueToNativeElement, observeOnResize } from '../../utils/functions';
+import { SlotOutletDirective } from '../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../common/pipes/find-slot/find-slot.pipe';
+import { InteractionStateDirective } from '../interaction-state/interaction-state.directive';
+import { TooltipDirective } from '../tooltip/tooltip.directive';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-input',
+  standalone: true,
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [InteractionStateDirective, NgIf, TooltipDirective, AsyncPipe, FindSlotPipe, SlotOutletDirective],
 })
 export class InputComponent implements OnInit, AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

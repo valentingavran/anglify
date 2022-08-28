@@ -1,3 +1,4 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,7 +15,7 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map } from 'rxjs';
 import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from './navigation-drawer-settings.token';
-import { NavigationDrawerMode, EntireNavigationDrawerSettings } from './navigation-drawer.interface';
+import { EntireNavigationDrawerSettings, NavigationDrawerMode } from './navigation-drawer.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { enterLeaveOpacityAnimation } from '../../utils/animations';
 import { bindClassToNativeElement, bindObservableValueToNativeElement } from '../../utils/functions';
@@ -23,6 +24,7 @@ import { ListComponent } from '../list/components/list/list.component';
 @UntilDestroy()
 @Component({
   selector: 'anglify-navigation-drawer',
+  standalone: true,
   templateUrl: './navigation-drawer.component.html',
   styleUrls: ['./navigation-drawer.component.scss'],
   providers: [
@@ -36,6 +38,7 @@ import { ListComponent } from '../list/components/list/list.component';
     enterLeaveOpacityAnimation(), // used for backdrop opacity transition
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgIf, AsyncPipe],
 })
 export class NavigationDrawerComponent implements AfterViewInit {
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;

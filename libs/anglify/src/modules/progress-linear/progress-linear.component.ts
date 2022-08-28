@@ -1,11 +1,15 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { DEFAULT_PROGRESS_LINEAR_SETTINGS, PROGRESS_LINEAR_SETTINGS } from './progress-linear-settings.token';
 import { EntireProgressLinearSettings } from './progress-linear.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { clamp } from '../../utils/functions';
+import { ClampPipe } from '../common/pipes/clamp/clamp.pipe';
+import { PercentPipe } from '../common/pipes/percent/percent.pipe';
 
 @Component({
   selector: 'anglify-progress-linear',
+  standalone: true,
   templateUrl: './progress-linear.component.html',
   styleUrls: ['./progress-linear.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +20,7 @@ import { clamp } from '../../utils/functions';
       PROGRESS_LINEAR_SETTINGS
     ),
   ],
+  imports: [ClampPipe, PercentPipe, NgIf],
 })
 export class ProgressLinearComponent {
   /** Defines whether the component is currently being animated. */

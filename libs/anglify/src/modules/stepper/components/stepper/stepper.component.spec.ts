@@ -5,12 +5,6 @@ describe('StepperComponent', () => {
   let component: StepperComponent;
   let fixture: ComponentFixture<StepperComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [StepperComponent],
-    }).compileComponents();
-  });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(StepperComponent);
     component = fixture.componentInstance;

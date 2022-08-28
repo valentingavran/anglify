@@ -1,19 +1,25 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, Inject, Input, QueryList } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, rotate } from '../../../../utils/animations';
+import { SlotOutletDirective } from '../../../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../../../common/pipes/find-slot/find-slot.pipe';
+import { IconComponent } from '../../../icon/icon.component';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { ListItemComponent } from '../list-item/list-item.component';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-list-group',
+  standalone: true,
   templateUrl: './list-group.component.html',
   styleUrls: ['./list-group.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [rotate(), fastInFastOutY()],
+  imports: [ListItemComponent, IconComponent, NgIf, AsyncPipe, FindSlotPipe, SlotOutletDirective, SlotDirective],
 })
 export class ListGroupComponent implements AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;

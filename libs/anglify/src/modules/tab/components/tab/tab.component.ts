@@ -1,3 +1,4 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -20,17 +21,21 @@ import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
 import { RouterLinkCommands } from '../../../../utils/interfaces';
+import { SlotOutletDirective } from '../../../common/directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../common/directives/slot/slot.directive';
+import { FindSlotPipe } from '../../../common/pipes/find-slot/find-slot.pipe';
 import { DEFAULT_TAB_SETTINGS, TAB_SETTINGS } from '../../tab-settings.token';
 import { EntireTabSettings } from '../../tab.interface';
 
 @UntilDestroy()
 @Component({
   selector: 'anglify-tab',
+  standalone: true,
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [createSettingsProvider<EntireTabSettings>('anglifyTabSettings', DEFAULT_TAB_SETTINGS, TAB_SETTINGS), RIPPLE],
+  imports: [AsyncPipe, FindSlotPipe, NgIf, SlotOutletDirective],
 })
 export class TabComponent implements AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;

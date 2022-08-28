@@ -18,6 +18,7 @@ import { TabComponent } from '../tab/tab.component';
 @UntilDestroy()
 @Component({
   selector: 'anglify-tab-group',
+  standalone: true,
   templateUrl: './tab-group.component.html',
   styleUrls: ['./tab-group.component.scss'],
   providers: [

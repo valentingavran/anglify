@@ -1,11 +1,11 @@
+import { CheckboxComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-appearances',
+  standalone: true,
   templateUrl: './appearances.component.html',
   styleUrls: ['./appearances.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CheckboxComponent],
 })
-export class AppearancesComponent {}
-
-export default AppearancesComponent;
+export default class AppearancesComponent {}

@@ -9,6 +9,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 
 @Component({
   selector: 'anglify-badge',
+  standalone: true,
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

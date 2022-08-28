@@ -2,6 +2,7 @@ import { Directive, EmbeddedViewRef, Input, OnChanges, SimpleChange, TemplateRef
 
 @Directive({
   selector: '[anglifySlotOutlet]',
+  standalone: true,
 })
 export class SlotOutletDirective implements OnChanges {
   private viewRef: EmbeddedViewRef<any> | null = null;

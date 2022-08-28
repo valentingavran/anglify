@@ -1,12 +1,15 @@
+import { SimpleTableComponent } from '@anglify/components';
+import { NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-fixed-footer',
+  standalone: true,
   templateUrl: './fixed-footer.component.html',
   styleUrls: ['./fixed-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SimpleTableComponent, NgForOf],
 })
-export class FixedFooterComponent {
+export default class FixedFooterComponent {
   public readonly desserts = [
     {
       name: 'Frozen Yogurt',
@@ -50,5 +53,3 @@ export class FixedFooterComponent {
     },
   ];
 }
-
-export default FixedFooterComponent;

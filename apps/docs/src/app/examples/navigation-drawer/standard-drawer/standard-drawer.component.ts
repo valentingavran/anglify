@@ -1,11 +1,27 @@
+import {
+  CardComponent,
+  IconComponent,
+  ListComponent,
+  ListItemComponent,
+  ListItemTitleComponent,
+  NavigationDrawerComponent,
+  SlotDirective,
+} from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-standard-drawer',
+  standalone: true,
   templateUrl: './standard-drawer.component.html',
   styleUrls: ['./standard-drawer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CardComponent,
+    NavigationDrawerComponent,
+    ListComponent,
+    ListItemComponent,
+    ListItemTitleComponent,
+    IconComponent,
+    SlotDirective,
+  ],
 })
-export class StandardDrawerComponent {}
-
-export default StandardDrawerComponent;
+export default class StandardDrawerComponent {}

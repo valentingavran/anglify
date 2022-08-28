@@ -20,6 +20,7 @@ import { ButtonGroupItemComponent } from '../button-group-item/button-group-item
 @UntilDestroy()
 @Component({
   selector: 'anglify-button-group',
+  standalone: true,
   templateUrl: './button-group.component.html',
   styleUrls: ['./button-group.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

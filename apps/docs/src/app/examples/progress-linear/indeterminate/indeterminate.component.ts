@@ -1,9 +1,10 @@
+import { ProgressLinearComponent } from '@anglify/components';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-indeterminate',
+  standalone: true,
   templateUrl: './indeterminate.component.html',
   styleUrls: ['./indeterminate.component.scss'],
+  imports: [ProgressLinearComponent],
 })
-export class IndeterminateComponent {}
-export default IndeterminateComponent;
+export default class IndeterminateComponent {}

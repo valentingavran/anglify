@@ -1,14 +1,14 @@
-import { Validators } from '@anglify/components';
+import { OtpInputComponent, Validators } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'anglify-reactive-forms',
+  standalone: true,
   templateUrl: './reactive-forms.component.html',
   styleUrls: ['./reactive-forms.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [OtpInputComponent, ReactiveFormsModule],
 })
-export class ReactiveFormsComponent {
+export default class ReactiveFormsComponent {
   public control = new FormControl(null, [Validators.minLength(6)]);
 }
-export default ReactiveFormsComponent;

@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-output-native */
+import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,6 +24,7 @@ import { AnglifyIdService } from '../../services/id/id.service';
 @UntilDestroy()
 @Component({
   selector: 'anglify-otp-input',
+  standalone: true,
   templateUrl: './otp-input.component.html',
   styleUrls: ['./otp-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +36,7 @@ import { AnglifyIdService } from '../../services/id/id.service';
       multi: true,
     },
   ],
+  imports: [NgForOf, NgIf, AsyncPipe, NgClass],
 })
 export class OtpInputComponent implements ControlValueAccessor {
   @ViewChildren('input') private readonly inputRefs?: QueryList<ElementRef<HTMLInputElement>>;

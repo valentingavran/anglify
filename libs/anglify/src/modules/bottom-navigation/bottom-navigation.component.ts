@@ -22,6 +22,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 @UntilDestroy()
 @Component({
   selector: 'anglify-bottom-navigation',
+  standalone: true,
   templateUrl: './bottom-navigation.component.html',
   styleUrls: ['./bottom-navigation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

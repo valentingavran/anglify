@@ -1,10 +1,11 @@
+import { IconComponent, SlotDirective, TextAreaComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   templateUrl: './autoresize.component.html',
   styleUrls: ['./autoresize.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextAreaComponent, IconComponent, SlotDirective],
 })
-export class AutoresizeComponent {}
-
-export default AutoresizeComponent;
+export default class AutoresizeComponent {}

@@ -1,12 +1,14 @@
-import { BreadCrumb } from '@anglify/components';
+import { BreadCrumb, BreadcrumbsComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BreadcrumbsComponent],
 })
-export class BasicComponent {
+export default class BasicComponent {
   public items: BreadCrumb[] = [
     {
       text: 'Home',
@@ -22,4 +24,3 @@ export class BasicComponent {
     },
   ];
 }
-export default BasicComponent;
