@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.31.0](https://github.com/valentingavran/anglify/compare/v0.30.0...v0.31.0) (2022-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* All components are now standalone components. Previously imported modules must be
+replaced with component imports. Also, the SlotDirective must be imported when slots are used.
+
+### 🛠  Other Commits
+
+* **Chip:** remove fixed chip height ([587f861](https://github.com/valentingavran/anglify/commit/587f861edbb7927e9d7c3760e016bd125dbcd6b4))
+* **DataTable:** adjust styling and expose new CSS custom properties ([6f05365](https://github.com/valentingavran/anglify/commit/6f05365a6d9a3377b6cf80ec14b8d6fdf6ec5063))
+
+
+### 🐛  Bug Fixes
+
+* **Checkbox:** show default checked icon when checkbox is disabled ([2655798](https://github.com/valentingavran/anglify/commit/265579819c91fd8bb1211c47625c749afadf9a91))
+
+
+### 🚀  Features
+
+* **DataTable:** add buttons that allow jumping to first & last page ([7531dfa](https://github.com/valentingavran/anglify/commit/7531dfaba0ba404782a1e16eabb734dac0ce2c20))
+* **DataTable:** add support for custom sort functions per header ([5309df3](https://github.com/valentingavran/anglify/commit/5309df36ef4d780467eb93fa41d1920ad78ec51f))
+* **DataTable:** add support for own (generic) types ([243a406](https://github.com/valentingavran/anglify/commit/243a40687ae445191a3a5657e74070cdeebe60a0))
+* standalone components ([118cdba](https://github.com/valentingavran/anglify/commit/118cdba3bccf8a4f845f4b45c4555dad48f0a0a6))
+
+
+### 🔬  Code Refactoring
+
+* change anglify folder structure ([eebf652](https://github.com/valentingavran/anglify/commit/eebf65254983a5ee13fa7cad48ef60e030d25de0))
+
 ## [0.30.0](https://github.com/valentingavran/anglify/compare/v0.29.1...v0.30.0) (2022-08-26)
 
 
