@@ -1,11 +1,11 @@
+import { ButtonComponent, IconComponent, TooltipDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-custom-content',
+  standalone: true,
   templateUrl: './custom-content.component.html',
   styleUrls: ['./custom-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TooltipDirective, ButtonComponent, IconComponent],
 })
-export class CustomContentComponent {}
-
-export default CustomContentComponent;
+export default class CustomContentComponent {}

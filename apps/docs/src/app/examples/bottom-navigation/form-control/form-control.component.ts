@@ -1,13 +1,14 @@
+import { BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'anglify-form-control',
+  standalone: true,
   templateUrl: './form-control.component.html',
   styleUrls: ['./form-control.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, ReactiveFormsModule, SlotDirective],
 })
-export class FormControlComponent {
+export default class FormControlComponent {
   public control = new FormControl([1]);
 }
-export default FormControlComponent;

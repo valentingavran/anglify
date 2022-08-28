@@ -1,7 +1,7 @@
 @use '../../../libs/anglify/src/styles/index';
 @use '../../../libs/anglify/src/styles/themes/light' as *;
 @use '../../../libs/anglify/src/styles/themes/dark' as *;
-@use '../../../libs/anglify/src/modules/simple-table';
+@use '../../../libs/anglify/src/components/simple-table';
 @use '../../../libs/anglify/src/styles/settings/typography.scss';
 @use '../../../libs/anglify/src/styles/mixins/breakpoints.scss' as *;
 

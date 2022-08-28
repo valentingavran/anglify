@@ -1,12 +1,14 @@
-import { BreadCrumb } from '@anglify/components';
+import { BreadCrumb, BreadcrumbsComponent, IconComponent as AnglifyIconComponent, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BreadcrumbsComponent, AnglifyIconComponent, SlotDirective],
 })
-export class IconComponent {
+export default class IconComponent {
   public items: BreadCrumb[] = [
     {
       text: 'Home',
@@ -22,5 +24,3 @@ export class IconComponent {
     },
   ];
 }
-
-export default IconComponent;

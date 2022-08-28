@@ -1,11 +1,23 @@
+import { CheckboxComponent, IconComponent, InputDirective, RadioButtonComponent, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { APIConfig } from '../../../app.interface';
+import { FormsModule } from '@angular/forms';
+import { APIConfig, ComponentPageModule } from '../../../app.interface';
 
 @Component({
   selector: 'app-text-field-page',
   templateUrl: './text-field-page.component.html',
   styleUrls: ['./text-field-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    ...ComponentPageModule,
+    TextFieldComponent,
+    InputDirective,
+    FormsModule,
+    CheckboxComponent,
+    RadioButtonComponent,
+    IconComponent,
+  ],
 })
 export class TextFieldPageComponent {
   public config: APIConfig = {

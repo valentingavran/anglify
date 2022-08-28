@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-readonly',
+  standalone: true,
   templateUrl: './readonly.component.html',
   styleUrls: ['./readonly.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class ReadonlyComponent {}
-
-export default ReadonlyComponent;
+export default class ReadonlyComponent {}

@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-hint',
+  standalone: true,
   templateUrl: './hint.component.html',
   styleUrls: ['./hint.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class HintComponent {}
-
-export default HintComponent;
+export default class HintComponent {}

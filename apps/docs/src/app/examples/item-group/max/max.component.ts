@@ -1,12 +1,16 @@
+import { ButtonComponent, CardComponent, IconComponent, ItemGroupComponent, SlotDirective } from '@anglify/components';
+import { AsyncPipe, NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
+  standalone: true,
   templateUrl: './max.component.html',
   styleUrls: ['./max.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ItemGroupComponent, CardComponent, IconComponent, NgForOf, AsyncPipe, ButtonComponent, SlotDirective],
 })
-export class MaxComponent {
+export default class MaxComponent {
   public items$ = new BehaviorSubject([1, 2, 3, 4]);
 
   public removeItem() {
@@ -21,4 +25,3 @@ export class MaxComponent {
     return index;
   }
 }
-export default MaxComponent;

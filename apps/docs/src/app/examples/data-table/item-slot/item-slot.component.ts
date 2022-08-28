@@ -1,14 +1,16 @@
-import { DataTableHeader } from '@anglify/components';
+import { ChipComponent, DataTableComponent, DataTableHeader, SlotDirective } from '@anglify/components';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-item-slot',
+  standalone: true,
   templateUrl: './item-slot.component.html',
   styleUrls: ['./item-slot.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent, ChipComponent, NgClass, SlotDirective],
 })
-export class ItemSlotComponent {
+export default class ItemSlotComponent {
   public headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name', width: 'auto' },
     { text: 'Calories', value: 'calories' },
@@ -29,5 +31,3 @@ export class ItemSlotComponent {
     return 'color-red';
   }
 }
-
-export default ItemSlotComponent;

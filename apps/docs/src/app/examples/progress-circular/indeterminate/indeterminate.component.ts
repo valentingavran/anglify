@@ -1,11 +1,11 @@
+import { ProgressCircularComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-indeterminate',
+  standalone: true,
   templateUrl: './indeterminate.component.html',
   styleUrls: ['./indeterminate.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ProgressCircularComponent],
 })
-export class IndeterminateComponent {}
-
-export default IndeterminateComponent;
+export default class IndeterminateComponent {}

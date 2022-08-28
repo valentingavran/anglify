@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { APIConfig } from '../../../app.interface';
+import { APIConfig, ComponentPageModule } from '../../../app.interface';
 
 @Component({
   selector: 'app-list-page',
   templateUrl: './list-page.component.html',
   styleUrls: ['./list-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: ComponentPageModule,
 })
 export class ListPageComponent {
   public config: APIConfig = {

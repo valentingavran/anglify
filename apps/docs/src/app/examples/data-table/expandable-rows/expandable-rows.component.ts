@@ -1,14 +1,15 @@
-import { DataTableHeader } from '@anglify/components';
+import { DataTableComponent, DataTableHeader, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-expandable-rows',
+  standalone: true,
   templateUrl: './expandable-rows.component.html',
   styleUrls: ['./expandable-rows.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent, SlotDirective],
 })
-export class ExpandableRowsComponent {
+export default class ExpandableRowsComponent {
   public headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name' },
     { text: 'Calories', value: 'calories' },
@@ -20,5 +21,3 @@ export class ExpandableRowsComponent {
 
   public items = items;
 }
-
-export default ExpandableRowsComponent;

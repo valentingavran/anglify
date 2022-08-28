@@ -1,11 +1,11 @@
+import { ProgressLinearComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-stream',
+  standalone: true,
   templateUrl: './stream.component.html',
   styleUrls: ['./stream.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ProgressLinearComponent],
 })
-export class StreamComponent {}
-
-export default StreamComponent;
+export default class StreamComponent {}

@@ -1,12 +1,15 @@
+import { ButtonComponent, OtpInputComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'anglify-basic',
+  standalone: true,
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ButtonComponent, OtpInputComponent, FormsModule],
 })
-export class BasicComponent {
+export default class BasicComponent {
   public otp = '';
   public length = 4;
 
@@ -14,4 +17,3 @@ export class BasicComponent {
     this.otp = '';
   }
 }
-export default BasicComponent;

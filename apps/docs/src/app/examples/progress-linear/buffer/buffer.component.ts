@@ -1,10 +1,11 @@
+import { ProgressLinearComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-buffer',
+  standalone: true,
   templateUrl: './buffer.component.html',
   styleUrls: ['./buffer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ProgressLinearComponent],
 })
-export class BufferComponent {}
-export default BufferComponent;
+export default class BufferComponent {}

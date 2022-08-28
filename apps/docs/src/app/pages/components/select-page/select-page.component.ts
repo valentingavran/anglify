@@ -1,11 +1,23 @@
+import { CheckboxComponent, InputDirective, RadioButtonComponent, SelectComponent, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { APIConfig } from '../../../app.interface';
+import { FormsModule } from '@angular/forms';
+import { APIConfig, ComponentPageModule } from '../../../app.interface';
 
 @Component({
   selector: 'app-select-page',
   templateUrl: './select-page.component.html',
   styleUrls: ['./select-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    ...ComponentPageModule,
+    SelectComponent,
+    TextFieldComponent,
+    InputDirective,
+    FormsModule,
+    CheckboxComponent,
+    RadioButtonComponent,
+  ],
 })
 export class SelectPageComponent {
   public config: APIConfig = {

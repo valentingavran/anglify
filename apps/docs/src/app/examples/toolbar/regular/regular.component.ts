@@ -1,10 +1,11 @@
+import { ToolbarComponent, ButtonComponent, IconComponent, SlotDirective } from '@anglify/components';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'anglify-regular',
+  standalone: true,
   templateUrl: './regular.component.html',
   styleUrls: ['./regular.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ToolbarComponent, ButtonComponent, IconComponent, SlotDirective],
 })
-export class RegularComponent {}
-export default RegularComponent;
+export default class RegularComponent {}

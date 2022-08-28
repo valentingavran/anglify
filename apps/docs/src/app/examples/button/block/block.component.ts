@@ -1,11 +1,11 @@
+import { ButtonComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-block',
+  standalone: true,
   templateUrl: './block.component.html',
   styleUrls: ['./block.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ButtonComponent],
 })
-export class BlockComponent {}
-
-export default BlockComponent;
+export default class BlockComponent {}

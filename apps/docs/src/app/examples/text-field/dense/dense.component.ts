@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dense',
+  standalone: true,
   templateUrl: './dense.component.html',
   styleUrls: ['./dense.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class DenseComponent {}
-
-export default DenseComponent;
+export default class DenseComponent {}

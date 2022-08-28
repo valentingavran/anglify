@@ -1,11 +1,11 @@
+import { ButtonComponent, IconComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-appearances',
+  standalone: true,
   templateUrl: './appearances.component.html',
   styleUrls: ['./appearances.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ButtonComponent, IconComponent],
 })
-export class AppearancesComponent {}
-
-export default AppearancesComponent;
+export default class AppearancesComponent {}

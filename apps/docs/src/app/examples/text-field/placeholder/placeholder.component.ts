@@ -1,11 +1,11 @@
+import { InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-placeholder',
+  standalone: true,
   templateUrl: './placeholder.component.html',
   styleUrls: ['./placeholder.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, InputDirective],
 })
-export class PlaceholderComponent {}
-
-export default PlaceholderComponent;
+export default class PlaceholderComponent {}

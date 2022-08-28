@@ -1,11 +1,16 @@
+import { CheckboxComponent, ProgressLinearComponent, RadioButtonComponent } from '@anglify/components';
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
-import { APIConfig } from '../../../app.interface';
+import { FormsModule } from '@angular/forms';
+import { APIConfig, ComponentPageModule } from '../../../app.interface';
 
 @Component({
   selector: 'anglify-progress-linear-page',
   templateUrl: './progress-linear-page.component.html',
   styleUrls: ['./progress-linear-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [...ComponentPageModule, ProgressLinearComponent, CheckboxComponent, RadioButtonComponent, FormsModule, NgIf],
 })
 export class ProgressLinearPageComponent {
   public config: APIConfig = {

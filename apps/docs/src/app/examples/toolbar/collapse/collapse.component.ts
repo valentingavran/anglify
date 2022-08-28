@@ -1,10 +1,11 @@
+import { ButtonComponent, IconComponent, SlotDirective, ToolbarComponent } from '@anglify/components';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'anglify-collapse',
+  standalone: true,
   templateUrl: './collapse.component.html',
   styleUrls: ['./collapse.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ToolbarComponent, ButtonComponent, IconComponent, SlotDirective],
 })
-export class CollapseComponent {}
-export default CollapseComponent;
+export default class CollapseComponent {}

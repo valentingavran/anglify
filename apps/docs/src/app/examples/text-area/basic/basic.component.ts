@@ -1,11 +1,11 @@
+import { IconComponent, SlotDirective, TextAreaComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-basic',
+  standalone: true,
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextAreaComponent, IconComponent, SlotDirective],
 })
-export class BasicComponent {}
-
-export default BasicComponent;
+export default class BasicComponent {}

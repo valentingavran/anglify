@@ -1,9 +1,10 @@
+import { ButtonComponent, IconComponent, SlotDirective, TabComponent, TabGroupComponent, ToolbarComponent } from '@anglify/components';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-extended-prominent',
+  standalone: true,
   templateUrl: './extended-prominent.component.html',
   styleUrls: ['./extended-prominent.component.scss'],
+  imports: [ToolbarComponent, ButtonComponent, IconComponent, TabGroupComponent, TabComponent, SlotDirective],
 })
-export class ExtendedProminentComponent {}
-export default ExtendedProminentComponent;
+export default class ExtendedProminentComponent {}

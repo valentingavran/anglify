@@ -1,0 +1,68 @@
+@use 'variables' as *;
+
+:host {
+  display: inline-flex;
+  min-height: $chip-height;
+  align-items: center;
+  padding: $chip-padding;
+  border-radius: $chip-border-radius;
+  color: $chip-inactive-label-color;
+  cursor: $chip-cursor;
+  font: $chip-font;
+  letter-spacing: $chip-letter-spacing;
+  text-decoration: $chip-text-decoration;
+  text-transform: $chip-text-transform;
+  user-select: none;
+
+  &:hover {
+    --state-container-color: #{$chip-hover-state-color};
+  }
+
+  &:focus-visible {
+    --state-container-color: #{$chip-focus-state-color};
+  }
+
+  .prepend,
+  .append {
+    --state-container-color: transparent;
+  }
+
+  &.filter {
+    .prepend {
+      width: 0;
+      opacity: 0;
+      transform: translate(calc(-1 * $chip-filter-prepend-width), 0);
+      transition: $chip-filter-transition-speed;
+    }
+
+    &.active {
+      .prepend {
+        width: $chip-filter-prepend-width;
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+  }
+
+  &.active {
+    --state-container-color: var(--color-primary-state-focus);
+
+    color: $chip-active-label-color;
+  }
+
+  &.filled {
+    background-color: $chip-background-color;
+  }
+
+  &.outlined {
+    border: $chip-outlined-border;
+  }
+
+  &.has-left-icon {
+    padding-inline-start: $chip-inline-padding-start-dense;
+  }
+
+  &.has-right-icon {
+    padding-inline-end: $chip-inline-padding-end-dense;
+  }
+}

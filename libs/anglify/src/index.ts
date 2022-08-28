@@ -8,187 +8,152 @@ export * from './composables/position/position.service';
 export * from './composables/ripple/ripple.interface';
 export * from './composables/ripple/ripple.provider';
 export * from './composables/ripple/ripple.service';
-// Common
-export * from './modules/common/directives/click-stop-propagation/click-stop-propagation.directive';
-export * from './modules/common/directives/slot/slot.directive';
-export * from './modules/common/directives/slot-outlet/slot-outlet.directive';
-export * from './modules/common/pipes/clamp/clamp.pipe';
-export * from './modules/common/pipes/find-slot/find-slot.pipe';
-export * from './modules/common/pipes/percent/percent.pipe';
-export * from './modules/common/anglify-common.module';
+// Directives
+export * from './directives/click-stop-propagation/click-stop-propagation.directive';
+export * from './directives/interaction-state/interaction-state.directive';
+export * from './directives/slot/slot.directive';
+export * from './directives/slot-outlet/slot-outlet.directive';
+// Pipes
+export * from './pipes/clamp/clamp.pipe';
+export * from './pipes/find-slot/find-slot.pipe';
+export * from './pipes/percent/percent.pipe';
 // Utils
 export * from './utils/animations';
 export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
 // Autocomplete
-export * from './modules/autocomplete/autocomplete.component';
-export * from './modules/autocomplete/autocomplete.module';
+export * from './components/autocomplete/autocomplete.component';
 // Badge
-export * from './modules/badge/badge-settings.token';
-export * from './modules/badge/badge.component';
-export * from './modules/badge/badge.directive';
-export * from './modules/badge/badge.interface';
-export * from './modules/badge/badge.module';
+export * from './components/badge/badge-settings.token';
+export * from './components/badge/badge.component';
+export * from './components/badge/badge.directive';
+export * from './components/badge/badge.interface';
 // Bottom-Navigation
-export * from './modules/bottom-navigation/bottom-navigation.module';
-export * from './modules/bottom-navigation/bottom-navigation.component';
-export * from './modules/bottom-navigation/bottom-navigation-settings.token';
-export * from './modules/bottom-navigation/bottom-navigation.interface';
-export * from './modules/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';
+export * from './components/bottom-navigation/bottom-navigation.component';
+export * from './components/bottom-navigation/bottom-navigation-settings.token';
+export * from './components/bottom-navigation/bottom-navigation.interface';
+export * from './components/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';
 // Breadcrumbs
-export * from './modules/breadcrumbs/breadcrumbs-settings.token';
-export * from './modules/breadcrumbs/breadcrumbs.component';
-export * from './modules/breadcrumbs/breadcrumbs.interface';
-export * from './modules/breadcrumbs/breadcrumbs.module';
+export * from './components/breadcrumbs/breadcrumbs-settings.token';
+export * from './components/breadcrumbs/breadcrumbs.component';
+export * from './components/breadcrumbs/breadcrumbs.interface';
 // Button
-export * from './modules/button/button.component';
-export * from './modules/button/button.interface';
-export * from './modules/button/button.module';
+export * from './components/button/button.component';
+export * from './components/button/button.interface';
 // Button Group
-export * from './modules/button-group/components/button-group/button-group.component';
-export * from './modules/button-group/components/button-group-item/button-group-item.component';
-export * from './modules/button-group/button-group-settings.token';
-export * from './modules/button-group/button-group.interface';
-export * from './modules/button-group/button-group.module';
+export * from './components/button-group/components/button-group/button-group.component';
+export * from './components/button-group/components/button-group-item/button-group-item.component';
+export * from './components/button-group/button-group-settings.token';
+export * from './components/button-group/button-group.interface';
 // Card
-export * from './modules/card/card-settings.token';
-export * from './modules/card/card.component';
-export * from './modules/card/card.interface';
-export * from './modules/card/card.module';
+export * from './components/card/card-settings.token';
+export * from './components/card/card.component';
+export * from './components/card/card.interface';
 // Checkbox
-export * from './modules/checkbox/interfaces/checkbox.interface';
-export * from './modules/checkbox/interfaces/checkbox-icons.interface';
-export * from './modules/checkbox/tokens/checkbox-icons.token';
-export * from './modules/checkbox/tokens/checkbox-settings.token';
-export * from './modules/checkbox/checkbox.component';
-export * from './modules/checkbox/functions/register-icons.function';
-export * from './modules/checkbox/checkbox.module';
+export * from './components/checkbox/interfaces/checkbox.interface';
+export * from './components/checkbox/interfaces/checkbox-icons.interface';
+export * from './components/checkbox/tokens/checkbox-icons.token';
+export * from './components/checkbox/tokens/checkbox-settings.token';
+export * from './components/checkbox/checkbox.component';
+export * from './components/checkbox/functions/register-icons.function';
 // Chip
-export * from './modules/chip/chip-settings.token';
-export * from './modules/chip/chip.interface';
-export * from './modules/chip/chip.component';
-export * from './modules/chip/chip.module';
+export * from './components/chip/chip-settings.token';
+export * from './components/chip/chip.interface';
+export * from './components/chip/chip.component';
 // Combobox
-export * from './modules/combobox/combobox.component';
-export * from './modules/combobox/combobox.module';
+export * from './components/combobox/combobox.component';
 // Data Table
-export * from './modules/data-table/data-table-settings.token';
-export * from './modules/data-table/data-table.component';
-export * from './modules/data-table/data-table.interface';
-export * from './modules/data-table/data-table.module';
+export * from './components/data-table/data-table-settings.token';
+export * from './components/data-table/data-table.component';
+export * from './components/data-table/data-table.interface';
 // Dialog
-export * from './modules/dialog/dialog.component';
-export * from './modules/dialog/dialog.interface';
-export * from './modules/dialog/dialog.service';
-export * from './modules/dialog/dialog.module';
+export * from './components/dialog/dialog.component';
+export * from './components/dialog/dialog.interface';
+export * from './components/dialog/dialog.service';
 // Expansion Panels
-export * from './modules/expansion-panels/components/expansion-panel/expansion-panel.component';
-export * from './modules/expansion-panels/components/expansion-panels/expansion-panels.component';
-export * from './modules/expansion-panels/expansion-panels-settings.token';
-export * from './modules/expansion-panels/expansion-panels.interface';
-export * from './modules/expansion-panels/expansion-panels.module';
+export * from './components/expansion-panels/components/expansion-panel/expansion-panel.component';
+export * from './components/expansion-panels/components/expansion-panels/expansion-panels.component';
+export * from './components/expansion-panels/expansion-panels-settings.token';
+export * from './components/expansion-panels/expansion-panels.interface';
 // Icon
-export * from './modules/icon/icon-settings.token';
-export * from './modules/icon/icon.component';
-export * from './modules/icon/icon.interface';
-export * from './modules/icon/icon.module';
+export * from './components/icon/icon-settings.token';
+export * from './components/icon/icon.component';
+export * from './components/icon/icon.interface';
 // Input
-export * from './modules/input/input.directive';
-export * from './modules/input/input.interface';
+export * from './components/input/input.directive';
+export * from './components/input/input.interface';
 // Item Group
-export * from './modules/item-group/item-group.component';
-export * from './modules/item-group/item-group.module';
+export * from './components/item-group/item-group.component';
 // List
-export * from './modules/list/components/list/list.component';
-export * from './modules/list/components/list-group/list-group.component';
-export * from './modules/list/components/list-item/list-item.component';
-export * from './modules/list/components/list-item-description/list-item-description.component';
-export * from './modules/list/components/list-item-group/list-item-group.component';
-export * from './modules/list/components/list-item-title/list-item-title.component';
-export * from './modules/list/list.module';
+export * from './components/list/components/list/list.component';
+export * from './components/list/components/list-group/list-group.component';
+export * from './components/list/components/list-item/list-item.component';
+export * from './components/list/components/list-item-description/list-item-description.component';
+export * from './components/list/components/list-item-group/list-item-group.component';
+export * from './components/list/components/list-item-title/list-item-title.component';
 // Menu
-export * from './modules/menu/components/menu/menu.component';
-export * from './modules/menu/menu-settings.token';
-export * from './modules/menu/menu.directive';
-export * from './modules/menu/menu.interface';
-export * from './modules/menu/menu.module';
+export * from './components/menu/components/menu/menu.component';
+export * from './components/menu/menu-settings.token';
+export * from './components/menu/menu.directive';
+export * from './components/menu/menu.interface';
 // Navigation Drawer
-export * from './modules/navigation-drawer/navigation-drawer.component';
-export * from './modules/navigation-drawer/navigation-drawer.interface';
-export * from './modules/navigation-drawer/navigation-drawer.module';
-export * from './modules/navigation-drawer/navigation-drawer-settings.token';
+export * from './components/navigation-drawer/navigation-drawer.component';
+export * from './components/navigation-drawer/navigation-drawer.interface';
+export * from './components/navigation-drawer/navigation-drawer-settings.token';
 // OTP Input
-export * from './modules/otp-input/otp-input-settings.token';
-export * from './modules/otp-input/otp-input.component';
-export * from './modules/otp-input/otp-input.interface';
-export * from './modules/otp-input/otp-input.module';
-// Overlay
-export * from './modules/interaction-state/interaction-state.directive';
-export * from './modules/interaction-state/interaction-state.module';
+export * from './components/otp-input/otp-input-settings.token';
+export * from './components/otp-input/otp-input.component';
+export * from './components/otp-input/otp-input.interface';
 // Progress Circular
-export * from './modules/progress-circular/progress-circular-settings.token';
-export * from './modules/progress-circular/progress-circular.component';
-export * from './modules/progress-circular/progress-circular.interface';
-export * from './modules/progress-circular/progress-circular.module';
+export * from './components/progress-circular/progress-circular-settings.token';
+export * from './components/progress-circular/progress-circular.component';
+export * from './components/progress-circular/progress-circular.interface';
 // Progress Linear
-export * from './modules/progress-linear/progress-linear.component';
-export * from './modules/progress-linear/progress-linear.interface';
-export * from './modules/progress-linear/progress-linear.module';
+export * from './components/progress-linear/progress-linear.component';
+export * from './components/progress-linear/progress-linear.interface';
 // Radio Button
-export * from './modules/radio-button/radio-button.component';
-export * from './modules/radio-button/radio-button.interface';
-export * from './modules/radio-button/radio-button.module';
+export * from './components/radio-button/radio-button.component';
+export * from './components/radio-button/radio-button.interface';
 // Select
-export * from './modules/select/select-settings.token';
-export * from './modules/select/select.component';
-export * from './modules/select/select.interface';
-export * from './modules/select/select.module';
+export * from './components/select/select-settings.token';
+export * from './components/select/select.component';
+export * from './components/select/select.interface';
+// Simple Table
+export * from './components/simple-table/simple-table.component';
 // Snackbar
-export * from './modules/snackbar/snackbar.component';
-export * from './modules/snackbar/snackbar.interface';
-export * from './modules/snackbar/snackbar.service';
-export * from './modules/snackbar/snackbar.module';
+export * from './components/snackbar/snackbar.component';
+export * from './components/snackbar/snackbar.interface';
+export * from './components/snackbar/snackbar.service';
 // Stepper
-export * from './modules/stepper/components/stepper-header/stepper-header.component';
-export * from './modules/stepper/components/stepper/stepper.component';
-export * from './modules/stepper/directives/step/step.directive';
-export * from './modules/stepper/directives/stepper-next/stepper-next.directive';
-export * from './modules/stepper/directives/stepper-previous/stepper-previous.directive';
-export * from './modules/stepper/services/stepper-settings/stepper-settings.service';
-export * from './modules/stepper/services/stepper/stepper.service';
-export * from './modules/stepper/stepper-testing.module';
-export * from './modules/stepper/stepper.module';
+export * from './components/stepper/components/stepper-header/stepper-header.component';
+export * from './components/stepper/components/stepper/stepper.component';
+export * from './components/stepper/directives/step/step.directive';
+export * from './components/stepper/directives/stepper-next/stepper-next.directive';
+export * from './components/stepper/directives/stepper-previous/stepper-previous.directive';
+export * from './components/stepper/services/stepper-settings/stepper-settings.service';
+export * from './components/stepper/services/stepper/stepper.service';
 // Tab
-export * from './modules/tab/components/tab/tab.component';
-export * from './modules/tab/components/tab-group/tab-group.component';
-export * from './modules/tab/tab-settings.token';
-export * from './modules/tab/tab.interface';
-export * from './modules/tab/tab.module';
-// Table
-export * from './modules/simple-table/simple-table.component';
-export * from './modules/simple-table/simple-table.module';
+export * from './components/tab/components/tab/tab.component';
+export * from './components/tab/components/tab-group/tab-group.component';
+export * from './components/tab/tab-settings.token';
+export * from './components/tab/tab.interface';
 // Text Area
-export * from './modules/text-area/text-area-settings.token';
-export * from './modules/text-area/text-area.component';
-export * from './modules/text-area/text-area.interface';
-export * from './modules/text-area/text-area.module';
+export * from './components/text-area/text-area-settings.token';
+export * from './components/text-area/text-area.component';
+export * from './components/text-area/text-area.interface';
 // Text Field
-export * from './modules/text-field/text-field-settings.token';
-export * from './modules/text-field/text-field.component';
-export * from './modules/text-field/text-field.interface';
-export * from './modules/text-field/text-field.module';
+export * from './components/text-field/text-field-settings.token';
+export * from './components/text-field/text-field.component';
+export * from './components/text-field/text-field.interface';
 // Timeline
-export * from './modules/timeline/components/timeline/timeline.component';
-export * from './modules/timeline/components/timeline-item/timeline-item.component';
-export * from './modules/timeline/timeline.module';
+export * from './components/timeline/components/timeline/timeline.component';
+export * from './components/timeline/components/timeline-item/timeline-item.component';
 // Toolbar
-export * from './modules/toolbar/toolbar.module';
-export * from './modules/toolbar/toolbar-settings.token';
-export * from './modules/toolbar/toolbar.interface';
-export * from './modules/toolbar/toolbar.component';
+export * from './components/toolbar/toolbar-settings.token';
+export * from './components/toolbar/toolbar.interface';
+export * from './components/toolbar/toolbar.component';
 // Tooltip
-export * from './modules/tooltip/tooltip-settings.token';
-export * from './modules/tooltip/tooltip.directive';
-export * from './modules/tooltip/tooltip.interface';
-export * from './modules/tooltip/tooltip.module';
+export * from './components/tooltip/tooltip-settings.token';
+export * from './components/tooltip/tooltip.directive';
+export * from './components/tooltip/tooltip.interface';

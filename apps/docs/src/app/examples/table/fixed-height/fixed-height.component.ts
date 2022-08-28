@@ -1,12 +1,15 @@
+import { SimpleTableComponent } from '@anglify/components';
+import { NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-fixed-height',
+  standalone: true,
   templateUrl: './fixed-height.component.html',
   styleUrls: ['./fixed-height.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SimpleTableComponent, NgForOf],
 })
-export class FixedHeightComponent {
+export default class FixedHeightComponent {
   public readonly desserts = [
     {
       name: 'Frozen Yogurt',
@@ -50,5 +53,3 @@ export class FixedHeightComponent {
     },
   ];
 }
-
-export default FixedHeightComponent;

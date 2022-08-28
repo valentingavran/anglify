@@ -1,11 +1,11 @@
+import { ButtonComponent, TooltipDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-show-hide-manually',
+  standalone: true,
   templateUrl: './show-hide-manually.component.html',
   styleUrls: ['./show-hide-manually.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TooltipDirective, ButtonComponent],
 })
-export class ShowHideManuallyComponent {}
-
-export default ShowHideManuallyComponent;
+export default class ShowHideManuallyComponent {}

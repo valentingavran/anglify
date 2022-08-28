@@ -1,10 +1,11 @@
+import { BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective } from '@anglify/components';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'anglify-grow',
+  standalone: true,
   templateUrl: './grow.component.html',
   styleUrls: ['./grow.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective],
 })
-export class GrowComponent {}
-export default GrowComponent;
+export default class GrowComponent {}

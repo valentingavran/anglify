@@ -1,11 +1,11 @@
+import { IconComponent, InputDirective, SlotDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-icons',
+  standalone: true,
   templateUrl: './icons.component.html',
   styleUrls: ['./icons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TextFieldComponent, IconComponent, SlotDirective, InputDirective],
 })
-export class IconsComponent {}
-
-export default IconsComponent;
+export default class IconsComponent {}

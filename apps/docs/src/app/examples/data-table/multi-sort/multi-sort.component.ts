@@ -1,14 +1,15 @@
-import { DataTableHeader } from '@anglify/components';
+import { DataTableComponent, DataTableHeader } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-multi-sort',
+  standalone: true,
   templateUrl: './multi-sort.component.html',
   styleUrls: ['./multi-sort.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent],
 })
-export class MultiSortComponent {
+export default class MultiSortComponent {
   public headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name' },
     { text: 'Calories', value: 'calories' },
@@ -20,5 +21,3 @@ export class MultiSortComponent {
 
   public items = items;
 }
-
-export default MultiSortComponent;

@@ -1,11 +1,11 @@
+import { ButtonComponent, ListItemComponent, ListItemTitleComponent, MenuDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'anglify-show-hide-manually',
+  standalone: true,
   templateUrl: './show-hide-manually.component.html',
   styleUrls: ['./show-hide-manually.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ButtonComponent, MenuDirective, ListItemComponent, ListItemTitleComponent],
 })
-export class ShowHideManuallyComponent {}
-
-export default ShowHideManuallyComponent;
+export default class ShowHideManuallyComponent {}

@@ -1,14 +1,15 @@
-import { DataTableHeader } from '@anglify/components';
+import { DataTableComponent, DataTableHeader } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
 
 @Component({
-  selector: 'anglify-hide-default-header-and-footer',
+  standalone: true,
   templateUrl: './hide-default-header-and-footer.component.html',
   styleUrls: ['./hide-default-header-and-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataTableComponent],
 })
-export class HideDefaultHeaderAndFooterComponent {
+export default class HideDefaultHeaderAndFooterComponent {
   public headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name' },
     { text: 'Calories', value: 'calories' },
@@ -20,5 +21,3 @@ export class HideDefaultHeaderAndFooterComponent {
 
   public items = items;
 }
-
-export default HideDefaultHeaderAndFooterComponent;

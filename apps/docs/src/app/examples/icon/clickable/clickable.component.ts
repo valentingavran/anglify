@@ -1,11 +1,11 @@
+import { IconComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-clickable',
+  standalone: true,
   templateUrl: './clickable.component.html',
   styleUrls: ['./clickable.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [IconComponent],
 })
-export class ClickableComponent {}
-
-export default ClickableComponent;
+export default class ClickableComponent {}
