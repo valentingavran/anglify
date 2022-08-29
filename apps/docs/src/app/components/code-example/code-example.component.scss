@@ -8,7 +8,6 @@
 
     .preview {
       display: flex;
-      overflow: hidden;
       box-sizing: border-box;
       align-items: center;
       justify-content: center;
@@ -27,6 +26,12 @@
     }
 
     .code-container {
+      overflow: hidden;
+    }
+  }
+
+  &.hide-overflow {
+    .code-example .preview {
       overflow: hidden;
     }
   }

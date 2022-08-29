@@ -6,6 +6,7 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
+  HostBinding,
   Input,
   OnInit,
   Type,
@@ -37,6 +38,10 @@ export class CodeExampleComponent implements OnInit {
   public set example(value: string) {
     this.example$.next(value);
   }
+
+  @HostBinding('class.hide-overflow')
+  @Input()
+  public hideOverflow = true;
 
   private readonly example$ = new BehaviorSubject<string>('');
   public readonly selectedView$ = new BehaviorSubject<'code' | 'template' | 'style' | null>(null);
