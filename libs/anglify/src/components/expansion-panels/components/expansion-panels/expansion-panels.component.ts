@@ -10,7 +10,7 @@ import {
   Self,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, first, map, startWith, tap } from 'rxjs';
+import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
 import { ELEVATION } from '../../../../composables/elevation/elevation.provider';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
 import { bindClassToNativeElement } from '../../../../utils/functions';
@@ -84,7 +84,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
         .pipe(
           untilDestroyed(this),
           filter(items => items.length > 0),
-          first()
+          take(1)
         )
         .subscribe(() => this.activateAllIndices(indicesToBeActive));
     } else {

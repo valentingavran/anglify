@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, first, map, startWith, tap } from 'rxjs';
+import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
 import { BUTTON_GROUP_SETTINGS, DEFAULT_BUTTON_GROUP_SETTINGS } from '../../button-group-settings.token';
 import { EntireButtonGroupSettings } from '../../button-group.interface';
@@ -69,7 +69,7 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
         .pipe(
           untilDestroyed(this),
           filter(items => items.length > 0),
-          first()
+          take(1)
         )
         .subscribe(() => this.activateAllIndices(indicesToBeActive));
     } else {

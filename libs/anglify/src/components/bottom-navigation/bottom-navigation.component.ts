@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, combineLatest, filter, first, startWith, Subject, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, filter, startWith, Subject, take, takeUntil, tap } from 'rxjs';
 import { BOTTOM_NAVIGATION_SETTINGS, DEFAULT_BOTTOM_NAVIGATION_SETTINGS } from './bottom-navigation-settings.token';
 import { EntireBottomNavigationSettings } from './bottom-navigation.interface';
 import { BottomNavigationItemComponent } from './components/bottom-navigation-item/bottom-navigation-item.component';
@@ -122,7 +122,7 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
         .pipe(
           untilDestroyed(this),
           filter(items => items.length > 0),
-          first()
+          take(1)
         )
         .subscribe(items => {
           const item1 = items[value] as BottomNavigationItemComponent | undefined;
