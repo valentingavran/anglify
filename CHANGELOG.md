@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.31.1](https://github.com/valentingavran/anglify/compare/v0.31.0...v0.31.1) (2022-08-29)
+
+
+### 🐛  Bug Fixes
+
+* add missing imports that broke some components ([639f323](https://github.com/valentingavran/anglify/commit/639f32305e353e2167e38d4628b779f9820c4b8b))
+* **SimpleTable:** fix code examples & hover style on footer ([17af262](https://github.com/valentingavran/anglify/commit/17af26215839dc5a9603bae7a386ec0667c19c59))
+
 ## [0.31.0](https://github.com/valentingavran/anglify/compare/v0.30.0...v0.31.0) (2022-08-28)
 
 
