@@ -35,14 +35,6 @@
         border-bottom-width: 0;
       }
     }
-
-    &:hover {
-      background: $simple-table-hover-background;
-
-      td {
-        background: transparent;
-      }
-    }
   }
 
   tfoot {
@@ -52,6 +44,17 @@
         border-top-width: $simple-table-border-width;
         border-top-style: $simple-table-border-style;
         border-top-color: $simple-table-border-color;
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  :not(tfoot) tr {
+    &:hover {
+      background: $simple-table-hover-background;
+
+      td {
+        background: transparent;
       }
     }
   }

@@ -1,4 +1,11 @@
-import { AutocompleteComponent, CheckboxComponent, InputDirective, RadioButtonComponent, TextFieldComponent } from '@anglify/components';
+import {
+  AutocompleteComponent,
+  CheckboxComponent,
+  InputDirective,
+  RadioButtonComponent,
+  SlotDirective,
+  TextFieldComponent,
+} from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { APIConfig, ComponentPageModule } from '../../../app.interface';
@@ -17,6 +24,7 @@ import { APIConfig, ComponentPageModule } from '../../../app.interface';
     FormsModule,
     CheckboxComponent,
     RadioButtonComponent,
+    SlotDirective,
   ],
 })
 export class AutocompletePageComponent {
