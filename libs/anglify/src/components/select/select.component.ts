@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -60,6 +60,7 @@ import { TextFieldComponent } from '../text-field/text-field.component';
     InputDirective,
     MenuDirective,
     SlotDirective,
+    NgForOf,
   ],
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewInit {

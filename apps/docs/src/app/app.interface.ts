@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
 import { ImportExampleComponent } from './components/import-example/import-example.component';
 import { InputsTableComponent } from './components/inputs-table/inputs-table.component';
@@ -10,6 +11,7 @@ export const ComponentPageModule = [
   ImportExampleComponent,
   InputsTableComponent,
   StylingTableComponent,
+  HttpClientModule,
 ];
 
 export interface Documentation {
