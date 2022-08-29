@@ -1,4 +1,5 @@
-@use '../../../libs/anglify/src/styles/index';
+@use 'fonts' as *;
+@use '../../../libs/anglify/src/styles/index' as *;
 @use '../../../libs/anglify/src/styles/themes/light' as *;
 @use '../../../libs/anglify/src/styles/themes/dark' as *;
 @use '../../../libs/anglify/src/components/simple-table' as *;
@@ -25,7 +26,7 @@ body {
   margin: 0;
   background-color: var(--color-background);
   color: var(--color-on-background-high-emphasis);
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 h1 {
