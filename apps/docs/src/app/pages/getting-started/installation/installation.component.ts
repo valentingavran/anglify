@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { stripIndent } from 'common-tags';
 import { HighlightModule } from 'ngx-highlightjs';
+import { HeadingDirective } from '../../../directives/heading/heading.directive';
 
 @Component({
   selector: 'app-installation',
@@ -8,7 +9,7 @@ import { HighlightModule } from 'ngx-highlightjs';
   templateUrl: './installation.component.html',
   styleUrls: ['./installation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HighlightModule],
+  imports: [HighlightModule, HeadingDirective],
 })
 export class InstallationComponent {
   public angularInstallation = `$ npm install -g @angular/cli\n$ ng new my-app\n$ cd my-app`;

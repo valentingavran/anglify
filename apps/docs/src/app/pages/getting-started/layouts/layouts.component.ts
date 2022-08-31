@@ -1,6 +1,7 @@
 import { CardComponent, IconComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HeadingDirective } from '../../../directives/heading/heading.directive';
 
 @Component({
   selector: 'anglify-layouts',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './layouts.component.html',
   styleUrls: ['./layouts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CardComponent, IconComponent],
+  imports: [CardComponent, IconComponent, HeadingDirective],
 })
 export class LayoutsComponent {
   public constructor(public router: Router) {}

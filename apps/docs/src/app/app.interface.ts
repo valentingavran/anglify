@@ -4,6 +4,7 @@ import { ImportExampleComponent } from './components/import-example/import-examp
 import { InputsTableComponent } from './components/inputs-table/inputs-table.component';
 import { ReferencesComponent } from './components/references/references.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
+import { HeadingDirective } from './directives/heading/heading.directive';
 
 export const ComponentPageModule = [
   ReferencesComponent,
@@ -12,6 +13,7 @@ export const ComponentPageModule = [
   InputsTableComponent,
   StylingTableComponent,
   HttpClientModule,
+  HeadingDirective,
 ];
 
 export interface Documentation {

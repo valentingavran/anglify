@@ -1,6 +1,7 @@
 import { SimpleTableComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
+import { HeadingDirective } from '../../../directives/heading/heading.directive';
 
 @Component({
   selector: 'anglify-breakpoints',
@@ -8,7 +9,7 @@ import { HighlightModule } from 'ngx-highlightjs';
   templateUrl: './breakpoints.component.html',
   styleUrls: ['./breakpoints.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SimpleTableComponent, HighlightModule],
+  imports: [SimpleTableComponent, HighlightModule, HeadingDirective],
 })
 export class BreakpointsComponent {
   public scssMixinExample = `@use 'node_modules/@anglify/components/styles/mixins/breakpoints.scss' as *;

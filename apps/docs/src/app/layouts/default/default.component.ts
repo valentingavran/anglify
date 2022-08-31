@@ -15,6 +15,8 @@ import {
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { TableOfContentsComponent } from '../../components/table-of-contents/table-of-contents.component';
+import { TableOfContentsService } from '../../services/table-of-contents/table-of-contents.service';
 
 interface NavItem {
   name: string;
@@ -51,6 +53,7 @@ interface NavGroup {
     RouterModule,
     SlotDirective,
     ButtonComponent,
+    TableOfContentsComponent,
   ],
 })
 export class DefaultComponent {
@@ -84,7 +87,11 @@ export class DefaultComponent {
     window.open('https://material.io', '_blank')!.focus();
   }
 
-  public constructor(public readonly router: Router, public breakpointService: BreakpointObserverService) {
+  public constructor(
+    public readonly router: Router,
+    public breakpointService: BreakpointObserverService,
+    protected tocService: TableOfContentsService
+  ) {
     this.initTheme();
   }
 

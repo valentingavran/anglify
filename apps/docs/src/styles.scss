@@ -7,6 +7,8 @@
 @use '../../../libs/anglify/src/styles/mixins/breakpoints.scss' as *;
 
 :root {
+  --anglify-toolbar-regular-height: 56px;
+
   @include light-theme;
 
   &.light {
@@ -27,20 +29,26 @@ body {
   background-color: var(--color-background);
   color: var(--color-on-background-high-emphasis);
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  overscroll-behavior: none;
 }
 
 h1 {
   @include typography.display-3;
 
   margin-bottom: 1rem;
+  scroll-margin-top: calc(var(--anglify-toolbar-regular-height) + 2rem);
 }
 
 h2 {
   @include typography.display-4;
+
+  scroll-margin-top: calc(var(--anglify-toolbar-regular-height) + 2rem);
 }
 
 h3 {
   @include typography.display-5;
+
+  scroll-margin-top: calc(var(--anglify-toolbar-regular-height) + 2rem);
 }
 
 a {

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
+import { HeadingDirective } from '../../../directives/heading/heading.directive';
 
 @Component({
   selector: 'anglify-theming',
@@ -7,7 +8,7 @@ import { HighlightModule } from 'ngx-highlightjs';
   templateUrl: './theming.component.html',
   styleUrls: ['./theming.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HighlightModule],
+  imports: [HighlightModule, HeadingDirective],
 })
 export class ThemingComponent {
   public importingTheme = `// styles.scss\n@use 'node_modules/@anglify/components/styles/themes/light' as *;\n// ...`;

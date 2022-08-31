@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
+import { HeadingDirective } from '../../../directives/heading/heading.directive';
 
 @Component({
   selector: 'anglify-icon-fonts',
@@ -7,7 +8,7 @@ import { HighlightModule } from 'ngx-highlightjs';
   templateUrl: './icon-fonts.component.html',
   styleUrls: ['./icon-fonts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HighlightModule],
+  imports: [HighlightModule, HeadingDirective],
 })
 export class IconFontsComponent {
   public iconSettingsProvider = `import { IconSettings, ICON_SETTINGS } from '@anglify/components';
