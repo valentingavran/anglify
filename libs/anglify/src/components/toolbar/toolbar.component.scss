@@ -3,6 +3,8 @@
 @use '../../styles/settings/typography.scss' as *;
 
 :host {
+  z-index: 10;
+
   .extension-container {
     height: $toolbar-extension-container-height;
     background-color: $toolbar-background;
