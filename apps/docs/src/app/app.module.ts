@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TableOfContentsService } from './services/table-of-contents/table-of-contents.service';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { environment } from '../environments/environment';
         },
       },
     },
+    TableOfContentsService,
   ],
   bootstrap: [AppComponent],
 })
