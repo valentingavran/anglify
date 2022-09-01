@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/docs",
   "sourceRoot": "apps/docs/src",
   "prefix": "anglify",
   "targets": {
@@ -40,7 +39,6 @@
           ],
           "outputHashing": "all"
         },
-
         "staging": {
           "budgets": [
             {
@@ -101,7 +99,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/docs"],
       "options": {
-        "jestConfig": "apps/docs/jest.config.js",
+        "jestConfig": "apps/docs/jest.config.ts",
         "passWithNoTests": true
       }
     }

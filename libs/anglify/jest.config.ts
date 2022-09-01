@@ -1,3 +1,4 @@
+/* eslint-disable */
 module.exports = {
   displayName: 'anglify',
   preset: '../../jest.preset.js',

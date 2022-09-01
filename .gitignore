@@ -47,3 +47,12 @@ Thumbs.db
 documentation.json
 .angular
 /apps/docs/src/assets/style-definitions
+
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

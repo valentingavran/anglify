@@ -10,29 +10,25 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - name: Install node.js v16
+        uses: actions/setup-node@v3
         with:
-          path: |
-            node_modules
-            **/node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - run: npm install --prefer-offline
-      - run: npm run lint
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --immutable
+      - run: yarn lint
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - name: Install node.js v16
+        uses: actions/setup-node@v3
         with:
-          path: |
-            node_modules
-            **/node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - run: npm install --prefer-offline
-      - run: npm run test:coverage
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --immutable
+      - run: yarn test:coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
