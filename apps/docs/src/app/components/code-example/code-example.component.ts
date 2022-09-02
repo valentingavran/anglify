@@ -1,42 +1,33 @@
 import { ButtonComponent, IconComponent } from '@anglify/components';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ComponentFactoryResolver,
-  HostBinding,
-  Input,
-  OnInit,
-  Type,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
-import { HighlightModule } from 'ngx-highlightjs';
-import { MarkdownModule } from 'ngx-markdown';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { HighlightPipe } from '../../pipes/highlight.pipe';
 
 const EXAMPLE_FOLDER_URL = environment.exampleFolderURL;
 
 @Component({
-  selector: 'app-code-example[component][example]',
   standalone: true,
   templateUrl: './code-example.component.html',
   styleUrls: ['./code-example.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgIf, AsyncPipe, IconComponent, HighlightModule, MarkdownModule, HttpClientModule, ButtonComponent],
+  imports: [NgIf, AsyncPipe, IconComponent, HttpClientModule, ButtonComponent, HighlightPipe],
 })
 export class CodeExampleComponent implements OnInit {
   @ViewChild('container', { static: true, read: ViewContainerRef }) public container!: ViewContainerRef;
 
   @Input() public component!: string;
 
-  @Input()
-  public set example(value: string) {
+  @Input() public set example(value: string) {
     this.example$.next(value);
+  }
+
+  public get example() {
+    return this.example$.value;
   }
 
   @HostBinding('class.hide-overflow')
@@ -93,22 +84,25 @@ export class CodeExampleComponent implements OnInit {
     }
   }
 
-  public constructor(
-    private readonly httpClient: HttpClient,
-    private readonly componentFactoryResolver: ComponentFactoryResolver,
-    private readonly cdr: ChangeDetectorRef
-  ) {}
+  public constructor(private readonly httpClient: HttpClient, private readonly injector: Injector) {}
 
   public ngOnInit() {
-    void this.loadComponent(this.container);
+    void this.loadComponent();
   }
 
-  private async loadComponent(vcr: ViewContainerRef) {
+  private async loadComponent() {
     const example = this.example$.value;
+    const selector = `${this.component}-${this.example}-example`;
     if (example) {
-      const component = (await import(`../../examples/${this.component}/${example}/${example}.component`)) as { default: Type<any> };
-      vcr.createComponent(this.componentFactoryResolver.resolveComponentFactory(component.default));
-      this.cdr.markForCheck();
+      if (customElements.get(selector) === undefined) {
+        const component = (await import(`../../examples/${this.component}/${example}/${example}.component`)) as { default: Type<any> };
+        customElements.define(selector, createCustomElement(component.default, { injector: this.injector }));
+      }
+
+      // add custom element to template
+      (this.container.element.nativeElement as HTMLElement).appendChild(
+        document.createElement(`${this.component}-${this.example}-example`)
+      );
     }
   }
 }

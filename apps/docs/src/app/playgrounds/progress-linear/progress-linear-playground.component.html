@@ -1,0 +1,23 @@
+<div class="playground">
+  <div class="content">
+    <anglify-progress-linear
+      [indeterminate]="isIndeterminate"
+      [value]="progress"
+      [bufferValue]="buffer"
+      [stream]="stream"
+    ></anglify-progress-linear>
+  </div>
+  <div class="controls">
+    <span class="body-l">Size</span>
+    <input type="range" min="0" max="100" [(ngModel)]="size" />
+    <anglify-radio-button [(ngModel)]="mode" name="mode" value="indeterminate">Indeterminate</anglify-radio-button>
+    <anglify-radio-button [(ngModel)]="mode" name="mode" value="regular">Regular</anglify-radio-button>
+    <ng-container *ngIf="!isIndeterminate">
+      <span class="body-l">Progress</span>
+      <input type="range" min="0" max="100" [(ngModel)]="progress" />
+      <span class="body-l">Buffer</span>
+      <input type="range" min="0" max="100" [(ngModel)]="buffer" />
+      <anglify-checkbox type="checkbox" [(ngModel)]="stream">Stream</anglify-checkbox>
+    </ng-container>
+  </div>
+</div>

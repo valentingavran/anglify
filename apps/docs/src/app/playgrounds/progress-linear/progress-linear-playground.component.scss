@@ -1,0 +1,15 @@
+:host {
+  .playground {
+    min-height: 200px;
+
+    input {
+      width: 100%;
+    }
+
+    anglify-progress-linear {
+      --anglify-progress-linear-height: var(--docs-progress-linear-playground-size);
+
+      width: 100%;
+    }
+  }
+}

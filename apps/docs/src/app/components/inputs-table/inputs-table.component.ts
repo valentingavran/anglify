@@ -1,10 +1,10 @@
-import { ChipComponent, ItemGroupComponent } from '@anglify/components';
+import { ChipComponent, ItemGroupComponent, SlotDirective } from '@anglify/components';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map, startWith, take } from 'rxjs/operators';
 import { APIConfig, Documentation } from '../../app.interface';
 import { ComponentAPIComponent } from '../component-api/component-api.component';
@@ -14,7 +14,6 @@ import { ServiceAPIComponent } from '../service-api/service-api.component';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-inputs-table',
   standalone: true,
   templateUrl: './inputs-table.component.html',
   styleUrls: ['./inputs-table.component.scss'],
@@ -30,15 +29,25 @@ import { ServiceAPIComponent } from '../service-api/service-api.component';
     NgForOf,
     NgIf,
     AsyncPipe,
+    HttpClientModule,
+    SlotDirective,
   ],
 })
 export class InputsTableComponent {
-  @Input() public set config(value: APIConfig) {
-    this.config$.next(value);
+  @Input() public set components(value: string) {
+    this._components$.next(value);
   }
 
-  public get config() {
-    return this.config$.value;
+  @Input() public set directives(value: string) {
+    this._directives$.next(value);
+  }
+
+  @Input() public set services(value: string) {
+    this._services$.next(value);
+  }
+
+  @Input() public set interfaces(value: string) {
+    this._interfaces$.next(value);
   }
 
   public selection = new FormControl(0);
@@ -52,8 +61,24 @@ export class InputsTableComponent {
       });
   }
 
+  public _components$ = new BehaviorSubject<string | undefined>(undefined);
+  public _directives$ = new BehaviorSubject<string | undefined>(undefined);
+  public _services$ = new BehaviorSubject<string | undefined>(undefined);
+  public _interfaces$ = new BehaviorSubject<string | undefined>(undefined);
+
   public documentation$ = new BehaviorSubject<Documentation | null>(null);
-  public config$ = new BehaviorSubject<APIConfig>({});
+  public config$: Observable<APIConfig> = combineLatest([this._components$, this._directives$, this._services$, this._interfaces$]).pipe(
+    map(([components, directives, services, interfaces]) => {
+      const config: APIConfig = {
+        components: components ? components.replace(/ /g, '').split(',') : [],
+        directives: directives ? directives.replace(/ /g, '').split(',') : [],
+        services: services ? services.replace(/ /g, '').split(',') : [],
+        interfaces: interfaces ? interfaces.replace(/ /g, '').split(',') : [],
+      };
+
+      return config;
+    })
+  );
 
   public selectables$ = this.config$.pipe(
     map(config => {

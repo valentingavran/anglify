@@ -1,4 +1,5 @@
 @use 'fonts' as *;
+@use 'table' as *;
 @use '../../../libs/anglify/src/styles/index' as *;
 @use '../../../libs/anglify/src/styles/themes/light' as *;
 @use '../../../libs/anglify/src/styles/themes/dark' as *;
@@ -9,17 +10,16 @@
 :root {
   --anglify-toolbar-regular-height: 56px;
 
-  @include light-theme;
-
   &.light {
+    @include light-theme;
     /* stylelint-disable-next-line no-invalid-position-at-import-rule */
-    @import '~highlight.js/scss/github';
+    @import 'material-light';
   }
 
   &.dark {
-    /* stylelint-disable-next-line no-invalid-position-at-import-rule */
-    @import '~highlight.js/scss/github-dark';
     @include dark-theme;
+    /* stylelint-disable-next-line no-invalid-position-at-import-rule */
+    @import 'material-dark';
   }
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 h1 {
-  @include typography.display-3;
+  @include typography.display-2;
 
   margin-bottom: 1rem;
   scroll-margin-top: calc(var(--anglify-toolbar-regular-height) + 2rem);
@@ -61,20 +61,34 @@ p {
 
 code {
   padding: 0 0.5rem !important;
+  font-family: 'Roboto Mono', monospace;
+  hyphens: none;
+  tab-size: 4;
+  text-align: start;
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+}
+
+:not(pre) > code {
   background-color: var(--color-surface-overlay) !important;
   border-radius: 4px;
-  white-space: pre;
 }
 
 pre {
+  position: relative;
+  overflow: auto;
   padding: 0 !important;
+  background-color: var(--color-surface-overlay) !important;
+  border-radius: 4px;
   white-space: normal;
 
   code {
     display: block;
-    width: 100%;
     box-sizing: border-box;
     padding: 1rem !important;
+    font-size: 13px;
   }
 }
 

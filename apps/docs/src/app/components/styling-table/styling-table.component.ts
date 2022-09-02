@@ -1,9 +1,7 @@
 import { SimpleTableComponent } from '@anglify/components';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { HighlightModule } from 'ngx-highlightjs';
-import { MarkdownModule } from 'ngx-markdown';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -18,11 +16,10 @@ interface Style {
   templateUrl: './styling-table.component.html',
   styleUrls: ['./styling-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SimpleTableComponent, HighlightModule, MarkdownModule, NgForOf, AsyncPipe, NgIf],
+  imports: [SimpleTableComponent, NgForOf, AsyncPipe, NgIf, HttpClientModule],
 })
 export class StylingTableComponent {
-  @Input()
-  public set forComponent(component: string) {
+  @Input() public set component(component: string) {
     this.httpClient
       .get(`assets/style-definitions/${component}.json`)
       .pipe(take(1))

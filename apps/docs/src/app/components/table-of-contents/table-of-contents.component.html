@@ -1,6 +1,6 @@
 <div>Contents</div>
 <ul>
-  <li *ngFor="let heading of tocService.content" [ngClass]="'level level-' + heading.level" (click)="scrollTo(heading)">
+  <li *ngFor="let heading of tocService.tocList | async" [ngClass]="'level level-' + heading.level" (click)="scrollTo(heading)">
     {{ heading.title }}
   </li>
 </ul>

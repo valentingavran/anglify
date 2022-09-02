@@ -1,20 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
-import { ImportExampleComponent } from './components/import-example/import-example.component';
-import { InputsTableComponent } from './components/inputs-table/inputs-table.component';
 import { ReferencesComponent } from './components/references/references.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
-import { HeadingDirective } from './directives/heading/heading.directive';
 
-export const ComponentPageModule = [
-  ReferencesComponent,
-  CodeExampleComponent,
-  ImportExampleComponent,
-  InputsTableComponent,
-  StylingTableComponent,
-  HttpClientModule,
-  HeadingDirective,
-];
+export const ComponentPageModule = [ReferencesComponent, CodeExampleComponent, StylingTableComponent, HttpClientModule];
 
 export interface Documentation {
   components: ComponentDocumentation[];

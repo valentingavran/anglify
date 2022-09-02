@@ -1,6 +1,6 @@
 import { AsyncPipe, NgClass, NgForOf } from '@angular/common';
 import { Component } from '@angular/core';
-import { Heading, TableOfContentsService } from '../../services/table-of-contents/table-of-contents.service';
+import { TocItem, TocService } from '../../services/toc.service';
 
 @Component({
   selector: 'app-table-of-contents',
@@ -10,10 +10,10 @@ import { Heading, TableOfContentsService } from '../../services/table-of-content
   imports: [NgForOf, AsyncPipe, NgClass],
 })
 export class TableOfContentsComponent {
-  public constructor(protected readonly tocService: TableOfContentsService) {}
+  public constructor(protected readonly tocService: TocService) {}
 
-  protected scrollTo(heading: Heading) {
-    const element = document.getElementById(heading.id);
+  protected scrollTo(heading: TocItem) {
+    const element = document.getElementById(heading.href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

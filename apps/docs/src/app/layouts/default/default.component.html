@@ -73,7 +73,7 @@
   </anglify-list>
 </anglify-navigation-drawer>
 <main>
-  <router-outlet></router-outlet>
+  <div #container [innerHTML]="markdown$ | async"></div>
 </main>
 <aside>
   <app-table-of-contents></app-table-of-contents>

@@ -48,7 +48,7 @@
     position: sticky;
     top: var(--anglify-toolbar-regular-height);
     display: none;
-    overflow: scroll;
+    overflow: auto;
     height: calc(100vh - var(--anglify-toolbar-regular-height));
     box-sizing: border-box;
     align-self: flex-start;

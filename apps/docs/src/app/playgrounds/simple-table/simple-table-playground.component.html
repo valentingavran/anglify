@@ -1,0 +1,31 @@
+<div class="playground">
+  <div class="content">
+    <anglify-simple-table [fixedHeader]="fixedHeader" [fixedFooter]="fixedFooter" [fixedHeight]="fixedHeight">
+      <thead>
+        <tr>
+          <th class="text-left">Name</th>
+          <th class="text-left">Calories Very Long Column Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of desserts">
+          <td>{{ item.name }}</td>
+          <td>{{ item.calories }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Sum</td>
+          <td>Total</td>
+        </tr>
+      </tfoot>
+    </anglify-simple-table>
+  </div>
+  <div class="controls">
+    <anglify-checkbox [(ngModel)]="fixedHeader">Fixed header</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="fixedFooter">Fixed footer</anglify-checkbox>
+    <anglify-text-field label="Fixed height">
+      <input anglifyInput [(ngModel)]="_fixedHeight" />
+    </anglify-text-field>
+  </div>
+</div>
