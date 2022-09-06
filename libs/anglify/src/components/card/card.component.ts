@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { CARD_SETTINGS, DEFAULT_CARD_SETTINGS } from './card-settings.token';
 import { EntireCardSettings } from './card.interface';
 import type { Elevation } from '../../composables/elevation/elevation.interface';
@@ -35,6 +35,9 @@ export class CardComponent {
   public get ripple() {
     return this.rippleService.active;
   }
+
+  /** Removes elevation (box-shadow) and adds a thin border.  */
+  @Input() @HostBinding('class.outlined') public outlined = this.settings.outlined;
 
   public constructor(
     @Self() @Inject('anglifyCardSettings') public settings: EntireCardSettings,
