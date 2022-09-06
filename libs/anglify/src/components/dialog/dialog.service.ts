@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { DialogComponent } from './dialog.component';
-import { DialogContext, DialogOptions, ModalData, ModalInteralCloseReason } from './dialog.interface';
+import { DialogContext, DialogOptions, ModalData, DialogInternalCloseReason } from './dialog.interface';
 import { AnglifyIdService } from '../../services/id/id.service';
 
 export const DIALOG_CONTEXT = new InjectionToken<DialogContext>('Dialog context');
@@ -89,7 +89,7 @@ export class DialogService {
         })
       );
       overlayRef.attach(componentRef);
-      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith({ reason: ModalInteralCloseReason.Backdrop }));
+      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith({ reason: DialogInternalCloseReason.Backdrop }));
       this.appRef.attachView(viewRef);
 
       return () => {

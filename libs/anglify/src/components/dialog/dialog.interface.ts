@@ -6,13 +6,13 @@ export interface DialogOptions<T = Record<string, unknown>> {
   data?: T;
 }
 
-export enum ModalInteralCloseReason {
+export enum DialogInternalCloseReason {
   Escape = 'internal.escape',
   Backdrop = 'internal.backdrop',
 }
 
 export interface ModalData<T = unknown> {
-  reason: ModalInteralCloseReason | string;
+  reason: DialogInternalCloseReason | string;
   data?: T;
 }
 
