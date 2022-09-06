@@ -6,3 +6,5 @@ $timeline-indicator-letter-spacing: var(--anglify-timeline-indicator-letter-spac
 $timeline-indicator-text-transform: var(--anglify-timeline-indicator-text-transform, var(--font-text-transform-subtitle-1)) !default;
 $timeline-connection-line-offset: var(--anglify-timeline-connection-line-offset, 0px) !default;
 $timeline-connection-line-color: var(--anglify-timeline-connection-line-color, var(--border-color-on-surface-low-emphasis)) !default;
+$timeline-indicator-margin: var(--anglify-timeline-indicator-margin, 0 2rem) !default;
+$timeline-item-padding: var(--anglify-timeline-item-padding, 2rem 0) !default;
