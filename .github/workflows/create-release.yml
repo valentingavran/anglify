@@ -18,10 +18,11 @@ jobs:
           cache: 'yarn'
       - name: Publish
         run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           yarn install --immutable
           yarn build:anglify
           cp README.md dist/libs/anglify/README.md
           cd dist/libs/anglify
-          yarn npm publish --access public
+          npm publish --access public
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
