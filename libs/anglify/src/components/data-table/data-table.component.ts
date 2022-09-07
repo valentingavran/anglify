@@ -30,6 +30,7 @@ import { ButtonComponent } from '../button/button.component';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
+import { ProgressLinearComponent } from '../progress-linear/progress-linear.component';
 import { SelectComponent } from '../select/select.component';
 
 @UntilDestroy()
@@ -58,6 +59,7 @@ import { SelectComponent } from '../select/select.component';
     FindSlotPipe,
     SlotOutletDirective,
     ButtonComponent,
+    ProgressLinearComponent,
   ],
 })
 export class DataTableComponent {
@@ -181,11 +183,48 @@ export class DataTableComponent {
     return this.paginationService.showFirstLastPageControls$.value;
   }
 
+  /** Displays a Linear Progress if this property is set to `true`. If there are no entries, then a loading text is also displayed. */
+  @Input() public set loading(value: boolean) {
+    this.loading$.next(value);
+  }
+
+  public get loading() {
+    return this.loading$.value;
+  }
+
+  /** Text shown when loading is `true` and no items are provided. */
+  @Input() public set loadingText(value: string) {
+    this.loadingText$.next(value);
+  }
+
+  public get loadingText() {
+    return this.loadingText$.value;
+  }
+
+  /** Text shown when no items are provided to the component and when loading is `false`. */
+  @Input() public set noDataText(value: string) {
+    this.noDataText$.next(value);
+  }
+
+  public get noDataText() {
+    return this.noDataText$.value;
+  }
+
   /** Emitted when the selected items change. */
   @Output() public readonly selectionChange = new EventEmitter<DataTableItem[]>();
 
   public readonly hideDefaultHeader$ = new BehaviorSubject(this.settings.hideDefaultHeader);
   public readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
+  public readonly loading$ = new BehaviorSubject(this.settings.loading);
+  public readonly loadingText$ = new BehaviorSubject(this.settings.loadingText);
+  public readonly noDataText$ = new BehaviorSubject(this.settings.noDataText);
+  public loadingTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
+    map(([loading, limitedItems]) => loading && limitedItems.length === 0)
+  );
+
+  public noDataTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
+    map(([loading, limitedItems]) => !loading && limitedItems.length === 0)
+  );
 
   public readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
 

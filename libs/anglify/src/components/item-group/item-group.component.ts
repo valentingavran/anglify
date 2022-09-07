@@ -2,7 +2,7 @@ import { AsyncPipe, NgForOf } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, forwardRef, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, first, map, startWith, tap } from 'rxjs';
+import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 
 import { SlotDirective } from '../../directives/slot/slot.directive';
@@ -54,7 +54,7 @@ export class ItemGroupComponent implements ControlValueAccessor, AfterViewInit {
         .pipe(
           untilDestroyed(this),
           filter(items => items.length > 0),
-          first()
+          take(1)
         )
         .subscribe(() => this.activateAllIndices(indicesToBeActive));
     } else {

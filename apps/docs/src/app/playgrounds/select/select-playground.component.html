@@ -1,0 +1,47 @@
+<div class="playground">
+  <div class="content">
+    <anglify-select
+      [appearance]="appearance"
+      [placeholder]="placeholder"
+      [alwaysFloatingLabel]="alwaysFloatingLabel"
+      [hint]="hint"
+      [persistentHint]="persistentHint"
+      [hideDetails]="hideDetails"
+      [items]="items"
+      [readonly]="readonly"
+      [disabled]="disabled"
+      [clearable]="clearable"
+      [multiple]="multiple"
+      [closeOnSelect]="closeOnSelect"
+    >
+      <ng-template slot="label">{{ label }}</ng-template>
+    </anglify-select>
+  </div>
+  <div class="controls">
+    <anglify-text-field [hideDetails]="true">
+      <ng-template slot="label">Label</ng-template>
+      <input anglifyInput [(ngModel)]="label" />
+    </anglify-text-field>
+    <anglify-text-field [hideDetails]="true">
+      <ng-template slot="label">Placeholder</ng-template>
+      <input anglifyInput [(ngModel)]="placeholder" />
+    </anglify-text-field>
+    <anglify-text-field [hideDetails]="true">
+      <ng-template slot="label">Hint</ng-template>
+      <input anglifyInput [(ngModel)]="hint" />
+    </anglify-text-field>
+    <div class="cols-3">
+      <span class="body-l">Appearance:</span>
+      <anglify-radio-button [(ngModel)]="appearance" name="appearance" value="filled">Filled</anglify-radio-button>
+      <anglify-radio-button [(ngModel)]="appearance" name="appearance" value="outlined">Outlined</anglify-radio-button>
+    </div>
+    <anglify-checkbox [(ngModel)]="readonly">Readonly</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="disabled">Disabled</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="clearable">Clearable</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="multiple">Multiple</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="closeOnSelect">Close on select</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="alwaysFloatingLabel">Always floating label</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="persistentHint">Persistent hint</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="hideDetails">Hide details</anglify-checkbox>
+  </div>
+</div>

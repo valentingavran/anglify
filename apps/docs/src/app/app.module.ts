@@ -1,13 +1,27 @@
 import { IconSettings, ICON_SETTINGS } from '@anglify/components';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { BrowserModule, Meta } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ApplicationLayoutsPreviewComponent } from './components/application-layouts-preview/application-layouts-preview.component';
+import { CodeExampleComponent } from './components/code-example/code-example.component';
+import { InputsTableComponent } from './components/inputs-table/inputs-table.component';
+import { ReferencesComponent } from './components/references/references.component';
+import { ReleaseNotesComponent } from './components/release-notes/release-notes.component';
+import { StylingTableComponent } from './components/styling-table/styling-table.component';
+import { HighlightPipe } from './pipes/highlight.pipe';
+import { MarkdownPipe } from './pipes/markdown.pipe';
+import { AutocompletePlaygroundComponent } from './playgrounds/autocomplete/autocomplete-playground.component';
+import { ComboboxPlaygroundComponent } from './playgrounds/combobox/combobox-playground.component';
+import { ProgressLinearPlaygroundComponent } from './playgrounds/progress-linear/progress-linear-playground.component';
+import { SelectPlaygroundComponent } from './playgrounds/select/select-playground.component';
+import { SimpleTablePlaygroundComponent } from './playgrounds/simple-table/simple-table-playground.component';
+import { TextFieldPlaygroundComponent } from './playgrounds/text-field/text-field-playground.component';
+import { TocService } from './services/toc.service';
 import { environment } from '../environments/environment';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, OverlayModule],
@@ -22,25 +36,36 @@ import { environment } from '../environments/environment';
         },
       }),
     },
-    {
-      provide: HIGHLIGHT_OPTIONS,
-      useValue: {
-        coreLibraryLoader: () => import('highlight.js/lib/core'),
-        languages: {
-          typescript: () => import('highlight.js/lib/languages/typescript'),
-          scss: () => import('highlight.js/lib/languages/scss'),
-          xml: () => import('highlight.js/lib/languages/xml'),
-          shell: () => import('highlight.js/lib/languages/shell'),
-          bash: () => import('highlight.js/lib/languages/bash'),
-        },
-      },
-    },
+    TocService,
+    MarkdownPipe,
+    HighlightPipe,
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
-  public constructor(private readonly meta: Meta) {
+  public constructor(private readonly meta: Meta, private readonly injector: Injector) {
     this.meta.addTag({ name: 'description', content: environment.description });
     this.meta.addTag({ name: 'keywords', content: environment.keywords.toString() });
+
+    customElements.define(`app-code-example`, createCustomElement(CodeExampleComponent, { injector: this.injector }));
+    customElements.define(
+      `app-application-layouts-preview`,
+      createCustomElement(ApplicationLayoutsPreviewComponent, { injector: this.injector })
+    );
+    customElements.define(`app-release-notes`, createCustomElement(ReleaseNotesComponent, { injector: this.injector }));
+    customElements.define(`app-inputs-table`, createCustomElement(InputsTableComponent, { injector: this.injector }));
+    customElements.define(`app-styling-table`, createCustomElement(StylingTableComponent, { injector: this.injector }));
+    customElements.define(`app-references`, createCustomElement(ReferencesComponent, { injector: this.injector }));
+
+    customElements.define(`app-autocomplete-playground`, createCustomElement(AutocompletePlaygroundComponent, { injector: this.injector }));
+    customElements.define(`app-combobox-playground`, createCustomElement(ComboboxPlaygroundComponent, { injector: this.injector }));
+    customElements.define(
+      `app-progress-linear-playground`,
+      createCustomElement(ProgressLinearPlaygroundComponent, { injector: this.injector })
+    );
+    customElements.define(`app-select-playground`, createCustomElement(SelectPlaygroundComponent, { injector: this.injector }));
+    customElements.define(`app-simple-table-playground`, createCustomElement(SimpleTablePlaygroundComponent, { injector: this.injector }));
+    customElements.define(`app-text-field-playground`, createCustomElement(TextFieldPlaygroundComponent, { injector: this.injector }));
   }
 }

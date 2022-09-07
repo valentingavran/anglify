@@ -3,7 +3,6 @@ import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-references',
   standalone: true,
   templateUrl: './references.component.html',
   styleUrls: ['./references.component.scss'],
@@ -11,9 +10,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   imports: [ChipComponent, IconComponent, SlotDirective, NgIf],
 })
 export class ReferencesComponent {
-  @Input() public bundleSize?: string;
+  @Input('bundle-size') public bundleSize?: string;
   @Input() public issues?: string;
-  @Input() public materialDesign?: string;
+  @Input('material-design') public materialDesign?: string;
   @Input() public w3c?: string;
 
   public open(url: string | undefined) {

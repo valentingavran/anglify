@@ -4,4 +4,9 @@
   display: block;
   background: $card-background;
   border-radius: $card-border-radius;
+
+  &.outlined {
+    border: 1px solid $card-border-color;
+    box-shadow: none !important;
+  }
 }

@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/docs",
   "sourceRoot": "apps/docs/src",
   "prefix": "anglify",
   "targets": {
@@ -14,7 +13,7 @@
         "polyfills": "apps/docs/src/polyfills.ts",
         "tsConfig": "apps/docs/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/docs/src/favicon.ico", "apps/docs/src/assets"],
+        "assets": ["apps/docs/src/favicon.ico", "apps/docs/src/assets", "apps/docs/src/robots.txt"],
         "styles": ["apps/docs/src/styles.scss"],
         "scripts": []
       },
@@ -24,7 +23,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -40,13 +39,12 @@
           ],
           "outputHashing": "all"
         },
-
         "staging": {
           "budgets": [
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -101,7 +99,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/docs"],
       "options": {
-        "jestConfig": "apps/docs/jest.config.js",
+        "jestConfig": "apps/docs/jest.config.ts",
         "passWithNoTests": true
       }
     }

@@ -1,6 +1,16 @@
 import { DataTableItem } from '@anglify/components';
 
-export const items: DataTableItem[] = [
+export interface FoodEntry {
+  id: number;
+  name: string;
+  calories: number;
+  fat: number;
+  carbs: number;
+  protein: number;
+  iron: string;
+}
+
+export const items: DataTableItem<FoodEntry>[] = [
   {
     id: 1,
     name: 'Frozen Yogurt',

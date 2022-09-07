@@ -13,8 +13,17 @@ import {
   TooltipDirective,
 } from '@anglify/components';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { NavigationStart, Router, RouterEvent, RouterModule } from '@angular/router';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-xml-doc';
+import { catchError, filter, map, of, startWith, switchMap, take, tap } from 'rxjs';
+import { TableOfContentsComponent } from '../../components/table-of-contents/table-of-contents.component';
+import { MarkdownPipe } from '../../pipes/markdown.pipe';
+import { TocService } from '../../services/toc.service';
 
 interface NavItem {
   name: string;
@@ -51,9 +60,13 @@ interface NavGroup {
     RouterModule,
     SlotDirective,
     ButtonComponent,
+    TableOfContentsComponent,
+    HttpClientModule,
   ],
 })
 export class DefaultComponent {
+  @ViewChild('container') private readonly container!: ElementRef<HTMLDivElement>;
+
   public initTheme() {
     const theme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     if (theme) {
@@ -84,9 +97,33 @@ export class DefaultComponent {
     window.open('https://material.io', '_blank')!.focus();
   }
 
-  public constructor(public readonly router: Router, public breakpointService: BreakpointObserverService) {
+  public constructor(
+    public readonly router: Router,
+    public breakpointService: BreakpointObserverService,
+    protected tocService: TocService,
+    private readonly httpClient: HttpClient,
+    private readonly markdownPipe: MarkdownPipe
+  ) {
     this.initTheme();
   }
+
+  protected markdown$ = this.router.events.pipe(
+    filter(event => event instanceof NavigationStart),
+    map(event => (event as RouterEvent).url),
+    startWith(this.router.url),
+    switchMap(source =>
+      this.httpClient
+        // @ts-expect-error
+        .get<string>(`../../../assets/pages${source}.md`, { responseType: 'text' })
+        .pipe(
+          take(1),
+          map(text => text as unknown as string),
+          catchError(() => of(''))
+        )
+    ),
+    switchMap(text => this.markdownPipe.parseMarkdown(text).pipe(take(1))),
+    tap(() => setTimeout(() => this.tocService.genToc(this.container.nativeElement), 0))
+  );
 
   public navigationTree: (NavItem | NavGroup)[] = [
     {

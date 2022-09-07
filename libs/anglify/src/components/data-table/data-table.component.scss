@@ -80,6 +80,18 @@
     }
   }
 
+  anglify-progress-linear {
+    grid-column: 1 / -1;
+  }
+
+  .loading-state,
+  .no-data-state {
+    padding: 2rem;
+    color: var(--color-on-surface-medium-emphasis);
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
   tr {
     font: $data-table-row-font;
     letter-spacing: $data-table-row-letter-spacing;

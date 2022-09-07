@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 3rem;
+
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

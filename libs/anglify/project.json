@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/anglify",
   "sourceRoot": "libs/anglify/src",
   "prefix": "anglify",
   "targets": {
@@ -24,7 +23,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/anglify"],
       "options": {
-        "jestConfig": "libs/anglify/jest.config.js",
+        "jestConfig": "libs/anglify/jest.config.ts",
         "passWithNoTests": true
       }
     },

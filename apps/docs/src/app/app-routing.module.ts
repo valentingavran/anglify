@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+@Component({ template: '', styles: [], standalone: true })
+export class TemplateComponent {}
 
 const routes: Routes = [
   {
@@ -16,18 +19,17 @@ const routes: Routes = [
         children: [
           {
             path: 'installation',
-            loadComponent: () =>
-              import('./pages/getting-started/installation/installation.component').then(mod => mod.InstallationComponent),
+            component: TemplateComponent,
             title: 'Installation | Anglify',
           },
           {
             path: 'application-layouts',
-            loadComponent: () => import('./pages/getting-started/layouts/layouts.component').then(mod => mod.LayoutsComponent),
+            component: TemplateComponent,
             title: 'Application Layouts | Anglify',
           },
           {
             path: 'release-notes',
-            loadComponent: () => import('./pages/getting-started/changelog/release-notes.component').then(mod => mod.ReleaseNotesComponent),
+            component: TemplateComponent,
             title: 'Release Notes | Anglify',
           },
         ],
@@ -37,17 +39,17 @@ const routes: Routes = [
         children: [
           {
             path: 'theming',
-            loadComponent: () => import('./pages/features/theming/theming.component').then(mod => mod.ThemingComponent),
+            component: TemplateComponent,
             title: 'Theming | Anglify',
           },
           {
             path: 'icon-fonts',
-            loadComponent: () => import('./pages/features/icon-fonts/icon-fonts.component').then(mod => mod.IconFontsComponent),
+            component: TemplateComponent,
             title: 'Icon Fonts | Anglify',
           },
           {
             path: 'breakpoints',
-            loadComponent: () => import('./pages/features/breakpoints/breakpoints.component').then(mod => mod.BreakpointsComponent),
+            component: TemplateComponent,
             title: 'Breakpoints | Anglify',
           },
         ],
@@ -57,185 +59,162 @@ const routes: Routes = [
         children: [
           {
             path: 'autocomplete',
-            loadComponent: () =>
-              import('./pages/components/autocomplete-page/autocomplete-page.component').then(mod => mod.AutocompletePageComponent),
+            component: TemplateComponent,
             title: 'Autocomplete | Anglify',
           },
           {
             path: 'badge',
-            loadComponent: () => import('./pages/components/badge-page/badge-page.component').then(mod => mod.BadgePageComponent),
+            component: TemplateComponent,
             title: 'Badge | Anglify',
           },
           {
             path: 'bottom-navigation',
-            loadComponent: () =>
-              import('./pages/components/bottom-navigation-page/bottom-navigation-page.component').then(
-                mod => mod.BottomNavigationPageComponent
-              ),
+            component: TemplateComponent,
             title: 'Bottom Navigation | Anglify',
           },
           {
             path: 'breadcrumbs',
-            loadComponent: () =>
-              import('./pages/components/breadcrumbs-page/breadcrumbs-page.component').then(mod => mod.BreadcrumbsPageComponent),
+            component: TemplateComponent,
             title: 'Breadcrumbs | Anglify',
           },
           {
             path: 'button',
-            loadComponent: () => import('./pages/components/button-page/button-page.component').then(mod => mod.ButtonPageComponent),
+            component: TemplateComponent,
             title: 'Button | Anglify',
           },
           {
             path: 'button-group',
-            loadComponent: () =>
-              import('./pages/components/button-group-page/button-group-page.component').then(mod => mod.ButtonGroupPageComponent),
+            component: TemplateComponent,
             title: 'Button Group | Anglify',
           },
           {
             path: 'card',
-            loadComponent: () => import('./pages/components/card-page/card-page.component').then(mod => mod.CardPageComponent),
+            component: TemplateComponent,
             title: 'Card | Anglify',
           },
           {
             path: 'checkbox',
-            loadComponent: () => import('./pages/components/checkbox-page/checkbox-page.component').then(mod => mod.CheckBoxPageComponent),
+            component: TemplateComponent,
             title: 'Checkbox | Anglify',
           },
           {
             path: 'chip',
-            loadComponent: () => import('./pages/components/chip-page/chip-page.component').then(mod => mod.ChipPageComponent),
+            component: TemplateComponent,
             title: 'Chip | Anglify',
           },
           {
             path: 'combobox',
-            loadComponent: () => import('./pages/components/combobox-page/combobox-page.component').then(mod => mod.ComboboxPageComponent),
+            component: TemplateComponent,
             title: 'Combobox | Anglify',
           },
           {
             path: 'data-table',
-            loadComponent: () =>
-              import('./pages/components/data-table-page/data-table-page.component').then(mod => mod.DataTablePageComponent),
+            component: TemplateComponent,
             title: 'Data Table | Anglify',
           },
           {
             path: 'dialog',
-            loadComponent: () => import('./pages/components/dialog-page/dialog-page.component').then(mod => mod.DialogPageComponent),
+            component: TemplateComponent,
             title: 'Dialog | Anglify',
           },
           {
             path: 'expansion-panels',
-            loadComponent: () =>
-              import('./pages/components/expansion-panels-page/expansion-panels-page.component').then(
-                mod => mod.ExpansionPanelsPageComponent
-              ),
+            component: TemplateComponent,
             title: 'Expansion Panels | Anglify',
           },
           {
             path: 'icon',
-            loadComponent: () => import('./pages/components/icon-page/icon-page.component').then(mod => mod.IconPageComponent),
+            component: TemplateComponent,
             title: 'Icon | Anglify',
           },
           {
             path: 'item-group',
-            loadComponent: () =>
-              import('./pages/components/item-group-page/item-group-page.component').then(mod => mod.ItemGroupPageComponent),
+            component: TemplateComponent,
             title: 'Item Group | Anglify',
           },
           {
             path: 'list',
-            loadComponent: () => import('./pages/components/list-page/list-page.component').then(mod => mod.ListPageComponent),
+            component: TemplateComponent,
             title: 'List | Anglify',
           },
           {
             path: 'menu',
-            loadComponent: () => import('./pages/components/menu-page/menu-page.component').then(mod => mod.MenuPageComponent),
+            component: TemplateComponent,
             title: 'Menu | Anglify',
           },
           {
             path: 'navigation-drawer',
-            loadComponent: () =>
-              import('./pages/components/navigation-drawer-page/navigation-drawer-page.component').then(
-                mod => mod.NavigationDrawerPageComponent
-              ),
+            component: TemplateComponent,
             title: 'Navigation Drawer | Anglify',
           },
           {
             path: 'otp-input',
-            loadComponent: () =>
-              import('./pages/components/otp-input-page/otp-input-page.component').then(mod => mod.OtpInputPageComponent),
+            component: TemplateComponent,
             title: 'OTP Input | Anglify',
           },
           {
             path: 'progress-circular',
-            loadComponent: () =>
-              import('./pages/components/progress-circular-page/progress-circular-page.component').then(
-                mod => mod.ProgressCircularPageComponent
-              ),
+            component: TemplateComponent,
             title: 'Progress Circular | Anglify',
           },
           {
             path: 'progress-linear',
-            loadComponent: () =>
-              import('./pages/components/progress-linear-page/progress-linear-page.component').then(mod => mod.ProgressLinearPageComponent),
+            component: TemplateComponent,
             title: 'Progress Linear | Anglify',
           },
           {
             path: 'radio-button',
-            loadComponent: () =>
-              import('./pages/components/radio-button-page/radio-button-page.component').then(mod => mod.RadioButtonPageComponent),
+            component: TemplateComponent,
             title: 'Radio Button | Anglify',
           },
           {
             path: 'select',
-            loadComponent: () => import('./pages/components/select-page/select-page.component').then(mod => mod.SelectPageComponent),
+            component: TemplateComponent,
             title: 'Select | Anglify',
           },
           {
             path: 'snackbar',
-            loadComponent: () => import('./pages/components/snackbar-page/snackbar-page.component').then(mod => mod.SnackbarPageComponent),
+            component: TemplateComponent,
             title: 'Snackbar | Anglify',
           },
           {
             path: 'stepper',
-            loadComponent: () => import('./pages/components/stepper-page/stepper-page.component').then(mod => mod.StepperPageComponent),
+            component: TemplateComponent,
             title: 'Stepper | Anglify',
           },
           {
             path: 'simple-table',
-            loadComponent: () =>
-              import('./pages/components/simple-table-page/simple-table-page.component').then(mod => mod.SimpleTablePageComponent),
+            component: TemplateComponent,
             title: 'Simple Table | Anglify',
           },
           {
             path: 'tabs',
-            loadComponent: () => import('./pages/components/tab-page/tab-page.component').then(mod => mod.TabPageComponent),
+            component: TemplateComponent,
             title: 'Tabs | Anglify',
           },
           {
             path: 'text-area',
-            loadComponent: () =>
-              import('./pages/components/text-area-page/text-area-page.component').then(mod => mod.TextAreaPageComponent),
+            component: TemplateComponent,
             title: 'Text Area | Anglify',
           },
           {
             path: 'text-field',
-            loadComponent: () =>
-              import('./pages/components/text-field-page/text-field-page.component').then(mod => mod.TextFieldPageComponent),
+            component: TemplateComponent,
             title: 'Text Field | Anglify',
           },
           {
             path: 'timeline',
-            loadComponent: () => import('./pages/components/timeline-page/timeline-page.component').then(mod => mod.TimelinePageComponent),
+            component: TemplateComponent,
             title: 'Timeline | Anglify',
           },
           {
             path: 'toolbar',
-            loadComponent: () => import('./pages/components/toolbar-page/toolbar-page.component').then(mod => mod.ToolbarPageComponent),
+            component: TemplateComponent,
             title: 'Toolbar | Anglify',
           },
           {
             path: 'tooltip',
-            loadComponent: () => import('./pages/components/tooltip-page/tooltip-page.component').then(mod => mod.TooltipPageComponent),
+            component: TemplateComponent,
             title: 'Tooltip | Anglify',
           },
         ],
@@ -251,12 +230,12 @@ const routes: Routes = [
         children: [
           {
             path: 'base',
-            loadComponent: () => import('./pages/layout-examples/base/base.component').then(mod => mod.BaseComponent),
+            loadComponent: () => import('./layout-examples/base/base.component').then(mod => mod.BaseComponent),
             title: 'Base Layout Example | Anglify',
           },
           {
             path: 'constrained',
-            loadComponent: () => import('./pages/layout-examples/constrained/constrained.component').then(mod => mod.ConstrainedComponent),
+            loadComponent: () => import('./layout-examples/constrained/constrained.component').then(mod => mod.ConstrainedComponent),
             title: 'Constrained Layout Example | Anglify',
           },
         ],
@@ -267,7 +246,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'top',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

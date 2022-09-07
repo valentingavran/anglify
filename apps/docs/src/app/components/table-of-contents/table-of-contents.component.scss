@@ -1,0 +1,39 @@
+:host {
+  div {
+    font: var(--font-display-6);
+    letter-spacing: var(--font-letter-spacing-display-6);
+    text-transform: var(--font-text-transform-display-6);
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .level {
+    width: fit-content;
+    cursor: pointer;
+    font: var(--font-body-2);
+    letter-spacing: var(--font-letter-spacing-body-2);
+    margin-block: 8px;
+    text-transform: var(--font-text-transform-body-2);
+    word-break: break-word;
+
+    &-h3 {
+      padding-left: 14px;
+    }
+
+    &-h4 {
+      padding-left: 28px;
+    }
+
+    &-h5 {
+      padding-left: 42px;
+    }
+
+    &-h6 {
+      padding-left: 56px;
+    }
+  }
+}

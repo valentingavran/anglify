@@ -1,0 +1,37 @@
+@use '../../../../../../libs/anglify/src/styles/mixins/breakpoints.scss' as *;
+
+:host {
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    'toolbar'
+    'main';
+  grid-template-rows: auto 1fr;
+
+  @include md-and-up {
+    grid-auto-columns: auto 1fr;
+    grid-template-areas:
+      'drawer toolbar'
+      'drawer main';
+  }
+
+  anglify-navigation-drawer {
+    grid-area: drawer;
+  }
+
+  anglify-toolbar {
+    grid-area: toolbar;
+  }
+
+  main {
+    padding: 1rem;
+    grid-area: main;
+    overflow-y: auto;
+  }
+
+  .open-example-code {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

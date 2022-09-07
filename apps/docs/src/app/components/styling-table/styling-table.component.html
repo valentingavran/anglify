@@ -7,10 +7,10 @@
   </tr>
   <tr *ngFor="let variable of cssVariables$ | async">
     <td>
-      <code *ngIf="variable.name" [highlight]="variable.name" [languages]="['scss']"></code>
+      <code *ngIf="variable.name">{{ variable.name }}</code>
     </td>
     <td>
-      <code *ngIf="variable.defaultValue" [highlight]="variable.defaultValue" [languages]="['scss']"></code>
+      <code *ngIf="variable.defaultValue">{{ variable.defaultValue }}</code>
     </td>
   </tr>
 </anglify-simple-table>

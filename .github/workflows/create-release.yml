@@ -10,18 +10,18 @@ jobs:
     name: Publish to npm
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - name: Install node.js v16
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          cache: 'npm'
+          node-version: 16
+          cache: 'yarn'
       - name: Publish
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm ci
-          npm run build:anglify
+          yarn install --immutable
+          yarn build:anglify
           cp README.md dist/libs/anglify/README.md
           cd dist/libs/anglify
-          npm publish --access public
+          yarn npm publish --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

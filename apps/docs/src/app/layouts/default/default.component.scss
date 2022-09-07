@@ -1,35 +1,64 @@
 @use '../../../../../../libs/anglify/src/styles/mixins/breakpoints' as *;
 
 :host {
+  position: relative;
   display: grid;
-  height: 100vh;
   grid-template-areas:
     'toolbar'
     'main';
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr;
 
   @include md-and-up {
-    grid-auto-columns: auto 1fr;
+    grid-auto-columns: auto 1fr 200px;
     grid-template-areas:
-      'toolbar toolbar'
-      'drawer main';
+      'toolbar toolbar toolbar'
+      'drawer main aside';
   }
 
   anglify-navigation-drawer {
+    position: fixed;
+    height: 100vh;
     grid-area: drawer;
+
+    @include md-and-up {
+      position: sticky;
+      top: var(--anglify-toolbar-regular-height);
+      height: calc(100vh - var(--anglify-toolbar-regular-height));
+      align-self: flex-start;
+    }
   }
 
   anglify-toolbar {
+    position: sticky;
+    top: 0;
     grid-area: toolbar;
   }
 
   main {
+    overflow: hidden;
     padding: 0.5rem;
     grid-area: main;
-    overflow-y: auto;
 
     @include md-and-up {
       padding: 1rem;
+    }
+  }
+
+  aside {
+    position: sticky;
+    top: var(--anglify-toolbar-regular-height);
+    display: none;
+    overflow: auto;
+    height: calc(100vh - var(--anglify-toolbar-regular-height));
+    box-sizing: border-box;
+    align-self: flex-start;
+    padding-top: 2rem;
+    grid-area: aside;
+    padding-inline-end: 2rem;
+    padding-inline-start: 1rem;
+
+    @include md-and-up {
+      display: block;
     }
   }
 }
