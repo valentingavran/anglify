@@ -6,6 +6,7 @@ export interface DataTableHeader<T = any> {
   value: string;
   width?: number | string;
   sort?: (a: DataTableItem<T>, b: DataTableItem<T>) => number;
+  computeContent?: (item: DataTableItem<T>) => string;
 }
 
 export type DataTableItem<

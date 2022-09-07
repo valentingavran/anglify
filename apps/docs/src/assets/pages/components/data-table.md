@@ -34,6 +34,7 @@ You can use the loading prop to indicate that data in the table is currently loa
 
 ### No Data
 
+If there is no data and the Data Table is not in the loading state, then the empty state is displayed. The displayed message can be customized via the `noDataText` property or via the `no-data` slot.
 <app-code-example component="data-table" example="no-data"></app-code-example>
 
 ### Header Slot
@@ -48,6 +49,11 @@ You can use the dynamic slots `item:<name>` to customize only certain columns. `
 the value property in the corresponding header item sent to headers. So to customize the calories column we’re using the
 `item:calories` slot.
 <app-code-example component="data-table" example="item-slot"></app-code-example>
+
+### Computed Content
+
+The `computeContent` method can be used to manipulate the content of the respective column. The method receives the item as an argument.
+<app-code-example component="data-table" example="computed-content"></app-code-example>
 
 ### Expandable Rows
 

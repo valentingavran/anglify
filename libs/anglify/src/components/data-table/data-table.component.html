@@ -57,7 +57,7 @@
       </td>
       <td *ngFor="let header of dataService.headers$ | async" [ngClass]="header.align ? 'align-' + header.align : 'align-start'">
         <ng-container *anglifySlotOutlet="slots | findSlot: 'item:' + header.value; context: { $implicit: item }">
-          <span>{{ item[header.value] }}</span>
+          <span>{{ header.computeContent ? header.computeContent(item) : item[header.value] }}</span>
         </ng-container>
       </td>
     </tr>
