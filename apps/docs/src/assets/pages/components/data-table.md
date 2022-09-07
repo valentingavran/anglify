@@ -32,6 +32,10 @@ You can use the loading prop to indicate that data in the table is currently loa
 
 <app-code-example component="data-table" example="loading"></app-code-example>
 
+### No Data
+
+<app-code-example component="data-table" example="no-data"></app-code-example>
+
 ### Header Slot
 
 You can use the dynamic slots `header:<name>` to customize only certain columns. `<name>` is the name of

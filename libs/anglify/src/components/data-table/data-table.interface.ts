@@ -31,6 +31,7 @@ export interface EntireDataTableSettings {
   showFirstLastPageControls: boolean;
   loadingText: string;
   loading: boolean;
+  noDataText: string;
 }
 
 export type DataTableSettings = Partial<EntireDataTableSettings>;

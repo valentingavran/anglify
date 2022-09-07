@@ -201,6 +201,15 @@ export class DataTableComponent {
     return this.loadingText$.value;
   }
 
+  /** Text shown when no items are provided to the component and when loading is `false`. */
+  @Input() public set noDataText(value: string) {
+    this.noDataText$.next(value);
+  }
+
+  public get noDataText() {
+    return this.noDataText$.value;
+  }
+
   /** Emitted when the selected items change. */
   @Output() public readonly selectionChange = new EventEmitter<DataTableItem[]>();
 
@@ -208,8 +217,13 @@ export class DataTableComponent {
   public readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
   public readonly loading$ = new BehaviorSubject(this.settings.loading);
   public readonly loadingText$ = new BehaviorSubject(this.settings.loadingText);
+  public readonly noDataText$ = new BehaviorSubject(this.settings.noDataText);
   public loadingTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
     map(([loading, limitedItems]) => loading && limitedItems.length === 0)
+  );
+
+  public noDataTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
+    map(([loading, limitedItems]) => !loading && limitedItems.length === 0)
   );
 
   public readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
