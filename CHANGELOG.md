@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.32.0](https://github.com/valentingavran/anglify/compare/v0.31.1...v0.32.0) (2022-09-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* ModalInteralCloseReason  was renamed to DialogInternalCloseReason
+
+### 🐛  Bug Fixes
+
+* replace first pipe operator with take(1) to avoid race conditions ([8c95456](https://github.com/valentingavran/anglify/commit/8c95456c417ae9edbd1fce295bfadc261cd940ec))
+
+
+### 🛠  Other Commits
+
+* switch to yarn ([63e398d](https://github.com/valentingavran/anglify/commit/63e398dfa5b89f41cd22253579c62815964c4af5))
+
+
+### 📝  Docs
+
+* add table of content to each page ([6d220ea](https://github.com/valentingavran/anglify/commit/6d220ea8efaba3752c7cf70d03f927986b9f5a78))
+* update import examples ([a667870](https://github.com/valentingavran/anglify/commit/a667870784b96705c0c20172bd2fe9b8e0eebd5b))
+* use font from assets folder instead of CDN ([95b3a87](https://github.com/valentingavran/anglify/commit/95b3a871c1fe8ecadc6bb2b795a7b0fe0814fc67))
+* use markdown for writing documentation pages ([aa8987d](https://github.com/valentingavran/anglify/commit/aa8987d2b7f215a3b38756c0782dafe8a25ec998))
+
+
+### 🔬  Code Refactoring
+
+* rename ModalInteralCloseReason to DialogInternalCloseReason ([f907798](https://github.com/valentingavran/anglify/commit/f907798129bf299ebf8e30fed4a33b6f0c5e9c97))
+* **Toolbar:** set z-index of toolbar to 10 ([f9e9f44](https://github.com/valentingavran/anglify/commit/f9e9f4480c276f436c09f165eb2fc5ac083a9824))
+
+
+### 🚀  Features
+
+* **Card:** add outlined property ([3289a3d](https://github.com/valentingavran/anglify/commit/3289a3d45bcac183bdf3f3c5eed6cf17a65e6c93))
+* **DataTable:** add computeContent method for manipulating column data ([c36d5b8](https://github.com/valentingavran/anglify/commit/c36d5b8dfeda5e51ad52ef111354692fe7a80f36))
+* **DataTable:** add loading state support ([9eab147](https://github.com/valentingavran/anglify/commit/9eab14742d0c2736f9217e03c424aacde0973378))
+* **DataTable:** add no data state support ([411e74c](https://github.com/valentingavran/anglify/commit/411e74c11a25b37951c90e6240e5bd1ded0089b7))
+* **Timeline:** add padding custom CSS properties ([3282abd](https://github.com/valentingavran/anglify/commit/3282abdb018f1c47e963ee8bb50518abf549f9d2))
+
 ### [0.31.1](https://github.com/valentingavran/anglify/compare/v0.31.0...v0.31.1) (2022-08-29)
 
 
