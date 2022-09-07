@@ -11,6 +11,8 @@ export const DEFAULT_DATA_TABLE_SETTINGS: EntireDataTableSettings = {
   selectableRows: false,
   singleSelect: false,
   showFirstLastPageControls: false,
+  loadingText: 'Loading…',
+  loading: false,
 };
 
 export const DATA_TABLE_SETTINGS = new InjectionToken<DataTableSettings>('Data Table Settings');

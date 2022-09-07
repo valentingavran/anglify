@@ -26,6 +26,12 @@ You can easily disable specific columns from being included when searching throu
 `filterable` to false on the header item(s). In the example below the dessert name column is no longer searchable.
 <app-code-example component="data-table" example="filterable"></app-code-example>
 
+### Loading
+
+You can use the loading prop to indicate that data in the table is currently loading. If there is no data in the table, a loading message will also be displayed. This message can be customized using the `loadingText` prop or the `loading` slot.
+
+<app-code-example component="data-table" example="loading"></app-code-example>
+
 ### Header Slot
 
 You can use the dynamic slots `header:<name>` to customize only certain columns. `<name>` is the name of

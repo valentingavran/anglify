@@ -40,6 +40,10 @@
       </ng-container>
     </ng-container>
   </thead>
+  <anglify-progress-linear *ngIf="loading$ | async" [indeterminate]="true"></anglify-progress-linear>
+  <div class="loading-state" *ngIf="loadingTextVisible$ | async">
+    <ng-container *anglifySlotOutlet="slots | findSlot: 'loading'">{{ loadingText$ | async }}</ng-container>
+  </div>
   <ng-container *ngFor="let item of paginationService.limitedItems$ | async; let index = index; trackBy: trackByFn">
     <tr (click)="expansionService.expand(index)">
       <td *ngIf="selectionService.selectableRows$ | async">

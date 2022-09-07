@@ -29,6 +29,8 @@ export interface EntireDataTableSettings {
   itemKey: string;
   singleSelect: boolean;
   showFirstLastPageControls: boolean;
+  loadingText: string;
+  loading: boolean;
 }
 
 export type DataTableSettings = Partial<EntireDataTableSettings>;
