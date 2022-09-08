@@ -39,19 +39,18 @@ Now you are ready to use the numerous Anglify components.
 
 ## Using components
 
-In order to use a Anglify component, you first need to import the respective component module. To do this, open the module in which your
-component is defined and in which you want to use an Anglify component.
+In order to use a Anglify component, you first need to import it. To do this, open the module in which your component is defined and in which you want to use an Anglify component.
 
-After that you import the desired Anglify module and add it to the `imports` array:
+After that you import the desired Anglify component and add it to the `imports` array:
 
 ```typescript
-import { CardModule } from '@anglify/components';
+import { CardComponent } from '@anglify/components';
 
 @NgModule({
   declarations: [
     //...
   ],
-  imports: [CardModule],
+  imports: [CardComponent],
   providers: [
     //...
   ],

@@ -52,6 +52,11 @@ const routes: Routes = [
             component: TemplateComponent,
             title: 'Breakpoints | Anglify',
           },
+          {
+            path: 'typography',
+            component: TemplateComponent,
+            title: 'Typography | Anglify',
+          },
         ],
       },
       {

@@ -1,0 +1,73 @@
+// import anglify typography
+@use '../../../../../../libs/anglify/src/styles/settings/typography' as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color-on-surface-low-emphasis);
+  border-radius: 8px;
+
+  .container {
+    padding: 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .custom-properties {
+    @include body-1;
+
+    padding: 0 1rem;
+  }
+
+  .display-1 {
+    @include display-1;
+  }
+
+  .display-2 {
+    @include display-2;
+  }
+
+  .display-3 {
+    @include display-3;
+  }
+
+  .display-4 {
+    @include display-4;
+  }
+
+  .display-5 {
+    @include display-5;
+  }
+
+  .display-6 {
+    @include display-6;
+  }
+
+  .subtitle-1 {
+    @include subtitle-1;
+  }
+
+  .subtitle-2 {
+    @include subtitle-2;
+  }
+
+  .body-1 {
+    @include body-1;
+  }
+
+  .body-2 {
+    @include body-2;
+  }
+
+  .button {
+    @include button;
+  }
+
+  .caption {
+    @include caption;
+  }
+
+  .overline {
+    @include overline;
+  }
+}

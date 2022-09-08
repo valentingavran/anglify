@@ -12,6 +12,7 @@ import { InputsTableComponent } from './components/inputs-table/inputs-table.com
 import { ReferencesComponent } from './components/references/references.component';
 import { ReleaseNotesComponent } from './components/release-notes/release-notes.component';
 import { StylingTableComponent } from './components/styling-table/styling-table.component';
+import { TypographyPreviewComponent } from './components/typography-preview/typography-preview.component';
 import { HighlightPipe } from './pipes/highlight.pipe';
 import { MarkdownPipe } from './pipes/markdown.pipe';
 import { AutocompletePlaygroundComponent } from './playgrounds/autocomplete/autocomplete-playground.component';
@@ -67,5 +68,6 @@ export class AppModule {
     customElements.define(`app-select-playground`, createCustomElement(SelectPlaygroundComponent, { injector: this.injector }));
     customElements.define(`app-simple-table-playground`, createCustomElement(SimpleTablePlaygroundComponent, { injector: this.injector }));
     customElements.define(`app-text-field-playground`, createCustomElement(TextFieldPlaygroundComponent, { injector: this.injector }));
+    customElements.define(`app-typography-preview`, createCustomElement(TypographyPreviewComponent, { injector: this.injector }));
   }
 }

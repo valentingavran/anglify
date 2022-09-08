@@ -1,0 +1,6 @@
+<ng-container *ngFor="let type of typography">
+  <div class="container" [ngClass]="type.name" anglifyInteractionState (click)="toggleTypeDetails(type)">{{ typeToTitle(type) }}</div>
+  <div *ngIf="(activeTypography$ | async) === type.name" class="custom-properties" @fast-in-fast-out-y>
+    <pre><code class="language-scss" [innerHTML]="type.customProperties | highlight: 'scss'"></code></pre>
+  </div>
+</ng-container>

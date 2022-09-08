@@ -142,6 +142,7 @@ export class DefaultComponent {
         { link: 'features/theming', name: 'Theming', type: 'item' },
         { link: 'features/icon-fonts', name: 'Icon Fonts', type: 'item' },
         { link: 'features/breakpoints', name: 'Breakpoints', type: 'item' },
+        { link: 'features/typography', name: 'Typography', type: 'item' },
       ],
       type: 'group',
       icon: 'mdi-feature-search',
