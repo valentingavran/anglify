@@ -9,9 +9,9 @@
 
 :root {
   --anglify-toolbar-regular-height: 56px;
+  @include light-theme;
 
   &.light {
-    @include light-theme;
     /* stylelint-disable-next-line no-invalid-position-at-import-rule */
     @import 'material-light';
   }
