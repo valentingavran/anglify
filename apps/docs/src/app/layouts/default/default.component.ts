@@ -164,6 +164,11 @@ export class DefaultComponent {
           type: 'item',
         },
         {
+          link: 'components/bottom-sheet',
+          name: 'Bottom Sheet',
+          type: 'item',
+        },
+        {
           link: 'components/breadcrumbs',
           name: 'Breadcrumbs',
           type: 'item',

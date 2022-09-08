@@ -34,6 +34,8 @@ export * from './components/bottom-navigation/bottom-navigation.component';
 export * from './components/bottom-navigation/bottom-navigation-settings.token';
 export * from './components/bottom-navigation/bottom-navigation.interface';
 export * from './components/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.component';
+// Bottom Sheet
+export * from './components/bottom-sheet/bottom-sheet.component';
 // Breadcrumbs
 export * from './components/breadcrumbs/breadcrumbs-settings.token';
 export * from './components/breadcrumbs/breadcrumbs.component';

@@ -4,7 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
+  ElementRef,
   Injector,
   Input,
   ViewChild,
@@ -13,6 +13,8 @@ import {
   type Type,
 } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { bindClassToNativeElement } from 'libs/anglify/src/utils/functions';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -20,6 +22,7 @@ import { HighlightPipe } from '../../pipes/highlight.pipe';
 
 const EXAMPLE_FOLDER_URL = environment.exampleFolderURL;
 
+@UntilDestroy()
 @Component({
   standalone: true,
   templateUrl: './code-example.component.html',
@@ -40,11 +43,14 @@ export class CodeExampleComponent implements OnInit {
     this.example$.next(value);
   }
 
-  @HostBinding('class.hide-overflow')
-  @Input()
-  public hideOverflow = true;
+  @Input() public set padding(value: boolean | string) {
+    const isTrue = value === '' || value === 'true' || value === true;
+    this.padding$.next(isTrue);
+  }
 
   private readonly example$ = new BehaviorSubject<string>('');
+
+  private readonly padding$ = new BehaviorSubject<boolean>(true);
 
   public readonly selectedView$ = new BehaviorSubject<'code' | 'style' | 'template' | null>(null);
 
@@ -98,7 +104,13 @@ export class CodeExampleComponent implements OnInit {
     }
   }
 
-  public constructor(private readonly httpClient: HttpClient, private readonly injector: Injector) {}
+  public constructor(
+    private readonly httpClient: HttpClient,
+    private readonly injector: Injector,
+    private readonly elementRef: ElementRef<HTMLElement>
+  ) {
+    bindClassToNativeElement(this, this.padding$, this.elementRef.nativeElement, 'has-padding');
+  }
 
   public ngOnInit() {
     void this.loadComponent();

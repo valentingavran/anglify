@@ -79,6 +79,11 @@ const routes: Routes = [
             title: 'Bottom Navigation | Anglify',
           },
           {
+            path: 'bottom-sheet',
+            component: TemplateComponent,
+            title: 'Bottom Sheet | Anglify',
+          },
+          {
             path: 'breadcrumbs',
             component: TemplateComponent,
             title: 'Breadcrumbs | Anglify',

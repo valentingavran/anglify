@@ -9,6 +9,7 @@
     "src/components/autocomplete/*.scss",
     "src/components/badge/*.scss",
     "src/components/bottom-navigation/*.scss",
+    "src/components/bottom-sheet/*.scss",
     "src/components/breadcrumbs/*.scss",
     "src/components/button/*.scss",
     "src/components/button-group/*.scss",
@@ -46,6 +47,7 @@
     "@floating-ui/dom",
     "@ngneat/until-destroy",
     "deepmerge-ts",
-    "@mdi/js"
+    "@mdi/js",
+    "hammerjs"
   ]
 }

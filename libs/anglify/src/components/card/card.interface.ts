@@ -1,4 +1,4 @@
-import type { Elevation } from '../../composables/elevation/elevation.interface';
+import { type Elevation } from '../../composables/elevation/elevation.interface';
 
 export type EntireCardSettings = {
   elevation: Elevation;

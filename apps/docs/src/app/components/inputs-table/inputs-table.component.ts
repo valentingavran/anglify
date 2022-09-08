@@ -6,7 +6,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, type Observable } from 'rxjs';
 import { map, startWith, take } from 'rxjs/operators';
-import type { APIConfig, Documentation } from '../../app.interface';
+import { type APIConfig, type Documentation } from '../../app.interface';
 import { ComponentAPIComponent } from '../component-api/component-api.component';
 import { DirectiveAPIComponent } from '../directive-api/directive-api.component';
 import { InterfaceAPIComponent } from '../interface-api/interface-api.component';

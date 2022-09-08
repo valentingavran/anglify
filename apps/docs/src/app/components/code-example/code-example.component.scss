@@ -7,10 +7,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
     border: 1px solid var(--border-color-on-surface-low-emphasis);
     border-radius: 4px;
     grid-area: preview;
+  }
+
+  &.has-padding {
+    .preview {
+      padding: 1rem;
+    }
   }
 
   .controls {

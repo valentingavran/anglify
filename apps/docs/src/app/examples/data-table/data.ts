@@ -1,4 +1,4 @@
-import type { DataTableItem } from '@anglify/components';
+import { type DataTableItem } from '@anglify/components';
 
 export type FoodEntry = {
   calories: number;

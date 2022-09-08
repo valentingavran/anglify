@@ -2,7 +2,7 @@ import { SimpleTableComponent } from '@anglify/components';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import type { InterfaceDocumentation } from '../../app.interface';
+import { type InterfaceDocumentation } from '../../app.interface';
 
 @Component({
   selector: 'app-interface-api',

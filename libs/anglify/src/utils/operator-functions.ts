@@ -1,4 +1,4 @@
-import type { OperatorFunction } from 'rxjs';
+import { type OperatorFunction } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 export function filterEmpty<T>() {
