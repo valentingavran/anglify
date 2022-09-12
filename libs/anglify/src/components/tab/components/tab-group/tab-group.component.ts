@@ -49,7 +49,7 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
 
   @HostBinding('attr.role') protected readonly role = 'tablist';
 
-  public constructor() {
+  public constructor(private readonly elementRef: ElementRef<HTMLElement>) {
     this.tabs$.pipe(untilDestroyed(this)).subscribe(tabs => {
       for (const [index, tab] of tabs.entries()) {
         // eslint-disable-next-line rxjs/no-nested-subscribe, rxjs/no-unsafe-takeuntil
@@ -128,5 +128,8 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
           this.tabs$.next(tabs);
         });
     }
+
+    // eslint-disable-next-line no-restricted-globals
+    setTimeout(() => this.elementRef.nativeElement.classList.add('anglify-tab-group-transitions'), 0);
   }
 }

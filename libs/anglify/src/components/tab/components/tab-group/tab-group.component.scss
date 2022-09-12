@@ -11,7 +11,13 @@
     height: $tab-indicator-height;
     background-color: $tab-indicator-color;
     transition-duration: 250ms;
-    transition-property: width, left;
+    transition-property: none;
     transition-timing-function: ease-in-out;
+  }
+
+  &.anglify-tab-group-transitions {
+    .anglify-tab-indicator {
+      transition-property: width, left;
+    }
   }
 }

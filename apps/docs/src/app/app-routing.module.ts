@@ -247,6 +247,18 @@ const routes: Routes = [
             loadComponent: () => import('./layout-examples/constrained/constrained.component').then(mod => mod.ConstrainedComponent),
             title: 'Constrained Layout Example | Anglify',
           },
+          {
+            path: 'tabs',
+            // eslint-disable-next-line @typescript-eslint/promise-function-async, promise/prefer-await-to-then
+            loadComponent: () => import('./layout-examples/tabs/tabs.component').then(mod => mod.TabsComponent),
+            title: 'Tabs Layout Example | Anglify',
+            children: [
+              {
+                path: '**',
+                component: TemplateComponent,
+              },
+            ],
+          },
         ],
       },
     ],

@@ -56,7 +56,6 @@ export class TabComponent implements AfterViewInit {
   @Input()
   public set active(value: boolean) {
     this._active$.next(value);
-    if (value) this.onActiveChange.next();
   }
 
   private readonly _active$ = new BehaviorSubject<boolean>(false);
@@ -109,7 +108,7 @@ export class TabComponent implements AfterViewInit {
    * Exactly match the link. Without this, `/user/profile/` will match for example every
    * user sub-route too (like `/user/profile/edit`).
    */
-  @Input() public exact = false;
+  @Input() public exact = true;
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onActiveChange = new EventEmitter<void>();
@@ -142,9 +141,8 @@ export class TabComponent implements AfterViewInit {
   }
 
   @HostListener('click')
-  // @ts-expect-error: Value is used
-  private click() {
-    this.active = true;
+  protected click() {
+    this._active$.next(true);
   }
 
   public constructor(
