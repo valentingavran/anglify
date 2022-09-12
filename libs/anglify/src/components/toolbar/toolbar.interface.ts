@@ -1,9 +1,9 @@
-import { Elevation } from '../../composables/elevation/elevation.interface';
+import type { Elevation } from '../../composables/elevation/elevation.interface';
 
-export interface EntireToolbarSettings {
-  prominent: boolean;
+export type EntireToolbarSettings = {
   collapse: boolean;
   elevation: Elevation;
-}
+  prominent: boolean;
+};
 
 export type ToolbarSettings = Partial<EntireToolbarSettings>;

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { NavigationDrawerComponent } from './navigation-drawer.component';
 
 describe('NavigationDrawerComponent', () => {

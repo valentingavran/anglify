@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type Breakpoint = 'lg' | 'md' | 'sm' | 'xl' | 'xs';
 
 export type BreakpointSettings = { [key in Breakpoint]: number };
 

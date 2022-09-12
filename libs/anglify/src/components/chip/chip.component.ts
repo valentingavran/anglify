@@ -9,25 +9,25 @@ import {
   HostListener,
   Inject,
   Input,
-  OnInit,
   Output,
   QueryList,
   Self,
+  type OnInit,
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject } from 'rxjs';
-import { CHIP_SETTINGS, DEFAULT_CHIP_SETTINGS } from './chip-settings.token';
-import { ChipAppearance, EntireChipSettings } from './chip.interface';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
-import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
 import { bindClassToNativeElement } from '../../utils/functions';
 import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
+import { CHIP_SETTINGS, DEFAULT_CHIP_SETTINGS } from './chip-settings.token';
+import { ChipAppearance, EntireChipSettings } from './chip.interface';
 
 @UntilDestroy()
 @Component({
@@ -42,31 +42,42 @@ import { InternalIconSetDefinition } from '../icon/icon.interface';
 export class ChipComponent implements OnInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  /** The chip’s value. */
-  @Input() public set active(value: boolean) {
-    this.active$.next(value);
-  }
-
   public get active() {
     return this.active$.value;
   }
 
-  /** Displays a selection icon when selected. */
+  /**
+   * The chip’s value.
+   */
+  @Input() public set active(value: boolean) {
+    this.active$.next(value);
+  }
+
+  /**
+   * Displays a selection icon when selected.
+   */
   @Input('filter') public filter = this.settings.filter;
 
-  /** Sets one of several predefined styles. */
+  /**
+   * Sets one of several predefined styles.
+   */
   @Input() public appearance: ChipAppearance = this.settings.appearance;
-
-  /** Turns the ripple effect on or off. */
-  @Input() public set ripple(value: boolean) {
-    this.rippleService.active = value;
-  }
 
   public get ripple(): boolean {
     return this.rippleService.active;
   }
 
-  /** Event that is emitted when the component is clicked. */
+  /**
+   * Turns the ripple effect on or off.
+   */
+  @Input() public set ripple(value: boolean) {
+    this.rippleService.active = value;
+  }
+
+  /**
+   * Event that is emitted when the component is clicked.
+   */
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onClick = new EventEmitter<void>();
 
   public readonly active$ = new BehaviorSubject<boolean>(false);
@@ -87,6 +98,7 @@ export class ChipComponent implements OnInit {
         const right = Array.from(child.attributes).some(attribute => attribute.name === 'left');
         return Boolean(right);
       }
+
       return false;
     });
 
@@ -95,12 +107,14 @@ export class ChipComponent implements OnInit {
         const right = Array.from(child.attributes).some(attribute => attribute.name === 'right');
         return Boolean(right);
       }
+
       return false;
     });
 
     if (hasLeftIcon) {
       this.elementRef.nativeElement.classList.add('has-left-icon');
     }
+
     if (hasRightIcon) {
       this.elementRef.nativeElement.classList.add('has-right-icon');
     }
@@ -118,11 +132,11 @@ export class ChipComponent implements OnInit {
   }
 
   @HostBinding('tabindex')
-  // @ts-expect-error
+  // @ts-expect-error: Value is used
   private readonly tabindex = 0;
 
   @HostListener('click')
-  // @ts-expect-error
+  // @ts-expect-error: Value is used
   private click() {
     this.onClick.next();
   }

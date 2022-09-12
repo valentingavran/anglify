@@ -1,11 +1,11 @@
-import { Elevation } from '../../composables/elevation/elevation.interface';
+import type { Elevation } from '../../composables/elevation/elevation.interface';
 
-export interface EntireExpansionPanelsSettings {
+export type EntireExpansionPanelsSettings = {
   accordion: boolean;
   elevation: Elevation;
   mandatory: boolean;
-  multiple: boolean;
   max: number | undefined;
-}
+  multiple: boolean;
+};
 
 export type ExpansionPanelsSettings = Partial<EntireExpansionPanelsSettings>;

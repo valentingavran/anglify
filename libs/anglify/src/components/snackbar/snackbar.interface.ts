@@ -1,38 +1,38 @@
-import { Subscriber } from 'rxjs';
+import type { Subscriber } from 'rxjs';
 
 export type SnackbarPosition = 'center' | 'leading';
 
-export interface EntireSnackbarSettings {
+export type EntireSnackbarSettings = {
   position: SnackbarPosition;
   stacked: boolean;
   timeout: number;
-}
+};
 
 export type SnackbarSettings = Partial<EntireSnackbarSettings>;
 
-export interface SnackbarInput {
+export type SnackbarInput = {
+  actions?: { id?: string; label?: string };
   label?: string;
-  actions?: { label?: string; id?: string };
-}
+};
 
-export interface SnackbarOptions<T = SnackbarInput & Record<string, unknown>> extends SnackbarSettings {
-  id: string;
+export type SnackbarOptions<T = Record<string, unknown> & SnackbarInput> = SnackbarSettings & {
   data?: T;
-}
+  id: string;
+};
 
 export enum SnackbarInteralDismissReason {
+  Dismissed = 'internal.dismissed',
   Priority = 'internal.priority',
   Timeout = 'internal.timeout',
-  Dismissed = 'internal.dismissed',
 }
 
-export interface SnackbarData<T = unknown> {
-  reason: SnackbarInteralDismissReason | string;
+export type SnackbarData<T = unknown> = {
   data?: T;
-}
+  reason: SnackbarInteralDismissReason | string;
+};
 
-export interface SnackbarContext<T = SnackbarInput> extends SnackbarOptions<T> {
-  completeWith: (data: SnackbarData) => void;
+export type SnackbarContext<T = SnackbarInput> = SnackbarOptions<T> & {
   $implicit: Subscriber<unknown>;
+  completeWith(data: SnackbarData): void;
   createdAt: number;
-}
+};

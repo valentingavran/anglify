@@ -2,9 +2,10 @@ import { Host, Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { EntireDataTableSettings } from '../data-table.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ExpansionService {
   public expandable$ = new BehaviorSubject(this.settings.expandable);
+
   public readonly openedExpansions$ = new BehaviorSubject<number[]>([]);
 
   public constructor(@Host() @Inject('anglifyDataTableSettings') public settings: EntireDataTableSettings) {}
@@ -19,7 +20,7 @@ export class ExpansionService {
     if (!this.expandable$.value) return;
 
     if (this.openedExpansions$.value.includes(index)) {
-      this.openedExpansions$.next(this.openedExpansions$.value.filter(i => i !== index));
+      this.openedExpansions$.next(this.openedExpansions$.value.filter(val => val !== index));
     } else {
       this.openedExpansions$.next([...this.openedExpansions$.value, index]);
     }

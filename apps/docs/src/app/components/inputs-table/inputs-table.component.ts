@@ -4,9 +4,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, type Observable } from 'rxjs';
 import { map, startWith, take } from 'rxjs/operators';
-import { APIConfig, Documentation } from '../../app.interface';
+import type { APIConfig, Documentation } from '../../app.interface';
 import { ComponentAPIComponent } from '../component-api/component-api.component';
 import { DirectiveAPIComponent } from '../directive-api/directive-api.component';
 import { InterfaceAPIComponent } from '../interface-api/interface-api.component';
@@ -62,18 +62,22 @@ export class InputsTableComponent {
   }
 
   public _components$ = new BehaviorSubject<string | undefined>(undefined);
+
   public _directives$ = new BehaviorSubject<string | undefined>(undefined);
+
   public _services$ = new BehaviorSubject<string | undefined>(undefined);
+
   public _interfaces$ = new BehaviorSubject<string | undefined>(undefined);
 
   public documentation$ = new BehaviorSubject<Documentation | null>(null);
+
   public config$: Observable<APIConfig> = combineLatest([this._components$, this._directives$, this._services$, this._interfaces$]).pipe(
     map(([components, directives, services, interfaces]) => {
       const config: APIConfig = {
-        components: components ? components.replace(/ /g, '').split(',') : [],
-        directives: directives ? directives.replace(/ /g, '').split(',') : [],
-        services: services ? services.replace(/ /g, '').split(',') : [],
-        interfaces: interfaces ? interfaces.replace(/ /g, '').split(',') : [],
+        components: components ? components.replaceAll(' ', '').split(',') : [],
+        directives: directives ? directives.replaceAll(' ', '').split(',') : [],
+        services: services ? services.replaceAll(' ', '').split(',') : [],
+        interfaces: interfaces ? interfaces.replaceAll(' ', '').split(',') : [],
       };
 
       return config;
@@ -118,7 +122,7 @@ export class InputsTableComponent {
   public interfaces$ = combineLatest([this.documentation$, this.config$]).pipe(
     map(([documentation, config]) => {
       const interfaces = config.interfaces ?? [];
-      return documentation?.interfaces.filter(i => interfaces.includes(i.name));
+      return documentation?.interfaces.filter(item => interfaces.includes(item.name));
     })
   );
 }

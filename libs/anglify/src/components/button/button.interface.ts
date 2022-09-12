@@ -1,10 +1,10 @@
-export type ButtonAppearance = 'contained' | 'outlined' | 'text' | 'icon' | 'fab' | 'extended-fab';
+export type ButtonAppearance = 'contained' | 'extended-fab' | 'fab' | 'icon' | 'outlined' | 'text';
 
-export interface EntireButtonSettings {
+export type EntireButtonSettings = {
   appearance: ButtonAppearance;
   block: boolean;
   ripple: boolean;
   state: boolean;
-}
+};
 
 export type ButtonSettings = Partial<EntireButtonSettings>;

@@ -1,6 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -11,15 +10,16 @@ import {
   Output,
   QueryList,
   Self,
+  type AfterViewInit,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map } from 'rxjs';
-import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from './navigation-drawer-settings.token';
-import { EntireNavigationDrawerSettings, NavigationDrawerMode } from './navigation-drawer.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { enterLeaveOpacityAnimation } from '../../utils/animations';
 import { bindClassToNativeElement, bindObservableValueToNativeElement } from '../../utils/functions';
 import { ListComponent } from '../list/components/list/list.component';
+import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from './navigation-drawer-settings.token';
+import { EntireNavigationDrawerSettings, NavigationDrawerMode } from './navigation-drawer.interface';
 
 @UntilDestroy()
 @Component({
@@ -43,30 +43,38 @@ import { ListComponent } from '../list/components/list/list.component';
 export class NavigationDrawerComponent implements AfterViewInit {
   @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
 
-  /** Modal drawer will be closed on item clicks if this property is set. */
+  /**
+   * Modal drawer will be closed on item clicks if this property is set.
+   */
   @Input() public closeOnItemClick = this.settings.closeOnItemClick;
-
-  /** Changes the Navigation Drawer mode (modal or standard). */
-  @Input() public set mode(value: NavigationDrawerMode) {
-    this.mode$.next(value);
-  }
 
   public get mode() {
     return this.mode$.value;
   }
 
-  /** Control whether the NavigationDrawer is opened or not. */
-  @Input() public set value(value: boolean) {
-    this.setOpened(value);
+  /**
+   * Changes the Navigation Drawer mode (modal or standard).
+   */
+  @Input() public set mode(value: NavigationDrawerMode) {
+    this.mode$.next(value);
   }
 
   public get value() {
     return this.value$.value;
   }
 
+  /**
+   * Control whether the NavigationDrawer is opened or not.
+   */
+  @Input() public set value(value: boolean) {
+    this.setOpened(value);
+  }
+
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onValueChange = new EventEmitter();
 
   public value$ = new BehaviorSubject(false);
+
   public mode$ = new BehaviorSubject<NavigationDrawerMode>(this.settings.mode);
 
   public constructor(
@@ -96,16 +104,17 @@ export class NavigationDrawerComponent implements AfterViewInit {
   }
 
   private listItemClickHandler() {
-    this.lists?.forEach(list => {
-      list.onItemClick
-        .asObservable()
-        .pipe(
-          filter(() => this.closeOnItemClick && this.mode$.value === 'modal'),
-          untilDestroyed(this)
-        )
-        .subscribe(() => {
-          this.setOpened(false);
-        });
-    });
+    if (this.lists)
+      for (const list of this.lists) {
+        list.onItemClick
+          .asObservable()
+          .pipe(
+            filter(() => this.closeOnItemClick && this.mode$.value === 'modal'),
+            untilDestroyed(this)
+          )
+          .subscribe(() => {
+            this.setOpened(false);
+          });
+      }
   }
 }

@@ -3,6 +3,6 @@
     {{ context.data?.label }}
   </div>
   <div class="actions" *ngIf="context.data?.actions">
-    <button anglifyButton appearance="text" (click)="dismiss()">{{ context.data?.actions?.label }}</button>
+    <button type="button" anglifyButton appearance="text" (click)="dismiss()">{{ context.data?.actions?.label }}</button>
   </div>
 </div>

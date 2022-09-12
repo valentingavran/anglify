@@ -1,6 +1,6 @@
 <anglify-toolbar [elevation]="5">
   <ng-template slot="start">
-    <button anglifyButton appearance="icon" (click)="drawer.toggle()">
+    <button anglifyButton type="button" appearance="icon" (click)="drawer.toggle()">
       <anglify-icon icon="mdi-menu"></anglify-icon>
     </button>
   </ng-template>
@@ -15,6 +15,6 @@
   <!-- your content here -->
 </main>
 
-<button class="open-example-code" anglifyButton appearance="fab" (click)="openExampleCode()">
+<button type="button" class="open-example-code" anglifyButton appearance="fab" (click)="openExampleCode()">
   <anglify-icon icon="mdi-github"></anglify-icon>
 </button>

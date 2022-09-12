@@ -21,6 +21,10 @@
     background: $expansion-panels-header-background;
     cursor: pointer;
     user-select: none;
+
+    &:focus-visible {
+      --state-container-color: var(--color-surface-state-focus);
+    }
   }
 
   .anglify-expansion-panel-content {

@@ -1,13 +1,13 @@
-export interface DataTableHeader<T = any> {
-  text: string;
-  align?: 'start' | 'center' | 'end';
-  sortable?: boolean;
+export type DataTableHeader<T = any> = {
+  align?: 'center' | 'end' | 'start';
+  computeContent?(item: DataTableItem<T>): string;
   filterable?: boolean;
+  sort?(a: DataTableItem<T>, b: DataTableItem<T>): number;
+  sortable?: boolean;
+  text: string;
   value: string;
   width?: number | string;
-  sort?: (a: DataTableItem<T>, b: DataTableItem<T>) => number;
-  computeContent?: (item: DataTableItem<T>) => string;
-}
+};
 
 export type DataTableItem<
   T = {
@@ -15,24 +15,24 @@ export type DataTableItem<
   }
 > = T;
 
-export interface SortSetting {
-  value: string;
+export type SortSetting = {
   direction: 'asc' | 'desc';
-}
+  value: string;
+};
 
-export interface EntireDataTableSettings {
-  multiSort: boolean;
-  page: number;
-  hideDefaultHeader: boolean;
-  hideDefaultFooter: boolean;
+export type EntireDataTableSettings = {
   expandable: boolean;
-  selectableRows: boolean;
+  hideDefaultFooter: boolean;
+  hideDefaultHeader: boolean;
   itemKey: string;
-  singleSelect: boolean;
-  showFirstLastPageControls: boolean;
-  loadingText: string;
   loading: boolean;
+  loadingText: string;
+  multiSort: boolean;
   noDataText: string;
-}
+  page: number;
+  selectableRows: boolean;
+  showFirstLastPageControls: boolean;
+  singleSelect: boolean;
+};
 
 export type DataTableSettings = Partial<EntireDataTableSettings>;

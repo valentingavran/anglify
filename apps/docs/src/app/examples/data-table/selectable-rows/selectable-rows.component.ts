@@ -1,4 +1,4 @@
-import { CheckboxComponent, DataTableComponent, DataTableHeader } from '@anglify/components';
+import { CheckboxComponent, DataTableComponent, type DataTableHeader } from '@anglify/components';
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
@@ -24,5 +24,5 @@ export default class SelectableRowsComponent {
 
   protected items = items;
 
-  protected selection: Array<any> = [items[0]];
+  protected selection: any[] = [items[0]];
 }

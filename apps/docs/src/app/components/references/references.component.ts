@@ -11,8 +11,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class ReferencesComponent {
   @Input('bundle-size') public bundleSize?: string;
+
   @Input() public issues?: string;
+
   @Input('material-design') public materialDesign?: string;
+
   @Input() public w3c?: string;
 
   public open(url: string | undefined) {

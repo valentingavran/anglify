@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
-import { CARD_SETTINGS, DEFAULT_CARD_SETTINGS } from './card-settings.token';
-import { EntireCardSettings } from './card.interface';
-import type { Elevation } from '../../composables/elevation/elevation.interface';
+import { Elevation } from '../../composables/elevation/elevation.interface';
 import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
 import { RippleService } from '../../composables/ripple/ripple.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { CARD_SETTINGS, DEFAULT_CARD_SETTINGS } from './card-settings.token';
+import { EntireCardSettings } from './card.interface';
 
 @Component({
   selector: 'anglify-card',
@@ -17,26 +17,32 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   providers: [createSettingsProvider<EntireCardSettings>('anglifyCardSettings', DEFAULT_CARD_SETTINGS, CARD_SETTINGS), ELEVATION, RIPPLE],
 })
 export class CardComponent {
-  /** Designates an elevation applied to the component between 0 and 24. You can find more
-   * information on the elevation page. */
-  @Input() public set elevation(value: Elevation) {
-    this.elevationService.elevation = value;
-  }
-
   public get elevation() {
     return this.elevationService.elevation;
   }
 
-  /** Turns the ripple effect on or off. */
-  @Input() public set ripple(value: boolean) {
-    this.rippleService.active = value;
+  /**
+   * Designates an elevation applied to the component between 0 and 24. You can find more
+   * information on the elevation page.
+   */
+  @Input() public set elevation(value: Elevation) {
+    this.elevationService.elevation = value;
   }
 
   public get ripple() {
     return this.rippleService.active;
   }
 
-  /** Removes elevation (box-shadow) and adds a thin border.  */
+  /**
+   * Turns the ripple effect on or off.
+   */
+  @Input() public set ripple(value: boolean) {
+    this.rippleService.active = value;
+  }
+
+  /**
+   * Removes elevation (box-shadow) and adds a thin border.
+   */
   @Input() @HostBinding('class.outlined') public outlined = this.settings.outlined;
 
   public constructor(

@@ -4,21 +4,24 @@
   "overrides": [
     {
       "files": ["*.ts"],
-      "extends": ["@anexia/eslint-config-marine/prettier/node", "@anexia/eslint-config-marine/prettier/angular"],
+      "extends": [
+        "neon/common",
+        "neon/browser",
+        "neon/node",
+        "neon/typescript",
+        "neon/angular",
+        "neon/rxjs",
+        "neon/rxjs-angular",
+        "neon/prettier"
+      ]
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["neon/angular"],
       "rules": {
-        "@typescript-eslint/no-empty-function": 0,
-        "@angular-eslint/no-input-rename": 0,
-        "@angular-eslint/no-output-on-prefix": 0
+        "@angular-eslint/template/use-track-by-function": "off",
+        "@angular-eslint/template/no-call-expression": "off"
       }
-    },
-    {
-      "files": ["*.html"],
-      "extends": ["@anexia/eslint-config-marine/prettier/angular"]
-    },
-    {
-      "files": ["*.html"],
-      "excludedFiles": ["*inline-template-*.component.html"],
-      "extends": ["@anexia/eslint-config-marine/prettier/angular"]
     }
   ]
 }

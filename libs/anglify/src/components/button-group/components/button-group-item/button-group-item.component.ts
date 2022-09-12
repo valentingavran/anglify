@@ -21,48 +21,62 @@ import { EntireButtonGroupSettings } from '../../button-group.interface';
   ],
 })
 export class ButtonGroupItemComponent {
-  /** Marks this item as active, which changes the style. */
-  @Input() public set active(value: boolean) {
-    this.active$.next(value);
-  }
-
   public get active() {
     return this.active$.value;
   }
 
-  /** Turns the ripple effect on or off. */
-  @Input() public set ripple(value: boolean) {
-    this.ripple$.next(value);
+  /**
+   * Marks this item as active, which changes the style.
+   */
+  @Input() public set active(value: boolean) {
+    this.active$.next(value);
   }
 
   public get ripple() {
     return this.ripple$.value;
   }
 
-  /** Disables this item. */
-  @Input() public set disabled(value: boolean) {
-    this.disabled$.next(value);
+  /**
+   * Turns the ripple effect on or off.
+   */
+  @Input() public set ripple(value: boolean) {
+    this.ripple$.next(value);
   }
 
   public get disabled() {
     return this.disabled$.value;
   }
 
-  /** Makes the item not focusable and disables the ripple. */
-  @Input() public set readonly(value: boolean) {
-    this.readonly$.next(value);
+  /**
+   * Disables this item.
+   */
+  @Input() public set disabled(value: boolean) {
+    this.disabled$.next(value);
   }
 
   public get readonly() {
     return this.readonly$.value;
   }
 
-  /** Event that is emitted when the component is clicked. */
+  /**
+   * Makes the item not focusable and disables the ripple.
+   */
+  @Input() public set readonly(value: boolean) {
+    this.readonly$.next(value);
+  }
+
+  /**
+   * Event that is emitted when the component is clicked.
+   */
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onClick = new EventEmitter<void>();
 
   private readonly active$ = new BehaviorSubject(false);
+
   private readonly disabled$ = new BehaviorSubject(this.settings.disabled);
+
   private readonly readonly$ = new BehaviorSubject(this.settings.readonly);
+
   private readonly ripple$ = new BehaviorSubject(this.settings.ripple);
 
   public constructor(

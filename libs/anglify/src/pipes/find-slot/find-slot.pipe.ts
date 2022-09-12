@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform, QueryList } from '@angular/core';
+import { Pipe, type PipeTransform, type QueryList } from '@angular/core';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 
 @Pipe({

@@ -12,16 +12,16 @@ import {
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject } from 'rxjs';
-import { DEFAULT_TOOLBAR_SETTINGS, TOOLBAR_SETTINGS } from './toolbar-settings.token';
-import { EntireToolbarSettings } from './toolbar.interface';
 import { Elevation } from '../../composables/elevation/elevation.interface';
 import { ELEVATION } from '../../composables/elevation/elevation.provider';
 import { ElevationService } from '../../composables/elevation/elevation.service';
-import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { bindAttrToNativeElement } from '../../utils/functions';
+import { DEFAULT_TOOLBAR_SETTINGS, TOOLBAR_SETTINGS } from './toolbar-settings.token';
+import { EntireToolbarSettings } from './toolbar.interface';
 
 @UntilDestroy()
 @Component({
@@ -39,28 +39,34 @@ import { bindAttrToNativeElement } from '../../utils/functions';
 export class ToolbarComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  /** Increases the height of the toolbar. */
+  /**
+   * Increases the height of the toolbar.
+   */
   @Input() @HostBinding('class.prominent') public prominent: boolean = this.settings.prominent;
 
-  /** Puts the toolbar into a collapsed state reducing its maximum width. */
+  /**
+   * Puts the toolbar into a collapsed state reducing its maximum width.
+   */
   @Input() @HostBinding('class.collapse') public collapse: boolean = this.settings.collapse;
-
-  /** Designates an elevation applied to the component between 0 and 24. You can find more
-   * information on the elevation page. */
-  @Input() public set elevation(value: Elevation) {
-    this.elevationService.elevation = value;
-  }
 
   public get elevation() {
     return this.elevationService.elevation;
   }
 
-  @Input() public set app(value: boolean) {
-    this.app$.next(value);
+  /**
+   * Designates an elevation applied to the component between 0 and 24. You can find more
+   * information on the elevation page.
+   */
+  @Input() public set elevation(value: Elevation) {
+    this.elevationService.elevation = value;
   }
 
   public get app() {
     return this.app$.value;
+  }
+
+  @Input() public set app(value: boolean) {
+    this.app$.next(value);
   }
 
   private readonly app$ = new BehaviorSubject(false);

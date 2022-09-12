@@ -1,21 +1,23 @@
 import { Host, Inject, Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, map, take, tap, withLatestFrom } from 'rxjs';
-import { DataService } from './data.service';
 import { EntireDataTableSettings } from '../data-table.interface';
+import { DataService } from './data.service';
 
 @UntilDestroy()
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PaginationService {
   public readonly page$ = new BehaviorSubject(this.settings.page);
+
   public readonly itemsPerPage$ = new BehaviorSubject({ text: '5', value: 5 });
+
   public readonly showFirstLastPageControls$ = new BehaviorSubject(this.settings.showFirstLastPageControls);
 
   public itemsPerPageOptions = [
     { value: 5, text: '5' },
     { value: 10, text: '10' },
     { value: 15, text: '15' },
-    { value: Infinity, text: 'All' },
+    { value: Number.POSITIVE_INFINITY, text: 'All' },
   ];
 
   public constructor(
@@ -34,8 +36,8 @@ export class PaginationService {
 
   public readonly currentlyDisplayedItemsRange$ = combineLatest([this.page$, this.itemsPerPage$, this.dataService.filteredItems$]).pipe(
     map(([page, itemsPerPage, items]) => {
-      const start = (page - 1) * (itemsPerPage.value === Infinity ? items.length : itemsPerPage.value);
-      let end = page * (itemsPerPage.value === Infinity ? items.length : itemsPerPage.value);
+      const start = (page - 1) * (itemsPerPage.value === Number.POSITIVE_INFINITY ? items.length : itemsPerPage.value);
+      let end = page * (itemsPerPage.value === Number.POSITIVE_INFINITY ? items.length : itemsPerPage.value);
       if (end > items.length) end = items.length;
       return { start, end };
     })
@@ -51,14 +53,17 @@ export class PaginationService {
 
   public readonly maxPages$ = combineLatest([this.dataService.sortedItems$, this.itemsPerPage$]).pipe(
     map(([items, itemsPerPage]) => {
-      if (itemsPerPage.value === Infinity) return 1;
+      if (itemsPerPage.value === Number.POSITIVE_INFINITY) return 1;
       return Math.ceil(items.length / itemsPerPage.value);
     })
   );
 
   public readonly firstPageDisabled$ = this.page$.pipe(map(page => page === 1));
+
   public readonly previousPageButtonDisabled$ = this.page$.pipe(map(page => page <= 1));
+
   public readonly nextPageButtonDisabled$ = combineLatest([this.page$, this.maxPages$]).pipe(map(([page, maxPages]) => page === maxPages));
+
   public readonly lastPageDisabled$ = this.page$.pipe(
     withLatestFrom(this.maxPages$),
     map(([page, maxPages]) => page === maxPages)

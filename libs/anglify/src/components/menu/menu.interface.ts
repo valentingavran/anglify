@@ -3,14 +3,14 @@ import type { Position } from '../../composables/position/position.interface';
 
 export type MenuMountingPoint = HTMLElement | 'body' | 'parent';
 
-export interface EntireMenuSettings {
-  offset: number;
-  position: Position;
-  flip: boolean;
-  elevation: Elevation;
-  openOnClick: boolean;
+export type EntireMenuSettings = {
   closeOnOutsideClick: boolean;
+  elevation: Elevation;
+  flip: boolean;
+  offset: number;
+  openOnClick: boolean;
   parentWidth: boolean;
-}
+  position: Position;
+};
 
 export type MenuSettings = Partial<EntireMenuSettings>;

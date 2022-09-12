@@ -1,4 +1,4 @@
-<ng-container *ngFor="let item of items">
+<ng-container *ngFor="let item of items; let index = index; let length = count">
   <a *ngIf="item.href && !item.routerLink" [href]="item.href">
     {{ item.text }}
   </a>
@@ -11,7 +11,7 @@
   >
     {{ item.text }}
   </a>
-  <div *ngIf="isLastItem(item) === false" class="divider">
+  <div *ngIf="index !== length - 1" class="divider">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'divider'">{{ divider }}</ng-container>
   </div>
 </ng-container>

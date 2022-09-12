@@ -1,13 +1,13 @@
-import { RippleOrigin } from '../../composables/ripple/ripple.interface';
+import type { RippleOrigin } from '../../composables/ripple/ripple.interface';
 
-export interface EntireRadioButtonSettings {
+export type EntireRadioButtonSettings = {
   disabled: boolean;
-  ripple: boolean;
   labelPosition: RadioLabelPosition;
+  ripple: boolean;
   rippleOrigin: RippleOrigin;
   state: boolean;
-}
+};
 
 export type RadioButtonSettings = Partial<EntireRadioButtonSettings>;
 
-export type RadioLabelPosition = 'before' | 'after';
+export type RadioLabelPosition = 'after' | 'before';

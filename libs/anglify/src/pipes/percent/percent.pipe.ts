@@ -1,11 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, type PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'percentUnit',
   standalone: true,
 })
 export class PercentPipe implements PipeTransform {
-  public transform(value: string | number) {
+  public transform(value: number | string) {
     return `${value}%`;
   }
 }

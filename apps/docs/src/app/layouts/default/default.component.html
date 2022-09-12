@@ -1,12 +1,13 @@
 <anglify-toolbar [elevation]="5">
   Anglify
   <ng-template slot="start">
-    <button anglifyButton appearance="icon" (click)="drawer.toggle()" aria-label="Toggle navigation menu">
+    <button type="button" anglifyButton appearance="icon" (click)="drawer.toggle()" aria-label="Toggle navigation menu">
       <anglify-icon icon="mdi-menu"></anglify-icon>
     </button>
   </ng-template>
   <ng-template slot="end">
     <button
+      type="button"
       anglifyButton
       appearance="icon"
       (click)="openMaterialDesignWebsite()"
@@ -19,14 +20,28 @@
         <anglify-icon icon="mdi-open-in-new" [right]="true" size="x-small"></anglify-icon>
       </ng-template>
     </button>
-    <button anglifyButton appearance="icon" (click)="openGithubRepo()" [anglifyTooltip]="githubTooltip" aria-label="Open GitHub Repository">
+    <button
+      type="button"
+      anglifyButton
+      appearance="icon"
+      (click)="openGithubRepo()"
+      [anglifyTooltip]="githubTooltip"
+      aria-label="Open GitHub Repository"
+    >
       <anglify-icon icon="mdi-github"></anglify-icon>
       <ng-template #githubTooltip>
         Open GitHub Repo
         <anglify-icon icon="mdi-open-in-new" [right]="true" size="x-small"></anglify-icon>
       </ng-template>
     </button>
-    <button anglifyButton appearance="icon" (click)="toggleTheme()" anglifyTooltip="Switch theme" aria-label="Switch Website Theme">
+    <button
+      type="button"
+      anglifyButton
+      appearance="icon"
+      (click)="toggleTheme()"
+      anglifyTooltip="Switch theme"
+      aria-label="Switch Website Theme"
+    >
       <anglify-icon icon="mdi-theme-light-dark"></anglify-icon>
     </button>
   </ng-template>

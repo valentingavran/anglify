@@ -5,34 +5,34 @@ import { StylingTableComponent } from './components/styling-table/styling-table.
 
 export const ComponentPageModule = [ReferencesComponent, CodeExampleComponent, StylingTableComponent, HttpClientModule];
 
-export interface Documentation {
+export type Documentation = {
   components: ComponentDocumentation[];
   directives: DirectiveDocumentation[];
   injectables: InjectableDocumentation[];
   interfaces: InterfaceDocumentation[];
-}
+};
 
-export interface ComponentDocumentation {
-  name: string;
+export type ComponentDocumentation = {
   inputsClass: {
-    name: string;
+    defaultValue: string;
     deprecated: boolean;
     deprecationMessage: string;
-    line: number;
-    type: string;
-    defaultValue: string;
     description?: string;
-  }[];
-  outputsClass: {
+    line: number;
     name: string;
+    type: string;
+  }[];
+  methodsClass?: MethodDocumentation[];
+  name: string;
+  outputsClass: {
     deprecated: false;
     deprecationMessage: '';
     description?: string;
+    name: string;
   }[];
-  methodsClass?: MethodDocumentation[];
-}
+};
 
-export interface DirectiveDocumentation {
+export type DirectiveDocumentation = {
   deprecated: boolean;
   deprecationMessage: string;
   description: string;
@@ -40,47 +40,47 @@ export interface DirectiveDocumentation {
     defaultValue: string;
     deprecated: boolean;
     deprecationMessage: string;
+    description?: string;
     name: string;
     type: string;
-    description?: string;
   }[];
+  methodsClass?: MethodDocumentation[];
+  name: string;
   outputsClass: {
-    name: string;
     deprecated: false;
     deprecationMessage: '';
     description?: string;
+    name: string;
   }[];
-  name: string;
   rawdescription: string;
   selector: string;
-  methodsClass?: MethodDocumentation[];
-}
+};
 
-export interface InjectableDocumentation {
+export type InjectableDocumentation = {
   deprecated: boolean;
   deprecationMessage: string;
   description: string;
+  methods?: MethodDocumentation[];
   name: string;
   properties: {
     defaultValue: any;
     deprecated: boolean;
     deprecationMessage: string;
     description: string;
+    modifierKind: ModifierType[];
     name: string;
     optional: boolean;
     type: string;
-    modifierKind: ModifierType[];
   }[];
   rawdescription: string;
-  methods?: MethodDocumentation[];
-}
+};
 
-export interface APIConfig {
+export type APIConfig = {
   components?: string[];
   directives?: string[];
-  services?: string[];
   interfaces?: string[];
-}
+  services?: string[];
+};
 
 export enum ModifierType {
   Private = 121,
@@ -89,38 +89,38 @@ export enum ModifierType {
   Readonly = 144,
 }
 
-export interface MethodDocumentation {
-  name: string;
-  description?: string;
+export type MethodDocumentation = {
   args: {
-    name: string;
-    type: string;
     deprecated: boolean;
     deprecationMessage: string;
+    name: string;
+    type: string;
   }[];
-  optional: boolean;
-  returnType: string;
-  line: number;
   deprecated: boolean;
   deprecationMessage: boolean;
+  description?: string;
+  line: number;
   modifierKind: ModifierType[];
-}
-
-export interface InterfaceDocumentation {
   name: string;
-  id: string;
-  file: string;
+  optional: boolean;
+  returnType: string;
+};
+
+export type InterfaceDocumentation = {
   deprecated: boolean;
   deprecationMessage: string;
-  type: string;
-  sourceCode: string;
+  file: string;
+  id: string;
+  name: string;
   properties: {
-    name: string;
     deprecated: boolean;
     deprecationMessage: string;
-    type: string;
-    optional: boolean;
     description: string;
     line: number;
+    name: string;
+    optional: boolean;
+    type: string;
   }[];
-}
+  sourceCode: string;
+  type: string;
+};

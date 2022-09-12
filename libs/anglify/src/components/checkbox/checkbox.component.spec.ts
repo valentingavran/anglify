@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { CheckboxComponent } from './checkbox.component';
 import { DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';

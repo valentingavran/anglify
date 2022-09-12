@@ -2,7 +2,7 @@ import { SimpleTableComponent } from '@anglify/components';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { InterfaceDocumentation } from '../../app.interface';
+import type { InterfaceDocumentation } from '../../app.interface';
 
 @Component({
   selector: 'app-interface-api',
@@ -13,12 +13,12 @@ import { InterfaceDocumentation } from '../../app.interface';
   imports: [NgIf, SimpleTableComponent, AsyncPipe, NgForOf],
 })
 export class InterfaceAPIComponent {
-  @Input() public set documentation(documentation: InterfaceDocumentation | undefined) {
-    this.documentation$.next(documentation);
-  }
-
   public get documentation() {
     return this.documentation$.value;
+  }
+
+  @Input() public set documentation(documentation: InterfaceDocumentation | undefined) {
+    this.documentation$.next(documentation);
   }
 
   private readonly documentation$ = new BehaviorSubject<InterfaceDocumentation | undefined>(undefined);
@@ -26,8 +26,7 @@ export class InterfaceAPIComponent {
   public properties$ = this.documentation$.pipe(
     map(documentation => {
       if (!documentation || documentation.properties.length === 0) return;
-      const properties = documentation.properties;
-      return properties;
+      return documentation.properties;
     })
   );
 }

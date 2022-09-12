@@ -5,10 +5,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-interface Style {
-  name: string;
+type Style = {
   defaultValue: string;
-}
+  name: string;
+};
 
 @Component({
   selector: 'app-styling-table',

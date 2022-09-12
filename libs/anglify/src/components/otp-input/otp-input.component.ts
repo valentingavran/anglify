@@ -3,7 +3,6 @@ import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
   forwardRef,
   Inject,
@@ -12,14 +11,15 @@ import {
   QueryList,
   Self,
   ViewChildren,
+  type ElementRef,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map, tap } from 'rxjs';
-import { DEFAULT_OTP_INPUT_SETTINGS, OTP_INPUT_SETTINGS } from './otp-input-settings.token';
-import { EntireOTPInputSettings } from './otp-input.interface';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { AnglifyIdService } from '../../services/id/id.service';
+import { DEFAULT_OTP_INPUT_SETTINGS, OTP_INPUT_SETTINGS } from './otp-input-settings.token';
+import { EntireOTPInputSettings } from './otp-input.interface';
 
 @UntilDestroy()
 @Component({
@@ -40,45 +40,78 @@ import { AnglifyIdService } from '../../services/id/id.service';
 })
 export class OtpInputComponent implements ControlValueAccessor {
   @ViewChildren('input') private readonly inputRefs?: QueryList<ElementRef<HTMLInputElement>>;
-  /** Emitted when cursor is blurred. */
-  @Output() public readonly onBlur = new EventEmitter<Event>();
-  /** Emitted when the input is filled completely and value gets changed. */
-  @Output() private readonly onComplete = new EventEmitter<string>();
-  /** Emitted public input gains focus. */
-  @Output() public readonly onFocus = new EventEmitter<Event>();
-  /** Emitted when the input is changed by user interaction. */
-  @Output() public readonly onChange = new EventEmitter<string>();
-  /** Disable the input. */
-  @Input() public disabled = this.settings.disabled;
-  /** Puts input in readonly state. */
-  @Input() public readonly = this.settings.readonly;
-  /** Displays points instead of the actual values. */
-  @Input() public hiddenInput = this.settings.hiddenInput;
 
-  /** The OTP field’s length, */
-  @Input() public set length(length: number) {
-    this.length$.next(length);
-  }
+  /**
+   * Emitted when cursor is blurred.
+   */
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public readonly onBlur = new EventEmitter<Event>();
+
+  /**
+   * Emitted when the input is filled completely and value gets changed.
+   */
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() private readonly onComplete = new EventEmitter<string>();
+
+  /**
+   * Emitted public input gains focus.
+   */
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public readonly onFocus = new EventEmitter<Event>();
+
+  /**
+   * Emitted when the input is changed by user interaction.
+   */
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public readonly onChange = new EventEmitter<string>();
+
+  /**
+   * Disable the input.
+   */
+  @Input() public disabled = this.settings.disabled;
+
+  /**
+   * Puts input in readonly state.
+   */
+  @Input() public readonly = this.settings.readonly;
+
+  /**
+   * Displays points instead of the actual values.
+   */
+  @Input() public hiddenInput = this.settings.hiddenInput;
 
   public get length() {
     return this.length$.value;
   }
 
+  /**
+   * The OTP field’s length,
+   */
+  @Input() public set length(length: number) {
+    this.length$.next(length);
+  }
+
   public readonly id = this.idService.generate();
+
   public readonly focusedIndex$ = new BehaviorSubject(-1);
+
   public isFocused$ = this.focusedIndex$.pipe(map(index => index >= 0));
+
   protected otp$ = new BehaviorSubject<string[]>([]);
+
   private readonly length$ = new BehaviorSubject(this.settings.length);
+
   protected lengthArray$ = this.length$.pipe(
     map(length =>
-      Array(length)
+      Array.from({ length })
         .fill(0)
         .map((_, index) => index)
     )
   );
 
-  // @ts-expect-error
+  // @ts-expect-error: Value is used
   private onTouchFn: (...args: any[]) => void = () => {};
+
   private onChangeFn: (...args: any[]) => void = () => {};
 
   public constructor(
@@ -102,6 +135,7 @@ export class OtpInputComponent implements ControlValueAccessor {
           const otpArray = otp.split('');
           // blur after last input is filled
           if (otpArray[this.focusedIndex$.value] && this.focusedIndex$.value === this.length - 1) {
+            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.blur(), 0);
           }
         })
@@ -149,8 +183,10 @@ export class OtpInputComponent implements ControlValueAccessor {
     if (!ref) return;
     if (document.activeElement !== ref) {
       ref.focus();
-      return ref.select();
+      ref.select();
+      return;
     }
+
     if (this.isFocused) return;
     this.focusedIndex$.next(index ?? 0);
     ref.select();
@@ -164,11 +200,12 @@ export class OtpInputComponent implements ControlValueAccessor {
     const inputDataArray = inputVal ? inputVal.split('') : [];
     event.preventDefault();
     const newOtp = [...this.otp$.value];
-    for (let i = 0; i < inputDataArray.length; i++) {
-      const appIdx = index + i;
+    for (const [index, element] of inputDataArray.entries()) {
+      const appIdx = index + index;
       if (appIdx > maxCursor) break;
-      newOtp[appIdx] = inputDataArray[i].toString();
+      newOtp[appIdx] = element.toString();
     }
+
     this.otp$.next(newOtp);
     const targetFocus = Math.min(index + inputDataArray.length, maxCursor);
     this.onFocusHandler(undefined, targetFocus);
@@ -178,9 +215,17 @@ export class OtpInputComponent implements ControlValueAccessor {
     event.preventDefault();
     if (['Tab', 'Shift', 'Meta', 'Control', 'Alt'].includes(event.key)) return;
     if (['Delete'].includes(event.key)) return;
-    if (event.key === 'ArrowLeft' || (event.key === 'Backspace' && !this.otp$.value[index]))
-      return index > 0 && this.onFocusHandler(undefined, index - 1);
-    if (event.key === 'ArrowRight') return index + 1 < this.length && this.onFocusHandler(undefined, index + 1);
+    if (event.key === 'ArrowLeft' || (event.key === 'Backspace' && !this.otp$.value[index])) {
+      if (index > 0) {
+        this.onFocusHandler(undefined, index - 1);
+      }
+
+      return;
+    }
+
+    if (event.key === 'ArrowRight' && index + 1 < this.length) {
+      this.onFocusHandler(undefined, index + 1);
+    }
   }
 
   private get inputs() {

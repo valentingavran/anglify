@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ElevationService } from './elevation.service';
 import { MockElementRef } from '../../mocks/element-ref.mock';
+import { ElevationService } from './elevation.service';
 
 describe('ElevationService', () => {
   let service: ElevationService;

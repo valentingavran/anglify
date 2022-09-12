@@ -2,6 +2,7 @@
 @use '../../styles/mixins/elevation' as *;
 
 :host {
+  z-index: 20;
   overflow: hidden;
 
   .anglify-navigation-drawer {

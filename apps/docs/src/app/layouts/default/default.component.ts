@@ -15,7 +15,7 @@ import {
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
-import { NavigationStart, Router, RouterEvent, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule, type RouterEvent } from '@angular/router';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-scss';
 import 'prismjs/components/prism-typescript';
@@ -25,18 +25,18 @@ import { TableOfContentsComponent } from '../../components/table-of-contents/tab
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { TocService } from '../../services/toc.service';
 
-interface NavItem {
-  name: string;
+type NavItem = {
   link: string;
-  type: 'item';
-}
-
-interface NavGroup {
   name: string;
-  items: (NavItem | NavGroup)[];
-  type: 'group';
+  type: 'item';
+};
+
+type NavGroup = {
   icon?: string;
-}
+  items: (NavGroup | NavItem)[];
+  name: string;
+  type: 'group';
+};
 
 @Component({
   selector: 'anglify-default',
@@ -68,7 +68,7 @@ export class DefaultComponent {
   @ViewChild('container') private readonly container!: ElementRef<HTMLDivElement>;
 
   public initTheme() {
-    const theme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const theme = localStorage.getItem('theme') as 'dark' | 'light' | null;
     if (theme) {
       this.setTheme(theme);
     } else {
@@ -76,7 +76,7 @@ export class DefaultComponent {
     }
   }
 
-  public setTheme(theme: 'light' | 'dark') {
+  public setTheme(theme: 'dark' | 'light') {
     localStorage.setItem('theme', theme);
     document.documentElement.className = theme;
   }
@@ -113,7 +113,7 @@ export class DefaultComponent {
     startWith(this.router.url),
     switchMap(source =>
       this.httpClient
-        // @ts-expect-error
+        // @ts-expect-error: Valid use case
         .get<string>(`../../../assets/pages${source}.md`, { responseType: 'text' })
         .pipe(
           take(1),
@@ -122,10 +122,11 @@ export class DefaultComponent {
         )
     ),
     switchMap(text => this.markdownPipe.parseMarkdown(text).pipe(take(1))),
+    // eslint-disable-next-line no-restricted-globals
     tap(() => setTimeout(() => this.tocService.genToc(this.container.nativeElement), 0))
   );
 
-  public navigationTree: (NavItem | NavGroup)[] = [
+  public navigationTree: (NavGroup | NavItem)[] = [
     {
       name: 'Getting Started',
       items: [

@@ -1,34 +1,35 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
-import { Options } from '@floating-ui/core/src/middleware/offset';
-import { computePosition, flip, offset, Padding, shift, size } from '@floating-ui/dom';
+import type { Options } from '@floating-ui/core/src/middleware/offset';
+import { computePosition, flip, offset, shift, size, type Padding } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, merge } from 'rxjs';
-import { Position, PositionSettings } from './position.interface';
+import { observeOnResize$ } from '../../utils/functions';
+import { PositionSettings, type Position } from './position.interface';
 import { POSITION_SETTINGS } from './position.token';
-import { observeOnResize } from '../../utils/functions';
 
 @UntilDestroy()
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PositionService {
   private _position: Position = 'top';
-  private _minSize = 250;
-  private _padding: Padding = 5;
-  private _offset: Options = 10;
-  private _parentWidth = false;
-  private _flip = false;
-  private _shift = false;
 
-  public set position(value: Position) {
-    this._position = value;
-    void this.updatePosition();
-  }
+  private _minSize = 250;
+
+  private _padding: Padding = 5;
+
+  private _offset: Options = 10;
+
+  private _parentWidth = false;
+
+  private _flip = false;
+
+  private _shift = false;
 
   public get position() {
     return this._position;
   }
 
-  public set minSize(value: number) {
-    this._minSize = value;
+  public set position(value: Position) {
+    this._position = value;
     void this.updatePosition();
   }
 
@@ -36,8 +37,8 @@ export class PositionService {
     return this._minSize;
   }
 
-  public set padding(value: Padding) {
-    this._padding = value;
+  public set minSize(value: number) {
+    this._minSize = value;
     void this.updatePosition();
   }
 
@@ -45,8 +46,8 @@ export class PositionService {
     return this._padding;
   }
 
-  public set offset(value: Options) {
-    this._offset = value;
+  public set padding(value: Padding) {
+    this._padding = value;
     void this.updatePosition();
   }
 
@@ -54,8 +55,8 @@ export class PositionService {
     return this._offset;
   }
 
-  public set parentWidth(value: boolean) {
-    this._parentWidth = value;
+  public set offset(value: Options) {
+    this._offset = value;
     void this.updatePosition();
   }
 
@@ -63,8 +64,8 @@ export class PositionService {
     return this._parentWidth;
   }
 
-  public set flip(value: boolean) {
-    this._flip = value;
+  public set parentWidth(value: boolean) {
+    this._parentWidth = value;
     void this.updatePosition();
   }
 
@@ -72,8 +73,8 @@ export class PositionService {
     return this._flip;
   }
 
-  public set shift(value: boolean) {
-    this._shift = value;
+  public set flip(value: boolean) {
+    this._flip = value;
     void this.updatePosition();
   }
 
@@ -81,12 +82,17 @@ export class PositionService {
     return this._shift;
   }
 
+  public set shift(value: boolean) {
+    this._shift = value;
+    void this.updatePosition();
+  }
+
   public constructor(
     private readonly _elementRef: ElementRef<HTMLElement>,
     @Inject(POSITION_SETTINGS) private readonly settings: PositionSettings
   ) {
     merge(
-      observeOnResize(this._elementRef.nativeElement),
+      observeOnResize$(this._elementRef.nativeElement),
       fromEvent(this._elementRef.nativeElement, 'click'),
       fromEvent(window, 'scroll', { capture: true }),
       fromEvent(window, 'resize', { capture: true })
@@ -118,7 +124,7 @@ export class PositionService {
 
     const { x, y } = await computePosition(this.settings.host, this._elementRef.nativeElement, {
       placement: this._position,
-      middleware: middleware,
+      middleware,
       strategy: 'fixed',
     });
 

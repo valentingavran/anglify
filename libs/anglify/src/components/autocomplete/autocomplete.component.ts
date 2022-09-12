@@ -1,22 +1,22 @@
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
-import { Component, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, type AfterViewInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest, debounceTime, fromEvent, map, ReplaySubject, share, startWith, Subject } from 'rxjs';
-import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { ChipComponent } from '../chip/chip.component';
 import { IconComponent } from '../icon/icon.component';
 import { InputDirective } from '../input/input.directive';
+import { ListComponent } from '../list/components/list/list.component';
+import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemGroupComponent } from '../list/components/list-item-group/list-item-group.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { ListItemComponent } from '../list/components/list-item/list-item.component';
-import { ListComponent } from '../list/components/list/list.component';
 import { MenuDirective } from '../menu/menu.directive';
 import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from '../select/select-settings.token';
 import { SelectComponent } from '../select/select.component';
-import { EntireSelectSettings } from '../select/select.interface';
+import type { EntireSelectSettings } from '../select/select.interface';
 import { TextFieldComponent } from '../text-field/text-field.component';
 
 @UntilDestroy()
@@ -47,6 +47,7 @@ import { TextFieldComponent } from '../text-field/text-field.component';
 })
 export class AutocompleteComponent extends SelectComponent implements AfterViewInit {
   protected readonly _inputValue$ = new Subject<string>();
+
   public readonly inputValue$ = this._inputValue$.asObservable().pipe(
     share({
       connector: () => new ReplaySubject(1),

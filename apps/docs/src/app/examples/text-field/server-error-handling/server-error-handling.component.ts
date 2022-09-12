@@ -14,11 +14,12 @@ export default class ServerErrorHandlingComponent {
 
   public submit() {
     // Simulate server response with this delay
+    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => {
       if (this.passwordControl.value !== '12345678') {
         this.passwordControl.markAsDirty();
         this.passwordControl.setErrors({ message: 'Password is not 12345678' });
       }
-    }, 2000);
+    }, 2_000);
   }
 }

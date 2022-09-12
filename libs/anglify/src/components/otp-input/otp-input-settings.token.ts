@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EntireOTPInputSettings, OTPInputSettings } from './otp-input.interface';
+import type { EntireOTPInputSettings, OTPInputSettings } from './otp-input.interface';
 
 export const DEFAULT_OTP_INPUT_SETTINGS: EntireOTPInputSettings = {
   disabled: false,

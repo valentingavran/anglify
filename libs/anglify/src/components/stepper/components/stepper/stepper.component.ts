@@ -1,6 +1,5 @@
 import { AsyncPipe, NgForOf, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -9,20 +8,20 @@ import {
   Input,
   Output,
   QueryList,
+  type AfterContentInit,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, startWith, tap } from 'rxjs/operators';
-import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
-
 import { SlotDirective } from '../../../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
 import { FindSlotPipe } from '../../../../pipes/find-slot/find-slot.pipe';
 import { INTERNAL_ICONS } from '../../../../tokens/internal-icons.token';
 import { fastInFastOutY, slide } from '../../../../utils/animations';
 import { IconComponent } from '../../../icon/icon.component';
 import { InternalIconSetDefinition } from '../../../icon/icon.interface';
 import { StepDirective } from '../../directives/step/step.directive';
-import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { StepperService } from '../../services/stepper/stepper.service';
+import { StepperOrientation, StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { StepperHeaderComponent } from '../stepper-header/stepper-header.component';
 
 @UntilDestroy()
@@ -48,28 +47,44 @@ import { StepperHeaderComponent } from '../stepper-header/stepper-header.compone
 })
 export class StepperComponent extends StepperService implements AfterContentInit {
   @ContentChildren(StepDirective) private readonly _steps?: QueryList<StepDirective>;
+
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  /** Shows or hides the line between the step headers. */
+  /**
+   * Shows or hides the line between the step headers.
+   */
   @Input() public set stepConnectionLine(value: boolean) {
     this.stepperSettings.setHasStepConnectionLine(value);
   }
 
-  /** Specify whether it is possible to navigate between steps by clicking on the individual step headers. */
+  /**
+   * Specify whether it is possible to navigate between steps by clicking on the individual step headers.
+   */
   @Input() public set headerNavigation(value: boolean) {
     this.stepperSettings.setHeaderNavigationEnabled(value);
   }
 
-  /** Whether the steps should be listed vertically or horizontally. */
+  /**
+   * Whether the steps should be listed vertically or horizontally.
+   */
   @Input() public set orientation(value: StepperOrientation) {
     this.stepperSettings.setOrientation(value);
   }
 
-  @Output() public readonly onPrevious = this.onPrevious$;
-  @Output() public readonly onNext = this.onNext$;
-  @Output() public readonly onOrientationChange = this.stepperSettings.orientation$;
-  @Output() public readonly onReset = this.onReset$;
-  @Output() public readonly onStepChange = this.selectedStep$;
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public override readonly onPrevious$ = super.onPrevious$;
+
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public override readonly onNext$ = super.onNext$;
+
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public readonly onOrientationChange$ = this.stepperSettings.orientation$;
+
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public override readonly onReset$ = super.onReset$;
+
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() public readonly onStepChange$ = this.selectedStep$;
 
   private readonly _orientationHandler$ = this.stepperSettings.orientation$.pipe(
     tap(orientation => {

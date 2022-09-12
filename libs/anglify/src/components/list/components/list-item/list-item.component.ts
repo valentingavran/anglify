@@ -15,11 +15,11 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, merge, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
-import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
 import { FindSlotPipe } from '../../../../pipes/find-slot/find-slot.pipe';
 import { bindClassToNativeElement } from '../../../../utils/functions';
-import type { RouterLinkCommands } from '../../../../utils/interfaces';
+import { RouterLinkCommands } from '../../../../utils/interfaces';
 
 @UntilDestroy()
 @Component({
@@ -34,19 +34,30 @@ import type { RouterLinkCommands } from '../../../../utils/interfaces';
 export class ListItemComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
-  /** Marks this item as active, which changes the style. */
-  @Input() public set active(value: boolean) {
-    this.active$.next(value);
-  }
-
   public get active() {
     return this.active$.value;
   }
 
-  /** Lowers max height of this list item. */
+  /**
+   * Marks this item as active, which changes the style.
+   */
+  @Input() public set active(value: boolean) {
+    this.active$.next(value);
+  }
+
+  /**
+   * Lowers max height of this list item.
+   */
   @Input() public dense = false;
-  /** Disables the component. */
+
+  /**
+   * Disables the component.
+   */
   @Input() public disabled = false;
+
+  public get selectable() {
+    return this.selectable$.value;
+  }
 
   /**
    * Allow text selection inside anglify-list-item. This prop uses {@link https://developer.mozilla.org/en-US/docs/Web/CSS/user-select user-select}
@@ -55,36 +66,38 @@ export class ListItemComponent {
     this.selectable$.next(value);
   }
 
-  public get selectable() {
-    return this.selectable$.value;
-  }
-
-  /** Turns the ripple effect on or off. */
-  @Input() public set ripple(value: boolean) {
-    this.rippleService.active = value;
-  }
-
   public get ripple() {
     return this.rippleService.active;
   }
 
-  /** Controls whether to display the focus and hover styles for this component. */
-  @Input() public set state(value: boolean) {
-    this.rippleService.state = value;
+  /**
+   * Turns the ripple effect on or off.
+   */
+  @Input() public set ripple(value: boolean) {
+    this.rippleService.active = value;
   }
 
   public get state() {
     return this.rippleService.state;
   }
 
-  /** Denotes the target route of the link. You can find more information about the to prop on the
-   * [Angular RouterLink documentation](https://angular.io/api/router/RouterLink) page. */
-  @Input() public set routerLink(commands: RouterLinkCommands) {
-    this.routerLink$.next(commands);
+  /**
+   * Controls whether to display the focus and hover styles for this component.
+   */
+  @Input() public set state(value: boolean) {
+    this.rippleService.state = value;
   }
 
   public get routerLink() {
     return this.routerLink$.value;
+  }
+
+  /**
+   * Denotes the target route of the link. You can find more information about the to prop on the
+   * [Angular RouterLink documentation](https://angular.io/api/router/RouterLink) page.
+   */
+  @Input() public set routerLink(commands: RouterLinkCommands) {
+    this.routerLink$.next(commands);
   }
 
   /**
@@ -99,10 +112,13 @@ export class ListItemComponent {
    */
   @Input() public exact = false;
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onClick = new EventEmitter<void>();
 
   public readonly active$ = new BehaviorSubject<boolean>(false);
+
   public readonly selectable$ = new BehaviorSubject<boolean>(false);
+
   public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
   public constructor(
@@ -129,11 +145,12 @@ export class ListItemComponent {
     if (!route) return false;
 
     let url;
-    if (route instanceof Array) {
+    if (Array.isArray(route)) {
       url = this.router.createUrlTree(route);
     } else {
       url = route;
     }
+
     return this.router.isActive(url, {
       paths: this.exact ? 'exact' : 'subset',
       matrixParams: 'ignored',
@@ -143,7 +160,7 @@ export class ListItemComponent {
   }
 
   @HostListener('click')
-  // @ts-expect-error
+  // @ts-expect-error: Value is used
   private click() {
     this.onClick.next();
   }
