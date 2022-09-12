@@ -4,10 +4,12 @@
     [ngClass]="type.name"
     anglifyInteractionState
     (click)="toggleTypeDetails(type)"
+    tabindex="0"
     (keydown.space)="$event.preventDefault(); toggleTypeDetails(type)"
     (keydown.enter)="$event.preventDefault(); toggleTypeDetails(type)"
   >
-    {{ type.title }}
+    <div>{{ type.title }}</div>
+    <anglify-icon icon="mdi-chevron-down" [@rotate]="(activeTypography$ | async) === type.name"></anglify-icon>
   </div>
   <div *ngIf="(activeTypography$ | async) === type.name" class="custom-properties" @fast-in-fast-out-y>
     <pre><code class="language-scss" [innerHTML]="type.customProperties | highlight: 'scss'"></code></pre>

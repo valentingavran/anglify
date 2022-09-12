@@ -1,4 +1,4 @@
-import { fastInFastOutY, InteractionStateDirective } from '@anglify/components';
+import { fastInFastOutY, IconComponent, InteractionStateDirective, rotate } from '@anglify/components';
 import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -12,11 +12,11 @@ type Type = {
 
 @Component({
   standalone: true,
-  imports: [InteractionStateDirective, NgForOf, NgClass, NgIf, HighlightPipe, AsyncPipe],
+  imports: [InteractionStateDirective, NgForOf, NgClass, NgIf, HighlightPipe, AsyncPipe, IconComponent],
   templateUrl: './typography-preview.component.html',
   styleUrls: ['./typography-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [fastInFastOutY()],
+  animations: [fastInFastOutY(), rotate()],
 })
 export class TypographyPreviewComponent {
   protected activeTypography$ = new BehaviorSubject<Type['name'] | null>('display-1');
