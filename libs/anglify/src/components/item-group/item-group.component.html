@@ -1,3 +1,4 @@
 <ng-container *ngFor="let item of itemGroupItems$ | async">
+  <!-- eslint-disable-next-line @angular-eslint/template/no-call-expression -->
   <ng-container *anglifySlotOutlet="item.template; context: { active: item.data, $implicit: handleItemClick(item) }"></ng-container>
 </ng-container>

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MenuComponent } from './menu.component';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { POSITION_SETTINGS } from '../../../../composables/position/position.token';
+import { MenuComponent } from './menu.component';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;

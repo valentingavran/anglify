@@ -7,7 +7,7 @@ export class Renderer2Mock {
     a.append(b);
   }
 
-  public removeChild(a: HTMLElement, b: HTMLElement) {
-    a.removeChild(b);
+  public removeChild(_: HTMLElement, b: HTMLElement) {
+    b.remove();
   }
 }

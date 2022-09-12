@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { createSettingsProvider } from '../../factories/settings.factory';
+import { ComponentSize } from '../../utils/interfaces';
 import { DEFAULT_ICON_SETTINGS, ICON_SETTINGS } from './icon-settings.token';
 import { EntireIconSettings, IconSet, ICON_SET_CLASS_MAPPING } from './icon.interface';
-import { createSettingsProvider } from '../../factories/settings.factory';
-import type { ComponentSize } from '../../utils/interfaces';
 
 /**
  * Anglify comes bootstrapped with support for Material Design Icons, Material Icons, Font Awesome 4, Font Awesome 5 and Custom Icons.
@@ -19,7 +19,9 @@ import type { ComponentSize } from '../../utils/interfaces';
   providers: [createSettingsProvider<EntireIconSettings>('anglifyIconSettings', DEFAULT_ICON_SETTINGS, ICON_SETTINGS)],
 })
 export class IconComponent {
-  /** Name of the icon to display. */
+  /**
+   * Name of the icon to display.
+   */
   @Input() public icon?: string;
 
   /**
@@ -34,16 +36,24 @@ export class IconComponent {
    */
   @Input() public size: ComponentSize = this.settings.defaultSize;
 
-  /** Changes the cursor to pointer mode. */
+  /**
+   * Changes the cursor to pointer mode.
+   */
   @Input() public clickable = false;
 
-  /** Applies appropriate margins to the icon inside other components when placed to the left of another element or text. */
+  /**
+   * Applies appropriate margins to the icon inside other components when placed to the left of another element or text.
+   */
   @Input() public left = false;
 
-  /** Applies appropriate margins to the icon inside other components when placed to the right of another element or text. */
+  /**
+   * Applies appropriate margins to the icon inside other components when placed to the right of another element or text.
+   */
   @Input() public right = false;
 
-  /** Applies appropriate margins to the icon inside other components when placed on top of another element or text. */
+  /**
+   * Applies appropriate margins to the icon inside other components when placed on top of another element or text.
+   */
   @Input() public top = false;
 
   public constructor(
@@ -53,7 +63,7 @@ export class IconComponent {
 
   @HostBinding('class')
   protected get classList() {
-    if (!this.icon) return;
+    if (!this.icon) return [];
 
     const classNames = [ICON_SET_CLASS_MAPPING[this.iconSet], this.icon, `icon-size-${this.size}`];
 
@@ -68,6 +78,7 @@ export class IconComponent {
     if (this.right) {
       classNames.push('right');
     }
+
     if (this.top) {
       classNames.push('top');
     }
@@ -95,6 +106,7 @@ export class IconComponent {
       if (!path) return undefined;
       return this.sanitizer.bypassSecurityTrustHtml(IconComponent.createSVGElement(path));
     }
+
     return undefined;
   }
 

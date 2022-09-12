@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject, Input, Self } from '@angular/core';
 import { Options } from '@floating-ui/core/src/middleware/offset';
-import { BADGE_SETTINGS, DEFAULT_BADGE_SETTINGS } from './badge-settings.token';
-import { EntireBadgeSettings } from './badge.interface';
 import { Position } from '../../composables/position/position.interface';
 import { POSITION } from '../../composables/position/position.provider';
 import { PositionService } from '../../composables/position/position.service';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { BADGE_SETTINGS, DEFAULT_BADGE_SETTINGS } from './badge-settings.token';
+import { EntireBadgeSettings } from './badge.interface';
 
 @Component({
   selector: 'anglify-badge',
@@ -16,25 +16,34 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   providers: [createSettingsProvider<EntireBadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS), POSITION],
 })
 export class BadgeComponent {
-  /** Applies a border around the badge. */
+  /**
+   * Applies a border around the badge.
+   */
   @Input() public border = this.settings.border;
-  /** Any content you want injected as text into the badge. */
+
+  /**
+   * Any content you want injected as text into the badge.
+   */
   @Input() public content = '';
 
-  /** Defines at which position the badge should be displayed. */
+  /**
+   * Defines at which position the badge should be displayed.
+   */
   @Input()
   public set position(value: Position) {
     this.positionService.position = value;
   }
 
-  /**  Displaces the badge from the host element along the relevant axes. */
+  public get offset() {
+    return this.positionService.offset;
+  }
+
+  /**
+   *  Displaces the badge from the host element along the relevant axes.
+   */
   @Input()
   public set offset(value: Options) {
     this.positionService.offset = value;
-  }
-
-  public get offset() {
-    return this.positionService.offset;
   }
 
   public constructor(

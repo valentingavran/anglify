@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, forwardRef, Input, QueryList } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, ContentChildren, forwardRef, Input, QueryList, type AfterViewInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
 import { ListItemComponent } from '../list-item/list-item.component';
@@ -22,19 +22,28 @@ import { ListItemComponent } from '../list-item/list-item.component';
 export class ListItemGroupComponent implements AfterViewInit, ControlValueAccessor {
   @ContentChildren(ListItemComponent, { descendants: true }) private readonly allSlots?: QueryList<ListItemComponent>;
 
-  /** Forces a value to always be selected (if available). */
+  /**
+   * Forces a value to always be selected (if available).
+   */
   @Input() public mandatory = false;
-  /** Allow multiple selections. */
+
+  /**
+   * Allow multiple selections.
+   */
   @Input() public multiple = false;
-  /** Sets a maximum number of selections that can be made. */
+
+  /**
+   * Sets a maximum number of selections that can be made.
+   */
   @Input() public max?: number;
 
   public onChange: (...args: any[]) => void = () => {};
+
   public onTouch: (...args: any[]) => void = () => {};
 
   public readonly itemGroupItems$ = new BehaviorSubject<ListItemComponent[]>([]);
 
-  public writeValue(value: number | number[] | null) {
+  public writeValue(value: number[] | number | null) {
     let indicesToBeActive: number[] = [];
     if (Array.isArray(value)) {
       indicesToBeActive = value;
@@ -84,6 +93,7 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
     if ((!areOtherItemsSelected && !item.active) || (this.multiple && !item.active)) {
       if (this.max === undefined) {
         this.selectItem(item);
+        // eslint-disable-next-line sonarjs/no-duplicated-branches
       } else if (activeCount < this.max) {
         this.selectItem(item);
       }
@@ -93,6 +103,7 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
       this.deselectAll();
       this.selectItem(item);
     }
+
     this.onChange(this.getActiveIndices());
   };
 
@@ -105,17 +116,17 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
   }
 
   private deselectAll() {
-    this.itemGroupItems$.value.forEach(item => (item.active = false));
+    for (const item of this.itemGroupItems$.value) item.active = false;
   }
 
   private activateAllIndices(indices: number[]) {
-    this.itemGroupItems$.value.forEach((item, index) => {
+    for (const [index, item] of this.itemGroupItems$.value.entries()) {
       if (indices.includes(index)) {
         item.active = true;
       } else {
         item.active = false;
       }
-    });
+    }
   }
 
   private getActiveIndices(): number[] {
@@ -131,11 +142,13 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
         .pipe(
           untilDestroyed(this),
           startWith(this.allSlots),
-          map(slots => slots as ListItemComponent[]),
+          map(slots => slots.toArray() as ListItemComponent[]),
           tap(items => {
-            items.forEach(item => {
+            for (const item of items) {
               this.createItemClickHandler(item);
-            });
+            }
+
+            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.itemGroupItems$.next(items), 0);
           })
         )

@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -8,8 +7,9 @@ import {
   HostBinding,
   QueryList,
   ViewChild,
+  type AfterViewInit,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, startWith, takeUntil } from 'rxjs/operators';
@@ -32,25 +32,31 @@ import { TabComponent } from '../tab/tab.component';
 })
 export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(TabComponent) private readonly allTabs?: QueryList<TabComponent>;
+
   @ViewChild('indicator') private readonly indicator!: ElementRef<HTMLElement>;
 
   private readonly tabs$ = new BehaviorSubject<TabComponent[]>([]);
-  private readonly unsubscribeAll = new Subject<void>();
-  private readonly destroySelectPreviousSubscription = new Subject<void>();
-  private readonly destroySelectNextSubscription = new Subject<void>();
+
+  private readonly unsubscribeAll$ = new Subject<void>();
+
+  private readonly destroySelectPreviousSubscription$ = new Subject<void>();
+
+  private readonly destroySelectNextSubscription$ = new Subject<void>();
 
   public onChange: (...args: any[]) => void = () => {};
+
   public onTouch: (...args: any[]) => void = () => {};
 
   @HostBinding('attr.role') protected readonly role = 'tablist';
 
-  public constructor() {
+  public constructor(private readonly elementRef: ElementRef<HTMLElement>) {
     this.tabs$.pipe(untilDestroyed(this)).subscribe(tabs => {
-      tabs.forEach((tab, index) => {
-        tab.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeAll), filter(Boolean)).subscribe(() => {
+      for (const [index, tab] of tabs.entries()) {
+        // eslint-disable-next-line rxjs/no-nested-subscribe, rxjs/no-unsafe-takeuntil
+        tab.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeAll$), filter(Boolean)).subscribe(() => {
           this.onSelectedTabChange(tab, index);
         });
-      });
+      }
     });
   }
 
@@ -62,7 +68,9 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
     this.onTouch = fn;
   }
 
-  /** Selects tab with given index */
+  /**
+   * Selects tab with given index
+   */
   public writeValue(value: number) {
     const tab = this.tabs$.value[value] as TabComponent | null | undefined;
     if (tab) this.onSelectedTabChange(tab);
@@ -72,11 +80,11 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
     this.indicator.nativeElement.style.width = `${tab.elementRef.nativeElement.offsetWidth}px`;
     this.indicator.nativeElement.style.left = `${tab.elementRef.nativeElement.offsetLeft}px`;
     this.deselectAllOthers(tab);
-    this.destroySelectPreviousSubscription.next();
-    tab.onSelectPrevious.pipe(untilDestroyed(this), takeUntil(this.destroySelectPreviousSubscription)).subscribe(() => {
+    this.destroySelectPreviousSubscription$.next();
+    tab.onSelectPrevious.pipe(untilDestroyed(this), takeUntil(this.destroySelectPreviousSubscription$)).subscribe(() => {
       this.selectPrevious(tab);
     });
-    tab.onSelectNext.pipe(untilDestroyed(this), takeUntil(this.destroySelectNextSubscription)).subscribe(() => {
+    tab.onSelectNext.pipe(untilDestroyed(this), takeUntil(this.destroySelectNextSubscription$)).subscribe(() => {
       this.selectNext(tab);
     });
 
@@ -84,9 +92,9 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   private deselectAllOthers(exception: TabComponent) {
-    this.tabs$.value.forEach(tab => {
+    for (const tab of this.tabs$.value) {
       if (tab !== exception) tab.active = false;
-    });
+    }
   }
 
   private selectPrevious(tab: TabComponent) {
@@ -113,12 +121,15 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
         .pipe(
           untilDestroyed(this),
           startWith(this.allTabs),
-          map(tabs => tabs as QueryList<TabComponent>)
+          map((tabs: QueryList<TabComponent>) => tabs.toArray())
         )
         .subscribe(tabs => {
-          this.unsubscribeAll.next();
-          this.tabs$.next(tabs.toArray());
+          this.unsubscribeAll$.next();
+          this.tabs$.next(tabs);
         });
     }
+
+    // eslint-disable-next-line no-restricted-globals
+    setTimeout(() => this.elementRef.nativeElement.classList.add('anglify-tab-group-transitions'), 0);
   }
 }

@@ -1,12 +1,12 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { distinctUntilChanged, fromEvent, map, shareReplay, startWith } from 'rxjs';
-import { Breakpoint, BreakpointSettings, BREAKPOINT_SETTINGS } from './breakpoint-observer.interface';
+import { type Breakpoint, type BreakpointSettings, BREAKPOINT_SETTINGS } from './breakpoint-observer.interface';
 
 @Injectable({ providedIn: 'root' })
 export class BreakpointObserverService {
   private readonly breakpoints: BreakpointSettings = {
-    xl: 1920,
-    lg: 1280,
+    xl: 1_920,
+    lg: 1_280,
     md: 960,
     sm: 600,
     xs: 0,
@@ -21,17 +21,26 @@ export class BreakpointObserverService {
     startWith(this.computeScreenSize()),
     map(() => this.computeScreenSize()),
     distinctUntilChanged(),
+    // eslint-disable-next-line rxjs/no-sharereplay
     shareReplay(1)
   );
 
   public readonly smAndDown$ = this.size$.pipe(map(size => size === 'xs' || size === 'sm'));
+
   public readonly sm$ = this.size$.pipe(map(size => size === 'sm'));
+
   public readonly smAndUp$ = this.size$.pipe(map(size => size !== 'xs'));
+
   public readonly mdAndDown$ = this.size$.pipe(map(size => size === 'xs' || size === 'sm' || size === 'md'));
+
   public readonly md$ = this.size$.pipe(map(size => size === 'md'));
+
   public readonly mdAndUp$ = this.size$.pipe(map(size => size !== 'xs' && size !== 'sm'));
+
   public readonly lgAndDown$ = this.size$.pipe(map(size => size !== 'xl'));
+
   public readonly lg$ = this.size$.pipe(map(size => size === 'lg'));
+
   public readonly lgAndUp$ = this.size$.pipe(map(size => size === 'lg' || size === 'xl'));
 
   private computeScreenSize(): Breakpoint {

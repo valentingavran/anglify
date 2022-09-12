@@ -83,6 +83,7 @@
       <div class="pagination" aria-label="Pagination info">{{ paginationService.pagination$ | async }}</div>
       <div>
         <button
+          type="button"
           anglifyButton
           *ngIf="paginationService.showFirstLastPageControls$ | async"
           appearance="icon"
@@ -93,6 +94,7 @@
           <anglify-icon [icon]="internalIcons.pageFirst"></anglify-icon>
         </button>
         <button
+          type="button"
           anglifyButton
           appearance="icon"
           [disabled]="paginationService.previousPageButtonDisabled$ | async"
@@ -102,6 +104,7 @@
           <anglify-icon [icon]="internalIcons.chevronLeft"></anglify-icon>
         </button>
         <button
+          type="button"
           anglifyButton
           appearance="icon"
           [disabled]="paginationService.nextPageButtonDisabled$ | async"
@@ -111,6 +114,7 @@
           <anglify-icon [icon]="internalIcons.chevronRight"></anglify-icon>
         </button>
         <button
+          type="button"
           anglifyButton
           *ngIf="paginationService.showFirstLastPageControls$ | async"
           appearance="icon"

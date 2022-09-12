@@ -1,7 +1,17 @@
 import { ButtonComponent, IconComponent } from '@anglify/components';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Injector,
+  Input,
+  ViewChild,
+  ViewContainerRef,
+  type OnInit,
+  type Type,
+} from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -22,12 +32,12 @@ export class CodeExampleComponent implements OnInit {
 
   @Input() public component!: string;
 
-  @Input() public set example(value: string) {
-    this.example$.next(value);
-  }
-
   public get example() {
     return this.example$.value;
+  }
+
+  @Input() public set example(value: string) {
+    this.example$.next(value);
   }
 
   @HostBinding('class.hide-overflow')
@@ -35,7 +45,8 @@ export class CodeExampleComponent implements OnInit {
   public hideOverflow = true;
 
   private readonly example$ = new BehaviorSubject<string>('');
-  public readonly selectedView$ = new BehaviorSubject<'code' | 'template' | 'style' | null>(null);
+
+  public readonly selectedView$ = new BehaviorSubject<'code' | 'style' | 'template' | null>(null);
 
   public readonly template$ = this.example$.pipe(
     switchMap(example => {
@@ -46,6 +57,7 @@ export class CodeExampleComponent implements OnInit {
           })
           .pipe(catchError(() => NEVER));
       }
+
       return of('');
     })
   );
@@ -59,6 +71,7 @@ export class CodeExampleComponent implements OnInit {
           })
           .pipe(catchError(() => NEVER));
       }
+
       return of('');
     })
   );
@@ -72,11 +85,12 @@ export class CodeExampleComponent implements OnInit {
           })
           .pipe(catchError(() => NEVER));
       }
+
       return of('');
     })
   );
 
-  public switchView(view: 'code' | 'template' | 'style') {
+  public switchView(view: 'code' | 'style' | 'template') {
     if (this.selectedView$.value === view) {
       this.selectedView$.next(null);
     } else {
@@ -100,9 +114,7 @@ export class CodeExampleComponent implements OnInit {
       }
 
       // add custom element to template
-      (this.container.element.nativeElement as HTMLElement).appendChild(
-        document.createElement(`${this.component}-${this.example}-example`)
-      );
+      (this.container.element.nativeElement as HTMLElement).append(document.createElement(`${this.component}-${this.example}-example`));
     }
   }
 }

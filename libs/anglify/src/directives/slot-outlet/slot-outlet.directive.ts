@@ -1,4 +1,4 @@
-import { Directive, EmbeddedViewRef, Input, OnChanges, SimpleChange, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, type EmbeddedViewRef, type OnChanges, type SimpleChange } from '@angular/core';
 
 @Directive({
   selector: '[anglifySlotOutlet]',
@@ -8,6 +8,7 @@ export class SlotOutletDirective implements OnChanges {
   private viewRef: EmbeddedViewRef<any> | null = null;
 
   @Input() public anglifySlotOutlet: TemplateRef<any> | undefined;
+
   @Input() public anglifySlotOutletContext: Record<string, unknown> | null = null;
 
   public constructor(private readonly viewContainerRef: ViewContainerRef, private readonly templateRef: TemplateRef<any>) {}

@@ -1,8 +1,8 @@
-import { Position } from '../../composables/position/position.interface';
+import type { Position } from '../../composables/position/position.interface';
 
-export interface EntireBadgeSettings {
+export type EntireBadgeSettings = {
   border: boolean;
   position: Position;
-}
+};
 
 export type BadgeSettings = Partial<EntireBadgeSettings>;

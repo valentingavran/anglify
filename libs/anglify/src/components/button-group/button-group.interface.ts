@@ -1,11 +1,11 @@
-export interface EntireButtonGroupSettings {
-  ripple: boolean;
+export type EntireButtonGroupSettings = {
   disabled: boolean;
-  readonly: boolean;
   mandatory: boolean;
-  multiple: boolean;
   max: number | undefined;
+  multiple: boolean;
+  readonly: boolean;
+  ripple: boolean;
   stateless: boolean;
-}
+};
 
 export type ButtonGroupSettings = Partial<EntireButtonGroupSettings>;

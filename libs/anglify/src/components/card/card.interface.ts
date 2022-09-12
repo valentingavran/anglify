@@ -1,9 +1,9 @@
 import type { Elevation } from '../../composables/elevation/elevation.interface';
 
-export interface EntireCardSettings {
+export type EntireCardSettings = {
   elevation: Elevation;
-  ripple: boolean;
   outlined: boolean;
-}
+  ripple: boolean;
+};
 
 export type CardSettings = Partial<EntireCardSettings>;

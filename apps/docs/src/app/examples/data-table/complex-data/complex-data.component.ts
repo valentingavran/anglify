@@ -1,23 +1,24 @@
-import { CheckboxComponent, DataTableComponent, DataTableHeader, DataTableItem, SlotDirective } from '@anglify/components';
-import { Component } from '@angular/core';
+import { CheckboxComponent, DataTableComponent, SlotDirective, type DataTableHeader, type DataTableItem } from '@anglify/components';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-interface Account {
-  id: number;
-  first_name: string;
-  last_name: string;
+type Account = {
   address: {
-    street: string;
     city: string;
     postalCode: string;
+    street: string;
   };
+  first_name: string;
+  id: number;
+  last_name: string;
   verified: boolean;
-}
+};
 
 @Component({
   standalone: true,
   templateUrl: './complex-data.component.html',
   styleUrls: ['./complex-data.component.scss'],
   imports: [DataTableComponent, CheckboxComponent, SlotDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ComplexDataComponent {
   protected headers: DataTableHeader<Account>[] = [

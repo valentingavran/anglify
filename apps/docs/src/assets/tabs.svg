@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" clip-rule="evenodd" viewBox="0 0 800 600">
+  <path fill="#f0f0f0" d="M0-.001h800v104H0z"/>
+  <circle cx="274.05" cy="32.93" r="10.44" fill="silver" transform="translate(-203.163 -1.32) scale(.86174)"/>
+  <path fill="silver" d="M188.597 27.06c0-5-4.06-9.06-9.06-9.06H77.657c-4.97 0-9.06 4.09-9.06 9.06 0 4.97 4.09 9.06 9.06 9.06h101.88c5 0 9.06-4.06 9.06-9.06Z"/>
+  <circle cx="274.05" cy="32.93" r="10.44" fill="silver" transform="translate(470.847 -1.254) scale(.86174)"/>
+  <circle cx="274.05" cy="32.93" r="10.44" fill="silver" transform="translate(500.844 -1.254) scale(.86174)"/>
+  <circle cx="274.05" cy="32.93" r="10.44" fill="silver" transform="translate(530.844 -1.38) scale(.86174)"/>
+  <path fill="silver" d="M132.597 91c0-2.76-2.166-5-4.832-5H73.429c-2.651 0-4.832 2.257-4.832 5s2.181 5 4.832 5h54.336c2.666 0 4.832-2.24 4.832-5Zm78.003 0c0-2.76-2.165-5-4.832-5h-54.336c-2.65 0-4.832 2.257-4.832 5s2.181 5 4.832 5h54.336c2.667 0 4.832-2.24 4.832-5Zm78 0c0-2.76-2.165-5-4.832-5h-54.336c-2.65 0-4.832 2.257-4.832 5s2.181 5 4.832 5h54.336c2.667 0 4.832-2.24 4.832-5Zm78 0c0-2.76-2.165-5-4.832-5h-54.336c-2.65 0-4.832 2.257-4.832 5s2.182 5 4.832 5h54.336c2.667 0 4.832-2.24 4.832-5Z"/>
+</svg>

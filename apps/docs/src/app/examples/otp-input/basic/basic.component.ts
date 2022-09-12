@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export default class BasicComponent {
   public otp = '';
+
   public length = 4;
 
   public clearOTPInput() {

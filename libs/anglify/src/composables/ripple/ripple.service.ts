@@ -1,33 +1,34 @@
 import { ElementRef, Injectable, Renderer2 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, fromEvent, merge, tap } from 'rxjs';
-import { RippleOrigin } from './ripple.interface';
 import { bindStyleToNativeElement } from '../../utils/functions';
+import type { RippleOrigin } from './ripple.interface';
 
 @UntilDestroy()
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RippleService {
   public active = true;
-  public rippleOrigin: RippleOrigin;
 
-  public set state(value: boolean) {
-    this.stateFull$.next(value);
-  }
+  public rippleOrigin: RippleOrigin;
 
   public get state() {
     return this.stateFull$.value;
   }
 
+  public set state(value: boolean) {
+    this.stateFull$.next(value);
+  }
+
   private readonly stateFull$ = new BehaviorSubject<boolean>(true);
 
-  private readonly showRippleAction = merge(
+  private readonly showRippleAction$ = merge(
     fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown').pipe(
       filter(event => event.code === 'Space' || event.code === 'Enter')
     ),
     fromEvent(this.elementRef.nativeElement, 'mousedown')
   );
 
-  private readonly hideRippleAction = merge(
+  private readonly hideRippleAction$ = merge(
     fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keyup').pipe(
       filter(event => event.code === 'Space' || event.code === 'Enter')
     ),
@@ -36,6 +37,7 @@ export class RippleService {
   );
 
   private readonly visibleRipples: HTMLElement[] = [];
+
   private readonly stateContainer = this.createStateContainer();
 
   public constructor(private readonly elementRef: ElementRef<HTMLElement>, private readonly renderer: Renderer2) {
@@ -45,7 +47,7 @@ export class RippleService {
     bindStyleToNativeElement(this, this.stateFull$, this.stateContainer, 'backgroundColor', 'var(--state-container-color, transparent)');
   }
 
-  private readonly showRippleHandler$ = this.showRippleAction.pipe(
+  private readonly showRippleHandler$ = this.showRippleAction$.pipe(
     filter(event => {
       if (event instanceof KeyboardEvent) return !event.repeat;
       return true;
@@ -54,9 +56,9 @@ export class RippleService {
     tap(event => this.createRipple(event))
   );
 
-  private readonly hideRippleHandler$ = this.hideRippleAction.pipe(tap(() => this.destroyLastRipple()));
+  private readonly hideRippleHandler$ = this.hideRippleAction$.pipe(tap(() => this.destroyLastRipple()));
 
-  private createRipple(event: KeyboardEvent | Event) {
+  private createRipple(event: Event | KeyboardEvent) {
     const width = this.stateContainer.clientWidth;
     const height = this.stateContainer.clientHeight;
     const diff = Math.max(width, height) - Math.min(width, height);
@@ -80,7 +82,9 @@ export class RippleService {
       focusContainer.style.left = `${0 - (width < height ? diff / 2 : 0)}px`;
       focusContainer.style.top = `${0 - (width > height ? diff / 2 : 0)}px`;
     }
+
     this.renderer.appendChild(this.stateContainer, focusContainer);
+    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => {
       focusContainer.style.transform = 'scale(5)';
     }, 0);
@@ -93,7 +97,8 @@ export class RippleService {
 
     if (ripple) {
       Object.assign(ripple.style, { opacity: 0, transitionDuration: '500ms' });
-      setTimeout(() => this.renderer.removeChild(this.stateContainer, ripple), 1000);
+      // eslint-disable-next-line no-restricted-globals
+      setTimeout(() => this.renderer.removeChild(this.stateContainer, ripple), 1_000);
     }
   }
 

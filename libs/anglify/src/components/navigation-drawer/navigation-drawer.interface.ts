@@ -1,9 +1,9 @@
-export type NavigationDrawerMode = 'standard' | 'modal';
+export type NavigationDrawerMode = 'modal' | 'standard';
 
-export interface EntireNavigationDrawerSettings {
-  mode: NavigationDrawerMode;
-  closeOnOutsideClick: boolean;
+export type EntireNavigationDrawerSettings = {
   closeOnItemClick: boolean;
-}
+  closeOnOutsideClick: boolean;
+  mode: NavigationDrawerMode;
+};
 
 export type NavigationDrawerSettings = Partial<EntireNavigationDrawerSettings>;

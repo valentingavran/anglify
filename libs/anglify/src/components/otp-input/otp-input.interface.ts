@@ -1,8 +1,8 @@
-export interface EntireOTPInputSettings {
+export type EntireOTPInputSettings = {
   disabled: boolean;
-  readonly: boolean;
   hiddenInput: boolean;
   length: number;
-}
+  readonly: boolean;
+};
 
 export type OTPInputSettings = Partial<EntireOTPInputSettings>;

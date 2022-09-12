@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { DialogComponent } from './dialog.component';
 import { DIALOG_CONTEXT, DIALOG_NODES } from './dialog.service';
 

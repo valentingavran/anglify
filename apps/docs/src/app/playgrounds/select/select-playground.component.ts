@@ -18,16 +18,27 @@ import { FormsModule } from '@angular/forms';
 })
 export class SelectPlaygroundComponent {
   public appearance: 'filled' | 'outlined' = 'filled';
+
   public label = 'Label';
+
   public placeholder = 'Placeholder';
+
   public hint = 'Hint';
+
   public readonly = false;
+
   public disabled = false;
+
   public clearable = false;
+
   public multiple = false;
+
   public closeOnSelect = true;
+
   public alwaysFloatingLabel = false;
+
   public persistentHint = false;
+
   public hideDetails = false;
 
   public readonly items = [

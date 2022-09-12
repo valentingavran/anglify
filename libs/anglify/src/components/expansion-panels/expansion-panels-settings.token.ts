@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { ExpansionPanelsSettings, EntireExpansionPanelsSettings } from './expansion-panels.interface';
+import type { ExpansionPanelsSettings, EntireExpansionPanelsSettings } from './expansion-panels.interface';
 
 export const DEFAULT_EXPANSION_PANELS_SETTINGS: EntireExpansionPanelsSettings = {
   accordion: false,

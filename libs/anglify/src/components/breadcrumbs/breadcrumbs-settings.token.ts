@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { BreadCrumbsSettings, EntireBreadCrumbsSettings } from './breadcrumbs.interface';
+import type { BreadCrumbsSettings, EntireBreadCrumbsSettings } from './breadcrumbs.interface';
 
 export const DEFAULT_BREADCRUMBS_SETTINGS: EntireBreadCrumbsSettings = {
   items: [],

@@ -2,7 +2,7 @@ import { SimpleTableComponent } from '@anglify/components';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { InjectableDocumentation, ModifierType } from '../../app.interface';
+import { ModifierType, type InjectableDocumentation } from '../../app.interface';
 
 @Component({
   selector: 'app-service-api',
@@ -13,12 +13,12 @@ import { InjectableDocumentation, ModifierType } from '../../app.interface';
   imports: [NgIf, SimpleTableComponent, AsyncPipe, NgForOf],
 })
 export class ServiceAPIComponent {
-  @Input() public set documentation(documentation: InjectableDocumentation | undefined) {
-    this.documentation$.next(documentation);
-  }
-
   public get documentation() {
     return this.documentation$.value;
+  }
+
+  @Input() public set documentation(documentation: InjectableDocumentation | undefined) {
+    this.documentation$.next(documentation);
   }
 
   private readonly documentation$ = new BehaviorSubject<InjectableDocumentation | undefined>(undefined);

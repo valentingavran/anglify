@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { TextFieldComponent } from './text-field.component';
 
 describe('TextFieldComponent', () => {

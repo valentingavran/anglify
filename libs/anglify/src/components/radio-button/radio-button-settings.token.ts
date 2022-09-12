@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EntireRadioButtonSettings, RadioButtonSettings } from './radio-button.interface';
+import type { EntireRadioButtonSettings, RadioButtonSettings } from './radio-button.interface';
 
 export const DEFAULT_RADIO_BUTTON_SETTINGS: EntireRadioButtonSettings = {
   disabled: false,

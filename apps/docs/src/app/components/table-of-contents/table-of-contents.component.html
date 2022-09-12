@@ -1,6 +1,13 @@
 <div>Contents</div>
 <ul>
-  <li *ngFor="let heading of tocService.tocList | async" [ngClass]="'level level-' + heading.level" (click)="scrollTo(heading)">
+  <li
+    *ngFor="let heading of tocService.tocList$ | async; trackBy: trackByFn"
+    [ngClass]="'level level-' + heading.level"
+    (click)="scrollTo(heading)"
+    (keydown.space)="$event.preventDefault(); scrollTo(heading)"
+    (keydown.enter)="$event.preventDefault(); scrollTo(heading)"
+    tabindex="0"
+  >
     {{ heading.title }}
   </li>
 </ul>

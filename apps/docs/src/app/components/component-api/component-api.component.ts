@@ -2,7 +2,7 @@ import { SimpleTableComponent } from '@anglify/components';
 import { NgIf, AsyncPipe, NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { ComponentDocumentation, ModifierType } from '../../app.interface';
+import { ModifierType, type ComponentDocumentation } from '../../app.interface';
 
 @Component({
   selector: 'app-component-api',
@@ -13,12 +13,12 @@ import { ComponentDocumentation, ModifierType } from '../../app.interface';
   imports: [NgIf, SimpleTableComponent, AsyncPipe, NgForOf],
 })
 export class ComponentAPIComponent {
-  @Input() public set documentation(documentation: ComponentDocumentation | undefined) {
-    this.documentation$.next(documentation);
-  }
-
   public get documentation() {
     return this.documentation$.value;
+  }
+
+  @Input() public set documentation(documentation: ComponentDocumentation | undefined) {
+    this.documentation$.next(documentation);
   }
 
   private readonly documentation$ = new BehaviorSubject<ComponentDocumentation | undefined>(undefined);

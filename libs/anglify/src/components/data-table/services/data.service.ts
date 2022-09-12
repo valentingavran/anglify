@@ -2,14 +2,18 @@ import { Host, Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { INTERNAL_ICONS } from '../../../tokens/internal-icons.token';
 import { InternalIconSetDefinition } from '../../icon/icon.interface';
-import { DataTableHeader, DataTableItem, EntireDataTableSettings, SortSetting } from '../data-table.interface';
+import { type DataTableHeader, type DataTableItem, type SortSetting, EntireDataTableSettings } from '../data-table.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DataService {
   public readonly items$ = new BehaviorSubject<DataTableItem[]>([]);
+
   public readonly headers$ = new BehaviorSubject<DataTableHeader[]>([]);
+
   public readonly sortBy$ = new BehaviorSubject<SortSetting[]>([]);
+
   public readonly multiSort$ = new BehaviorSubject(this.settings.multiSort);
+
   public readonly search$ = new BehaviorSubject<string | undefined>(undefined);
 
   public constructor(
@@ -26,6 +30,7 @@ export class DataService {
       if (search) {
         return DataService.searchFn(search, headers, items);
       }
+
       return items;
     })
   );
@@ -42,6 +47,7 @@ export class DataService {
           return true;
         }
       }
+
       return false;
     });
   }
@@ -62,9 +68,7 @@ export class DataService {
           return sort;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const aValue = a[option.value];
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const bValue = b[option.value];
         if (aValue === bValue) {
           continue;
@@ -74,6 +78,7 @@ export class DataService {
           return aValue < bValue ? 1 : -1;
         }
       }
+
       return 0;
     });
   }
@@ -88,8 +93,7 @@ export class DataService {
         if (headerSortable === false) return false;
         if (multiSort) return true;
         if (sortBy.length === 0) return true;
-        if (sortBy.find(option => option.value === value)) return true;
-        return false;
+        return Boolean(sortBy.some(option => option.value === value));
       })
     );
   }
@@ -119,6 +123,7 @@ export class DataService {
         direction: 'asc',
       });
     }
+
     this.sortBy$.next(options);
   }
 

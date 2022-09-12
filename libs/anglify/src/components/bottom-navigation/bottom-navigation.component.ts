@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -9,15 +8,17 @@ import {
   Input,
   QueryList,
   Self,
+  type AfterViewInit,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, filter, startWith, Subject, take, takeUntil, tap } from 'rxjs';
+import { RIPPLE } from '../../composables/ripple/ripple.provider';
+import { createSettingsProvider } from '../../factories/settings.factory';
 import { BOTTOM_NAVIGATION_SETTINGS, DEFAULT_BOTTOM_NAVIGATION_SETTINGS } from './bottom-navigation-settings.token';
 import { EntireBottomNavigationSettings } from './bottom-navigation.interface';
 import { BottomNavigationItemComponent } from './components/bottom-navigation-item/bottom-navigation-item.component';
-import { RIPPLE } from '../../composables/ripple/ripple.provider';
-import { createSettingsProvider } from '../../factories/settings.factory';
 
 @UntilDestroy()
 @Component({
@@ -43,37 +44,46 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 export class BottomNavigationComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(BottomNavigationItemComponent) public readonly navigationItems?: QueryList<BottomNavigationItemComponent>;
 
-  /** Force items to take up all available space. */
+  /**
+   * Force items to take up all available space.
+   */
   @Input() public grow = this.settings.grow;
-
-  /** Hides text of items when they are not active. */
-  @Input() public set shift(value: boolean) {
-    this.shift$.next(value);
-  }
 
   public get shift() {
     return this.shift$.value;
   }
 
+  /**
+   * Hides text of items when they are not active.
+   */
+  @Input() public set shift(value: boolean) {
+    this.shift$.next(value);
+  }
+
   private readonly shift$ = new BehaviorSubject<boolean>(this.settings.shift);
+
   private readonly items$ = new BehaviorSubject<BottomNavigationItemComponent[]>([]);
-  private readonly unsubscribeAll = new Subject<void>();
-  private readonly destroySelectPreviousSubscription = new Subject<void>();
-  private readonly destroySelectNextSubscription = new Subject<void>();
+
+  private readonly unsubscribeAll$ = new Subject<void>();
+
+  private readonly destroySelectPreviousSubscription$ = new Subject<void>();
+
+  private readonly destroySelectNextSubscription$ = new Subject<void>();
 
   public constructor(@Self() @Inject('anglifyBottomNavigationSettings') public settings: EntireBottomNavigationSettings) {
     this.changeHandler$.pipe(untilDestroyed(this)).subscribe();
 
     this.items$.pipe(untilDestroyed(this)).subscribe(items => {
-      items.forEach((item, index) => {
-        item.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeAll), filter(Boolean)).subscribe(() => {
+      for (const [index, item] of items.entries()) {
+        // eslint-disable-next-line rxjs/no-unsafe-takeuntil, rxjs/no-nested-subscribe
+        item.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeAll$), filter(Boolean)).subscribe(() => {
           this.onSelectedItemChange(item, index);
         });
-      });
+      }
     });
   }
 
-  // @ts-expect-error
+  // @ts-expect-error: Value is used
   @HostBinding('attr.role') private readonly role = 'tablist';
 
   @HostBinding('class')
@@ -88,11 +98,13 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
 
   private readonly changeHandler$ = combineLatest([this.shift$, this.items$]).pipe(
     tap(([shift, items]) => {
+      // eslint-disable-next-line sonarjs/no-ignored-return, no-restricted-globals
       items.map(item => setTimeout(() => (item.shift = shift), 0));
     })
   );
 
   public onChange: (...args: any[]) => void = () => {};
+
   public onTouch: (...args: any[]) => void = () => {};
 
   public registerOnChange(fn: (...args: any[]) => void) {
@@ -133,12 +145,12 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
 
   private onSelectedItemChange(item: BottomNavigationItemComponent, index?: number) {
     this.deselectAllOthers(item);
-    this.destroySelectPreviousSubscription.next();
+    this.destroySelectPreviousSubscription$.next();
 
-    item.onSelectPrevious.pipe(untilDestroyed(this), takeUntil(this.destroySelectPreviousSubscription)).subscribe(() => {
+    item.onSelectPrevious.pipe(untilDestroyed(this), takeUntil(this.destroySelectPreviousSubscription$)).subscribe(() => {
       this.selectPrevious(item);
     });
-    item.onSelectNext.pipe(untilDestroyed(this), takeUntil(this.destroySelectNextSubscription)).subscribe(() => {
+    item.onSelectNext.pipe(untilDestroyed(this), takeUntil(this.destroySelectNextSubscription$)).subscribe(() => {
       this.selectNext(item);
     });
 
@@ -150,9 +162,9 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
       startWith(this.navigationItems),
       untilDestroyed(this),
       tap((items: BottomNavigationItemComponent[]) => {
-        this.unsubscribeAll.next();
+        this.unsubscribeAll$.next();
         this.items$.next([...items]);
-        items.forEach(item => this.registerItemClickHandler(item));
+        for (const item of items) this.registerItemClickHandler(item);
       })
     ).subscribe();
   }
@@ -173,9 +185,9 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
   }
 
   private deselectAllOthers(selectedItem: BottomNavigationItemComponent) {
-    this.items$.value.forEach(item => {
+    for (const item of this.items$.value) {
       if (item !== selectedItem) item.active = false;
-    });
+    }
   }
 
   private selectPrevious(item: BottomNavigationItemComponent) {

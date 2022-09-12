@@ -1,23 +1,23 @@
-import { Position } from '../../composables/position/position.interface';
-import { InputAppearance } from '../input/input.interface';
+import type { Position } from '../../composables/position/position.interface';
+import type { InputAppearance } from '../input/input.interface';
 
-export interface SelectItem {
+export type SelectItem = {
+  disabled?: boolean;
   text: string;
   value: any;
-  disabled?: boolean;
-}
+};
 
-export interface EntireSelectSettings {
-  appearance: InputAppearance;
+export type EntireSelectSettings = {
+  addItem: string;
   alwaysFloatingLabel: false;
-  persistentHint: false;
-  dropdownPosition: Position;
-  dropdownAutoPosition: boolean;
-  dropdownOffset: number;
+  appearance: InputAppearance;
   clearable: boolean;
   closeOnSelect: boolean;
+  dropdownAutoPosition: boolean;
+  dropdownOffset: number;
+  dropdownPosition: Position;
   noDataText: string;
-  addItem: string;
-}
+  persistentHint: false;
+};
 
 export type SelectSettings = Partial<EntireSelectSettings>;

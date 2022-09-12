@@ -8,9 +8,22 @@
   border-radius: 8px;
 
   .container {
+    display: flex;
+    min-height: 36px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     padding: 1rem;
     cursor: pointer;
     user-select: none;
+
+    &:hover {
+      --state-container-color: var(--color-surface-state-hover);
+    }
+
+    &:focus-visible {
+      --state-container-color: var(--color-surface-state-focus);
+    }
   }
 
   .custom-properties {

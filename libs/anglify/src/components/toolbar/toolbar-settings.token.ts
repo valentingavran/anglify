@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EntireToolbarSettings, ToolbarSettings } from './toolbar.interface';
+import type { EntireToolbarSettings, ToolbarSettings } from './toolbar.interface';
 
 export const DEFAULT_TOOLBAR_SETTINGS: EntireToolbarSettings = {
   prominent: false,

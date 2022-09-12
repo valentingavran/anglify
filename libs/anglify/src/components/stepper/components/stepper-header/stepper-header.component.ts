@@ -14,11 +14,11 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
-import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
 import { FindSlotPipe } from '../../../../pipes/find-slot/find-slot.pipe';
-import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { StepperService } from '../../services/stepper/stepper.service';
+import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 
 @UntilDestroy()
 @Component({
@@ -58,7 +58,11 @@ export class StepperHeaderComponent {
   @Input()
   public set active(value: boolean) {
     this.active$.next(value);
-    value ? this.elementRef.nativeElement.classList.add('active') : this.elementRef.nativeElement.classList.remove('active');
+    if (value) {
+      this.elementRef.nativeElement.classList.add('active');
+    } else {
+      this.elementRef.nativeElement.classList.remove('active');
+    }
   }
 
   @Input()
@@ -67,9 +71,13 @@ export class StepperHeaderComponent {
   }
 
   public readonly label$ = new BehaviorSubject<string | null>(null);
+
   public readonly index$ = new BehaviorSubject(0);
+
   public readonly active$ = new BehaviorSubject(false);
+
   private readonly isFirst$ = new BehaviorSubject(false);
+
   private readonly isLast$ = new BehaviorSubject(false);
 
   public readonly topStepConnectionLineVisible$ = combineLatest([this.isFirst$, this.stepperSettings.hasStepConnectionLine$]).pipe(
@@ -83,7 +91,11 @@ export class StepperHeaderComponent {
   private readonly headerNavigationEnabledHandler$ = this.stepperSettings.headerNavigationEnabled$.pipe(
     distinctUntilChanged(),
     tap(enabled => {
-      enabled ? (this.elementRef.nativeElement.style.pointerEvents = 'auto') : (this.elementRef.nativeElement.style.pointerEvents = 'none');
+      if (enabled) {
+        this.elementRef.nativeElement.style.pointerEvents = 'auto';
+      } else {
+        this.elementRef.nativeElement.style.pointerEvents = 'none';
+      }
     })
   );
 
@@ -97,7 +109,7 @@ export class StepperHeaderComponent {
     this.ripple = true;
   }
 
-  // @ts-expect-error
+  // @ts-expect-error: Value is used
   @HostBinding('tabindex') private readonly tabIndex = 0;
 
   @HostListener('click', ['$event'])

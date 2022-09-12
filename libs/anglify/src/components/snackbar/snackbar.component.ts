@@ -1,10 +1,10 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Inject, OnDestroy, OnInit, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Self, type OnDestroy, type OnInit } from '@angular/core';
+import { createSettingsProvider } from '../../factories/settings.factory';
+import { ButtonComponent } from '../button/button.component';
 import { DEFAULT_SNACKBAR_SETTINGS, SNACKBAR_SETTINGS } from './snackbar-settings.token';
 import { EntireSnackbarSettings, SnackbarContext, SnackbarInteralDismissReason } from './snackbar.interface';
 import { SNACKBAR_CONTEXT } from './snackbar.service';
-import { createSettingsProvider } from '../../factories/settings.factory';
-import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'anglify-snackbar',

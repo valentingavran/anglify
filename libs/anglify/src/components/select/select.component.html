@@ -34,7 +34,7 @@
             context: { items: selectedItems$ | async, select, readonly, disabled: disabled$ | async }
           "
         >
-          {{ (selectedItemsText$ | async)!.join(', ') }}
+          {{ selectedItemsText$ | async }}
         </ng-container>
       </ng-container>
     </div>

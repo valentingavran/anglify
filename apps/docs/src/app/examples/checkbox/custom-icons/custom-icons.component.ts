@@ -1,4 +1,4 @@
-import { CheckboxComponent, CheckboxIcons, IconComponent, registerCustomIcons, SlotDirective } from '@anglify/components';
+import { CheckboxComponent, type CheckboxIcons, IconComponent, registerCustomIcons, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 const checkboxIcons: CheckboxIcons = {

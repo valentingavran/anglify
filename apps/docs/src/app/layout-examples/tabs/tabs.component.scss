@@ -1,0 +1,16 @@
+:host {
+  width: 100%;
+
+  --anglify-tab-active-color: white;
+  --anglify-tab-indicator-color: white;
+
+  anglify-toolbar {
+    position: sticky;
+    top: 0;
+  }
+
+  main {
+    height: 2000px;
+    padding: 1rem;
+  }
+}

@@ -1,28 +1,29 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, type SafeHtml } from '@angular/platform-browser';
 import { ReplaySubject } from 'rxjs';
 import { unwrapHtml } from 'safevalues';
 import { htmlSafeByReview } from 'safevalues/restricted/reviewed';
 
-export interface TocItem {
+export type TocItem = {
   content: SafeHtml;
   href: string;
   isSecondary?: boolean;
   level: string;
   title: string;
-}
+};
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TocService {
-  public tocList = new ReplaySubject<TocItem[]>(1);
-  public activeItemIndex = new ReplaySubject<number | null>(1);
+  public tocList$ = new ReplaySubject<TocItem[]>(1);
+
+  public activeItemIndex$ = new ReplaySubject<number | null>(1);
 
   public constructor(@Inject(DOCUMENT) private readonly document: Document, private readonly domSanitizer: DomSanitizer) {}
 
   public genToc(docElement?: Element) {
     if (!docElement) {
-      this.tocList.next([]);
+      this.tocList$.next([]);
       return;
     }
 
@@ -39,11 +40,11 @@ export class TocService {
       };
     });
 
-    this.tocList.next(tocList);
+    this.tocList$.next(tocList);
   }
 
   public reset() {
-    this.tocList.next([]);
+    this.tocList$.next([]);
   }
 
   // Transform the HTML content to be safe to use in the ToC:
@@ -55,10 +56,12 @@ export class TocService {
     div.innerHTML = unwrapHtml(htmlSafeByReview(heading.innerHTML, '^')) as string;
 
     // Remove any `.github-links` or `.header-link` elements (along with their content).
-    div.querySelectorAll('.github-links, .header-link').forEach(link => link.remove());
+    // @ts-expect-error: querySelectorAll is iterateable.
+    for (const link of div.querySelectorAll('.github-links, .header-link')) link.remove();
 
     // Remove any remaining `a` elements (but keep their content).
-    div.querySelectorAll('a').forEach(anchorLink => {
+    // @ts-expect-error: querySelectorAll is iterateable.
+    for (const anchorLink of div.querySelectorAll('a')) {
       // We want to keep the content of this anchor, so move it into its parent.
       const parent = anchorLink.parentNode as Node;
       while (anchorLink.childNodes.length) {
@@ -67,7 +70,7 @@ export class TocService {
 
       // Now, remove the anchor.
       anchorLink.remove();
-    });
+    }
 
     return {
       // Security: The document element which provides this heading content is always authored by
@@ -79,7 +82,7 @@ export class TocService {
 
   private findTocHeadings(docElement: Element): HTMLHeadingElement[] {
     const headings = docElement.querySelectorAll<HTMLHeadingElement>('h2,h3,h4,h5,h6');
-    const skipNoTocHeadings = (heading: HTMLHeadingElement) => !/(?:no-toc|notoc)/i.test(heading.className);
+    const skipNoTocHeadings = (heading: HTMLHeadingElement) => !/no-toc|notoc/i.test(heading.className);
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Array.prototype.filter.call(headings, skipNoTocHeadings);
@@ -87,7 +90,7 @@ export class TocService {
 
   // Extract the id from the heading; create one if necessary
   // Is it possible for a heading to lack an id?
-  private getId(h: HTMLHeadingElement, idMap: Map<string, number>) {
+  private getId(heading: HTMLHeadingElement, idMap: Map<string, number>) {
     // Map guards against duplicate id creation.
     function addToMap(key: string) {
       const oldCount = idMap.get(key) ?? 0;
@@ -96,14 +99,15 @@ export class TocService {
       return count === 1 ? key : `${key}-${count}`;
     }
 
-    let id = h.id;
+    let id = heading.id;
     if (id) {
       addToMap(id);
     } else {
-      id = (h.textContent ?? '').trim().toLowerCase().replace(/\W+/g, '-');
+      id = (heading.textContent ?? '').trim().toLowerCase().replace(/\W+/g, '-');
       id = addToMap(id);
-      h.id = id;
+      heading.id = id;
     }
+
     return id;
   }
 }

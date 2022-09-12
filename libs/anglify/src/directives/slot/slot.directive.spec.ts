@@ -1,6 +1,6 @@
-import { QueryList, TemplateRef } from '@angular/core';
-import { SlotDirective } from './slot.directive';
+import type { QueryList, TemplateRef } from '@angular/core';
 import { MockElementRef } from '../../mocks/element-ref.mock';
+import { SlotDirective } from './slot.directive';
 
 describe('SlotDirective', () => {
   const directive = SlotDirective;

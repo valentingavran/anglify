@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EntireTextAreaSettings, TextAreaSettings } from './text-area.interface';
+import type { EntireTextAreaSettings, TextAreaSettings } from './text-area.interface';
 
 export const DEFAULT_TEXT_AREA_SETTINGS: EntireTextAreaSettings = {
   appearance: 'filled',

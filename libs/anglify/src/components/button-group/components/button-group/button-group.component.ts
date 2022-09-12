@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -8,8 +7,9 @@ import {
   Input,
   QueryList,
   Self,
+  type AfterViewInit,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
@@ -36,23 +36,35 @@ import { ButtonGroupItemComponent } from '../button-group-item/button-group-item
 export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor {
   @ContentChildren(ButtonGroupItemComponent, { descendants: true }) private readonly items?: QueryList<ButtonGroupItemComponent>;
 
-  /** Forces a value to always be selected (if available). */
+  /**
+   * Forces a value to always be selected (if available).
+   */
   @Input() public mandatory = this.settings.mandatory;
-  /** Allow multiple selections. */
+
+  /**
+   * Allow multiple selections.
+   */
   @Input() public multiple = this.settings.multiple;
-  /** Sets a maximum number of selections that can be made. */
+
+  /**
+   * Sets a maximum number of selections that can be made.
+   */
   @Input() public max = this.settings.max;
-  /** With this property the toggle function can be deactivated. This means that the items no longer save a state. */
+
+  /**
+   * With this property the toggle function can be deactivated. This means that the items no longer save a state.
+   */
   @Input() public stateless = this.settings.stateless;
 
   public onChange: (...args: any[]) => void = () => {};
+
   public onTouch: (...args: any[]) => void = () => {};
 
   public readonly itemGroupItems$ = new BehaviorSubject<ButtonGroupItemComponent[]>([]);
 
   public constructor(@Self() @Inject('anglifyButtonGroupSettings') public settings: EntireButtonGroupSettings) {}
 
-  public writeValue(value: number | number[] | null) {
+  public writeValue(value: number[] | number | null) {
     if (this.stateless) return;
     let indicesToBeActive: number[] = [];
     if (Array.isArray(value)) {
@@ -104,6 +116,7 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
     if ((!areOtherItemsSelected && !item.active) || (this.multiple && !item.active)) {
       if (this.max === undefined) {
         this.selectItem(item);
+        // eslint-disable-next-line sonarjs/no-duplicated-branches
       } else if (activeCount < this.max) {
         this.selectItem(item);
       }
@@ -113,6 +126,7 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
       this.deselectAll();
       this.selectItem(item);
     }
+
     this.onChange(this.getActiveIndices());
   };
 
@@ -125,17 +139,17 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
   }
 
   private deselectAll() {
-    this.itemGroupItems$.value.forEach(item => (item.active = false));
+    for (const item of this.itemGroupItems$.value) item.active = false;
   }
 
   private activateAllIndices(indices: number[]) {
-    this.itemGroupItems$.value.forEach((item, index) => {
+    for (const [index, item] of this.itemGroupItems$.value.entries()) {
       if (indices.includes(index)) {
         item.active = true;
       } else {
         item.active = false;
       }
-    });
+    }
   }
 
   private getActiveIndices(): number[] {
@@ -151,11 +165,13 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
         .pipe(
           untilDestroyed(this),
           startWith(this.items),
-          map(slots => slots as ButtonGroupItemComponent[]),
+          map(slots => slots.toArray() as ButtonGroupItemComponent[]),
           tap(items => {
-            items.forEach(item => {
+            for (const item of items) {
               this.createItemClickHandler(item);
-            });
+            }
+
+            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.itemGroupItems$.next(items), 0);
           })
         )

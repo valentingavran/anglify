@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { ListItemTitleComponent } from './list-item-title.component';
 
 describe('ListItemTitleComponent', () => {

@@ -1,8 +1,8 @@
 import { ElementRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { MockElementRef } from '../../mocks/element-ref.mock';
 import { PositionService } from './position.service';
 import { POSITION_SETTINGS } from './position.token';
-import { MockElementRef } from '../../mocks/element-ref.mock';
 
 describe('PositionService', () => {
   let service: PositionService;

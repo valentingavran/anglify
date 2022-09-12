@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EntireTextFieldSettings, TextFieldSettings } from './text-field.interface';
+import type { EntireTextFieldSettings, TextFieldSettings } from './text-field.interface';
 
 export const DEFAULT_TEXT_FIELD_SETTINGS: EntireTextFieldSettings = {
   appearance: 'filled',

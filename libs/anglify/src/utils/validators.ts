@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import type { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export class Validators {
   /**
@@ -12,14 +12,16 @@ export class Validators {
         message: 'Required',
       };
     }
+
     return null;
   }
 
   public static email(control: AbstractControl): ValidationErrors | null {
     const value = control.value as string;
-    if (new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(value)) {
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       return null;
     }
+
     return {
       message: 'Invalid email',
     };
@@ -38,6 +40,7 @@ export class Validators {
           message: `Must be at least ${min} characters long`,
         };
       }
+
       return null;
     };
   }
@@ -55,6 +58,7 @@ export class Validators {
           message: `Maximum ${max} characters allowed`,
         };
       }
+
       return null;
     };
   }
@@ -68,15 +72,14 @@ export class Validators {
 
     const valueA = controlA.value as string;
     const valueB = controlB.value as string;
-    if (valueA && valueB) {
-      if (valueA !== valueB || !valueA.length || !valueB.length) {
-        controlB.markAsDirty();
-        controlB.setErrors({ message: 'Passwords do not match' });
-        return {
-          message: 'Passwords do not match',
-        };
-      }
+    if (valueA && valueB && (valueA !== valueB || !valueA.length || !valueB.length)) {
+      controlB.markAsDirty();
+      controlB.setErrors({ message: 'Passwords do not match' });
+      return {
+        message: 'Passwords do not match',
+      };
     }
+
     return null;
   };
 
@@ -86,9 +89,10 @@ export class Validators {
    */
   public static password(control: AbstractControl): ValidationErrors | null {
     const value = control.value as string;
-    if (new RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/).test(value)) {
+    if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!#$%&*?@])[\d!#$%&*?@A-Za-z]{8,}$/.test(value)) {
       return null;
     }
+
     return {
       message: 'Password must be at least eight characters long and contain at least one letter, one number and one special character',
     };

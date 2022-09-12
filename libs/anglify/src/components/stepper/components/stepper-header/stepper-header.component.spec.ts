@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
-import { StepperHeaderComponent } from './stepper-header.component';
-import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
 import { StepperService } from '../../services/stepper/stepper.service';
+import { StepperSettings } from '../../services/stepper-settings/stepper-settings.service';
+import { StepperHeaderComponent } from './stepper-header.component';
 
 describe('StepperHeaderComponent', () => {
   let component: StepperHeaderComponent;

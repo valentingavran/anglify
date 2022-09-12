@@ -1,4 +1,4 @@
-import { BreadCrumb, BreadcrumbsComponent, IconComponent as AnglifyIconComponent, SlotDirective } from '@anglify/components';
+import { BreadcrumbsComponent, type BreadCrumb, IconComponent as AnglifyIconComponent, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({

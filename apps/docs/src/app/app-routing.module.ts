@@ -1,12 +1,13 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { RouterModule, type Routes } from '@angular/router';
 
-@Component({ template: '', styles: [], standalone: true })
+@Component({ template: '', styles: [], standalone: true, changeDetection: ChangeDetectionStrategy.OnPush })
 export class TemplateComponent {}
 
 const routes: Routes = [
   {
     path: '',
+    // eslint-disable-next-line promise/prefer-await-to-then, @typescript-eslint/promise-function-async
     loadComponent: () => import('./layouts/default/default.component').then(mod => mod.DefaultComponent),
     children: [
       {
@@ -228,6 +229,7 @@ const routes: Routes = [
   },
   {
     path: 'examples/layouts',
+    // eslint-disable-next-line @typescript-eslint/promise-function-async, promise/prefer-await-to-then
     loadComponent: () => import('./layouts/blank/blank.component').then(mod => mod.BlankComponent),
     children: [
       {
@@ -235,13 +237,27 @@ const routes: Routes = [
         children: [
           {
             path: 'base',
+            // eslint-disable-next-line @typescript-eslint/promise-function-async, promise/prefer-await-to-then
             loadComponent: () => import('./layout-examples/base/base.component').then(mod => mod.BaseComponent),
             title: 'Base Layout Example | Anglify',
           },
           {
             path: 'constrained',
+            // eslint-disable-next-line @typescript-eslint/promise-function-async, promise/prefer-await-to-then
             loadComponent: () => import('./layout-examples/constrained/constrained.component').then(mod => mod.ConstrainedComponent),
             title: 'Constrained Layout Example | Anglify',
+          },
+          {
+            path: 'tabs',
+            // eslint-disable-next-line @typescript-eslint/promise-function-async, promise/prefer-await-to-then
+            loadComponent: () => import('./layout-examples/tabs/tabs.component').then(mod => mod.TabsComponent),
+            title: 'Tabs Layout Example | Anglify',
+            children: [
+              {
+                path: '**',
+                component: TemplateComponent,
+              },
+            ],
           },
         ],
       },

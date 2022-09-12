@@ -1,17 +1,17 @@
-import { IsActiveMatchOptions } from '@angular/router';
-import { RouterLinkCommands } from '../../utils/interfaces';
+import type { IsActiveMatchOptions } from '@angular/router';
+import type { RouterLinkCommands } from '../../utils/interfaces';
 
-export interface EntireBreadCrumbsSettings {
-  items: BreadCrumb[];
+export type EntireBreadCrumbsSettings = {
   divider: string;
-}
+  items: BreadCrumb[];
+};
 
-export interface BreadCrumb {
-  text: string;
+export type BreadCrumb = {
   disabled?: boolean;
   href?: string;
-  routerLink?: RouterLinkCommands;
   matchOptions?: IsActiveMatchOptions;
-}
+  routerLink?: RouterLinkCommands;
+  text: string;
+};
 
 export type BreadCrumbsSettings = Partial<EntireBreadCrumbsSettings>;
