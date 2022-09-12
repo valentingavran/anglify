@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.32.1](https://github.com/valentingavran/anglify/compare/v0.32.0...v0.32.1) (2022-09-12)
+
+
+### 🛠  Other Commits
+
+* eslint config neon ([c6f209c](https://github.com/valentingavran/anglify/commit/c6f209c50239d6289602924bbbd9f122f57a1908))
+
+
+### 📝  Docs
+
+* add typography docs page ([9b535da](https://github.com/valentingavran/anglify/commit/9b535dadcd0ee08d4a108134486c0f97b47a8f96))
+* fix application layout examples ([804aad5](https://github.com/valentingavran/anglify/commit/804aad52a8a65e2900ad2fb7c4ffe5fb6f612903))
+* improve typography preview component ([da896a8](https://github.com/valentingavran/anglify/commit/da896a8c0e834ba6d2268ed3ff07fe29d73461bd))
+
+
+### 🐛  Bug Fixes
+
+* **Tabs:** routerLink works now as expected & add tabs wireframe ([754ea22](https://github.com/valentingavran/anglify/commit/754ea22133b5343b77a521ea26645062523a55fc))
+
 ## [0.32.0](https://github.com/valentingavran/anglify/compare/v0.31.1...v0.32.0) (2022-09-07)
 
 
