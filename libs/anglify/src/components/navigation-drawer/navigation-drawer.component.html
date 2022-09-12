@@ -3,6 +3,7 @@
     <ng-content></ng-content>
   </div>
 </div>
+<!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
 <div
   *ngIf="(value$ | async) && mode === 'modal'"
   class="anglify-navigation-drawer-backdrop"

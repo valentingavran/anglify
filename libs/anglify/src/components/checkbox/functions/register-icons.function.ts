@@ -1,10 +1,11 @@
-import { ComponentRef, Provider, ViewContainerRef } from '@angular/core';
+import { ViewContainerRef, type ComponentRef, type Provider } from '@angular/core';
 import { IconComponent } from '../../icon/icon.component';
-import { CheckboxIcons } from '../interfaces/checkbox-icons.interface';
+import type { CheckboxIcons } from '../interfaces/checkbox-icons.interface';
 import { CHECKBOX_ICONS_FACTORY } from '../tokens/checkbox-icons.token';
 
 export class CheckboxIconRef {
   public readonly iconOnCompRef: ComponentRef<IconComponent>;
+
   public readonly iconOffCompRef: ComponentRef<IconComponent>;
 
   public constructor(public vcr: ViewContainerRef, checkboxIcons: CheckboxIcons) {
@@ -17,7 +18,7 @@ export class CheckboxIconRef {
     this.iconOffCompRef.instance.iconSet = checkboxIcons.iconPack ?? 'mdi';
   }
 
-  public removeCompRef(comp: 'ONICON' | 'OFFICON') {
+  public removeCompRef(comp: 'OFFICON' | 'ONICON') {
     const compToRemove = comp === 'ONICON' ? this.iconOnCompRef.hostView : this.iconOffCompRef.hostView;
     const index = this.vcr.indexOf(compToRemove);
     this.vcr.remove(index);

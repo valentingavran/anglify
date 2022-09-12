@@ -3,21 +3,21 @@ import { Component, ChangeDetectionStrategy, forwardRef, Input } from '@angular/
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { combineLatest, map, ReplaySubject, share, startWith } from 'rxjs';
 import { ClickStopPropagationDirective } from '../../directives/click-stop-propagation/click-stop-propagation.directive';
-import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import { ChipComponent } from '../chip/chip.component';
 import { IconComponent } from '../icon/icon.component';
 import { InputDirective } from '../input/input.directive';
+import { ListComponent } from '../list/components/list/list.component';
+import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemGroupComponent } from '../list/components/list-item-group/list-item-group.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { ListItemComponent } from '../list/components/list-item/list-item.component';
-import { ListComponent } from '../list/components/list/list.component';
 import { MenuDirective } from '../menu/menu.directive';
 import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from '../select/select-settings.token';
-import { EntireSelectSettings, SelectItem } from '../select/select.interface';
+import type { EntireSelectSettings, SelectItem } from '../select/select.interface';
 import { TextFieldComponent } from '../text-field/text-field.component';
 
 @Component({
@@ -55,7 +55,8 @@ import { TextFieldComponent } from '../text-field/text-field.component';
 })
 export class ComboboxComponent extends AutocompleteComponent {
   @Input() public addItem = this.settings.addItem;
-  @Input() public addItemFn: (input: string) => SelectItem | Promise<SelectItem> = input => ({ text: input, value: input });
+
+  @Input() public addItemFn: (input: string) => Promise<SelectItem> | SelectItem = input => ({ text: input, value: input });
 
   public readonly isUniqueItem$ = combineLatest([this.filteredItems$, this.selectedItems$, this.inputValue$.pipe(startWith(''))]).pipe(
     map(([filtered, selected, value]) => {

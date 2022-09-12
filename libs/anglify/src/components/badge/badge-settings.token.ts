@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { BadgeSettings, EntireBadgeSettings } from './badge.interface';
+import type { BadgeSettings, EntireBadgeSettings } from './badge.interface';
 
 export const DEFAULT_BADGE_SETTINGS: EntireBadgeSettings = {
   border: false,

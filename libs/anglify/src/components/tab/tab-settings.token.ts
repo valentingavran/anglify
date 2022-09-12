@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EntireTabSettings, TabSettings } from './tab.interface';
+import type { EntireTabSettings, TabSettings } from './tab.interface';
 
 export const DEFAULT_TAB_SETTINGS: EntireTabSettings = {
   ripple: true,

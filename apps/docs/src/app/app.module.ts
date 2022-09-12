@@ -1,9 +1,10 @@
-import { IconSettings, ICON_SETTINGS } from '@anglify/components';
+import { ICON_SETTINGS, type IconSettings } from '@anglify/components';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule, Meta } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApplicationLayoutsPreviewComponent } from './components/application-layouts-preview/application-layouts-preview.component';
@@ -22,10 +23,10 @@ import { SelectPlaygroundComponent } from './playgrounds/select/select-playgroun
 import { SimpleTablePlaygroundComponent } from './playgrounds/simple-table/simple-table-playground.component';
 import { TextFieldPlaygroundComponent } from './playgrounds/text-field/text-field-playground.component';
 import { TocService } from './services/toc.service';
-import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, OverlayModule],
+  imports: [AppRoutingModule, BrowserAnimationsModule, BrowserModule, OverlayModule],
   providers: [
     {
       provide: ICON_SETTINGS,
@@ -37,9 +38,9 @@ import { environment } from '../environments/environment';
         },
       }),
     },
-    TocService,
-    MarkdownPipe,
     HighlightPipe,
+    MarkdownPipe,
+    TocService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,41 +1,40 @@
 import type { ComponentSize } from '../../utils/interfaces';
 
-// TODO This type must always be up-to-date (add new required internal icons here)
 export type InternalIcons =
+  | 'arrowDown'
+  | 'arrowUp'
   | 'check'
   | 'chevronDown'
+  | 'chevronLeft'
+  | 'chevronRight'
   | 'close'
   | 'closeCircle'
   | 'edit'
-  | 'arrowUp'
-  | 'arrowDown'
   | 'pageFirst'
-  | 'pageLast'
-  | 'chevronLeft'
-  | 'chevronRight';
+  | 'pageLast';
 
-export type IconSet = 'fa4' | 'fa5' | 'md' | 'mdi' | 'custom' | 'faSVG' | 'mdiSVG';
+export type IconSet = 'custom' | 'fa4' | 'fa5' | 'faSVG' | 'md' | 'mdi' | 'mdiSVG';
 export type InternalIconMappings = { [T in IconSet]: InternalIconSetDefinition };
 export type InternalIconSetDefinition = { [T in InternalIcons]: string };
 
-export interface SVGIconSets {
+export type SVGIconSets = {
+  custom?: { [T: string]: string };
   faSVG?: FontawesomeObject[];
   mdiSVG?: { [T: string]: string };
-  custom?: { [T: string]: string };
-}
+};
 
-export interface FontawesomeObject {
-  iconName: string;
+export type FontawesomeObject = {
   readonly html: string[];
+  iconName: string;
   readonly node: HTMLCollection;
-}
+};
 
-export interface EntireIconSettings {
+export type EntireIconSettings = {
   defaultSet: IconSet;
   defaultSize: ComponentSize;
   internalIcons: InternalIconMappings;
   svgIconSets: SVGIconSets;
-}
+};
 
 export type IconSettings = Partial<EntireIconSettings>;
 

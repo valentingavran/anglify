@@ -1,16 +1,18 @@
 import { Host, Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, take } from 'rxjs';
+import type { DataTableComponent } from '../data-table.component';
+import { type DataTableItem, EntireDataTableSettings } from '../data-table.interface';
 import { DataService } from './data.service';
 import { PaginationService } from './pagination.service';
-import { DataTableComponent } from '../data-table.component';
-import { DataTableItem, EntireDataTableSettings } from '../data-table.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SelectionService {
   public tableComponent!: DataTableComponent;
 
   public readonly selection$ = new BehaviorSubject<DataTableItem[]>([]);
+
   public readonly singleSelect$ = new BehaviorSubject(this.settings.singleSelect);
+
   public readonly selectableRows$ = new BehaviorSubject(this.settings.selectableRows);
 
   public constructor(
@@ -43,13 +45,14 @@ export class SelectionService {
       if (this.singleSelect$.value) {
         this.selection$.next([]);
       } else {
-        this.selection$.next(this.selection$.value.filter(i => i !== item));
+        this.selection$.next(this.selection$.value.filter(val => val !== item));
       }
     } else if (this.singleSelect$.value) {
       this.selection$.next([item]);
     } else {
       this.selection$.next([...this.selection$.value, item]);
     }
+
     this.tableComponent.selectionChange.next(this.selection$.value);
   }
 
@@ -65,6 +68,7 @@ export class SelectionService {
       } else {
         this.selection$.next([...selection, ...allOfThisPage.filter(item => !selection.includes(item))]);
       }
+
       this.tableComponent.selectionChange.next(this.selection$.value);
     });
   }

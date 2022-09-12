@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -8,6 +7,7 @@ import {
   Input,
   QueryList,
   Self,
+  type AfterViewInit,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
@@ -37,28 +37,38 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
 export class ExpansionPanelsComponent implements AfterViewInit {
   @ContentChildren(ExpansionPanelComponent, { descendants: true }) private readonly allSlots?: QueryList<ExpansionPanelComponent>;
 
-  /** Forces a value to always be selected (if available). */
+  /**
+   * Forces a value to always be selected (if available).
+   */
   @Input() public mandatory = this.settings.mandatory;
 
-  /** Allow multiple selections. */
+  /**
+   * Allow multiple selections.
+   */
   @Input() public multiple = this.settings.multiple;
 
-  /** Sets a maximum number of selections that can be made. */
+  /**
+   * Sets a maximum number of selections that can be made.
+   */
   @Input() public max: number | undefined = this.settings.max;
-
-  /** Removes the margin around open panels. */
-  @Input() public set accordion(value: boolean) {
-    this.accordion$.next(value);
-  }
 
   public get accordion() {
     return this.accordion$.value;
   }
 
+  /**
+   * Removes the margin around open panels.
+   */
+  @Input() public set accordion(value: boolean) {
+    this.accordion$.next(value);
+  }
+
   public onChange: (...args: any[]) => void = () => {};
+
   public onTouch: (...args: any[]) => void = () => {};
 
   public readonly itemGroupItems$ = new BehaviorSubject<ExpansionPanelComponent[]>([]);
+
   private readonly accordion$ = new BehaviorSubject<boolean>(this.settings.accordion);
 
   public constructor(
@@ -68,7 +78,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
     bindClassToNativeElement(this, this.accordion$, this.elementRef.nativeElement, 'anglify-expansion-panels-accordion');
   }
 
-  public writeValue(value: number | number[] | null) {
+  public writeValue(value: number[] | number | null) {
     let indicesToBeActive: number[] = [];
     if (Array.isArray(value)) {
       indicesToBeActive = value;
@@ -118,6 +128,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
     if ((!areOtherItemsSelected && !item.active) || (this.multiple && !item.active)) {
       if (this.max === undefined) {
         this.selectItem(item);
+        // eslint-disable-next-line sonarjs/no-duplicated-branches
       } else if (activeCount < this.max) {
         this.selectItem(item);
       }
@@ -127,6 +138,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
       this.deselectAll();
       this.selectItem(item);
     }
+
     this.onChange(this.getActiveIndices());
   };
 
@@ -139,17 +151,17 @@ export class ExpansionPanelsComponent implements AfterViewInit {
   }
 
   private deselectAll() {
-    this.itemGroupItems$.value.forEach(item => (item.active = false));
+    for (const item of this.itemGroupItems$.value) item.active = false;
   }
 
   private activateAllIndices(indices: number[]) {
-    this.itemGroupItems$.value.forEach((item, index) => {
+    for (const [index, item] of this.itemGroupItems$.value.entries()) {
       if (indices.includes(index)) {
         item.active = true;
       } else {
         item.active = false;
       }
-    });
+    }
   }
 
   private getActiveIndices(): number[] {
@@ -165,11 +177,13 @@ export class ExpansionPanelsComponent implements AfterViewInit {
         .pipe(
           untilDestroyed(this),
           startWith(this.allSlots),
-          map(slots => slots as ExpansionPanelComponent[]),
+          map(slots => slots.toArray() as ExpansionPanelComponent[]),
           tap(items => {
-            items.forEach(item => {
+            for (const item of items) {
               this.createItemClickHandler(item);
-            });
+            }
+
+            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.itemGroupItems$.next(items), 0);
           })
         )

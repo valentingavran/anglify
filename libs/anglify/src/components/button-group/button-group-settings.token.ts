@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { ButtonGroupSettings, EntireButtonGroupSettings } from './button-group.interface';
+import type { ButtonGroupSettings, EntireButtonGroupSettings } from './button-group.interface';
 
 export const DEFAULT_BUTTON_GROUP_SETTINGS: EntireButtonGroupSettings = {
   disabled: false,

@@ -1,4 +1,4 @@
-import { DataTableComponent, DataTableHeader, InputDirective, TextFieldComponent } from '@anglify/components';
+import { DataTableComponent, type DataTableHeader, InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { items } from '../data';

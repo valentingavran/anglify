@@ -1,4 +1,4 @@
-import { DataTableComponent, DataTableHeader, InputDirective, TextFieldComponent } from '@anglify/components';
+import { DataTableComponent, type DataTableHeader, InputDirective, TextFieldComponent } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { items } from '../data';
@@ -12,6 +12,7 @@ import { items } from '../data';
 })
 export default class FilterableComponent {
   public search?: string;
+
   public headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name', filterable: false },
     { text: 'Calories', value: 'calories' },

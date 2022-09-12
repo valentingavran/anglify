@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { BottomNavigationSettings, EntireBottomNavigationSettings } from './bottom-navigation.interface';
+import type { BottomNavigationSettings, EntireBottomNavigationSettings } from './bottom-navigation.interface';
 
 export const DEFAULT_BOTTOM_NAVIGATION_SETTINGS: EntireBottomNavigationSettings = {
   shift: false,

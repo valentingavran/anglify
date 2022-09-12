@@ -1,12 +1,12 @@
-import { InputAppearance } from '../input/input.interface';
+import type { InputAppearance } from '../input/input.interface';
 
-export interface EntireTextFieldSettings {
-  appearance: InputAppearance;
-  dense: boolean;
-  persistentHint: boolean;
+export type EntireTextFieldSettings = {
   alwaysFloatingLabel: boolean;
-  hideDetails: boolean;
+  appearance: InputAppearance;
   counter: boolean;
-}
+  dense: boolean;
+  hideDetails: boolean;
+  persistentHint: boolean;
+};
 
 export type TextFieldSettings = Partial<EntireTextFieldSettings>;

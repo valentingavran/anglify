@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -8,9 +7,9 @@ import {
   Input,
   Output,
   QueryList,
+  type AfterViewInit,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-
 import { ListItemComponent } from '../list-item/list-item.component';
 
 @UntilDestroy()
@@ -24,12 +23,18 @@ import { ListItemComponent } from '../list-item/list-item.component';
 export class ListComponent implements AfterViewInit {
   @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
 
-  /** Lowers max height of list items. */
+  /**
+   * Lowers max height of list items.
+   */
   @Input() public dense = false;
 
-  /** An alternative styling that reduces `anglify-list-item` width and rounds the corners.
-   * Typically used with `anglify-navigation-drawer`. */
+  /**
+   * An alternative styling that reduces `anglify-list-item` width and rounds the corners.
+   * Typically used with `anglify-navigation-drawer`.
+   */
   @Input() public nav = false;
+
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onItemClick = new EventEmitter<void>();
 
   @HostBinding('class')
@@ -49,13 +54,14 @@ export class ListComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    this.listItems?.forEach(item => {
-      item.onClick
-        .asObservable()
-        .pipe(untilDestroyed(this))
-        .subscribe(() => {
-          this.onItemClick.next();
-        });
-    });
+    if (this.listItems)
+      for (const item of this.listItems) {
+        item.onClick
+          .asObservable()
+          .pipe(untilDestroyed(this))
+          .subscribe(() => {
+            this.onItemClick.next();
+          });
+      }
   }
 }

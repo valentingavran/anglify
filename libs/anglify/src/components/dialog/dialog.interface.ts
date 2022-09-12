@@ -1,24 +1,24 @@
-import { TemplateRef, Type } from '@angular/core';
-import { Subscriber } from 'rxjs';
+import type { TemplateRef, Type } from '@angular/core';
+import type { Subscriber } from 'rxjs';
 
-export interface DialogOptions<T = Record<string, unknown>> {
-  id: string;
+export type DialogOptions<T = Record<string, unknown>> = {
   data?: T;
-}
+  id: string;
+};
 
 export enum DialogInternalCloseReason {
-  Escape = 'internal.escape',
   Backdrop = 'internal.backdrop',
+  Escape = 'internal.escape',
 }
 
-export interface ModalData<T = unknown> {
-  reason: DialogInternalCloseReason | string;
+export type ModalData<T = unknown> = {
   data?: T;
-}
+  reason: DialogInternalCloseReason | string;
+};
 
-export interface DialogContext<T = Record<string, unknown>> extends DialogOptions<T> {
-  completeWith: (data: ModalData) => void;
+export type DialogContext<T = Record<string, unknown>> = DialogOptions<T> & {
   $implicit: Subscriber<unknown>;
-  component: Type<any> | TemplateRef<any>;
+  completeWith(data: ModalData): void;
+  component: TemplateRef<any> | Type<any>;
   createdAt: number;
-}
+};

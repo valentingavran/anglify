@@ -1,8 +1,8 @@
 import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
+import { createSettingsProvider } from '../../factories/settings.factory';
 import { DEFAULT_PROGRESS_CIRCULAR_SETTINGS, PROGRESS_CIRCULAR_SETTINGS } from './progress-circular-settings.token';
 import { EntireProgressCircularSettings } from './progress-circular.interface';
-import { createSettingsProvider } from '../../factories/settings.factory';
 
 @Component({
   selector: 'anglify-progress-circular',
@@ -20,13 +20,19 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   imports: [NgIf],
 })
 export class ProgressCircularComponent {
-  /** Constantly animates, use when loading progress is unknown. */
+  /**
+   * Constantly animates, use when loading progress is unknown.
+   */
   @Input() public indeterminate = this.settings.indeterminate;
 
-  /** The percentage value for current progress. */
+  /**
+   * The percentage value for current progress.
+   */
   @Input() public value: number = this.settings.value;
 
-  /** The amount in degrees that the component should be rotated. */
+  /**
+   * The amount in degrees that the component should be rotated.
+   */
   @Input() public rotation: number = this.settings.rotation;
 
   public readonly radius = 20;
@@ -50,7 +56,7 @@ export class ProgressCircularComponent {
   }
 
   public get strokeDashArray() {
-    return Math.round(this.circumference * 1000) / 1000;
+    return Math.round(this.circumference * 1_000) / 1_000;
   }
 
   public get strokeDashOffset() {
@@ -73,8 +79,10 @@ export class ProgressCircularComponent {
 
   @HostBinding('attr.role') protected readonly role = 'progressbar';
 
-  /** aria-valuenow should be provided and updated unless the value is indeterminate, in which case
-   * don't include the attribute. */
+  /**
+   * aria-valuenow should be provided and updated unless the value is indeterminate, in which case
+   * don't include the attribute.
+   */
   @HostBinding('attr.aria-valuenow')
   protected get ariaValueNow() {
     if (this.indeterminate) return undefined;

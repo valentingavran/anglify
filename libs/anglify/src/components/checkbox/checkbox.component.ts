@@ -1,6 +1,5 @@
 import { AsyncPipe } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -17,21 +16,22 @@ import {
   Renderer2,
   Self,
   ViewChild,
+  type AfterViewInit,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject } from 'rxjs';
-import { CheckboxIconRef } from './functions/register-icons.function';
-import { EntireCheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
-import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
-import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { InteractionStateDirective } from '../../directives/interaction-state/interaction-state.directive';
-import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { bindClassToNativeElement } from '../../utils/functions';
+import type { CheckboxIconRef } from './functions/register-icons.function';
+import { EntireCheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
+import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
+import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';
 
 @UntilDestroy()
 @Component({
@@ -54,62 +54,85 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @ViewChild('offIcon', { read: ElementRef }) public offIcon!: ElementRef<HTMLElement>;
+
   @ViewChild('onIcon', { read: ElementRef }) public onIcon!: ElementRef<HTMLElement>;
+
   @ViewChild('defaultIcon') public defaultIcon!: ElementRef<HTMLElement>;
+
   @ViewChild('overlayContainer') public overlayContainer!: ElementRef<HTMLElement>;
+
   @ViewChild('reflectOffIcon') public reflectOffIcon!: ElementRef<HTMLElement>;
+
   @ViewChild('reflectOnIcon') public reflectOnIcon!: ElementRef<HTMLElement>;
 
-  /** Turns the ripple effect on or off. */
+  /**
+   * Turns the ripple effect on or off.
+   */
   @Input() public ripple = this.settings.ripple;
 
-  /** Controls whether to display the focus and hover styles for this component. */
+  /**
+   * Controls whether to display the focus and hover styles for this component.
+   */
   @Input() public state = this.settings.state;
 
-  /** Changes the position of the label. */
+  /**
+   * Changes the position of the label.
+   */
   @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
 
-  /** Defines whether the ripple starts in the middle of the component or where the mouse click occurs. */
+  /**
+   * Defines whether the ripple starts in the middle of the component or where the mouse click occurs.
+   */
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
 
-  /** The input’s value. */
+  public get checked() {
+    return this.checked$.value;
+  }
+
+  /**
+   * The input’s value.
+   */
   @HostBinding('attr.aria-checked')
   @Input()
   public set checked(value: boolean) {
     this.checked$.next(value);
   }
 
-  public get checked() {
-    return this.checked$.value;
+  public get disabled() {
+    return this.disabled$.value;
   }
 
-  /** Disable the input. */
+  /**
+   * Disable the input.
+   */
   @HostBinding('attr.aria-disabled')
   @Input()
   public set disabled(value: boolean) {
     this.disabled$.next(value);
   }
 
-  public get disabled() {
-    return this.disabled$.value;
+  public get isReadonly() {
+    return this.readonly$.value;
   }
 
-  /** Puts input in readonly state. */
+  /**
+   * Puts input in readonly state.
+   */
   @HostBinding('attr.aria-readonly')
   @Input('readonly')
   public set isReadonly(value: boolean) {
     this.readonly$.next(value);
   }
 
-  public get isReadonly() {
-    return this.readonly$.value;
-  }
-
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onCheckedChange = new EventEmitter<boolean>();
 
-  public iconProvider!: null | CheckboxIconRef;
+  public iconProvider!: CheckboxIconRef | null;
+
   public checked$ = new BehaviorSubject(this.settings.checked);
+
   public disabled$ = new BehaviorSubject(this.settings.disabled);
+
   public readonly$ = new BehaviorSubject(this.settings.readonly);
 
   @HostBinding('attr.role') protected readonly role = 'checkbox';
@@ -118,7 +141,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
     @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
-    @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: null | (() => CheckboxIconRef)
+    @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: (() => CheckboxIconRef) | null
   ) {
     bindClassToNativeElement(this, this.checked$, this.elementRef.nativeElement, 'anglify-checkbox-checked');
     bindClassToNativeElement(this, this.disabled$, this.elementRef.nativeElement, 'anglify-checkbox-disabled');
@@ -133,6 +156,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   public onChange: (...args: any[]) => void = () => {};
+
   public onTouch: (...args: any[]) => void = () => {};
 
   /* This function is needed to keep ICON-DOM clean for many different cases
@@ -181,7 +205,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   public removeChildren(children: ElementRef[]) {
-    children.forEach(child => this.renderer.removeChild(this.overlayContainer.nativeElement, child.nativeElement));
+    for (const child of children) this.renderer.removeChild(this.overlayContainer.nativeElement, child.nativeElement);
   }
 
   public registerOnChange(fn: (...args: any[]) => void) {

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BadgeComponent } from './badge.component';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
+import { BadgeComponent } from './badge.component';
 
 describe('BadgeComponent', () => {
   let component: BadgeComponent;

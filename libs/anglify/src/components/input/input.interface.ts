@@ -1,1 +1,1 @@
-export type InputAppearance = 'outlined' | 'filled';
+export type InputAppearance = 'filled' | 'outlined';

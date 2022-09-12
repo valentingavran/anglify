@@ -1,15 +1,15 @@
-import { RippleOrigin } from '../../../composables/ripple/ripple.interface';
+import type { RippleOrigin } from '../../../composables/ripple/ripple.interface';
 
-export type LabelPosition = 'before' | 'after';
+export type LabelPosition = 'after' | 'before';
 
-export interface EntireCheckboxSettings {
-  disabled: boolean;
+export type EntireCheckboxSettings = {
   checked: boolean;
-  ripple: boolean;
+  disabled: boolean;
   labelPosition: LabelPosition;
+  readonly: boolean;
+  ripple: boolean;
   rippleOrigin: RippleOrigin;
   state: boolean;
-  readonly: boolean;
-}
+};
 
 export type CheckboxSettings = Partial<EntireCheckboxSettings>;

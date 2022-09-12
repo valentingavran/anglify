@@ -2,27 +2,27 @@ import {
   ApplicationRef,
   ChangeDetectorRef,
   ComponentFactoryResolver,
-  ComponentRef,
   Directive,
   ElementRef,
-  EmbeddedViewRef,
   Inject,
   Injector,
   Input,
-  OnInit,
   Renderer2,
   Self,
   TemplateRef,
-  Type,
   ViewContainerRef,
+  type ComponentRef,
+  type EmbeddedViewRef,
+  type OnInit,
+  type Type,
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BADGE_SETTINGS, DEFAULT_BADGE_SETTINGS } from './badge-settings.token';
-import { BadgeComponent } from './badge.component';
-import { EntireBadgeSettings } from './badge.interface';
 import { Position } from '../../composables/position/position.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
+import { BADGE_SETTINGS, DEFAULT_BADGE_SETTINGS } from './badge-settings.token';
+import { BadgeComponent } from './badge.component';
+import { EntireBadgeSettings } from './badge.interface';
 
 @UntilDestroy()
 @Directive({
@@ -32,11 +32,14 @@ import { createSettingsProvider } from '../../factories/settings.factory';
   providers: [createSettingsProvider<EntireBadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS)],
 })
 export class BadgeDirective implements OnInit {
-  @Input('anglifyBadge') public content!: string | TemplateRef<any> | Type<any>;
+  @Input('anglifyBadge') public content!: TemplateRef<any> | Type<any> | string;
+
   @Input('badgePosition') public position: Position = this.settings.position;
+
   @Input('badgeBorder') public border = this.settings.border;
 
   private componentRef: ComponentRef<BadgeComponent> | undefined; // Badge Component Reference
+
   private embeddedView: EmbeddedViewRef<any> | undefined; // Badge Content Template Reference
 
   public constructor(
@@ -71,11 +74,13 @@ export class BadgeDirective implements OnInit {
     if (typeof this.content === 'string') {
       return [[this.renderer.createText(this.content)]];
     }
+
     if (this.content instanceof TemplateRef) {
       this.embeddedView = this.content.createEmbeddedView({});
       this.applicationRef.attachView(this.embeddedView);
       return [this.embeddedView.rootNodes];
     }
+
     return [[this.resolver.resolveComponentFactory(this.content).create(this.injector)]];
   }
 }

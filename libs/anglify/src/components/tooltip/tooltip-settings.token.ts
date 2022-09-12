@@ -6,7 +6,7 @@ export const DEFAULT_TOOLTIP_SETTINGS: EntireTooltipSettings = {
   hoverOpenDelay: 0,
   touchOpenDelay: 0,
   hoverCloseDelay: 0,
-  touchCloseDelay: 1000,
+  touchCloseDelay: 1_000,
   mobileTrigger: 'long',
   preventContextMenuOnTouchDevice: false,
   defaultOffset: 10,

@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EntireSelectSettings, SelectSettings } from './select.interface';
+import type { EntireSelectSettings, SelectSettings } from './select.interface';
 
 export const DEFAULT_SELECT_SETTINGS: EntireSelectSettings = {
   appearance: 'filled',

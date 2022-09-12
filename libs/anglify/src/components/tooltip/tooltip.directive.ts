@@ -2,30 +2,30 @@ import {
   ApplicationRef,
   ChangeDetectorRef,
   ComponentFactoryResolver,
-  ComponentRef,
   Directive,
   ElementRef,
-  EmbeddedViewRef,
   HostListener,
   Inject,
   Injector,
   Input,
-  OnDestroy,
   Renderer2,
   Self,
   TemplateRef,
-  Type,
   ViewContainerRef,
+  type ComponentRef,
+  type EmbeddedViewRef,
+  type OnDestroy,
+  type Type,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { merge, of, Subject } from 'rxjs';
 import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
-import { TooltipComponent } from './components/tooltip/tooltip.component';
-import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
-import type { EntireTooltipSettings, TooltipSettings } from './tooltip.interface';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { isTouchDevice } from '../../utils/functions';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
+import { EntireTooltipSettings, TooltipSettings } from './tooltip.interface';
 
 @UntilDestroy()
 @Directive({
@@ -35,10 +35,14 @@ import { isTouchDevice } from '../../utils/functions';
   providers: [createSettingsProvider<EntireTooltipSettings>('anglifyTooltipSettings', DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS)],
 })
 export class TooltipDirective implements OnDestroy {
-  /** Tooltip content. Can either be a `string`, a `ng-template` or `Component`. */
-  @Input('anglifyTooltip') public content!: string | TemplateRef<any> | Type<any>;
+  /**
+   * Tooltip content. Can either be a `string`, a `ng-template` or `Component`.
+   */
+  @Input('anglifyTooltip') public content!: TemplateRef<any> | Type<any> | string;
 
-  /** Tooltip configuration object. */
+  /**
+   * Tooltip configuration object.
+   */
   @Input() public set anglifyToolTipConfig(value: TooltipSettings) {
     if (value.position !== undefined && value.position !== this.position) {
       this.position = value.position;
@@ -46,90 +50,114 @@ export class TooltipDirective implements OnDestroy {
         this.componentRef.instance.position = value.position;
       }
     }
+
     if (value.defaultOffset !== undefined && value.defaultOffset !== this.offset) {
       this.offset = value.defaultOffset;
       if (this.componentRef) {
         this.componentRef.instance.offset = value.defaultOffset;
       }
     }
+
     if (value.flip !== undefined && value.flip !== this.flip) {
       this.flip = value.flip;
       if (this.componentRef) {
         this.componentRef.instance.flip = value.flip;
       }
     }
+
     if (value.parentWidth !== undefined && value.parentWidth !== this.parentWidth) {
       this.parentWidth = value.parentWidth;
       if (this.componentRef) {
         this.componentRef.instance.parentWidth = value.parentWidth;
       }
     }
+
     if (value.shift !== undefined && value.shift !== this.shift) {
       this.shift = value.shift;
       if (this.componentRef) {
         this.componentRef.instance.shift = value.shift;
       }
     }
+
     if (value.contentClass !== undefined && value.contentClass !== this.contentClass) {
       this.contentClass = value.contentClass;
       if (this.componentRef) {
         this.componentRef.instance.contentClass = value.contentClass;
       }
     }
+
     if (
       value.autoCloseOnTouchDevicesAfterDelay !== undefined &&
       value.autoCloseOnTouchDevicesAfterDelay !== this.settings.autoCloseOnTouchDevicesAfterDelay
     ) {
       this.settings.autoCloseOnTouchDevicesAfterDelay = value.autoCloseOnTouchDevicesAfterDelay;
     }
+
     if (value.mobileTrigger !== undefined && value.mobileTrigger !== this.settings.mobileTrigger) {
       this.settings.mobileTrigger = value.mobileTrigger;
     }
+
     if (
       value.preventContextMenuOnTouchDevice !== undefined &&
       value.preventContextMenuOnTouchDevice !== this.settings.preventContextMenuOnTouchDevice
     ) {
       this.settings.preventContextMenuOnTouchDevice = value.preventContextMenuOnTouchDevice;
     }
+
     if (value.hoverOpenDelay !== undefined && value.hoverOpenDelay !== this.settings.hoverOpenDelay) {
       this.settings.hoverOpenDelay = value.hoverOpenDelay;
     }
+
     if (value.hoverCloseDelay !== undefined && value.hoverCloseDelay !== this.settings.hoverCloseDelay) {
       this.settings.hoverCloseDelay = value.hoverCloseDelay;
     }
+
     if (value.touchOpenDelay !== undefined && value.touchOpenDelay !== this.settings.touchOpenDelay) {
       this.settings.touchOpenDelay = value.touchOpenDelay;
     }
+
     if (value.touchCloseDelay !== undefined && value.touchCloseDelay !== this.settings.touchCloseDelay) {
       this.settings.touchCloseDelay = value.touchCloseDelay;
     }
+
     if (value.mountingPoint !== undefined && value.mountingPoint !== this.settings.mountingPoint) {
       this.settings.mountingPoint = value.mountingPoint;
     }
+
     if (value.disabled !== undefined && value.disabled !== this.disabled) {
       this.disabled = value.disabled;
     }
   }
 
   private position = this.settings.position;
+
   private parentWidth = this.settings.parentWidth;
+
   private offset = this.settings.defaultOffset;
+
   private flip = this.settings.flip;
+
   private shift = this.settings.shift;
+
   private contentClass = this.settings.contentClass;
+
   private disabled = this.settings.disabled;
 
   private componentRef: ComponentRef<TooltipComponent> | undefined; // Tooltip Component Reference
+
   private embeddedView: EmbeddedViewRef<any> | undefined; // Tooltip Content Template Reference
 
-  private readonly _openAction = new Subject<number>();
-  private readonly _closeAction = new Subject<number>();
+  private readonly _openAction$ = new Subject<number>();
+
+  private readonly _closeAction$ = new Subject<number>();
+
   private readonly _visibleHandler$ = merge(
-    this._openAction.pipe(
+    this._openAction$.pipe(
       mergeMap(openDelay =>
         of(openDelay).pipe(
           delay(openDelay),
-          takeUntil(this._closeAction),
+          // eslint-disable-next-line rxjs/no-unsafe-takeuntil
+          takeUntil(this._closeAction$),
           tap(() => {
             this.create();
           })
@@ -137,11 +165,12 @@ export class TooltipDirective implements OnDestroy {
       ),
       repeat()
     ),
-    this._closeAction.pipe(
+    this._closeAction$.pipe(
       mergeMap(closeDelay =>
         of(closeDelay).pipe(
           delay(closeDelay),
-          takeUntil(this._openAction),
+          // eslint-disable-next-line rxjs/no-unsafe-takeuntil
+          takeUntil(this._openAction$),
           tap(() => this._detach())
         )
       ),
@@ -167,15 +196,19 @@ export class TooltipDirective implements OnDestroy {
   }
 
   public open(delay = 0) {
-    this._openAction.next(delay);
+    this._openAction$.next(delay);
   }
 
   public close(delay = 0) {
-    this._closeAction.next(delay);
+    this._closeAction$.next(delay);
   }
 
   public toggle(delay = 0) {
-    this.componentRef ? this._closeAction.next(delay) : this._openAction.next(delay);
+    if (this.componentRef) {
+      this._closeAction$.next(delay);
+    }
+
+    this._openAction$.next(delay);
   }
 
   private _detach() {
@@ -202,6 +235,7 @@ export class TooltipDirective implements OnDestroy {
     if (this.settings.preventContextMenuOnTouchDevice || this.settings.autoCloseOnTouchDevicesAfterDelay) {
       event.preventDefault();
     }
+
     this.open(this.settings.touchOpenDelay);
   }
 
@@ -217,7 +251,7 @@ export class TooltipDirective implements OnDestroy {
   public onClickOutside(_: MouseEvent, targetElement: HTMLElement) {
     if (this.disabled) return;
     if (!this.componentRef) return;
-    if (!Boolean(targetElement)) return;
+    if (!targetElement) return;
     const clickedInside = this.element.nativeElement.contains(targetElement);
     if (!clickedInside) this.close(0);
   }
@@ -254,11 +288,13 @@ export class TooltipDirective implements OnDestroy {
     if (typeof this.content === 'string') {
       return [[this.renderer.createText(this.content)]];
     }
+
     if (this.content instanceof TemplateRef) {
       this.embeddedView = this.content.createEmbeddedView({});
       this.applicationRef.attachView(this.embeddedView);
       return [this.embeddedView.rootNodes];
     }
+
     return [[this.resolver.resolveComponentFactory(this.content).create(this.injector)]];
   }
 

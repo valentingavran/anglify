@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { ButtonSettings, EntireButtonSettings } from './button.interface';
+import type { ButtonSettings, EntireButtonSettings } from './button.interface';
 
 export const DEFAULT_BUTTON_SETTINGS: EntireButtonSettings = {
   appearance: 'contained',

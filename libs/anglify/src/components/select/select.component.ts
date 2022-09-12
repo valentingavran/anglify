@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   Input,
-  AfterViewInit,
   Inject,
   Self,
   ContentChildren,
@@ -12,15 +11,14 @@ import {
   HostBinding,
   HostListener,
   Optional,
-  OnInit,
+  type AfterViewInit,
+  type OnInit,
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { NgControl, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, firstValueFrom, map, ReplaySubject, share } from 'rxjs';
-import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from './select-settings.token';
-import { EntireSelectSettings, SelectItem } from './select.interface';
-import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
+import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { INTERNAL_ICONS } from '../../tokens/internal-icons.token';
@@ -29,12 +27,14 @@ import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
 import { InputDirective } from '../input/input.directive';
 import { InputAppearance } from '../input/input.interface';
+import { ListComponent } from '../list/components/list/list.component';
+import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemGroupComponent } from '../list/components/list-item-group/list-item-group.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { ListItemComponent } from '../list/components/list-item/list-item.component';
-import { ListComponent } from '../list/components/list/list.component';
 import { MenuDirective } from '../menu/menu.directive';
 import { TextFieldComponent } from '../text-field/text-field.component';
+import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from './select-settings.token';
+import { EntireSelectSettings, type SelectItem } from './select.interface';
 
 @UntilDestroy()
 @Component({
@@ -65,64 +65,119 @@ import { TextFieldComponent } from '../text-field/text-field.component';
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewInit {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+
   @ViewChild(InputDirective, { static: true }) public readonly input!: InputDirective;
+
   @ViewChild(MenuDirective, { static: true }) public readonly menu!: MenuDirective;
 
-  /** Sets the input label. */
+  /**
+   * Sets the input label.
+   */
   @Input() public label?: string;
-  /** Reduces the input height. */
-  @Input() public dense = false;
-  /** Sets the input’s placeholder text */
-  @Input() public placeholder?: string;
-  /** Hint text. */
-  @Input() public hint?: string;
-  /** Forces label to always be in floating mode. */
-  @Input() public alwaysFloatingLabel: boolean = this.settings.alwaysFloatingLabel;
-  /** Forces hint to always be visible. */
-  @Input() public persistentHint: boolean = this.settings.persistentHint;
-  /** Sets one of the two predefined input styles (`filled` or `outlined`). */
-  @Input() public appearance: InputAppearance = this.settings.appearance;
-  /** Add input clear functionality (appends an clear icon). */
-  @Input() public clearable: boolean = this.settings.clearable;
-  /** Sets the position of the menu. */
-  @Input() public dropdownPosition = this.settings.dropdownPosition;
-  /** Automatically determines the best position for the menu. If possible the preset position is used. */
-  @Input() public dropdownAutoPosition = this.settings.dropdownAutoPosition;
-  /**  Displaces the menu from the input element along the relevant axes. */
-  @Input() public dropdownOffset = this.settings.dropdownOffset;
-  /** Hides hint and validation errors. */
-  @Input() public hideDetails = false;
-  /** Puts input in readonly state. */
-  @Input() public readonly = false;
-  /** Changes select to multiple. Accepts array for value. */
-  @Input() public multiple = false;
-  /** Designates if menu should close when its content is clicked. */
-  @Input() public closeOnSelect: boolean = this.settings.closeOnSelect;
-  /** Display text when there is no data. */
-  @Input() public noDataText: string = this.settings.noDataText;
 
-  /** Puts the input in a manual error state. */
-  @Input() public set error(error: string | undefined) {
-    this._error$.next(error);
-  }
+  /**
+   * Reduces the input height.
+   */
+  @Input() public dense = false;
+
+  /**
+   * Sets the input’s placeholder text
+   */
+  @Input() public placeholder?: string;
+
+  /**
+   * Hint text.
+   */
+  @Input() public hint?: string;
+
+  /**
+   * Forces label to always be in floating mode.
+   */
+  @Input() public alwaysFloatingLabel: boolean = this.settings.alwaysFloatingLabel;
+
+  /**
+   * Forces hint to always be visible.
+   */
+  @Input() public persistentHint: boolean = this.settings.persistentHint;
+
+  /**
+   * Sets one of the two predefined input styles (`filled` or `outlined`).
+   */
+  @Input() public appearance: InputAppearance = this.settings.appearance;
+
+  /**
+   * Add input clear functionality (appends an clear icon).
+   */
+  @Input() public clearable: boolean = this.settings.clearable;
+
+  /**
+   * Sets the position of the menu.
+   */
+  @Input() public dropdownPosition = this.settings.dropdownPosition;
+
+  /**
+   * Automatically determines the best position for the menu. If possible the preset position is used.
+   */
+  @Input() public dropdownAutoPosition = this.settings.dropdownAutoPosition;
+
+  /**
+   *  Displaces the menu from the input element along the relevant axes.
+   */
+  @Input() public dropdownOffset = this.settings.dropdownOffset;
+
+  /**
+   * Hides hint and validation errors.
+   */
+  @Input() public hideDetails = false;
+
+  /**
+   * Puts input in readonly state.
+   */
+  @Input() public readonly = false;
+
+  /**
+   * Changes select to multiple. Accepts array for value.
+   */
+  @Input() public multiple = false;
+
+  /**
+   * Designates if menu should close when its content is clicked.
+   */
+  @Input() public closeOnSelect: boolean = this.settings.closeOnSelect;
+
+  /**
+   * Display text when there is no data.
+   */
+  @Input() public noDataText: string = this.settings.noDataText;
 
   public get error() {
     return this._error$.value;
   }
 
-  /** Disables the input. */
-  @Input() public set disabled(isDisabled: boolean) {
-    this._disabled$.next(isDisabled);
+  /**
+   * Puts the input in a manual error state.
+   */
+  @Input() public set error(error: string | undefined) {
+    this._error$.next(error);
   }
 
   public get disabled() {
     return this._disabled$.value;
   }
 
-  /** Can be an array of objects or array of strings/numbers. */
-  @Input() public set items(items: SelectItem[] | string[] | number[]) {
+  /**
+   * Disables the input.
+   */
+  @Input() public set disabled(isDisabled: boolean) {
+    this._disabled$.next(isDisabled);
+  }
+
+  /**
+   * Can be an array of objects or array of strings/numbers.
+   */
+  @Input() public set items(items: number[] | SelectItem[] | string[]) {
     if (this.assumePrimitive(items)) {
-      const primitiveItems = items as string[] | number[] | boolean[];
+      const primitiveItems = items as boolean[] | number[] | string[];
       this._items$.next(this.mapPrimitiveToSelectItem(primitiveItems));
     } else {
       this._items$.next(items as SelectItem[]);
@@ -130,22 +185,28 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
   }
 
   protected readonly _error$ = new BehaviorSubject<string | undefined>(undefined);
+
   public readonly error$ = this._error$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
 
   protected readonly _disabled$ = new BehaviorSubject(false);
+
   public readonly disabled$ = this._disabled$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
 
   protected readonly _isOpen$ = new BehaviorSubject(false);
+
   public readonly isOpen$ = this._isOpen$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
 
   protected readonly _items$ = new BehaviorSubject<SelectItem[]>([]);
+
   public readonly items$ = this._items$.asObservable();
 
   protected readonly _selectedItems$ = new BehaviorSubject<SelectItem[]>([]);
+
   public readonly selectedItems$ = this._selectedItems$.asObservable().pipe(share({ connector: () => new ReplaySubject(1) }));
 
   public readonly selectedItemsText$ = this.selectedItems$.pipe(
     map(items => items.map(item => item.text)),
+    map(texts => texts.join(', ')),
     share({ connector: () => new ReplaySubject(1) })
   );
 
@@ -153,6 +214,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     this.selectedItems$.pipe(map(selectedItems => selectedItems.some(selected => selected.value === item.value)));
 
   public onChange: (...args: any[]) => void = () => {};
+
   public onTouch: (...args: any[]) => void = () => {};
 
   public constructor(
@@ -199,6 +261,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     } else {
       this.input.elementRef.nativeElement.value = '';
     }
+
     this.onChange(item);
   }
 
@@ -272,11 +335,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     this.menu.toggle();
   }
 
-  protected assumePrimitive(items: SelectItem[] | string[] | number[]) {
+  protected assumePrimitive(items: number[] | SelectItem[] | string[]) {
     return typeof items[0] === 'string' || typeof items[0] === 'number' || typeof items[0] === 'boolean';
   }
 
-  protected mapPrimitiveToSelectItem(items: string[] | number[] | boolean[]): SelectItem[] {
+  protected mapPrimitiveToSelectItem(items: boolean[] | number[] | string[]): SelectItem[] {
     return items.map(item => ({ text: item.toLocaleString(), value: item }));
   }
 }

@@ -2,7 +2,7 @@ import { SimpleTableComponent } from '@anglify/components';
 import { NgIf, AsyncPipe, NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { DirectiveDocumentation, ModifierType } from '../../app.interface';
+import { ModifierType, type DirectiveDocumentation } from '../../app.interface';
 
 @Component({
   selector: 'app-directive-api',
@@ -13,12 +13,12 @@ import { DirectiveDocumentation, ModifierType } from '../../app.interface';
   imports: [NgIf, SimpleTableComponent, AsyncPipe, NgForOf],
 })
 export class DirectiveAPIComponent {
-  @Input() public set documentation(documentation: DirectiveDocumentation | undefined) {
-    this.documentation$.next(documentation);
-  }
-
   public get documentation() {
     return this.documentation$.value;
+  }
+
+  @Input() public set documentation(documentation: DirectiveDocumentation | undefined) {
+    this.documentation$.next(documentation);
   }
 
   private readonly documentation$ = new BehaviorSubject<DirectiveDocumentation | undefined>(undefined);

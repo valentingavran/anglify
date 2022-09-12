@@ -1,4 +1,4 @@
-import { ChipComponent, DataTableComponent, DataTableHeader, SlotDirective } from '@anglify/components';
+import { ChipComponent, DataTableComponent, type DataTableHeader, SlotDirective } from '@anglify/components';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { items } from '../data';
@@ -28,6 +28,7 @@ export default class ItemSlotComponent {
     } else if (calories < 400) {
       return 'color-orange';
     }
+
     return 'color-red';
   }
 }

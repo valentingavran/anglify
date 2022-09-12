@@ -1,8 +1,8 @@
 import { ElementRef, Renderer2 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { RippleService } from './ripple.service';
 import { MockElementRef } from '../../mocks/element-ref.mock';
 import { Renderer2Mock } from '../../mocks/renderer2.mock';
+import { RippleService } from './ripple.service';
 
 describe('RippleService', () => {
   let service: RippleService;
@@ -31,7 +31,7 @@ describe('RippleService', () => {
   it('should create state container with css class', () => {
     const elementRef = TestBed.inject(ElementRef);
     const nativeElement = elementRef.nativeElement as HTMLElement;
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     const container = service.createStateContainer();
 
     expect(container.classList.value).toBe('anglify-state-container');
@@ -41,23 +41,24 @@ describe('RippleService', () => {
   it('should add transition and destroy ripple after 500ms', done => {
     // create mock ripple container
     const container = document.createElement('div');
-    // @ts-expect-error
-    service.stateContainer.appendChild(container);
-    // @ts-expect-error
+    // @ts-expect-error: Test case
+    service.stateContainer.append(container);
+    // @ts-expect-error: Test case
     service.visibleRipples.push(container);
 
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     expect(service.visibleRipples.length).toBe(1);
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     service.destroyLastRipple();
     expect(container.style.opacity === '0').toBeTruthy();
     expect(container.style.transitionDuration === '500ms').toBeTruthy();
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     expect(service.stateContainer.contains(container)).toBeTruthy();
+    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => {
-      // @ts-expect-error
+      // @ts-expect-error: Test case
       expect(service.stateContainer.contains(container)).toBeFalsy();
       done();
-    }, 1000);
+    }, 1_000);
   });
 });

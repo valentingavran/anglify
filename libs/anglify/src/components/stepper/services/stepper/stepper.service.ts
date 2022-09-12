@@ -5,13 +5,16 @@ import { delay, map, switchMap, take, tap } from 'rxjs/operators';
 import type { StepDirective } from '../../directives/step/step.directive';
 
 @UntilDestroy()
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export abstract class StepperService {
   private readonly _steps$ = new BehaviorSubject<StepDirective[]>([]);
+
   public readonly steps$ = this._steps$.asObservable();
 
   private readonly _selectedIndex$ = new BehaviorSubject<number>(0);
+
   public readonly selectedIndex$ = this._selectedIndex$.asObservable();
+
   public readonly selectedStep$ = this._selectedIndex$.pipe(
     switchMap(index =>
       this._steps$.pipe(
@@ -21,21 +24,27 @@ export abstract class StepperService {
     )
   );
 
-  private readonly _previousAction = new Subject<void>();
-  private readonly _nextAction = new Subject<void>();
-  private readonly _navigateToAction = new Subject<number>();
-  private readonly _updateStepsAction = new Subject<StepDirective[]>();
+  private readonly _previousAction$ = new Subject<void>();
+
+  private readonly _nextAction$ = new Subject<void>();
+
+  private readonly _navigateToAction$ = new Subject<number>();
+
+  private readonly _updateStepsAction$ = new Subject<StepDirective[]>();
 
   private readonly _resetAction$ = new Subject<void>();
+
   public readonly onReset$ = this._resetAction$.asObservable();
 
   private readonly _onPrevious$ = new Subject<void>();
+
   public readonly onPrevious$ = this._onPrevious$.asObservable();
 
   private readonly _onNext$ = new Subject<void>();
+
   public readonly onNext$ = this._onNext$.asObservable();
 
-  private readonly _previousHandler$ = this._previousAction.pipe(
+  private readonly _previousHandler$ = this._previousAction$.pipe(
     tap(() => {
       const selectedIndex = this._selectedIndex$.value;
       if (selectedIndex === 0) return;
@@ -44,7 +53,7 @@ export abstract class StepperService {
     })
   );
 
-  private readonly _nextHandler$ = this._nextAction.pipe(
+  private readonly _nextHandler$ = this._nextAction$.pipe(
     // Needed so that eventual active Step.valid$ changes are still taken into account
     delay(0),
     switchMap(() =>
@@ -70,7 +79,7 @@ export abstract class StepperService {
     )
   );
 
-  private readonly _navigateToHandler$ = this._navigateToAction.pipe(
+  private readonly _navigateToHandler$ = this._navigateToAction$.pipe(
     switchMap(targetIndex =>
       this._steps$.pipe(
         take(1),
@@ -78,24 +87,24 @@ export abstract class StepperService {
           const currentlyActiveStepIndex = this._selectedIndex$.value;
           const currentlyActiveStep = steps[currentlyActiveStepIndex];
 
-          for (let i = 0; i < steps.length; i++) {
-            const s = steps[i];
-
-            if (i !== targetIndex) {
-              if (s.getValidSnapshot() && s.getVisitedSnapshot()) {
+          for (const [index, step] of steps.entries()) {
+            if (index !== targetIndex) {
+              if (step.getValidSnapshot() && step.getVisitedSnapshot()) {
               } else {
                 break;
               }
-            } else if (s === currentlyActiveStep) {
+            } else if (step === currentlyActiveStep) {
               break;
             } else {
               this._selectedIndex$.next(targetIndex);
               if (targetIndex > currentlyActiveStepIndex) {
                 this._onNext$.next();
               }
+
               if (targetIndex === currentlyActiveStepIndex - 1) {
                 this._onPrevious$.next();
               }
+
               break;
             }
           }
@@ -104,7 +113,7 @@ export abstract class StepperService {
     )
   );
 
-  private readonly _updateStepsHandler$ = this._updateStepsAction.pipe(
+  private readonly _updateStepsHandler$ = this._updateStepsAction$.pipe(
     switchMap(steps =>
       this._steps$.pipe(
         take(1),
@@ -114,10 +123,12 @@ export abstract class StepperService {
 
           if (steps.length === 0) {
             this._selectedIndex$.next(0);
+            // eslint-disable-next-line sonarjs/no-duplicated-branches
           } else if (currentSteps.length === 0) {
             // On init, set the first step as acti ve
             this._selectedIndex$.next(0);
           }
+
           this._steps$.next(steps);
         })
       )
@@ -130,9 +141,9 @@ export abstract class StepperService {
         take(1),
         tap(steps => {
           this._selectedIndex$.next(0);
-          steps.forEach((step, i) => {
-            if (i > 0) step.setVisited(false);
-          });
+          for (const [index, step] of steps.entries()) {
+            if (index > 0) step.setVisited(false);
+          }
         })
       )
     )
@@ -147,19 +158,19 @@ export abstract class StepperService {
   }
 
   public previous() {
-    this._previousAction.next();
+    this._previousAction$.next();
   }
 
   public next() {
-    this._nextAction.next();
+    this._nextAction$.next();
   }
 
   public navigateTo(index: number) {
-    this._navigateToAction.next(index);
+    this._navigateToAction$.next(index);
   }
 
   public updateSteps(steps: StepDirective[]) {
-    this._updateStepsAction.next(steps);
+    this._updateStepsAction$.next(steps);
   }
 
   public reset() {
@@ -167,15 +178,15 @@ export abstract class StepperService {
   }
 
   private static updateIndexesOfSteps(steps: StepDirective[]) {
-    steps.forEach((s, i) => {
-      s.setIndex(i);
-    });
+    for (const [index, step] of steps.entries()) {
+      step.setIndex(index);
+    }
   }
 
   private static updateFirstAndLastSteps(steps: StepDirective[]) {
-    steps.forEach((s, i) => {
-      s.setIsFirstStep(i === 0);
-      s.setISLastStep(i === steps.length - 1);
-    });
+    for (const [index, step] of steps.entries()) {
+      step.setIsFirstStep(index === 0);
+      step.setISLastStep(index === steps.length - 1);
+    }
   }
 }

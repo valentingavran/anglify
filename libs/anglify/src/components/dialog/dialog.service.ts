@@ -1,19 +1,20 @@
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
+import type {} from '@angular/core';
 import {
   ApplicationRef,
   ComponentFactoryResolver,
-  EmbeddedViewRef,
   Injectable,
   InjectionToken,
   Injector,
   TemplateRef,
-  Type,
+  type EmbeddedViewRef,
+  type Type,
 } from '@angular/core';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
-import { DialogComponent } from './dialog.component';
-import { DialogContext, DialogOptions, ModalData, DialogInternalCloseReason } from './dialog.interface';
 import { AnglifyIdService } from '../../services/id/id.service';
+import { DialogComponent } from './dialog.component';
+import { DialogInternalCloseReason, type DialogContext, type DialogOptions, type ModalData } from './dialog.interface';
 
 export const DIALOG_CONTEXT = new InjectionToken<DialogContext>('Dialog context');
 
@@ -23,7 +24,7 @@ export const DIALOG_NODES = new InjectionToken<HTMLElement[]>('Dialog nodes to i
   providedIn: 'root',
 })
 export class DialogService {
-  private readonly dialogs$ = new BehaviorSubject<ReadonlyArray<DialogContext>>([]);
+  private readonly dialogs$ = new BehaviorSubject<readonly DialogContext[]>([]);
 
   private readonly overlayConfig = new OverlayConfig({
     positionStrategy: this.overlay.position().global().centerVertically().centerHorizontally(),
@@ -40,7 +41,7 @@ export class DialogService {
     private readonly idService: AnglifyIdService
   ) {}
 
-  public open(component: Type<any> | TemplateRef<any>, options: Partial<DialogOptions> = {}) {
+  public open(component: TemplateRef<any> | Type<any>, options: Partial<DialogOptions> = {}) {
     const subscription = this.open$(component, options)
       .pipe(
         finalize(() => {
@@ -50,7 +51,7 @@ export class DialogService {
       .subscribe();
   }
 
-  public open$(component: Type<any> | TemplateRef<any>, options: Partial<DialogOptions> = {}) {
+  public open$(component: TemplateRef<any> | Type<any>, options: Partial<DialogOptions> = {}) {
     return new Observable(observer => {
       const completeWith = (data: ModalData) => {
         observer.next(data);
@@ -98,6 +99,7 @@ export class DialogService {
         if (componentRef.isAttached) {
           componentRef.detach();
         }
+
         viewRef.destroy();
         overlayRef.detach();
       };

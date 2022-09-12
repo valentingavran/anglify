@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { DataTableSettings, EntireDataTableSettings } from './data-table.interface';
+import type { DataTableSettings, EntireDataTableSettings } from './data-table.interface';
 
 export const DEFAULT_DATA_TABLE_SETTINGS: EntireDataTableSettings = {
   expandable: false,

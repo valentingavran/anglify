@@ -12,7 +12,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class SimpleTablePlaygroundComponent {
   public fixedHeader = false;
+
   public fixedFooter = false;
+
   public _fixedHeight: string | null = null;
 
   public readonly desserts = [

@@ -1,7 +1,7 @@
 import { untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, pairwise, startWith, tap } from 'rxjs';
 
-export function observeOnMutation(target: Node, config: MutationObserverInit | undefined): Observable<MutationRecord[]> {
+export function observeOnMutation$(target: Node, config: MutationObserverInit | undefined): Observable<MutationRecord[]> {
   return new Observable(observer => {
     const mutationObserver = new MutationObserver(mutations => observer.next(mutations));
     mutationObserver.observe(target, config);
@@ -11,7 +11,7 @@ export function observeOnMutation(target: Node, config: MutationObserverInit | u
   });
 }
 
-export function observeOnResize(target: Element): Observable<ResizeObserverEntry[]> {
+export function observeOnResize$(target: Element): Observable<ResizeObserverEntry[]> {
   return new Observable(observer => {
     const resizeObserver = new ResizeObserver(entries => observer.next(entries));
     resizeObserver.observe(target);
@@ -29,28 +29,28 @@ export function clamp(value: number, min: number, max: number) {
   return value > max ? max : value < min ? min : value;
 }
 
-export function diff(o: number[], n: number[]) {
-  o.sort((a, b) => (a < b ? a : b));
-  n.sort((a, b) => (a < b ? a : b));
+export function diff(source: number[], toCompare: number[]) {
+  source.sort((a, b) => (a < b ? a : b));
+  toCompare.sort((a, b) => (a < b ? a : b));
 
   // don't compare if either list is empty
-  if (o.length === 0 || n.length === 0) return { added: n, removed: o };
+  if (source.length === 0 || toCompare.length === 0) return { added: toCompare, removed: source };
 
   // declare temporary variables
   let op = 0;
   let np = 0;
-  let a = [];
-  let r = [];
+  let added = [];
+  let removed = [];
 
   // compare arrays and add to add or remove lists
-  while (op < o.length && np < n.length) {
-    if (o[op] < n[np]) {
+  while (op < source.length && np < toCompare.length) {
+    if (source[op] < toCompare[np]) {
       // push to diff?
-      r.push(o[op]);
+      removed.push(source[op]);
       op++;
-    } else if (o[op] > n[np]) {
+    } else if (source[op] > toCompare[np]) {
       // push to diff?
-      a.push(n[np]);
+      added.push(toCompare[np]);
       np++;
     } else {
       op++;
@@ -59,10 +59,10 @@ export function diff(o: number[], n: number[]) {
   }
 
   // add remaining items
-  if (np < n.length) a = a.concat(n.slice(np, n.length));
-  if (op < o.length) r = r.concat(o.slice(op, o.length));
+  if (np < toCompare.length) added = added.concat(toCompare.slice(np, toCompare.length));
+  if (op < source.length) removed = removed.concat(source.slice(op, source.length));
 
-  return { added: a, removed: r };
+  return { added, removed };
 }
 
 export function pull<T>(sourceArray: T[], ...removeList: T[]): T[] {
@@ -71,7 +71,7 @@ export function pull<T>(sourceArray: T[], ...removeList: T[]): T[] {
 }
 
 /**
- * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ * For the method to work, the __\@UntilDestroy()__ decorator must be added to the component.
  */
 export function bindClassToNativeElement(componentReference: any, data$: Observable<boolean>, element: HTMLElement, className: string) {
   data$
@@ -89,7 +89,7 @@ export function bindClassToNativeElement(componentReference: any, data$: Observa
 }
 
 /**
- * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ * For the method to work, the __\@UntilDestroy()__ decorator must be added to the component.
  */
 export function bindAttrToNativeElement(
   componentReference: any,
@@ -113,7 +113,7 @@ export function bindAttrToNativeElement(
 }
 
 /**
- * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ * For the method to work, the __\@UntilDestroy()__ decorator must be added to the component.
  */
 export function bindObservableValueToNativeElement(componentReference: any, data$: Observable<string>, element: HTMLElement, prefix = '') {
   data$
@@ -122,7 +122,10 @@ export function bindObservableValueToNativeElement(componentReference: any, data
       startWith(''),
       pairwise(),
       tap(([oldValue, newValue]) => {
-        oldValue.length && element.classList.remove(`${prefix}${oldValue}`);
+        if (oldValue.length) {
+          element.classList.remove(`${prefix}${oldValue}`);
+        }
+
         element.classList.add(`${prefix}${newValue}`);
       })
     )
@@ -130,7 +133,7 @@ export function bindObservableValueToNativeElement(componentReference: any, data
 }
 
 /**
- * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ * For the method to work, the __\@UntilDestroy()__ decorator must be added to the component.
  */
 export function bindStyleToNativeElement(
   componentReference: any,
@@ -144,10 +147,10 @@ export function bindStyleToNativeElement(
       untilDestroyed(componentReference),
       tap(value => {
         if (value) {
-          // @ts-expect-error
+          // @ts-expect-error: Typescript has no type information, though this is correct
           element.style[styleName] = styleValue;
         } else {
-          // @ts-expect-error
+          // @ts-expect-error: Typescript has no type information, though this is correct
           element.style[styleName] = null;
         }
       })
@@ -156,7 +159,7 @@ export function bindStyleToNativeElement(
 }
 
 /**
- * For the method to work, the __@UntilDestroy()__ decorator must be added to the component.
+ * For the method to work, the __\@UntilDestroy()__ decorator must be added to the component.
  */
 export function bindStyleValueToNativeElement(componentReference: any, data$: Observable<string>, element: HTMLElement, styleName: string) {
   data$

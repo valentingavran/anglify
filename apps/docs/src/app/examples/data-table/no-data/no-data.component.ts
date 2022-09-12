@@ -1,4 +1,4 @@
-import { DataTableComponent, DataTableHeader, SlotDirective } from '@anglify/components';
+import { DataTableComponent, type DataTableHeader, SlotDirective } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({

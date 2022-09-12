@@ -11,5 +11,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export default class ReactiveFormsValidationComponent {
   public emailControl = new FormControl<string | null>(null, [Validators.email, Validators.required]);
+
   public passwordControl = new FormControl<string | null>(null, [Validators.password, Validators.required]);
 }

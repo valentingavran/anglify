@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList, type AfterViewInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map, startWith, tap } from 'rxjs';
 import { TimelineItemComponent } from '../timeline-item/timeline-item.component';
@@ -14,20 +14,25 @@ import { TimelineItemComponent } from '../timeline-item/timeline-item.component'
 export class TimelineComponent implements AfterViewInit {
   @ContentChildren(TimelineItemComponent) private readonly timelineItems?: QueryList<TimelineItemComponent>;
 
-  /** Reverse direction of timeline items. */
+  /**
+   * Reverse direction of timeline items.
+   */
   @Input() public reverse = false;
 
-  /** Hide opposite slot content, and position all items to one side of timeline. */
+  /**
+   * Hide opposite slot content, and position all items to one side of timeline.
+   */
   @Input() public dense = false;
 
   private readonly items$ = new BehaviorSubject<TimelineItemComponent[]>([]);
+
   public constructor() {
     this.items$
       .pipe(
         untilDestroyed(this),
         map(items => {
           if (this.dense) {
-            items.forEach(item => (item.hideOpposite = true));
+            for (const item of items) item.hideOpposite = true;
           } else {
             this.alternateItems(items);
           }
@@ -37,17 +42,19 @@ export class TimelineComponent implements AfterViewInit {
   }
 
   private alternateItems(items: TimelineItemComponent[]) {
-    items.forEach((item, index) => {
+    for (const [index, item] of items.entries()) {
       // ignore items that have a user defined alignment
-      if (item.alignment === 'start' || item.alignment === 'end') return;
+      if (item.alignment === 'start' || item.alignment === 'end') continue;
 
       // all other items are arranged in an alternating manner
       if (this.reverse) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         index % 2 === 0 ? (item.alignment = 'start') : (item.alignment = 'end');
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         index % 2 === 0 ? (item.alignment = 'end') : (item.alignment = 'start');
       }
-    });
+    }
   }
 
   public ngAfterViewInit() {
@@ -56,8 +63,9 @@ export class TimelineComponent implements AfterViewInit {
         .pipe(
           untilDestroyed(this),
           startWith(this.timelineItems),
-          map(items => items as TimelineItemComponent[]),
+          map((items: QueryList<TimelineItemComponent>) => items.toArray()),
           tap(items => {
+            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.items$.next(items), 0);
           })
         )

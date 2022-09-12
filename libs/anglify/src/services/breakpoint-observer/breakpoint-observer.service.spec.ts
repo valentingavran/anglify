@@ -31,18 +31,18 @@ describe('BreakpointObserverService', () => {
   });
 
   it("should have a breakpoints object with keys 'xs', 'sm', 'md', 'lg', 'xl' in descending order by default", () => {
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     expect(Object.keys(service.breakpoints)).toEqual(['xl', 'lg', 'md', 'sm', 'xs']);
   });
 
   test('that xs < sm < md < lg < xl', () => {
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     expect(service.breakpoints.xs < service.breakpoints.sm).toBe(true);
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     expect(service.breakpoints.sm < service.breakpoints.md).toBe(true);
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     expect(service.breakpoints.md < service.breakpoints.lg).toBe(true);
-    // @ts-expect-error
+    // @ts-expect-error: Test case
     expect(service.breakpoints.lg < service.breakpoints.xl).toBe(true);
   });
 });

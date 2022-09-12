@@ -1,5 +1,5 @@
 export type RippleOrigin = 'center' | undefined;
 
-export interface RippleSettings {
+export type RippleSettings = {
   host: HTMLElement;
-}
+};

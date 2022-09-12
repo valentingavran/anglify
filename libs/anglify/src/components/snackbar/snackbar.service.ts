@@ -2,9 +2,9 @@ import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, InjectionToken, Injector } from '@angular/core';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
-import { SnackbarComponent } from './snackbar.component';
-import { SnackbarContext, SnackbarData, SnackbarInteralDismissReason, SnackbarOptions } from './snackbar.interface';
 import { AnglifyIdService } from '../../services/id/id.service';
+import { SnackbarComponent } from './snackbar.component';
+import { type SnackbarContext, type SnackbarData, type SnackbarOptions, SnackbarInteralDismissReason } from './snackbar.interface';
 
 export const SNACKBAR_CONTEXT = new InjectionToken<SnackbarContext>('Snackbar context');
 
@@ -61,6 +61,7 @@ export class SnackbarService {
         if (componentRef.isAttached) {
           componentRef.detach();
         }
+
         overlayRef.dispose();
       };
     });

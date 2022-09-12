@@ -1,14 +1,14 @@
-import { Directive, ElementRef, Input, OnInit, Optional, Self } from '@angular/core';
+import { Directive, ElementRef, Input, Optional, Self, type OnInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {
+  type Observable,
   debounceTime,
   distinctUntilChanged,
   fromEvent,
   map,
   merge,
   NEVER,
-  Observable,
   of,
   share,
   startWith,
@@ -16,7 +16,7 @@ import {
   switchMap,
 } from 'rxjs';
 import { AnglifyIdService } from '../../services/id/id.service';
-import { observeOnMutation } from '../../utils/functions';
+import { observeOnMutation$ } from '../../utils/functions';
 
 @UntilDestroy()
 @Directive({
@@ -33,7 +33,7 @@ export class InputDirective implements OnInit {
   }
 
   public constructor(
-    public readonly elementRef: ElementRef<HTMLTextAreaElement | HTMLInputElement>,
+    public readonly elementRef: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
     private readonly idService: AnglifyIdService,
     @Optional() @Self() public ngControl?: NgControl
   ) {
@@ -50,8 +50,10 @@ export class InputDirective implements OnInit {
     }
   }
 
-  private readonly mutationObserver$ = observeOnMutation(this.elementRef.nativeElement, { attributes: true }).pipe(share());
+  private readonly mutationObserver$ = observeOnMutation$(this.elementRef.nativeElement, { attributes: true }).pipe(share());
+
   private readonly inputEvent$ = merge(fromEvent(this.elementRef.nativeElement, 'input'), this.mutationObserver$).pipe(share());
+
   private readonly statusChanged$ = new Subject<void>();
 
   public readonly length$ = merge(this.inputEvent$, this.statusChanged$).pipe(
@@ -114,9 +116,11 @@ export class InputDirective implements OnInit {
       if (this.ngControl?.disabled) {
         return of(null);
       }
+
       if (this.ngControl?.untouched && this.ngControl.pristine) {
         return of(null);
       }
+
       // these checks must be ignored on first emit, because of startWith(false)
       if (index > 0) {
         // First validate Reactive Forms, because they have the highest priority
@@ -133,25 +137,28 @@ export class InputDirective implements OnInit {
         if (length === 0 && required) {
           return of('This field is required');
         }
-        if (minlength && length < parseInt(minlength, 10)) {
+
+        if (minlength && length < Number.parseInt(minlength, 10)) {
           return of(`This field must be at least ${minlength} characters long`);
         }
+
         if (pattern && !new RegExp(pattern).test(value)) {
           return of(`This field is invalid`);
         }
       }
 
       // maxlength must be checked from first emit on (maybe it's prefilled with a too long value)
-      if (maxlength && length > parseInt(maxlength, 10)) {
+      if (maxlength && length > Number.parseInt(maxlength, 10)) {
         return of(`This field must not be longer than ${maxlength} characters`);
       }
 
       // only on first emit
       if (index === 0) {
         if (length > 0) {
-          if (minlength && length < parseInt(minlength, 10)) {
+          if (minlength && length < Number.parseInt(minlength, 10)) {
             return of(`This field must be at least ${minlength} characters long`);
           }
+
           if (pattern && !new RegExp(pattern).test(value)) {
             return of(`This field is invalid`);
           }

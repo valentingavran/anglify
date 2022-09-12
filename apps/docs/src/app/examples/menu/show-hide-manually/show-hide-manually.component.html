@@ -1,4 +1,4 @@
-<button anglifyButton [anglifyMenuTriggerFor]="menu" #menu1="anglifyMenu" [openOnClick]="false" [closeOnOutsideClick]="false">
+<button type="button" anglifyButton [anglifyMenuTriggerFor]="menu" #menu1="anglifyMenu" [openOnClick]="false" [closeOnOutsideClick]="false">
   Open Menu
 </button>
 
@@ -9,7 +9,7 @@
 
 <div class="controls">
   Controls:
-  <button anglifyButton appearance="text" (click)="menu1.open()">Show</button>
-  <button anglifyButton appearance="text" (click)="menu1.close()">Hide</button>
-  <button anglifyButton appearance="text" (click)="menu1.toggle()">Toggle</button>
+  <button type="button" anglifyButton appearance="text" (click)="menu1.open()">Show</button>
+  <button type="button" anglifyButton appearance="text" (click)="menu1.close()">Hide</button>
+  <button type="button" anglifyButton appearance="text" (click)="menu1.toggle()">Toggle</button>
 </div>

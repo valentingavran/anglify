@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { ListItemGroupComponent } from './list-item-group.component';
 
 describe('ListItemGroupComponent', () => {

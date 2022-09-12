@@ -1,6 +1,6 @@
-import { DataTableComponent, DataTableHeader } from '@anglify/components';
+import { DataTableComponent, type DataTableHeader } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FoodEntry, items } from '../data';
+import { items, type FoodEntry } from '../data';
 
 @Component({
   standalone: true,
@@ -27,6 +27,7 @@ export default class ComputedContentComponent {
     } else if (calories < 400) {
       return 'Some calories';
     }
+
     return 'Many calories';
   }
 }
