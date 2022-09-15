@@ -62,7 +62,9 @@ export class PaginationService {
 
   public readonly previousPageButtonDisabled$ = this.page$.pipe(map(page => page <= 1));
 
-  public readonly nextPageButtonDisabled$ = combineLatest([this.page$, this.maxPages$]).pipe(map(([page, maxPages]) => page === maxPages));
+  public readonly nextPageButtonDisabled$ = combineLatest([this.page$, this.maxPages$]).pipe(
+    map(([page, maxPages]) => page === maxPages || maxPages === 0)
+  );
 
   public readonly lastPageDisabled$ = this.page$.pipe(
     withLatestFrom(this.maxPages$),
