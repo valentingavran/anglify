@@ -1,16 +1,19 @@
 @use 'variables' as *;
 
 :host {
+  display: block;
+  box-sizing: border-box;
+  border: $data-table-border;
+  border-radius: $data-table-border-radius;
+
   table {
     display: grid;
     overflow: auto;
-    box-sizing: border-box;
-    border: $data-table-border;
-    border-radius: $data-table-border-radius;
     grid-template-columns: var(--anglify-data-table-header-widths); // property programmatically set in code
   }
 
   thead,
+  tbody,
   tr {
     display: contents;
   }
@@ -113,14 +116,13 @@
     }
   }
 
-  tfoot {
+  .footer {
     display: flex;
-    height: $data-table-default-footer-height;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
     padding: $data-table-default-footer-padding;
     gap: $data-table-default-footer-gap;
-    grid-column: 1 / -1;
 
     .pagination {
       font: $data-table-pagination-font;

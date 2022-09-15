@@ -40,91 +40,93 @@
       </ng-container>
     </ng-container>
   </thead>
-  <anglify-progress-linear *ngIf="loading$ | async" [indeterminate]="true"></anglify-progress-linear>
-  <div class="loading-state" *ngIf="loadingTextVisible$ | async">
-    <ng-container *anglifySlotOutlet="slots | findSlot: 'loading'">{{ loadingText$ | async }}</ng-container>
-  </div>
-  <div class="no-data-state" *ngIf="noDataTextVisible$ | async">
-    <ng-container *anglifySlotOutlet="slots | findSlot: 'no-data'">{{ noDataText$ | async }}</ng-container>
-  </div>
-  <ng-container *ngFor="let item of paginationService.limitedItems$ | async; let index = index; trackBy: trackByFn">
-    <tr (click)="expansionService.expand(index)">
-      <td *ngIf="selectionService.selectableRows$ | async">
-        <anglify-checkbox
-          (onCheckedChange)="selectionService.toggleSelection(item)"
-          [checked]="(selectionService.isSelected$(item) | async) ?? false"
-        ></anglify-checkbox>
-      </td>
-      <td *ngFor="let header of dataService.headers$ | async" [ngClass]="header.align ? 'align-' + header.align : 'align-start'">
-        <ng-container *anglifySlotOutlet="slots | findSlot: 'item:' + header.value; context: { $implicit: item }">
-          <span>{{ header.computeContent ? header.computeContent(item) : item[header.value] }}</span>
-        </ng-container>
-      </td>
-    </tr>
-    <tr *ngIf="expansionService.isExpanded$(index) | async">
-      <td class="expanded-item">
-        <ng-container *anglifySlotOutlet="slots | findSlot: 'expanded-item'; context: { $implicit: item }"></ng-container>
-      </td>
-    </tr>
-  </ng-container>
-  <tfoot *ngIf="(hideDefaultFooter$ | async) === false">
-    <ng-container *anglifySlotOutlet="slots | findSlot: 'footer'">
-      <anglify-select
-        aria-label="Items per page"
-        [ngModel]="paginationService.itemsPerPage$ | async"
-        (ngModelChange)="paginationService.itemsPerPage$.next($event)"
-        appearance="outlined"
-        [dense]="true"
-        [hideDetails]="true"
-        label="Rows per page"
-        [items]="paginationService.itemsPerPageOptions"
-        dropdownPosition="top"
-      ></anglify-select>
-      <div class="pagination" aria-label="Pagination info">{{ paginationService.pagination$ | async }}</div>
-      <div>
-        <button
-          type="button"
-          anglifyButton
-          *ngIf="paginationService.showFirstLastPageControls$ | async"
-          appearance="icon"
-          aria-label="Go to first page button"
-          [disabled]="paginationService.firstPageDisabled$ | async"
-          (click)="paginationService.firstPage()"
-        >
-          <anglify-icon [icon]="internalIcons.pageFirst"></anglify-icon>
-        </button>
-        <button
-          type="button"
-          anglifyButton
-          appearance="icon"
-          [disabled]="paginationService.previousPageButtonDisabled$ | async"
-          (click)="paginationService.previousPage()"
-          aria-label="Previous page Button"
-        >
-          <anglify-icon [icon]="internalIcons.chevronLeft"></anglify-icon>
-        </button>
-        <button
-          type="button"
-          anglifyButton
-          appearance="icon"
-          [disabled]="paginationService.nextPageButtonDisabled$ | async"
-          (click)="paginationService.nextPage()"
-          aria-label="Next page Button"
-        >
-          <anglify-icon [icon]="internalIcons.chevronRight"></anglify-icon>
-        </button>
-        <button
-          type="button"
-          anglifyButton
-          *ngIf="paginationService.showFirstLastPageControls$ | async"
-          appearance="icon"
-          aria-label="Go to first page button"
-          [disabled]="paginationService.lastPageDisabled$ | async"
-          (click)="paginationService.lastPage()"
-        >
-          <anglify-icon [icon]="internalIcons.pageLast"></anglify-icon>
-        </button>
-      </div>
+  <tbody>
+    <anglify-progress-linear *ngIf="loading$ | async" [indeterminate]="true"></anglify-progress-linear>
+    <div class="loading-state" *ngIf="loadingTextVisible$ | async">
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'loading'">{{ loadingText$ | async }}</ng-container>
+    </div>
+    <div class="no-data-state" *ngIf="noDataTextVisible$ | async">
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'no-data'">{{ noDataText$ | async }}</ng-container>
+    </div>
+    <ng-container *ngFor="let item of paginationService.limitedItems$ | async; let index = index; trackBy: trackByFn">
+      <tr (click)="expansionService.expand(index)">
+        <td *ngIf="selectionService.selectableRows$ | async">
+          <anglify-checkbox
+            (onCheckedChange)="selectionService.toggleSelection(item)"
+            [checked]="(selectionService.isSelected$(item) | async) ?? false"
+          ></anglify-checkbox>
+        </td>
+        <td *ngFor="let header of dataService.headers$ | async" [ngClass]="header.align ? 'align-' + header.align : 'align-start'">
+          <ng-container *anglifySlotOutlet="slots | findSlot: 'item:' + header.value; context: { $implicit: item }">
+            <span>{{ header.computeContent ? header.computeContent(item) : item[header.value] }}</span>
+          </ng-container>
+        </td>
+      </tr>
+      <tr *ngIf="expansionService.isExpanded$(index) | async">
+        <td class="expanded-item">
+          <ng-container *anglifySlotOutlet="slots | findSlot: 'expanded-item'; context: { $implicit: item }"></ng-container>
+        </td>
+      </tr>
     </ng-container>
-  </tfoot>
+  </tbody>
 </table>
+<div class="footer" *ngIf="(hideDefaultFooter$ | async) === false">
+  <ng-container *anglifySlotOutlet="slots | findSlot: 'footer'">
+    <anglify-select
+      aria-label="Items per page"
+      [ngModel]="paginationService.itemsPerPage$ | async"
+      (ngModelChange)="paginationService.itemsPerPage$.next($event)"
+      appearance="outlined"
+      [dense]="true"
+      [hideDetails]="true"
+      label="Rows per page"
+      [items]="paginationService.itemsPerPageOptions"
+      dropdownPosition="top"
+    ></anglify-select>
+    <div class="pagination" aria-label="Pagination info">{{ paginationService.pagination$ | async }}</div>
+    <div class="controls">
+      <button
+        type="button"
+        anglifyButton
+        *ngIf="paginationService.showFirstLastPageControls$ | async"
+        appearance="icon"
+        aria-label="Go to first page button"
+        [disabled]="paginationService.firstPageDisabled$ | async"
+        (click)="paginationService.firstPage()"
+      >
+        <anglify-icon [icon]="internalIcons.pageFirst"></anglify-icon>
+      </button>
+      <button
+        type="button"
+        anglifyButton
+        appearance="icon"
+        [disabled]="paginationService.previousPageButtonDisabled$ | async"
+        (click)="paginationService.previousPage()"
+        aria-label="Previous page Button"
+      >
+        <anglify-icon [icon]="internalIcons.chevronLeft"></anglify-icon>
+      </button>
+      <button
+        type="button"
+        anglifyButton
+        appearance="icon"
+        [disabled]="paginationService.nextPageButtonDisabled$ | async"
+        (click)="paginationService.nextPage()"
+        aria-label="Next page Button"
+      >
+        <anglify-icon [icon]="internalIcons.chevronRight"></anglify-icon>
+      </button>
+      <button
+        type="button"
+        anglifyButton
+        *ngIf="paginationService.showFirstLastPageControls$ | async"
+        appearance="icon"
+        aria-label="Go to first page button"
+        [disabled]="paginationService.lastPageDisabled$ | async"
+        (click)="paginationService.lastPage()"
+      >
+        <anglify-icon [icon]="internalIcons.pageLast"></anglify-icon>
+      </button>
+    </div>
+  </ng-container>
+</div>
