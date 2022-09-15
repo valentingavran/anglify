@@ -82,15 +82,29 @@
       color: $stepper-label-color-active;
       transition: $stepper-label-transition;
     }
+
+    &:hover {
+      cursor: pointer;
+
+      --state-container-color: var(--state-active-color);
+      --state-container-opacity: var(--state-hover-opacity);
+    }
+
+    &:focus-visible {
+      --state-container-color: var(--state-active-color);
+      --state-container-opacity: var(--state-focus-opacity);
+    }
   }
 
   &:hover {
     cursor: pointer;
 
-    --state-container-color: #{$stepper-hover-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-hover-opacity);
   }
 
   &:focus-visible {
-    --state-container-color: #{$stepper-focus-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-focus-opacity);
   }
 }

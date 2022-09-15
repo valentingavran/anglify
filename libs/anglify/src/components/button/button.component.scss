@@ -29,11 +29,13 @@
   }
 
   &:focus-visible {
-    --state-container-color: #{$button-focus-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-focus-opacity);
   }
 
   &:hover:not(:disabled) {
-    --state-container-color: #{$button-hover-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-hover-opacity);
   }
 
   &.contained {
@@ -49,8 +51,9 @@
       color: $button-contained-label-color-disabled;
     }
 
-    &:active:not(:disabled) {
-      @include elevation(16);
+    &:active:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      @include elevation(10);
     }
   }
 

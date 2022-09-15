@@ -26,5 +26,3 @@ $stepper-label-text-transform: var(--anglify-stepper-label-text-transform, var(-
 $stepper-label-color-inactive: var(--anglify-stepper-label-color-inactive, rgba(var(--color-on-surface-high-emphasis, 0.6))) !default;
 $stepper-label-color-active: var(--anglify-stepper-label-color-active, var(--color-primary)) !default;
 $stepper-label-transition: var(--anglify-stepper-label-transition, color 500ms ease-out) !default;
-$stepper-hover-state-color: var(--anglify-stepper-hover-state-color, var(--color-primary-state-hover)) !default;
-$stepper-focus-state-color: var(--anglify-stepper-focus-state-color, var(--color-primary-state-focus)) !default;

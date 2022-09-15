@@ -91,7 +91,8 @@
   &:not(.anglify-input-focused):not(.anglify-input-disabled) {
     .anglify-input {
       &:hover {
-        --state-container-color: #{$input-filled-state-color-hover};
+        --state-container-color: var(--state-inactive-color);
+        --state-container-opacity: var(--state-hover-opacity);
 
         &::before {
           border-bottom: $input-filled-border-width-inactive solid $input-filled-border-color-hover;

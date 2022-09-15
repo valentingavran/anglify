@@ -45,8 +45,10 @@
   --color-on-bar-low-emphasis: var(--color-on-primary-low-emphasis);
   --color-backdrop: rgb(0 0 0 / 12%);
   --color-ripple: rgb(0 0 0 / 12%);
-  --color-primary-state-hover: rgb(98 0 238 / 4%);
-  --color-primary-state-focus: rgb(98 0 238 / 12%);
-  --color-surface-state-hover: rgb(0 0 0 / 4%);
-  --color-surface-state-focus: rgb(0 0 0 / 12%);
+  --state-hover-opacity: 8%;
+  --state-focus-opacity: 12%;
+  --state-pressed-opacity: 12%;
+  --state-dragged-opacity: 16%;
+  --state-inactive-color: #000;
+  --state-active-color: var(--color-primary);
 }

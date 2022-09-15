@@ -38,7 +38,3 @@ $checkbox-icon-after-left-position: var(--anglify-checkbox-icon-after-left-posit
 $checkbox-icon-after-height: var(--anglify-checkbox-icon-after-height, calc(2 * $checkbox-height / 14)) !default;
 $checkbox-checked-icon-transition-speed: var(--anglify-checkbox-checked-icon-transition-speed, width 125ms ease 75ms) !default;
 $checkbox-custom-icon-size: var(--anglify-checkbox-custom-icon-size, $checkbox-ripple-inner-width) !default;
-$checkbox-hover-state-inactive-color: var(--anglify-checkbox-hover-state-inactive-color, var(--color-primary-state-hover)) !default;
-$checkbox-hover-state-active-color: var(--anglify-checkbox-hover-state-active-color, var(--color-primary-state-hover)) !default;
-$checkbox-focus-state-inactive-color: var(--anglify-checkbox-focus-state-inactive-color, var(--color-primary-state-focus)) !default;
-$checkbox-focus-state-active-color: var(--anglify-checkbox-focus-state-active-color, var(--color-primary-state-focus)) !default;

@@ -2,11 +2,13 @@
 
 :host {
   &:hover {
-    --state-container-color: #{$tab-hover-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-hover-opacity);
   }
 
   &:focus-visible {
-    --state-container-color: #{$tab-focus-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-focus-opacity);
   }
 
   .anglify-tab-label {
@@ -19,11 +21,23 @@
     cursor: pointer;
     text-align: center;
     white-space: nowrap;
+  }
 
-    &.active {
+  &.active {
+    .anglify-tab-label {
       color: $tab-active-color;
 
       --anglify-icon-color: #{$tab-active-color};
+    }
+
+    &:hover {
+      --state-container-color: var(--state-active-color);
+      --state-container-opacity: var(--state-hover-opacity);
+    }
+
+    &:focus-visible {
+      --state-container-color: var(--state-active-color);
+      --state-container-opacity: var(--state-focus-opacity);
     }
   }
 

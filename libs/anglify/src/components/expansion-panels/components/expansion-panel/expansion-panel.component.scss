@@ -22,8 +22,14 @@
     cursor: pointer;
     user-select: none;
 
+    &:hover {
+      --state-container-color: var(--state-inactive-color);
+      --state-container-opacity: var(--state-hover-opacity);
+    }
+
     &:focus-visible {
-      --state-container-color: var(--color-surface-state-focus);
+      --state-container-color: var(--state-inactive-color);
+      --state-container-opacity: var(--state-focus-opacity);
     }
   }
 
