@@ -2,6 +2,7 @@ export type DataTableHeader<T = any> = {
   align?: 'center' | 'end' | 'start';
   computeContent?(item: DataTableItem<T>): string;
   filterable?: boolean;
+  hiddenOnMobile?: boolean;
   sort?(a: DataTableItem<T>, b: DataTableItem<T>): number;
   sortable?: boolean;
   text: string;
@@ -27,6 +28,7 @@ export type EntireDataTableSettings = {
   itemKey: string;
   loading: boolean;
   loadingText: string;
+  mobile: boolean;
   multiSort: boolean;
   noDataText: string;
   page: number;

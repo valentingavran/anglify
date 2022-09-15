@@ -2,6 +2,7 @@ $data-table-border-radius: var(--anglify-data-table-border-radius, 4px);
 $data-table-border: var(--anglify-data-table-border, 1px solid var(--border-color-on-surface-low-emphasis));
 $data-table-min-header-height: var(--anglify-data-table-min-header-height, 56px);
 $data-table-min-row-height: var(--anglify-data-table-min-row-height, 52px);
+$data-table-min-row-height-mobile: var(--anglify-data-table-min-row-height-mobile, 36px);
 $data-table-column-padding: var(--anglify-data-table-column-padding, 16px);
 $data-table-default-footer-padding: var(--anglify-data-table-default-footer-padding, 14px);
 $data-table-default-footer-gap: var(--anglify-data-table-default-footer-gap, 14px);

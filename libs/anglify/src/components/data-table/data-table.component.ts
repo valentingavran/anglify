@@ -243,30 +243,57 @@ export class DataTableComponent {
     this.noDataText$.next(value);
   }
 
+  public get mobile() {
+    return this.dataService.mobile$.value;
+  }
+
+  /**
+   * Used to toggle between regular Data Table view and mobile view.
+   */
+  @Input() public set mobile(value: boolean) {
+    this.dataService.mobile$.next(value);
+  }
+
   /**
    * Emitted when the selected items change.
    */
   @Output() public readonly selectionChange = new EventEmitter<DataTableItem[]>();
 
-  public readonly hideDefaultHeader$ = new BehaviorSubject(this.settings.hideDefaultHeader);
+  protected readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
 
-  public readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
+  protected readonly loading$ = new BehaviorSubject(this.settings.loading);
 
-  public readonly loading$ = new BehaviorSubject(this.settings.loading);
+  protected readonly loadingText$ = new BehaviorSubject(this.settings.loadingText);
 
-  public readonly loadingText$ = new BehaviorSubject(this.settings.loadingText);
+  protected readonly noDataText$ = new BehaviorSubject(this.settings.noDataText);
 
-  public readonly noDataText$ = new BehaviorSubject(this.settings.noDataText);
+  private readonly hideDefaultHeader$ = new BehaviorSubject(this.settings.hideDefaultHeader);
 
-  public loadingTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
+  private readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
+
+  protected loadingTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
     map(([loading, limitedItems]) => loading && limitedItems.length === 0)
   );
 
-  public noDataTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
+  protected noDataTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
     map(([loading, limitedItems]) => !loading && limitedItems.length === 0)
   );
 
-  public readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
+  protected defaultHeaderVisible$ = combineLatest([this.hideDefaultHeader$, this.dataService.mobile$]).pipe(
+    map(([hideDefaultHeader, mobile]) => !hideDefaultHeader && !mobile)
+  );
+
+  private columnWidths$ = combineLatest([this.dataService.headers$, this.selectionService.selectableRows$, this.dataService.mobile$]).pipe(
+    map(([headers, selectableRows, mobile]) => {
+      if (mobile) return ['1fr'];
+      let headerWidths = headers.map(header =>
+        header.width ? (typeof header.width === 'number' ? `${header.width}px` : header.width) : '1fr'
+      );
+      if (selectableRows) headerWidths = ['auto', ...headerWidths];
+      return headerWidths;
+    }),
+    map(widths => widths.join(' '))
+  );
 
   public constructor(
     @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition,
@@ -279,23 +306,8 @@ export class DataTableComponent {
   ) {
     this.selectionService.tableComponent = this;
 
-    bindStyleValueToNativeElement(
-      this,
-      combineLatest([this.dataService.headers$, this.selectionService.selectableRows$]).pipe(
-        map(([headers, selectableRows]) => {
-          let headerWidths = headers.map(header =>
-            header.width ? (typeof header.width === 'number' ? `${header.width}px` : header.width) : '1fr'
-          );
-          if (selectableRows) headerWidths = ['auto', ...headerWidths];
-          return headerWidths;
-        }),
-        map(widths => widths.join(' '))
-      ),
-      this.elementRef.nativeElement,
-      '--anglify-data-table-header-widths'
-    );
+    bindStyleValueToNativeElement(this, this.columnWidths$, this.elementRef.nativeElement, '--anglify-data-table-column-widths');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   protected readonly trackByFn = (index: number, item: DataTableItem) => item[this.itemKey$.value] || index;
 }

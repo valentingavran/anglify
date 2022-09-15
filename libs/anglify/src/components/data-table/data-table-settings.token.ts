@@ -13,6 +13,7 @@ export const DEFAULT_DATA_TABLE_SETTINGS: EntireDataTableSettings = {
   showFirstLastPageControls: false,
   loadingText: 'Loading…',
   loading: false,
+  mobile: false,
   noDataText: 'No data available',
 };
 

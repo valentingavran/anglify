@@ -16,10 +16,16 @@ export class DataService {
 
   public readonly search$ = new BehaviorSubject<string | undefined>(undefined);
 
+  public readonly mobile$ = new BehaviorSubject(this.settings.mobile);
+
   public constructor(
     @Inject(INTERNAL_ICONS) private readonly internalIcons: InternalIconSetDefinition,
     @Host() @Inject('anglifyDataTableSettings') public settings: EntireDataTableSettings
   ) {}
+
+  public filteredHeaders$ = combineLatest([this.headers$, this.mobile$]).pipe(
+    map(([headers, mobile]) => headers.filter(header => !(mobile && header.hiddenOnMobile)))
+  );
 
   public readonly filteredItems$ = combineLatest([
     this.items$,

@@ -75,6 +75,12 @@ You can switch between allowing multiple selected rows at the same time or just 
 
 <app-code-example component="data-table" example="complex-data"></app-code-example>
 
+### Mobile Mode
+
+The `mobile` property can be used to toggle the mobile view of the data table on and off. You can use the [Anglify Breakpoint Observer Service](/features/breakpoints) if you want to display this mode only on specific screen sizes.
+
+<app-code-example component="data-table" example="mobile-mode"></app-code-example>
+
 ## API
 
 ```typescript

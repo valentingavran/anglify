@@ -1,5 +1,5 @@
 <table>
-  <thead *ngIf="(hideDefaultHeader$ | async) === false">
+  <thead *ngIf="defaultHeaderVisible$ | async">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'header'">
       <th *ngIf="selectionService.selectableRows$ | async">
         <anglify-checkbox
@@ -40,6 +40,15 @@
       </ng-container>
     </ng-container>
   </thead>
+  <thead *ngIf="dataService.mobile$ | async" class="mobile">
+    <th *ngIf="selectionService.selectableRows$ | async">
+      <anglify-checkbox
+        *ngIf="selectionService.headerCheckboxEnabled$ | async"
+        (onCheckedChange)="selectionService.toggleAll()"
+        [checked]="(selectionService.areAllSelected$ | async) ?? false"
+      ></anglify-checkbox>
+    </th>
+  </thead>
   <tbody>
     <anglify-progress-linear *ngIf="loading$ | async" [indeterminate]="true"></anglify-progress-linear>
     <div class="loading-state" *ngIf="loadingTextVisible$ | async">
@@ -49,16 +58,20 @@
       <ng-container *anglifySlotOutlet="slots | findSlot: 'no-data'">{{ noDataText$ | async }}</ng-container>
     </div>
     <ng-container *ngFor="let item of paginationService.limitedItems$ | async; let index = index; trackBy: trackByFn">
-      <tr (click)="expansionService.expand(index)">
-        <td *ngIf="selectionService.selectableRows$ | async">
+      <tr (click)="expansionService.expand(index)" [ngClass]="(dataService.mobile$ | async) ? 'mobile' : ''">
+        <td class="row-selection" *ngIf="selectionService.selectableRows$ | async">
           <anglify-checkbox
             (onCheckedChange)="selectionService.toggleSelection(item)"
             [checked]="(selectionService.isSelected$(item) | async) ?? false"
           ></anglify-checkbox>
         </td>
-        <td *ngFor="let header of dataService.headers$ | async" [ngClass]="header.align ? 'align-' + header.align : 'align-start'">
+        <td
+          *ngFor="let header of dataService.filteredHeaders$ | async; let i = index; let c = count"
+          [ngClass]="[header.align ? 'align-' + header.align : 'align-start', i === c - 1 ? 'last' : '']"
+        >
           <ng-container *anglifySlotOutlet="slots | findSlot: 'item:' + header.value; context: { $implicit: item }">
-            <span>{{ header.computeContent ? header.computeContent(item) : item[header.value] }}</span>
+            <div class="mobile-header" *ngIf="dataService.mobile$ | async">{{ header.text }}</div>
+            <div>{{ header.computeContent ? header.computeContent(item) : item[header.value] }}</div>
           </ng-container>
         </td>
       </tr>
