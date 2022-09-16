@@ -1,6 +1,9 @@
 @use '../../variables' as *;
+@use '../../../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   &:hover {
     --state-container-color: var(--state-inactive-color);
     --state-container-opacity: var(--state-hover-opacity);

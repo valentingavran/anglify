@@ -1,6 +1,9 @@
 @use '../../variables' as *;
+@use '../../../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: block;
   width: 100%;
   box-sizing: border-box;

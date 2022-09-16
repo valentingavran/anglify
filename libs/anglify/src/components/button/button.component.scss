@@ -1,8 +1,11 @@
 @use 'variables' as *;
 @use '../../styles/mixins/elevation' as *;
 @use '../../styles/settings';
+@use '../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;

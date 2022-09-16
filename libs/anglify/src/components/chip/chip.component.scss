@@ -1,6 +1,9 @@
 @use 'variables' as *;
+@use '../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: inline-flex;
   min-height: $chip-height;
   align-items: center;
@@ -22,11 +25,6 @@
   &:focus-visible {
     --state-container-color: var(--state-inactive-color);
     --state-container-opacity: var(--state-focus-opacity);
-  }
-
-  .prepend,
-  .append {
-    --state-container-color: transparent;
   }
 
   &.filter {

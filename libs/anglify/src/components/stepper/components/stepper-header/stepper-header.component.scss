@@ -1,6 +1,9 @@
 @use '../../variables' as *;
+@use '../../../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: flex;
   height: $stepper-header-height;
   align-items: center;

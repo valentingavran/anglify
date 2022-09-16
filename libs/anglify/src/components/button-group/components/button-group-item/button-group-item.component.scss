@@ -1,6 +1,9 @@
 @use '../../variables' as *;
+@use '../../../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: inline-block;
   min-width: $button-group-min-width;
   min-height: $button-group-min-height;

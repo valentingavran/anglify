@@ -1,6 +1,9 @@
 @use '../../_variables.scss' as *;
+@use '../../../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: flex;
   min-height: 40px;
   align-items: center;
@@ -11,11 +14,6 @@
   .item-content {
     min-width: 0;
     flex: 1;
-  }
-
-  .prepend,
-  .append {
-    --state-container-color: transparent;
   }
 
   &:focus-visible {
