@@ -11,6 +11,11 @@
     contain: strict;
     inset: 0;
     pointer-events: none;
+
+    .anglify-state-background {
+      position: absolute;
+      inset: 0;
+    }
   }
 
   .anglify-state-ripple {

@@ -24,11 +24,16 @@ import { ButtonComponent } from '../button/button.component';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
+import { ListComponent } from '../list/components/list/list.component';
+import { ListItemComponent } from '../list/components/list-item/list-item.component';
+import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
+import { MenuDirective } from '../menu/menu.directive';
 import { ProgressLinearComponent } from '../progress-linear/progress-linear.component';
 import { SelectComponent } from '../select/select.component';
 import { DATA_TABLE_SETTINGS, DEFAULT_DATA_TABLE_SETTINGS } from './data-table-settings.token';
-import { EntireDataTableSettings } from './data-table.interface';
 import type { DataTableHeader, DataTableItem } from './data-table.interface';
+import { EntireDataTableSettings } from './data-table.interface';
+import { IsColumnVisiblePipe } from './pipes/is-column-hidden.pipe';
 import { DataService } from './services/data.service';
 import { ExpansionService } from './services/expansion.service';
 import { PaginationService } from './services/pagination.service';
@@ -61,6 +66,12 @@ import { SelectionService } from './services/selection.service';
     SlotOutletDirective,
     ButtonComponent,
     ProgressLinearComponent,
+    ListItemComponent,
+    ListComponent,
+    ListItemTitleComponent,
+    MenuDirective,
+    SlotDirective,
+    IsColumnVisiblePipe,
   ],
 })
 export class DataTableComponent {
@@ -243,30 +254,65 @@ export class DataTableComponent {
     this.noDataText$.next(value);
   }
 
+  public get mobile() {
+    return this.dataService.mobile$.value;
+  }
+
+  /**
+   * Used to toggle between regular Data Table view and mobile view.
+   */
+  @Input() public set mobile(value: boolean) {
+    this.dataService.mobile$.next(value);
+  }
+
+  public get showColumnsControl() {
+    return this.dataService.showColumnsControl$.value;
+  }
+
+  @Input() public set showColumnsControl(value: boolean) {
+    this.dataService.showColumnsControl$.next(value);
+  }
+
   /**
    * Emitted when the selected items change.
    */
   @Output() public readonly selectionChange = new EventEmitter<DataTableItem[]>();
 
-  public readonly hideDefaultHeader$ = new BehaviorSubject(this.settings.hideDefaultHeader);
+  protected readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
 
-  public readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
+  protected readonly loading$ = new BehaviorSubject(this.settings.loading);
 
-  public readonly loading$ = new BehaviorSubject(this.settings.loading);
+  protected readonly loadingText$ = new BehaviorSubject(this.settings.loadingText);
 
-  public readonly loadingText$ = new BehaviorSubject(this.settings.loadingText);
+  protected readonly noDataText$ = new BehaviorSubject(this.settings.noDataText);
 
-  public readonly noDataText$ = new BehaviorSubject(this.settings.noDataText);
+  private readonly hideDefaultHeader$ = new BehaviorSubject(this.settings.hideDefaultHeader);
 
-  public loadingTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
+  private readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
+
+  protected loadingTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
     map(([loading, limitedItems]) => loading && limitedItems.length === 0)
   );
 
-  public noDataTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
+  protected noDataTextVisible$ = combineLatest([this.loading$, this.paginationService.limitedItems$]).pipe(
     map(([loading, limitedItems]) => !loading && limitedItems.length === 0)
   );
 
-  public readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
+  protected defaultHeaderVisible$ = combineLatest([this.hideDefaultHeader$, this.dataService.mobile$]).pipe(
+    map(([hideDefaultHeader, mobile]) => !hideDefaultHeader && !mobile)
+  );
+
+  private columnWidths$ = combineLatest([this.dataService.headers$, this.selectionService.selectableRows$, this.dataService.mobile$]).pipe(
+    map(([headers, selectableRows, mobile]) => {
+      if (mobile) return ['1fr'];
+      let headerWidths = headers
+        .filter(header => !header.hidden)
+        .map(header => (header.width ? (typeof header.width === 'number' ? `${header.width}px` : header.width) : '1fr'));
+      if (selectableRows) headerWidths = ['auto', ...headerWidths];
+      return headerWidths;
+    }),
+    map(widths => widths.join(' '))
+  );
 
   public constructor(
     @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition,
@@ -279,23 +325,10 @@ export class DataTableComponent {
   ) {
     this.selectionService.tableComponent = this;
 
-    bindStyleValueToNativeElement(
-      this,
-      combineLatest([this.dataService.headers$, this.selectionService.selectableRows$]).pipe(
-        map(([headers, selectableRows]) => {
-          let headerWidths = headers.map(header =>
-            header.width ? (typeof header.width === 'number' ? `${header.width}px` : header.width) : '1fr'
-          );
-          if (selectableRows) headerWidths = ['auto', ...headerWidths];
-          return headerWidths;
-        }),
-        map(widths => widths.join(' '))
-      ),
-      this.elementRef.nativeElement,
-      '--anglify-data-table-header-widths'
-    );
+    bindStyleValueToNativeElement(this, this.columnWidths$, this.elementRef.nativeElement, '--anglify-data-table-column-widths');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   protected readonly trackByFn = (index: number, item: DataTableItem) => item[this.itemKey$.value] || index;
+
+  protected readonly headerTrackByFn = (index: number) => index;
 }

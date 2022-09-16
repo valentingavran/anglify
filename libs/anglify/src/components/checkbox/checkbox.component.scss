@@ -1,6 +1,9 @@
 @use 'variables' as *;
+@use '../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: block;
   user-select: none;
 
@@ -143,11 +146,13 @@
     }
 
     .state-container:focus-visible {
-      --state-container-color: #{$checkbox-focus-state-active-color};
+      --state-container-color: var(--state-active-color);
+      --state-container-opacity: var(--state-focus-opacity);
     }
 
     .state-container:hover {
-      --state-container-color: #{$checkbox-hover-state-active-color};
+      --state-container-color: var(--state-active-color);
+      --state-container-opacity: var(--state-hover-opacity);
     }
   }
 
@@ -159,11 +164,13 @@
     }
 
     .state-container:focus-visible {
-      --state-container-color: #{$checkbox-focus-state-inactive-color};
+      --state-container-color: var(--state-inactive-color);
+      --state-container-opacity: var(--state-focus-opacity);
     }
 
     .state-container:hover {
-      --state-container-color: #{$checkbox-hover-state-inactive-color};
+      --state-container-color: var(--state-inactive-color);
+      --state-container-opacity: var(--state-hover-opacity);
     }
   }
 }

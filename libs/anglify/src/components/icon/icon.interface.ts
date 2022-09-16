@@ -11,7 +11,8 @@ export type InternalIcons =
   | 'closeCircle'
   | 'edit'
   | 'pageFirst'
-  | 'pageLast';
+  | 'pageLast'
+  | 'viewColumn';
 
 export type IconSet = 'custom' | 'fa4' | 'fa5' | 'faSVG' | 'md' | 'mdi' | 'mdiSVG';
 export type InternalIconMappings = { [T in IconSet]: InternalIconSetDefinition };

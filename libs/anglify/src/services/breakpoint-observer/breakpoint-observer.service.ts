@@ -25,6 +25,8 @@ export class BreakpointObserverService {
     shareReplay(1)
   );
 
+  public readonly xs$ = this.size$.pipe(map(size => size === 'xs'));
+
   public readonly smAndDown$ = this.size$.pipe(map(size => size === 'xs' || size === 'sm'));
 
   public readonly sm$ = this.size$.pipe(map(size => size === 'sm'));

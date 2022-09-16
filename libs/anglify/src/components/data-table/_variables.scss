@@ -2,8 +2,8 @@ $data-table-border-radius: var(--anglify-data-table-border-radius, 4px);
 $data-table-border: var(--anglify-data-table-border, 1px solid var(--border-color-on-surface-low-emphasis));
 $data-table-min-header-height: var(--anglify-data-table-min-header-height, 56px);
 $data-table-min-row-height: var(--anglify-data-table-min-row-height, 52px);
+$data-table-min-row-height-mobile: var(--anglify-data-table-min-row-height-mobile, 36px);
 $data-table-column-padding: var(--anglify-data-table-column-padding, 16px);
-$data-table-default-footer-height: var(--anglify-data-table-default-footer-height, 40px);
 $data-table-default-footer-padding: var(--anglify-data-table-default-footer-padding, 14px);
 $data-table-default-footer-gap: var(--anglify-data-table-default-footer-gap, 14px);
 $data-table-pagination-font: var(--anglify-data-table-pagination-font, var(--font-caption));
@@ -13,7 +13,6 @@ $data-table-sort-priority-font: var(--anglify-data-table-sort-priority-font, var
 $data-table-sort-priority-letter-spacing: var(--anglify-data-table-sort-priority-letter-spacing, var(--font-letter-spacing-caption));
 $data-table-sort-priority-text-transform: var(--anglify-data-table-sort-priority-text-transform, var(--font-text-transform-caption));
 $data-table-sort-priority-background-color: var(--anglify-data-table-sort-priority-background-color, var(--color-surface-overlay));
-$data-table-row-hover-background-color: var(--anglify-data-table-row-hover-background-color, var(--color-surface-state-hover));
 $data-table-expanded-item-box-shadow: var(
   --anglify-data-table-expanded-item-box-shadow,
   inset 0 4px 8px -5px rgb(50 50 50 / 75%),

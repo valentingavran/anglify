@@ -11,6 +11,7 @@ import {
   mdiPageLast,
   mdiChevronLeft,
   mdiChevronRight,
+  mdiViewColumnOutline,
 } from '@mdi/js';
 import type { EntireIconSettings, IconSettings } from './icon.interface';
 
@@ -29,6 +30,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       mdiPageLast,
       mdiChevronLeft,
       mdiChevronRight,
+      mdiViewColumnOutline,
     },
     mdiSVG: {
       mdiCheck,
@@ -42,6 +44,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       mdiPageLast,
       mdiChevronLeft,
       mdiChevronRight,
+      mdiViewColumnOutline,
     },
   },
   defaultSize: 'regular',
@@ -58,6 +61,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       pageLast: 'mdiPageLast',
       chevronLeft: 'mdiChevronLeft',
       chevronRight: 'mdiChevronRight',
+      viewColumn: 'mdiViewColumnOutline',
     },
     fa4: {
       check: 'fa-check',
@@ -71,6 +75,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       pageLast: 'fa-step-forward',
       chevronLeft: 'fa-chevron-left',
       chevronRight: 'fa-chevron-right',
+      viewColumn: 'fa-columns',
     },
     fa5: {
       check: 'fa-check',
@@ -84,6 +89,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       pageLast: 'fa-step-forward',
       chevronLeft: 'fa-chevron-left',
       chevronRight: 'fa-chevron-right',
+      viewColumn: 'fa-columns',
     },
     md: {
       check: 'check',
@@ -97,6 +103,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       pageLast: 'last_page',
       chevronLeft: 'chevron_left',
       chevronRight: 'chevron_right',
+      viewColumn: 'view_column',
     },
     mdi: {
       check: 'mdi-check',
@@ -110,6 +117,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       pageLast: 'mdi-page-last',
       chevronLeft: 'mdi-chevron-left',
       chevronRight: 'mdi-chevron-right',
+      viewColumn: 'mdi-view-column-outline',
     },
     mdiSVG: {
       check: 'mdiCheck',
@@ -123,6 +131,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       pageLast: 'mdiPageLast',
       chevronLeft: 'mdiChevronLeft',
       chevronRight: 'mdiChevronRight',
+      viewColumn: 'mdiViewColumnOutline',
     },
     faSVG: {
       check: '',
@@ -136,6 +145,7 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       pageLast: '',
       chevronLeft: '',
       chevronRight: '',
+      viewColumn: '',
     },
   },
 };

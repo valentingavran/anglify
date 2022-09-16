@@ -23,6 +23,7 @@ import { SlotDirective } from '../../../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../../../factories/settings.factory';
 import { FindSlotPipe } from '../../../../pipes/find-slot/find-slot.pipe';
+import { bindClassToNativeElement } from '../../../../utils/functions';
 import { RouterLinkCommands } from '../../../../utils/interfaces';
 import { DEFAULT_TAB_SETTINGS, TAB_SETTINGS } from '../../tab-settings.token';
 import { EntireTabSettings } from '../../tab.interface';
@@ -156,6 +157,7 @@ export class TabComponent implements AfterViewInit {
     this.state = this.settings.state;
 
     this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
+    bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');
   }
 
   public ngAfterViewInit() {

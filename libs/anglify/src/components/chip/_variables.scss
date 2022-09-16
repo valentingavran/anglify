@@ -9,8 +9,6 @@ $chip-outlined-border: var(--anglify-chip-outlined-border, 1px solid var(--borde
 $chip-group-gap: var(--anglify-chip-group-gap, 16px) !default;
 $chip-filter-prepend-width: var(--anglify-chip-filter-prepend-width, 30px) !default;
 $chip-filter-transition-speed: var(--anglify-chip-filter-transition-speed, all 250ms) !default;
-$chip-hover-state-color: var(--anglify-hover-state-color, var(--color-primary-state-hover)) !default;
-$chip-focus-state-color: var(--anglify-focus-state-color, var(--color-primary-state-focus)) !default;
 $chip-font: var(--anglify-chip-font, var(--font-body-2)) !default;
 $chip-letter-spacing: var(--anglify-chip-letter-spacing, var(--font-letter-spacing-body-2)) !default;
 $chip-text-transform: var(--anglify-chip-text-transform, var(--font-text-transform-body-2)) !default;

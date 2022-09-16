@@ -1,6 +1,9 @@
 @use 'variables' as *;
+@use '../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: block;
 
   .before {
@@ -112,12 +115,14 @@
     }
 
     & ~ .container:hover {
-      --state-container-color: #{$radio-button-hover-state-active-color};
+      --state-container-color: var(--state-active-color);
+      --state-container-opacity: var(--state-hover-opacity);
     }
 
     &:focus-visible {
       & ~ .container {
-        --state-container-color: #{$radio-button-focus-state-active-color};
+        --state-container-color: var(--state-active-color);
+        --state-container-opacity: var(--state-focus-opacity);
       }
     }
   }
@@ -125,12 +130,14 @@
   /* stylelint-disable-next-line selector-not-notation, no-descending-specificity */
   input:not(:checked):not(:disabled) {
     & ~ .container:hover {
-      --state-container-color: #{$radio-button-hover-state-inactive-color};
+      --state-container-color: var(--state-inactive-color);
+      --state-container-opacity: var(--state-hover-opacity);
     }
 
     &:focus-visible {
       & ~ .container {
-        --state-container-color: #{$radio-button-focus-state-inactive-color};
+        --state-container-color: var(--state-inactive-color);
+        --state-container-opacity: var(--state-focus-opacity);
       }
     }
   }

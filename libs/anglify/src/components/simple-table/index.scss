@@ -51,10 +51,18 @@
   /* stylelint-disable-next-line no-descending-specificity */
   :not(tfoot) tr {
     &:hover {
-      background: $simple-table-hover-background;
-
       td {
-        background: transparent;
+        position: relative;
+        transform-style: preserve-3d;
+
+        &::after {
+          position: absolute;
+          background-color: var(--state-inactive-color);
+          content: '';
+          inset: 0;
+          opacity: var(--state-hover-opacity);
+          transform: translateZ(-1px);
+        }
       }
     }
   }

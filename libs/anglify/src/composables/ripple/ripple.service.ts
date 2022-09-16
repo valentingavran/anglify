@@ -38,13 +38,26 @@ export class RippleService {
 
   private readonly visibleRipples: HTMLElement[] = [];
 
-  private readonly stateContainer = this.createStateContainer();
+  private readonly stateContainer;
+
+  private readonly backgroundContainer;
 
   public constructor(private readonly elementRef: ElementRef<HTMLElement>, private readonly renderer: Renderer2) {
     this.elementRef.nativeElement.classList.add('anglify-state');
     this.showRippleHandler$.pipe(untilDestroyed(this)).subscribe();
     this.hideRippleHandler$.pipe(untilDestroyed(this)).subscribe();
-    bindStyleToNativeElement(this, this.stateFull$, this.stateContainer, 'backgroundColor', 'var(--state-container-color, transparent)');
+
+    this.stateContainer = this.createStateContainer();
+    this.backgroundContainer = this.createBackgroundContainer(this.stateContainer);
+
+    bindStyleToNativeElement(
+      this,
+      this.stateFull$,
+      this.backgroundContainer,
+      'backgroundColor',
+      'var(--state-container-color, transparent)'
+    );
+    bindStyleToNativeElement(this, this.stateFull$, this.backgroundContainer, 'opacity', 'var(--state-container-opacity,1)');
   }
 
   private readonly showRippleHandler$ = this.showRippleAction$.pipe(
@@ -106,6 +119,13 @@ export class RippleService {
     const container = this.renderer.createElement('div') as HTMLDivElement;
     container.classList.add('anglify-state-container');
     this.renderer.appendChild(this.elementRef.nativeElement, container);
+    return container;
+  }
+
+  private createBackgroundContainer(stateContainer: HTMLElement) {
+    const container = this.renderer.createElement('div') as HTMLDivElement;
+    container.classList.add('anglify-state-background');
+    this.renderer.appendChild(stateContainer, container);
     return container;
   }
 }

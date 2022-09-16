@@ -1,0 +1,9 @@
+/** If a component with a state has another component with a state as a child element, then 
+the state can be transferred. This mixin prevents that.
+
+Every component with a state should use this mixin.
+*/
+@mixin reset-state() {
+  --state-container-color: transparent;
+  --state-container-opacity: 1;
+}

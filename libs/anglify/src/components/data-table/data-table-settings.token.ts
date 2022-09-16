@@ -13,7 +13,9 @@ export const DEFAULT_DATA_TABLE_SETTINGS: EntireDataTableSettings = {
   showFirstLastPageControls: false,
   loadingText: 'Loading…',
   loading: false,
+  mobile: false,
   noDataText: 'No data available',
+  showColumnsControl: false,
 };
 
 export const DATA_TABLE_SETTINGS = new InjectionToken<DataTableSettings>('Data Table Settings');

@@ -1,6 +1,9 @@
 @use '../../variables' as *;
+@use '../../../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: inline-block;
   min-width: $button-group-min-width;
   min-height: $button-group-min-height;
@@ -24,15 +27,18 @@
   }
 
   &.active {
-    --state-container-color: #{$button-group-active-state-color};
+    --state-container-color: var(--state-active-color);
+    --state-container-opacity: var(--state-focus-opacity);
   }
 
   &:focus-visible:not(.disabled) {
-    --state-container-color: #{$button-group-focus-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-focus-opacity);
   }
 
   /* stylelint-disable-next-line selector-not-notation */
   &:hover:not(.disabled):not(.active) {
-    --state-container-color: #{$button-group-hover-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-hover-opacity);
   }
 }

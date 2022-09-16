@@ -1,6 +1,9 @@
 @use 'variables' as *;
+@use '../../styles/mixins/reset-state' as *;
 
 :host {
+  @include reset-state;
+
   display: inline-flex;
   min-height: $chip-height;
   align-items: center;
@@ -15,16 +18,13 @@
   user-select: none;
 
   &:hover {
-    --state-container-color: #{$chip-hover-state-color};
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-hover-opacity);
   }
 
   &:focus-visible {
-    --state-container-color: #{$chip-focus-state-color};
-  }
-
-  .prepend,
-  .append {
-    --state-container-color: transparent;
+    --state-container-color: var(--state-inactive-color);
+    --state-container-opacity: var(--state-focus-opacity);
   }
 
   &.filter {
@@ -45,7 +45,8 @@
   }
 
   &.active {
-    --state-container-color: var(--color-primary-state-focus);
+    --state-container-color: var(--state-active-color);
+    --state-container-opacity: var(--state-focus-opacity);
 
     color: $chip-active-label-color;
   }

@@ -1,4 +1,4 @@
-table:not(.anglify-simple-table) {
+*:not(anglify-data-table) > table:not(.anglify-simple-table) {
   width: 100%;
   border: 1px solid var(--border-color-on-surface-low-emphasis);
   border-collapse: collapse;
@@ -51,10 +51,18 @@ table:not(.anglify-simple-table) {
   /* stylelint-disable-next-line no-descending-specificity */
   :not(tfoot) tr {
     &:hover {
-      background: var(--color-surface-state-hover);
-
       td {
-        background: transparent;
+        position: relative;
+        transform-style: preserve-3d;
+
+        &::after {
+          position: absolute;
+          background-color: var(--state-inactive-color);
+          content: '';
+          inset: 0;
+          opacity: var(--state-hover-opacity);
+          transform: translateZ(-1px);
+        }
       }
     }
   }
