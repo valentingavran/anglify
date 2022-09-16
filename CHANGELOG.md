@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.0](https://github.com/valentingavran/anglify/compare/v0.32.1...v0.33.0) (2022-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* The Ripple/State system has been completely refactored. All **state custom
+properties of the respective components have been removed**. Also, the following global custom
+properties have been removed ~~`--color-primary-state-hover`~~, ~~`--color-primary-state-focus`~~,
+~~`--color-surface-state-hover`~~, ~~`--color-surface-state-focus`~~ and the following custom
+properties have been newly introduced: `--state-hover-opacity`, `--state-focus-opacity`,
+`--state-pressed-opacity`, `--state-dragged-opacity`, `--state-inactive-color`,
+`--state-active-color`.
+* **DataTable:** Access modifiers of some Data Table properties have been changed.
+
+### 📝  Docs
+
+* fix some code examples ([d4e233d](https://github.com/valentingavran/anglify/commit/d4e233d18f8a4dea1e1b438a114213a6949fd909))
+
+
+### 🔬  Code Refactoring
+
+* ripple/state system was made more flexible ([3a637b5](https://github.com/valentingavran/anglify/commit/3a637b5f44c17b9afcded515e4bd3475fe0d6a60))
+
+
+### 🚀  Features
+
+* **BreakpointObserverService:** add xs$ observable ([1da6444](https://github.com/valentingavran/anglify/commit/1da64448cadd78efe906347e554febf4b8e27d6b))
+* **DataTable:** add possibility to show and hide columns ([eb87081](https://github.com/valentingavran/anglify/commit/eb870814682196b909808626b8eb829a1e1f3313))
+* **DataTable:** add support for mobile mode (toggled by using property) ([0dcbdb0](https://github.com/valentingavran/anglify/commit/0dcbdb0ce3bdf41861f29d36096c1e6a58c7c8b5))
+* **DataTable:** footer doesn't  scroll with content anymore ([56dec10](https://github.com/valentingavran/anglify/commit/56dec10a0454dfa63e2b1b566413426f05bb27a6))
+
+
+### 🐛  Bug Fixes
+
+* **DataTable:** next page button is now disabled if there are no items ([69b14fb](https://github.com/valentingavran/anglify/commit/69b14fb86b19a0c70c1f9fa093d49b55b7bde06e))
+* ripples/states of parent elements do not influence children anymore ([15e9672](https://github.com/valentingavran/anglify/commit/15e9672c8b5da18049fd308185338f443a838c11))
+
 ### [0.32.1](https://github.com/valentingavran/anglify/compare/v0.32.0...v0.32.1) (2022-09-12)
 
 
