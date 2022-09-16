@@ -1,7 +1,17 @@
-<button type="button" anglifyButton appearance="contained" anglifyBadge="1">Notifications</button>
-<button type="button" anglifyButton appearance="contained" [anglifyBadge]="('99988' | slice: 0:3) + '+'">Notifications</button>
+<anglify-badge content="1">
+  <button type="button" anglifyButton appearance="contained">Notifications</button>
+</anglify-badge>
 
-<button type="button" anglifyButton appearance="contained" anglifyBadge="1" [badgeBorder]="true">Notifications</button>
-<button type="button" anglifyButton appearance="contained" [anglifyBadge]="('99988' | slice: 0:3) + '+'" [badgeBorder]="true">
-  Notifications
-</button>
+<anglify-badge [content]="('99988' | slice: 0:3) + '+'">
+  <button type="button" anglifyButton appearance="contained">Notifications</button>
+</anglify-badge>
+
+<anglify-badge [bordered]="true">
+  <ng-template slot="content">1</ng-template>
+  <button type="button" anglifyButton appearance="contained">Notifications</button>
+</anglify-badge>
+
+<anglify-badge [bordered]="true">
+  <ng-template slot="content">{{ ('99988' | slice: 0:3) + '+' }}</ng-template>
+  <button type="button" anglifyButton appearance="contained">Notifications</button>
+</anglify-badge>

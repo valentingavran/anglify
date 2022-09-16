@@ -27,7 +27,6 @@ export * from './components/autocomplete/autocomplete.component';
 // Badge
 export * from './components/badge/badge-settings.token';
 export * from './components/badge/badge.component';
-export * from './components/badge/badge.directive';
 export * from './components/badge/badge.interface';
 // Bottom-Navigation
 export * from './components/bottom-navigation/bottom-navigation.component';
