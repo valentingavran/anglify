@@ -2,6 +2,7 @@ export type DataTableHeader<T = any> = {
   align?: 'center' | 'end' | 'start';
   computeContent?(item: DataTableItem<T>): string;
   filterable?: boolean;
+  hidden?: boolean;
   hiddenOnMobile?: boolean;
   sort?(a: DataTableItem<T>, b: DataTableItem<T>): number;
   sortable?: boolean;
@@ -33,6 +34,7 @@ export type EntireDataTableSettings = {
   noDataText: string;
   page: number;
   selectableRows: boolean;
+  showColumnsControl: boolean;
   showFirstLastPageControls: boolean;
   singleSelect: boolean;
 };

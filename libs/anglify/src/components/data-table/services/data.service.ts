@@ -18,13 +18,20 @@ export class DataService {
 
   public readonly mobile$ = new BehaviorSubject(this.settings.mobile);
 
+  public readonly showColumnsControl$ = new BehaviorSubject(this.settings.showColumnsControl);
+
   public constructor(
     @Inject(INTERNAL_ICONS) private readonly internalIcons: InternalIconSetDefinition,
     @Host() @Inject('anglifyDataTableSettings') public settings: EntireDataTableSettings
   ) {}
 
   public filteredHeaders$ = combineLatest([this.headers$, this.mobile$]).pipe(
-    map(([headers, mobile]) => headers.filter(header => !(mobile && header.hiddenOnMobile)))
+    map(([headers, mobile]) =>
+      headers.filter(header => {
+        if (mobile) return !header.hiddenOnMobile;
+        return !header.hidden;
+      })
+    )
   );
 
   public readonly filteredItems$ = combineLatest([
@@ -140,5 +147,18 @@ export class DataService {
         return option ? (option.direction === 'asc' ? this.internalIcons.arrowDown : this.internalIcons.arrowUp) : undefined;
       })
     );
+  }
+
+  public toggleHeaderVisibility(header: DataTableHeader) {
+    const headers = this.headers$.value;
+    const index = headers.indexOf(header);
+    if (index === -1) return;
+    if (this.mobile$.value) {
+      headers[index] = { ...headers[index], hiddenOnMobile: !headers[index].hiddenOnMobile };
+    } else {
+      headers[index] = { ...headers[index], hidden: !headers[index].hidden };
+    }
+
+    this.headers$.next(headers);
   }
 }

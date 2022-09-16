@@ -78,8 +78,14 @@ You can switch between allowing multiple selected rows at the same time or just 
 ### Mobile Mode
 
 The `mobile` property can be used to toggle the mobile view of the data table on and off. You can use the [Anglify Breakpoint Observer Service](/features/breakpoints) if you want to display this mode only on specific screen sizes.
-
 <app-code-example component="data-table" example="mobile-mode"></app-code-example>
+
+### Show Columns Control
+
+With the `showColumnsControl` property you can add the columns button to the footer. This button enables you to show and hide individual columns. In the header config you can define the default hidden columns with the `hidden` property and for the mobile view you can use the `hiddenOnMobile` property.
+
+The hidden columns in the mobile view are independent from the hidden columns in the normal view.
+<app-code-example component="data-table" example="columns-control"></app-code-example>
 
 ## API
 

@@ -179,6 +179,22 @@
     padding: $data-table-default-footer-padding;
     gap: $data-table-default-footer-gap;
 
+    --anglify-menu-max-width: 300px;
+
+    .columns-activator {
+      align-self: flex-start;
+      margin-right: auto;
+
+      .default-columns-activator {
+        --anglify-button-text-label-color: var(--color-on-surface-medium-emphasis);
+      }
+    }
+
+    .filter-menu {
+      max-height: inherit;
+      overflow-y: auto;
+    }
+
     .pagination {
       font: $data-table-pagination-font;
       letter-spacing: $data-table-pagination-letter-spacing;

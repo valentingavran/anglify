@@ -24,11 +24,16 @@ import { ButtonComponent } from '../button/button.component';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
+import { ListComponent } from '../list/components/list/list.component';
+import { ListItemComponent } from '../list/components/list-item/list-item.component';
+import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
+import { MenuDirective } from '../menu/menu.directive';
 import { ProgressLinearComponent } from '../progress-linear/progress-linear.component';
 import { SelectComponent } from '../select/select.component';
 import { DATA_TABLE_SETTINGS, DEFAULT_DATA_TABLE_SETTINGS } from './data-table-settings.token';
 import type { DataTableHeader, DataTableItem } from './data-table.interface';
 import { EntireDataTableSettings } from './data-table.interface';
+import { IsColumnVisiblePipe } from './pipes/is-column-hidden.pipe';
 import { DataService } from './services/data.service';
 import { ExpansionService } from './services/expansion.service';
 import { PaginationService } from './services/pagination.service';
@@ -61,6 +66,12 @@ import { SelectionService } from './services/selection.service';
     SlotOutletDirective,
     ButtonComponent,
     ProgressLinearComponent,
+    ListItemComponent,
+    ListComponent,
+    ListItemTitleComponent,
+    MenuDirective,
+    SlotDirective,
+    IsColumnVisiblePipe,
   ],
 })
 export class DataTableComponent {
@@ -254,6 +265,14 @@ export class DataTableComponent {
     this.dataService.mobile$.next(value);
   }
 
+  public get showColumnsControl() {
+    return this.dataService.showColumnsControl$.value;
+  }
+
+  @Input() public set showColumnsControl(value: boolean) {
+    this.dataService.showColumnsControl$.next(value);
+  }
+
   /**
    * Emitted when the selected items change.
    */
@@ -286,9 +305,9 @@ export class DataTableComponent {
   private columnWidths$ = combineLatest([this.dataService.headers$, this.selectionService.selectableRows$, this.dataService.mobile$]).pipe(
     map(([headers, selectableRows, mobile]) => {
       if (mobile) return ['1fr'];
-      let headerWidths = headers.map(header =>
-        header.width ? (typeof header.width === 'number' ? `${header.width}px` : header.width) : '1fr'
-      );
+      let headerWidths = headers
+        .filter(header => !header.hidden)
+        .map(header => (header.width ? (typeof header.width === 'number' ? `${header.width}px` : header.width) : '1fr'));
       if (selectableRows) headerWidths = ['auto', ...headerWidths];
       return headerWidths;
     }),
@@ -310,4 +329,6 @@ export class DataTableComponent {
   }
 
   protected readonly trackByFn = (index: number, item: DataTableItem) => item[this.itemKey$.value] || index;
+
+  protected readonly headerTrackByFn = (index: number) => index;
 }

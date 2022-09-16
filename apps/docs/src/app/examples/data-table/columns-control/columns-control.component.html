@@ -1,0 +1,14 @@
+<anglify-data-table
+  [headers]="headers"
+  [items]="items"
+  [mobile]="(breakpointService.xs$ | async) ?? false"
+  [showColumnsControl]="true"
+></anglify-data-table>
+
+<anglify-data-table [headers]="headers" [items]="items" [mobile]="(breakpointService.xs$ | async) ?? false" [showColumnsControl]="true">
+  <ng-template slot="columns-activator">
+    <button anglifyButton appearance="icon" type="button">
+      <anglify-icon icon="mdi-view-column-outline"></anglify-icon>
+    </button>
+  </ng-template>
+</anglify-data-table>

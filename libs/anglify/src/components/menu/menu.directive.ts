@@ -152,8 +152,7 @@ export class MenuDirective implements OnDestroy {
   }
 
   @HostListener('click')
-  // @ts-expect-error: Value is used
-  private onClick() {
+  protected onClick() {
     if (!this.openOnClick) return;
     this.openAction$.next();
   }
@@ -236,7 +235,7 @@ export class MenuDirective implements OnDestroy {
         map(target => {
           if (this.componentRef) {
             const element = this.componentRef.location.nativeElement as HTMLElement;
-            return !element.contains(target) && !element.parentElement?.contains(target);
+            return !element.contains(target);
           }
 
           return !this.element.nativeElement.contains(target);
