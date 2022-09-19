@@ -146,13 +146,11 @@
     }
 
     .state-container:focus-visible {
-      --state-container-color: var(--state-active-color);
-      --state-container-opacity: var(--state-focus-opacity);
+      --state-container-color: var(--color-state-active-focus);
     }
 
     .state-container:hover {
-      --state-container-color: var(--state-active-color);
-      --state-container-opacity: var(--state-hover-opacity);
+      --state-container-color: var(--color-state-active-hover);
     }
   }
 
@@ -164,13 +162,11 @@
     }
 
     .state-container:focus-visible {
-      --state-container-color: var(--state-inactive-color);
-      --state-container-opacity: var(--state-focus-opacity);
+      --state-container-color: var(--color-state-inactive-focus);
     }
 
     .state-container:hover {
-      --state-container-color: var(--state-inactive-color);
-      --state-container-opacity: var(--state-hover-opacity);
+      --state-container-color: var(--color-state-inactive-hover);
     }
   }
 }

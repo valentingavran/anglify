@@ -124,8 +124,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     this.readonly$.next(value);
   }
 
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() public readonly onCheckedChange = new EventEmitter<boolean>();
+  @Output() public readonly checkedChange = new EventEmitter<boolean>();
 
   public iconProvider!: CheckboxIconRef | null;
 
@@ -226,7 +225,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     event.stopPropagation();
     if (this.disabled$.value || this.readonly$.value) return;
     this.checked$.next(!this.checked$.value);
-    this.onCheckedChange.emit(this.checked$.value);
+    this.checkedChange.emit(this.checked$.value);
     this.onChange(this.checked$.value);
   }
 }

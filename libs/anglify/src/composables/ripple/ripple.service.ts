@@ -57,7 +57,6 @@ export class RippleService {
       'backgroundColor',
       'var(--state-container-color, transparent)'
     );
-    bindStyleToNativeElement(this, this.stateFull$, this.backgroundContainer, 'opacity', 'var(--state-container-opacity,1)');
   }
 
   private readonly showRippleHandler$ = this.showRippleAction$.pipe(

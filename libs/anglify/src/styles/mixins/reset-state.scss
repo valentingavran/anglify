@@ -5,5 +5,4 @@ Every component with a state should use this mixin.
 */
 @mixin reset-state() {
   --state-container-color: transparent;
-  --state-container-opacity: 1;
 }

@@ -17,13 +17,11 @@
   }
 
   &:focus-visible {
-    --state-container-color: var(--state-inactive-color);
-    --state-container-opacity: var(--state-focus-opacity);
+    --state-container-color: var(--color-state-inactive-focus);
   }
 
   &:hover {
-    --state-container-color: var(--state-inactive-color);
-    --state-container-opacity: var(--state-hover-opacity);
+    --state-container-color: var(--color-state-inactive-hover);
   }
 }
 
@@ -34,8 +32,7 @@
 
 /* stylelint-disable-next-line no-descending-specificity */
 :host-context(.active) {
-  --state-container-color: var(--state-active-color);
-  --state-container-opacity: var(--state-focus-opacity);
+  --state-container-color: var(--color-state-active-focus);
   --anglify-icon-color: #{$list-item-active-text-color};
 
   ::ng-deep anglify-list-item-title {

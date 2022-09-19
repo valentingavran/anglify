@@ -115,14 +115,12 @@
     }
 
     & ~ .container:hover {
-      --state-container-color: var(--state-active-color);
-      --state-container-opacity: var(--state-hover-opacity);
+      --state-container-color: var(--color-state-active-hover);
     }
 
     &:focus-visible {
       & ~ .container {
-        --state-container-color: var(--state-active-color);
-        --state-container-opacity: var(--state-focus-opacity);
+        --state-container-color: var(--color-state-active-focus);
       }
     }
   }
@@ -130,14 +128,12 @@
   /* stylelint-disable-next-line selector-not-notation, no-descending-specificity */
   input:not(:checked):not(:disabled) {
     & ~ .container:hover {
-      --state-container-color: var(--state-inactive-color);
-      --state-container-opacity: var(--state-hover-opacity);
+      --state-container-color: var(--color-state-inactive-hover);
     }
 
     &:focus-visible {
       & ~ .container {
-        --state-container-color: var(--state-inactive-color);
-        --state-container-opacity: var(--state-focus-opacity);
+        --state-container-color: var(--color-state-inactive-focus);
       }
     }
   }

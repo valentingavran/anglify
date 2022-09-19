@@ -57,10 +57,9 @@
 
         &::after {
           position: absolute;
-          background-color: var(--state-inactive-color);
+          background-color: var(--color-state-inactive-hover);
           content: '';
           inset: 0;
-          opacity: var(--state-hover-opacity);
           transform: translateZ(-1px);
         }
       }
