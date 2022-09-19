@@ -287,7 +287,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     return item.value;
   }
 
-  public async select(item: SelectItem) {
+  public select = async (item: SelectItem) => {
     if (this.disabled || this.readonly || item.disabled) return;
 
     if (this.multiple) {
@@ -312,9 +312,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     if (this.closeOnSelect) {
       this.menu.close();
     }
-  }
+  };
 
-  public clearSelection() {
+  public clearSelection = () => {
     if (this.disabled || this.readonly) return;
 
     this._selectedItems$.next([]);
@@ -327,13 +327,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     } else {
       this.writeValue(null);
     }
-  }
+  };
 
-  public toggleMenu() {
+  public toggleMenu = () => {
     if (this.disabled || this.readonly) return;
 
     this.menu.toggle();
-  }
+  };
 
   protected assumePrimitive(items: number[] | SelectItem[] | string[]) {
     return typeof items[0] === 'string' || typeof items[0] === 'number' || typeof items[0] === 'boolean';

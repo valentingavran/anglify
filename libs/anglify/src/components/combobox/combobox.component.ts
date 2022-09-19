@@ -72,9 +72,9 @@ export class ComboboxComponent extends AutocompleteComponent {
     })
   );
 
-  public async selectTag(input: string) {
+  public selectTag = async (input: string) => {
     const item = await this.addItemFn(input);
     this._items$.next([...this._items$.value, item]);
     void this.select(item);
-  }
+  };
 }
