@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.34.0](https://github.com/valentingavran/anglify/compare/v0.33.0...v0.34.0) (2022-09-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* The Ripple/State system has been completely refactored. The following global
+custom properties have been removed `--state-hover-opacity`, `--state-focus-opacity`,
+`--state-pressed-opacity`, `--state-dragged-opacity`, `--state-inactive-color`,
+`--state-active-color` and the following custom properties have been newly introduced:
+`--color-state-inactive-hover`, `--color-state-inactive-focus`, `--color-state-inactive-pressed`,
+ `--color-state-inactive-dragged`, `--color-state-active-hover`, `--color-state-active-focus`,
+  `--color-state-active-pressed`, `--color-state-active-dragged`.
+
+  **Remove the old properties and add the new properties to your SCSS file.**
+* **Checkbox:** `onCheckedChange` was renamed to `checkedChange`. This allows two way binding now.
+
+### 🐛  Bug Fixes
+
+* **Checkbox:** fix two way binding ([7d36a2c](https://github.com/valentingavran/anglify/commit/7d36a2c6a96c60c162d0156bee8c0b73440b7892))
+
+
+### 🔬  Code Refactoring
+
+*  ripple/state system was made more flexible ([2446e39](https://github.com/valentingavran/anglify/commit/2446e39b87595cdff76dfdd8e51df0967f29c7f6))
+
 ## [0.33.0](https://github.com/valentingavran/anglify/compare/v0.32.1...v0.33.0) (2022-09-16)
 
 
