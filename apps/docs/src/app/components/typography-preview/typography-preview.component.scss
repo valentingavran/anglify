@@ -18,13 +18,11 @@
     user-select: none;
 
     &:hover {
-      --state-container-color: var(--state-inactive-color);
-      --state-container-opacity: var(--state-hover-opacity);
+      --state-container-color: var(--color-state-inactive-hover);
     }
 
     &:focus-visible {
-      --state-container-color: var(--state-inactive-color);
-      --state-container-opacity: var(--state-focus-opacity);
+      --state-container-color: var(--color-state-inactive-focus);
     }
   }
 

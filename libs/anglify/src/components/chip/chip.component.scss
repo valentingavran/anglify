@@ -18,13 +18,11 @@
   user-select: none;
 
   &:hover {
-    --state-container-color: var(--state-inactive-color);
-    --state-container-opacity: var(--state-hover-opacity);
+    --state-container-color: var(--color-state-inactive-hover);
   }
 
   &:focus-visible {
-    --state-container-color: var(--state-inactive-color);
-    --state-container-opacity: var(--state-focus-opacity);
+    --state-container-color: var(--color-state-inactive-focus);
   }
 
   &.filter {
@@ -45,8 +43,7 @@
   }
 
   &.active {
-    --state-container-color: var(--state-active-color);
-    --state-container-opacity: var(--state-focus-opacity);
+    --state-container-color: var(--color-state-active-focus);
 
     color: $chip-active-label-color;
   }

@@ -32,13 +32,11 @@
   }
 
   &:focus-visible {
-    --state-container-color: var(--state-inactive-color);
-    --state-container-opacity: var(--state-focus-opacity);
+    --state-container-color: var(--color-state-inactive-focus);
   }
 
   &:hover:not(:disabled) {
-    --state-container-color: var(--state-inactive-color);
-    --state-container-opacity: var(--state-hover-opacity);
+    --state-container-color: var(--color-state-inactive-hover);
   }
 
   &.contained {

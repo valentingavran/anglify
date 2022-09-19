@@ -45,10 +45,12 @@
   --color-on-bar-low-emphasis: var(--color-on-surface-low-emphasis);
   --color-backdrop: rgb(0 0 0 / 32%);
   --color-ripple: rgb(255 255 255 / 12%);
-  --state-hover-opacity: 8%;
-  --state-focus-opacity: 12%;
-  --state-pressed-opacity: 12%;
-  --state-dragged-opacity: 16%;
-  --state-inactive-color: #fff;
-  --state-active-color: var(--color-primary);
+  --color-state-inactive-hover: rgb(255 255 255 / 8%);
+  --color-state-inactive-focus: rgb(255 255 255 / 12%);
+  --color-state-inactive-pressed: rgb(255 255 255 / 12%);
+  --color-state-inactive-dragged: rgb(255 255 255 / 16%);
+  --color-state-active-hover: rgb(187 134 252 / 8%);
+  --color-state-active-focus: rgb(187 134 252 / 12%);
+  --color-state-active-pressed: rgb(187 134 252 / 12%);
+  --color-state-active-dragged: rgb(187 134 252 / 16%);
 }
