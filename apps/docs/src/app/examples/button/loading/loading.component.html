@@ -1,0 +1,17 @@
+<button type="button" anglifyButton appearance="contained" [loading]="loading1" (click)="loading1 = !loading1">Contained</button>
+<button type="button" anglifyButton appearance="outlined" [loading]="loading2" (click)="loading2 = !loading2">Outlined</button>
+<button type="button" anglifyButton appearance="text" [loading]="loading3" (click)="loading3 = !loading3">Text</button>
+<button type="button" anglifyButton appearance="icon" [loading]="loading4" (click)="loading4 = !loading4">
+  <anglify-icon icon="mdi-bookmark"></anglify-icon>
+</button>
+<button type="button" anglifyButton appearance="fab" [loading]="loading5" (click)="loading5 = !loading5">
+  <anglify-icon icon="mdi-pencil"></anglify-icon>
+</button>
+<button type="button" anglifyButton appearance="extended-fab" [loading]="loading6" (click)="loading6 = !loading6">
+  <anglify-icon icon="mdi-pencil" [left]="true"></anglify-icon>
+  Extended FAB
+</button>
+<button type="button" anglifyButton appearance="contained" [loading]="loading7" (click)="loading7 = !loading7">
+  <ng-template slot="loader">Loading...</ng-template>
+  Custom Loader Button
+</button>

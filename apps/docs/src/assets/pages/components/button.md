@@ -31,6 +31,13 @@ Forms, Cards & Toolbars.
 
 <app-code-example component="button" example="disabled"></app-code-example>
 
+### Loading
+
+Using the `loading` prop, you can notify a user that there is processing taking place. You can change the loading element by using the `loader` slot.
+
+Click the respective buttons in this example to toggle the loading states on and off.
+<app-code-example component="button" example="loading"></app-code-example>
+
 ## API
 
 ```typescript

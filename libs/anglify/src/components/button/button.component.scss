@@ -6,6 +6,9 @@
 :host {
   @include reset-state;
 
+  --anglify-progress-circular-width: 24px;
+  --anglify-progress-circular-height: 24px;
+
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -18,6 +21,14 @@
   vertical-align: middle;
   white-space: nowrap;
   @include elevation-transition;
+
+  .invisible {
+    opacity: 0;
+  }
+
+  .loader {
+    position: absolute;
+  }
 
   &.contained,
   &.outlined,
@@ -47,9 +58,15 @@
     letter-spacing: $button-contained-letter-spacing;
     text-transform: $button-contained-text-transform;
 
+    --anglify-progress-circular-overlay-color: #{$button-contained-label-color};
+    --anglify-progress-circular-track-color: #{$button-contained-label-color};
+
     &:disabled {
       background: $button-contained-background-disabled;
       color: $button-contained-label-color-disabled;
+
+      --anglify-progress-circular-overlay-color: #{$button-contained-label-color-disabled};
+      --anglify-progress-circular-track-color: #{$button-contained-label-color-disabled};
     }
 
     &:active:not(:disabled),
@@ -67,9 +84,15 @@
     letter-spacing: $button-outlined-letter-spacing;
     text-transform: $button-outlined-text-transform;
 
+    --anglify-progress-circular-overlay-color: #{$button-outlined-label-color};
+    --anglify-progress-circular-track-color: #{$button-outlined-label-color};
+
     &:disabled {
       background: $button-outlined-background-disabled;
       color: $button-outlined-label-color-disabled;
+
+      --anglify-progress-circular-overlay-color: #{$button-outlined-label-color-disabled};
+      --anglify-progress-circular-track-color: #{$button-outlined-label-color-disabled};
     }
   }
 
@@ -83,8 +106,14 @@
     padding-inline-start: $button-inline-padding-start-text;
     text-transform: $button-text-text-transform;
 
+    --anglify-progress-circular-overlay-color: #{$button-text-label-color};
+    --anglify-progress-circular-track-color: #{$button-text-label-color};
+
     &:disabled {
       color: $button-outlined-label-color-disabled;
+
+      --anglify-progress-circular-overlay-color: #{$button-outlined-label-color-disabled};
+      --anglify-progress-circular-track-color: #{$button-outlined-label-color-disabled};
     }
   }
 
@@ -95,8 +124,14 @@
     border-radius: $button-icon-border-radius;
     color: $button-icon-label-color;
 
+    --anglify-progress-circular-overlay-color: #{$button-icon-label-color};
+    --anglify-progress-circular-track-color: #{$button-icon-label-color};
+
     &:disabled {
       color: $button-icon-label-color-disabled;
+
+      --anglify-progress-circular-overlay-color: #{$button-icon-label-color-disabled};
+      --anglify-progress-circular-track-color: #{$button-icon-label-color-disabled};
     }
   }
 
@@ -107,6 +142,9 @@
     color: $button-fab-label-color;
     padding-inline-end: $button-inline-padding-end;
     padding-inline-start: $button-inline-padding-start;
+
+    --anglify-progress-circular-overlay-color: #{$button-fab-label-color};
+    --anglify-progress-circular-track-color: #{$button-fab-label-color};
 
     @include elevation(7);
   }
@@ -121,6 +159,9 @@
     padding-inline-end: $button-inline-padding-end-extended-fab;
     padding-inline-start: $button-inline-padding-start-extended-fab;
     text-transform: $button-fab-text-transform;
+
+    --anglify-progress-circular-overlay-color: #{$button-fab-label-color};
+    --anglify-progress-circular-track-color: #{$button-fab-label-color};
 
     @include elevation(7);
   }
