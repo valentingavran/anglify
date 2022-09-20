@@ -17,7 +17,7 @@ bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
 
 ### Indeterminate
 
-<app-code-example component="progress-circular" example="indeterminate"></app-code-example>
+<app-code-example component="progress-circular" example="indeterminate" hide-overflow="false"></app-code-example>
 
 ## API
 
