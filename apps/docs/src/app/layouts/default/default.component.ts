@@ -122,7 +122,6 @@ export class DefaultComponent {
         )
     ),
     switchMap(text => this.markdownPipe.parseMarkdown(text).pipe(take(1))),
-    // eslint-disable-next-line no-restricted-globals
     tap(() => setTimeout(() => this.tocService.genToc(this.container.nativeElement), 0))
   );
 

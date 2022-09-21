@@ -14,7 +14,6 @@ export default class ServerErrorHandlingComponent {
 
   public submit() {
     // Simulate server response with this delay
-    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => {
       if (this.passwordControl.value !== '12345678') {
         this.passwordControl.markAsDirty();

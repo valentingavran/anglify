@@ -13,7 +13,10 @@
         "neon/rxjs",
         "neon/rxjs-angular",
         "neon/prettier"
-      ]
+      ],
+      "rules": {
+        "no-restricted-globals": "off"
+      }
     },
     {
       "files": ["*.html"],

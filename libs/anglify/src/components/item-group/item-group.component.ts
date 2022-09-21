@@ -145,7 +145,6 @@ export class ItemGroupComponent implements ControlValueAccessor, AfterViewInit {
           map(slots => slots.toArray() as SlotDirective<boolean>[]),
           map(slots => slots.filter(item => item.slot === 'item-group-item')),
           tap(items => {
-            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.itemGroupItems$.next(items), 0);
           })
         )

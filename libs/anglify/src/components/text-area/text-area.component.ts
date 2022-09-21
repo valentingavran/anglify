@@ -86,28 +86,24 @@ export class TextAreaComponent implements AfterViewInit {
 
     if (this.input) {
       this.input.disabled$.pipe(untilDestroyed(this)).subscribe(disabled =>
-        // eslint-disable-next-line no-restricted-globals
         setTimeout(() => {
           this.anglifyInput.disabled = disabled;
         }, 0)
       );
 
       this.input.focused$.pipe(untilDestroyed(this)).subscribe(focused =>
-        // eslint-disable-next-line no-restricted-globals
         setTimeout(() => {
           this.anglifyInput.focused = focused;
         }, 0)
       );
 
       this.input.floating$.pipe(untilDestroyed(this)).subscribe(floating =>
-        // eslint-disable-next-line no-restricted-globals
         setTimeout(() => {
           this.anglifyInput.floating = floating;
         }, 0)
       );
 
       this.input.invalid$.pipe(untilDestroyed(this)).subscribe(invalid =>
-        // eslint-disable-next-line no-restricted-globals
         setTimeout(() => {
           this.anglifyInput.error = invalid;
         }, 0)

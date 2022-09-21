@@ -183,7 +183,6 @@ export class ExpansionPanelsComponent implements AfterViewInit {
               this.createItemClickHandler(item);
             }
 
-            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.itemGroupItems$.next(items), 0);
           })
         )

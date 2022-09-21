@@ -65,7 +65,6 @@ export class TimelineComponent implements AfterViewInit {
           startWith(this.timelineItems),
           map((items: QueryList<TimelineItemComponent>) => items.toArray()),
           tap(items => {
-            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.items$.next(items), 0);
           })
         )
