@@ -28,7 +28,6 @@ export class DialogService {
 
   private readonly overlayConfig = new OverlayConfig({
     positionStrategy: this.overlay.position().global().centerVertically().centerHorizontally(),
-    scrollStrategy: this.overlay.scrollStrategies.block(),
     hasBackdrop: true,
     backdropClass: 'anglify-dialog-backdrop',
     panelClass: 'anglify-dialog-pane',
@@ -57,6 +56,8 @@ export class DialogService {
         observer.next(data);
         observer.complete();
       };
+
+      document.body.style.setProperty('overflow', 'hidden');
 
       const context: DialogContext = {
         completeWith,
@@ -95,6 +96,7 @@ export class DialogService {
 
       return () => {
         this.dialogs$.next(this.dialogs$.value.filter(item => item !== context));
+        document.body.style.removeProperty('overflow');
         backdropSubscription.unsubscribe();
         if (componentRef.isAttached) {
           componentRef.detach();
