@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.35.0](https://github.com/valentingavran/anglify/compare/v0.34.0...v0.35.0) (2022-09-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Badge:** The badge directive is now a component. This completely changes the way the badge
+is used. Check out the badge examples on the website for more information.
+
+### 🔬  Code Refactoring
+
+* **Badge:** the badge directive is now a component ([1f5cb1f](https://github.com/valentingavran/anglify/commit/1f5cb1f1a989da1ae191037fb592209faafd228e))
+
+
+### 🛠  Other Commits
+
+* adjust eslint config ([ad03441](https://github.com/valentingavran/anglify/commit/ad0344120c5ec9be9eb9d280d0bc9938147211d9))
+
+
+### 🚀  Features
+
+* **Button:** add loading state support ([ce3c7d8](https://github.com/valentingavran/anglify/commit/ce3c7d8625db9ab111d8a99c06c0f5ff9374b613))
+* **ListGroup:** the list group can now be controlled with the keyboard ([1c11e6a](https://github.com/valentingavran/anglify/commit/1c11e6a09b2983985fcdeabab0e9fd89b964869d))
+* **ProgressCircular:** width and height is now configurable ([b083069](https://github.com/valentingavran/anglify/commit/b0830693ab2f601bfbe865e90ac675019e47fe1f))
+
+
+### 🐛  Bug Fixes
+
+* dialog service now disables body scroll (no fixed position anymore) ([7c61923](https://github.com/valentingavran/anglify/commit/7c6192304265f652fc1ab06f8a546a59a1e34192))
+* select/autocomplete/combobox this binding bug ([e5253ba](https://github.com/valentingavran/anglify/commit/e5253ba97c5a71e1ce06c1225d5b86ac724b1775))
+
 ## [0.34.0](https://github.com/valentingavran/anglify/compare/v0.33.0...v0.34.0) (2022-09-19)
 
 
