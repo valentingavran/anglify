@@ -129,7 +129,6 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
         });
     }
 
-    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => this.elementRef.nativeElement.classList.add('anglify-tab-group-transitions'), 0);
   }
 }

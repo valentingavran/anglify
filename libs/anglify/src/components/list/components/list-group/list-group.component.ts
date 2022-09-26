@@ -62,7 +62,6 @@ export class ListGroupComponent implements AfterViewInit {
           this.unsubscribeActiveListenersAction$.next();
           for (const item of items) {
             item.active$.pipe(untilDestroyed(this), takeUntil(this.unsubscribeActiveListenersAction$)).subscribe(() => {
-              // eslint-disable-next-line no-restricted-globals
               setTimeout(() => {
                 if (this.hasActiveListItems(items)) {
                   this.open();

@@ -3,8 +3,8 @@
 :host {
   position: relative;
   display: inline-flex;
-  width: 100px;
-  height: 100px;
+  width: $progress-circular-width;
+  height: $progress-circular-height;
   align-items: center;
   justify-content: center;
   vertical-align: middle;

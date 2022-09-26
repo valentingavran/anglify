@@ -54,7 +54,6 @@ describe('RippleService', () => {
     expect(container.style.transitionDuration === '500ms').toBeTruthy();
     // @ts-expect-error: Test case
     expect(service.stateContainer.contains(container)).toBeTruthy();
-    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => {
       // @ts-expect-error: Test case
       expect(service.stateContainer.contains(container)).toBeFalsy();

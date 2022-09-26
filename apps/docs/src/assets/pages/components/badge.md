@@ -14,6 +14,15 @@ bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
 
 <app-code-example component="badge" example="position"></app-code-example>
 
+### Inline
+
+<app-code-example component="badge" example="inline"></app-code-example>
+
+### Badge visibility
+
+The visibility of badges can be controlled using the `visible` prop.
+<app-code-example component="badge" example="visibility"></app-code-example>
+
 ### Complex
 
 <app-code-example component="badge" example="complex"></app-code-example>
@@ -21,9 +30,9 @@ bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
 ## API
 
 ```typescript
-import { BadgeDirective } from '@anglify/components';
+import { BadgeComponent, SlotDirective } from '@anglify/components';
 ```
 
-<app-inputs-table components="BadgeComponent" directives="BadgeDirective"></app-inputs-table>
+<app-inputs-table components="BadgeComponent"></app-inputs-table>
 
 <app-styling-table component="badge"></app-styling-table>

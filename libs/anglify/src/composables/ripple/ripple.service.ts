@@ -96,7 +96,6 @@ export class RippleService {
     }
 
     this.renderer.appendChild(this.stateContainer, focusContainer);
-    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => {
       focusContainer.style.transform = 'scale(5)';
     }, 0);
@@ -109,7 +108,6 @@ export class RippleService {
 
     if (ripple) {
       Object.assign(ripple.style, { opacity: 0, transitionDuration: '500ms' });
-      // eslint-disable-next-line no-restricted-globals
       setTimeout(() => this.renderer.removeChild(this.stateContainer, ripple), 1_000);
     }
   }

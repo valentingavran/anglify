@@ -169,7 +169,6 @@ export class InputComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    // eslint-disable-next-line no-restricted-globals
     setTimeout(() => {
       // turn on transitions after view is initialized
       this.label?.nativeElement.classList.add('transitions');

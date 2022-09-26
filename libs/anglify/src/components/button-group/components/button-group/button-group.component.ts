@@ -171,7 +171,6 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
               this.createItemClickHandler(item);
             }
 
-            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.itemGroupItems$.next(items), 0);
           })
         )

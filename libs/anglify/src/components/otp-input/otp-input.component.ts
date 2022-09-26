@@ -135,7 +135,6 @@ export class OtpInputComponent implements ControlValueAccessor {
           const otpArray = otp.split('');
           // blur after last input is filled
           if (otpArray[this.focusedIndex$.value] && this.focusedIndex$.value === this.length - 1) {
-            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => this.blur(), 0);
           }
         })

@@ -24,3 +24,5 @@ $progress-circular-intermediate-svg-transition: var(--anglify-progress-circular-
 $progress-circular-font: var(--anglify-progress-circular-font, var(--font-body-1)) !default;
 $progress-circular-letter-spacing: var(--anglify-progress-circular-letter-spacing, var(--font-letter-spacing-body-1)) !default;
 $progress-circular-text-transform: var(--anglify-progress-circular-text-transform, var(--font-text-transform-body-1)) !default;
+$progress-circular-width: var(--anglify-progress-circular-width, 100px) !default;
+$progress-circular-height: var(--anglify-progress-circular-height, 100px) !default;

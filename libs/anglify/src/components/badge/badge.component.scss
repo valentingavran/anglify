@@ -2,18 +2,15 @@
 @use '../../styles/settings/typography.scss' as *;
 
 :host {
-  ::ng-deep {
-    * {
-      color: $badge-text-color;
-    }
-  }
+  position: relative;
+  display: inline-block;
 
-  &.badge {
-    position: fixed;
+  .badge {
+    position: absolute;
     z-index: 1;
     display: flex;
     overflow: hidden;
-    width: fit-content;
+    width: max-content;
     min-width: 1rem;
     align-items: center;
     justify-content: center;
@@ -23,11 +20,74 @@
     color: $badge-text-color;
     font: $badge-font;
     letter-spacing: $badge-letter-spacing;
+    pointer-events: none;
     text-indent: 0;
     text-transform: $badge-text-transform;
+    translate: calc(-50% + var(--badge-horizontal-offset)) calc(-50% + var(--badge-vertical-offset));
+    user-select: none;
   }
 
-  &.border {
+  &.bordered .badge {
     border: solid $badge-border-color 2px;
+  }
+
+  &.left .badge {
+    top: 50%;
+    left: 0;
+  }
+
+  &.left-end .badge {
+    top: 100%;
+    left: 0;
+  }
+
+  &.left-start .badge {
+    top: 0;
+    left: 0;
+  }
+
+  &.right .badge {
+    top: 50%;
+    left: 100%;
+  }
+
+  &.right-end .badge {
+    top: 100%;
+    left: 100%;
+  }
+
+  &.right-start .badge {
+    top: 0;
+    left: 100%;
+  }
+
+  &.bottom .badge {
+    top: 100%;
+    left: 50%;
+  }
+
+  &.bottom-start .badge {
+    top: 100%;
+    left: 0;
+  }
+
+  &.bottom-end .badge {
+    top: 100%;
+    left: 100%;
+  }
+
+  &.top .badge {
+    top: 0;
+    left: 50%;
+  }
+
+  &.top-start .badge {
+    top: 0;
+    left: 0;
+  }
+
+  &.top-end .badge {
+    top: 0;
+    left: 100%;
   }
 }

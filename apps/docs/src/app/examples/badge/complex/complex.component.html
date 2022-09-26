@@ -1,17 +1,24 @@
 <anglify-toolbar>
   Photos
   <ng-template slot="start">
-    <button type="button" anglifyButton appearance="icon" [anglifyBadge]="myTemplate" badgePosition="right-start">
-      <anglify-icon icon="mdi-menu"></anglify-icon>
-    </button>
+    <anglify-badge>
+      <ng-template slot="content">
+        <ng-container *ngTemplateOutlet="myTemplate"></ng-container>
+      </ng-template>
+      <button type="button" anglifyButton appearance="icon" badgePosition="right-start">
+        <anglify-icon icon="mdi-menu"></anglify-icon>
+      </button>
+    </anglify-badge>
   </ng-template>
   <ng-template slot="end">
     <button type="button" anglifyButton appearance="icon">
       <anglify-icon icon="mdi-magnify"></anglify-icon>
     </button>
-    <button type="button" anglifyButton appearance="icon" anglifyBadge="1" badgePosition="right-start" [badgeBorder]="true">
-      <anglify-icon icon="mdi-dots-vertical"></anglify-icon>
-    </button>
+    <anglify-badge [bordered]="true" content="1">
+      <button type="button" anglifyButton appearance="icon">
+        <anglify-icon icon="mdi-dots-vertical"></anglify-icon>
+      </button>
+    </anglify-badge>
   </ng-template>
 </anglify-toolbar>
 <ng-template #myTemplate>
