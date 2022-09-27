@@ -4,7 +4,7 @@
       <th *ngIf="selectionService.selectableRows$ | async">
         <anglify-checkbox
           *ngIf="selectionService.headerCheckboxEnabled$ | async"
-          (onCheckedChange)="selectionService.toggleAll()"
+          (checkedChange)="selectionService.toggleAll()"
           [checked]="(selectionService.areAllSelected$ | async) ?? false"
         ></anglify-checkbox>
       </th>
@@ -44,7 +44,7 @@
     <th *ngIf="selectionService.selectableRows$ | async">
       <anglify-checkbox
         *ngIf="selectionService.headerCheckboxEnabled$ | async"
-        (onCheckedChange)="selectionService.toggleAll()"
+        (checkedChange)="selectionService.toggleAll()"
         [checked]="(selectionService.areAllSelected$ | async) ?? false"
       ></anglify-checkbox>
     </th>
@@ -61,7 +61,7 @@
       <tr (click)="expansionService.expand(index)" [ngClass]="(dataService.mobile$ | async) ? 'mobile' : ''">
         <td class="row-selection" *ngIf="selectionService.selectableRows$ | async">
           <anglify-checkbox
-            (onCheckedChange)="selectionService.toggleSelection(item)"
+            (checkedChange)="selectionService.toggleSelection(item)"
             [checked]="(selectionService.isSelected$(item) | async) ?? false"
           ></anglify-checkbox>
         </td>
