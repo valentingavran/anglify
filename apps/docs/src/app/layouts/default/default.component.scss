@@ -26,6 +26,12 @@
       height: calc(100vh - var(--anglify-toolbar-regular-height));
       align-self: flex-start;
     }
+
+    ::ng-deep {
+      .anglify-navigation-drawer-content {
+        overflow-y: scroll;
+      }
+    }
   }
 
   anglify-toolbar {
