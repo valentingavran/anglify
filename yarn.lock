@@ -311,23 +311,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/cdk@npm:^14.2.0":
-  version: 14.2.0
-  resolution: "@angular/cdk@npm:14.2.0"
-  dependencies:
-    parse5: ^5.0.0
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/common": ^14.0.0 || ^15.0.0
-    "@angular/core": ^14.0.0 || ^15.0.0
-    rxjs: ^6.5.3 || ^7.4.0
-  dependenciesMeta:
-    parse5:
-      optional: true
-  checksum: 34da5c7a55bc590999b0f4818f5c4d2b34d1255eba7e2f2615576f6cd608df9d525e83b6c4e2c4e8d2d8745c9f23ca236dfed0ae9e756a8375a7961feec57eab
-  languageName: node
-  linkType: hard
-
 "@angular/cli@npm:^14.2.1":
   version: 14.2.1
   resolution: "@angular/cli@npm:14.2.1"
@@ -14409,13 +14392,6 @@ cors@latest:
   languageName: node
   linkType: hard
 
-"parse5@npm:^5.0.0":
-  version: 5.1.1
-  resolution: "parse5@npm:5.1.1"
-  checksum: 613a714af4c1101d1cb9f7cece2558e35b9ae8a0c03518223a4a1e35494624d9a9ad5fad4c13eab66a0e0adccd9aa3d522fc8f5f9cc19789e0579f3fa0bdfc65
-  languageName: node
-  linkType: hard
-
 "parse5@npm:^7.0.0":
   version: 7.0.0
   resolution: "parse5@npm:7.0.0"
@@ -16467,7 +16443,6 @@ proxy-middleware@latest:
     "@angular-devkit/build-angular": 14.2.0
     "@angular-devkit/schematics": ^14.2.1
     "@angular/animations": ^14.2.0
-    "@angular/cdk": ^14.2.0
     "@angular/cli": ^14.2.1
     "@angular/common": ^14.2.0
     "@angular/compiler": ^14.2.0

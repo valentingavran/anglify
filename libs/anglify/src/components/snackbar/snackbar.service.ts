@@ -1,10 +1,9 @@
-import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, InjectionToken, Injector } from '@angular/core';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { AnglifyIdService } from '../../services/id/id.service';
+import { OverlayService } from '../../services/overlay.service';
 import { SnackbarComponent } from './snackbar.component';
-import { type SnackbarContext, type SnackbarData, type SnackbarOptions, SnackbarInteralDismissReason } from './snackbar.interface';
+import { SnackbarInternalDismissReason, type SnackbarContext, type SnackbarData, type SnackbarOptions } from './snackbar.interface';
 
 export const SNACKBAR_CONTEXT = new InjectionToken<SnackbarContext>('Snackbar context');
 
@@ -14,9 +13,7 @@ export const SNACKBAR_CONTEXT = new InjectionToken<SnackbarContext>('Snackbar co
 export class SnackbarService {
   public readonly activeSnackbar$ = new BehaviorSubject<SnackbarContext | null>(null);
 
-  private readonly overlayConfig = new OverlayConfig();
-
-  public constructor(private readonly overlay: Overlay, private readonly idService: AnglifyIdService) {}
+  public constructor(private readonly idService: AnglifyIdService, private readonly overlayService: OverlayService) {}
 
   public open(options: Partial<SnackbarOptions> = {}) {
     const subscription = this.open$(options)
@@ -31,7 +28,7 @@ export class SnackbarService {
   public open$(options: Partial<SnackbarOptions> = {}) {
     return new Observable(observer => {
       if (this.activeSnackbar$.value) {
-        this.activeSnackbar$.value.completeWith({ reason: SnackbarInteralDismissReason.Priority });
+        this.activeSnackbar$.value.completeWith({ reason: SnackbarInternalDismissReason.Priority });
       }
 
       const completeWith = (data: SnackbarData) => {
@@ -39,29 +36,21 @@ export class SnackbarService {
         observer.complete();
       };
 
+      const overlayRef = this.overlayService.create();
       const context: SnackbarContext = {
         completeWith,
         $implicit: observer,
         createdAt: Date.now(),
         id: this.idService.generate(),
+        overlayRef,
         ...options,
       };
 
       this.activeSnackbar$.next(context);
-      const overlayRef = this.overlay.create(this.overlayConfig);
-      const componentRef = new ComponentPortal(
-        SnackbarComponent,
-        null,
-        Injector.create({ providers: [{ provide: SNACKBAR_CONTEXT, useValue: context }] })
-      );
-      overlayRef.attach(componentRef);
+      overlayRef.attach(SnackbarComponent, Injector.create({ providers: [{ provide: SNACKBAR_CONTEXT, useValue: context }] }));
 
       return () => {
         this.activeSnackbar$.next(null);
-        if (componentRef.isAttached) {
-          componentRef.detach();
-        }
-
         overlayRef.dispose();
       };
     });

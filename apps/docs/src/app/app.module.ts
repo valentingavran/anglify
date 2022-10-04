@@ -1,5 +1,4 @@
 import { ICON_SETTINGS, type IconSettings } from '@anglify/components';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule, Meta } from '@angular/platform-browser';
@@ -26,7 +25,7 @@ import { TocService } from './services/toc.service';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [AppRoutingModule, BrowserAnimationsModule, BrowserModule, OverlayModule],
+  imports: [AppRoutingModule, BrowserAnimationsModule, BrowserModule],
   providers: [
     {
       provide: ICON_SETTINGS,

@@ -1,10 +1,11 @@
 import type { Subscriber } from 'rxjs';
+import type { Position } from '../../composables/position/position.interface';
+import type { Overlay } from '../../services/overlay.service';
 
-export type SnackbarPosition = 'center' | 'leading';
+export type SnackbarPosition = Position | 'center';
 
 export type EntireSnackbarSettings = {
   position: SnackbarPosition;
-  stacked: boolean;
   timeout: number;
 };
 
@@ -20,7 +21,7 @@ export type SnackbarOptions<T = Record<string, unknown> & SnackbarInput> = Snack
   id: string;
 };
 
-export enum SnackbarInteralDismissReason {
+export enum SnackbarInternalDismissReason {
   Dismissed = 'internal.dismissed',
   Priority = 'internal.priority',
   Timeout = 'internal.timeout',
@@ -28,11 +29,12 @@ export enum SnackbarInteralDismissReason {
 
 export type SnackbarData<T = unknown> = {
   data?: T;
-  reason: SnackbarInteralDismissReason | string;
+  reason: SnackbarInternalDismissReason | string;
 };
 
 export type SnackbarContext<T = SnackbarInput> = SnackbarOptions<T> & {
   $implicit: Subscriber<unknown>;
   completeWith(data: SnackbarData): void;
   createdAt: number;
+  overlayRef: Overlay;
 };

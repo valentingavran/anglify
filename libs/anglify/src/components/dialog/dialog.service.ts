@@ -1,5 +1,3 @@
-import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
 import type {} from '@angular/core';
 import {
   ApplicationRef,
@@ -13,8 +11,9 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { AnglifyIdService } from '../../services/id/id.service';
+import { OverlayService } from '../../services/overlay.service';
 import { DialogComponent } from './dialog.component';
-import { DialogInternalCloseReason, type DialogContext, type DialogOptions, type ModalData } from './dialog.interface';
+import { type DialogContext, type DialogOptions, type ModalData } from './dialog.interface';
 
 export const DIALOG_CONTEXT = new InjectionToken<DialogContext>('Dialog context');
 
@@ -26,18 +25,11 @@ export const DIALOG_NODES = new InjectionToken<HTMLElement[]>('Dialog nodes to i
 export class DialogService {
   private readonly dialogs$ = new BehaviorSubject<readonly DialogContext[]>([]);
 
-  private readonly overlayConfig = new OverlayConfig({
-    positionStrategy: this.overlay.position().global().centerVertically().centerHorizontally(),
-    hasBackdrop: true,
-    backdropClass: 'anglify-dialog-backdrop',
-    panelClass: 'anglify-dialog-pane',
-  });
-
   public constructor(
     private readonly appRef: ApplicationRef,
     private readonly componentFactoryResolver: ComponentFactoryResolver,
-    private readonly overlay: Overlay,
-    private readonly idService: AnglifyIdService
+    private readonly idService: AnglifyIdService,
+    private readonly overlayService: OverlayService
   ) {}
 
   public open(component: TemplateRef<any> | Type<any>, options: Partial<DialogOptions> = {}) {
@@ -57,7 +49,7 @@ export class DialogService {
         observer.complete();
       };
 
-      document.body.style.setProperty('overflow', 'hidden');
+      const overlayRef = this.overlayService.create();
 
       const context: DialogContext = {
         completeWith,
@@ -65,6 +57,7 @@ export class DialogService {
         component,
         createdAt: Date.now(),
         id: this.idService.generate(),
+        overlayRef,
         ...options,
       };
 
@@ -73,10 +66,9 @@ export class DialogService {
         component instanceof TemplateRef
           ? this.createFromTemplate(component, context)
           : (this.createFromComponent(component, context).hostView as EmbeddedViewRef<any>);
-      const overlayRef = this.overlay.create(this.overlayConfig);
-      const componentRef = new ComponentPortal(
+
+      overlayRef.attach(
         DialogComponent,
-        null,
         Injector.create({
           providers: [
             {
@@ -90,20 +82,13 @@ export class DialogService {
           ],
         })
       );
-      overlayRef.attach(componentRef);
-      const backdropSubscription = overlayRef.backdropClick().subscribe(() => completeWith({ reason: DialogInternalCloseReason.Backdrop }));
+
       this.appRef.attachView(viewRef);
 
       return () => {
         this.dialogs$.next(this.dialogs$.value.filter(item => item !== context));
-        document.body.style.removeProperty('overflow');
-        backdropSubscription.unsubscribe();
-        if (componentRef.isAttached) {
-          componentRef.detach();
-        }
-
         viewRef.destroy();
-        overlayRef.detach();
+        overlayRef.dispose();
       };
     });
   }
@@ -112,12 +97,7 @@ export class DialogService {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
     return componentFactory.create(
       Injector.create({
-        providers: [
-          {
-            provide: DIALOG_CONTEXT,
-            useValue: context,
-          },
-        ],
+        providers: [{ provide: DIALOG_CONTEXT, useValue: context }],
       })
     );
   }

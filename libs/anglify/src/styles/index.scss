@@ -1,7 +1,5 @@
 @use 'generic/index';
 @use 'settings/typography.scss' as *;
-@import '@angular/cdk/text-field-prebuilt.css';
-@import '@angular/cdk/overlay-prebuilt.css';
 
 :root {
   @include typography;

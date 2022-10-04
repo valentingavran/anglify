@@ -8,6 +8,7 @@ export const environment = {
   applicationLayoutsExampleURLs: {
     base: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/pages/layout-examples/base',
     constrained: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/pages/layout-examples/constrained',
+    tabs: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/layout-examples/tabs',
   },
   version: packageJson.version,
   description: packageJson.description,

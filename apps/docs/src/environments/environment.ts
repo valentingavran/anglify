@@ -9,8 +9,9 @@ export const environment = {
   production: false,
   exampleFolderURL: 'https://raw.githubusercontent.com/valentingavran/anglify/develop/apps/docs/src/app/examples/',
   applicationLayoutsExampleURLs: {
-    base: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/pages/layout-examples/base',
-    constrained: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/pages/layout-examples/constrained',
+    base: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/layout-examples/base',
+    constrained: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/layout-examples/constrained',
+    tabs: 'https://github.com/valentingavran/anglify/tree/develop/apps/docs/src/app/layout-examples/tabs',
   },
   version: packageJson.version,
   description: packageJson.description,
