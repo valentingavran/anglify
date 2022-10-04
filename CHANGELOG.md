@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.36.0](https://github.com/valentingavran/anglify/compare/v0.35.0...v0.36.0) (2022-10-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Snackbar:** `stacked` Snackbar property was removed. `leading` is not a valid position
+anymore. `SnackbarInteralDismissReason` was renamed to `SnackbarInternalDismissReason`
+(fixed typo).
+
+### 📝  Docs
+
+* add `color-scheme` CSS property for dark scrollbars in dark mode ([9318d33](https://github.com/valentingavran/anglify/commit/9318d33696528ffc25cbdff183fef1badaf42402))
+* don't hide navigation drawer scrollbar to avoid layout shifts ([14ba48e](https://github.com/valentingavran/anglify/commit/14ba48e5e8e5fa3ac52518ae08db2cb1c6f9e8ad))
+* fix links to GitHub for layout examples ([dccadc9](https://github.com/valentingavran/anglify/commit/dccadc99df72dacb2bcad516efbf403a4ecee7b4))
+
+
+### 🐛  Bug Fixes
+
+* **DataTable:** checkboxes inside selectable rows work now as expected ([3386ac3](https://github.com/valentingavran/anglify/commit/3386ac3587aaafddb55dc78ca03520b402af07f3))
+
+
+### 🚀  Features
+
+* add new Anglify overlay service (CDK replacement) ([436f514](https://github.com/valentingavran/anglify/commit/436f5140255c3b1bae35739d7fe3510082eea3e5))
+* create trap focus directive ([54648a8](https://github.com/valentingavran/anglify/commit/54648a8daf93c84383aa6a03ba00599a5daf1f2c))
+
+
+### 🔬  Code Refactoring
+
+* **Dialog:** use Anglify Overlay Service instead of CDK one ([9a2938e](https://github.com/valentingavran/anglify/commit/9a2938e254167be2836141d2231567192948d814))
+* remove @angular/cdk dependency ([c4e6d9d](https://github.com/valentingavran/anglify/commit/c4e6d9d1e8035829e86ff59d19962edf1f5c2f34))
+* **Snackbar:** use Anglify Overlay Service instead of CDK one ([6f754d9](https://github.com/valentingavran/anglify/commit/6f754d99659740b75932ed0b3cd3f469418c6f4e))
+
 ## [0.35.0](https://github.com/valentingavran/anglify/compare/v0.34.0...v0.35.0) (2022-09-26)
 
 
