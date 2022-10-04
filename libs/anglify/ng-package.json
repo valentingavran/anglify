@@ -40,12 +40,5 @@
     "src/components/toolbar/*.scss",
     "src/components/tooltip/*.scss"
   ],
-  "allowedNonPeerDependencies": [
-    "@angular/animations",
-    "@angular/cdk",
-    "@floating-ui/dom",
-    "@ngneat/until-destroy",
-    "deepmerge-ts",
-    "@mdi/js"
-  ]
+  "allowedNonPeerDependencies": ["@angular/animations", "@floating-ui/dom", "@ngneat/until-destroy", "deepmerge-ts", "@mdi/js"]
 }

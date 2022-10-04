@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@angular/animations": "14.1.0",
-    "@angular/cdk": "^14.1.0",
     "@floating-ui/dom": "^1.0.0",
     "@ngneat/until-destroy": "^9.2.1",
     "deepmerge-ts": "^4.2.1",
