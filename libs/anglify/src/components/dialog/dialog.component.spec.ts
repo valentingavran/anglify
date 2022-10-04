@@ -1,4 +1,6 @@
+import type { ApplicationRef, ComponentFactoryResolver } from '@angular/core';
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
+import { Overlay } from '../../services/overlay.service';
 import { DialogComponent } from './dialog.component';
 import { DIALOG_CONTEXT, DIALOG_NODES } from './dialog.service';
 
@@ -9,7 +11,12 @@ describe('DialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
-        { provide: DIALOG_CONTEXT, useValue: {} },
+        {
+          provide: DIALOG_CONTEXT,
+          useValue: {
+            overlayRef: new Overlay({} as ApplicationRef, {} as ComponentFactoryResolver),
+          },
+        },
         { provide: DIALOG_NODES, useValue: [] },
       ],
     }).compileComponents();
