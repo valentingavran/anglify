@@ -13,6 +13,7 @@ export * from './directives/click-stop-propagation/click-stop-propagation.direct
 export * from './directives/interaction-state/interaction-state.directive';
 export * from './directives/slot/slot.directive';
 export * from './directives/slot-outlet/slot-outlet.directive';
+export * from './directives/trap-focus/trap-focus.directive';
 // Pipes
 export * from './pipes/clamp/clamp.pipe';
 export * from './pipes/find-slot/find-slot.pipe';
