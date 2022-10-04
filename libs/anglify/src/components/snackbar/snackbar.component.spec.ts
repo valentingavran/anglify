@@ -1,4 +1,6 @@
+import type { ApplicationRef, ComponentFactoryResolver } from '@angular/core';
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
+import { Overlay } from '../../services/overlay.service';
 import { SnackbarComponent } from './snackbar.component';
 import { SNACKBAR_CONTEXT } from './snackbar.service';
 
@@ -8,7 +10,14 @@ describe('SnackbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [{ provide: SNACKBAR_CONTEXT, useValue: {} }],
+      providers: [
+        {
+          provide: SNACKBAR_CONTEXT,
+          useValue: {
+            overlayRef: new Overlay({} as ApplicationRef, {} as ComponentFactoryResolver),
+          },
+        },
+      ],
     }).compileComponents();
   });
 
