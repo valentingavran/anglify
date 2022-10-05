@@ -22,8 +22,16 @@
   white-space: nowrap;
   @include elevation-transition;
 
-  .invisible {
-    opacity: 0;
+  .content {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+
+    &.invisible {
+      opacity: 0;
+    }
   }
 
   .loader {
