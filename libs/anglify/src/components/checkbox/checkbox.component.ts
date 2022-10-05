@@ -222,7 +222,6 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @HostListener('click', ['$event'])
   protected onCheckedChangeHandler(event: Event) {
     event.preventDefault();
-    event.stopPropagation();
     if (this.disabled$.value || this.readonly$.value) return;
     this.checked$.next(!this.checked$.value);
     this.checkedChange.emit(this.checked$.value);
