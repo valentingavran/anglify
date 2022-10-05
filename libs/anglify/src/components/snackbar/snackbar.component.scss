@@ -34,4 +34,16 @@
       --anglify-button-text-label-color: var(--color-primary-variant);
     }
   }
+
+  &.stacked {
+    .container {
+      flex-direction: column;
+      align-items: unset;
+
+      .actions {
+        align-self: flex-end;
+        margin-bottom: 8px;
+      }
+    }
+  }
 }

@@ -6,6 +6,7 @@ export type SnackbarPosition = Position | 'center';
 
 export type EntireSnackbarSettings = {
   position: SnackbarPosition;
+  stacked: boolean;
   timeout: number;
 };
 
