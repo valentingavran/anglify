@@ -23,6 +23,8 @@ export * from './utils/animations';
 export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
+export * from './services/id/id.service';
+export * from './services/overlay.service';
 // Autocomplete
 export * from './components/autocomplete/autocomplete.component';
 // Badge
