@@ -22,7 +22,7 @@ export class Overlay {
   /**
    * Holds the element that is used to render the overlay.
    */
-  private readonly pane: HTMLElement;
+  private pane?: HTMLElement;
 
   private mountedComponent: ComponentRef<any> | null = null;
 
@@ -93,9 +93,6 @@ export class Overlay {
   public constructor(private readonly applicationRef: ApplicationRef, private readonly resolver: ComponentFactoryResolver) {
     this.element = document.createElement('div');
     this.element.classList.add('anglify-overlay-container');
-    this.pane = document.createElement('div');
-    this.pane.classList.add('anglify-overlay-pane');
-    this.element.append(this.pane);
     document.body.append(this.element);
     this.createdAt = Date.now();
 
@@ -112,6 +109,10 @@ export class Overlay {
     if (this.destroyed) throw new Error('Cannot attach to a destroyed overlay.');
     if (this.mountedComponent) return;
 
+    this.pane = document.createElement('div');
+    this.pane.classList.add('anglify-overlay-pane');
+    this.element.append(this.pane);
+
     const factory = this.resolver.resolveComponentFactory(component);
     const componentRef = factory.create(injector, [], this.pane);
     this.applicationRef.attachView(componentRef.hostView);
@@ -122,10 +123,11 @@ export class Overlay {
    * Detaches the component from the overlay.
    */
   public detach() {
+    this.backdrop = false;
     if (!this.mountedComponent) return;
     this.mountedComponent.destroy();
     this.applicationRef.detachView(this.mountedComponent.hostView);
-    this.pane.innerHTML = '';
+    this.pane?.remove();
   }
 
   /**
@@ -133,7 +135,6 @@ export class Overlay {
    */
   public dispose() {
     this.detach();
-    this.backdrop = false;
     this.element.remove();
     this.destroyed = true;
   }
