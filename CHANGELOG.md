@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.36.1](https://github.com/valentingavran/anglify/compare/v0.36.0...v0.36.1) (2022-10-05)
+
+
+### 🔬  Code Refactoring
+
+* **Checkbox:** remove stopPropagation on click ([38e6be0](https://github.com/valentingavran/anglify/commit/38e6be0541ee0378ea2028b1b531d83bec9e1077))
+* detaching inside overlay service was improved ([ad577bd](https://github.com/valentingavran/anglify/commit/ad577bda7fefabb42a7d762da6f074a0da1f28e4))
+* expose overlay & id service ([4b8352d](https://github.com/valentingavran/anglify/commit/4b8352df3fce1a48bcd6b53f970317b4661e97a6))
+* **Snackbar:** add stacked property back again ([0c35915](https://github.com/valentingavran/anglify/commit/0c3591543e73ea36dc235df86ed2742bede1f1d9))
+
 ## [0.36.0](https://github.com/valentingavran/anglify/compare/v0.35.0...v0.36.0) (2022-10-04)
 
 
