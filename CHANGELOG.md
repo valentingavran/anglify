@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.36.3](https://github.com/valentingavran/anglify/compare/v0.36.2...v0.36.3) (2022-10-05)
+
+
+### 🐛  Bug Fixes
+
+* **Button:** fix button text alignment ([fdc8283](https://github.com/valentingavran/anglify/commit/fdc8283e0efe7ab63e4c737c91f4f8675932f3d3))
+
 ### [0.36.2](https://github.com/valentingavran/anglify/compare/v0.36.1...v0.36.2) (2022-10-05)
 
 
