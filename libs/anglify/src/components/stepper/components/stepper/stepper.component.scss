@@ -13,28 +13,28 @@
     anglify-stepper-header {
       --anglify-header-height-internal: $stepper-header-height;
     }
+  }
 
-    .step-container {
-      display: flex;
+  .step-container {
+    display: flex;
 
-      .line-container {
-        width: $stepper-header-height;
-        flex-basis: $stepper-header-height;
-        flex-grow: 0;
-        flex-shrink: 0;
+    .line-container {
+      width: $stepper-header-height;
+      flex-basis: $stepper-header-height;
+      flex-grow: 0;
+      flex-shrink: 0;
 
-        .line {
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(#{$stepper-step-connection-line-color}, #{$stepper-step-connection-line-color}) no-repeat center/1px
-            100%;
-        }
+      .line {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#{$stepper-step-connection-line-color}, #{$stepper-step-connection-line-color}) no-repeat center/1px
+          100%;
       }
+    }
 
-      .content {
-        flex-grow: 1;
-        padding: $stepper-step-container-padding;
-      }
+    .content {
+      flex-grow: 1;
+      padding: $stepper-step-container-padding;
     }
   }
 }
