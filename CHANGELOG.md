@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.36.2](https://github.com/valentingavran/anglify/compare/v0.36.1...v0.36.2) (2022-10-05)
+
+
+### 🐛  Bug Fixes
+
+* **Stepper:** fix output property names (removed $ character) ([bb65c4a](https://github.com/valentingavran/anglify/commit/bb65c4aa9c2db67358886e3a8ec71789f41459aa))
+* **Stepper:** style overwrites in horizontal mode are now applied ([55cf990](https://github.com/valentingavran/anglify/commit/55cf9900ee39156952375b17e0707f87cf3015c9))
+
 ### [0.36.1](https://github.com/valentingavran/anglify/compare/v0.36.0...v0.36.1) (2022-10-05)
 
 
