@@ -71,20 +71,20 @@ export class StepperComponent extends StepperService implements AfterContentInit
     this.stepperSettings.setOrientation(value);
   }
 
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() public override readonly onPrevious$ = super.onPrevious$;
+  // eslint-disable-next-line rxjs/finnish, @angular-eslint/no-output-on-prefix
+  @Output() public readonly onPrevious = super.onPrevious$;
 
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() public override readonly onNext$ = super.onNext$;
+  // eslint-disable-next-line rxjs/finnish, @angular-eslint/no-output-on-prefix
+  @Output() public readonly onNext = super.onNext$;
 
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() public readonly onOrientationChange$ = this.stepperSettings.orientation$;
+  // eslint-disable-next-line rxjs/finnish, @angular-eslint/no-output-on-prefix
+  @Output() public readonly onOrientationChange = this.stepperSettings.orientation$;
 
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() public override readonly onReset$ = super.onReset$;
+  // eslint-disable-next-line rxjs/finnish, @angular-eslint/no-output-on-prefix
+  @Output() public readonly onReset = super.onReset$;
 
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() public readonly onStepChange$ = this.selectedStep$;
+  // eslint-disable-next-line rxjs/finnish, @angular-eslint/no-output-on-prefix
+  @Output() public readonly onStepChange = this.selectedStep$;
 
   private readonly _orientationHandler$ = this.stepperSettings.orientation$.pipe(
     tap(orientation => {
