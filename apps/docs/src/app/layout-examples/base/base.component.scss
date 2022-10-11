@@ -1,8 +1,8 @@
 @use '../../../../../../libs/anglify/src/styles/mixins/breakpoints.scss' as *;
 
 :host {
+  position: relative;
   display: grid;
-  height: 100vh;
   grid-template-areas:
     'toolbar'
     'main';
@@ -16,19 +16,31 @@
   }
 
   anglify-navigation-drawer {
+    position: fixed;
+    height: 100vh;
     grid-area: drawer;
+
+    @include md-and-up {
+      position: sticky;
+      top: 0; // use var(--anglify-toolbar-regular-height); for top offset
+      height: 100vh; // use calc(100vh - var(--anglify-toolbar-regular-height)); for top offset
+      align-self: flex-start;
+    }
   }
 
   anglify-toolbar {
+    position: sticky;
+    top: 0;
     grid-area: toolbar;
   }
 
   main {
+    height: 2000px; // this line is only for demo purposes
     padding: 1rem;
     grid-area: main;
-    overflow-y: auto;
   }
 
+  // only for demo purposes:
   .open-example-code {
     position: fixed;
     right: 1rem;
