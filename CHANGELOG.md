@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.36.4](https://github.com/valentingavran/anglify/compare/v0.36.3...v0.36.4) (2022-10-14)
+
+
+### 📝  Docs
+
+* improve base application layout example ([2876cec](https://github.com/valentingavran/anglify/commit/2876cece619a4c22fa3bd103038e8eaad7b7b919))
+
+
+### 🐛  Bug Fixes
+
+* don't pin package versions of dependencies ([7a101c6](https://github.com/valentingavran/anglify/commit/7a101c6977d83a8f060c9ce1ba75e9b58d2980df))
+
 ### [0.36.3](https://github.com/valentingavran/anglify/compare/v0.36.2...v0.36.3) (2022-10-05)
 
 
