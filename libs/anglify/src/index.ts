@@ -73,6 +73,10 @@ export * from './components/data-table/data-table.interface';
 export * from './components/dialog/dialog.component';
 export * from './components/dialog/dialog.interface';
 export * from './components/dialog/dialog.service';
+// Divider
+export * from './components/divider/divider-settings.token';
+export * from './components/divider/divider.component';
+export * from './components/divider/divider.interface';
 // Expansion Panels
 export * from './components/expansion-panels/components/expansion-panel/expansion-panel.component';
 export * from './components/expansion-panels/components/expansion-panels/expansion-panels.component';

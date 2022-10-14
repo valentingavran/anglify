@@ -193,6 +193,11 @@ export class DefaultComponent {
           type: 'item',
         },
         {
+          link: 'components/divider',
+          name: 'Divider',
+          type: 'item',
+        },
+        {
           link: 'components/expansion-panels',
           name: 'Expansion Panels',
           type: 'item',
