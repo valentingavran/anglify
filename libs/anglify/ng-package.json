@@ -18,6 +18,7 @@
     "src/components/combobox/*.scss",
     "src/components/data-table/*.scss",
     "src/components/dialog/*.scss",
+    "src/components/divider/*.scss",
     "src/components/expansion-panels/*.scss",
     "src/components/icon/*.scss",
     "src/components/input/*.scss",

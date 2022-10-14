@@ -124,6 +124,11 @@ const routes: Routes = [
             title: 'Dialog | Anglify',
           },
           {
+            path: 'divider',
+            component: TemplateComponent,
+            title: 'Divider | Anglify',
+          },
+          {
             path: 'expansion-panels',
             component: TemplateComponent,
             title: 'Expansion Panels | Anglify',
