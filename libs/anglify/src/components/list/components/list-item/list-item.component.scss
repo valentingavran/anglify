@@ -8,8 +8,12 @@
   min-height: 40px;
   align-items: center;
   padding: 8px 16px;
-  gap: 16px;
+  gap: $list-item-gap;
   user-select: none;
+
+  .prepend {
+    min-width: 40px;
+  }
 
   .item-content {
     min-width: 0;
