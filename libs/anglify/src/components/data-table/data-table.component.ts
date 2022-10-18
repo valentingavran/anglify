@@ -273,6 +273,19 @@ export class DataTableComponent {
     this.dataService.showColumnsControl$.next(value);
   }
 
+  public get customFilter() {
+    return this.dataService.customFilterFn;
+  }
+
+  /**
+   * Function to filter items.
+   */
+  @Input() public set customFilter(
+    value: ((search: string, headers: DataTableHeader[], items: DataTableItem<any>[]) => DataTableItem<any>[]) | null | undefined
+  ) {
+    this.dataService.customFilterFn = value;
+  }
+
   /**
    * Emitted when the selected items change.
    */

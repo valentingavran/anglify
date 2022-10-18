@@ -17,6 +17,7 @@ import { HighlightPipe } from './pipes/highlight.pipe';
 import { MarkdownPipe } from './pipes/markdown.pipe';
 import { AutocompletePlaygroundComponent } from './playgrounds/autocomplete/autocomplete-playground.component';
 import { ComboboxPlaygroundComponent } from './playgrounds/combobox/combobox-playground.component';
+import { DividerPlaygroundComponent } from './playgrounds/divider/divider-playground.component';
 import { ProgressLinearPlaygroundComponent } from './playgrounds/progress-linear/progress-linear-playground.component';
 import { SelectPlaygroundComponent } from './playgrounds/select/select-playground.component';
 import { SimpleTablePlaygroundComponent } from './playgrounds/simple-table/simple-table-playground.component';
@@ -60,6 +61,8 @@ export class AppModule {
     customElements.define(`app-references`, createCustomElement(ReferencesComponent, { injector: this.injector }));
 
     customElements.define(`app-autocomplete-playground`, createCustomElement(AutocompletePlaygroundComponent, { injector: this.injector }));
+    customElements.define(`app-divider-playground`, createCustomElement(DividerPlaygroundComponent, { injector: this.injector }));
+
     customElements.define(`app-combobox-playground`, createCustomElement(ComboboxPlaygroundComponent, { injector: this.injector }));
     customElements.define(
       `app-progress-linear-playground`,

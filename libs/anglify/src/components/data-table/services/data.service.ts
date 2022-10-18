@@ -41,7 +41,7 @@ export class DataService {
   ]).pipe(
     map(([items, search, headers]) => {
       if (search) {
-        return DataService.searchFn(search, headers, items);
+        return this.customFilterFn ? this.customFilterFn(search, headers, items) : DataService.filterFn(search, headers, items);
       }
 
       return items;
@@ -52,7 +52,10 @@ export class DataService {
     map(([sortBy, items, headers]) => DataService.sortFn(sortBy, items, headers))
   );
 
-  public static searchFn(search: string, headers: DataTableHeader[], items: DataTableItem[]) {
+  public customFilterFn: ((search: string, headers: DataTableHeader[], items: DataTableItem[]) => DataTableItem[]) | null | undefined =
+    this.settings.customFilterFn;
+
+  public static filterFn(search: string, headers: DataTableHeader[], items: DataTableItem[]) {
     return items.filter(item => {
       for (const header of headers) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
@@ -75,10 +78,9 @@ export class DataService {
         // if sort function is defined in headers, use it
         const header = headers.find(header => header.value === option.value);
         if (header?.sort) {
-          const sort = header.sort(a, b);
-
-          if (option.direction === 'desc') return sort * -1;
-          return sort;
+          const sort = header.sort(a, b, option.direction);
+          if (sort !== 0) return sort;
+          continue;
         }
 
         const aValue = a[option.value];
