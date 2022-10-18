@@ -7,14 +7,14 @@ import { POSITION } from '../../../../composables/position/position.provider';
 import { PositionService } from '../../../../composables/position/position.service';
 
 @Component({
-  selector: 'anglify-menu',
+  selector: 'anglify-legacy-menu',
   standalone: true,
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+  templateUrl: './legacy-menu.component.html',
+  styleUrls: ['./legacy-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ELEVATION, POSITION],
 })
-export class MenuComponent {
+export class LegacyMenuComponent {
   /**
    * Whether the menu should have the same width as the host component.
    */
