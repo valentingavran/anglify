@@ -2,6 +2,7 @@ import { InjectionToken } from '@angular/core';
 import type { DataTableSettings, EntireDataTableSettings } from './data-table.interface';
 
 export const DEFAULT_DATA_TABLE_SETTINGS: EntireDataTableSettings = {
+  customFilterFn: undefined,
   expandable: false,
   hideDefaultHeader: false,
   hideDefaultFooter: false,

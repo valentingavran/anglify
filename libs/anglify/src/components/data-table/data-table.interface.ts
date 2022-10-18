@@ -23,6 +23,7 @@ export type SortSetting = {
 };
 
 export type EntireDataTableSettings = {
+  customFilterFn: ((search: string, headers: DataTableHeader[], items: DataTableItem[]) => DataTableItem[]) | null | undefined;
   expandable: boolean;
   hideDefaultFooter: boolean;
   hideDefaultHeader: boolean;
