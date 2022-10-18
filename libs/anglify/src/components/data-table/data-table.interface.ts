@@ -4,7 +4,7 @@ export type DataTableHeader<T = any> = {
   filterable?: boolean;
   hidden?: boolean;
   hiddenOnMobile?: boolean;
-  sort?(a: DataTableItem<T>, b: DataTableItem<T>): number;
+  sort?(a: DataTableItem<T>, b: DataTableItem<T>, direction: SortSetting['direction']): number;
   sortable?: boolean;
   text: string;
   value: string;

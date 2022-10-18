@@ -75,10 +75,9 @@ export class DataService {
         // if sort function is defined in headers, use it
         const header = headers.find(header => header.value === option.value);
         if (header?.sort) {
-          const sort = header.sort(a, b);
-
-          if (option.direction === 'desc') return sort * -1;
-          return sort;
+          const sort = header.sort(a, b, option.direction);
+          if (sort !== 0) return sort;
+          continue;
         }
 
         const aValue = a[option.value];
