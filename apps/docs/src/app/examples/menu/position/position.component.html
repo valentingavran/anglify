@@ -1,0 +1,27 @@
+<ng-template #menuTemplate>
+  <anglify-list-item><anglify-list-item-title>Item 1</anglify-list-item-title></anglify-list-item>
+  <anglify-list-item><anglify-list-item-title>Item 2</anglify-list-item-title></anglify-list-item>
+  <anglify-list-item><anglify-list-item-title>Item 3</anglify-list-item-title></anglify-list-item>
+  <anglify-list-item><anglify-list-item-title>Item 4</anglify-list-item-title></anglify-list-item>
+  <anglify-list-item><anglify-list-item-title>Item 5</anglify-list-item-title></anglify-list-item>
+</ng-template>
+
+<anglify-menu position="top">
+  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Top</button></ng-template>
+  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+</anglify-menu>
+
+<anglify-menu position="bottom">
+  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Bottom</button></ng-template>
+  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+</anglify-menu>
+
+<anglify-menu position="right">
+  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Right</button></ng-template>
+  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+</anglify-menu>
+
+<anglify-menu position="left">
+  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Left</button></ng-template>
+  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+</anglify-menu>

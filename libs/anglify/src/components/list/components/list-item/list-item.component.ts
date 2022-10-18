@@ -12,13 +12,13 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, map, merge, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, filter, map, merge, switchMap, tap } from 'rxjs';
 import { RIPPLE } from '../../../../composables/ripple/ripple.provider';
 import { RippleService } from '../../../../composables/ripple/ripple.service';
 import { SlotDirective } from '../../../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../../../directives/slot-outlet/slot-outlet.directive';
 import { FindSlotPipe } from '../../../../pipes/find-slot/find-slot.pipe';
-import { bindClassToNativeElement } from '../../../../utils/functions';
+import { bindAttrToNativeElement, bindClassToNativeElement } from '../../../../utils/functions';
 import { RouterLinkCommands } from '../../../../utils/interfaces';
 
 @UntilDestroy()
@@ -50,10 +50,16 @@ export class ListItemComponent {
    */
   @Input() public dense = false;
 
+  public get disabled() {
+    return this.disabled$.value;
+  }
+
   /**
    * Disables the component.
    */
-  @Input() public disabled = false;
+  @Input() public set disabled(value: boolean) {
+    this.disabled$.next(value);
+  }
 
   public get selectable() {
     return this.selectable$.value;
@@ -112,6 +118,17 @@ export class ListItemComponent {
    */
   @Input() public exact = false;
 
+  public get focusable() {
+    return this.focusable$.value;
+  }
+
+  /**
+   * Enables or disables keyboard navigation.
+   */
+  @Input() public set focusable(value: boolean) {
+    this.focusable$.next(value);
+  }
+
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onClick = new EventEmitter<void>();
 
@@ -121,6 +138,10 @@ export class ListItemComponent {
 
   public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
+  protected readonly disabled$ = new BehaviorSubject<boolean>(false);
+
+  protected readonly focusable$ = new BehaviorSubject<boolean>(true);
+
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly rippleService: RippleService,
@@ -128,6 +149,13 @@ export class ListItemComponent {
   ) {
     bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');
     bindClassToNativeElement(this, this.selectable$, this.elementRef.nativeElement, 'selectable');
+    bindAttrToNativeElement(
+      this,
+      combineLatest([this.disabled$, this.focusable$]).pipe(map(([disabled, focusable]) => !disabled && focusable)),
+      this.elementRef.nativeElement,
+      'tabindex',
+      '0'
+    );
     this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 

@@ -1,0 +1,8 @@
+:host {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 3rem;
+
+  --anglify-menu-width: 130px;
+}

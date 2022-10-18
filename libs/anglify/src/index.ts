@@ -20,6 +20,7 @@ export * from './pipes/find-slot/find-slot.pipe';
 export * from './pipes/percent/percent.pipe';
 // Utils
 export * from './utils/animations';
+export * from './utils/functions';
 export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
@@ -99,9 +100,8 @@ export * from './components/list/components/list-item-description/list-item-desc
 export * from './components/list/components/list-item-group/list-item-group.component';
 export * from './components/list/components/list-item-title/list-item-title.component';
 // Menu
-export * from './components/menu/components/menu/menu.component';
+export * from './components/menu/menu/menu.component';
 export * from './components/menu/menu-settings.token';
-export * from './components/menu/menu.directive';
 export * from './components/menu/menu.interface';
 // Navigation Drawer
 export * from './components/navigation-drawer/navigation-drawer.component';

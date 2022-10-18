@@ -33,7 +33,8 @@ export class RippleService {
       filter(event => event.code === 'Space' || event.code === 'Enter')
     ),
     fromEvent(this.elementRef.nativeElement, 'mouseup'),
-    fromEvent(this.elementRef.nativeElement, 'mouseout')
+    fromEvent(this.elementRef.nativeElement, 'mouseout'),
+    fromEvent(this.elementRef.nativeElement, 'blur')
   );
 
   private readonly visibleRipples: HTMLElement[] = [];
