@@ -20,7 +20,7 @@
     flex: 1;
   }
 
-  &:focus-visible {
+  &:focus {
     --state-container-color: var(--color-state-inactive-focus);
   }
 

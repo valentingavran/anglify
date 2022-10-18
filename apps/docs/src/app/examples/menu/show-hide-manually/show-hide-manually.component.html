@@ -1,15 +1,13 @@
-<button type="button" anglifyButton [anglifyMenuTriggerFor]="menu" #menu1="anglifyMenu" [openOnClick]="false" [closeOnOutsideClick]="false">
-  Open Menu
-</button>
-
-<ng-template #menu>
+<anglify-menu [(value)]="menuVisible" [disabled]="true" position="top" [closeOnOutsideClick]="false" [closeOnMenuClick]="false">
+  <ng-template slot="activator">
+    <button type="button" anglifyButton>Open Menu</button>
+  </ng-template>
   <anglify-list-item><anglify-list-item-title>Hello world</anglify-list-item-title></anglify-list-item>
   <anglify-list-item><anglify-list-item-title>Hello world</anglify-list-item-title></anglify-list-item>
-</ng-template>
+</anglify-menu>
 
 <div class="controls">
   Controls:
-  <button type="button" anglifyButton appearance="text" (click)="menu1.open()">Show</button>
-  <button type="button" anglifyButton appearance="text" (click)="menu1.close()">Hide</button>
-  <button type="button" anglifyButton appearance="text" (click)="menu1.toggle()">Toggle</button>
+  <button type="button" anglifyButton appearance="text" (click)="menuVisible = true">Show</button>
+  <button type="button" anglifyButton appearance="text" (click)="menuVisible = false">Hide</button>
 </div>

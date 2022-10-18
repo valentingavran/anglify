@@ -1,16 +1,20 @@
-import type { Elevation } from '../../composables/elevation/elevation.interface';
-import type { Position } from '../../composables/position/position.interface';
+import type { Side } from '../../composables/position/position.interface';
 
 export type MenuMountingPoint = HTMLElement | 'body' | 'parent';
 
 export type EntireMenuSettings = {
+  closeOnEscape: boolean;
+  closeOnMenuClick: boolean;
   closeOnOutsideClick: boolean;
-  elevation: Elevation;
+  disabled: boolean;
   flip: boolean;
-  offset: number;
+  focusMenuWhenOpened: boolean;
+  focusable: boolean;
   openOnClick: boolean;
-  parentWidth: boolean;
-  position: Position;
+  openOnHover: boolean;
+  position: Side;
+  trapFocus: boolean;
+  value: boolean;
 };
 
 export type MenuSettings = Partial<EntireMenuSettings>;

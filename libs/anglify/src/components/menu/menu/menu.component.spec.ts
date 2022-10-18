@@ -1,5 +1,5 @@
-import { TestBed, type ComponentFixture } from '@angular/core/testing';
-import { POSITION_SETTINGS } from '../../../../composables/position/position.token';
+import type { ComponentFixture } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { MenuComponent } from './menu.component';
 
 describe('MenuComponent', () => {
@@ -8,18 +8,9 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: POSITION_SETTINGS,
-          useValue: {
-            host: document.createElement('div'),
-          },
-        },
-      ],
+      imports: [MenuComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -27,7 +27,7 @@ import { InternalIconSetDefinition } from '../icon/icon.interface';
 import { ListComponent } from '../list/components/list/list.component';
 import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { MenuDirective } from '../menu/menu.directive';
+import { MenuDirective } from '../menu/components/legacy-menu/legacy-menu.directive';
 import { ProgressLinearComponent } from '../progress-linear/progress-linear.component';
 import { SelectComponent } from '../select/select.component';
 import { DATA_TABLE_SETTINGS, DEFAULT_DATA_TABLE_SETTINGS } from './data-table-settings.token';

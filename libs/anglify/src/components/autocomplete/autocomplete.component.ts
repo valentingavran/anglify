@@ -13,7 +13,7 @@ import { ListComponent } from '../list/components/list/list.component';
 import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemGroupComponent } from '../list/components/list-item-group/list-item-group.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { MenuDirective } from '../menu/menu.directive';
+import { MenuDirective } from '../menu/components/legacy-menu/legacy-menu.directive';
 import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from '../select/select-settings.token';
 import { SelectComponent } from '../select/select.component';
 import type { EntireSelectSettings } from '../select/select.interface';

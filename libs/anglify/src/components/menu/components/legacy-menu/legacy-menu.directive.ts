@@ -19,13 +19,13 @@ import {
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, fromEvent, map, ReplaySubject, share, skip, Subject, takeUntil, tap } from 'rxjs';
-import { Elevation } from '../../composables/elevation/elevation.interface';
-import { Position } from '../../composables/position/position.interface';
-import { POSITION_SETTINGS } from '../../composables/position/position.token';
-import { createSettingsProvider } from '../../factories/settings.factory';
-import { MenuComponent } from './components/menu/menu.component';
-import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from './menu-settings.token';
-import { EntireMenuSettings, MenuMountingPoint } from './menu.interface';
+import { Elevation } from '../../../../composables/elevation/elevation.interface';
+import { Position } from '../../../../composables/position/position.interface';
+import { POSITION_SETTINGS } from '../../../../composables/position/position.token';
+import { createSettingsProvider } from '../../../../factories/settings.factory';
+import { DEFAULT_MENU_SETTINGS, MENU_SETTINGS } from '../../menu-settings.token';
+import { EntireMenuSettings, MenuMountingPoint } from '../../menu.interface';
+import { LegacyMenuComponent } from './legacy-menu.component';
 
 @UntilDestroy()
 @Directive({
@@ -107,13 +107,13 @@ export class MenuDirective implements OnDestroy {
     }
   }
 
-  private readonly parentWidth$ = new BehaviorSubject<boolean>(this.settings.parentWidth);
+  private readonly parentWidth$ = new BehaviorSubject<boolean>(false);
 
-  private readonly offset$ = new BehaviorSubject<number>(this.settings.offset);
+  private readonly offset$ = new BehaviorSubject<number>(0);
 
-  private readonly elevation$ = new BehaviorSubject<Elevation>(this.settings.elevation);
+  private readonly elevation$ = new BehaviorSubject<Elevation>(2);
 
-  private readonly position$ = new BehaviorSubject<Position>(this.settings.position);
+  private readonly position$ = new BehaviorSubject<Position>('bottom');
 
   private readonly flip$ = new BehaviorSubject<boolean>(this.settings.flip);
 
@@ -121,7 +121,7 @@ export class MenuDirective implements OnDestroy {
 
   private readonly closeAction$ = new Subject<void>();
 
-  private componentRef: ComponentRef<MenuComponent> | undefined; // Menu Component Reference
+  private componentRef: ComponentRef<LegacyMenuComponent> | undefined; // Menu Component Reference
 
   private embeddedView: EmbeddedViewRef<any> | undefined; // Menu Content Template Reference
 
@@ -175,7 +175,7 @@ export class MenuDirective implements OnDestroy {
 
   private create() {
     if (this.componentRef) return;
-    const factory = this.resolver.resolveComponentFactory(MenuComponent);
+    const factory = this.resolver.resolveComponentFactory(LegacyMenuComponent);
     const injector = Injector.create({
       providers: [{ provide: POSITION_SETTINGS, useValue: { host: this.element.nativeElement } }],
     });
