@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.37.0](https://github.com/valentingavran/anglify/compare/v0.36.4...v0.37.0) (2022-10-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **DataTable:** DataTable sorting may not work like before.
+
+### 🐛  Bug Fixes
+
+* **ListItem:** change ListItem gap to match material standards ([e05192b](https://github.com/valentingavran/anglify/commit/e05192bae4a3ae78f7d58f3024fc3d94aef04ede))
+
+
+### 🔬  Code Refactoring
+
+* **DataTable:** sort functions has now access to sort direction ([caab6cd](https://github.com/valentingavran/anglify/commit/caab6cd43403c1f0f23c541008819c6019856ff4))
+
+
+### 🚀  Features
+
+* **DataTable:** add customFilter input property ([fe88d8b](https://github.com/valentingavran/anglify/commit/fe88d8b178db69a51f23e3c1a692d0312c7a4283))
+* divider ([8908790](https://github.com/valentingavran/anglify/commit/8908790c2316c266c26fbfca87831e224c5da4e7))
+
 ### [0.36.4](https://github.com/valentingavran/anglify/compare/v0.36.3...v0.36.4) (2022-10-14)
 
 
