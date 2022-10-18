@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.38.0](https://github.com/valentingavran/anglify/compare/v0.37.0...v0.38.0) (2022-10-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Menu:** The Menu directive is no longer available for external use and has been replaced
+by the Menu Component. Internally, the directive is still used on some components, but the
+occurrences will all be replaced by the Menu Component soon.
+
+### 📝  Docs
+
+* allow overflow inside code examples ([b99b7e0](https://github.com/valentingavran/anglify/commit/b99b7e0490a2ba2cc6ae6b63662b96f994550d77))
+
+
+### 🐛  Bug Fixes
+
+* **Ripple:** ripples now get removed on blur events ([df81ad4](https://github.com/valentingavran/anglify/commit/df81ad4e99922abfd143fb7addbe0e555966d615))
+
+
+### 🚀  Features
+
+* export internal utility functions ([b592910](https://github.com/valentingavran/anglify/commit/b59291046f66af7f2fc610c4e152fd574f96110e))
+* **ListItem:** list items are now keyboard focusable by default ([05f0c80](https://github.com/valentingavran/anglify/commit/05f0c8009624986b73a2bb4fdd59d8af40690e09))
+
+
+### 🔬  Code Refactoring
+
+* **Menu:** menu directive is now a component (+ new features) ([5b4371e](https://github.com/valentingavran/anglify/commit/5b4371e888d83fc080efb6f9324b1d18b7e1eba9))
+
 ## [0.37.0](https://github.com/valentingavran/anglify/compare/v0.36.4...v0.37.0) (2022-10-18)
 
 
