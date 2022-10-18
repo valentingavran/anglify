@@ -1,7 +1,7 @@
 {
   "name": "@anglify/components",
   "description": "Anglify – Material Component Framework for Angular",
-  "version": "0.36.4",
+  "version": "0.37.0",
   "license": "MIT",
   "homepage": "https://anglify.io",
   "keywords": [
