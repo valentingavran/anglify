@@ -20,6 +20,7 @@ export * from './pipes/find-slot/find-slot.pipe';
 export * from './pipes/percent/percent.pipe';
 // Utils
 export * from './utils/animations';
+export * from './utils/functions';
 export * from './utils/validators';
 export * from './services/breakpoint-observer/breakpoint-observer.service';
 export * from './services/breakpoint-observer/breakpoint-observer.interface';
