@@ -1,10 +1,10 @@
-import { ButtonComponent, IconComponent } from '@anglify/components';
+import { bindClassToNativeElement, ButtonComponent, IconComponent } from '@anglify/components';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
+  ElementRef,
   Injector,
   Input,
   ViewChild,
@@ -13,6 +13,7 @@ import {
   type Type,
 } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -20,6 +21,7 @@ import { HighlightPipe } from '../../pipes/highlight.pipe';
 
 const EXAMPLE_FOLDER_URL = environment.exampleFolderURL;
 
+@UntilDestroy()
 @Component({
   standalone: true,
   templateUrl: './code-example.component.html',
@@ -40,13 +42,17 @@ export class CodeExampleComponent implements OnInit {
     this.example$.next(value);
   }
 
-  @HostBinding('class.hide-overflow')
-  @Input()
-  public hideOverflow = true;
+  @Input('hide-overflow')
+  public set hideOverflow(value: boolean | 'false' | 'true' | null | undefined) {
+    if (value === 'false' || value === false) this.hideOverflow$.next(false);
+    else this.hideOverflow$.next(true);
+  }
 
   private readonly example$ = new BehaviorSubject<string>('');
 
   public readonly selectedView$ = new BehaviorSubject<'code' | 'style' | 'template' | null>(null);
+
+  private hideOverflow$ = new BehaviorSubject<boolean>(true);
 
   public readonly template$ = this.example$.pipe(
     switchMap(example => {
@@ -98,7 +104,13 @@ export class CodeExampleComponent implements OnInit {
     }
   }
 
-  public constructor(private readonly httpClient: HttpClient, private readonly injector: Injector) {}
+  public constructor(
+    private readonly httpClient: HttpClient,
+    private readonly injector: Injector,
+    private readonly elementRef: ElementRef<HTMLElement>
+  ) {
+    bindClassToNativeElement(this, this.hideOverflow$, this.elementRef.nativeElement, 'hide-overflow');
+  }
 
   public ngOnInit() {
     void this.loadComponent();
