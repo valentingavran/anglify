@@ -1,3 +1,7 @@
 :host {
   width: 100%;
+
+  * {
+    color: var(--color-on-bar-high-emphasis);
+  }
 }

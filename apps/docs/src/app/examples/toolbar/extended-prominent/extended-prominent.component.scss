@@ -3,4 +3,8 @@
 
   --anglify-tab-active-color: white;
   --anglify-tab-indicator-color: white;
+
+  * {
+    color: var(--color-on-bar-high-emphasis);
+  }
 }

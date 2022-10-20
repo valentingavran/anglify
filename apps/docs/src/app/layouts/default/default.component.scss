@@ -38,6 +38,10 @@
     position: sticky;
     top: 0;
     grid-area: toolbar;
+
+    * {
+      color: var(--color-on-bar-high-emphasis);
+    }
   }
 
   main {
