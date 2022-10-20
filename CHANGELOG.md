@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.39.0](https://github.com/valentingavran/anglify/compare/v0.38.0...v0.39.0) (2022-10-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Toolbar:** The toolbar no longer sets text and icon colors itself. This must now be done
+manually by the developer.
+
+### 🔬  Code Refactoring
+
+* **Toolbar:** text and icon colors are no longer set by the toolbar ([395643c](https://github.com/valentingavran/anglify/commit/395643c765c7845536518558f752ad2d68b4d651))
+
+
+### 🚀  Features
+
+* **List:** list item title color can be set with CSS custom properties ([49d1159](https://github.com/valentingavran/anglify/commit/49d11598403a510b323492d21aeaae1febb9d754))
+
 ## [0.38.0](https://github.com/valentingavran/anglify/compare/v0.37.0...v0.38.0) (2022-10-18)
 
 
