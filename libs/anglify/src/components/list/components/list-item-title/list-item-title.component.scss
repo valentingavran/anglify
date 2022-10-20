@@ -5,10 +5,15 @@
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   overflow: hidden;
+  color: $list-item-color;
   font: $list-item-title-font;
   letter-spacing: $list-item-title-letter-spacing;
   -webkit-line-clamp: $list-item-title-line-clamp;
   line-clamp: $list-item-title-line-clamp;
   text-overflow: ellipsis;
   text-transform: $list-item-title-text-transform;
+}
+
+:host-context(.active) {
+  color: $list-item-active-text-color;
 }
