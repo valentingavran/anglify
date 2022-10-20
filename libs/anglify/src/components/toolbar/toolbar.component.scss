@@ -8,13 +8,8 @@
   .extension-container {
     height: $toolbar-extension-container-height;
     background-color: $toolbar-background;
+    color: $toolbar-text-color;
     padding-inline-start: $toolbar-extension-container-padding-start;
-
-    ::ng-deep {
-      * {
-        color: $toolbar-text-color;
-      }
-    }
   }
 
   .toolbar-container {
@@ -24,12 +19,6 @@
     align-items: center;
     background-color: $toolbar-background;
     color: $toolbar-text-color;
-
-    ::ng-deep {
-      * {
-        color: $toolbar-text-color;
-      }
-    }
 
     .center {
       width: 100%;
@@ -52,12 +41,6 @@
       align-items: center;
       margin-inline-end: $toolbar-end-margin-end;
       margin-inline-start: $toolbar-end-margin-start;
-
-      ::ng-deep {
-        * {
-          color: $toolbar-text-color;
-        }
-      }
     }
   }
 
@@ -77,12 +60,6 @@
 
       .end {
         align-items: flex-start;
-
-        ::ng-deep {
-          * {
-            color: $toolbar-text-color;
-          }
-        }
       }
     }
   }
