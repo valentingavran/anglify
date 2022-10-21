@@ -199,6 +199,11 @@ const routes: Routes = [
             title: 'Simple Table | Anglify',
           },
           {
+            path: 'slider',
+            component: TemplateComponent,
+            title: 'Slider | Anglify',
+          },
+          {
             path: 'tabs',
             component: TemplateComponent,
             title: 'Tabs | Anglify',

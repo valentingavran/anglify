@@ -284,6 +284,11 @@ export class DefaultComponent {
           type: 'item',
         },
         {
+          link: 'components/slider',
+          name: 'Slider',
+          type: 'item',
+        },
+        {
           link: 'components/snackbar',
           name: 'Snackbar',
           type: 'item',

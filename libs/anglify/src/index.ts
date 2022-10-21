@@ -127,6 +127,10 @@ export * from './components/select/select.component';
 export * from './components/select/select.interface';
 // Simple Table
 export * from './components/simple-table/simple-table.component';
+// Slider
+export * from './components/slider/slider-settings.token';
+export * from './components/slider/slider.component';
+export * from './components/slider/slider.interface';
 // Snackbar
 export * from './components/snackbar/snackbar.component';
 export * from './components/snackbar/snackbar.interface';

@@ -1,0 +1,10 @@
+<div #slider class="anglify-slider-track">
+  <ng-container *ngIf="ticks">
+    <div class="anglify-slider-tick" *ngFor="let tick of ticksArray$ | async"></div>
+  </ng-container>
+</div>
+<div #thumbContainer class="state-container" anglifyInteractionState rippleOrigin="center" [active]="ripple" [state]="state">
+  <div #thumb="anglifyTooltip" class="anglify-slider-thumb" [anglifyTooltip]="tooltipContent" [anglifyToolTipConfig]="tooltipConfig"></div>
+</div>
+
+<ng-template #tooltipContent>{{ value$ | async }}</ng-template>
