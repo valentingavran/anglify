@@ -36,5 +36,4 @@ $checkbox-icon-before-height: var(--anglify-checkbox-icon-before-height, calc(2 
 $checkbox-icon-after-top-position: var(--anglify-checkbox-icon-after-top-position, calc(11 * $checkbox-height / 14)) !default;
 $checkbox-icon-after-left-position: var(--anglify-checkbox-icon-after-left-position, calc(4.5 * $checkbox-width / 14)) !default;
 $checkbox-icon-after-height: var(--anglify-checkbox-icon-after-height, calc(2 * $checkbox-height / 14)) !default;
-$checkbox-checked-icon-transition-speed: var(--anglify-checkbox-checked-icon-transition-speed, width 125ms ease 75ms) !default;
 $checkbox-custom-icon-size: var(--anglify-checkbox-custom-icon-size, $checkbox-ripple-inner-width) !default;

@@ -9,5 +9,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class VisibilityComponent {
-  protected visible = true;
+  protected visible: boolean | undefined = true;
 }

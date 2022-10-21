@@ -52,9 +52,8 @@
       background: $checkbox-icon-color;
       border-radius: 3px;
       content: '';
-      transform: rotate(305deg);
+      rotate: 305deg;
       transform-origin: 0% 0%;
-      transition: width 50ms ease;
     }
 
     &::before {
@@ -66,9 +65,8 @@
       background: $checkbox-icon-color;
       border-radius: 3px;
       content: '';
-      transform: rotate(45deg);
+      rotate: 45deg;
       transform-origin: 0% 0%;
-      transition: width 50ms ease 50ms;
     }
   }
 
@@ -104,6 +102,38 @@
     }
   }
 
+  &.anglify-checkbox-indeterminate {
+    .check-box-effect {
+      border-color: transparent !important;
+      background-color: $checkbox-disabled-color;
+
+      &::before,
+      &::after {
+        top: 50% !important;
+        left: 50% !important;
+        width: $checkbox-icon-after-width;
+        background: $checkbox-checked-icon-color;
+        rotate: 0deg;
+        translate: -50% -50%;
+      }
+    }
+  }
+
+  // Two separate not selectors needed
+  /* stylelint-disable-next-line selector-not-notation */
+  &.anglify-checkbox-indeterminate:not(.anglify-checkbox-disabled) {
+    .check-box-effect {
+      border-color: $checkbox-checked-border-color;
+      background-color: $checkbox-checked-color;
+
+      &::before,
+      &::after {
+        width: $checkbox-icon-after-width;
+        background: $checkbox-checked-icon-color;
+      }
+    }
+  }
+
   &.anglify-checkbox-checked.anglify-checkbox-disabled {
     --anglify-icon-color: #{$checkbox-disabled-color};
 
@@ -114,13 +144,11 @@
       &::before {
         width: $checkbox-icon-before-width;
         background: $checkbox-checked-icon-color;
-        transition: $checkbox-checked-icon-transition-speed;
       }
 
       &::after {
         width: $checkbox-icon-after-width;
         background: $checkbox-checked-icon-color;
-        transition: $checkbox-checked-icon-transition-speed;
       }
     }
   }
@@ -135,13 +163,11 @@
       &::before {
         width: $checkbox-icon-before-width;
         background: $checkbox-checked-icon-color;
-        transition: $checkbox-checked-icon-transition-speed;
       }
 
       &::after {
         width: $checkbox-icon-after-width;
         background: $checkbox-checked-icon-color;
-        transition: $checkbox-checked-icon-transition-speed;
       }
     }
 
