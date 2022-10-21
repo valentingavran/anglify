@@ -5,7 +5,7 @@
   [items]="items"
   [selectableRows]="true"
   [(selection)]="selection"
-  [singleSelect]="singleSelect"
+  [singleSelect]="singleSelect ?? false"
 ></anglify-data-table>
 
 <p><strong>Selection:</strong> {{ selection | json }}</p>

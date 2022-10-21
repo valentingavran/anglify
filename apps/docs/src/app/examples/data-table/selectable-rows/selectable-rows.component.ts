@@ -11,7 +11,7 @@ import { items } from '../data';
   imports: [DataTableComponent, CheckboxComponent, JsonPipe],
 })
 export default class SelectableRowsComponent {
-  protected singleSelect = false;
+  protected singleSelect: boolean | undefined = false;
 
   protected headers: DataTableHeader[] = [
     { text: 'Dessert (100g serving)', value: 'name' },

@@ -18,6 +18,10 @@ Checkboxes allow users to select one or more items from a set. Checkboxes can tu
 
 <app-code-example component="checkbox" example="appearances"></app-code-example>
 
+### Indeterminate Checkboxes
+
+<app-code-example component="checkbox" example="indeterminate"></app-code-example>
+
 ### Custom Icon Checkboxes
 
 <app-code-example component="checkbox" example="custom-icons"></app-code-example>
