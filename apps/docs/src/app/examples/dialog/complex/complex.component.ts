@@ -11,6 +11,14 @@ import { map } from 'rxjs';
     <p>{{ dialogContext.data!.message }}</p>
     <button style="align-self:flex-end;" type="button" anglifyButton appearance="text" (click)="closeDialog()">Close</button>
   </div>`,
+  styles: [
+    `
+      :host {
+        display: block;
+        padding: 16px;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ButtonComponent],
 })
@@ -34,7 +42,7 @@ export default class ComplexComponent {
   public constructor(protected dialogService: DialogService) {}
 
   protected dialogData = {
-    title: 'My custom Dialog Title',
+    title: 'My Dialog Title',
     message: 'I passed some data to the dialog!',
   };
 

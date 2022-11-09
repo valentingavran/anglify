@@ -1,6 +1,20 @@
 import { ButtonComponent, DialogService } from '@anglify/components';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import DialogTestComponent from './dialog-test.component';
+
+@Component({
+  standalone: true,
+  template: '<div>Dialog works!</div>',
+  styles: [
+    `
+      :host {
+        display: block;
+        padding: 16px;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogTestComponent {}
 
 @Component({
   standalone: true,
