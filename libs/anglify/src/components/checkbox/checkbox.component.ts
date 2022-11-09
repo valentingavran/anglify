@@ -20,7 +20,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { InteractionStateDirective } from '../../directives/interaction-state/interaction-state.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
@@ -85,7 +85,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
    */
   @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
 
-  public get checked() {
+  public get checked(): boolean | undefined {
     return this.checked$.value;
   }
 
@@ -94,7 +94,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
    */
   @HostBinding('attr.aria-checked')
   @Input()
-  public set checked(value: boolean) {
+  public set checked(value: boolean | undefined) {
     this.checked$.next(value);
   }
 
@@ -124,7 +124,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     this.readonly$.next(value);
   }
 
-  @Output() public readonly checkedChange = new EventEmitter<boolean>();
+  @Output() public readonly checkedChange = new EventEmitter<boolean | undefined>();
 
   public iconProvider!: CheckboxIconRef | null;
 
@@ -142,7 +142,13 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: (() => CheckboxIconRef) | null
   ) {
-    bindClassToNativeElement(this, this.checked$, this.elementRef.nativeElement, 'anglify-checkbox-checked');
+    bindClassToNativeElement(
+      this,
+      this.checked$.pipe(map(val => val === undefined)),
+      this.elementRef.nativeElement,
+      'anglify-checkbox-indeterminate'
+    );
+    bindClassToNativeElement(this, this.checked$.pipe(map(Boolean)), this.elementRef.nativeElement, 'anglify-checkbox-checked');
     bindClassToNativeElement(this, this.disabled$, this.elementRef.nativeElement, 'anglify-checkbox-disabled');
     bindClassToNativeElement(this, this.readonly$, this.elementRef.nativeElement, 'anglify-checkbox-readonly');
     if (this.iconProviderFactory) {

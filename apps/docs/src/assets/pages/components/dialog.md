@@ -15,9 +15,13 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 ### Simple
 
-If you use the simple `open()` method, receiving a return or close value is impossible. Instead, you can use the
-`open$()` method, which returns an observable you can subscribe to.
+You can open the Anglify dialog simply with the `open()` method. But this way you can't get any values from the dialog back.
 <app-code-example component="dialog" example="simple"></app-code-example>
+
+### Complex
+
+If you want the dialog to return data to you, use the `open$()` method. This method returns an observable which emits on various dialog events.
+<app-code-example component="dialog" example="complex"></app-code-example>
 
 ## API
 

@@ -11,12 +11,11 @@
     min-width: $dialog-min-width;
     max-width: 100%;
     height: auto;
-    max-height: 100%;
+    max-height: 100vh;
     box-sizing: border-box;
     flex-direction: column;
     flex-grow: 0;
     flex-shrink: 0;
-    padding: $dialog-padding;
     background: $dialog-background;
     border-radius: $dialog-border-radius;
     overflow-y: auto;

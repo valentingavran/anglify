@@ -16,7 +16,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CloseOnClickComponent {
-  protected closeOnOutsideClick = true;
+  protected closeOnOutsideClick: boolean | undefined = true;
 
-  protected closeOnMenuClick = true;
+  protected closeOnMenuClick: boolean | undefined = true;
 }
