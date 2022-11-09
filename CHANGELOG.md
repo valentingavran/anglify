@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.40.0](https://github.com/valentingavran/anglify/compare/v0.39.0...v0.40.0) (2022-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Dialog:** Dialog padding has been removed. However, it is now easier to control the width
+of the dialog.
+
+### 🚀  Features
+
+* **Checkbox:** add indeterminate state ([1b10a3c](https://github.com/valentingavran/anglify/commit/1b10a3cf3ebee93728cf3e1acaf2d733a732737c))
+
+
+### 📝  Docs
+
+* **Dialog:** add example that return data from dialog ([125aa31](https://github.com/valentingavran/anglify/commit/125aa31c07ccd3ef5752deff67f91b9bfad6dfc7))
+
+
+### 🛠  Other Commits
+
+* create anglify logo ([300e4ac](https://github.com/valentingavran/anglify/commit/300e4ac6f9f84e541b83e3575d37ec28693d8d28))
+
+
+### 🐛  Bug Fixes
+
+* **Dialog:** fix scrolling/max height ([00d328a](https://github.com/valentingavran/anglify/commit/00d328a715eced1d76ab5b4aeb7dbf456e81ab2b))
+
+
+### 🔬  Code Refactoring
+
+* **Dialog:** remove dialog padding ([d4b4fdf](https://github.com/valentingavran/anglify/commit/d4b4fdf9e7bd5452f71db0637bdab0cfce17471e))
+
 ## [0.39.0](https://github.com/valentingavran/anglify/compare/v0.38.0...v0.39.0) (2022-10-20)
 
 
