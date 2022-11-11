@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.41.0](https://github.com/valentingavran/anglify/compare/v0.40.0...v0.41.0) (2022-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Tabs:** ControlValueAccessor support for Tabs was dropped
+
+### 🚀  Features
+
+* **Tabs:** add value input & valueChange output properties ([fb7bc56](https://github.com/valentingavran/anglify/commit/fb7bc565c296c141a6d1d03c7ab208b7ba124465))
+
+
+### 📝  Docs
+
+* add copy code example button ([4bcf8d8](https://github.com/valentingavran/anglify/commit/4bcf8d84c1a48621a8ae3e4e5289e8440b6f06a7))
+
+
+### 🔬  Code Refactoring
+
+* **Tabs:** remove ControlValueAccessor support ([057dede](https://github.com/valentingavran/anglify/commit/057dede730779189caaf0a410e097012c3a32a5e))
+
 ## [0.40.0](https://github.com/valentingavran/anglify/compare/v0.39.0...v0.40.0) (2022-11-09)
 
 
