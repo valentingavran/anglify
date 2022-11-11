@@ -18,6 +18,7 @@ import { BehaviorSubject, NEVER, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { HighlightPipe } from '../../pipes/highlight.pipe';
+import { CopyButtonComponent } from '../copy-button/copy-button.component';
 
 const EXAMPLE_FOLDER_URL = environment.exampleFolderURL;
 
@@ -27,7 +28,7 @@ const EXAMPLE_FOLDER_URL = environment.exampleFolderURL;
   templateUrl: './code-example.component.html',
   styleUrls: ['./code-example.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgIf, AsyncPipe, IconComponent, HttpClientModule, ButtonComponent, HighlightPipe],
+  imports: [NgIf, AsyncPipe, IconComponent, HttpClientModule, ButtonComponent, HighlightPipe, CopyButtonComponent],
 })
 export class CodeExampleComponent implements OnInit {
   @ViewChild('container', { static: true, read: ViewContainerRef }) public container!: ViewContainerRef;

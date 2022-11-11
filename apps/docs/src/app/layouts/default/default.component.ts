@@ -14,13 +14,15 @@ import {
 } from '@anglify/components';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import type { EmbeddedViewRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
 import { NavigationStart, Router, RouterModule, type RouterEvent } from '@angular/router';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-scss';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-xml-doc';
 import { catchError, filter, map, of, startWith, switchMap, take, tap } from 'rxjs';
+import { CopyButtonComponent } from '../../components/copy-button/copy-button.component';
 import { TableOfContentsComponent } from '../../components/table-of-contents/table-of-contents.component';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { TocService } from '../../services/toc.service';
@@ -62,6 +64,7 @@ type NavGroup = {
     ButtonComponent,
     TableOfContentsComponent,
     HttpClientModule,
+    CopyButtonComponent,
   ],
 })
 export class DefaultComponent {
@@ -102,7 +105,9 @@ export class DefaultComponent {
     public breakpointService: BreakpointObserverService,
     protected tocService: TocService,
     private readonly httpClient: HttpClient,
-    private readonly markdownPipe: MarkdownPipe
+    private readonly markdownPipe: MarkdownPipe,
+    private readonly renderer: Renderer2,
+    private readonly viewContainerRef: ViewContainerRef
   ) {
     this.initTheme();
   }
@@ -122,8 +127,23 @@ export class DefaultComponent {
         )
     ),
     switchMap(text => this.markdownPipe.parseMarkdown(text).pipe(take(1))),
-    tap(() => setTimeout(() => this.tocService.genToc(this.container.nativeElement), 0))
+    tap(() =>
+      setTimeout(() => {
+        this.addCopyButton();
+        this.tocService.genToc(this.container.nativeElement);
+      }, 0)
+    )
   );
+
+  private addCopyButton() {
+    const allCodeBlocks = this.container.nativeElement.querySelectorAll('pre');
+    for (const codeBlock of Array.from(allCodeBlocks)) {
+      const componentRef = this.viewContainerRef.createComponent(CopyButtonComponent);
+      componentRef.instance.content = codeBlock.textContent ?? '';
+      const button = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+      this.renderer.appendChild(codeBlock, button);
+    }
+  }
 
   public navigationTree: (NavGroup | NavItem)[] = [
     {
