@@ -3,8 +3,11 @@ import {
   Component,
   ContentChildren,
   ElementRef,
+  EventEmitter,
   forwardRef,
   HostBinding,
+  Input,
+  Output,
   QueryList,
   ViewChild,
   type AfterViewInit,
@@ -34,6 +37,12 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
   @ContentChildren(TabComponent) private readonly allTabs?: QueryList<TabComponent>;
 
   @ViewChild('indicator') private readonly indicator!: ElementRef<HTMLElement>;
+
+  @Input() public set value(value: number) {
+    this.writeValue(value);
+  }
+
+  @Output() public readonly valueChange = new EventEmitter<number>();
 
   private readonly tabs$ = new BehaviorSubject<TabComponent[]>([]);
 
@@ -88,7 +97,10 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
       this.selectNext(tab);
     });
 
-    if (index) this.onChange(index);
+    if (index !== undefined) {
+      this.onChange(index);
+      this.valueChange.emit(index);
+    }
   }
 
   private deselectAllOthers(exception: TabComponent) {
