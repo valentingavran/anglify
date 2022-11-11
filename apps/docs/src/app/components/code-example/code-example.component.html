@@ -35,17 +35,21 @@
 <div class="code-container">
   <div class="template" *ngIf="(selectedView$ | async) === 'template'">
     <pre *ngIf="template$ | async as template">
-      <code [innerHTML]="template | highlight: 'html'"></code>
+      <code [innerHTML]="template | highlight: 'html'">
+      </code>
+      <copy-button-component [content]="template"></copy-button-component>
       </pre>
   </div>
   <div class="code" *ngIf="(selectedView$ | async) === 'code'">
     <pre *ngIf="code$ | async as code">
       <code [innerHTML]="code | highlight: 'typescript'"></code>
+      <copy-button-component [content]="code"></copy-button-component>
       </pre>
   </div>
   <div class="style" *ngIf="(selectedView$ | async) === 'style'">
     <pre *ngIf="style$ | async as style">
         <code [innerHTML]="style | highlight: 'scss'"></code>
+        <copy-button-component [content]="style"></copy-button-component>
       </pre>
   </div>
 </div>

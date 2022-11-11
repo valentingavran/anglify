@@ -3,13 +3,14 @@ import {
   Component,
   ContentChildren,
   ElementRef,
-  forwardRef,
+  EventEmitter,
   HostBinding,
+  Input,
+  Output,
   QueryList,
   ViewChild,
   type AfterViewInit,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, startWith, takeUntil } from 'rxjs/operators';
@@ -21,19 +22,19 @@ import { TabComponent } from '../tab/tab.component';
   standalone: true,
   templateUrl: './tab-group.component.html',
   styleUrls: ['./tab-group.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TabGroupComponent),
-      multi: true,
-    },
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
+export class TabGroupComponent implements AfterViewInit {
   @ContentChildren(TabComponent) private readonly allTabs?: QueryList<TabComponent>;
 
   @ViewChild('indicator') private readonly indicator!: ElementRef<HTMLElement>;
+
+  @Input() public set value(value: number) {
+    const tab = this.tabs$.value[value] as TabComponent | null | undefined;
+    if (tab) this.onSelectedTabChange(tab);
+  }
+
+  @Output() public readonly valueChange = new EventEmitter<number>();
 
   private readonly tabs$ = new BehaviorSubject<TabComponent[]>([]);
 
@@ -42,10 +43,6 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
   private readonly destroySelectPreviousSubscription$ = new Subject<void>();
 
   private readonly destroySelectNextSubscription$ = new Subject<void>();
-
-  public onChange: (...args: any[]) => void = () => {};
-
-  public onTouch: (...args: any[]) => void = () => {};
 
   @HostBinding('attr.role') protected readonly role = 'tablist';
 
@@ -60,22 +57,6 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
     });
   }
 
-  public registerOnChange(fn: (...args: any[]) => void) {
-    this.onChange = fn;
-  }
-
-  public registerOnTouched(fn: (...args: any[]) => void) {
-    this.onTouch = fn;
-  }
-
-  /**
-   * Selects tab with given index
-   */
-  public writeValue(value: number) {
-    const tab = this.tabs$.value[value] as TabComponent | null | undefined;
-    if (tab) this.onSelectedTabChange(tab);
-  }
-
   private onSelectedTabChange(tab: TabComponent, index?: number) {
     this.indicator.nativeElement.style.width = `${tab.elementRef.nativeElement.offsetWidth}px`;
     this.indicator.nativeElement.style.left = `${tab.elementRef.nativeElement.offsetLeft}px`;
@@ -88,7 +69,9 @@ export class TabGroupComponent implements ControlValueAccessor, AfterViewInit {
       this.selectNext(tab);
     });
 
-    if (index) this.onChange(index);
+    if (index !== undefined) {
+      this.valueChange.emit(index);
+    }
   }
 
   private deselectAllOthers(exception: TabComponent) {
