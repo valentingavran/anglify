@@ -26,6 +26,11 @@ Checkboxes allow users to select one or more items from a set. Checkboxes can tu
 
 <app-code-example component="checkbox" example="custom-icons"></app-code-example>
 
+### Link inside label
+
+It is important that you add the `ClickStopPropagationDirective` to your clickable element inside the label.
+<app-code-example component="checkbox" example="label"></app-code-example>
+
 ### Different Sizes
 
 <app-code-example component="checkbox" example="sizes"></app-code-example>
