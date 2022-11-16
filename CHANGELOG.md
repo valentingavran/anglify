@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.41.1](https://github.com/valentingavran/anglify/compare/v0.41.0...v0.41.1) (2022-11-16)
+
+
+### 🚀  Features
+
+* **DataTable:** add sortBy input property & change event ([9f99d43](https://github.com/valentingavran/anglify/commit/9f99d434a37cc35a1c5f4152f410e8f43e9c81a4))
+
+
+### 🐛  Bug Fixes
+
+* **Checkbox:** remove propagation for links in labels ([6dec500](https://github.com/valentingavran/anglify/commit/6dec5004c5b8ab4505870b51a7003d5cc419054c))
+
 ## [0.41.0](https://github.com/valentingavran/anglify/compare/v0.40.0...v0.41.0) (2022-11-11)
 
 
