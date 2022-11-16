@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, skip } from 'rxjs';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -31,7 +31,7 @@ import { MenuDirective } from '../menu/components/legacy-menu/legacy-menu.direct
 import { ProgressLinearComponent } from '../progress-linear/progress-linear.component';
 import { SelectComponent } from '../select/select.component';
 import { DATA_TABLE_SETTINGS, DEFAULT_DATA_TABLE_SETTINGS } from './data-table-settings.token';
-import type { DataTableHeader, DataTableItem } from './data-table.interface';
+import type { DataTableHeader, DataTableItem, SortSetting } from './data-table.interface';
 import { EntireDataTableSettings } from './data-table.interface';
 import { IsColumnVisiblePipe } from './pipes/is-column-hidden.pipe';
 import { DataService } from './services/data.service';
@@ -286,10 +286,25 @@ export class DataTableComponent {
     this.dataService.customFilterFn = value;
   }
 
+  public get sortBy() {
+    return this.dataService.sortBy$.value;
+  }
+
+  /**
+   * Can be used to control the sorting manually. Also quite handy for initial sorts
+   */
+  @Input() public set sortBy(value: SortSetting[]) {
+    this.dataService.sortBy$.next(value);
+  }
+
   /**
    * Emitted when the selected items change.
    */
   @Output() public readonly selectionChange = new EventEmitter<DataTableItem[]>();
+
+  // BehaviorSubjects emit their current value when subscribed to. Skip prevents that
+  // eslint-disable-next-line rxjs/finnish
+  @Output() public readonly sortByChange = this.dataService.sortBy$.pipe(skip(1));
 
   protected readonly hideDefaultFooter$ = new BehaviorSubject(this.settings.hideDefaultFooter);
 
