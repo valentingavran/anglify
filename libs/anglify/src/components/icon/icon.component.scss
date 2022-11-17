@@ -45,6 +45,14 @@
   &.right {
     margin-inline-start: 8px;
   }
+
+  &.top {
+    margin-block-end: 8px;
+  }
+
+  &.bottom {
+    margin-block-start: 8px;
+  }
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
