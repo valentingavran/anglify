@@ -1,3 +1,1 @@
-<div *ngIf="label || (slots | findSlot: 'label')" class="anglify-tab-label">
-  <ng-container *anglifySlotOutlet="slots | findSlot: 'label'">{{ label }}</ng-container>
-</div>
+<ng-container *anglifySlotOutlet="slots | findSlot: 'label'">{{ label }}</ng-container>

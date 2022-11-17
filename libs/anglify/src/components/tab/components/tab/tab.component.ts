@@ -12,7 +12,6 @@ import {
   Output,
   QueryList,
   Self,
-  type AfterViewInit,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -38,7 +37,7 @@ import { EntireTabSettings } from '../../tab.interface';
   providers: [createSettingsProvider<EntireTabSettings>('anglifyTabSettings', DEFAULT_TAB_SETTINGS, TAB_SETTINGS), RIPPLE],
   imports: [AsyncPipe, FindSlotPipe, NgIf, SlotOutletDirective],
 })
-export class TabComponent implements AfterViewInit {
+export class TabComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   /**
@@ -158,33 +157,6 @@ export class TabComponent implements AfterViewInit {
 
     this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
     bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'active');
-  }
-
-  public ngAfterViewInit() {
-    const children = Array.from(this.elementRef.nativeElement.children);
-    const hasTopIcon = this.searchIcon(children, 'top');
-
-    if (hasTopIcon) {
-      this.elementRef.nativeElement.classList.add('anglify-tab-has-top-icon');
-    }
-  }
-
-  private searchIcon(children: Element[], attributeName: string): boolean {
-    return children.some(child => {
-      if (child.classList.contains('anglify-tab-label')) {
-        const tabLabelChildren = Array.from(child.children);
-        return tabLabelChildren.some(tabLabelChild => {
-          if (tabLabelChild.tagName === 'ANGLIFY-ICON') {
-            const value = Array.from(tabLabelChild.attributes).some(attribute => attribute.name === attributeName);
-            return Boolean(value);
-          }
-
-          return false;
-        });
-      }
-
-      return false;
-    });
   }
 
   private readonly routerLinkHandler$ = merge(

@@ -56,6 +56,11 @@ export class IconComponent {
    */
   @Input() public top = false;
 
+  /**
+   * Applies appropriate margins to the icon inside other components when placed bottom of other elements or texts.
+   */
+  @Input() public bottom = false;
+
   public constructor(
     @Self() @Inject('anglifyIconSettings') private readonly settings: EntireIconSettings,
     private readonly sanitizer: DomSanitizer
@@ -81,6 +86,10 @@ export class IconComponent {
 
     if (this.top) {
       classNames.push('top');
+    }
+
+    if (this.bottom) {
+      classNames.push('bottom');
     }
 
     return classNames.join(' ');

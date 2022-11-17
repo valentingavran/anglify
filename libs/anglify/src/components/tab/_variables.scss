@@ -1,7 +1,8 @@
-$tab-label-height: var(--anglify-tab-label-height, 48px) !default;
-$tab-label-top-icon-height: var(--anglify-tab-label-top-icon-height, 72px) !default;
-$tab-label-top-icon-gap: var(--anglify-tab-label-top-gap, 8px) !default;
-$tab-padding: var(--anglify-tab-padding, 0 24px) !default;
+$tab-height: var(--anglify-tab-height, 32px) !default;
+$tab-padding: var(--anglify-tab-padding, 8px 24px) !default;
 $tab-active-color: var(--anglify-tab-active-color, var(--color-primary)) !default;
 $tab-indicator-height: var(--anglify-tab-indicator-height, 2px) !default;
 $tab-indicator-color: var(--anglify-tab-indicator-color, var(--color-primary)) !default;
+$tab-font: var(--anglify-tab-font, var(--font-body-2)) !default;
+$tab-letter-spacing: var(--anglify-tab-letter-spacing, var(--font-letter-spacing-body-2)) !default;
+$tab-text-transform: var(--anglify-tab-text-transform, var(--font-text-transform-body-2)) !default;
