@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.41.2](https://github.com/valentingavran/anglify/compare/v0.41.1...v0.41.2) (2022-11-17)
+
+
+### 🐛  Bug Fixes
+
+* **Tab:** fix tabs with top icon & add tab font CSS custom properties ([f0498da](https://github.com/valentingavran/anglify/commit/f0498da72eb82abb1b629e01e1cc8f7b7c89fe30))
+
 ### [0.41.1](https://github.com/valentingavran/anglify/compare/v0.41.0...v0.41.1) (2022-11-16)
 
 
