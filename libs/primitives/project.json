@@ -1,0 +1,38 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/primitives/src",
+  "prefix": "primitive",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/primitives"],
+      "options": {
+        "project": "libs/primitives/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/primitives/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/primitives/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/primitives"],
+      "options": {
+        "jestConfig": "libs/primitives/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/primitives/**/*.ts", "libs/primitives/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
