@@ -182,6 +182,8 @@ export class MenuComponent {
     this.flip$.next(value);
   }
 
+  @Input() public focusActivatorOnClose = true;
+
   protected readonly activatorClicked$ = new Subject<void>();
 
   protected readonly focusable$ = new BehaviorSubject(this.settings.focusable);
@@ -284,6 +286,7 @@ export class MenuComponent {
 
   private focusActivator() {
     if (!this.activator) return;
+    if (!this.focusActivatorOnClose) return;
     this.getFirstAndLastFocusableElements(this.activator.nativeElement).firstFocusable?.focus();
   }
 
