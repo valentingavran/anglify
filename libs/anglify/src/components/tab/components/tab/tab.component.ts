@@ -45,23 +45,6 @@ export class TabComponent {
    */
   @Input() public label?: string;
 
-  public get active() {
-    return this._active$.value;
-  }
-
-  /**
-   * Sets this tab as the default active tab. Only one tab have this property per tab group.
-   */
-  @HostBinding('attr.aria-selected')
-  @Input()
-  public set active(value: boolean) {
-    this._active$.next(value);
-  }
-
-  private readonly _active$ = new BehaviorSubject<boolean>(false);
-
-  public active$ = this._active$.asObservable();
-
   public get ripple(): boolean {
     return this.rippleService.active;
   }
@@ -118,6 +101,22 @@ export class TabComponent {
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onSelectNext = new EventEmitter<void>();
+
+  public get active() {
+    return this._active$.value;
+  }
+
+  /**
+   * Sets this tab as the default active tab. Only one tab have this property per tab group.
+   */
+  @HostBinding('attr.aria-selected')
+  public set active(value: boolean) {
+    this._active$.next(value);
+  }
+
+  private readonly _active$ = new BehaviorSubject<boolean>(false);
+
+  public active$ = this._active$.asObservable();
 
   public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 

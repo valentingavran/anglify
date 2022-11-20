@@ -8,4 +8,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TabGroupComponent, TabComponent, IconComponent, SlotDirective],
 })
-export default class IconTopComponent {}
+export default class IconTopComponent {
+  protected value = 0;
+}
