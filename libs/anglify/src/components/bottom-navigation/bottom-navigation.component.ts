@@ -2,16 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  forwardRef,
+  EventEmitter,
   HostBinding,
   Inject,
   Input,
+  Output,
   QueryList,
   Self,
   type AfterViewInit,
 } from '@angular/core';
-import type { ControlValueAccessor } from '@angular/forms';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, filter, startWith, Subject, take, takeUntil, tap } from 'rxjs';
 import { RIPPLE } from '../../composables/ripple/ripple.provider';
@@ -34,14 +33,9 @@ import { BottomNavigationItemComponent } from './components/bottom-navigation-it
       BOTTOM_NAVIGATION_SETTINGS
     ),
     RIPPLE,
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => BottomNavigationComponent),
-      multi: true,
-    },
   ],
 })
-export class BottomNavigationComponent implements ControlValueAccessor, AfterViewInit {
+export class BottomNavigationComponent implements AfterViewInit {
   @ContentChildren(BottomNavigationItemComponent) public readonly navigationItems?: QueryList<BottomNavigationItemComponent>;
 
   /**
@@ -59,6 +53,29 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
   @Input() public set shift(value: boolean) {
     this.shift$.next(value);
   }
+
+  @Input() public set value(value: number) {
+    const item = this.items$.value[value] as BottomNavigationItemComponent | null | undefined;
+
+    if (item) {
+      this.selectItem(item);
+    } else {
+      /* It may happen that this setter is called before the slots have been loaded or any are present at all.
+      As soon as the slots change, this method is called. */
+      this.items$
+        .pipe(
+          untilDestroyed(this),
+          filter(items => items.length > 0),
+          take(1)
+        )
+        .subscribe(items => {
+          const item1 = items[value] as BottomNavigationItemComponent | undefined;
+          if (item1) this.selectItem(item1);
+        });
+    }
+  }
+
+  @Output() public readonly valueChange = new EventEmitter<number>();
 
   private readonly shift$ = new BehaviorSubject<boolean>(this.settings.shift);
 
@@ -103,44 +120,8 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
     })
   );
 
-  public onChange: (...args: any[]) => void = () => {};
-
-  public onTouch: (...args: any[]) => void = () => {};
-
-  public registerOnChange(fn: (...args: any[]) => void) {
-    this.onChange = fn;
-  }
-
-  public registerOnTouched(fn: (...args: any[]) => void) {
-    this.onTouch = fn;
-  }
-
-  private getActiveIndices(): number[] {
-    return this.items$.value
-      .map((item, index) => ({ item, index }))
-      .filter(({ item }) => item.active)
-      .map(({ index }) => index);
-  }
-
-  public writeValue(value: number) {
-    const item = this.items$.value[value] as BottomNavigationItemComponent | null | undefined;
-
-    if (item) {
-      this.selectItem(item);
-    } else {
-      /* It may happen that writeValue is called before the slots have been loaded or any are present at all.
-      As soon as the slots change, this method is called. */
-      this.items$
-        .pipe(
-          untilDestroyed(this),
-          filter(items => items.length > 0),
-          take(1)
-        )
-        .subscribe(items => {
-          const item1 = items[value] as BottomNavigationItemComponent | undefined;
-          if (item1) this.selectItem(item1);
-        });
-    }
+  private getActiveIndices() {
+    return this.items$.value.findIndex(item => item.active);
   }
 
   private onSelectedItemChange(item: BottomNavigationItemComponent, index?: number) {
@@ -154,7 +135,7 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
       this.selectNext(item);
     });
 
-    if (index) this.onChange(index);
+    if (index) this.valueChange.emit(index);
   }
 
   public ngAfterViewInit() {
@@ -181,7 +162,7 @@ export class BottomNavigationComponent implements ControlValueAccessor, AfterVie
   private selectItem(selectedItem: BottomNavigationItemComponent) {
     this.deselectAllOthers(selectedItem);
     selectedItem.active = true;
-    this.onChange(this.getActiveIndices());
+    this.valueChange.emit(this.getActiveIndices());
   }
 
   private deselectAllOthers(selectedItem: BottomNavigationItemComponent) {

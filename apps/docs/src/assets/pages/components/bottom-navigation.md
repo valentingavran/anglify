@@ -22,10 +22,6 @@ optional text label. When a bottom navigation icon is tapped, the user is taken 
 
 <app-code-example component="bottom-navigation" example="grow"></app-code-example>
 
-### Form Control
-
-<app-code-example component="bottom-navigation" example="form-control"></app-code-example>
-
 ## API
 
 ```typescript
