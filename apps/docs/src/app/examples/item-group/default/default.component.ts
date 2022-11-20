@@ -8,4 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ItemGroupComponent, CardComponent, SlotDirective],
 })
-export default class DefaultComponent {}
+export default class DefaultComponent {
+  protected value: number[] = [1];
+}

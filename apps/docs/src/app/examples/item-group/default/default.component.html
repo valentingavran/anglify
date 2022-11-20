@@ -1,4 +1,4 @@
-<anglify-item-group>
+<anglify-item-group [(value)]="value">
   <ng-template slot="item-group-item" let-active="active" let-toggle>
     <anglify-card [ripple]="true" [class.active]="active" (click)="toggle()">1</anglify-card>
   </ng-template>
