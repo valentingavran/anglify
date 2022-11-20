@@ -15,4 +15,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ListComponent, ListItemGroupComponent, ListItemComponent, ListItemTitleComponent, IconComponent, SlotDirective],
 })
-export default class GroupsComponent {}
+export default class GroupsComponent {
+  protected values: number[] = [2];
+}
