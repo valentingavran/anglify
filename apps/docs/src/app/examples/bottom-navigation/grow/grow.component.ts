@@ -8,4 +8,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective],
 })
-export default class GrowComponent {}
+export default class GrowComponent {
+  protected value = 0;
+}

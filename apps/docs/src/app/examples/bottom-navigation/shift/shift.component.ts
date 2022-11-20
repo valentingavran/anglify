@@ -8,4 +8,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [BottomNavigationComponent, BottomNavigationItemComponent, IconComponent, SlotDirective],
 })
-export default class ShiftComponent {}
+export default class ShiftComponent {
+  protected value = 1;
+}
