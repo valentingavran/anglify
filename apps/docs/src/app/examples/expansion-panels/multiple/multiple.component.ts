@@ -8,4 +8,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ExpansionPanelsComponent, ExpansionPanelComponent],
 })
-export default class MultipleComponent {}
+export default class MultipleComponent {
+  protected value = [0, 1];
+}

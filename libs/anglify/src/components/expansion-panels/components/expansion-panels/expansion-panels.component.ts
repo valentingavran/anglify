@@ -3,8 +3,10 @@ import {
   Component,
   ContentChildren,
   ElementRef,
+  EventEmitter,
   Inject,
   Input,
+  Output,
   QueryList,
   Self,
   type AfterViewInit,
@@ -63,9 +65,23 @@ export class ExpansionPanelsComponent implements AfterViewInit {
     this.accordion$.next(value);
   }
 
-  public onChange: (...args: any[]) => void = () => {};
+  @Input() public set value(value: number[]) {
+    if (this.itemGroupItems$.value.length === 0) {
+      /* It may happen that this setter is called before the slots have been loaded or any are present at all.
+      As soon as the slots change, this method is called. */
+      this.itemGroupItems$
+        .pipe(
+          untilDestroyed(this),
+          filter(items => items.length > 0),
+          take(1)
+        )
+        .subscribe(() => this.activateAllIndices(value));
+    } else {
+      this.activateAllIndices(value);
+    }
+  }
 
-  public onTouch: (...args: any[]) => void = () => {};
+  @Output() public readonly valueChange = new EventEmitter<number[]>();
 
   public readonly itemGroupItems$ = new BehaviorSubject<ExpansionPanelComponent[]>([]);
 
@@ -76,38 +92,6 @@ export class ExpansionPanelsComponent implements AfterViewInit {
     @Self() @Inject('anglifyExpansionPanelsSettings') public settings: EntireExpansionPanelsSettings
   ) {
     bindClassToNativeElement(this, this.accordion$, this.elementRef.nativeElement, 'anglify-expansion-panels-accordion');
-  }
-
-  public writeValue(value: number[] | number | null) {
-    let indicesToBeActive: number[] = [];
-    if (Array.isArray(value)) {
-      indicesToBeActive = value;
-    } else if (value === null) {
-    } else {
-      indicesToBeActive.push(value);
-    }
-
-    if (this.itemGroupItems$.value.length === 0) {
-      /* It may happen that writeValue is called before the slots have been loaded or any are present at all.
-      As soon as the slots change, this method is called. */
-      this.itemGroupItems$
-        .pipe(
-          untilDestroyed(this),
-          filter(items => items.length > 0),
-          take(1)
-        )
-        .subscribe(() => this.activateAllIndices(indicesToBeActive));
-    } else {
-      this.activateAllIndices(indicesToBeActive);
-    }
-  }
-
-  public registerOnChange(fn: (...args: any[]) => void) {
-    this.onChange = fn;
-  }
-
-  public registerOnTouched(fn: (...args: any[]) => void) {
-    this.onTouch = fn;
   }
 
   private createItemClickHandler(item: ExpansionPanelComponent) {
@@ -139,7 +123,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
       this.selectItem(item);
     }
 
-    this.onChange(this.getActiveIndices());
+    this.valueChange.emit(this.getActiveIndices());
   };
 
   private selectItem(item: ExpansionPanelComponent) {
