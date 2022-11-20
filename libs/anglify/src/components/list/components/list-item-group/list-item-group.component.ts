@@ -1,5 +1,13 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, forwardRef, Input, QueryList, type AfterViewInit } from '@angular/core';
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+  type AfterViewInit,
+} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
 import { ListItemComponent } from '../list-item/list-item.component';
@@ -11,15 +19,8 @@ import { ListItemComponent } from '../list-item/list-item.component';
   templateUrl: './list-item-group.component.html',
   styleUrls: ['./list-item-group.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ListItemGroupComponent),
-      multi: true,
-    },
-  ],
 })
-export class ListItemGroupComponent implements AfterViewInit, ControlValueAccessor {
+export class ListItemGroupComponent implements AfterViewInit {
   @ContentChildren(ListItemComponent, { descendants: true }) private readonly allSlots?: QueryList<ListItemComponent>;
 
   /**
@@ -37,23 +38,11 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
    */
   @Input() public max?: number;
 
-  public onChange: (...args: any[]) => void = () => {};
-
-  public onTouch: (...args: any[]) => void = () => {};
-
   public readonly itemGroupItems$ = new BehaviorSubject<ListItemComponent[]>([]);
 
-  public writeValue(value: number[] | number | null) {
-    let indicesToBeActive: number[] = [];
-    if (Array.isArray(value)) {
-      indicesToBeActive = value;
-    } else if (value === null) {
-    } else {
-      indicesToBeActive.push(value);
-    }
-
+  @Input() public set value(value: number[]) {
     if (this.itemGroupItems$.value.length === 0) {
-      /* It may happen that writeValue is called before the slots have been loaded or any are present at all.
+      /* It may happen that this setter is called before the slots have been loaded or any are present at all.
       As soon as the slots change, this method is called. */
       this.itemGroupItems$
         .pipe(
@@ -61,19 +50,13 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
           filter(items => items.length > 0),
           take(1)
         )
-        .subscribe(() => this.activateAllIndices(indicesToBeActive));
+        .subscribe(() => this.activateAllIndices(value));
     } else {
-      this.activateAllIndices(indicesToBeActive);
+      this.activateAllIndices(value);
     }
   }
 
-  public registerOnChange(fn: (...args: any[]) => void) {
-    this.onChange = fn;
-  }
-
-  public registerOnTouched(fn: (...args: any[]) => void) {
-    this.onTouch = fn;
-  }
+  @Output() public readonly valueChange = new EventEmitter<number[]>();
 
   private createItemClickHandler(item: ListItemComponent) {
     item.onClick.pipe(untilDestroyed(this)).subscribe(() => this.handleItemClick(item));
@@ -104,7 +87,7 @@ export class ListItemGroupComponent implements AfterViewInit, ControlValueAccess
       this.selectItem(item);
     }
 
-    this.onChange(this.getActiveIndices());
+    this.valueChange.emit(this.getActiveIndices());
   };
 
   private selectItem(item: ListItemComponent) {
