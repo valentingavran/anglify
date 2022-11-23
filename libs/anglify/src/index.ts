@@ -54,10 +54,9 @@ export * from './components/card/card-settings.token';
 export * from './components/card/card.component';
 export * from './components/card/card.interface';
 // Checkbox
-export * from './components/checkbox/interfaces/checkbox.interface';
-export * from './components/checkbox/interfaces/checkbox-icons.interface';
+export * from './components/checkbox/checkbox.interface';
 export * from './components/checkbox/tokens/checkbox-icons.token';
-export * from './components/checkbox/tokens/checkbox-settings.token';
+export * from './components/checkbox/checkbox-settings.token';
 export * from './components/checkbox/checkbox.component';
 export * from './components/checkbox/functions/register-icons.function';
 // Chip

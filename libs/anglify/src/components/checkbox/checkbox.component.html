@@ -1,3 +1,4 @@
+<!-- eslint-disable-next-line @angular-eslint/template/accessibility-label-has-associated-control -->
 <label [class.before]="labelPosition === 'before'">
   <div #overlayContainer class="container">
     <div
@@ -7,7 +8,7 @@
       [rippleOrigin]="rippleOrigin"
       [state]="state"
       (keydown.space)="onCheckedChangeHandler($event)"
-      [tabindex]="(disabled$ | async) ? '-1' : '0'"
+      [tabindex]="tabindex$ | async"
     ></div>
     <span #reflectOffIcon [style.display]="(checked$ | async) ? 'none' : 'block'" class="checkbox-custom-icons">
       <ng-container *anglifySlotOutlet="slots | findSlot: 'offIcon'"></ng-container>
