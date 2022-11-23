@@ -85,39 +85,37 @@
 </table>
 <div class="footer" *ngIf="(hideDefaultFooter$ | async) === false">
   <ng-container *anglifySlotOutlet="slots | findSlot: 'footer'">
-    <div
-      *ngIf="dataService.showColumnsControl$ | async"
-      class="columns-activator"
-      [anglifyMenuTriggerFor]="menu"
-      [closeOnOutsideClick]="true"
-      position="bottom-start"
-      [anglifyMenuElevation]="4"
-      [flip]="true"
-    >
-      <ng-container *anglifySlotOutlet="slots | findSlot: 'columns-activator'">
-        <button class="default-columns-activator" type="button" anglifyButton appearance="text">
-          <anglify-icon [icon]="internalIcons.viewColumn" [left]="true"></anglify-icon>
-          Columns
-        </button>
-      </ng-container>
-    </div>
-    <ng-template #menu>
+    <anglify-menu *ngIf="dataService.showColumnsControl$ | async" class="columns-activator" [closeOnMenuClick]="false">
+      <ng-template slot="activator">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'columns-activator'">
+          <button class="default-columns-activator" type="button" anglifyButton appearance="text">
+            <anglify-icon [icon]="internalIcons.viewColumn" [left]="true"></anglify-icon>
+            Columns
+          </button>
+        </ng-container>
+      </ng-template>
       <div class="filter-menu">
         <anglify-list>
           <anglify-list-item
             *ngFor="let column of dataService.headers$ | async; trackBy: headerTrackByFn"
             [active]="column | isColumnVisible: (dataService.mobile$ | async) ?? false"
             (click)="dataService.toggleHeaderVisibility(column)"
-            [state]="false"
+            (keydown.enter)="dataService.toggleHeaderVisibility(column)"
           >
             <ng-template slot="prepend" let-active="active">
-              <anglify-checkbox [checked]="active" [readonly]="true"></anglify-checkbox>
+              <anglify-checkbox
+                [checked]="active"
+                [readonly]="true"
+                [focusable]="false"
+                (click)="$event.preventDefault()"
+              ></anglify-checkbox>
             </ng-template>
             <anglify-list-item-title>{{ column.text }}</anglify-list-item-title>
           </anglify-list-item>
         </anglify-list>
       </div>
-    </ng-template>
+    </anglify-menu>
+
     <anglify-select
       aria-label="Items per page"
       [ngModel]="paginationService.itemsPerPage$ | async"
