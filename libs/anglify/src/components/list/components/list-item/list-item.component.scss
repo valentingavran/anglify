@@ -20,8 +20,9 @@
     flex: 1;
   }
 
-  &:focus {
-    --state-container-color: var(--color-state-inactive-focus);
+  &:focus,
+  &.highlight {
+    --state-container-color: var(--color-state-inactive-focus) !important;
   }
 
   &:hover {
