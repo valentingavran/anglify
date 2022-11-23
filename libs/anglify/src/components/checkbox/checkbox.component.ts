@@ -20,7 +20,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { InteractionStateDirective } from '../../directives/interaction-state/interaction-state.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
@@ -28,10 +28,10 @@ import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.di
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { bindClassToNativeElement } from '../../utils/functions';
+import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './checkbox-settings.token';
+import { EntireCheckboxSettings, LabelPosition } from './checkbox.interface';
 import type { CheckboxIconRef } from './functions/register-icons.function';
-import { EntireCheckboxSettings, LabelPosition } from './interfaces/checkbox.interface';
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
-import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';
 
 @UntilDestroy()
 @Component({
@@ -124,6 +124,10 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     this.readonly$.next(value);
   }
 
+  @Input() public set focusable(value: boolean) {
+    this.focusable$.next(value);
+  }
+
   @Output() public readonly checkedChange = new EventEmitter<boolean | undefined>();
 
   public iconProvider!: CheckboxIconRef | null;
@@ -133,6 +137,12 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   public disabled$ = new BehaviorSubject(this.settings.disabled);
 
   public readonly$ = new BehaviorSubject(this.settings.readonly);
+
+  protected focusable$ = new BehaviorSubject(this.settings.focusable);
+
+  protected tabindex$ = combineLatest([this.disabled$, this.focusable$]).pipe(
+    map(([disabled, focusable]) => (disabled ? -1 : focusable ? 0 : -1))
+  );
 
   @HostBinding('attr.role') protected readonly role = 'checkbox';
 

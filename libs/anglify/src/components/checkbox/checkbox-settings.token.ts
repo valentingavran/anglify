@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import type { CheckboxSettings, EntireCheckboxSettings } from '../interfaces/checkbox.interface';
+import type { CheckboxSettings, EntireCheckboxSettings } from './checkbox.interface';
 
 export const DEFAULT_CHECKBOX_SETTINGS: EntireCheckboxSettings = {
   disabled: false,
@@ -9,6 +9,7 @@ export const DEFAULT_CHECKBOX_SETTINGS: EntireCheckboxSettings = {
   rippleOrigin: 'center',
   state: true,
   readonly: false,
+  focusable: true,
 };
 
 export const CHECKBOX_SETTINGS = new InjectionToken<CheckboxSettings>('Checkbox Settings');

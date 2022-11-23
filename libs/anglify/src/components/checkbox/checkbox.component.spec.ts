@@ -1,7 +1,7 @@
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
+import { DEFAULT_CHECKBOX_SETTINGS } from './checkbox-settings.token';
 import { CheckboxComponent } from './checkbox.component';
-import { DEFAULT_CHECKBOX_SETTINGS } from './tokens/checkbox-settings.token';
 
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
