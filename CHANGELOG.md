@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.42.0](https://github.com/valentingavran/anglify/compare/v0.41.2...v0.42.0) (2022-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ExpansionPanels:** support for FormControls was dropped. Only form inputs must
+support FormControls. The `active` property was also removed. The active item should from now on be
+set and controlled via the `value` property.
+* **BottomNavigation:** support for FormControls was dropped. Only form inputs must
+support FormControls. The `active` property was also removed. The active item should from now on be
+set and controlled via the `value` property.
+* **ItemGroup:** support for FormControls was dropped. Only form inputs must
+support FormControls.
+* **ListItemGroup:** support for FormControls was dropped. Only form inputs must
+support FormControls.
+* **Tabs:** The `active` property was removed from the Tab component. From now on, the active
+item should be set and controlled via the `value` property.
+
+### 🛠  Other Commits
+
+* create primitives library & kitchensink application ([e9f8559](https://github.com/valentingavran/anglify/commit/e9f8559a24489e3d2fa4e07ba5c94184daa92c93))
+
+
+### 🚀  Features
+
+* **Checkbox:** add focusable input property ([500196d](https://github.com/valentingavran/anglify/commit/500196def18355467a2e01f1dd3859512f810968))
+* **ListItem:** add highlight property ([f4be8b7](https://github.com/valentingavran/anglify/commit/f4be8b7af95bd24e50172e91b6469cbc8c374b3b))
+* **Menu:** add focusActivatorOnClose input property ([b60e22e](https://github.com/valentingavran/anglify/commit/b60e22eaf3611ea033e3cae98315f8daeb37f4e1))
+
+
+### 🔬  Code Refactoring
+
+* **BottomNavigation:** remove FormControl support & active property ([0497275](https://github.com/valentingavran/anglify/commit/0497275ad6f2ed3de746d8dc60616fdab72efe26))
+* **DataTable:** use new menu internally instead of legacy directive ([5368fb1](https://github.com/valentingavran/anglify/commit/5368fb15b952334afee6127632a0f91045c57e66))
+* **ExpansionPanels:** remove FormControl support & active property ([18275c4](https://github.com/valentingavran/anglify/commit/18275c48bb7fb5fcb182985a1604d432d20af584))
+* **ItemGroup:** remove FormControl support ([cb9d680](https://github.com/valentingavran/anglify/commit/cb9d680e92fc96654cf76c283b88fe3ab4ac4e27))
+* **ListItemGroup:** remove FormControl support ([eb4ce65](https://github.com/valentingavran/anglify/commit/eb4ce651eb0d8af8dbe9964bd9934d0802934895))
+* **Tabs:** remove active input property ([455604d](https://github.com/valentingavran/anglify/commit/455604d22be0add19c26ad4bea7b44d9b094e21c))
+
+
+### 🐛  Bug Fixes
+
+* **button:** center loading state on block ([1f94972](https://github.com/valentingavran/anglify/commit/1f949725a917ac3fdd1c3174c2be41f8dd989bf0))
+
 ### [0.41.2](https://github.com/valentingavran/anglify/compare/v0.41.1...v0.41.2) (2022-11-17)
 
 
