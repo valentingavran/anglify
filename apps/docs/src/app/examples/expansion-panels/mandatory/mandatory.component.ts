@@ -8,4 +8,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ExpansionPanelsComponent, ExpansionPanelComponent],
 })
-export default class MandatoryComponent {}
+export default class MandatoryComponent {
+  protected value = [0];
+}

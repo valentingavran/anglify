@@ -1,5 +1,5 @@
 <anglify-list>
-  <anglify-list-item-group>
+  <anglify-list-item-group [(value)]="values">
     <anglify-list-item>
       <ng-template slot="prepend">
         <anglify-icon icon="mdi-clock"></anglify-icon>
@@ -20,3 +20,5 @@
     </anglify-list-item>
   </anglify-list-item-group>
 </anglify-list>
+
+Selected indices: {{ values }}

@@ -17,7 +17,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@anglify/components": ["libs/anglify/src/index.ts"]
+      "@anglify/components": ["libs/anglify/src/index.ts"],
+      "@anglify/primitives": ["libs/primitives/src/index.ts"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

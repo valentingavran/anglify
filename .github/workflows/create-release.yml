@@ -20,7 +20,7 @@ jobs:
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           yarn install --immutable
-          yarn build:anglify
+          yarn anglify:build
           cp README.md dist/libs/anglify/README.md
           cd dist/libs/anglify
           npm publish --access public

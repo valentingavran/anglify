@@ -3,6 +3,7 @@
   "projects": {
     "anglify": "libs/anglify",
     "docs": "apps/docs",
-    "docs-e2e": "apps/docs-e2e"
+    "kitchensink": "apps/kitchensink",
+    "primitives": "libs/primitives"
   }
 }

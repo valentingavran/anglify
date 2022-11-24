@@ -1,6 +1,0 @@
-{
-  "extends": ["neon/cypress", "../../.eslintrc.json"],
-  "parserOptions": {
-    "project": ["./tsconfig(.*)?.json"]
-  }
-}

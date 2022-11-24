@@ -1,6 +1,6 @@
 import { ViewContainerRef, type ComponentRef, type Provider } from '@angular/core';
 import { IconComponent } from '../../icon/icon.component';
-import type { CheckboxIcons } from '../interfaces/checkbox-icons.interface';
+import type { CheckboxIcons } from '../checkbox.interface';
 import { CHECKBOX_ICONS_FACTORY } from '../tokens/checkbox-icons.token';
 
 export class CheckboxIconRef {

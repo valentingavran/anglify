@@ -51,17 +51,6 @@ export class ExpansionPanelComponent {
    */
   @Input() public label?: string;
 
-  public get active() {
-    return this._active$.value;
-  }
-
-  /**
-   * Sets this item as active by default
-   */
-  @Input() public set active(value: boolean) {
-    this._active$.next(value);
-  }
-
   public get elevation() {
     return this.elevationService.elevation;
   }
@@ -76,6 +65,17 @@ export class ExpansionPanelComponent {
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onClick = new EventEmitter<void>();
+
+  public get active() {
+    return this._active$.value;
+  }
+
+  /**
+   * Sets this item as active by default
+   */
+  public set active(value: boolean) {
+    this._active$.next(value);
+  }
 
   private readonly _active$ = new BehaviorSubject<boolean>(false);
 

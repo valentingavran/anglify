@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { filter, map, startWith, takeUntil } from 'rxjs/operators';
+import { filter, map, startWith, take, takeUntil } from 'rxjs/operators';
 import { TabComponent } from '../tab/tab.component';
 
 @UntilDestroy()
@@ -31,7 +31,23 @@ export class TabGroupComponent implements AfterViewInit {
 
   @Input() public set value(value: number) {
     const tab = this.tabs$.value[value] as TabComponent | null | undefined;
-    if (tab) this.onSelectedTabChange(tab);
+
+    if (tab) {
+      this.onSelectedTabChange(tab);
+    } else {
+      /* It may happen that this setter is called before the slots have been loaded or any are present at all.
+      As soon as the slots change, this method is called. */
+      this.tabs$
+        .pipe(
+          untilDestroyed(this),
+          filter(items => items.length > 0),
+          take(1)
+        )
+        .subscribe(items => {
+          const item1 = items[value] as TabComponent | undefined;
+          if (item1) this.onSelectedTabChange(item1);
+        });
+    }
   }
 
   @Output() public readonly valueChange = new EventEmitter<number>();

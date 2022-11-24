@@ -45,6 +45,17 @@ export class ListItemComponent {
     this.active$.next(value);
   }
 
+  public get highlight() {
+    return this.highlight$.value;
+  }
+
+  /**
+   * Sets the same styling as if the item was focused.
+   */
+  @Input() public set highlight(value: boolean) {
+    this.highlight$.next(value);
+  }
+
   /**
    * Lowers max height of this list item.
    */
@@ -142,6 +153,8 @@ export class ListItemComponent {
 
   protected readonly focusable$ = new BehaviorSubject<boolean>(true);
 
+  protected readonly highlight$ = new BehaviorSubject<boolean>(false);
+
   public constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly rippleService: RippleService,
@@ -156,6 +169,7 @@ export class ListItemComponent {
       'tabindex',
       '0'
     );
+    bindClassToNativeElement(this, this.highlight$, this.elementRef.nativeElement, 'highlight');
     this.routerLinkHandler$.pipe(untilDestroyed(this)).subscribe();
   }
 
@@ -188,8 +202,7 @@ export class ListItemComponent {
   }
 
   @HostListener('click')
-  // @ts-expect-error: Value is used
-  private click() {
+  protected click() {
     this.onClick.next();
   }
 }

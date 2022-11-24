@@ -27,10 +27,6 @@ bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
 In this example, a maximum of 3 items can be selected
 <app-code-example component="item-group" example="max"></app-code-example>
 
-### Form Control
-
-<app-code-example component="item-group" example="form-control"></app-code-example>
-
 ## API
 
 ```typescript

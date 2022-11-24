@@ -8,4 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [ToolbarComponent, ButtonComponent, IconComponent, TabGroupComponent, TabComponent, SlotDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class ExtendedProminentComponent {}
+export default class ExtendedProminentComponent {
+  public activeTab = 1;
+}

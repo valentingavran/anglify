@@ -71,19 +71,6 @@ export class BottomNavigationItemComponent {
     this.rippleService.state = value;
   }
 
-  public get active() {
-    return this.active$.value;
-  }
-
-  /**
-   * Sets this items as the default active item. Only one item inside each `BottomNavigation` can have this property.
-   */
-  @Input()
-  @HostBinding('attr.aria-selected')
-  public set active(value: boolean) {
-    this.active$.next(value);
-  }
-
   public get routerLink() {
     return this.routerLink$.value;
   }
@@ -118,6 +105,18 @@ export class BottomNavigationItemComponent {
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onClick = new EventEmitter<void>();
+
+  public get active() {
+    return this.active$.value;
+  }
+
+  /**
+   * Sets this items as the default active item. Only one item inside each `BottomNavigation` can have this property.
+   */
+  @HostBinding('attr.aria-selected')
+  public set active(value: boolean) {
+    this.active$.next(value);
+  }
 
   public readonly shift$ = new BehaviorSubject(false);
 
