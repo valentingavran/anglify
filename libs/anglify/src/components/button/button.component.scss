@@ -177,5 +177,13 @@
   &.block {
     display: block;
     width: 100% !important;
+
+    .loader {
+      position: relative;
+      display: flex;
+      height: 100%;
+      place-content: center;
+      place-items: center;
+    }
   }
 }
