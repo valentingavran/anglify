@@ -91,10 +91,6 @@ export class InputComponent implements OnInit, AfterViewInit {
   @Input()
   public hideDetails = false;
 
-  @HostBinding('class.anglify-input-always-floating-label')
-  @Input()
-  public alwaysFloatingLabel = false;
-
   @HostBinding('class.anglify-input-dense')
   @Input()
   public dense = false;

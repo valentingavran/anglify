@@ -9,9 +9,7 @@ import {
   QueryList,
   Self,
   ViewChild,
-  type AfterViewInit,
 } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -22,7 +20,6 @@ import { InputAppearance } from '../input/input.interface';
 import { DEFAULT_TEXT_FIELD_SETTINGS, TEXT_FIELD_SETTINGS } from './text-field-settings.token';
 import { EntireTextFieldSettings } from './text-field.interface';
 
-@UntilDestroy()
 @Component({
   selector: 'anglify-text-field',
   standalone: true,
@@ -34,7 +31,7 @@ import { EntireTextFieldSettings } from './text-field.interface';
   imports: [InputComponent, AsyncPipe, SlotOutletDirective, FindSlotPipe, SlotDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextFieldComponent implements AfterViewInit {
+export class TextFieldComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @ContentChild(InputDirective) public readonly input?: InputDirective;
@@ -87,36 +84,4 @@ export class TextFieldComponent implements AfterViewInit {
   @Input() public dense = this.settings.dense;
 
   public constructor(@Self() @Inject('anglifyTextFieldSettings') public settings: EntireTextFieldSettings) {}
-
-  public ngAfterViewInit() {
-    this.anglifyInput.onInputClick.pipe(untilDestroyed(this)).subscribe(() => this.input?.elementRef.nativeElement.focus());
-
-    if (this.input) {
-      this.input.disabled$.pipe(untilDestroyed(this)).subscribe(disabled =>
-        setTimeout(() => {
-          this.anglifyInput.disabled = disabled;
-        }, 0)
-      );
-
-      this.input.focused$.pipe(untilDestroyed(this)).subscribe(focused =>
-        setTimeout(() => {
-          this.anglifyInput.focused = focused;
-        }, 0)
-      );
-
-      this.input.floating$.pipe(untilDestroyed(this)).subscribe(floating =>
-        setTimeout(() => {
-          this.anglifyInput.floating = floating;
-        }, 0)
-      );
-
-      this.input.invalid$.pipe(untilDestroyed(this)).subscribe(invalid =>
-        setTimeout(() => {
-          this.anglifyInput.error = invalid;
-        }, 0)
-      );
-    } else {
-      console.warn('An input field that has an anglifyInput directive must be added to the anglify-text-field component for it to work');
-    }
-  }
 }

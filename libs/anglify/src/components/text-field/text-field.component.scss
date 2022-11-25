@@ -45,8 +45,7 @@
       }
     }
 
-    &.anglify-input-floating,
-    &.anglify-input-always-floating-label {
+    &.anglify-input-floating {
       ::ng-deep input::placeholder {
         color: var(--color-on-surface-medium-emphasis);
       }

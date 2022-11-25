@@ -3,14 +3,17 @@
   #anglifyInput
   [hint]="hint"
   [persistentHint]="persistentHint"
-  [alwaysFloatingLabel]="alwaysFloatingLabel"
+  [floating]="(input?.floating$ | async) || alwaysFloatingLabel"
   [hideDetails]="hideDetails"
   [counter]="counter"
   [length]="(input?.length$ | async) || 0"
   [maxLength]="(input?.maxLength$ | async) || undefined"
   [dense]="dense"
-  [error]="error"
+  [error]="(input?.invalid$ | async) || error"
   [inputId]="input?.id"
+  [focused]="(input?.focused$ | async) ?? false"
+  [disabled]="(input?.disabled$ | async) ?? false"
+  (onInputClick)="input?.elementRef?.nativeElement?.focus()"
 >
   <ng-template slot="prepend">
     <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
