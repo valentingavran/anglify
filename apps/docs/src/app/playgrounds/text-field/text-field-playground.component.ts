@@ -1,3 +1,4 @@
+import type { InputAppearance } from '@anglify/components';
 import {
   CheckboxComponent,
   IconComponent,
@@ -18,29 +19,29 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFieldPlaygroundComponent {
-  public appearance: 'filled' | 'outlined' = 'filled';
+  protected appearance: InputAppearance = 'outlined';
 
-  public label = 'Label';
+  protected label = 'Label';
 
-  public placeholder = 'Placeholder';
+  protected placeholder = 'Placeholder';
 
-  public hint = 'Hint';
+  protected hint = 'Hint';
 
-  public readonly = false;
+  protected readonly = false;
 
-  public disabled = false;
+  protected disabled = false;
 
-  public alwaysFloatingLabel = false;
+  protected alwaysFloatingLabel = false;
 
-  public persistentHint = false;
+  protected persistentHint = false;
 
-  public prependIcon = false;
+  protected prependIcon = false;
 
-  public prependOuterIcon = false;
+  protected prependOuterIcon = false;
 
-  public appendIcon = false;
+  protected appendIcon = false;
 
-  public appendOuterIcon = false;
+  protected appendOuterIcon = false;
 
-  public hideDetails = false;
+  protected hideDetails = false;
 }

@@ -1,0 +1,20 @@
+<anglify-autocomplete [items]="top10Movies" itemTextKey="label" appearance="outlined" [multiple]="true" label="Your favourite movies">
+  <ng-template slot="items" let-context let-onItemClick="onItemClick">
+    <anglify-list-item
+      *ngFor="let item of context.filteredItems; let i = index"
+      [focusable]="false"
+      [state]="!item.disabled"
+      [ripple]="!item.disabled"
+      [disabled]="item.disabled"
+      [active]="context.selectedItems.includes(item)"
+      [highlight]="context.highlightedIndex === i"
+      (click)="onItemClick(item)"
+    >
+      <anglify-list-item-title>{{ item.label }}</anglify-list-item-title>
+      <anglify-list-item-description>{{ item.year }}</anglify-list-item-description>
+      <ng-template slot="prepend">
+        <anglify-checkbox [readonly]="true" [checked]="context.selectedItems.includes(item)"></anglify-checkbox>
+      </ng-template>
+    </anglify-list-item>
+  </ng-template>
+</anglify-autocomplete>

@@ -1,0 +1,19 @@
+<div class="objects">
+  <anglify-combobox
+    [(value)]="selection1"
+    [items]="top10Movies"
+    itemTextKey="label"
+    itemValueKey="id"
+    appearance="outlined"
+    [multiple]="true"
+    label="Your favourite movies"
+  >
+  </anglify-combobox>
+  Selected IDs: {{ selection1 }}
+</div>
+
+<div class="primitives">
+  <anglify-combobox [(value)]="selection2" [items]="top10MovieNames" appearance="outlined" [multiple]="true" label="Your favourite movies">
+  </anglify-combobox>
+  Selected Names: {{ selection2 }}
+</div>

@@ -11,13 +11,13 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SimpleTablePlaygroundComponent {
-  public fixedHeader = false;
+  protected fixedHeader = false;
 
-  public fixedFooter = false;
+  protected fixedFooter = false;
 
-  public _fixedHeight: string | null = null;
+  protected _fixedHeight: string | null = null;
 
-  public readonly desserts = [
+  protected readonly desserts = [
     {
       name: 'Frozen Yogurt',
       calories: 159,
@@ -60,7 +60,7 @@ export class SimpleTablePlaygroundComponent {
     },
   ];
 
-  public get fixedHeight() {
+  protected get fixedHeight() {
     return this._fixedHeight;
   }
 }

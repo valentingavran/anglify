@@ -118,8 +118,8 @@
 
     <anglify-select
       aria-label="Items per page"
-      [ngModel]="paginationService.itemsPerPage$ | async"
-      (ngModelChange)="paginationService.itemsPerPage$.next($event)"
+      [value]="(paginationService.itemsPerPage$ | async) ?? []"
+      (valueChange)="paginationService.itemsPerPage$.next($event)"
       appearance="outlined"
       [dense]="true"
       [hideDetails]="true"

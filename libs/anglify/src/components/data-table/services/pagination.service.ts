@@ -9,16 +9,11 @@ import { DataService } from './data.service';
 export class PaginationService {
   public readonly page$ = new BehaviorSubject(this.settings.page);
 
-  public readonly itemsPerPage$ = new BehaviorSubject({ text: '5', value: 5 });
+  public readonly itemsPerPage$ = new BehaviorSubject<string[]>(['5']);
 
   public readonly showFirstLastPageControls$ = new BehaviorSubject(this.settings.showFirstLastPageControls);
 
-  public itemsPerPageOptions = [
-    { value: 5, text: '5' },
-    { value: 10, text: '10' },
-    { value: 15, text: '15' },
-    { value: Number.POSITIVE_INFINITY, text: 'All' },
-  ];
+  public itemsPerPageOptions = ['5', '10', '15', 'All'];
 
   public constructor(
     @Host() @Inject('anglifyDataTableSettings') public settings: EntireDataTableSettings,
@@ -34,10 +29,14 @@ export class PaginationService {
       .subscribe();
   }
 
-  public readonly currentlyDisplayedItemsRange$ = combineLatest([this.page$, this.itemsPerPage$, this.dataService.filteredItems$]).pipe(
+  public readonly currentlyDisplayedItemsRange$ = combineLatest([
+    this.page$,
+    this.itemsPerPage$.pipe(map(selection => selection[0])),
+    this.dataService.filteredItems$,
+  ]).pipe(
     map(([page, itemsPerPage, items]) => {
-      const start = (page - 1) * (itemsPerPage.value === Number.POSITIVE_INFINITY ? items.length : itemsPerPage.value);
-      let end = page * (itemsPerPage.value === Number.POSITIVE_INFINITY ? items.length : itemsPerPage.value);
+      const start = (page - 1) * (itemsPerPage === 'All' ? items.length : Number(itemsPerPage));
+      let end = page * (itemsPerPage === 'All' ? items.length : Number(itemsPerPage));
       if (end > items.length) end = items.length;
       return { start, end };
     })
@@ -51,10 +50,10 @@ export class PaginationService {
     map(([items, range]) => items.slice(range.start, range.end))
   );
 
-  public readonly maxPages$ = combineLatest([this.dataService.sortedItems$, this.itemsPerPage$]).pipe(
+  public readonly maxPages$ = combineLatest([this.dataService.sortedItems$, this.itemsPerPage$.pipe(map(selection => selection[0]))]).pipe(
     map(([items, itemsPerPage]) => {
-      if (itemsPerPage.value === Number.POSITIVE_INFINITY) return 1;
-      return Math.ceil(items.length / itemsPerPage.value);
+      if (itemsPerPage === 'All') return 1;
+      return Math.ceil(items.length / Number(itemsPerPage));
     })
   );
 
