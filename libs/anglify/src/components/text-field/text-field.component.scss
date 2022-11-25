@@ -12,6 +12,7 @@
 
   anglify-input {
     ::ng-deep input {
+      width: 100%;
       min-width: var(--anglify-input-min-width);
       height: var(--anglify-input-min-height);
       min-height: var(--anglify-input-min-height);

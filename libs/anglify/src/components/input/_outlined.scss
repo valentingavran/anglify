@@ -2,7 +2,7 @@
 @use 'notched-outline' as *;
 
 @mixin anglify-input-outlined {
-  .anglify-input {
+  .anglify-input-container {
     position: relative;
 
     --anglify-notched-outline-border-color: #{$input-outlined-border-color-inactive};
@@ -41,7 +41,7 @@
   &.anglify-input-floating,
   &.anglify-input-always-floating-label,
   &.anglify-input-focused {
-    .anglify-input {
+    .anglify-input-container {
       --anglify-notched-outline-notch-width: 0;
 
       label {
@@ -58,7 +58,7 @@
   }
 
   &.anglify-input-focused {
-    .anglify-input {
+    .anglify-input-container {
       --anglify-notched-outline-border-color: #{$input-outlined-border-color-focused};
       --anglify-notched-outline-border-width: #{$input-outlined-border-width-focused};
 
@@ -69,7 +69,7 @@
   }
 
   &.anglify-input-disabled {
-    .anglify-input {
+    .anglify-input-container {
       --anglify-notched-outline-border-color: #{$input-outlined-border-color-disabled};
       --anglify-notched-outline-border-width: #{$input-outlined-border-width-inactive};
 

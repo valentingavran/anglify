@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 @mixin anglify-input-filled {
-  .anglify-input {
+  .anglify-input-container {
     position: relative;
     overflow: hidden;
     background: $input-filled-background;
@@ -51,7 +51,7 @@
   &.anglify-input-floating,
   &.anglify-input-always-floating-label,
   &.anglify-input-focused {
-    .anglify-input {
+    .anglify-input-container {
       label {
         top: 0;
         width: calc(
@@ -63,7 +63,7 @@
   }
 
   &.anglify-input-disabled {
-    .anglify-input {
+    .anglify-input-container {
       label {
         color: $input-filled-label-color-disabled;
       }
@@ -75,7 +75,7 @@
   }
 
   &.anglify-input-focused:not(.anglify-input-disabled) {
-    .anglify-input {
+    .anglify-input-container {
       &::after {
         width: 100%;
       }
@@ -89,7 +89,7 @@
   // Two separate not selectors needed
   /* stylelint-disable-next-line selector-not-notation */
   &:not(.anglify-input-focused):not(.anglify-input-disabled) {
-    .anglify-input {
+    .anglify-input-container {
       &:hover {
         --state-container-color: var(--color-state-inactive-hover);
 
