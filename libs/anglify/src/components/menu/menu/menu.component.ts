@@ -217,7 +217,7 @@ export class MenuComponent {
   private readonly menuClosed$ = this.value$.pipe(filter(value => !value));
 
   public constructor(
-    private readonly elementRef: ElementRef<HTMLElement>,
+    public readonly elementRef: ElementRef<HTMLElement>,
     @Self() @Inject('anglifyMenuSettings') private readonly settings: EntireMenuSettings
   ) {
     bindObservableValueToNativeElement(this, this.actualPosition$, this.elementRef.nativeElement);
@@ -380,5 +380,11 @@ export class MenuComponent {
     this.elementRef.nativeElement.style.removeProperty('--anglify-menu-computed-horizontal-offset');
     this.elementRef.nativeElement.style.removeProperty('--anglify-menu-computed-vertical-offset');
     this.positionOverride$.next(null);
+  }
+
+  public scrollToHighlightedItem() {
+    const highlightedItem = this.menu?.nativeElement.querySelector('.highlight');
+    if (!highlightedItem) return;
+    highlightedItem.scrollIntoView({ block: 'nearest' });
   }
 }

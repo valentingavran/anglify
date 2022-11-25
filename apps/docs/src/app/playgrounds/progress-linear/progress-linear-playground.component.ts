@@ -11,22 +11,22 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressLinearPlaygroundComponent {
-  public mode = 'indeterminate';
+  protected mode = 'indeterminate';
 
-  public progress = 60;
+  protected progress = 60;
 
-  public buffer = 70;
+  protected buffer = 70;
 
-  public stream = true;
+  protected stream = true;
 
-  public size = 4;
+  protected size = 4;
 
   @HostBinding('style.--docs-progress-linear-playground-size')
-  public get getSizeInPx() {
+  protected get getSizeInPx() {
     return `${this.size}px`;
   }
 
-  public get isIndeterminate() {
+  protected get isIndeterminate() {
     return this.mode === 'indeterminate';
   }
 }

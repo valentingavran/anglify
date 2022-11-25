@@ -1,0 +1,25 @@
+<div class="objects">
+  <anglify-autocomplete
+    [(value)]="selection1"
+    [items]="top10Movies"
+    itemTextKey="label"
+    itemValueKey="id"
+    appearance="outlined"
+    [multiple]="true"
+    label="Your favourite movies"
+  >
+  </anglify-autocomplete>
+  Selected IDs: {{ selection1 }}
+</div>
+
+<div class="primitives">
+  <anglify-autocomplete
+    [(value)]="selection2"
+    [items]="top10MovieNames"
+    appearance="outlined"
+    [multiple]="true"
+    label="Your favourite movies"
+  >
+  </anglify-autocomplete>
+  Selected Names: {{ selection2 }}
+</div>

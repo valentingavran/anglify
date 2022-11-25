@@ -2,10 +2,10 @@ import { ChipComponent, ItemGroupComponent, SlotDirective } from '@anglify/compo
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, type Observable } from 'rxjs';
-import { map, startWith, take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import type { APIConfig, Documentation } from '../../app.interface';
 import { ComponentAPIComponent } from '../component-api/component-api.component';
 import { DirectiveAPIComponent } from '../directive-api/directive-api.component';
@@ -50,7 +50,7 @@ export class InputsTableComponent {
     this._interfaces$.next(value);
   }
 
-  public selection = new FormControl(0);
+  protected selection$ = new BehaviorSubject([0]);
 
   public constructor(private readonly httpClient: HttpClient) {
     this.httpClient
@@ -94,9 +94,7 @@ export class InputsTableComponent {
     })
   );
 
-  public selectedName$ = combineLatest([this.selection.valueChanges.pipe(startWith(this.selection.value)), this.selectables$]).pipe(
-    map(([index, selectables]) => selectables[index!])
-  );
+  public selectedName$ = combineLatest([this.selection$, this.selectables$]).pipe(map(([index, selectables]) => selectables[index[0]!]));
 
   public components$ = combineLatest([this.documentation$, this.config$]).pipe(
     map(([documentation, config]) => {

@@ -1,0 +1,16 @@
+<anglify-autocomplete [items]="top10Movies" itemTextKey="label" appearance="outlined" [multiple]="true" label="Your favourite movies">
+  <ng-template slot="selection" let-context>
+    <anglify-chip *ngFor="let item of context.selectedItems">{{ item.label }}</anglify-chip>
+  </ng-template>
+  <ng-template slot="no-data">
+    <anglify-list-item [state]="false" [ripple]="false" [disabled]="true">
+      <ng-template slot="prepend">
+        <anglify-icon icon="mdi-alert-circle-outline"></anglify-icon>
+      </ng-template>
+      <anglify-list-item-title>No data available</anglify-list-item-title>
+      <ng-template slot="append">
+        <button type="button" anglifyButton appearance="text" (click)="openDocs()">View Docs</button>
+      </ng-template>
+    </anglify-list-item>
+  </ng-template>
+</anglify-autocomplete>

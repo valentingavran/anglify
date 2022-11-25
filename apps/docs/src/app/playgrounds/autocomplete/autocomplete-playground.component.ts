@@ -1,67 +1,63 @@
+import type { InputAppearance } from '@anglify/components';
 import {
+  ExpansionPanelComponent,
+  ExpansionPanelsComponent,
   AutocompleteComponent,
-  SlotDirective,
   CheckboxComponent,
-  RadioButtonComponent,
   InputDirective,
+  RadioButtonComponent,
+  SlotDirective,
   TextFieldComponent,
 } from '@anglify/components';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { top10Movies } from '../../examples/examples';
 
 @Component({
   standalone: true,
-  imports: [AutocompleteComponent, SlotDirective, FormsModule, CheckboxComponent, RadioButtonComponent, InputDirective, TextFieldComponent],
+  imports: [
+    CommonModule,
+    AutocompleteComponent,
+    SlotDirective,
+    FormsModule,
+    CheckboxComponent,
+    RadioButtonComponent,
+    InputDirective,
+    TextFieldComponent,
+    ExpansionPanelsComponent,
+    ExpansionPanelComponent,
+  ],
   templateUrl: './autocomplete-playground.component.html',
   styleUrls: ['./autocomplete-playground.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompletePlaygroundComponent {
-  public appearance: 'filled' | 'outlined' = 'filled';
+  protected value: any[] = [];
 
-  public label = 'Label';
+  protected appearance: InputAppearance = 'outlined';
 
-  public placeholder = 'Placeholder';
+  protected label = 'Best movie';
 
-  public hint = 'Hint';
+  protected placeholder = 'Placeholder';
 
-  public readonly = false;
+  protected hint = 'Hint';
 
-  public disabled = false;
+  protected itemTextKey = 'label';
 
-  public clearable = false;
+  protected itemValueKey = undefined;
 
-  public multiple = false;
+  protected disabled = false;
 
-  public closeOnSelect = true;
+  protected clearable = false;
 
-  public alwaysFloatingLabel = false;
+  protected multiple = false;
 
-  public persistentHint = false;
+  protected alwaysFloatingLabel = false;
 
-  public hideDetails = false;
+  protected persistentHint = false;
 
-  public readonly items = [
-    'test',
-    'test 1',
-    'test 2',
-    'test 3',
-    'test 4',
-    'test 5',
-    'test 6',
-    'test 7',
-    'test 8',
-    'test 9',
-    'test 10',
-    'test 11',
-    'test 12',
-    'test 13',
-    'test 14',
-    'test 15',
-    'test 16',
-    'test 17',
-    'test 18',
-    'test 19',
-    'test 20',
-  ];
+  protected hideDetails = false;
+
+  protected readonly items = top10Movies;
 }

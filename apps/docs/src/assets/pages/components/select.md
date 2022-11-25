@@ -9,6 +9,12 @@ w3c="https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only
 
 <app-select-playground></app-select-playground>
 
+## Examples
+
+### No data with chips
+
+<app-code-example component="select" example="no-data-with-chips" hide-overflow="false"></app-code-example>
+
 ## API
 
 ```typescript

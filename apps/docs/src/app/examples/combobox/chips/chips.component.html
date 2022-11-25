@@ -1,0 +1,5 @@
+<anglify-combobox appearance="outlined" label="Your favourite movies" [multiple]="true" [items]="top10Movies" itemTextKey="label">
+  <ng-template slot="selection" let-context>
+    <anglify-chip *ngFor="let item of context.selectedItems">{{ item.label }}</anglify-chip>
+  </ng-template>
+</anglify-combobox>

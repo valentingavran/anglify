@@ -1,0 +1,12 @@
+<anglify-autocomplete
+  [(value)]="selection"
+  [items]="top10Movies"
+  itemTextKey="label"
+  itemValueKey="id"
+  appearance="outlined"
+  [multiple]="true"
+  label="Your favourite movies"
+>
+</anglify-autocomplete>
+Selected IDs: {{ selection }}
+<button anglifyButton type="button" (click)="toggleFightClub()">Toggle Fight Club</button>
