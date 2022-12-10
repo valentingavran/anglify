@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.43.0](https://github.com/valentingavran/anglify/compare/v0.42.0...v0.43.0) (2022-12-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* The Autocomplete, Combobox & Select components have been completely rewritten.
+This has changed the way they are used
+* the simple input element (used by TextFields etc.) no longer has the
+alwaysFloatingLabel property.
+* **Input:** The internal CSS class `.anglify-input` was renamed to `.anglify-input-container`.
+
+### 📝  Docs
+
+* improve copy code example button styling ([9877746](https://github.com/valentingavran/anglify/commit/98777463608004b27574fbdd57a46652a6ba3f91))
+
+
+### 🔬  Code Refactoring
+
+* handle always floating label inside wrapper components ([43853e7](https://github.com/valentingavran/anglify/commit/43853e7962685f4903eb42e510cd5f543f6c6885))
+* **Input:** better support the handling of overflowing content ([7bfba5d](https://github.com/valentingavran/anglify/commit/7bfba5d3d163377c0786b01b9067253f03ed2a0b))
+* refactor combobox, autocomplete & select ([0b5c861](https://github.com/valentingavran/anglify/commit/0b5c8618dc728e6e2ffbdd516d7489c6ccb9e96c))
+
 ## [0.42.0](https://github.com/valentingavran/anglify/compare/v0.41.2...v0.42.0) (2022-11-24)
 
 
