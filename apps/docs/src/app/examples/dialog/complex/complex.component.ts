@@ -1,6 +1,6 @@
 import type { ModalData } from '@anglify/components';
-import { DialogContext, DIALOG_CONTEXT, ButtonComponent, DialogService } from '@anglify/components';
-import { CommonModule } from '@angular/common';
+import { ButtonComponent, DialogContext, DialogService, DIALOG_CONTEXT } from '@anglify/components';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/core';
 import { map } from 'rxjs';
 
@@ -31,9 +31,8 @@ export class DialogTestComponent {
 }
 
 @Component({
-  selector: 'anglify-complex',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [AsyncPipe, ButtonComponent],
   templateUrl: './complex.component.html',
   styleUrls: ['./complex.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
