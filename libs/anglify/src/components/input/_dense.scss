@@ -2,7 +2,7 @@
 
 @mixin dense {
   &.anglify-input-dense {
-    .anglify-input {
+    .anglify-input-container {
       min-height: var(--anglify-input-min-height-dense);
     }
   }

@@ -3,7 +3,7 @@
 @mixin error {
   &.anglify-input-outlined {
     &.anglify-input-error:not(.anglify-input-disabled) {
-      .anglify-input {
+      .anglify-input-container {
         --anglify-notched-outline-border-color: #{$input-error-color};
 
         label {
@@ -20,7 +20,7 @@
   &.anglify-input-filled {
     &.anglify-input-error:not(.anglify-input-disabled) {
       /* stylelint-disable-next-line no-descending-specificity */
-      .anglify-input {
+      .anglify-input-container {
         label {
           color: $input-error-color;
         }

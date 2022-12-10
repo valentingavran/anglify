@@ -1,4 +1,4 @@
-<anglify-item-group [mandatory]="true" [formControl]="selection">
+<anglify-item-group [mandatory]="true" [value]="(selection$ | async) ?? []" (valueChange)="selection$.next($event)">
   <ng-template *ngFor="let c of selectables$ | async" slot="item-group-item" let-active="active" let-toggle>
     <anglify-chip [active]="active" (click)="toggle()">{{ c }}</anglify-chip>
   </ng-template>

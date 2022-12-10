@@ -1,94 +1,119 @@
 :host {
-  --anglify-menu-max-width: 100%;
-  --anglify-menu-border-radius: 4px;
+  --anglify-input-outlined-label-start-offset: 16px;
+  --anglify-input-outlined-label-end-offset: 16px;
+  --anglify-input-filled-label-start-offset: 16px;
+  --anglify-input-filled-label-end-offset: 16px;
+  --anglify-input-min-width: 0;
+  --anglify-input-min-height: 54px;
+  --anglify-input-min-height-dense: 40px;
+  --anglify-input-flex-basis: 100px;
+  --anglify-input-flex-grow: 1;
+  --anglify-input-flex-shrink: 1;
 
-  display: block;
+  anglify-menu {
+    width: 100%;
 
-  ::ng-deep {
-    label {
-      /* stylelint-disable length-zero-no-unit */
-      --anglify-input-outlined-label-start-offset: 0px;
-      --anglify-input-outlined-label-end-offset: 0px;
-      --anglify-input-filled-label-start-offset: 0px;
-      --anglify-input-filled-label-end-offset: 0px;
-      /* stylelint-enable length-zero-no-unit */
+    &:has(anglify-input:not(.anglify-input-hide-details)) {
+      --anglify-menu-max-width: 100%;
+      --anglify-menu-border-radius: 4px;
+      --anglify-menu-offset-bottom: -24px;
+    }
+  }
+
+  anglify-input {
+    ::ng-deep .anglify-input {
+      cursor: pointer;
+    }
+
+    .selections {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding-inline-end: var(--anglify-input-filled-label-end-offset);
+      padding-inline-start: var(--anglify-input-filled-label-start-offset);
+
+      .selection {
+        overflow: hidden;
+        min-width: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
 
     input {
-      --anglify-input-filled-label-start-offset: 0;
-      --anglify-input-outlined-label-start-offset: 0;
-    }
+      min-width: 100px;
+      height: 26px;
+      box-sizing: border-box;
+      flex-basis: 0;
+      flex-grow: 1;
+      flex-shrink: 1;
+      border: none;
+      background-color: transparent;
+      caret-color: var(--color-primary);
+      color: var(--color-on-surface-high-emphasis);
+      font: var(--font-body-1);
+      letter-spacing: var(--font-letter-spacing-body-1);
+      outline: none;
+      pointer-events: none;
+      text-transform: var(--font-text-transform-body-1);
 
-    anglify-menu {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-  }
-
-  &.outlined {
-    ::ng-deep {
-      anglify-menu {
-        border-radius: var(--anglify-menu-border-radius);
-      }
-    }
-  }
-
-  .disabled {
-    color: var(--color-on-surface-low-emphasis);
-  }
-
-  anglify-icon {
-    &.disabled {
-      cursor: not-allowed;
-    }
-  }
-
-  .prepend-inner-item {
-    display: flex;
-    min-height: calc(
-      var(--anglify-input-min-height) - var(--anglify-input-filled-content-top-offset, var(--anglify-input-outlined-content-top-offset))
-    );
-    align-items: center;
-    margin-right: 5px;
-
-    &:last-of-type {
-      margin-right: unset;
-      padding-inline-end: var(--anglify-input-filled-label-start-offset);
-    }
-  }
-
-  .expand-min-height {
-    ::ng-deep {
-      input {
-        --anglify-input-filled-content-top-offset: 14px;
+      &::placeholder {
+        color: transparent;
+        transition: color 0.2s ease-in-out;
       }
 
-      .anglify-input-filled {
-        --anglify-input-filled-content-top-offset: 24px;
-      }
-
-      .anglify-input-outlined {
-        --anglify-input-outlined-content-top-offset: 7px;
+      &:disabled {
+        color: var(--color-on-surface-medium-emphasis);
       }
     }
 
-    .prepend-inner-item {
-      --anglify-input-filled-content-top-offset: 14px;
-      --anglify-input-outlined-content-top-offset: 7px;
+    &.anglify-input-focused {
+      ::ng-deep input::placeholder {
+        color: var(--color-on-surface-medium-emphasis);
+      }
     }
-  }
 
-  .dropdown-menu {
-    max-height: inherit;
-    overflow-y: auto;
-  }
+    &.anglify-input-floating,
+    &.anglify-input-always-floating-label {
+      ::ng-deep input::placeholder {
+        color: var(--color-on-surface-medium-emphasis);
+      }
 
-  .item {
-    cursor: pointer;
+      &.anglify-input-disabled {
+        ::ng-deep input::placeholder {
+          color: var(--color-on-surface-low-emphasis);
+        }
+      }
+    }
 
-    &.disabled {
-      color: var(--color-on-surface-low-emphasis);
-      cursor: not-allowed;
+    &.anglify-input-filled {
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: 24px;
+        }
+      }
+    }
+
+    &.anglify-input-outlined {
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: 14px;
+          padding-bottom: 14px;
+        }
+      }
+    }
+
+    &.anglify-input-dense {
+      ::ng-deep input {
+        height: var(--anglify-input-min-height-dense);
+        min-height: var(--anglify-input-min-height-dense);
+      }
+    }
+
+    &.anglify-input-disabled {
+      anglify-icon {
+        color: var(--color-on-surface-low-emphasis);
+      }
     }
   }
 }

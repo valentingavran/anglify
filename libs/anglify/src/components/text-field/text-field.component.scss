@@ -12,6 +12,7 @@
 
   anglify-input {
     ::ng-deep input {
+      width: 100%;
       min-width: var(--anglify-input-min-width);
       height: var(--anglify-input-min-height);
       min-height: var(--anglify-input-min-height);
@@ -44,8 +45,7 @@
       }
     }
 
-    &.anglify-input-floating,
-    &.anglify-input-always-floating-label {
+    &.anglify-input-floating {
       ::ng-deep input::placeholder {
         color: var(--color-on-surface-medium-emphasis);
       }

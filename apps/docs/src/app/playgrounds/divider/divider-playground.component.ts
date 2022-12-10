@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DividerPlaygroundComponent {
-  public vertical = false;
+  protected vertical = false;
 
-  public inset = false;
+  protected inset = false;
 }

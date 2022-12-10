@@ -98,18 +98,23 @@ pre {
   display: grid;
   border: 1px solid var(--border-color-on-surface-low-emphasis);
   border-radius: 4px;
+  grid-template-areas: 'content' 'data' 'controls';
   grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
 
   @include md-and-up {
+    grid-template-areas:
+      'content controls'
+      'data controls';
     grid-template-columns: 2fr 1fr;
   }
 
-  .content {
+  > .content {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
-    border-bottom: 1px solid var(--border-color-on-surface-low-emphasis);
+    grid-area: content;
 
     anglify-text-field,
     anglify-select,
@@ -118,20 +123,26 @@ pre {
       width: 100%;
       max-width: 300px;
     }
-
-    @include md-and-up {
-      border-right: 1px solid var(--border-color-on-surface-low-emphasis);
-    }
   }
 
   .controls {
     display: flex;
     flex-direction: column;
     padding: 24px;
+    border-bottom: 1px solid var(--border-color-on-surface-low-emphasis);
     gap: 14px;
-  }
-}
+    grid-area: controls;
 
-input {
-  width: 0;
+    @include md-and-up {
+      border-bottom: none;
+      border-left: 1px solid var(--border-color-on-surface-low-emphasis);
+    }
+  }
+
+  .data {
+    border-top: 1px solid var(--border-color-on-surface-low-emphasis);
+    grid-area: data;
+
+    --anglify-expansion-panels-content-padding: 0;
+  }
 }

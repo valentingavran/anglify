@@ -9,9 +9,7 @@ import {
   QueryList,
   Self,
   ViewChild,
-  type AfterViewInit,
 } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -22,7 +20,6 @@ import { InputAppearance } from '../input/input.interface';
 import { DEFAULT_TEXT_AREA_SETTINGS, TEXT_AREA_SETTINGS } from './text-area-settings.token';
 import { EntireTextAreaSettings } from './text-area.interface';
 
-@UntilDestroy()
 @Component({
   selector: 'anglify-text-area',
   standalone: true,
@@ -32,7 +29,7 @@ import { EntireTextAreaSettings } from './text-area.interface';
   imports: [InputComponent, AsyncPipe, SlotDirective, SlotOutletDirective, FindSlotPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextAreaComponent implements AfterViewInit {
+export class TextAreaComponent {
   @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
 
   @ContentChild(InputDirective) public readonly input?: InputDirective;
@@ -80,36 +77,4 @@ export class TextAreaComponent implements AfterViewInit {
   @Input() public error?: string;
 
   public constructor(@Self() @Inject('anglifyTextAreaSettings') public settings: EntireTextAreaSettings) {}
-
-  public ngAfterViewInit() {
-    this.anglifyInput.onInputClick.pipe(untilDestroyed(this)).subscribe(() => this.input?.elementRef.nativeElement.focus());
-
-    if (this.input) {
-      this.input.disabled$.pipe(untilDestroyed(this)).subscribe(disabled =>
-        setTimeout(() => {
-          this.anglifyInput.disabled = disabled;
-        }, 0)
-      );
-
-      this.input.focused$.pipe(untilDestroyed(this)).subscribe(focused =>
-        setTimeout(() => {
-          this.anglifyInput.focused = focused;
-        }, 0)
-      );
-
-      this.input.floating$.pipe(untilDestroyed(this)).subscribe(floating =>
-        setTimeout(() => {
-          this.anglifyInput.floating = floating;
-        }, 0)
-      );
-
-      this.input.invalid$.pipe(untilDestroyed(this)).subscribe(invalid =>
-        setTimeout(() => {
-          this.anglifyInput.error = invalid;
-        }, 0)
-      );
-    } else {
-      console.warn('An textarea that has an anglifyInput directive must be added to the anglify-textarea component for it to work');
-    }
-  }
 }

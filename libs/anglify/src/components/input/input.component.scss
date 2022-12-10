@@ -11,51 +11,59 @@
   grid-template-columns: auto 1fr auto;
 
   .anglify-input-prepend {
-    display: flex;
-    align-items: center;
+    flex: 1 0 auto;
     grid-area: prepend;
     margin-inline-end: $input-gap;
+  }
+
+  .anglify-input-append {
+    flex: 1 0 auto;
+    grid-area: append;
+    margin-inline-start: $input-gap;
+  }
+
+  .anglify-input-prepend-inner,
+  .anglify-input-append-inner {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .anglify-input-prepend,
+  .anglify-input-append,
+  .anglify-input-prepend-inner,
+  .anglify-input-append-inner {
+    overflow: hidden;
+    align-self: center;
 
     &:empty {
       display: none;
     }
   }
 
-  .anglify-input {
+  .anglify-input-content {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .anglify-input-border {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .anglify-input-container {
     position: relative;
     display: flex;
+    min-width: 0;
     min-height: $input-min-height;
     box-sizing: border-box;
+    flex: 0 1 auto;
     border-radius: $input-border-radius;
     cursor: text;
     grid-area: input;
-
-    &-prepend-inner,
-    &-append-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:empty {
-        display: none;
-      }
-    }
-
-    &-content {
-      display: flex;
-      flex-grow: 1;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    &-border {
-      position: absolute;
-      display: flex;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      user-select: none;
-    }
 
     label {
       position: relative;
@@ -74,17 +82,6 @@
         transition-property: transform, top, left;
         transition-timing-function: cubic-bezier(0.25, 0.8, 0.5, 1);
       }
-    }
-  }
-
-  .anglify-input-append {
-    display: flex;
-    align-items: center;
-    grid-area: append;
-    margin-inline-start: $input-gap;
-
-    &:empty {
-      display: none;
     }
   }
 
@@ -108,7 +105,7 @@
   }
 
   &.anglify-input-disabled {
-    .anglify-input {
+    .anglify-input-container {
       cursor: auto;
     }
   }
