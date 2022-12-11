@@ -43,5 +43,7 @@ export class TextFieldPlaygroundComponent {
 
   protected appendOuterIcon = false;
 
+  protected dense = false;
+
   protected hideDetails = false;
 }

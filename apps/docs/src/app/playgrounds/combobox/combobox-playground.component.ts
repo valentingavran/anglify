@@ -59,5 +59,7 @@ export class ComboboxPlaygroundComponent {
 
   protected hideDetails = false;
 
+  protected dense = false;
+
   protected readonly items = top10Movies;
 }

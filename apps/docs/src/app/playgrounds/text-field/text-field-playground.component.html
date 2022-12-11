@@ -6,6 +6,7 @@
       [persistentHint]="persistentHint"
       [hideDetails]="hideDetails"
       [hint]="hint"
+      [dense]="dense"
     >
       <ng-template slot="prepend-inner">
         <anglify-icon *ngIf="prependIcon" icon="mdi-home"></anglify-icon>
@@ -47,5 +48,6 @@
     <anglify-checkbox [(ngModel)]="appendIcon">Append icon</anglify-checkbox>
     <anglify-checkbox [(ngModel)]="appendOuterIcon">Append outer icon</anglify-checkbox>
     <anglify-checkbox [(ngModel)]="hideDetails">Hide details</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="dense">Dense</anglify-checkbox>
   </div>
 </div>
