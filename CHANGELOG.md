@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.43.1](https://github.com/valentingavran/anglify/compare/v0.43.0...v0.43.1) (2022-12-12)
+
+
+### 📝  Docs
+
+* add dense option to input playgrounds ([79533d5](https://github.com/valentingavran/anglify/commit/79533d54d119a84943d74cbc078ece47ec3e3f99))
+* **Dialog:** add close from outside example ([adf485b](https://github.com/valentingavran/anglify/commit/adf485bad13b15458a01476916b4abff6ec6dd55))
+
+
+### 🐛  Bug Fixes
+
+* export missing setting tokens and interfaces ([a139620](https://github.com/valentingavran/anglify/commit/a139620baef22e3508c76afad1a5ab4793571895))
+
 ## [0.43.0](https://github.com/valentingavran/anglify/compare/v0.42.0...v0.43.0) (2022-12-10)
 
 
