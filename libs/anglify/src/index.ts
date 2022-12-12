@@ -27,7 +27,9 @@ export * from './services/breakpoint-observer/breakpoint-observer.interface';
 export * from './services/id/id.service';
 export * from './services/overlay.service';
 // Autocomplete
+export * from './components/autocomplete/autocomplete-settings.token';
 export * from './components/autocomplete/autocomplete.component';
+export * from './components/autocomplete/autocomplete.interface';
 // Badge
 export * from './components/badge/badge-settings.token';
 export * from './components/badge/badge.component';
@@ -64,7 +66,9 @@ export * from './components/chip/chip-settings.token';
 export * from './components/chip/chip.interface';
 export * from './components/chip/chip.component';
 // Combobox
+export * from './components/combobox/combobox-settings.token';
 export * from './components/combobox/combobox.component';
+export * from './components/combobox/combobox.interface';
 // Data Table
 export * from './components/data-table/data-table-settings.token';
 export * from './components/data-table/data-table.component';

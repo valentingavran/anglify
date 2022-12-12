@@ -1,14 +1,6 @@
 :host {
-  --anglify-input-outlined-label-start-offset: 16px;
-  --anglify-input-outlined-label-end-offset: 16px;
   --anglify-input-filled-label-start-offset: 16px;
   --anglify-input-filled-label-end-offset: 16px;
-  --anglify-input-min-width: 0;
-  --anglify-input-min-height: 54px;
-  --anglify-input-min-height-dense: 40px;
-  --anglify-input-flex-basis: 100px;
-  --anglify-input-flex-grow: 1;
-  --anglify-input-flex-shrink: 1;
 
   anglify-menu {
     width: 100%;
@@ -58,6 +50,7 @@
       color: var(--color-on-surface-high-emphasis);
       font: var(--font-body-1);
       letter-spacing: var(--font-letter-spacing-body-1);
+      line-height: 1;
       outline: none;
       pointer-events: none;
       text-transform: var(--font-text-transform-body-1);
@@ -108,10 +101,20 @@
       }
     }
 
-    &.anglify-input-dense {
-      ::ng-deep input {
-        height: var(--anglify-input-min-height-dense);
-        min-height: var(--anglify-input-min-height-dense);
+    &.anglify-input-dense.anglify-input-filled {
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: 14px;
+        }
+      }
+    }
+
+    &.anglify-input-dense.anglify-input-outlined {
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: 7px;
+          padding-bottom: 7px;
+        }
       }
     }
 

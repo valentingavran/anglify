@@ -23,6 +23,11 @@ You can open the Anglify dialog simply with the `open()` method. But this way yo
 If you want the dialog to return data to you, use the `open$()` method. This method returns an observable which emits on various dialog events.
 <app-code-example component="dialog" example="complex"></app-code-example>
 
+### Close from outside
+
+You can close the dialog from outside by using the `takeUntil` operator and a `Subject`.
+<app-code-example component="dialog" example="close-from-outside"></app-code-example>
+
 ## API
 
 ```typescript
