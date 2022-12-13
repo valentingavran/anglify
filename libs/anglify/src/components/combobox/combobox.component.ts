@@ -32,7 +32,6 @@ import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
 import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { MenuDirective } from '../menu/components/legacy-menu/legacy-menu.directive';
 import { MenuComponent } from '../menu/menu/menu.component';
 import { COMBOBOX_SETTINGS, DEFAULT_COMBOBOX_SETTINGS } from './combobox-settings.token';
 import { EntireComboboxSettings } from './combobox.interface';
@@ -54,7 +53,6 @@ import { ComboboxAction, createComboboxMachineConfig } from './combobox.machine'
     CommonModule,
     FindSlotPipe,
     InputComponent,
-    MenuDirective,
     IconComponent,
     ListItemComponent,
     ListItemTitleComponent,

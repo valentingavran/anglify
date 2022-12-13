@@ -32,7 +32,6 @@ import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
 import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { MenuDirective } from '../menu/components/legacy-menu/legacy-menu.directive';
 import { MenuComponent } from '../menu/menu/menu.component';
 import { AUTOCOMPLETE_SETTINGS, DEFAULT_AUTOCOMPLETE_SETTINGS } from './autocomplete-settings.token';
 import { EntireAutocompleteSettings } from './autocomplete.interface';
@@ -54,7 +53,6 @@ import { AutocompleteAction, createAutocompleteMachineConfig } from './autocompl
     CommonModule,
     FindSlotPipe,
     InputComponent,
-    MenuDirective,
     IconComponent,
     ListItemComponent,
     ListItemTitleComponent,
