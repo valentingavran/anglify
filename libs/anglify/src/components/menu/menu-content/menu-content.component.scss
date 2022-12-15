@@ -1,0 +1,16 @@
+@use '../../../styles/mixins/elevation' as *;
+
+:host {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: auto;
+  min-width: var(--anglify-menu-min-width, 100px);
+  max-width: var(--anglify-menu-max-width, 100%);
+  max-height: var(--anglify-menu-max-height, 250px);
+  background-color: var(--color-elevated);
+  visibility: hidden;
+  @include elevation(2);
+}

@@ -1,17 +1,7 @@
-import { bindClassToNativeElement, ButtonComponent, IconComponent } from '@anglify/components';
+import { ButtonComponent, IconComponent } from '@anglify/components';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Injector,
-  Input,
-  ViewChild,
-  ViewContainerRef,
-  type OnInit,
-  type Type,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Input, ViewChild, ViewContainerRef, type OnInit, type Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject, NEVER, of } from 'rxjs';
@@ -43,17 +33,9 @@ export class CodeExampleComponent implements OnInit {
     this.example$.next(value);
   }
 
-  @Input('hide-overflow')
-  public set hideOverflow(value: boolean | 'false' | 'true' | null | undefined) {
-    if (value === 'false' || value === false) this.hideOverflow$.next(false);
-    else this.hideOverflow$.next(true);
-  }
-
   private readonly example$ = new BehaviorSubject<string>('');
 
   public readonly selectedView$ = new BehaviorSubject<'code' | 'style' | 'template' | null>(null);
-
-  private hideOverflow$ = new BehaviorSubject<boolean>(true);
 
   public readonly template$ = this.example$.pipe(
     switchMap(example => {
@@ -105,13 +87,7 @@ export class CodeExampleComponent implements OnInit {
     }
   }
 
-  public constructor(
-    private readonly httpClient: HttpClient,
-    private readonly injector: Injector,
-    private readonly elementRef: ElementRef<HTMLElement>
-  ) {
-    bindClassToNativeElement(this, this.hideOverflow$, this.elementRef.nativeElement, 'hide-overflow');
-  }
+  public constructor(private readonly httpClient: HttpClient, private readonly injector: Injector) {}
 
   public ngOnInit() {
     void this.loadComponent();

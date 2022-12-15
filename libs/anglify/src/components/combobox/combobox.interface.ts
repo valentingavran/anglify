@@ -1,4 +1,4 @@
-import type { Side } from '../../composables/position/position.interface';
+import type { Position } from '../../composables/position/position.interface';
 import type { InputAppearance } from '../input/input.interface';
 
 export type EntireComboboxSettings = {
@@ -25,7 +25,7 @@ export type EntireComboboxSettings = {
   /**
    * Sets the position of the menu.
    */
-  dropdownPosition: Side;
+  dropdownPosition: Position;
   /**
    * Puts the input in a manual error state.
    */

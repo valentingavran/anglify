@@ -8,7 +8,7 @@ export const DEFAULT_SELECT_SETTINGS: EntireSelectSettings = {
   clearable: false,
   noDataText: 'No data available',
   multiple: false,
-  dropdownPosition: 'bottom',
+  dropdownPosition: 'bottom-start',
   disabled: false,
   hideDetails: false,
   itemTextKey: undefined,

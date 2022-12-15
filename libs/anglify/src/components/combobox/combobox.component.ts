@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import type { ControlValueAccessor } from '@angular/forms';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { MiddlewareArguments } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { distinctUntilChanged, fromEvent, map, merge, NEVER, of, switchMap, tap } from 'rxjs';
 import { SlotDirective } from '../../directives/slot/slot.directive';
@@ -32,7 +33,7 @@ import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
 import { ListItemComponent } from '../list/components/list-item/list-item.component';
 import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { MenuComponent } from '../menu/menu/menu.component';
+import { MenuComponent } from '../menu/menu.component';
 import { COMBOBOX_SETTINGS, DEFAULT_COMBOBOX_SETTINGS } from './combobox-settings.token';
 import { EntireComboboxSettings } from './combobox.interface';
 import { ComboboxAction, createComboboxMachineConfig } from './combobox.machine';
@@ -209,7 +210,7 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
         map(() => ({ action: ComboboxAction.CLICK })),
         tap(() => input.focus())
       ),
-      fromEvent(this.menu!.elementRef.nativeElement, 'mousedown').pipe(tap(event => event.preventDefault())),
+      fromEvent(this.menu!.menuContent.location.nativeElement as HTMLElement, 'mousedown').pipe(tap(event => event.preventDefault())),
       fromEvent(input, 'focusin').pipe(map(() => ({ action: ComboboxAction.FOCUS }))),
       fromEvent(input, 'focusout').pipe(map(() => ({ action: ComboboxAction.BLUR }))),
       fromEvent(input, 'keydown').pipe(
@@ -248,4 +249,9 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
     if (itemValueKey) return this.items.filter(item => values.includes(item[itemValueKey]));
     else return values;
   }
+
+  protected offset = ({ placement }: MiddlewareArguments) => {
+    if ((placement === 'bottom' || placement === 'bottom-start' || placement === 'bottom-end') && !this.hideDetails) return -24;
+    return 0;
+  };
 }

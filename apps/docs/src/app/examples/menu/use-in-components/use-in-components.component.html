@@ -1,0 +1,39 @@
+<anglify-card>
+  <anglify-toolbar>
+    Toolbar
+    <ng-template slot="end">
+      <anglify-menu>
+        <button anglifyButton type="button" appearance="icon">
+          <anglify-icon icon="mdi-dots-vertical"></anglify-icon>
+        </button>
+        <ng-template slot="items">
+          <anglify-list-item (click)="cut()" (keydown.enter)="cut()">
+            <ng-template slot="prepend">
+              <anglify-icon icon="mdi-content-cut"></anglify-icon>
+            </ng-template>
+            <anglify-list-item-title>Cut</anglify-list-item-title>
+          </anglify-list-item>
+          <anglify-list-item (click)="copy()" (keydown.enter)="copy()">
+            <ng-template slot="prepend">
+              <anglify-icon icon="mdi-content-copy"></anglify-icon>
+            </ng-template>
+            <anglify-list-item-title>Copy</anglify-list-item-title>
+          </anglify-list-item>
+          <anglify-list-item (click)="paste()" (keydown.enter)="paste()">
+            <ng-template slot="prepend">
+              <anglify-icon icon="mdi-content-paste"></anglify-icon>
+            </ng-template>
+            <anglify-list-item-title>Paste</anglify-list-item-title>
+          </anglify-list-item>
+          <anglify-divider></anglify-divider>
+          <anglify-list-item (click)="webClipboard()" (keydown.enter)="webClipboard()">
+            <ng-template slot="prepend">
+              <anglify-icon icon="mdi-cloud-outline"></anglify-icon>
+            </ng-template>
+            <anglify-list-item-title>Web Clipboard</anglify-list-item-title>
+          </anglify-list-item>
+        </ng-template>
+      </anglify-menu>
+    </ng-template>
+  </anglify-toolbar>
+</anglify-card>

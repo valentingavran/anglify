@@ -1,4 +1,4 @@
-import type { Side } from '@floating-ui/dom';
+import type { Position } from '../../composables/position/position.interface';
 import type { InputAppearance } from '../input/input.interface';
 
 export type SelectItem = {
@@ -31,7 +31,7 @@ export type EntireSelectSettings = {
   /**
    * Sets the position of the menu.
    */
-  dropdownPosition: Side;
+  dropdownPosition: Position;
   /**
    * Puts the input in a manual error state.
    */

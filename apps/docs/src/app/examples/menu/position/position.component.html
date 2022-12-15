@@ -7,21 +7,21 @@
 </ng-template>
 
 <anglify-menu position="top">
-  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Top</button></ng-template>
-  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+  <button type="button" anglifyButton appearance="contained">Top</button>
+  <ng-template slot="items"><ng-container *ngTemplateOutlet="menuTemplate"></ng-container></ng-template>
 </anglify-menu>
 
 <anglify-menu position="bottom">
-  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Bottom</button></ng-template>
-  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+  <button type="button" anglifyButton appearance="contained">Bottom</button>
+  <ng-template slot="items"><ng-container *ngTemplateOutlet="menuTemplate"></ng-container></ng-template>
 </anglify-menu>
 
 <anglify-menu position="right">
-  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Right</button></ng-template>
-  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+  <button type="button" anglifyButton appearance="contained">Right</button>
+  <ng-template slot="items"><ng-container *ngTemplateOutlet="menuTemplate"></ng-container></ng-template>
 </anglify-menu>
 
 <anglify-menu position="left">
-  <ng-template slot="activator"><button type="button" anglifyButton appearance="contained">Left</button></ng-template>
-  <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+  <button type="button" anglifyButton appearance="contained">Left</button>
+  <ng-template slot="items"><ng-container *ngTemplateOutlet="menuTemplate"></ng-container></ng-template>
 </anglify-menu>

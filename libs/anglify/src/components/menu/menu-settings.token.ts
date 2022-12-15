@@ -7,13 +7,14 @@ export const DEFAULT_MENU_SETTINGS: EntireMenuSettings = {
   closeOnOutsideClick: true,
   disabled: false,
   flip: false,
-  focusMenuWhenOpened: true,
-  focusable: false,
-  openOnClick: true,
   openOnHover: false,
   position: 'bottom',
-  trapFocus: true,
   value: false,
+  offset: 0,
+  maxWidth: '100%',
+  maxHeight: '250px',
+  focusActivatorOnClose: true,
+  shift: true,
 };
 
 export const MENU_SETTINGS = new InjectionToken<MenuSettings>('Menu Settings');

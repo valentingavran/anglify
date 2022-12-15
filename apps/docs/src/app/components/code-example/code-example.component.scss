@@ -5,8 +5,7 @@
 
   .preview {
     display: flex;
-    overflow: auto;
-    overflow: visible;
+    overflow: hidden;
     align-items: center;
     justify-content: center;
     padding: 1rem;
@@ -25,11 +24,5 @@
 
   .code-container {
     overflow: hidden;
-  }
-
-  &.hide-overflow {
-    .preview {
-      overflow: hidden;
-    }
   }
 }

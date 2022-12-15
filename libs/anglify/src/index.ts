@@ -103,7 +103,7 @@ export * from './components/list/components/list-item-description/list-item-desc
 export * from './components/list/components/list-item-group/list-item-group.component';
 export * from './components/list/components/list-item-title/list-item-title.component';
 // Menu
-export * from './components/menu/menu/menu.component';
+export * from './components/menu/menu.component';
 export * from './components/menu/menu-settings.token';
 export * from './components/menu/menu.interface';
 // Navigation Drawer
