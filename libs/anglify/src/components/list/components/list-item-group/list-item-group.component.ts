@@ -38,8 +38,6 @@ export class ListItemGroupComponent implements AfterViewInit {
    */
   @Input() public max?: number;
 
-  public readonly itemGroupItems$ = new BehaviorSubject<ListItemComponent[]>([]);
-
   @Input() public set value(value: number[]) {
     if (this.itemGroupItems$.value.length === 0) {
       /* It may happen that this setter is called before the slots have been loaded or any are present at all.
@@ -58,11 +56,13 @@ export class ListItemGroupComponent implements AfterViewInit {
 
   @Output() public readonly valueChange = new EventEmitter<number[]>();
 
+  private readonly itemGroupItems$ = new BehaviorSubject<ListItemComponent[]>([]);
+
   private createItemClickHandler(item: ListItemComponent) {
     item.onClick.pipe(untilDestroyed(this)).subscribe(() => this.handleItemClick(item));
   }
 
-  public handleItemClick = (item: ListItemComponent) => {
+  private readonly handleItemClick = (item: ListItemComponent) => {
     const activeCount = this.itemGroupItems$.value.filter(item => item.active).length;
     let otherSelectedItemsCount = activeCount;
     if (item.active) {

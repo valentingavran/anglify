@@ -50,7 +50,7 @@ export class ProgressLinearComponent {
 
   public constructor(@Self() @Inject('anglifyProgressLinearSettings') private readonly settings: EntireProgressLinearSettings) {}
 
-  public get normalizedValue() {
+  private get normalizedValue() {
     return clamp(this.value, 0, 100);
   }
 

@@ -37,7 +37,7 @@ import { EntireToolbarSettings } from './toolbar.interface';
   imports: [NgIf, FindSlotPipe, SlotOutletDirective],
 })
 export class ToolbarComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   /**
    * Increases the height of the toolbar.
@@ -72,7 +72,7 @@ export class ToolbarComponent {
   private readonly app$ = new BehaviorSubject(false);
 
   public constructor(
-    @Self() @Inject('anglifyToolbarSettings') public settings: EntireToolbarSettings,
+    @Self() @Inject('anglifyToolbarSettings') private readonly settings: EntireToolbarSettings,
     private readonly elevationService: ElevationService,
     private readonly elementRef: ElementRef<HTMLElement>
   ) {

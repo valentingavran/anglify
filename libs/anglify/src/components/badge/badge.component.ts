@@ -22,7 +22,7 @@ import { EntireBadgeSettings } from './badge.interface';
   providers: [createSettingsProvider<EntireBadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS)],
 })
 export class BadgeComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   /**
    * Controls whether the component is visible or hidden.
@@ -88,8 +88,8 @@ export class BadgeComponent {
   private readonly verticalOffset$ = new BehaviorSubject(this.settings.verticalOffset);
 
   public constructor(
-    @Self() @Inject('anglifyBadgeSettings') public settings: EntireBadgeSettings,
-    public readonly elementRef: ElementRef<HTMLElement>
+    @Self() @Inject('anglifyBadgeSettings') private readonly settings: EntireBadgeSettings,
+    private readonly elementRef: ElementRef<HTMLElement>
   ) {
     bindClassToNativeElement(this, this.bordered$, this.elementRef.nativeElement, 'bordered');
     bindObservableValueToNativeElement(this, this.position$, this.elementRef.nativeElement);

@@ -5,15 +5,15 @@ import type { Elevation } from './elevation.interface';
 export class ElevationService {
   private currentElevation: Elevation = 0;
 
-  public constructor(private readonly _elementRef: ElementRef<HTMLElement>) {}
+  public constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
 
   public get elevation() {
     return this.currentElevation;
   }
 
   public set elevation(elevation: Elevation) {
-    this._elementRef.nativeElement.classList.remove(`anglify-elevation-${this.currentElevation}`);
-    this._elementRef.nativeElement.classList.add(`anglify-elevation-${elevation}`);
+    this.elementRef.nativeElement.classList.remove(`anglify-elevation-${this.currentElevation}`);
+    this.elementRef.nativeElement.classList.add(`anglify-elevation-${elevation}`);
     this.currentElevation = elevation;
   }
 }

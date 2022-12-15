@@ -88,12 +88,12 @@ export class PositionService {
   }
 
   public constructor(
-    private readonly _elementRef: ElementRef<HTMLElement>,
+    private readonly elementRef: ElementRef<HTMLElement>,
     @Inject(POSITION_SETTINGS) private readonly settings: PositionSettings
   ) {
     merge(
-      observeOnResize$(this._elementRef.nativeElement),
-      fromEvent(this._elementRef.nativeElement, 'click'),
+      observeOnResize$(this.elementRef.nativeElement),
+      fromEvent(this.elementRef.nativeElement, 'click'),
       fromEvent(window, 'scroll', { capture: true }),
       fromEvent(window, 'resize', { capture: true })
     )
@@ -122,13 +122,13 @@ export class PositionService {
     if (this._shift) middleware.push(shift({ padding }));
     middleware.push(offset(this._offset));
 
-    const { x, y } = await computePosition(this.settings.host, this._elementRef.nativeElement, {
+    const { x, y } = await computePosition(this.settings.host, this.elementRef.nativeElement, {
       placement: this._position,
       middleware,
       strategy: 'fixed',
     });
 
-    this._elementRef.nativeElement.style.left = `${x}px`;
-    this._elementRef.nativeElement.style.top = `${y}px`;
+    this.elementRef.nativeElement.style.left = `${x}px`;
+    this.elementRef.nativeElement.style.top = `${y}px`;
   }
 }

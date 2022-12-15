@@ -41,7 +41,7 @@ import { EntireNavigationDrawerSettings, NavigationDrawerMode } from './navigati
   imports: [NgIf, AsyncPipe],
 })
 export class NavigationDrawerComponent implements AfterViewInit {
-  @ContentChildren(ListComponent) public lists?: QueryList<ListComponent>;
+  @ContentChildren(ListComponent) private readonly lists?: QueryList<ListComponent>;
 
   /**
    * Modal drawer will be closed on item clicks if this property is set.
@@ -73,13 +73,13 @@ export class NavigationDrawerComponent implements AfterViewInit {
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onValueChange = new EventEmitter();
 
-  public value$ = new BehaviorSubject(false);
+  protected value$ = new BehaviorSubject(false);
 
-  public mode$ = new BehaviorSubject<NavigationDrawerMode>(this.settings.mode);
+  protected mode$ = new BehaviorSubject<NavigationDrawerMode>(this.settings.mode);
 
   public constructor(
     @Self() @Inject('anglifyNavigationDrawerSettings') private readonly settings: EntireNavigationDrawerSettings,
-    public elementRef: ElementRef<HTMLElement>
+    private readonly elementRef: ElementRef<HTMLElement>
   ) {
     bindObservableValueToNativeElement(this, this.mode$, this.elementRef.nativeElement, 'anglify-navigation-drawer-');
     bindClassToNativeElement(

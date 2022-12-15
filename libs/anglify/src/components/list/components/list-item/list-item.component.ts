@@ -32,7 +32,7 @@ import { RouterLinkCommands } from '../../../../utils/interfaces';
   imports: [FindSlotPipe, NgIf, SlotOutletDirective, FindSlotPipe, AsyncPipe],
 })
 export class ListItemComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   public get active() {
     return this.active$.value;
@@ -145,9 +145,9 @@ export class ListItemComponent {
 
   public readonly active$ = new BehaviorSubject<boolean>(false);
 
-  public readonly selectable$ = new BehaviorSubject<boolean>(false);
+  protected readonly selectable$ = new BehaviorSubject<boolean>(false);
 
-  public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
+  protected readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
   protected readonly disabled$ = new BehaviorSubject<boolean>(false);
 

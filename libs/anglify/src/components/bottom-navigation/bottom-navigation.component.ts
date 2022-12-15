@@ -36,7 +36,7 @@ import { BottomNavigationItemComponent } from './components/bottom-navigation-it
   ],
 })
 export class BottomNavigationComponent implements AfterViewInit {
-  @ContentChildren(BottomNavigationItemComponent) public readonly navigationItems?: QueryList<BottomNavigationItemComponent>;
+  @ContentChildren(BottomNavigationItemComponent) private readonly navigationItems?: QueryList<BottomNavigationItemComponent>;
 
   /**
    * Force items to take up all available space.
@@ -87,7 +87,7 @@ export class BottomNavigationComponent implements AfterViewInit {
 
   private readonly destroySelectNextSubscription$ = new Subject<void>();
 
-  public constructor(@Self() @Inject('anglifyBottomNavigationSettings') public settings: EntireBottomNavigationSettings) {
+  public constructor(@Self() @Inject('anglifyBottomNavigationSettings') private readonly settings: EntireBottomNavigationSettings) {
     this.changeHandler$.pipe(untilDestroyed(this)).subscribe();
 
     this.items$.pipe(untilDestroyed(this)).subscribe(items => {

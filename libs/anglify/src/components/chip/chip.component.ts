@@ -40,7 +40,7 @@ import { ChipAppearance, EntireChipSettings } from './chip.interface';
   imports: [IconComponent, NgIf, FindSlotPipe, SlotOutletDirective],
 })
 export class ChipComponent implements OnInit {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   public get active() {
     return this.active$.value;
@@ -80,11 +80,11 @@ export class ChipComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onClick = new EventEmitter<void>();
 
-  public readonly active$ = new BehaviorSubject<boolean>(false);
+  private readonly active$ = new BehaviorSubject<boolean>(false);
 
   public constructor(
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition,
-    @Self() @Inject('anglifyChipSettings') public settings: EntireChipSettings,
+    @Self() @Inject('anglifyChipSettings') private readonly settings: EntireChipSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition,
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly rippleService: RippleService
   ) {

@@ -61,7 +61,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onCheckedChange = new EventEmitter<boolean>();
 
-  public checked: any;
+  protected checked: any;
 
   public onChange: (...args: any[]) => void = () => {};
 
@@ -81,7 +81,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.checked = checked;
   }
 
-  public onModelChange(checked: boolean) {
+  protected onModelChange(checked: boolean) {
     this.checked = checked;
     this.onCheckedChange.next(checked);
     this.onChange(checked);

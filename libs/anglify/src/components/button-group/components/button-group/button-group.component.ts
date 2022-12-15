@@ -60,9 +60,9 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
 
   public onTouch: (...args: any[]) => void = () => {};
 
-  public readonly itemGroupItems$ = new BehaviorSubject<ButtonGroupItemComponent[]>([]);
+  private readonly itemGroupItems$ = new BehaviorSubject<ButtonGroupItemComponent[]>([]);
 
-  public constructor(@Self() @Inject('anglifyButtonGroupSettings') public settings: EntireButtonGroupSettings) {}
+  public constructor(@Self() @Inject('anglifyButtonGroupSettings') private readonly settings: EntireButtonGroupSettings) {}
 
   public writeValue(value: number[] | number | null) {
     if (this.stateless) return;
@@ -101,7 +101,7 @@ export class ButtonGroupComponent implements AfterViewInit, ControlValueAccessor
     item.onClick.pipe(untilDestroyed(this)).subscribe(() => this.handleItemClick(item));
   }
 
-  public handleItemClick = (item: ButtonGroupItemComponent) => {
+  private readonly handleItemClick = (item: ButtonGroupItemComponent) => {
     if (this.stateless) return;
     const activeCount = this.itemGroupItems$.value.filter(item => item.active).length;
     let otherSelectedItemsCount = activeCount;

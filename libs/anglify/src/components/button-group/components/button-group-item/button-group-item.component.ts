@@ -80,7 +80,7 @@ export class ButtonGroupItemComponent {
   private readonly ripple$ = new BehaviorSubject(this.settings.ripple);
 
   public constructor(
-    @Host() @Inject('anglifyButtonGroupSettings') public settings: EntireButtonGroupSettings,
+    @Host() @Inject('anglifyButtonGroupSettings') private readonly settings: EntireButtonGroupSettings,
     protected readonly rippleService: RippleService,
     protected readonly elementRef: ElementRef<HTMLElement>
   ) {

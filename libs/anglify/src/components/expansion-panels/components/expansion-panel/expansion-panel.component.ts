@@ -39,7 +39,7 @@ import { EntireExpansionPanelsSettings } from '../../expansion-panels.interface'
   imports: [NgIf, IconComponent, AsyncPipe, SlotOutletDirective, FindSlotPipe, InteractionStateDirective],
 })
 export class ExpansionPanelComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   /**
    * Hide the expand icon in the panel header.
@@ -79,13 +79,13 @@ export class ExpansionPanelComponent {
 
   private readonly _active$ = new BehaviorSubject<boolean>(false);
 
-  public active$ = this._active$.asObservable();
+  protected active$ = this._active$.asObservable();
 
   public constructor(
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition,
+    @Host() @Inject('anglifyExpansionPanelsSettings') private readonly settings: EntireExpansionPanelsSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition,
     private readonly elevationService: ElevationService,
-    private readonly elementRef: ElementRef<HTMLElement>,
-    @Host() @Inject('anglifyExpansionPanelsSettings') public settings: EntireExpansionPanelsSettings
+    private readonly elementRef: ElementRef<HTMLElement>
   ) {
     this.elevation = this.settings.elevation;
     bindClassToNativeElement(this, this.active$, this.elementRef.nativeElement, 'anglify-expansion-panel-active');

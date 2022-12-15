@@ -31,7 +31,7 @@ import { StepperSettings } from '../../services/stepper-settings/stepper-setting
   imports: [NgIf, AsyncPipe, SlotOutletDirective, FindSlotPipe],
 })
 export class StepperHeaderComponent {
-  @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots!: QueryList<SlotDirective>;
 
   @Input()
   public set label(value: string | null) {
@@ -70,21 +70,21 @@ export class StepperHeaderComponent {
     this.rippleService.active = value;
   }
 
-  public readonly label$ = new BehaviorSubject<string | null>(null);
+  protected readonly label$ = new BehaviorSubject<string | null>(null);
 
-  public readonly index$ = new BehaviorSubject(0);
+  protected readonly index$ = new BehaviorSubject(0);
 
-  public readonly active$ = new BehaviorSubject(false);
+  protected readonly active$ = new BehaviorSubject(false);
 
   private readonly isFirst$ = new BehaviorSubject(false);
 
   private readonly isLast$ = new BehaviorSubject(false);
 
-  public readonly topStepConnectionLineVisible$ = combineLatest([this.isFirst$, this.stepperSettings.hasStepConnectionLine$]).pipe(
+  protected readonly topStepConnectionLineVisible$ = combineLatest([this.isFirst$, this.stepperSettings.hasStepConnectionLine$]).pipe(
     map(([isFirstStep, hasStepConnectionLine]) => !isFirstStep && hasStepConnectionLine)
   );
 
-  public readonly bottomStepConnectionLineVisible$ = combineLatest([this.isLast$, this.stepperSettings.hasStepConnectionLine$]).pipe(
+  protected readonly bottomStepConnectionLineVisible$ = combineLatest([this.isLast$, this.stepperSettings.hasStepConnectionLine$]).pipe(
     map(([isLastStep, hasStepConnectionLine]) => !isLastStep && hasStepConnectionLine)
   );
 

@@ -51,19 +51,19 @@ import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
   imports: [InteractionStateDirective, AsyncPipe, FindSlotPipe, SlotOutletDirective],
 })
 export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
-  @ViewChild('offIcon', { read: ElementRef }) public offIcon!: ElementRef<HTMLElement>;
+  @ViewChild('offIcon', { read: ElementRef }) private readonly offIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('onIcon', { read: ElementRef }) public onIcon!: ElementRef<HTMLElement>;
+  @ViewChild('onIcon', { read: ElementRef }) private readonly onIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('defaultIcon') public defaultIcon!: ElementRef<HTMLElement>;
+  @ViewChild('defaultIcon') private readonly defaultIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('overlayContainer') public overlayContainer!: ElementRef<HTMLElement>;
+  @ViewChild('overlayContainer') private readonly overlayContainer!: ElementRef<HTMLElement>;
 
-  @ViewChild('reflectOffIcon') public reflectOffIcon!: ElementRef<HTMLElement>;
+  @ViewChild('reflectOffIcon') private readonly reflectOffIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('reflectOnIcon') public reflectOnIcon!: ElementRef<HTMLElement>;
+  @ViewChild('reflectOnIcon') private readonly reflectOnIcon!: ElementRef<HTMLElement>;
 
   /**
    * Turns the ripple effect on or off.
@@ -130,13 +130,13 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
   @Output() public readonly checkedChange = new EventEmitter<boolean | undefined>();
 
-  public iconProvider!: CheckboxIconRef | null;
+  private readonly iconProvider!: CheckboxIconRef | null;
 
-  public checked$ = new BehaviorSubject(this.settings.checked);
+  protected checked$ = new BehaviorSubject(this.settings.checked);
 
-  public disabled$ = new BehaviorSubject(this.settings.disabled);
+  protected disabled$ = new BehaviorSubject(this.settings.disabled);
 
-  public readonly$ = new BehaviorSubject(this.settings.readonly);
+  protected readonly$ = new BehaviorSubject(this.settings.readonly);
 
   protected focusable$ = new BehaviorSubject(this.settings.focusable);
 
@@ -147,9 +147,9 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @HostBinding('attr.role') protected readonly role = 'checkbox';
 
   public constructor(
+    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
-    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: (() => CheckboxIconRef) | null
   ) {
     bindClassToNativeElement(
@@ -180,7 +180,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
    * case 3: No Icons are delivered so default checkbox should be used
    * case 4: Combination of case 1 and case 2, in this case ViewContainerRef of iconProvider needs to remove overridden Icons from DOM
    */
-  public prepareIconDOM() {
+  private prepareIconDOM() {
     const reflectOnChildren = this.reflectOnIcon.nativeElement.children.length;
     const reflectOffChildren = this.reflectOffIcon.nativeElement.children.length;
 
@@ -219,7 +219,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     }
   }
 
-  public removeChildren(children: ElementRef[]) {
+  private removeChildren(children: ElementRef[]) {
     for (const child of children) this.renderer.removeChild(this.overlayContainer.nativeElement, child.nativeElement);
   }
 

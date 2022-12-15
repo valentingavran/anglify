@@ -70,9 +70,9 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
 
   @ViewChild(InputDirective) protected readonly input?: InputDirective;
 
-  @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput?: InputComponent;
+  @ViewChild('anglifyInput', { read: InputComponent }) private readonly anglifyInput?: InputComponent;
 
-  @ViewChild('menu') public menu?: MenuComponent;
+  @ViewChild('menu') private readonly menu?: MenuComponent;
 
   @Input() public label = this.settings.label;
 
@@ -117,8 +117,8 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
   protected machine = new Machine(createAutocompleteMachineConfig(this));
 
   public constructor(
-    @Self() @Inject('anglifyAutocompleteSettings') public settings: EntireAutocompleteSettings,
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+    @Self() @Inject('anglifyAutocompleteSettings') private readonly settings: EntireAutocompleteSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition
   ) {}
 
   private onChange: (...args: any[]) => void = () => {};
@@ -127,9 +127,7 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
     this.machine.context$.next({ ...this.machine.context$.value, selectedItems: this.transformValuesToItems(value) });
   }
 
-  public registerOnChange(fn: any) {
-    this.onChange = fn;
-  }
+  public registerOnChange = (fn: any) => (this.onChange = fn);
 
   public registerOnTouched(_: any) {}
 
@@ -152,6 +150,15 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
     this.handleMenuScroll();
     this.notifyValueChange();
   }
+
+  protected onItemClick = (item: any) => this.machine.next(AutocompleteAction.ITEM_CLICK, item);
+
+  protected clear = () => this.machine.next(AutocompleteAction.CLEAR);
+
+  protected offset = ({ placement }: MiddlewareArguments) => {
+    if ((placement === 'bottom' || placement === 'bottom-start' || placement === 'bottom-end') && !this.hideDetails) return -24;
+    return 0;
+  };
 
   private handleMenuScroll() {
     merge(
@@ -233,10 +240,6 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
       .subscribe();
   }
 
-  protected onItemClick = (item: any) => this.machine.next(AutocompleteAction.ITEM_CLICK, item);
-
-  protected clear = () => this.machine.next(AutocompleteAction.CLEAR);
-
   private transformSelectedItemsToValues(selectedItems: any[]) {
     const itemValueKey = this.itemValueKey;
     if (itemValueKey) return selectedItems.map(item => item[itemValueKey]);
@@ -248,9 +251,4 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
     if (itemValueKey) return this.items.filter(item => values.includes(item[itemValueKey]));
     else return values;
   }
-
-  protected offset = ({ placement }: MiddlewareArguments) => {
-    if ((placement === 'bottom' || placement === 'bottom-start' || placement === 'bottom-end') && !this.hideDetails) return -24;
-    return 0;
-  };
 }

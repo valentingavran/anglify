@@ -38,7 +38,7 @@ import { EntireTabSettings } from '../../tab.interface';
   imports: [AsyncPipe, FindSlotPipe, NgIf, SlotOutletDirective],
 })
 export class TabComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   /**
    * Sets the label of the Tab.
@@ -118,7 +118,7 @@ export class TabComponent {
 
   public active$ = this._active$.asObservable();
 
-  public readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
+  private readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
   // @ts-expect-error: Value is used
   @HostBinding('attr.role') private readonly role = 'tab';
@@ -145,7 +145,7 @@ export class TabComponent {
   }
 
   public constructor(
-    @Self() @Inject('anglifyTabSettings') public settings: EntireTabSettings,
+    @Self() @Inject('anglifyTabSettings') private readonly settings: EntireTabSettings,
     public readonly elementRef: ElementRef<HTMLElement>,
     private readonly rippleService: RippleService,
     private readonly router: Router,

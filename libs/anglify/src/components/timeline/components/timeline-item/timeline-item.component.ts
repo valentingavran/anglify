@@ -19,7 +19,7 @@ type TimelineItemAlignment = 'end' | 'none' | 'start';
   imports: [NgIf, AsyncPipe, FindSlotPipe, SlotOutletDirective],
 })
 export class TimelineItemComponent {
-  @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots!: QueryList<SlotDirective>;
 
   /**
    * Removes the line above the indicator.
@@ -56,7 +56,7 @@ export class TimelineItemComponent {
 
   private readonly alignment$ = new BehaviorSubject<TimelineItemAlignment>('none');
 
-  public readonly hideOpposite$ = new BehaviorSubject<boolean>(false);
+  protected readonly hideOpposite$ = new BehaviorSubject<boolean>(false);
 
   public constructor(private readonly elementRef: ElementRef<HTMLElement>) {
     bindObservableValueToNativeElement(this, this.alignment$, this.elementRef.nativeElement, 'align-');

@@ -91,11 +91,11 @@ export class OtpInputComponent implements ControlValueAccessor {
     this.length$.next(length);
   }
 
-  public readonly id = this.idService.generate();
+  protected readonly id = this.idService.generate();
 
-  public readonly focusedIndex$ = new BehaviorSubject(-1);
+  private readonly focusedIndex$ = new BehaviorSubject(-1);
 
-  public isFocused$ = this.focusedIndex$.pipe(map(index => index >= 0));
+  protected isFocused$ = this.focusedIndex$.pipe(map(index => index >= 0));
 
   protected otp$ = new BehaviorSubject<string[]>([]);
 

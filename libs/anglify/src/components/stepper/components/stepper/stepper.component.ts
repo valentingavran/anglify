@@ -48,7 +48,7 @@ import { StepperHeaderComponent } from '../stepper-header/stepper-header.compone
 export class StepperComponent extends StepperService implements AfterContentInit {
   @ContentChildren(StepDirective) private readonly _steps?: QueryList<StepDirective>;
 
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   /**
    * Shows or hides the line between the step headers.
@@ -103,7 +103,7 @@ export class StepperComponent extends StepperService implements AfterContentInit
   public constructor(
     public readonly stepperSettings: StepperSettings,
     private readonly elementRef: ElementRef<HTMLElement>,
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition
   ) {
     super();
     this._orientationHandler$.pipe(untilDestroyed(this)).subscribe();

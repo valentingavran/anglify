@@ -17,11 +17,11 @@ import { SNACKBAR_CONTEXT } from './snackbar.service';
   imports: [NgIf, ButtonComponent],
 })
 export class SnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
-  public timeout: number | null = null;
+  private timeout: number | null = null;
 
   public constructor(
-    @Inject(SNACKBAR_CONTEXT) public readonly context: SnackbarContext,
-    @Self() @Inject('anglifySnackbarSettings') public settings: EntireSnackbarSettings,
+    @Inject(SNACKBAR_CONTEXT) protected readonly context: SnackbarContext,
+    @Self() @Inject('anglifySnackbarSettings') private readonly settings: EntireSnackbarSettings,
     private readonly elementRef: ElementRef<HTMLElement>
   ) {
     this.context.overlayRef.position = this.context.position ?? this.settings.position;
@@ -46,7 +46,7 @@ export class SnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.timeout) window.clearTimeout(this.timeout);
   }
 
-  public dismiss() {
+  protected dismiss() {
     this.context.completeWith({ reason: this.context.data?.actions?.id ?? SnackbarInternalDismissReason.Dismissed });
   }
 }

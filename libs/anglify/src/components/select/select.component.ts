@@ -71,9 +71,9 @@ export class SelectComponent implements AfterViewInit, OnChanges, EntireSelectSe
 
   @ViewChild(InputDirective) protected readonly input?: InputDirective;
 
-  @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput?: InputComponent;
+  @ViewChild('anglifyInput', { read: InputComponent }) private readonly anglifyInput?: InputComponent;
 
-  @ViewChild('menu') public menu?: MenuComponent;
+  @ViewChild('menu') private readonly menu?: MenuComponent;
 
   @Input() public label = this.settings.label;
 
@@ -118,8 +118,8 @@ export class SelectComponent implements AfterViewInit, OnChanges, EntireSelectSe
   protected machine = new Machine(createSelectMachineConfig(this));
 
   public constructor(
-    @Self() @Inject('anglifySelectSettings') public settings: EntireSelectSettings,
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+    @Self() @Inject('anglifySelectSettings') private readonly settings: EntireSelectSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition
   ) {}
 
   private onChange: (...args: any[]) => void = () => {};

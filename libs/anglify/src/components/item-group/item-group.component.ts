@@ -42,7 +42,7 @@ export class ItemGroupComponent implements AfterViewInit {
    */
   @Input() public max?: number;
 
-  public readonly itemGroupItems$ = new BehaviorSubject<SlotDirective<boolean>[]>([]);
+  protected readonly itemGroupItems$ = new BehaviorSubject<SlotDirective<boolean>[]>([]);
 
   @Input() public set value(value: number[]) {
     if (this.itemGroupItems$.value.length === 0) {
@@ -63,7 +63,7 @@ export class ItemGroupComponent implements AfterViewInit {
   @Output() public readonly valueChange = new EventEmitter<number[]>();
 
   // This needs to be a arrow function, otherwise the reference to the component instance is lost
-  public handleItemClick = (item: SlotDirective<boolean>) => () => {
+  protected handleItemClick = (item: SlotDirective<boolean>) => () => {
     const activeCount = this.itemGroupItems$.value.filter(item => item.data).length;
     let otherSelectedItemsCount = activeCount;
     if (item.data) {

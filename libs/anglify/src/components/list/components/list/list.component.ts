@@ -21,7 +21,7 @@ import { ListItemComponent } from '../list-item/list-item.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements AfterViewInit {
-  @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
+  @ContentChildren(ListItemComponent, { descendants: true }) private readonly listItems?: QueryList<ListItemComponent>;
 
   /**
    * Lowers max height of list items.

@@ -70,9 +70,9 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
 
   @ViewChild(InputDirective) protected readonly input?: InputDirective;
 
-  @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput?: InputComponent;
+  @ViewChild('anglifyInput', { read: InputComponent }) private readonly anglifyInput?: InputComponent;
 
-  @ViewChild('menu') public menu?: MenuComponent;
+  @ViewChild('menu') private readonly menu?: MenuComponent;
 
   @Input() public label = this.settings.label;
 
@@ -117,8 +117,8 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
   protected machine = new Machine(createComboboxMachineConfig(this));
 
   public constructor(
-    @Self() @Inject('anglifyComboboxSettings') public settings: EntireComboboxSettings,
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+    @Self() @Inject('anglifyComboboxSettings') private readonly settings: EntireComboboxSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition
   ) {}
 
   private onChange: (...args: any[]) => void = () => {};

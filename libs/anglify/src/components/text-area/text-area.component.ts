@@ -1,15 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  ContentChildren,
-  Inject,
-  Input,
-  QueryList,
-  Self,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ContentChildren, Inject, Input, QueryList, Self } from '@angular/core';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -30,11 +20,9 @@ import { EntireTextAreaSettings } from './text-area.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextAreaComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
-  @ContentChild(InputDirective) public readonly input?: InputDirective;
-
-  @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput!: InputComponent;
+  @ContentChild(InputDirective) protected readonly input?: InputDirective;
 
   /**
    * Sets input label.
@@ -76,5 +64,5 @@ export class TextAreaComponent {
    */
   @Input() public error?: string;
 
-  public constructor(@Self() @Inject('anglifyTextAreaSettings') public settings: EntireTextAreaSettings) {}
+  public constructor(@Self() @Inject('anglifyTextAreaSettings') private readonly settings: EntireTextAreaSettings) {}
 }

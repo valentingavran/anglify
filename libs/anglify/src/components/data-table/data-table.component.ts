@@ -75,7 +75,7 @@ import { SelectionService } from './services/selection.service';
   ],
 })
 export class DataTableComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   public get headers() {
     return this.dataService.headers$.value;
@@ -344,7 +344,7 @@ export class DataTableComponent {
 
   public constructor(
     @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition,
-    @Self() @Inject('anglifyDataTableSettings') public settings: EntireDataTableSettings,
+    @Self() @Inject('anglifyDataTableSettings') private readonly settings: EntireDataTableSettings,
     protected readonly elementRef: ElementRef<HTMLElement>,
     protected readonly selectionService: SelectionService,
     protected readonly expansionService: ExpansionService,

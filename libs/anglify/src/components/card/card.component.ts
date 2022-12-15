@@ -46,7 +46,7 @@ export class CardComponent {
   @Input() @HostBinding('class.outlined') public outlined = this.settings.outlined;
 
   public constructor(
-    @Self() @Inject('anglifyCardSettings') public settings: EntireCardSettings,
+    @Self() @Inject('anglifyCardSettings') private readonly settings: EntireCardSettings,
     private readonly elevationService: ElevationService,
     private readonly rippleService: RippleService
   ) {

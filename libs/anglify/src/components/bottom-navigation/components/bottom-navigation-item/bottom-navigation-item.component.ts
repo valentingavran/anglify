@@ -33,7 +33,7 @@ import { RouterLinkCommands } from '../../../../utils/interfaces';
   imports: [NgIf, FindSlotPipe, AsyncPipe, SlotOutletDirective],
 })
 export class BottomNavigationItemComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   public get shift() {
     return this.shift$.value;
@@ -118,15 +118,15 @@ export class BottomNavigationItemComponent {
     this.active$.next(value);
   }
 
-  public readonly shift$ = new BehaviorSubject(false);
-
   public readonly active$ = new BehaviorSubject(false);
+
+  protected readonly shift$ = new BehaviorSubject(false);
 
   private readonly routerLink$ = new BehaviorSubject<RouterLinkCommands>(null);
 
   public constructor(
-    private readonly rippleService: RippleService,
     public readonly elementRef: ElementRef<HTMLElement>,
+    private readonly rippleService: RippleService,
     private readonly router: Router,
     private readonly route: ActivatedRoute
   ) {

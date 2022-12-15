@@ -21,7 +21,7 @@ import { ButtonAppearance, EntireButtonSettings } from './button.interface';
   providers: [createSettingsProvider<EntireButtonSettings>('anglifyButtonSettings', DEFAULT_BUTTON_SETTINGS, BUTTON_SETTINGS), RIPPLE],
 })
 export class ButtonComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   /**
    * Sets one of several predefined styles.
@@ -66,7 +66,7 @@ export class ButtonComponent {
   protected loading$ = new BehaviorSubject(false);
 
   public constructor(
-    @Self() @Inject('anglifyButtonSettings') public settings: EntireButtonSettings,
+    @Self() @Inject('anglifyButtonSettings') private readonly settings: EntireButtonSettings,
     private readonly rippleService: RippleService
   ) {
     this.ripple = this.settings.ripple;

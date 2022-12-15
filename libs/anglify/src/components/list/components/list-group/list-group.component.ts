@@ -22,11 +22,11 @@ import { ListItemComponent } from '../list-item/list-item.component';
   imports: [ListItemComponent, IconComponent, NgIf, AsyncPipe, FindSlotPipe, SlotOutletDirective, SlotDirective],
 })
 export class ListGroupComponent implements AfterViewInit {
-  @ContentChildren(SlotDirective) public readonly slots!: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots!: QueryList<SlotDirective>;
 
-  @ContentChildren(ListItemComponent, { descendants: true }) public listItems?: QueryList<ListItemComponent>;
+  @ContentChildren(ListItemComponent, { descendants: true }) private readonly listItems?: QueryList<ListItemComponent>;
 
-  @ContentChildren(ListGroupComponent) public listGroups?: QueryList<ListGroupComponent>;
+  @ContentChildren(ListGroupComponent) protected readonly listGroups?: QueryList<ListGroupComponent>;
 
   public get active() {
     return this.active$.value;
@@ -46,11 +46,11 @@ export class ListGroupComponent implements AfterViewInit {
    */
   @Input() public disableGroupCollapse = false;
 
-  public active$ = new BehaviorSubject<boolean>(false);
+  protected active$ = new BehaviorSubject<boolean>(false);
 
-  public unsubscribeActiveListenersAction$ = new Subject<void>();
+  private unsubscribeActiveListenersAction$ = new Subject<void>();
 
-  public constructor(@Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition) {}
+  public constructor(@Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition) {}
 
   public ngAfterViewInit() {
     this.listItems?.changes

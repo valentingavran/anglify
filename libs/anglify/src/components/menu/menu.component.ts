@@ -90,7 +90,7 @@ export class MenuComponent implements EntireMenuSettings, OnChanges, OnDestroy {
 
   public constructor(
     @Self() @Inject('anglifyMenuSettings') private readonly settings: EntireMenuSettings,
-    public readonly elementRef: ElementRef<HTMLElement>,
+    private readonly elementRef: ElementRef<HTMLElement>,
     private readonly appRef: ApplicationRef,
     private readonly injector: EnvironmentInjector
   ) {
@@ -232,8 +232,6 @@ export class MenuComponent implements EntireMenuSettings, OnChanges, OnDestroy {
   }
 
   public scrollToHighlightedItem() {
-    const highlightedItem = this.menuContent.location.nativeElement.querySelector('.highlight');
-    if (!highlightedItem) return;
-    highlightedItem.scrollIntoView({ block: 'nearest' });
+    this.menuContent.instance.scrollToHighlightedItem();
   }
 }

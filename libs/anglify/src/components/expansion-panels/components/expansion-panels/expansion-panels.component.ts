@@ -83,13 +83,13 @@ export class ExpansionPanelsComponent implements AfterViewInit {
 
   @Output() public readonly valueChange = new EventEmitter<number[]>();
 
-  public readonly itemGroupItems$ = new BehaviorSubject<ExpansionPanelComponent[]>([]);
+  private readonly itemGroupItems$ = new BehaviorSubject<ExpansionPanelComponent[]>([]);
 
   private readonly accordion$ = new BehaviorSubject<boolean>(this.settings.accordion);
 
   public constructor(
-    public readonly elementRef: ElementRef<HTMLElement>,
-    @Self() @Inject('anglifyExpansionPanelsSettings') public settings: EntireExpansionPanelsSettings
+    @Self() @Inject('anglifyExpansionPanelsSettings') private readonly settings: EntireExpansionPanelsSettings,
+    private readonly elementRef: ElementRef<HTMLElement>
   ) {
     bindClassToNativeElement(this, this.accordion$, this.elementRef.nativeElement, 'anglify-expansion-panels-accordion');
   }
@@ -98,7 +98,7 @@ export class ExpansionPanelsComponent implements AfterViewInit {
     item.onClick.pipe(untilDestroyed(this)).subscribe(() => this.handleItemClick(item));
   }
 
-  public handleItemClick = (item: ExpansionPanelComponent) => {
+  private readonly handleItemClick = (item: ExpansionPanelComponent) => {
     const activeCount = this.itemGroupItems$.value.filter(item => item.active).length;
     let otherSelectedItemsCount = activeCount;
     if (item.active) {

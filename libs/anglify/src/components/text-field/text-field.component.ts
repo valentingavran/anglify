@@ -1,15 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  ContentChildren,
-  Inject,
-  Input,
-  QueryList,
-  Self,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ContentChildren, Inject, Input, QueryList, Self } from '@angular/core';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
@@ -32,11 +22,9 @@ import { EntireTextFieldSettings } from './text-field.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFieldComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
-  @ContentChild(InputDirective) public readonly input?: InputDirective;
-
-  @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput!: InputComponent;
+  @ContentChild(InputDirective) protected readonly input?: InputDirective;
 
   /**
    * Sets the input label.
@@ -83,5 +71,5 @@ export class TextFieldComponent {
    */
   @Input() public dense = this.settings.dense;
 
-  public constructor(@Self() @Inject('anglifyTextFieldSettings') public settings: EntireTextFieldSettings) {}
+  public constructor(@Self() @Inject('anglifyTextFieldSettings') private readonly settings: EntireTextFieldSettings) {}
 }

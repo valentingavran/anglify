@@ -20,7 +20,7 @@ import { EntireBreadCrumbsSettings, type BreadCrumb } from './breadcrumbs.interf
   imports: [NgIf, NgForOf, RouterModule, FindSlotPipe, SlotOutletDirective],
 })
 export class BreadcrumbsComponent {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   /**
    * An array of objects describing each breadcrumb.
@@ -32,5 +32,5 @@ export class BreadcrumbsComponent {
    */
   @Input() public divider: string = this.settings.divider;
 
-  public constructor(@Self() @Inject('anglifyBreadcrumbsSettings') public settings: EntireBreadCrumbsSettings) {}
+  public constructor(@Self() @Inject('anglifyBreadcrumbsSettings') private readonly settings: EntireBreadCrumbsSettings) {}
 }

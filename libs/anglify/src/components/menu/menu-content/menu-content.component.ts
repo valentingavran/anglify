@@ -77,4 +77,10 @@ export class MenuContentComponent {
       }
     }, 0);
   }
+
+  public scrollToHighlightedItem() {
+    const highlightedItem = this.elementRef.nativeElement.querySelector('.highlight');
+    if (!highlightedItem) return;
+    highlightedItem.scrollIntoView({ block: 'nearest' });
+  }
 }
