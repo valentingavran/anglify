@@ -16,15 +16,11 @@ import { EntireCardSettings } from './card.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [createSettingsProvider<EntireCardSettings>('anglifyCardSettings', DEFAULT_CARD_SETTINGS, CARD_SETTINGS), ELEVATION, RIPPLE],
 })
-export class CardComponent {
+export class CardComponent implements EntireCardSettings {
   public get elevation() {
     return this.elevationService.elevation;
   }
 
-  /**
-   * Designates an elevation applied to the component between 0 and 24. You can find more
-   * information on the elevation page.
-   */
   @Input() public set elevation(value: Elevation) {
     this.elevationService.elevation = value;
   }
@@ -33,16 +29,10 @@ export class CardComponent {
     return this.rippleService.active;
   }
 
-  /**
-   * Turns the ripple effect on or off.
-   */
   @Input() public set ripple(value: boolean) {
     this.rippleService.active = value;
   }
 
-  /**
-   * Removes elevation (box-shadow) and adds a thin border.
-   */
   @Input() @HostBinding('class.outlined') public outlined = this.settings.outlined;
 
   public constructor(

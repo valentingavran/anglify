@@ -1,12 +1,6 @@
 import type { Position } from '../../composables/position/position.interface';
 import type { InputAppearance } from '../input/input.interface';
 
-export type SelectItem = {
-  disabled?: boolean;
-  text: string;
-  value: any;
-};
-
 export type EntireSelectSettings = {
   /**
    * Forces label to always be in floating mode.

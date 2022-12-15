@@ -1,5 +1,15 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, Inject, Input, QueryList, Self } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  ElementRef,
+  HostBinding,
+  Inject,
+  Input,
+  QueryList,
+  Self,
+} from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject, map } from 'rxjs';
 import { Position } from '../../composables/position/position.interface';
@@ -7,7 +17,7 @@ import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
-import { bindClassToNativeElement, bindObservableValueToNativeElement, bindStyleValueToNativeElement } from '../../utils/functions';
+import { bindObservableValueToNativeElement, bindStyleValueToNativeElement } from '../../utils/functions';
 import { BADGE_SETTINGS, DEFAULT_BADGE_SETTINGS } from './badge-settings.token';
 import { EntireBadgeSettings } from './badge.interface';
 
@@ -21,39 +31,22 @@ import { EntireBadgeSettings } from './badge.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [createSettingsProvider<EntireBadgeSettings>('anglifyBadgeSettings', DEFAULT_BADGE_SETTINGS, BADGE_SETTINGS)],
 })
-export class BadgeComponent {
+export class BadgeComponent implements EntireBadgeSettings {
   @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
-  /**
-   * Controls whether the component is visible or hidden.
-   */
-  @Input() public value = true;
+  @Input() public value = this.settings.value;
 
-  /**
-   * Any content you want injected as text into the badge.
-   */
-  @Input() public content?: string;
+  @Input() public content = this.settings.content;
 
-  public get bordered() {
-    return this.bordered$.value;
-  }
-
-  /**
-   * Applies a border around the badge.
-   */
-  @Input() public set bordered(value: boolean) {
-    this.bordered$.next(value);
-  }
+  @HostBinding('class.bordered')
+  @Input()
+  public border = this.settings.border;
 
   public get position() {
     return this.position$.value;
   }
 
-  /**
-   * Defines at which position the badge should be displayed.
-   */
-  @Input()
-  public set position(value: Position) {
+  @Input() public set position(value: Position) {
     this.position$.next(value);
   }
 
@@ -61,9 +54,6 @@ export class BadgeComponent {
     return this.horizontalOffset$.value;
   }
 
-  /**
-   * Offset the badge on the x-axis.
-   */
   @Input() public set horizontalOffset(value: number) {
     this.horizontalOffset$.next(value);
   }
@@ -72,14 +62,9 @@ export class BadgeComponent {
     return this.verticalOffset$.value;
   }
 
-  /**
-   * Offset the badge on the y-axis.
-   */
   @Input() public set verticalOffset(value: number) {
     this.verticalOffset$.next(value);
   }
-
-  private readonly bordered$ = new BehaviorSubject(this.settings.border);
 
   private readonly position$ = new BehaviorSubject(this.settings.position);
 
@@ -91,7 +76,6 @@ export class BadgeComponent {
     @Self() @Inject('anglifyBadgeSettings') private readonly settings: EntireBadgeSettings,
     private readonly elementRef: ElementRef<HTMLElement>
   ) {
-    bindClassToNativeElement(this, this.bordered$, this.elementRef.nativeElement, 'bordered');
     bindObservableValueToNativeElement(this, this.position$, this.elementRef.nativeElement);
     bindStyleValueToNativeElement(
       this,

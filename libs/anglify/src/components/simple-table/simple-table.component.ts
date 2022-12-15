@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
+import { createSettingsProvider } from '../../factories/settings.factory';
+import { DEFAULT_SIMPLE_TABLE_SETTINGS, SIMPLE_TABLE_SETTINGS } from './simple-table-settings.token';
+import { EntireSimpleTableSettings } from './simple-table.interface';
 
 @Component({
   selector: 'anglify-simple-table',
@@ -6,23 +9,19 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   templateUrl: './simple-table.component.html',
   styleUrls: ['./simple-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    createSettingsProvider<EntireSimpleTableSettings>('anglifySimpleTableSettings', DEFAULT_SIMPLE_TABLE_SETTINGS, SIMPLE_TABLE_SETTINGS),
+  ],
 })
-export class SimpleTableComponent {
-  /**
-   * Displays the header while scrolling and not only at the very top.
-   */
-  @Input() public fixedHeader = false;
+export class SimpleTableComponent implements EntireSimpleTableSettings {
+  @Input() public fixedHeader = this.settings.fixedHeader;
 
-  /**
-   * Displays the footer while scrolling and not only at the very bottom.
-   */
-  @Input() public fixedFooter = false;
+  @Input() public fixedFooter = this.settings.fixedFooter;
 
-  /**
-   * Sets the height for the component.
-   */
   @HostBinding('style.--anglify-simple-table-fixed-height')
   @HostBinding('class.anglify-simple-table-fixed-height')
   @Input()
-  public fixedHeight: string | null = null;
+  public fixedHeight = this.settings.fixedHeight;
+
+  public constructor(@Self() @Inject('anglifySimpleTableSettings') private readonly settings: EntireSimpleTableSettings) {}
 }

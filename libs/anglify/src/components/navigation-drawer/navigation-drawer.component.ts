@@ -17,7 +17,7 @@ import { BehaviorSubject, filter, map } from 'rxjs';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { enterLeaveOpacityAnimation } from '../../utils/animations';
 import { bindClassToNativeElement, bindObservableValueToNativeElement } from '../../utils/functions';
-import { ListComponent } from '../list/components/list/list.component';
+import { ListComponent } from '../list/list/list.component';
 import { DEFAULT_NAVIGATION_DRAWER_SETTINGS, NAVIGATION_DRAWER_SETTINGS } from './navigation-drawer-settings.token';
 import { EntireNavigationDrawerSettings, NavigationDrawerMode } from './navigation-drawer.interface';
 
@@ -40,21 +40,15 @@ import { EntireNavigationDrawerSettings, NavigationDrawerMode } from './navigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgIf, AsyncPipe],
 })
-export class NavigationDrawerComponent implements AfterViewInit {
+export class NavigationDrawerComponent implements EntireNavigationDrawerSettings, AfterViewInit {
   @ContentChildren(ListComponent) private readonly lists?: QueryList<ListComponent>;
 
-  /**
-   * Modal drawer will be closed on item clicks if this property is set.
-   */
   @Input() public closeOnItemClick = this.settings.closeOnItemClick;
 
   public get mode() {
     return this.mode$.value;
   }
 
-  /**
-   * Changes the Navigation Drawer mode (modal or standard).
-   */
   @Input() public set mode(value: NavigationDrawerMode) {
     this.mode$.next(value);
   }
@@ -63,9 +57,6 @@ export class NavigationDrawerComponent implements AfterViewInit {
     return this.value$.value;
   }
 
-  /**
-   * Control whether the NavigationDrawer is opened or not.
-   */
   @Input() public set value(value: boolean) {
     this.setOpened(value);
   }
@@ -73,7 +64,7 @@ export class NavigationDrawerComponent implements AfterViewInit {
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onValueChange = new EventEmitter();
 
-  protected value$ = new BehaviorSubject(false);
+  protected value$ = new BehaviorSubject(this.settings.value);
 
   protected mode$ = new BehaviorSubject<NavigationDrawerMode>(this.settings.mode);
 

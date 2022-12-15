@@ -16,7 +16,14 @@ import {
 import type { EntireIconSettings, IconSettings } from './icon.interface';
 
 export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
-  defaultSet: 'mdi',
+  icon: undefined,
+  size: 'regular',
+  iconSet: 'mdi',
+  clickable: false,
+  top: false,
+  right: false,
+  bottom: false,
+  left: false,
   svgIconSets: {
     custom: {
       mdiCheck,
@@ -47,7 +54,6 @@ export const DEFAULT_ICON_SETTINGS: EntireIconSettings = {
       mdiViewColumnOutline,
     },
   },
-  defaultSize: 'regular',
   internalIcons: {
     custom: {
       check: 'mdiCheck',

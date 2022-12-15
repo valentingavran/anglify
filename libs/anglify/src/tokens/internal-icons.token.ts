@@ -7,6 +7,6 @@ export const INTERNAL_ICONS = new InjectionToken<InternalIconSetDefinition>('Int
   factory() {
     const overwrittenSettings = inject(ICON_SETTINGS, InjectFlags.Optional);
     const mergedSettings = deepmerge(DEFAULT_ICON_SETTINGS, overwrittenSettings ?? {}) as EntireIconSettings;
-    return mergedSettings.internalIcons[mergedSettings.defaultSet];
+    return mergedSettings.internalIcons[mergedSettings.iconSet];
   },
 });

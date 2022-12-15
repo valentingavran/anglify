@@ -19,21 +19,12 @@ import { EntireProgressCircularSettings } from './progress-circular.interface';
   ],
   imports: [NgIf],
 })
-export class ProgressCircularComponent {
-  /**
-   * Constantly animates, use when loading progress is unknown.
-   */
+export class ProgressCircularComponent implements EntireProgressCircularSettings {
   @Input() public indeterminate = this.settings.indeterminate;
 
-  /**
-   * The percentage value for current progress.
-   */
-  @Input() public value: number = this.settings.value;
+  @Input() public value = this.settings.value;
 
-  /**
-   * The amount in degrees that the component should be rotated.
-   */
-  @Input() public rotation: number = this.settings.rotation;
+  @Input() public rotation = this.settings.rotation;
 
   protected radius = 20;
 

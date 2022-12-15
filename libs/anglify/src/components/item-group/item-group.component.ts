@@ -4,16 +4,21 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  Inject,
   Input,
   Output,
   QueryList,
+  Self,
   type AfterViewInit,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, filter, map, startWith, take, tap } from 'rxjs';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
+import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
+import { DEFAULT_ITEM_GROUP_SETTINGS, ITEM_GROUP_SETTINGS } from './item-group-settings.token';
+import { EntireItemGroupSettings } from './item-group.interface';
 
 @UntilDestroy()
 @Component({
@@ -21,26 +26,19 @@ import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
   standalone: true,
   templateUrl: './item-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-
+  providers: [
+    createSettingsProvider<EntireItemGroupSettings>('anglifyItemGroupSettings', DEFAULT_ITEM_GROUP_SETTINGS, ITEM_GROUP_SETTINGS),
+  ],
   imports: [NgForOf, AsyncPipe, SlotOutletDirective, FindSlotPipe],
 })
 export class ItemGroupComponent implements AfterViewInit {
   @ContentChildren(SlotDirective, { descendants: true }) private readonly allSlots?: QueryList<SlotDirective<boolean>>;
 
-  /**
-   * Forces a value to always be selected (if available).
-   */
-  @Input() public mandatory = false;
+  @Input() public mandatory = this.settings.mandatory;
 
-  /**
-   * Allow multiple selections.
-   */
-  @Input() public multiple = false;
+  @Input() public multiple = this.settings.multiple;
 
-  /**
-   * Sets a maximum number of selections that can be made.
-   */
-  @Input() public max?: number;
+  @Input() public max = this.settings.max;
 
   protected readonly itemGroupItems$ = new BehaviorSubject<SlotDirective<boolean>[]>([]);
 
@@ -61,6 +59,8 @@ export class ItemGroupComponent implements AfterViewInit {
   }
 
   @Output() public readonly valueChange = new EventEmitter<number[]>();
+
+  public constructor(@Self() @Inject('anglifyItemGroupSettings') private readonly settings: EntireItemGroupSettings) {}
 
   // This needs to be a arrow function, otherwise the reference to the component instance is lost
   protected handleItemClick = (item: SlotDirective<boolean>) => () => {

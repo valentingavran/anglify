@@ -36,27 +36,17 @@ import { EntireToolbarSettings } from './toolbar.interface';
   ],
   imports: [NgIf, FindSlotPipe, SlotOutletDirective],
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements EntireToolbarSettings {
   @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
-  /**
-   * Increases the height of the toolbar.
-   */
   @Input() @HostBinding('class.prominent') public prominent: boolean = this.settings.prominent;
 
-  /**
-   * Puts the toolbar into a collapsed state reducing its maximum width.
-   */
   @Input() @HostBinding('class.collapse') public collapse: boolean = this.settings.collapse;
 
   public get elevation() {
     return this.elevationService.elevation;
   }
 
-  /**
-   * Designates an elevation applied to the component between 0 and 24. You can find more
-   * information on the elevation page.
-   */
   @Input() public set elevation(value: Elevation) {
     this.elevationService.elevation = value;
   }
@@ -69,7 +59,7 @@ export class ToolbarComponent {
     this.app$.next(value);
   }
 
-  private readonly app$ = new BehaviorSubject(false);
+  private readonly app$ = new BehaviorSubject(this.settings.app);
 
   public constructor(
     @Self() @Inject('anglifyToolbarSettings') private readonly settings: EntireToolbarSettings,

@@ -1,0 +1,19 @@
+@use '../variables' as *;
+
+:host {
+  ::ng-deep {
+    button {
+      height: 100%;
+    }
+
+    button:first-of-type {
+      border-bottom-left-radius: $button-group-border-radius;
+      border-top-left-radius: $button-group-border-radius;
+    }
+
+    button:last-of-type {
+      border-bottom-right-radius: $button-group-border-radius;
+      border-top-right-radius: $button-group-border-radius;
+    }
+  }
+}

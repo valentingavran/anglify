@@ -3,10 +3,12 @@ import type { EntireTextAreaSettings, TextAreaSettings } from './text-area.inter
 
 export const DEFAULT_TEXT_AREA_SETTINGS: EntireTextAreaSettings = {
   appearance: 'filled',
-  dense: false,
   persistentHint: false,
   alwaysFloatingLabel: false,
   hideDetails: false,
   counter: false,
+  error: undefined,
+  hint: undefined,
+  label: undefined,
 };
 export const TEXT_AREA_SETTINGS = new InjectionToken<TextAreaSettings>('Text Area Settings');

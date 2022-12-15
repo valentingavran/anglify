@@ -8,5 +8,8 @@ export const DEFAULT_TEXT_FIELD_SETTINGS: EntireTextFieldSettings = {
   alwaysFloatingLabel: false,
   hideDetails: false,
   counter: false,
+  error: undefined,
+  hint: undefined,
+  label: undefined,
 };
 export const TEXT_FIELD_SETTINGS = new InjectionToken<TextFieldSettings>('Text Field Settings');

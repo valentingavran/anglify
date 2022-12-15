@@ -32,8 +32,8 @@ import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
 import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
-import { ListItemComponent } from '../list/components/list-item/list-item.component';
-import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
+import { ListItemComponent } from '../list/list-item/list-item.component';
+import { ListItemTitleComponent } from '../list/list-item-title/list-item-title.component';
 import { MenuComponent } from '../menu/menu.component';
 import { DEFAULT_SELECT_SETTINGS, SELECT_SETTINGS } from './select-settings.token';
 import { EntireSelectSettings } from './select.interface';
@@ -66,7 +66,7 @@ import { createSelectMachineConfig, SelectAction } from './select.machine';
     SelectItemViewerPipe,
   ],
 })
-export class SelectComponent implements AfterViewInit, OnChanges, EntireSelectSettings, ControlValueAccessor {
+export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnChanges, ControlValueAccessor {
   @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   @ViewChild(InputDirective) protected readonly input?: InputDirective;

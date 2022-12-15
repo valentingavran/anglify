@@ -30,16 +30,26 @@ import { EntireOTPInputSettings } from './otp-input.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     createSettingsProvider<EntireOTPInputSettings>('anglifyOTPInputSettings', DEFAULT_OTP_INPUT_SETTINGS, OTP_INPUT_SETTINGS),
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => OtpInputComponent),
-      multi: true,
-    },
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => OtpInputComponent), multi: true },
   ],
   imports: [NgForOf, NgIf, AsyncPipe, NgClass],
 })
-export class OtpInputComponent implements ControlValueAccessor {
+export class OtpInputComponent implements EntireOTPInputSettings, ControlValueAccessor {
   @ViewChildren('input') private readonly inputRefs?: QueryList<ElementRef<HTMLInputElement>>;
+
+  @Input() public disabled = this.settings.disabled;
+
+  @Input() public readonly = this.settings.readonly;
+
+  @Input() public hiddenInput = this.settings.hiddenInput;
+
+  public get length() {
+    return this.length$.value;
+  }
+
+  @Input() public set length(length: number) {
+    this.length$.next(length);
+  }
 
   /**
    * Emitted when cursor is blurred.
@@ -54,7 +64,7 @@ export class OtpInputComponent implements ControlValueAccessor {
   @Output() private readonly onComplete = new EventEmitter<string>();
 
   /**
-   * Emitted public input gains focus.
+   * Emitted when input gains focus.
    */
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onFocus = new EventEmitter<Event>();
@@ -64,32 +74,6 @@ export class OtpInputComponent implements ControlValueAccessor {
    */
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public readonly onChange = new EventEmitter<string>();
-
-  /**
-   * Disable the input.
-   */
-  @Input() public disabled = this.settings.disabled;
-
-  /**
-   * Puts input in readonly state.
-   */
-  @Input() public readonly = this.settings.readonly;
-
-  /**
-   * Displays points instead of the actual values.
-   */
-  @Input() public hiddenInput = this.settings.hiddenInput;
-
-  public get length() {
-    return this.length$.value;
-  }
-
-  /**
-   * The OTP field’s length,
-   */
-  @Input() public set length(length: number) {
-    this.length$.next(length);
-  }
 
   protected readonly id = this.idService.generate();
 
