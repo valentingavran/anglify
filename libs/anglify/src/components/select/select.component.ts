@@ -111,6 +111,8 @@ export class SelectComponent implements AfterViewInit, OnChanges, EntireSelectSe
 
   @Input() public value: any[] = [];
 
+  @Input() public flip = this.settings.flip;
+
   @Output() public readonly valueChange = new EventEmitter<any[]>();
 
   protected machine = new Machine(createSelectMachineConfig(this));

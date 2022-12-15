@@ -31,6 +31,10 @@ export type EntireComboboxSettings = {
    */
   error: string | undefined;
   /**
+   * Flips the menu to the opposite side of the input if there is not enough space on the preferred side.
+   */
+  flip: boolean;
+  /**
    * Hides hint and validation errors.
    */
   hideDetails: boolean;

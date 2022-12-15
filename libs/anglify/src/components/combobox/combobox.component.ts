@@ -110,6 +110,8 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
 
   @Input() public value: any[] = [];
 
+  @Input() public flip = this.settings.flip;
+
   @Output() public readonly valueChange = new EventEmitter<any[]>();
 
   protected machine = new Machine(createComboboxMachineConfig(this));

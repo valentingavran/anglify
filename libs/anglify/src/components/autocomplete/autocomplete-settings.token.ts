@@ -19,5 +19,6 @@ export const DEFAULT_AUTOCOMPLETE_SETTINGS: EntireAutocompleteSettings = {
   hint: undefined,
   label: undefined,
   placeholder: undefined,
+  flip: false,
 };
 export const AUTOCOMPLETE_SETTINGS = new InjectionToken<AutocompleteSettings>('Autocomplete Settings');

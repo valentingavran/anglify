@@ -14,6 +14,7 @@
       [multiple]="multiple"
       itemTextKey="label"
       [dense]="dense"
+      [flip]="flip"
     >
       <ng-template slot="label">{{ label }}</ng-template>
     </anglify-select>
@@ -52,5 +53,6 @@
     <anglify-checkbox [(ngModel)]="persistentHint">Persistent hint</anglify-checkbox>
     <anglify-checkbox [(ngModel)]="hideDetails">Hide details</anglify-checkbox>
     <anglify-checkbox [(ngModel)]="dense">Dense</anglify-checkbox>
+    <anglify-checkbox [(ngModel)]="flip">FLip</anglify-checkbox>
   </div>
 </div>

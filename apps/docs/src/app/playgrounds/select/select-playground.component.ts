@@ -61,5 +61,7 @@ export class SelectPlaygroundComponent {
 
   protected dense = false;
 
+  protected flip = false;
+
   protected readonly items = top10Movies;
 }

@@ -110,6 +110,8 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
 
   @Input() public value: any[] = [];
 
+  @Input() public flip = this.settings.flip;
+
   @Output() public readonly valueChange = new EventEmitter<any[]>();
 
   protected machine = new Machine(createAutocompleteMachineConfig(this));
