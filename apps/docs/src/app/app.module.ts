@@ -18,6 +18,7 @@ import { MarkdownPipe } from './pipes/markdown.pipe';
 import { AutocompletePlaygroundComponent } from './playgrounds/autocomplete/autocomplete-playground.component';
 import { ComboboxPlaygroundComponent } from './playgrounds/combobox/combobox-playground.component';
 import { DividerPlaygroundComponent } from './playgrounds/divider/divider-playground.component';
+import { MenuPlaygroundComponent } from './playgrounds/menu/menu-playground.component';
 import { ProgressLinearPlaygroundComponent } from './playgrounds/progress-linear/progress-linear-playground.component';
 import { SelectPlaygroundComponent } from './playgrounds/select/select-playground.component';
 import { SimpleTablePlaygroundComponent } from './playgrounds/simple-table/simple-table-playground.component';
@@ -72,5 +73,6 @@ export class AppModule {
     customElements.define(`app-simple-table-playground`, createCustomElement(SimpleTablePlaygroundComponent, { injector: this.injector }));
     customElements.define(`app-text-field-playground`, createCustomElement(TextFieldPlaygroundComponent, { injector: this.injector }));
     customElements.define(`app-typography-preview`, createCustomElement(TypographyPreviewComponent, { injector: this.injector }));
+    customElements.define(`app-menu-playground`, createCustomElement(MenuPlaygroundComponent, { injector: this.injector }));
   }
 }
