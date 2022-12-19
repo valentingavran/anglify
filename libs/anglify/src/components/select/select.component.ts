@@ -109,11 +109,11 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
 
   @Input() public clearable = this.settings.clearable;
 
-  @Input() public value: any[] = [];
+  @Input() public value = this.settings.value;
 
   @Input() public flip = this.settings.flip;
 
-  @Output() public readonly valueChange = new EventEmitter<any[]>();
+  @Output() public readonly valueChange = new EventEmitter<any>();
 
   protected machine = new Machine(createSelectMachineConfig(this));
 
@@ -125,7 +125,7 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
   private onChange: (...args: any[]) => void = () => {};
 
   public writeValue(value: any) {
-    this.machine.context$.next({ ...this.machine.context$.value, selectedItems: this.transformValuesToItems(value) });
+    this.machine.context$.next({ ...this.machine.context$.value, selectedItems: this.decode(value) });
   }
 
   public registerOnChange(fn: any) {
@@ -139,7 +139,7 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
     for (const key of Object.keys(changes)) {
       if (context[key] !== changes[key].currentValue) {
         if (key === 'value' && context[key] !== changes[key].currentValue) {
-          context.selectedItems = this.transformValuesToItems(changes[key].currentValue);
+          context.selectedItems = this.decode(changes[key].currentValue);
         } else context[key] = changes[key].currentValue;
       }
     }
@@ -167,14 +167,23 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
   }
 
   private notifyValueChange() {
-    this.machine.context$
-      .pipe(
-        untilDestroyed(this),
+    merge(
+      this.machine.context$.pipe(
         map(context => context.selectedItems),
-        distinctUntilChanged(),
+        distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b))
+      ),
+      this.machine.context$.pipe(
+        map(context => context.multiple),
+        distinctUntilChanged()
+      )
+    )
+      .pipe(
+        map(() => this.machine.context$.value.selectedItems),
+        untilDestroyed(this),
         tap(selectedItems => {
-          this.valueChange.emit(this.transformSelectedItemsToValues(selectedItems));
-          this.onChange(this.transformSelectedItemsToValues(selectedItems));
+          const encoded = this.encode(selectedItems);
+          this.valueChange.emit(encoded);
+          this.onChange(encoded);
         })
       )
       .subscribe();
@@ -248,16 +257,28 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
 
   protected clear = () => this.machine.next(SelectAction.CLEAR);
 
-  private transformSelectedItemsToValues(selectedItems: any[]) {
-    const itemValueKey = this.itemValueKey;
-    if (itemValueKey) return selectedItems.map(item => item[itemValueKey]);
-    else return selectedItems;
+  private encode(selectedItems: any[]) {
+    if (this.multiple) {
+      const itemValueKey = this.itemValueKey;
+      if (itemValueKey) return selectedItems.map(item => item[itemValueKey]);
+      else return selectedItems;
+    } else {
+      return selectedItems[0] || null;
+    }
   }
 
-  private transformValuesToItems(values: any[]) {
-    const itemValueKey = this.itemValueKey;
-    if (itemValueKey) return this.items.filter(item => values.includes(item[itemValueKey]));
-    else return values;
+  private decode(values: any) {
+    if (this.multiple) {
+      if (values === null) return [];
+      if (!Array.isArray(values)) return [values];
+      const itemValueKey = this.itemValueKey;
+      if (itemValueKey) return this.items.filter(item => values.includes(item[itemValueKey]));
+      else return values;
+    } else {
+      if (values === null) return [];
+      if (Array.isArray(values)) return values;
+      return [values];
+    }
   }
 
   protected offset = ({ placement }: MiddlewareArguments) => {

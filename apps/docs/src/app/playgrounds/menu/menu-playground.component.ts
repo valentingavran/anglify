@@ -49,7 +49,7 @@ export class MenuPlaygroundComponent {
     'right-end',
   ];
 
-  protected position: Position[] = ['bottom'];
+  protected position: Position = 'bottom';
 
   protected offset = 0;
 

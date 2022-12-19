@@ -33,7 +33,7 @@ import { top10Movies } from '../../examples/examples';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompletePlaygroundComponent {
-  protected value: any[] = [];
+  protected value = null;
 
   protected appearance: InputAppearance = 'outlined';
 

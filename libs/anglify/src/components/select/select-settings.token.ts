@@ -20,5 +20,6 @@ export const DEFAULT_SELECT_SETTINGS: EntireSelectSettings = {
   label: undefined,
   placeholder: undefined,
   flip: false,
+  value: [],
 };
 export const SELECT_SETTINGS = new InjectionToken<SelectSettings>('Select Settings');

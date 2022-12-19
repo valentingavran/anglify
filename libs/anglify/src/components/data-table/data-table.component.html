@@ -122,14 +122,14 @@
 
     <anglify-select
       aria-label="Items per page"
-      [value]="(paginationService.itemsPerPage$ | async) ?? []"
+      [value]="paginationService.itemsPerPage$ | async"
       (valueChange)="paginationService.itemsPerPage$.next($event)"
       appearance="outlined"
       [dense]="true"
+      [flip]="true"
       [hideDetails]="true"
       label="Rows per page"
       [items]="paginationService.itemsPerPageOptions"
-      dropdownPosition="top"
     ></anglify-select>
     <div class="pagination" aria-label="Pagination info">{{ paginationService.pagination$ | async }}</div>
     <div class="controls">
