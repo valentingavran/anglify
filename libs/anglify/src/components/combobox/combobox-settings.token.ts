@@ -20,5 +20,6 @@ export const DEFAULT_COMBOBOX_SETTINGS: EntireComboboxSettings = {
   label: undefined,
   placeholder: undefined,
   flip: false,
+  value: [],
 };
 export const COMBOBOX_SETTINGS = new InjectionToken<ComboboxSettings>('Combobox Settings');
