@@ -27,6 +27,13 @@ If you want the dialog to return data to you, use the `open$()` method. This met
 You can close the dialog from outside by using the `takeUntil` operator and a `Subject`.
 <app-code-example component="dialog" example="close-from-outside"></app-code-example>
 
+### Use with template
+
+It is also possible to pass a `TemplateRef` to the `DialogService`. However, a separate dialog component should always be preferred.
+
+Note that you cannot style the contents of the `TemplateRef` because the dialog is inserted into the body.
+<app-code-example component="dialog" example="from-template"></app-code-example>
+
 ## API
 
 ```typescript
