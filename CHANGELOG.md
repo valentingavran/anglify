@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.45.0](https://github.com/valentingavran/anglify/compare/v0.44.0...v0.45.0) (2022-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Combobox:** If the `multiple` property is set to `true`, then an array of selected items is
+returned. If `multiple` is `false`, then the selected item is no longer returned as an array.
+* **Autocomplete:** If the `multiple` property is set to `true`, then an array of selected items is
+returned. If `multiple` is `false`, then the selected item is no longer returned as an array.
+* **Select:** If the `multiple` property is set to `true`, then an array of selected items is
+returned. If `multiple` is `false`, then the selected item is no longer returned as an array.
+
+### 🔬  Code Refactoring
+
+* **Autocomplete:** value is now only an array if multiple is true ([f6d6f3c](https://github.com/valentingavran/anglify/commit/f6d6f3c06577ba67f8e970648d1a6620c512bef3))
+* **Combobox:** value is now only an array if multiple is true ([02bbf7b](https://github.com/valentingavran/anglify/commit/02bbf7b7084bfd7278bffe5ec6604591b2d5fb91))
+* **Select:** value is now only an array if multiple is true ([c710d68](https://github.com/valentingavran/anglify/commit/c710d68df1b683fe031fcd70f47c1f8f318f9765))
+
 ## [0.44.0](https://github.com/valentingavran/anglify/compare/v0.43.1...v0.44.0) (2022-12-19)
 
 
