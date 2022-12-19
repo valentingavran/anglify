@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/components%3A%20Card"
-material-design="https://material.io/components/cards"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/components/cards"/>
 
 Cards are surfaces that display content and actions on a single topic. They should be easy to scan for relevant and actionable
 information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.

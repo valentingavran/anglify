@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Text%20Field"
-material-design="https://material.io/components/text-fields"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/components/text-fields"/>
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 

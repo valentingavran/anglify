@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Data%20Table"
 material-design="https://material.io/components/data-tables"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/table/"/>
 
 This component is used for displaying tabular data. Features include sorting, searching, pagination and row selection.

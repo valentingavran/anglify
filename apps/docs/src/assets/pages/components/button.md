@@ -3,7 +3,6 @@
 <app-references 
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Button"
 material-design="https://material.io/components/buttons"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/button/"/>
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like: Dialogs, Modal windows,

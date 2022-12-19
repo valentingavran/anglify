@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Bottom%20Navigation"
-material-design="https://material.io/components/bottom-navigation"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/components/bottom-navigation"/>
 
 Bottom navigation bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an
 optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.

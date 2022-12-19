@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Toolbar"
 material-design="https://material.io/components/app-bars-top"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/"/>
 
 The toolbar provides content and actions related to the current screen. It's used for branding, screen titles, navigation, and actions.

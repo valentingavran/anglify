@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Dialog"
 material-design="https://material.io/components/dialogs"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/"/>
 
 A dialog is a type of modal window that appears in front of app content to provide critical information or ask for a decision. Dialogs

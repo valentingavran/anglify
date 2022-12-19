@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Tooltip"
 material-design="https://material.io/components/tooltips"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/"/>
 
 Tooltips display informative text when users hover over, focus on, or tap an element.

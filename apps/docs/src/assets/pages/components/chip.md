@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Chip"
-material-design="https://material.io/components/chips"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/components/chips"/>
 
 Chips allow users to enter information, make selections, filter content, or trigger actions. While buttons are expected to appear
 consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.

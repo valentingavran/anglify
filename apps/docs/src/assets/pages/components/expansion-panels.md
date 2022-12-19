@@ -2,7 +2,6 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Expansion%20Panels"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 material-design="https://material.io/archive/guidelines/components/expansion-panels.html#expansion-panels-behavior"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/accordion/"/>
 

@@ -1,8 +1,7 @@
 # Text Area
 
 <app-references
-issues="https://github.com/valentingavran/anglify/labels/component%3A%20Textarea"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+issues="https://github.com/valentingavran/anglify/labels/component%3A%20Textarea"/>
 
 Textarea components are used for collecting large amounts of textual data.
 

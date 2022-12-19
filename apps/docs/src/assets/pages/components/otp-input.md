@@ -1,8 +1,7 @@
 # OTP Input
 
 <app-references
-issues="https://github.com/valentingavran/anglify/labels/component%3A%20OTP%20Input"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+issues="https://github.com/valentingavran/anglify/labels/component%3A%20OTP%20Input"/>
 
 The OTP input is used for MFA procedure of authenticating users by a one-time password.
 

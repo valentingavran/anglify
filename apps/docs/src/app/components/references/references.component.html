@@ -10,17 +10,6 @@
   </ng-template>
   Known issues
 </anglify-chip>
-<anglify-chip
-  *ngIf="bundleSize"
-  appearance="outlined"
-  (click)="open(bundleSize)"
-  anglifyTooltip="Scroll down to 'Exports Analysis' for a more detailed report."
->
-  <ng-template slot="prepend">
-    <anglify-icon size="small" icon="mdi-package-variant-closed" [left]="true"></anglify-icon>
-  </ng-template>
-  Bundle size
-</anglify-chip>
 <anglify-chip *ngIf="w3c" appearance="outlined" (click)="open(w3c)">
   <ng-template slot="prepend">
     <anglify-icon icon="w3c" iconSet="custom" [left]="true"></anglify-icon>

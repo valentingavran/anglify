@@ -1,8 +1,7 @@
 # Autocomplete
 
 <app-references
-issues="https://github.com/valentingavran/anglify/labels/component%3A%20Autocomplete"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+issues="https://github.com/valentingavran/anglify/labels/component%3A%20Autocomplete"/>
 
 ## Playground
 
