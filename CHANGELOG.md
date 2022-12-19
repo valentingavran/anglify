@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.44.0](https://github.com/valentingavran/anglify/compare/v0.43.1...v0.44.0) (2022-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* The badge property `bordered` is now called `border`.
+* The `customFilterFn` property of the `DataTableSettings` token is now called
+`customFilter`.
+* The `defaultSet` & `defaultSize` properties of the `IconSettings` token are now
+called `iconSet` & `size`.
+* New setting tokens were introduced and some existing ones were split in certain cases
+* Access modifiers of all components have been updated. Only properties which are
+essential for the developer and which can be used safely are now `public`.
+* **Menu:** The menu items are no longer passed in the `default` slot but in the `items` slot.
+The activator is now passed in the `default` slot instead of the `activator` slot.
+* **Menu:** The menu component has been rewritten, therefore some input properties and the
+settings token have changed.
+
+### 📝  Docs
+
+* **Menu:** add menu playground ([f0b54c4](https://github.com/valentingavran/anglify/commit/f0b54c49e4ecffe03fcd6041a417ecdc6eb27b42))
+
+
+### 🚀  Features
+
+* **Autocomplete, Combobox, Select:** add menu flip support ([2531309](https://github.com/valentingavran/anglify/commit/2531309d6e7c53f8210b696992f4c448877f5902))
+
+
+### 🛠  Other Commits
+
+* remove unused component tests (will be treated later) ([8ae92d7](https://github.com/valentingavran/anglify/commit/8ae92d78a8330311dd6f31f107a114466e1e827f))
+
+
+### 🔬  Code Refactoring
+
+* **Menu:** improve menu ([f75fa5d](https://github.com/valentingavran/anglify/commit/f75fa5dda53373e69e12ba1326ef14903e8d5e1e))
+* move JSDoc property descriptions to settings interfaces ([ca07a71](https://github.com/valentingavran/anglify/commit/ca07a719a6f01f2763d567d7ebf644fcf6e2f702))
+* refactor access modifiers of all component ([6d395dd](https://github.com/valentingavran/anglify/commit/6d395dd0d93936f52a0f2a68d48b7032623aa0d9))
+* remove legacy menu component ([72fc06a](https://github.com/valentingavran/anglify/commit/72fc06afacf6bfed762d7bcc69ddbedfa3e50586))
+
 ### [0.43.1](https://github.com/valentingavran/anglify/compare/v0.43.0...v0.43.1) (2022-12-12)
 
 
