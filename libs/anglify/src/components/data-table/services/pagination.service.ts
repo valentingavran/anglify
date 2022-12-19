@@ -9,7 +9,7 @@ import { DataService } from './data.service';
 export class PaginationService {
   public readonly page$ = new BehaviorSubject(this.settings.page);
 
-  public readonly itemsPerPage$ = new BehaviorSubject<string[]>(['5']);
+  public readonly itemsPerPage$ = new BehaviorSubject('5');
 
   public readonly showFirstLastPageControls$ = new BehaviorSubject(this.settings.showFirstLastPageControls);
 
@@ -29,11 +29,7 @@ export class PaginationService {
       .subscribe();
   }
 
-  public readonly currentlyDisplayedItemsRange$ = combineLatest([
-    this.page$,
-    this.itemsPerPage$.pipe(map(selection => selection[0])),
-    this.dataService.filteredItems$,
-  ]).pipe(
+  public readonly currentlyDisplayedItemsRange$ = combineLatest([this.page$, this.itemsPerPage$, this.dataService.filteredItems$]).pipe(
     map(([page, itemsPerPage, items]) => {
       const start = (page - 1) * (itemsPerPage === 'All' ? items.length : Number(itemsPerPage));
       let end = page * (itemsPerPage === 'All' ? items.length : Number(itemsPerPage));

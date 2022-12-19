@@ -75,6 +75,10 @@ export type EntireSelectSettings = {
    * Sets the input’s placeholder text
    */
   placeholder: string | undefined;
+  /**
+   * Sets the value of the input. Needs to be a array if multiple is true else it must be a single value.
+   */
+  value: any;
 };
 
 export type SelectSettings = Partial<EntireSelectSettings>;
