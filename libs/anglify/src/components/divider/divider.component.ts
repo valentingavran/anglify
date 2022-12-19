@@ -1,9 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Self } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject } from 'rxjs';
 import { createSettingsProvider } from '../../factories/settings.factory';
-import { bindClassToNativeElement } from '../../utils/functions';
 import { DEFAULT_DIVIDER_SETTINGS, DIVIDER_SETTINGS } from './divider-settings.token';
 import { EntireDividerSettings } from './divider.interface';
 
@@ -17,38 +15,14 @@ import { EntireDividerSettings } from './divider.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [createSettingsProvider<EntireDividerSettings>('anglifyDividerSettings', DEFAULT_DIVIDER_SETTINGS, DIVIDER_SETTINGS)],
 })
-export class DividerComponent {
-  public get vertical() {
-    return this.vertical$.value;
-  }
+export class DividerComponent implements EntireDividerSettings {
+  @HostBinding('class.vertical')
+  @Input()
+  public vertical = this.settings.vertical;
 
-  /**
-   * Sets the orientation of the divider to vertical.
-   */
-  @Input() public set vertical(value: boolean) {
-    this.vertical$.next(value);
-  }
+  @HostBinding('class.inset')
+  @Input()
+  public inset = this.settings.inset;
 
-  public get inset() {
-    return this.inset$.value;
-  }
-
-  /**
-   * Enables the inset of the divider.
-   */
-  @Input() public set inset(value: boolean) {
-    this.inset$.next(value);
-  }
-
-  protected readonly vertical$ = new BehaviorSubject(this.settings.vertical);
-
-  private readonly inset$ = new BehaviorSubject(this.settings.inset);
-
-  public constructor(
-    @Self() @Inject('anglifyDividerSettings') private readonly settings: EntireDividerSettings,
-    private readonly elementRef: ElementRef<HTMLElement>
-  ) {
-    bindClassToNativeElement(this, this.vertical$, this.elementRef.nativeElement, 'vertical');
-    bindClassToNativeElement(this, this.inset$, this.elementRef.nativeElement, 'inset');
-  }
+  public constructor(@Self() @Inject('anglifyDividerSettings') private readonly settings: EntireDividerSettings) {}
 }

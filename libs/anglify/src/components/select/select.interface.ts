@@ -1,11 +1,5 @@
-import type { Side } from '@floating-ui/dom';
+import type { Position } from '../../composables/position/position.interface';
 import type { InputAppearance } from '../input/input.interface';
-
-export type SelectItem = {
-  disabled?: boolean;
-  text: string;
-  value: any;
-};
 
 export type EntireSelectSettings = {
   /**
@@ -31,11 +25,15 @@ export type EntireSelectSettings = {
   /**
    * Sets the position of the menu.
    */
-  dropdownPosition: Side;
+  dropdownPosition: Position;
   /**
    * Puts the input in a manual error state.
    */
   error: string | undefined;
+  /**
+   * Flips the menu to the opposite side of the input if there is not enough space on the preferred side.
+   */
+  flip: boolean;
   /**
    * Hides hint and validation errors.
    */

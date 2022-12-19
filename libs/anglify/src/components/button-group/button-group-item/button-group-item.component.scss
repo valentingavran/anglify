@@ -1,0 +1,41 @@
+@use '../variables' as *;
+@use '../../../styles/mixins/reset-state' as *;
+
+:host {
+  @include reset-state;
+
+  display: inline-block;
+  min-width: $button-group-min-width;
+  min-height: $button-group-min-height;
+  padding: $button-group-padding;
+  border: $button-group-border;
+  background-color: $button-group-background-color;
+  color: var(--color-on-surface-high-emphasis);
+  cursor: pointer;
+  font: $button-group-font;
+  letter-spacing: $button-group-letter-spacing;
+  outline: none;
+  text-decoration: none;
+  text-transform: $button-group-text-transform;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &.disabled {
+    color: $button-group-color-disabled;
+    cursor: default;
+  }
+
+  &.active {
+    --state-container-color: var(--color-state-active-focus);
+  }
+
+  &:focus-visible:not(.disabled) {
+    --state-container-color: var(--color-state-inactive-focus);
+  }
+
+  /* stylelint-disable-next-line selector-not-notation */
+  &:hover:not(.disabled):not(.active) {
+    --state-container-color: var(--color-state-inactive-hover);
+  }
+}

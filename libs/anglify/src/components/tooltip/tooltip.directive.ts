@@ -23,8 +23,8 @@ import { delay, mergeMap, repeat, takeUntil, tap } from 'rxjs/operators';
 import { POSITION_SETTINGS } from '../../composables/position/position.token';
 import { createSettingsProvider } from '../../factories/settings.factory';
 import { isTouchDevice } from '../../utils/functions';
-import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { DEFAULT_TOOLTIP_SETTINGS, TOOLTIP_SETTINGS } from './tooltip-settings.token';
+import { TooltipComponent } from './tooltip.component';
 import { EntireTooltipSettings, TooltipSettings } from './tooltip.interface';
 
 @UntilDestroy()

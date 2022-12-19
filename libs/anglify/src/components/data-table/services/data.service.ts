@@ -6,15 +6,15 @@ import { type DataTableHeader, type DataTableItem, type SortSetting, EntireDataT
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  public readonly items$ = new BehaviorSubject<DataTableItem[]>([]);
+  public readonly items$ = new BehaviorSubject(this.settings.items);
 
-  public readonly headers$ = new BehaviorSubject<DataTableHeader[]>([]);
+  public readonly headers$ = new BehaviorSubject(this.settings.headers);
 
-  public readonly sortBy$ = new BehaviorSubject<SortSetting[]>([]);
+  public readonly sortBy$ = new BehaviorSubject(this.settings.sortBy);
 
   public readonly multiSort$ = new BehaviorSubject(this.settings.multiSort);
 
-  public readonly search$ = new BehaviorSubject<string | undefined>(undefined);
+  public readonly search$ = new BehaviorSubject(this.settings.search);
 
   public readonly mobile$ = new BehaviorSubject(this.settings.mobile);
 
@@ -53,7 +53,7 @@ export class DataService {
   );
 
   public customFilterFn: ((search: string, headers: DataTableHeader[], items: DataTableItem[]) => DataTableItem[]) | null | undefined =
-    this.settings.customFilterFn;
+    this.settings.customFilter;
 
   public static filterFn(search: string, headers: DataTableHeader[], items: DataTableItem[]) {
     return items.filter(item => {

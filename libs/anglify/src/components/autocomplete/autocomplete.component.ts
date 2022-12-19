@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import type { ControlValueAccessor } from '@angular/forms';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { MiddlewareArguments } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { distinctUntilChanged, fromEvent, map, merge, NEVER, of, switchMap, tap } from 'rxjs';
 import { SlotDirective } from '../../directives/slot/slot.directive';
@@ -30,10 +31,9 @@ import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
 import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
-import { ListItemComponent } from '../list/components/list-item/list-item.component';
-import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { MenuDirective } from '../menu/components/legacy-menu/legacy-menu.directive';
-import { MenuComponent } from '../menu/menu/menu.component';
+import { ListItemComponent } from '../list/list-item/list-item.component';
+import { ListItemTitleComponent } from '../list/list-item-title/list-item-title.component';
+import { MenuComponent } from '../menu/menu.component';
 import { AUTOCOMPLETE_SETTINGS, DEFAULT_AUTOCOMPLETE_SETTINGS } from './autocomplete-settings.token';
 import { EntireAutocompleteSettings } from './autocomplete.interface';
 import { AutocompleteAction, createAutocompleteMachineConfig } from './autocomplete.machine';
@@ -54,7 +54,6 @@ import { AutocompleteAction, createAutocompleteMachineConfig } from './autocompl
     CommonModule,
     FindSlotPipe,
     InputComponent,
-    MenuDirective,
     IconComponent,
     ListItemComponent,
     ListItemTitleComponent,
@@ -71,9 +70,9 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
 
   @ViewChild(InputDirective) protected readonly input?: InputDirective;
 
-  @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput?: InputComponent;
+  @ViewChild('anglifyInput', { read: InputComponent }) private readonly anglifyInput?: InputComponent;
 
-  @ViewChild('menu') public menu?: MenuComponent;
+  @ViewChild('menu') private readonly menu?: MenuComponent;
 
   @Input() public label = this.settings.label;
 
@@ -111,13 +110,15 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
 
   @Input() public value: any[] = [];
 
+  @Input() public flip = this.settings.flip;
+
   @Output() public readonly valueChange = new EventEmitter<any[]>();
 
   protected machine = new Machine(createAutocompleteMachineConfig(this));
 
   public constructor(
-    @Self() @Inject('anglifyAutocompleteSettings') public settings: EntireAutocompleteSettings,
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+    @Self() @Inject('anglifyAutocompleteSettings') private readonly settings: EntireAutocompleteSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition
   ) {}
 
   private onChange: (...args: any[]) => void = () => {};
@@ -126,9 +127,7 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
     this.machine.context$.next({ ...this.machine.context$.value, selectedItems: this.transformValuesToItems(value) });
   }
 
-  public registerOnChange(fn: any) {
-    this.onChange = fn;
-  }
+  public registerOnChange = (fn: any) => (this.onChange = fn);
 
   public registerOnTouched(_: any) {}
 
@@ -151,6 +150,15 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
     this.handleMenuScroll();
     this.notifyValueChange();
   }
+
+  protected onItemClick = (item: any) => this.machine.next(AutocompleteAction.ITEM_CLICK, item);
+
+  protected clear = () => this.machine.next(AutocompleteAction.CLEAR);
+
+  protected offset = ({ placement }: MiddlewareArguments) => {
+    if ((placement === 'bottom' || placement === 'bottom-start' || placement === 'bottom-end') && !this.hideDetails) return -24;
+    return 0;
+  };
 
   private handleMenuScroll() {
     merge(
@@ -207,7 +215,7 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
         map(() => ({ action: AutocompleteAction.CLICK })),
         tap(() => input.focus())
       ),
-      fromEvent(this.menu!.elementRef.nativeElement, 'mousedown').pipe(tap(event => event.preventDefault())),
+      fromEvent(this.menu!.menuContent.location.nativeElement as HTMLElement, 'mousedown').pipe(tap(event => event.preventDefault())),
       fromEvent(input, 'focusin').pipe(map(() => ({ action: AutocompleteAction.FOCUS }))),
       fromEvent(input, 'focusout').pipe(map(() => ({ action: AutocompleteAction.BLUR }))),
       fromEvent(input, 'keydown').pipe(
@@ -231,10 +239,6 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
       )
       .subscribe();
   }
-
-  protected onItemClick = (item: any) => this.machine.next(AutocompleteAction.ITEM_CLICK, item);
-
-  protected clear = () => this.machine.next(AutocompleteAction.CLEAR);
 
   private transformSelectedItemsToValues(selectedItems: any[]) {
     const itemValueKey = this.itemValueKey;

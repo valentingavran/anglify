@@ -5,7 +5,7 @@ export type State<S extends string, A extends string, C> = {
     [key in A | 'beforeEach']?: (context: C, action: A, payload: any, previousState: S) => void;
   };
   on: {
-    [key in A]?: S | ((context: C) => S);
+    [key in A]?: S | ((context: C) => S | undefined);
   };
 };
 

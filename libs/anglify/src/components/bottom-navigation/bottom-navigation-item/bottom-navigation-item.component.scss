@@ -1,0 +1,42 @@
+@use '../variables' as *;
+@use '../../../styles/settings/typography.scss' as *;
+
+:host {
+  min-width: $bottom-navigation-item-min-width;
+  max-width: $bottom-navigation-item-max-width;
+  height: 100%;
+  cursor: pointer;
+
+  ::ng-deep {
+    * {
+      color: $bottom-navigation-text-color-default;
+    }
+  }
+
+  .icon {
+    margin-top: $bottom-navigation-item-icon-margin-top;
+  }
+
+  .icon,
+  .label {
+    display: flex;
+    justify-content: center;
+    font: $bottom-navigation-item-font;
+    letter-spacing: $bottom-navigation-item-letter-spacing;
+    text-transform: $bottom-navigation-item-text-transform;
+  }
+
+  &.active {
+    ::ng-deep {
+      * {
+        color: $bottom-navigation-text-color-active;
+      }
+    }
+  }
+
+  &.shift {
+    .icon {
+      margin-top: $bottom-navigation-item-shift-icon-margin-top;
+    }
+  }
+}

@@ -4,12 +4,9 @@ import {
   Component,
   ContentChildren,
   ElementRef,
-  EventEmitter,
   HostBinding,
-  HostListener,
   Inject,
   Input,
-  Output,
   QueryList,
   Self,
   type OnInit,
@@ -39,52 +36,34 @@ import { ChipAppearance, EntireChipSettings } from './chip.interface';
   providers: [createSettingsProvider<EntireChipSettings>('anglifyChipSettings', DEFAULT_CHIP_SETTINGS, CHIP_SETTINGS), RIPPLE],
   imports: [IconComponent, NgIf, FindSlotPipe, SlotOutletDirective],
 })
-export class ChipComponent implements OnInit {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+export class ChipComponent implements EntireChipSettings, OnInit {
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   public get active() {
     return this.active$.value;
   }
 
-  /**
-   * The chip’s value.
-   */
   @Input() public set active(value: boolean) {
     this.active$.next(value);
   }
 
-  /**
-   * Displays a selection icon when selected.
-   */
   @Input('filter') public filter = this.settings.filter;
 
-  /**
-   * Sets one of several predefined styles.
-   */
   @Input() public appearance: ChipAppearance = this.settings.appearance;
 
   public get ripple(): boolean {
     return this.rippleService.active;
   }
 
-  /**
-   * Turns the ripple effect on or off.
-   */
   @Input() public set ripple(value: boolean) {
     this.rippleService.active = value;
   }
 
-  /**
-   * Event that is emitted when the component is clicked.
-   */
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() public readonly onClick = new EventEmitter<void>();
-
-  public readonly active$ = new BehaviorSubject<boolean>(false);
+  private readonly active$ = new BehaviorSubject(this.settings.active);
 
   public constructor(
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition,
-    @Self() @Inject('anglifyChipSettings') public settings: EntireChipSettings,
+    @Self() @Inject('anglifyChipSettings') private readonly settings: EntireChipSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition,
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly rippleService: RippleService
   ) {
@@ -134,10 +113,4 @@ export class ChipComponent implements OnInit {
   @HostBinding('tabindex')
   // @ts-expect-error: Value is used
   private readonly tabindex = 0;
-
-  @HostListener('click')
-  // @ts-expect-error: Value is used
-  private click() {
-    this.onClick.next();
-  }
 }

@@ -1,4 +1,4 @@
-import type { Side } from '../../composables/position/position.interface';
+import type { Position } from '../../composables/position/position.interface';
 import type { InputAppearance } from '../input/input.interface';
 
 export type EntireComboboxSettings = {
@@ -25,11 +25,15 @@ export type EntireComboboxSettings = {
   /**
    * Sets the position of the menu.
    */
-  dropdownPosition: Side;
+  dropdownPosition: Position;
   /**
    * Puts the input in a manual error state.
    */
   error: string | undefined;
+  /**
+   * Flips the menu to the opposite side of the input if there is not enough space on the preferred side.
+   */
+  flip: boolean;
   /**
    * Hides hint and validation errors.
    */

@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import type { ControlValueAccessor } from '@angular/forms';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { MiddlewareArguments } from '@floating-ui/dom';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { distinctUntilChanged, fromEvent, map, merge, NEVER, of, switchMap, tap } from 'rxjs';
 import { SlotDirective } from '../../directives/slot/slot.directive';
@@ -30,10 +31,9 @@ import { IconComponent } from '../icon/icon.component';
 import { InternalIconSetDefinition } from '../icon/icon.interface';
 import { InputComponent } from '../input/input.component';
 import { InputDirective } from '../input/input.directive';
-import { ListItemComponent } from '../list/components/list-item/list-item.component';
-import { ListItemTitleComponent } from '../list/components/list-item-title/list-item-title.component';
-import { MenuDirective } from '../menu/components/legacy-menu/legacy-menu.directive';
-import { MenuComponent } from '../menu/menu/menu.component';
+import { ListItemComponent } from '../list/list-item/list-item.component';
+import { ListItemTitleComponent } from '../list/list-item-title/list-item-title.component';
+import { MenuComponent } from '../menu/menu.component';
 import { COMBOBOX_SETTINGS, DEFAULT_COMBOBOX_SETTINGS } from './combobox-settings.token';
 import { EntireComboboxSettings } from './combobox.interface';
 import { ComboboxAction, createComboboxMachineConfig } from './combobox.machine';
@@ -54,7 +54,6 @@ import { ComboboxAction, createComboboxMachineConfig } from './combobox.machine'
     CommonModule,
     FindSlotPipe,
     InputComponent,
-    MenuDirective,
     IconComponent,
     ListItemComponent,
     ListItemTitleComponent,
@@ -71,9 +70,9 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
 
   @ViewChild(InputDirective) protected readonly input?: InputDirective;
 
-  @ViewChild('anglifyInput', { read: InputComponent }) public anglifyInput?: InputComponent;
+  @ViewChild('anglifyInput', { read: InputComponent }) private readonly anglifyInput?: InputComponent;
 
-  @ViewChild('menu') public menu?: MenuComponent;
+  @ViewChild('menu') private readonly menu?: MenuComponent;
 
   @Input() public label = this.settings.label;
 
@@ -111,13 +110,15 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
 
   @Input() public value: any[] = [];
 
+  @Input() public flip = this.settings.flip;
+
   @Output() public readonly valueChange = new EventEmitter<any[]>();
 
   protected machine = new Machine(createComboboxMachineConfig(this));
 
   public constructor(
-    @Self() @Inject('anglifyComboboxSettings') public settings: EntireComboboxSettings,
-    @Inject(INTERNAL_ICONS) public readonly internalIcons: InternalIconSetDefinition
+    @Self() @Inject('anglifyComboboxSettings') private readonly settings: EntireComboboxSettings,
+    @Inject(INTERNAL_ICONS) protected readonly internalIcons: InternalIconSetDefinition
   ) {}
 
   private onChange: (...args: any[]) => void = () => {};
@@ -211,7 +212,7 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
         map(() => ({ action: ComboboxAction.CLICK })),
         tap(() => input.focus())
       ),
-      fromEvent(this.menu!.elementRef.nativeElement, 'mousedown').pipe(tap(event => event.preventDefault())),
+      fromEvent(this.menu!.menuContent.location.nativeElement as HTMLElement, 'mousedown').pipe(tap(event => event.preventDefault())),
       fromEvent(input, 'focusin').pipe(map(() => ({ action: ComboboxAction.FOCUS }))),
       fromEvent(input, 'focusout').pipe(map(() => ({ action: ComboboxAction.BLUR }))),
       fromEvent(input, 'keydown').pipe(
@@ -250,4 +251,9 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
     if (itemValueKey) return this.items.filter(item => values.includes(item[itemValueKey]));
     else return values;
   }
+
+  protected offset = ({ placement }: MiddlewareArguments) => {
+    if ((placement === 'bottom' || placement === 'bottom-start' || placement === 'bottom-end') && !this.hideDetails) return -24;
+    return 0;
+  };
 }

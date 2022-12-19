@@ -13,7 +13,7 @@ w3c="https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only
 
 ### No data with chips
 
-<app-code-example component="select" example="no-data-with-chips" hide-overflow="false"></app-code-example>
+<app-code-example component="select" example="no-data-with-chips"></app-code-example>
 
 ## API
 

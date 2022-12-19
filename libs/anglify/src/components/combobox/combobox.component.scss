@@ -12,12 +12,6 @@
 
   anglify-menu {
     width: 100%;
-
-    &:has(anglify-input:not(.anglify-input-hide-details)) {
-      --anglify-menu-max-width: 100%;
-      --anglify-menu-border-radius: 4px;
-      --anglify-menu-offset-bottom: -24px;
-    }
   }
 
   anglify-input {

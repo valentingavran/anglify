@@ -2,101 +2,99 @@
   <anglify-menu
     #menu
     [value]="context.menuOpened"
-    [focusMenuWhenOpened]="false"
     [closeOnOutsideClick]="false"
     [closeOnMenuClick]="false"
-    [focusable]="false"
     [position]="dropdownPosition"
-    [flip]="true"
+    [flip]="flip"
     [disabled]="true"
-    [trapFocus]="false"
     [focusActivatorOnClose]="false"
+    [offset]="offset"
   >
-    <ng-template slot="activator">
-      <anglify-input
-        #anglifyInput
-        [appearance]="appearance"
-        [hint]="hint"
-        [persistentHint]="persistentHint"
-        [hideDetails]="hideDetails"
-        [error]="error"
-        [disabled]="context.disabled"
-        [floating]="context.menuOpened || alwaysFloatingLabel || context.selectedItems.length > 0 || (input?.focused$ | async) || false"
-        [dense]="dense"
-        [focused]="(input?.focused$ | async) || false"
-      >
-        <ng-template slot="prepend">
-          <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
-        </ng-template>
-        <ng-template slot="prepend-inner">
-          <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
-        </ng-template>
-        <ng-template slot="prepend-inner-content">
-          <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner-content'"></ng-container>
-        </ng-template>
-        <ng-template slot="append-inner-content">
-          <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner-content'"></ng-container>
-        </ng-template>
-        <ng-template slot="append-inner">
-          <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'; context: { clearable, isOpen: context.menuOpened }">
-            <button
-              *ngIf="context.clearable && context.selectedItems.length > 0"
-              [disabled]="context.disabled"
-              anglifyButton
-              appearance="icon"
-              type="button"
-              (click)="$event.stopPropagation(); clear()"
-              (keydown.enter)="$event.stopPropagation(); clear()"
-            >
-              <anglify-icon [icon]="internalIcons.close"></anglify-icon>
-            </button>
-            <anglify-icon [icon]="internalIcons.chevronDown" [@rotate]="context.menuOpened"></anglify-icon>
-          </ng-container>
-        </ng-template>
-        <ng-template slot="append">
-          <ng-container *anglifySlotOutlet="slots | findSlot: 'append'"></ng-container>
-        </ng-template>
-        <ng-template slot="label">
-          <ng-container *anglifySlotOutlet="slots | findSlot: 'label'">{{ label }}</ng-container>
-        </ng-template>
-        <div class="selections">
-          <ng-container *ngIf="context.multiple">
-            <ng-container *anglifySlotOutlet="slots | findSlot: 'selection'; context: { $implicit: context }">
-              <div class="selection" *ngFor="let selectedItem of context.selectedItems; let i = index; let c = count">
-                {{ selectedItem | selectItemViewer: context.itemTextKey }}<ng-container *ngIf="i < c - 1">,</ng-container>
-              </div>
-            </ng-container>
-          </ng-container>
-          <input
-            anglifyInput
-            type="text"
+    <anglify-input
+      #anglifyInput
+      [appearance]="appearance"
+      [hint]="hint"
+      [persistentHint]="persistentHint"
+      [hideDetails]="hideDetails"
+      [error]="error"
+      [disabled]="context.disabled"
+      [floating]="context.menuOpened || alwaysFloatingLabel || context.selectedItems.length > 0 || (input?.focused$ | async) || false"
+      [dense]="dense"
+      [focused]="(input?.focused$ | async) || false"
+    >
+      <ng-template slot="prepend">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend'"></ng-container>
+      </ng-template>
+      <ng-template slot="prepend-inner">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner'"></ng-container>
+      </ng-template>
+      <ng-template slot="prepend-inner-content">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'prepend-inner-content'"></ng-container>
+      </ng-template>
+      <ng-template slot="append-inner-content">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner-content'"></ng-container>
+      </ng-template>
+      <ng-template slot="append-inner">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'append-inner'; context: { clearable, isOpen: context.menuOpened }">
+          <button
+            *ngIf="context.clearable && context.selectedItems.length > 0"
             [disabled]="context.disabled"
-            [placeholder]="context.selectedItems.length ? '' : placeholder ? placeholder : ''"
-            autocomplete="off"
-          />
-        </div>
-      </anglify-input>
-    </ng-template>
-    <ng-container *ngIf="!context.filteredItems.length">
-      <ng-container *anglifySlotOutlet="slots | findSlot: 'no-data'">
-        <anglify-list-item [state]="false" [ripple]="false" [disabled]="true">
-          <anglify-list-item-title>{{ noDataText }}</anglify-list-item-title>
+            anglifyButton
+            appearance="icon"
+            type="button"
+            (click)="$event.stopPropagation(); clear()"
+            (keydown.enter)="$event.stopPropagation(); clear()"
+          >
+            <anglify-icon [icon]="internalIcons.close"></anglify-icon>
+          </button>
+          <anglify-icon [icon]="internalIcons.chevronDown" [@rotate]="context.menuOpened"></anglify-icon>
+        </ng-container>
+      </ng-template>
+      <ng-template slot="append">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'append'"></ng-container>
+      </ng-template>
+      <ng-template slot="label">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'label'">{{ label }}</ng-container>
+      </ng-template>
+      <div class="selections">
+        <ng-container *ngIf="context.multiple">
+          <ng-container *anglifySlotOutlet="slots | findSlot: 'selection'; context: { $implicit: context }">
+            <div class="selection" *ngFor="let selectedItem of context.selectedItems; let i = index; let c = count">
+              {{ selectedItem | selectItemViewer: context.itemTextKey }}<ng-container *ngIf="i < c - 1">,</ng-container>
+            </div>
+          </ng-container>
+        </ng-container>
+        <input
+          anglifyInput
+          type="text"
+          [disabled]="context.disabled"
+          [placeholder]="context.selectedItems.length ? '' : placeholder ? placeholder : ''"
+          autocomplete="off"
+        />
+      </div>
+    </anglify-input>
+    <ng-template slot="items">
+      <ng-container *ngIf="!context.filteredItems.length">
+        <ng-container *anglifySlotOutlet="slots | findSlot: 'no-data'">
+          <anglify-list-item [state]="false" [ripple]="false" [disabled]="true">
+            <anglify-list-item-title>{{ noDataText }}</anglify-list-item-title>
+          </anglify-list-item>
+        </ng-container>
+      </ng-container>
+      <ng-container *anglifySlotOutlet="slots | findSlot: 'items'; context: { $implicit: context, onItemClick }">
+        <anglify-list-item
+          *ngFor="let item of context.filteredItems; let i = index"
+          [focusable]="false"
+          [state]="!item.disabled"
+          [ripple]="!item.disabled"
+          [disabled]="item.disabled"
+          [active]="context.selectedItems.includes(item)"
+          [highlight]="context.highlightedIndex === i"
+          (click)="onItemClick(item)"
+        >
+          <anglify-list-item-title>{{ item | selectItemViewer: context.itemTextKey }}</anglify-list-item-title>
         </anglify-list-item>
       </ng-container>
-    </ng-container>
-    <ng-container *anglifySlotOutlet="slots | findSlot: 'items'; context: { $implicit: context, onItemClick }">
-      <anglify-list-item
-        *ngFor="let item of context.filteredItems; let i = index"
-        [focusable]="false"
-        [state]="!item.disabled"
-        [ripple]="!item.disabled"
-        [disabled]="item.disabled"
-        [active]="context.selectedItems.includes(item)"
-        [highlight]="context.highlightedIndex === i"
-        (click)="onItemClick(item)"
-      >
-        <anglify-list-item-title>{{ item | selectItemViewer: context.itemTextKey }}</anglify-list-item-title>
-      </anglify-list-item>
-    </ng-container>
+    </ng-template>
   </anglify-menu>
 </ng-container>

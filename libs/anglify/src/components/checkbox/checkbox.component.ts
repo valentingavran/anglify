@@ -21,7 +21,6 @@ import {
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
-import { RippleOrigin } from '../../composables/ripple/ripple.interface';
 import { InteractionStateDirective } from '../../directives/interaction-state/interaction-state.directive';
 import { SlotDirective } from '../../directives/slot/slot.directive';
 import { SlotOutletDirective } from '../../directives/slot-outlet/slot-outlet.directive';
@@ -29,7 +28,7 @@ import { createSettingsProvider } from '../../factories/settings.factory';
 import { FindSlotPipe } from '../../pipes/find-slot/find-slot.pipe';
 import { bindClassToNativeElement } from '../../utils/functions';
 import { CHECKBOX_SETTINGS, DEFAULT_CHECKBOX_SETTINGS } from './checkbox-settings.token';
-import { EntireCheckboxSettings, LabelPosition } from './checkbox.interface';
+import { EntireCheckboxSettings } from './checkbox.interface';
 import type { CheckboxIconRef } from './functions/register-icons.function';
 import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
 
@@ -40,58 +39,39 @@ import { CHECKBOX_ICONS_FACTORY } from './tokens/checkbox-icons.token';
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxComponent),
-      multi: true,
-    },
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CheckboxComponent), multi: true },
     createSettingsProvider<EntireCheckboxSettings>('anglifyCheckboxSettings', DEFAULT_CHECKBOX_SETTINGS, CHECKBOX_SETTINGS),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [InteractionStateDirective, AsyncPipe, FindSlotPipe, SlotOutletDirective],
 })
-export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+export class CheckboxComponent implements EntireCheckboxSettings, ControlValueAccessor, AfterViewInit {
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
-  @ViewChild('offIcon', { read: ElementRef }) public offIcon!: ElementRef<HTMLElement>;
+  @ViewChild('offIcon', { read: ElementRef }) private readonly offIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('onIcon', { read: ElementRef }) public onIcon!: ElementRef<HTMLElement>;
+  @ViewChild('onIcon', { read: ElementRef }) private readonly onIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('defaultIcon') public defaultIcon!: ElementRef<HTMLElement>;
+  @ViewChild('defaultIcon') private readonly defaultIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('overlayContainer') public overlayContainer!: ElementRef<HTMLElement>;
+  @ViewChild('overlayContainer') private readonly overlayContainer!: ElementRef<HTMLElement>;
 
-  @ViewChild('reflectOffIcon') public reflectOffIcon!: ElementRef<HTMLElement>;
+  @ViewChild('reflectOffIcon') private readonly reflectOffIcon!: ElementRef<HTMLElement>;
 
-  @ViewChild('reflectOnIcon') public reflectOnIcon!: ElementRef<HTMLElement>;
+  @ViewChild('reflectOnIcon') private readonly reflectOnIcon!: ElementRef<HTMLElement>;
 
-  /**
-   * Turns the ripple effect on or off.
-   */
   @Input() public ripple = this.settings.ripple;
 
-  /**
-   * Controls whether to display the focus and hover styles for this component.
-   */
   @Input() public state = this.settings.state;
 
-  /**
-   * Changes the position of the label.
-   */
-  @Input() public labelPosition: LabelPosition = this.settings.labelPosition;
+  @Input() public labelPosition = this.settings.labelPosition;
 
-  /**
-   * Defines whether the ripple starts in the middle of the component or where the mouse click occurs.
-   */
-  @Input() public rippleOrigin: RippleOrigin = this.settings.rippleOrigin;
+  @Input() public rippleOrigin = this.settings.rippleOrigin;
 
-  public get checked(): boolean | undefined {
+  public get checked() {
     return this.checked$.value;
   }
 
-  /**
-   * The input’s value.
-   */
   @HostBinding('attr.aria-checked')
   @Input()
   public set checked(value: boolean | undefined) {
@@ -102,25 +82,19 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     return this.disabled$.value;
   }
 
-  /**
-   * Disable the input.
-   */
   @HostBinding('attr.aria-disabled')
   @Input()
   public set disabled(value: boolean) {
     this.disabled$.next(value);
   }
 
-  public get isReadonly() {
+  public get readonly() {
     return this.readonly$.value;
   }
 
-  /**
-   * Puts input in readonly state.
-   */
   @HostBinding('attr.aria-readonly')
-  @Input('readonly')
-  public set isReadonly(value: boolean) {
+  @Input()
+  public set readonly(value: boolean) {
     this.readonly$.next(value);
   }
 
@@ -130,13 +104,13 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
   @Output() public readonly checkedChange = new EventEmitter<boolean | undefined>();
 
-  public iconProvider!: CheckboxIconRef | null;
+  private readonly iconProvider!: CheckboxIconRef | null;
 
-  public checked$ = new BehaviorSubject(this.settings.checked);
+  protected checked$ = new BehaviorSubject(this.settings.checked);
 
-  public disabled$ = new BehaviorSubject(this.settings.disabled);
+  protected disabled$ = new BehaviorSubject(this.settings.disabled);
 
-  public readonly$ = new BehaviorSubject(this.settings.readonly);
+  protected readonly$ = new BehaviorSubject(this.settings.readonly);
 
   protected focusable$ = new BehaviorSubject(this.settings.focusable);
 
@@ -147,9 +121,9 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
   @HostBinding('attr.role') protected readonly role = 'checkbox';
 
   public constructor(
+    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
-    @Self() @Inject('anglifyCheckboxSettings') private readonly settings: EntireCheckboxSettings,
     @Optional() @Inject(CHECKBOX_ICONS_FACTORY) public readonly iconProviderFactory: (() => CheckboxIconRef) | null
   ) {
     bindClassToNativeElement(
@@ -180,7 +154,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
    * case 3: No Icons are delivered so default checkbox should be used
    * case 4: Combination of case 1 and case 2, in this case ViewContainerRef of iconProvider needs to remove overridden Icons from DOM
    */
-  public prepareIconDOM() {
+  private prepareIconDOM() {
     const reflectOnChildren = this.reflectOnIcon.nativeElement.children.length;
     const reflectOffChildren = this.reflectOffIcon.nativeElement.children.length;
 
@@ -219,7 +193,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
     }
   }
 
-  public removeChildren(children: ElementRef[]) {
+  private removeChildren(children: ElementRef[]) {
     for (const child of children) this.renderer.removeChild(this.overlayContainer.nativeElement, child.nativeElement);
   }
 

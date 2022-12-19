@@ -33,7 +33,7 @@ import { InputAppearance } from './input.interface';
   imports: [InteractionStateDirective, NgIf, TooltipDirective, AsyncPipe, FindSlotPipe, SlotOutletDirective],
 })
 export class InputComponent implements OnInit, AfterViewInit {
-  @ContentChildren(SlotDirective) public readonly slots?: QueryList<SlotDirective>;
+  @ContentChildren(SlotDirective) protected readonly slots?: QueryList<SlotDirective>;
 
   @ViewChild('prependInner', { static: true }) private readonly prependInner?: ElementRef<HTMLElement>;
 
@@ -126,9 +126,9 @@ export class InputComponent implements OnInit, AfterViewInit {
 
   private readonly disabled$ = new BehaviorSubject<boolean>(false);
 
-  public readonly hintOverflow$ = new BehaviorSubject<boolean>(false);
+  private readonly hintOverflow$ = new BehaviorSubject<boolean>(false);
 
-  public readonly error$ = new BehaviorSubject<string | null | undefined>(null);
+  protected readonly error$ = new BehaviorSubject<string | null | undefined>(null);
 
   public constructor(private readonly elementRef: ElementRef<HTMLElement>) {
     bindObservableValueToNativeElement(this, this.appearance$, this.elementRef.nativeElement, 'anglify-input-');
@@ -171,7 +171,7 @@ export class InputComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
-  public isHintOverflowing() {
+  protected isHintOverflowing() {
     if ((this.hintWrapper?.nativeElement.offsetHeight ?? 0) <= (this.hintElement?.nativeElement.offsetHeight ?? 0)) {
       this.setHintOverflow(true);
       return;

@@ -1,5 +1,6 @@
 import { untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, pairwise, startWith, tap } from 'rxjs';
+import { focusableElementsString } from '../composables/position/position.interface';
 
 export function observeOnMutation$(target: Node, config: MutationObserverInit | undefined): Observable<MutationRecord[]> {
   return new Observable(observer => {
@@ -174,4 +175,13 @@ export function bindStyleValueToNativeElement(componentReference: any, data$: Ob
       })
     )
     .subscribe();
+}
+
+export function getFirstAndLastFocusableElements(parent: HTMLElement) {
+  const focusableElements = parent.querySelectorAll(focusableElementsString) as NodeListOf<HTMLElement>;
+  return {
+    firstFocusable: focusableElements.length ? focusableElements[0] : null,
+    lastFocusable: focusableElements.length ? focusableElements[focusableElements.length - 1] : null,
+    allFocusableElements: focusableElements,
+  };
 }

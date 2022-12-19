@@ -6,5 +6,7 @@ export const DEFAULT_BADGE_SETTINGS: EntireBadgeSettings = {
   position: 'top-end',
   horizontalOffset: 0,
   verticalOffset: 0,
+  value: true,
+  content: undefined,
 };
 export const BADGE_SETTINGS = new InjectionToken<BadgeSettings>('Badge Settings');

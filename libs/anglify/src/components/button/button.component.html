@@ -1,7 +1,7 @@
-<div class="loader" *ngIf="loading$ | async">
+<div *ngIf="loading" class="loader">
   <ng-container *anglifySlotOutlet="slots | findSlot: 'loader'">
     <anglify-progress-circular [indeterminate]="true"></anglify-progress-circular>
   </ng-container>
 </div>
 
-<div class="content" [ngClass]="(loading$ | async) ? 'invisible' : ''"><ng-content></ng-content></div>
+<div class="content" [ngClass]="loading ? 'invisible' : ''"><ng-content></ng-content></div>

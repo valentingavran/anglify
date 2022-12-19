@@ -7,6 +7,8 @@ export const DEFAULT_RADIO_BUTTON_SETTINGS: EntireRadioButtonSettings = {
   ripple: true,
   rippleOrigin: 'center',
   state: true,
+  value: undefined,
+  name: '',
 };
 
 export const RADIO_BUTTON_SETTINGS = new InjectionToken<RadioButtonSettings>('Radio Button Settings');

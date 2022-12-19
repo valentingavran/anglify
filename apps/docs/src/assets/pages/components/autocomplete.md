@@ -12,11 +12,11 @@ bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
 
 ### Chips
 
-<app-code-example component="autocomplete" example="chips" hide-overflow="false"></app-code-example>
+<app-code-example component="autocomplete" example="chips"></app-code-example>
 
 ### Item slot
 
-<app-code-example component="autocomplete" example="items-slot" hide-overflow="false"></app-code-example>
+<app-code-example component="autocomplete" example="items-slot"></app-code-example>
 
 ### Access value
 
@@ -24,15 +24,15 @@ bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
 
 **Primitive values:** In the second example you can see how the component behaves with primitive values (in this case strings). Here the previously mentioned input properties are no longer necessary, since no objects were passed.
 
-<app-code-example component="autocomplete" example="access-value" hide-overflow="false"></app-code-example>
+<app-code-example component="autocomplete" example="access-value"></app-code-example>
 
 ### Control values manually
 
-<app-code-example component="autocomplete" example="control-values-manually" hide-overflow="false"></app-code-example>
+<app-code-example component="autocomplete" example="control-values-manually"></app-code-example>
 
 ### No data with chips
 
-<app-code-example component="autocomplete" example="no-data-with-chips" hide-overflow="false"></app-code-example>
+<app-code-example component="autocomplete" example="no-data-with-chips"></app-code-example>
 
 ## API
 

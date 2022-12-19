@@ -19,47 +19,30 @@ import { EntireProgressCircularSettings } from './progress-circular.interface';
   ],
   imports: [NgIf],
 })
-export class ProgressCircularComponent {
-  /**
-   * Constantly animates, use when loading progress is unknown.
-   */
+export class ProgressCircularComponent implements EntireProgressCircularSettings {
   @Input() public indeterminate = this.settings.indeterminate;
 
-  /**
-   * The percentage value for current progress.
-   */
-  @Input() public value: number = this.settings.value;
+  @Input() public value = this.settings.value;
 
-  /**
-   * The amount in degrees that the component should be rotated.
-   */
-  @Input() public rotation: number = this.settings.rotation;
+  @Input() public rotation = this.settings.rotation;
 
-  public readonly radius = 20;
+  protected radius = 20;
+
+  private circumference = 2 * Math.PI * this.radius;
 
   public constructor(@Self() @Inject('anglifyProgressCircularSettings') private readonly settings: EntireProgressCircularSettings) {}
 
-  private get circumference() {
-    return 2 * Math.PI * this.radius;
-  }
-
   private get normalizedValue() {
-    if (this.value < 0) {
-      return 0;
-    }
-
-    if (this.value > 100) {
-      return 100;
-    }
-
+    if (this.value < 0) return 0;
+    if (this.value > 100) return 100;
     return this.value;
   }
 
-  public get strokeDashArray() {
+  protected get strokeDashArray() {
     return Math.round(this.circumference * 1_000) / 1_000;
   }
 
-  public get strokeDashOffset() {
+  protected get strokeDashOffset() {
     return `${((100 - this.normalizedValue) / 100) * this.circumference}px`;
   }
 
@@ -73,7 +56,7 @@ export class ProgressCircularComponent {
     return classNames.join(' ');
   }
 
-  public get style() {
+  protected get style() {
     return `transform: rotate(${this.rotation}deg)`;
   }
 

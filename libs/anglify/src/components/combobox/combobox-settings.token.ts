@@ -8,7 +8,7 @@ export const DEFAULT_COMBOBOX_SETTINGS: EntireComboboxSettings = {
   clearable: false,
   noDataText: 'No data available',
   multiple: false,
-  dropdownPosition: 'bottom',
+  dropdownPosition: 'bottom-start',
   disabled: false,
   hideDetails: false,
   itemTextKey: undefined,
@@ -19,5 +19,6 @@ export const DEFAULT_COMBOBOX_SETTINGS: EntireComboboxSettings = {
   hint: undefined,
   label: undefined,
   placeholder: undefined,
+  flip: false,
 };
 export const COMBOBOX_SETTINGS = new InjectionToken<ComboboxSettings>('Combobox Settings');

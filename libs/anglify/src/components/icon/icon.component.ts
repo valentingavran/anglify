@@ -18,47 +18,21 @@ import { EntireIconSettings, IconSet, ICON_SET_CLASS_MAPPING } from './icon.inte
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [createSettingsProvider<EntireIconSettings>('anglifyIconSettings', DEFAULT_ICON_SETTINGS, ICON_SETTINGS)],
 })
-export class IconComponent {
-  /**
-   * Name of the icon to display.
-   */
-  @Input() public icon?: string;
+export class IconComponent implements Omit<EntireIconSettings, 'internalIcons' | 'svgIconSets'> {
+  @Input() public icon = this.settings.icon;
 
-  /**
-   * Specifies from which IconSet the icon should be displayed. If the iconSet property is not
-   * specified, the icon will be searched for in the defaultSet and then displayed
-   */
-  @Input() public iconSet: IconSet = this.settings.defaultSet;
+  @Input() public iconSet: IconSet = this.settings.iconSet;
 
-  /**
-   * By providing IconSettings, this default value can be overridden globally. Otherwise, this property
-   * can be set for individual icons
-   */
-  @Input() public size: ComponentSize = this.settings.defaultSize;
+  @Input() public size: ComponentSize = this.settings.size;
 
-  /**
-   * Changes the cursor to pointer mode.
-   */
-  @Input() public clickable = false;
+  @Input() public clickable = this.settings.clickable;
 
-  /**
-   * Applies appropriate margins to the icon inside other components when placed to the left of another element or text.
-   */
-  @Input() public left = false;
+  @Input() public left = this.settings.left;
 
-  /**
-   * Applies appropriate margins to the icon inside other components when placed to the right of another element or text.
-   */
   @Input() public right = false;
 
-  /**
-   * Applies appropriate margins to the icon inside other components when placed on top of another element or text.
-   */
   @Input() public top = false;
 
-  /**
-   * Applies appropriate margins to the icon inside other components when placed bottom of other elements or texts.
-   */
   @Input() public bottom = false;
 
   public constructor(

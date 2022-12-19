@@ -8,7 +8,7 @@ export const DEFAULT_AUTOCOMPLETE_SETTINGS: EntireAutocompleteSettings = {
   clearable: false,
   noDataText: 'No data available',
   multiple: false,
-  dropdownPosition: 'bottom',
+  dropdownPosition: 'bottom-start',
   disabled: false,
   hideDetails: false,
   itemTextKey: undefined,
@@ -19,5 +19,6 @@ export const DEFAULT_AUTOCOMPLETE_SETTINGS: EntireAutocompleteSettings = {
   hint: undefined,
   label: undefined,
   placeholder: undefined,
+  flip: false,
 };
 export const AUTOCOMPLETE_SETTINGS = new InjectionToken<AutocompleteSettings>('Autocomplete Settings');

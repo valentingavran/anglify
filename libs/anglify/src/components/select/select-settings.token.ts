@@ -8,7 +8,7 @@ export const DEFAULT_SELECT_SETTINGS: EntireSelectSettings = {
   clearable: false,
   noDataText: 'No data available',
   multiple: false,
-  dropdownPosition: 'bottom',
+  dropdownPosition: 'bottom-start',
   disabled: false,
   hideDetails: false,
   itemTextKey: undefined,
@@ -19,5 +19,6 @@ export const DEFAULT_SELECT_SETTINGS: EntireSelectSettings = {
   hint: undefined,
   label: undefined,
   placeholder: undefined,
+  flip: false,
 };
 export const SELECT_SETTINGS = new InjectionToken<SelectSettings>('Select Settings');

@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  anglify-card {
+    width: min(400px, 100%);
+    height: 250px;
+
+    anglify-toolbar {
+      * {
+        color: var(--color-on-bar-high-emphasis);
+      }
+    }
+  }
+}

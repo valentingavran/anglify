@@ -22,35 +22,20 @@ import { EntireProgressLinearSettings } from './progress-linear.interface';
   ],
   imports: [ClampPipe, PercentPipe, NgIf],
 })
-export class ProgressLinearComponent {
-  /**
-   * Defines whether the component is currently being animated.
-   */
+export class ProgressLinearComponent implements EntireProgressLinearSettings {
   @Input() public active = this.settings.active;
 
-  /**
-   * The percentage value for the buffer.
-   */
   @Input() public bufferValue = this.settings.bufferValue;
 
-  /**
-   * Constantly animates, use when loading progress is unknown.
-   */
   @Input() public indeterminate = this.settings.indeterminate;
 
-  /**
-   * An alternative style for portraying loading that works in tandem with buffer-value.
-   */
   @Input() public stream = this.settings.stream;
 
-  /**
-   * The percentage value for current progress.
-   */
   @Input() public value = this.settings.value;
 
   public constructor(@Self() @Inject('anglifyProgressLinearSettings') private readonly settings: EntireProgressLinearSettings) {}
 
-  public get normalizedValue() {
+  private get normalizedValue() {
     return clamp(this.value, 0, 100);
   }
 
