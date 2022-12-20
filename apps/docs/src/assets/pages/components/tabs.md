@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Tab"
 material-design="https://material.io/components/tabs"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/"/>
 
 Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.

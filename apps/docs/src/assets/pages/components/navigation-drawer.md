@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Navigation%20Drawer"
-material-design="https://material.io/components/navigation-drawer"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/components/navigation-drawer"/>
 
 Navigation drawers provide access to destinations and app functionality, such as switching accounts. They can either be permanently
 on-screen or controlled by a navigation menu icon. Navigation drawers are recommended for:

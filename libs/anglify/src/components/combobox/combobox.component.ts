@@ -114,6 +114,8 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
 
   @Output() public readonly valueChange = new EventEmitter<any>();
 
+  @Output() public readonly disabledChange = new EventEmitter<any>();
+
   protected machine = new Machine(createComboboxMachineConfig(this));
 
   public constructor(
@@ -123,6 +125,8 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
 
   private onChange: (...args: any[]) => void = () => {};
 
+  private onTouched: (...args: any[]) => void = () => {};
+
   public writeValue(value: any) {
     this.machine.context$.next({ ...this.machine.context$.value, selectedItems: this.decode(value) });
   }
@@ -131,7 +135,14 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
     this.onChange = fn;
   }
 
-  public registerOnTouched(_: any) {}
+  public registerOnTouched(fn: any) {
+    this.onTouched = fn;
+  }
+
+  public setDisabledState(isDisabled: boolean) {
+    this.disabledChange.emit(isDisabled);
+    this.machine.context$.next({ ...this.machine.context$.value, disabled: isDisabled });
+  }
 
   public ngOnChanges(changes: SimpleChanges) {
     const context = this.machine.context$.value as any;
@@ -222,7 +233,10 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
       ),
       fromEvent(this.menu!.menuContent.location.nativeElement as HTMLElement, 'mousedown').pipe(tap(event => event.preventDefault())),
       fromEvent(input, 'focusin').pipe(map(() => ({ action: ComboboxAction.FOCUS }))),
-      fromEvent(input, 'focusout').pipe(map(() => ({ action: ComboboxAction.BLUR }))),
+      fromEvent(input, 'focusout').pipe(
+        map(() => ({ action: ComboboxAction.BLUR })),
+        tap(() => this.onTouched())
+      ),
       fromEvent(input, 'keydown').pipe(
         map(event => event as KeyboardEvent),
         switchMap(event => {
@@ -254,22 +268,21 @@ export class ComboboxComponent implements AfterViewInit, ControlValueAccessor, E
       if (itemValueKey) return selectedItems.map(item => item[itemValueKey]);
       else return selectedItems;
     } else {
-      return selectedItems[0] || null;
+      const itemValueKey = this.itemValueKey;
+      if (itemValueKey) return selectedItems[0][itemValueKey] || null;
+      else return selectedItems[0] || null;
     }
   }
 
-  private decode(values: any[]) {
-    if (this.multiple) {
-      if (values === null) return [];
-      if (!Array.isArray(values)) return [values];
-      const itemValueKey = this.itemValueKey;
-      if (itemValueKey) return this.items.filter(item => values.includes(item[itemValueKey]));
-      else return values;
-    } else {
-      if (values === null) return [];
-      if (Array.isArray(values)) return values;
-      return [values];
-    }
+  private decode(values: any) {
+    let tmp: any[];
+    if (values === null) tmp = [];
+    else if (Array.isArray(values)) tmp = values;
+    else tmp = [values];
+
+    const itemValueKey = this.itemValueKey;
+    if (itemValueKey) return this.items.filter(item => tmp.includes(item[itemValueKey]));
+    else return tmp;
   }
 
   protected offset = ({ placement }: MiddlewareArguments) => {

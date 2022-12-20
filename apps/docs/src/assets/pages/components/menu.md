@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Menu"
 material-design="https://material.io/components/menus"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/menu/"/>
 
 A menu displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.

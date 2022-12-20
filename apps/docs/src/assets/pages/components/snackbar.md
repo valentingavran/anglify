@@ -2,7 +2,6 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Snackbar"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 material-design="https://material.io/components/snackbars"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/alert/" />
 

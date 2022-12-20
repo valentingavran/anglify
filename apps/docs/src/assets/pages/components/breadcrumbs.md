@@ -2,7 +2,6 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Breadcrumbs"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/"/>
 
 Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".

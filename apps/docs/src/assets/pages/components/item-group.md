@@ -1,8 +1,7 @@
 # Item Group
 
 <app-references
-issues="https://github.com/valentingavran/anglify/labels/component%3A%20Item%20Group"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+issues="https://github.com/valentingavran/anglify/labels/component%3A%20Item%20Group"/>
 
 ## Examples
 

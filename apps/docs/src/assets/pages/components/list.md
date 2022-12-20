@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20List"
-material-design="https://material.io/components/lists"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/components/lists"/>
 
 Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are
 represented by icons and text.

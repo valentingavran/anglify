@@ -1,5 +1,9 @@
 # Button Group
 
+<app-references
+issues="https://github.com/valentingavran/anglify/labels/components%3A%20Button%20Group"
+material-design="https://m3.material.io/components/segmented-buttons/overview"/>
+
 ## Examples
 
 ### Mandatory

@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Stepper"
-material-design="https://material.io/archive/guidelines/components/steppers.html#steppers-usage"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/archive/guidelines/components/steppers.html#steppers-usage"/>
 
 Steppers display progress through a sequence of logical and numbered steps. They may also be used for navigation. Steppers may display a
 transient feedback message after a step is saved.

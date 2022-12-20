@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Checkbox"
 material-design="https://material.io/components/checkboxes"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 w3c="https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/"/>
 
 Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off. Use checkboxes to:

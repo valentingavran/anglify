@@ -20,14 +20,13 @@ $ npm install @anglify/components
 
 After that you only have to import the common Anglify styles into your `styles.scss` file.
 
-All Anglify Custom CSS properties must also be defined. You can either import the predefined light theme as shown below or define all CSS
-custom properties in the root element yourself. You can learn how to style your application on the
+All Anglify Custom CSS properties must also be defined. You can either import the predefined light theme as shown below or define all CSS custom properties in the root element yourself. You can learn how to style your application on the
 [Theming page](/getting-started/theming)
 
 ```scss
 // styles.scss
-@use 'node_modules/@anglify/components/styles/index';
-@use 'node_modules/@anglify/components/styles/themes/light' as *;
+@use 'node_modules/@anglify/components/styles/index'; // Common Anglify styles
+@use 'node_modules/@anglify/components/styles/themes/light' as *; // Light theme
 // ...
 :root {
   @include light-theme;
@@ -39,28 +38,24 @@ Now you are ready to use the numerous Anglify components.
 
 ## Using components
 
-In order to use a Anglify component, you first need to import it. To do this, open the module in which your component is defined and in which you want to use an Anglify component.
-
-After that you import the desired Anglify component and add it to the `imports` array:
+In order to use a Anglify component, you first need to import it.
 
 ```typescript
-import { CardComponent } from '@anglify/components';
+import { CheckboxComponent } from '@anglify/components';
 
 @NgModule({
-  declarations: [
-    //...
-  ],
-  imports: [CardComponent],
-  providers: [
-    //...
-  ],
-  bootstrap: [AppComponent],
+  selector: 'app-my-component',
+  standalone: true,
+  // ...
+  imports: [CommonModule, CheckboxComponent],
 })
-export class AppModule {}
+export class MyComponent {
+  //...
+}
 ```
 
-Finally, you can start using the component in the template:
+After that you can use the component in the template:
 
 ```html
-<anglify-card>Hello world</anglify-card>
+<anglify-checkbox>I would like to receive notifications</anglify-checkbox>
 ```

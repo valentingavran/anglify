@@ -2,8 +2,7 @@
 
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Progress%20Linear"
-material-design="https://material.io/components/progress-indicators#linear-progress-indicators"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"/>
+material-design="https://material.io/components/progress-indicators#linear-progress-indicators"/>
 
 ## Playground
 

@@ -3,7 +3,6 @@
 <app-references
 issues="https://github.com/valentingavran/anglify/labels/component%3A%20Divider"
 material-design="https://material.io/components/dividers"
-bundle-size="https://bundlephobia.com/package/@anglify/components@latest"
 />
 
 Dividers separate content into clear groups.

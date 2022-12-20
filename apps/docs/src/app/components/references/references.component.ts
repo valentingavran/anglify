@@ -10,8 +10,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   imports: [ChipComponent, IconComponent, SlotDirective, NgIf],
 })
 export class ReferencesComponent {
-  @Input('bundle-size') public bundleSize?: string;
-
   @Input() public issues?: string;
 
   @Input('material-design') public materialDesign?: string;
