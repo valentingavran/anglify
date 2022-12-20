@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.45.1](https://github.com/valentingavran/anglify/compare/v0.45.0...v0.45.1) (2022-12-20)
+
+
+### 🐛  Bug Fixes
+
+* **Autocomplete:** disabling via FormControls works now ([07c188d](https://github.com/valentingavran/anglify/commit/07c188d8e1f66d8e992e3a10ed620ca5ee8c352a))
+* **Autocomplete:** use itemValueKey always (not only when multiple) ([41f5865](https://github.com/valentingavran/anglify/commit/41f58656a5787e67db23ed426720d456b5b6a756))
+* **Combobox:** disabling via FormControls works now ([ae8d662](https://github.com/valentingavran/anglify/commit/ae8d6624c0f8dfbfe013a17d256b1ad01295e7dc))
+* **Combobox:** use itemValueKey always (not only when multiple) ([bf09eb0](https://github.com/valentingavran/anglify/commit/bf09eb0e0ac6091495338ca35abf91f97d820e6b))
+* **Select:** disabling via FormControls works now ([c866d14](https://github.com/valentingavran/anglify/commit/c866d14c1405878a05c125e9ab21576faa705e4c))
+* **Select:** use itemValueKey always (not only when multiple) ([e4a2d10](https://github.com/valentingavran/anglify/commit/e4a2d10861a8a4108a5d22ea412a8cbf3e4be33d))
+
+
+### 📝  Docs
+
+* update docs ([96705f5](https://github.com/valentingavran/anglify/commit/96705f5f88d01a3f31ea7406709394dbd3de10c4))
+
 ## [0.45.0](https://github.com/valentingavran/anglify/compare/v0.44.0...v0.45.0) (2022-12-19)
 
 
