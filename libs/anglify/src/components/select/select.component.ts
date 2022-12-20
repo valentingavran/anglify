@@ -115,6 +115,8 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
 
   @Output() public readonly valueChange = new EventEmitter<any>();
 
+  @Output() public readonly disabledChange = new EventEmitter<any>();
+
   protected machine = new Machine(createSelectMachineConfig(this));
 
   public constructor(
@@ -124,6 +126,8 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
 
   private onChange: (...args: any[]) => void = () => {};
 
+  private onTouched: (...args: any[]) => void = () => {};
+
   public writeValue(value: any) {
     this.machine.context$.next({ ...this.machine.context$.value, selectedItems: this.decode(value) });
   }
@@ -132,7 +136,14 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
     this.onChange = fn;
   }
 
-  public registerOnTouched(_: any) {}
+  public registerOnTouched(fn: any) {
+    this.onTouched = fn;
+  }
+
+  public setDisabledState(isDisabled: boolean) {
+    this.disabledChange.emit(isDisabled);
+    this.machine.context$.next({ ...this.machine.context$.value, disabled: isDisabled });
+  }
 
   public ngOnChanges(changes: SimpleChanges) {
     const context = this.machine.context$.value as any;
@@ -217,7 +228,10 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
       ),
       fromEvent(this.menu!.menuContent.location.nativeElement as HTMLElement, 'mousedown').pipe(tap(event => event.preventDefault())),
       fromEvent(input, 'focusin').pipe(map(() => ({ action: SelectAction.FOCUS }))),
-      fromEvent(input, 'focusout').pipe(map(() => ({ action: SelectAction.BLUR }))),
+      fromEvent(input, 'focusout').pipe(
+        map(() => ({ action: SelectAction.BLUR })),
+        tap(() => this.onTouched())
+      ),
       fromEvent(input, 'keydown').pipe(
         map(event => event as KeyboardEvent),
         switchMap(event => {
