@@ -255,21 +255,20 @@ export class AutocompleteComponent implements AfterViewInit, OnChanges, EntireAu
       if (itemValueKey) return selectedItems.map(item => item[itemValueKey]);
       else return selectedItems;
     } else {
-      return selectedItems[0] || null;
+      const itemValueKey = this.itemValueKey;
+      if (itemValueKey) return selectedItems[0][itemValueKey] || null;
+      else return selectedItems[0] || null;
     }
   }
 
-  private decode(values: any[]) {
-    if (this.multiple) {
-      if (values === null) return [];
-      if (!Array.isArray(values)) return [values];
-      const itemValueKey = this.itemValueKey;
-      if (itemValueKey) return this.items.filter(item => values.includes(item[itemValueKey]));
-      else return values;
-    } else {
-      if (values === null) return [];
-      if (Array.isArray(values)) return values;
-      return [values];
-    }
+  private decode(values: any) {
+    let tmp: any[];
+    if (values === null) tmp = [];
+    else if (Array.isArray(values)) tmp = values;
+    else tmp = [values];
+
+    const itemValueKey = this.itemValueKey;
+    if (itemValueKey) return this.items.filter(item => tmp.includes(item[itemValueKey]));
+    else return tmp;
   }
 }
