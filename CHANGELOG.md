@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.46.0](https://github.com/valentingavran/anglify/compare/v0.45.1...v0.46.0) (2023-01-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* Components can no longer be used as tooltip content. TemplateRef can still be used
+
+### 🔬  Code Refactoring
+
+* replace all deprecated ComponentFactoryResolver occurrences ([8addeb3](https://github.com/valentingavran/anglify/commit/8addeb31f4f36fa1f4573e50533fee5cd222a939))
+
+
+### 🚀  Features
+
+* **DataTable:** add support for row click event ([f555346](https://github.com/valentingavran/anglify/commit/f5553466e0a9832ef28ee449081f0a66b01e10e6))
+* **DataTable:** selected item is now colored ([031e821](https://github.com/valentingavran/anglify/commit/031e8218ca74145dc9c504192980a8db989d35c1))
+
 ### [0.45.1](https://github.com/valentingavran/anglify/compare/v0.45.0...v0.45.1) (2022-12-20)
 
 
