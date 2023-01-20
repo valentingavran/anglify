@@ -58,7 +58,7 @@
       <ng-container *anglifySlotOutlet="slots | findSlot: 'no-data'">{{ noDataText }}</ng-container>
     </div>
     <ng-container *ngFor="let item of paginationService.limitedItems$ | async; let index = index; trackBy: trackByFn">
-      <tr (click)="expansionService.expand(index)" [ngClass]="(dataService.mobile$ | async) ? 'mobile' : ''">
+      <tr (click)="onRowClick(item, index)" [ngClass]="(dataService.mobile$ | async) ? 'mobile' : ''">
         <td class="row-selection" *ngIf="selectionService.selectableRows$ | async">
           <anglify-checkbox
             (checkedChange)="selectionService.toggleSelection(item)"

@@ -14,6 +14,10 @@ This component is used for displaying tabular data. Features include sorting, se
 Using the `multiSort` prop will enable you to sort on multiple columns at the same time.
 <app-code-example component="data-table" example="multi-sort"></app-code-example>
 
+### Row click
+
+<app-code-example component="data-table" example="row-click"></app-code-example>
+
 ### Search
 
 The data table exposes a `search` prop that allows you to filter your data.
