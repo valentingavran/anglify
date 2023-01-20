@@ -149,7 +149,37 @@
       }
     }
 
-    &:hover {
+    &.selected {
+      td:not(.expanded-item) {
+        position: relative;
+        transform-style: preserve-3d;
+
+        &::after {
+          position: absolute;
+          background-color: var(--color-state-active-pressed);
+          content: '';
+          inset: 0;
+          transform: translateZ(-1px);
+        }
+      }
+    }
+
+    &:hover.selected {
+      td:not(.expanded-item) {
+        position: relative;
+        transform-style: preserve-3d;
+
+        &::after {
+          position: absolute;
+          background-color: var(--color-state-active-hover);
+          content: '';
+          inset: 0;
+          transform: translateZ(-1px);
+        }
+      }
+    }
+
+    &:hover:not(.selected) {
       td:not(.expanded-item) {
         position: relative;
         transform-style: preserve-3d;
