@@ -224,6 +224,8 @@ export class DataTableComponent implements EntireDataTableSettings {
   // eslint-disable-next-line rxjs/finnish
   @Output() public readonly sortByChange = this.dataService.sortBy$.pipe(skip(1));
 
+  @Output() public readonly itemClick = new EventEmitter<DataTableItem>();
+
   protected readonly loading$ = new BehaviorSubject(this.settings.loading);
 
   private readonly itemKey$ = new BehaviorSubject(this.settings.itemKey);
@@ -265,4 +267,9 @@ export class DataTableComponent implements EntireDataTableSettings {
   protected readonly trackByFn = (index: number, item: DataTableItem) => item[this.itemKey$.value] || index;
 
   protected readonly headerTrackByFn = (index: number) => index;
+
+  protected onRowClick(item: DataTableItem, index: number) {
+    this.expansionService.expand(index);
+    this.itemClick.emit(item);
+  }
 }

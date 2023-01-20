@@ -1,0 +1,7 @@
+:host {
+  // This will not work because the dialog is injected into the body
+  .dialog {
+    display: block;
+    padding: 16px;
+  }
+}

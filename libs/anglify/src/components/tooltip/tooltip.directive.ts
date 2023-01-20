@@ -1,7 +1,7 @@
+import type { TemplateRef } from '@angular/core';
 import {
   ApplicationRef,
   ChangeDetectorRef,
-  ComponentFactoryResolver,
   Directive,
   ElementRef,
   HostListener,
@@ -10,12 +10,10 @@ import {
   Input,
   Renderer2,
   Self,
-  TemplateRef,
   ViewContainerRef,
   type ComponentRef,
   type EmbeddedViewRef,
   type OnDestroy,
-  type Type,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { merge, of, Subject } from 'rxjs';
@@ -38,7 +36,7 @@ export class TooltipDirective implements OnDestroy {
   /**
    * Tooltip content. Can either be a `string`, a `ng-template` or `Component`.
    */
-  @Input('anglifyTooltip') public content!: TemplateRef<any> | Type<any> | string;
+  @Input('anglifyTooltip') public content!: TemplateRef<any> | string;
 
   /**
    * Tooltip configuration object.
@@ -182,8 +180,6 @@ export class TooltipDirective implements OnDestroy {
     private readonly element: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
-    private readonly injector: Injector,
-    private readonly resolver: ComponentFactoryResolver,
     private readonly applicationRef: ApplicationRef,
     private readonly cdRef: ChangeDetectorRef,
     @Self() @Inject('anglifyTooltipSettings') private readonly settings: EntireTooltipSettings
@@ -263,7 +259,6 @@ export class TooltipDirective implements OnDestroy {
 
   private create() {
     if (this.componentRef) return;
-    const factory = this.resolver.resolveComponentFactory(TooltipComponent);
     const injector = Injector.create({
       providers: [
         {
@@ -272,7 +267,7 @@ export class TooltipDirective implements OnDestroy {
         },
       ],
     });
-    this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector, this.generateNgContent());
+    this.componentRef = this.viewContainerRef.createComponent(TooltipComponent, { injector, projectableNodes: this.generateNgContent() });
     this.componentRef.instance.position = this.position;
     this.componentRef.instance.offset = this.offset;
     this.componentRef.instance.parentWidth = this.parentWidth;
@@ -289,13 +284,9 @@ export class TooltipDirective implements OnDestroy {
       return [[this.renderer.createText(this.content)]];
     }
 
-    if (this.content instanceof TemplateRef) {
-      this.embeddedView = this.content.createEmbeddedView({});
-      this.applicationRef.attachView(this.embeddedView);
-      return [this.embeddedView.rootNodes];
-    }
-
-    return [[this.resolver.resolveComponentFactory(this.content).create(this.injector)]];
+    this.embeddedView = this.content.createEmbeddedView({});
+    this.applicationRef.attachView(this.embeddedView);
+    return [this.embeddedView.rootNodes];
   }
 
   private changeMountingPoint() {

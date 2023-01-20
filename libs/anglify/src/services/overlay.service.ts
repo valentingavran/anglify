@@ -1,5 +1,5 @@
 import type { ComponentRef, Injector, Type } from '@angular/core';
-import { ApplicationRef, ComponentFactoryResolver, Injectable } from '@angular/core';
+import { ApplicationRef, createComponent, Injectable } from '@angular/core';
 import { filter, fromEvent, map } from 'rxjs';
 import type { Position } from '../composables/position/position.interface';
 
@@ -90,7 +90,7 @@ export class Overlay {
     }
   }
 
-  public constructor(private readonly applicationRef: ApplicationRef, private readonly resolver: ComponentFactoryResolver) {
+  public constructor(private readonly applicationRef: ApplicationRef) {
     this.element = document.createElement('div');
     this.element.classList.add('anglify-overlay-container');
     document.body.append(this.element);
@@ -113,8 +113,11 @@ export class Overlay {
     this.pane.classList.add('anglify-overlay-pane');
     this.element.append(this.pane);
 
-    const factory = this.resolver.resolveComponentFactory(component);
-    const componentRef = factory.create(injector, [], this.pane);
+    const componentRef = createComponent(component, {
+      elementInjector: injector,
+      environmentInjector: this.applicationRef.injector,
+      hostElement: this.pane,
+    });
     this.applicationRef.attachView(componentRef.hostView);
     this.mountedComponent = componentRef;
   }
@@ -144,9 +147,9 @@ export class Overlay {
   providedIn: 'root',
 })
 export class OverlayService {
-  public constructor(private readonly applicationRef: ApplicationRef, private readonly resolver: ComponentFactoryResolver) {}
+  public constructor(private readonly applicationRef: ApplicationRef) {}
 
   public create() {
-    return new Overlay(this.applicationRef, this.resolver);
+    return new Overlay(this.applicationRef);
   }
 }

@@ -1,7 +1,6 @@
-import type {} from '@angular/core';
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
+  createComponent,
   Injectable,
   InjectionToken,
   Injector,
@@ -27,7 +26,6 @@ export class DialogService {
 
   public constructor(
     private readonly appRef: ApplicationRef,
-    private readonly componentFactoryResolver: ComponentFactoryResolver,
     private readonly idService: AnglifyIdService,
     private readonly overlayService: OverlayService
   ) {}
@@ -94,12 +92,12 @@ export class DialogService {
   }
 
   private createFromComponent(component: Type<any>, context: DialogContext) {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
-    return componentFactory.create(
-      Injector.create({
+    return createComponent(component, {
+      elementInjector: Injector.create({
         providers: [{ provide: DIALOG_CONTEXT, useValue: context }],
-      })
-    );
+      }),
+      environmentInjector: this.appRef.injector,
+    });
   }
 
   private createFromTemplate(template: TemplateRef<any>, context: DialogContext) {
