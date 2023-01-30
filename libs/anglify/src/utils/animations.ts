@@ -12,8 +12,8 @@ export const fastInFastOutY = ({ name = 'fast-in-fast-out-y', duration = '300ms'
   trigger(name, [
     state('*', style({ 'overflow-y': 'hidden' })),
     state('void', style({ 'overflow-y': 'hidden' })),
-    transition('* => void', [style({ height: '*' }), animate(`${duration} cubic-bezier(0.25, 0.8, 0.25, 1)`, style({ height: 0 }))]),
-    transition('void => *', [style({ height: '0' }), animate(`${duration} cubic-bezier(0.25, 0.8, 0.25, 1)`, style({ height: '*' }))]),
+    transition(':leave', [style({ height: '*' }), animate(`${duration} cubic-bezier(0.25, 0.8, 0.25, 1)`, style({ height: 0 }))]),
+    transition(':enter', [style({ height: '0' }), animate(`${duration} cubic-bezier(0.25, 0.8, 0.25, 1)`, style({ height: '*' }))]),
   ]);
 
 export const slide = ({ name = 'slide', duration = '300ms' } = {}) =>

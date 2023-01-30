@@ -70,6 +70,8 @@ export class StepperComponent extends StepperService implements EntireStepperSet
     this.stepperSettings.setOrientation(value);
   }
 
+  @Input() public disableAnimations = false;
+
   // eslint-disable-next-line rxjs/finnish, @angular-eslint/no-output-on-prefix
   @Output() public readonly onPrevious = super.onPrevious$;
 

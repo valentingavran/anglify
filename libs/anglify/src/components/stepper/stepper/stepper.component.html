@@ -16,14 +16,24 @@
     </anglify-stepper-header>
 
     <div *ngIf="(stepperSettings.orientation$ | async) === 'vertical'" class="steps">
-      <div *ngIf="step.selected$ | async" class="step-container" @fast-in-fast-out-y>
+      <div
+        *ngIf="step.selected$ | async"
+        class="step-container"
+        [@fast-in-fast-out-y]="selectedIndex$ | async"
+        [@.disabled]="disableAnimations"
+      >
         <ng-container [ngTemplateOutlet]="stepContainer" [ngTemplateOutletContext]="{ $implicit: step }"></ng-container>
       </div>
     </div>
   </ng-container>
 </div>
 
-<div *ngIf="(stepperSettings.orientation$ | async) === 'horizontal'" class="steps" [@slide]="selectedIndex$ | async">
+<div
+  *ngIf="(stepperSettings.orientation$ | async) === 'horizontal'"
+  class="steps"
+  [@slide]="selectedIndex$ | async"
+  [@.disabled]="disableAnimations"
+>
   <ng-container *ngFor="let step of steps$ | async; let index = index">
     <div *ngIf="step.selected$ | async" class="step-container">
       <ng-container [ngTemplateOutlet]="stepContainer" [ngTemplateOutletContext]="{ $implicit: step }"></ng-container>
