@@ -97,10 +97,20 @@
       }
     }
 
-    &.anglify-input-dense {
-      ::ng-deep input {
-        height: var(--anglify-input-min-height-dense);
-        min-height: var(--anglify-input-min-height-dense);
+    &.anglify-input-dense.anglify-input-filled {
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: 14px;
+        }
+      }
+    }
+
+    &.anglify-input-dense.anglify-input-outlined {
+      ::ng-deep {
+        .anglify-input-content {
+          padding-top: 7px;
+          padding-bottom: 7px;
+        }
       }
     }
 
