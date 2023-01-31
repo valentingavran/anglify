@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.46.2](https://github.com/valentingavran/anglify/compare/v0.46.1...v0.46.2) (2023-01-31)
+
+
+### 🐛  Bug Fixes
+
+* **Autocomplete, Combobox:** dense style ([9f41bf5](https://github.com/valentingavran/anglify/commit/9f41bf5e08203150acd2969e05938822bbedd60b))
+
 ### [0.46.1](https://github.com/valentingavran/anglify/compare/v0.46.0...v0.46.1) (2023-01-30)
 
 
