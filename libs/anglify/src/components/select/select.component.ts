@@ -180,7 +180,7 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
   private notifyValueChange() {
     merge(
       this.machine.context$.pipe(
-        map(context => context.selectedItems),
+        map(context => [...context.selectedItems]),
         distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b))
       ),
       this.machine.context$.pipe(
@@ -278,8 +278,13 @@ export class SelectComponent implements EntireSelectSettings, AfterViewInit, OnC
       else return selectedItems;
     } else {
       const itemValueKey = this.itemValueKey;
-      if (itemValueKey) return selectedItems[0][itemValueKey] || null;
-      else return selectedItems[0] || null;
+      const firstItem = selectedItems[0];
+      if (firstItem) {
+        if (itemValueKey) return firstItem[itemValueKey] || null;
+        else return firstItem;
+      }
+
+      return null;
     }
   }
 
