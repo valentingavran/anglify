@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.46.3](https://github.com/valentingavran/anglify/compare/v0.46.2...v0.46.3) (2023-03-02)
+
+
+### 🐛  Bug Fixes
+
+* **Select:** fix select on change ([033cb68](https://github.com/valentingavran/anglify/commit/033cb68bd569bb076097c215ce16b6e438b3e47d))
+
 ### [0.46.2](https://github.com/valentingavran/anglify/compare/v0.46.1...v0.46.2) (2023-01-31)
 
 
